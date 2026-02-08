@@ -7,6 +7,9 @@ import EmbedThemeProvider from "@/components/tools/EmbedThemeProvider";
 import { routing } from "@/i18n/routing";
 import { decodeTheme, getVisibleSections } from "@/lib/embedTheme";
 
+// Embed pages read searchParams (theme config) so they must be dynamic
+export const dynamic = "force-dynamic";
+
 interface EmbedPageProps {
   params: Promise<{ locale: string; id: string }>;
   searchParams: Promise<{ theme?: string }>;

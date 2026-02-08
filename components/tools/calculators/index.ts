@@ -1,6 +1,7 @@
 import type { ComponentType } from "react";
 import type { VisibleSections } from "@/lib/embedTheme";
 import BMICalculator from "./BMICalculator";
+import LaTeXEditor from "@/components/tools/latex-editor";
 
 /**
  * Props that all calculator components accept for embed theming.
@@ -25,6 +26,7 @@ export interface CalculatorEmbedProps {
  */
 export const calculatorRegistry: Record<string, ComponentType<CalculatorEmbedProps>> = {
   "bmi-calc": BMICalculator,
+  "latex-editor": LaTeXEditor as ComponentType<CalculatorEmbedProps>,
   // "gfr-calc": EGFRCalculator,   // coming soon
   // "dose-calc": DoseCalculator,  // coming soon
 };

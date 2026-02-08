@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
 import { ArrowLeft, Code, ExternalLink, Wrench, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle } from "lucide-react";
 import Link from "next/link";
-import { tools, getToolById } from "@/data/tools";
+import { getToolById } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
 import { getToolJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
@@ -17,10 +17,11 @@ interface ToolPageProps {
 }
 
 // ── Static params for build-time generation ──────────────────────────
+// Only generate pages for tools that have a registered component.
+// This prevents DYNAMIC_SERVER_USAGE errors when a tool is "available"
+// but renders via its own dedicated route (e.g. /create, /flashcards).
 export async function generateStaticParams() {
-  return tools
-    .filter((t) => t.status === "available" && t.id !== "illustration-maker" && t.id !== "flashcard-maker" && t.id !== "mcq-maker")
-    .map((t) => ({ id: t.id }));
+  return Object.keys(calculatorRegistry).map((id) => ({ id }));
 }
 
 // ── SEO metadata ─────────────────────────────────────────────────────
