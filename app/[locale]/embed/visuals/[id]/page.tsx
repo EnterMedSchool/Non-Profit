@@ -1,0 +1,69 @@
+"use client";
+
+import { Suspense } from "react";
+import { useParams, useSearchParams } from "next/navigation";
+import { useMemo } from "react";
+import { visualLessons } from "@/data/visuals";
+import EmbedLayerViewer from "@/components/embed/EmbedLayerViewer";
+
+function EmbedContent() {
+  const params = useParams();
+  const searchParams = useSearchParams();
+
+  const lessonId = params.id as string;
+
+  // Find lesson by embedId
+  const lesson = useMemo(
+    () => visualLessons.find((l) => l.embedId === lessonId),
+    [lessonId]
+  );
+
+  // Read customization from query params
+  const bg = searchParams.get("bg") || "ffffff";
+  const accent = searchParams.get("accent") || "6C5CE7";
+  const radius = parseInt(searchParams.get("radius") || "12", 10);
+  const theme = (searchParams.get("theme") || "light") as "light" | "dark";
+
+  if (!lesson) {
+    return (
+      <div
+        className="flex h-screen items-center justify-center"
+        style={{
+          backgroundColor: `#${bg}`,
+          color: theme === "dark" ? "#fff" : "#1a1a2e",
+        }}
+      >
+        <div className="text-center">
+          <p className="text-lg font-bold">Lesson not found</p>
+          <p className="mt-1 text-sm opacity-60">
+            The visual lesson &ldquo;{lessonId}&rdquo; does not exist.
+          </p>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <EmbedLayerViewer
+      lesson={lesson}
+      bg={bg}
+      accent={accent}
+      radius={radius}
+      theme={theme}
+    />
+  );
+}
+
+export default function EmbedVisualsPage() {
+  return (
+    <Suspense
+      fallback={
+        <div className="flex h-screen items-center justify-center bg-white">
+          <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-200 border-t-purple-500" />
+        </div>
+      }
+    >
+      <EmbedContent />
+    </Suspense>
+  );
+}

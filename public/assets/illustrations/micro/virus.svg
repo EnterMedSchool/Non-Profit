@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E6FAF5"/>
+  <circle cx="100" cy="85" r="25" fill="#00B894" opacity="0.4"/>
+  <line x1="125" y1="85" x2="135" y2="85" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="135" cy="85" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="117.67766952966369" y1="102.67766952966369" x2="124.74873734152916" y2="109.74873734152916" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="124.74873734152916" cy="109.74873734152916" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="100" y1="110" x2="100" y2="120" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="100" cy="120" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="82.32233047033631" y1="102.67766952966369" x2="75.25126265847084" y2="109.74873734152916" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="75.25126265847084" cy="109.74873734152916" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="75" y1="85" x2="65" y2="85" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="65" cy="85" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="82.32233047033631" y1="67.32233047033631" x2="75.25126265847084" y2="60.251262658470836" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="75.25126265847084" cy="60.251262658470836" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="100" y1="60" x2="100" y2="50" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="100" cy="50" r="4" fill="#00896B" opacity="0.6"/>
+  <line x1="117.67766952966369" y1="67.32233047033631" x2="124.74873734152916" y2="60.251262658470836" stroke="#00896B" stroke-width="2" opacity="0.5"/><circle cx="124.74873734152916" cy="60.251262658470836" r="4" fill="#00896B" opacity="0.6"/>
+  <circle cx="100" cy="85" r="10" fill="#00896B" opacity="0.5"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#00896B" opacity="0.8">Virus</text>
+</svg>

@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#FFF8E1"/>
+  <polyline points="55,90 85,115 150,55" fill="none" stroke="#FFD93D" stroke-width="8" stroke-linecap="round" stroke-linejoin="round" opacity="0.6"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#F39C12" opacity="0.8">Checkmark</text>
+</svg>

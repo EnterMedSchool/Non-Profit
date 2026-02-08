@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E8FAF7"/>
+  <circle cx="80" cy="80" r="22" fill="#00D9C0" opacity="0.5"/>
+  <circle cx="80" cy="80" r="14" fill="#009E8E" opacity="0.6"/>
+  <line x1="100" y1="80" x2="165" y2="80" stroke="#00D9C0" stroke-width="4" opacity="0.6"/>
+  <line x1="60" y1="65" x2="40" y2="50" stroke="#00D9C0" stroke-width="3" opacity="0.4"/>
+  <line x1="62" y1="95" x2="42" y2="110" stroke="#00D9C0" stroke-width="3" opacity="0.4"/>
+  <line x1="65" y1="75" x2="45" y2="68" stroke="#00D9C0" stroke-width="2" opacity="0.3"/>
+  <circle cx="165" cy="80" r="6" fill="#009E8E" opacity="0.5"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#009E8E" opacity="0.8">Neuron</text>
+</svg>

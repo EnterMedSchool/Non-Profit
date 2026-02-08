@@ -1,0 +1,1121 @@
+/* =============================================================================
+   Clinical Semiotics — Light Mode CSS
+   A light, chunky design system for the Clinical Semiotics video experience.
+   Reuses the Non-Profit project's vibrant palette on white/pastel backgrounds.
+   ============================================================================= */
+
+/* ===== Google Fonts ===== */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@400;500;600;700;800&family=Caveat:wght@400;500;600;700&family=DM+Sans:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+/* =============================================================================
+   1. Design Tokens
+   ============================================================================= */
+:root {
+  /* ── Accent Colors ── */
+  --cs-coral: #7E22CE;
+  --cs-yellow: #FFD93D;
+  --cs-purple: #6C5CE7;
+  --cs-teal: #00D9C0;
+  --cs-pink: #FF85A2;
+  --cs-orange: #FF9F43;
+  --cs-blue: #54A0FF;
+  --cs-navy: #1a1a2e;
+  --cs-green: #2ECC71;
+  --cs-red: #EF4444;
+
+  /* ── Light Backgrounds ── */
+  --cs-bg-cream: #EDF2FF;
+  --cs-bg-lavender: #F0EEFF;
+  --cs-bg-mint: #EEFBF9;
+  --cs-bg-peach: #FFF0F0;
+  --cs-bg-lemon: #FAFDF5;
+  --cs-bg-sky: #EDF4FF;
+
+  /* ── Video Backdrop (stays dark) ── */
+  --cs-video-bg: #0f172a;
+
+  /* ── Text ── */
+  --cs-text-dark: #1a1a2e;
+  --cs-text-muted: #4a4a6a;
+  --cs-text-light: #8888aa;
+
+  /* ── Chunky Styling ── */
+  --cs-shadow-chunky: 4px 4px 0 #1a1a2e;
+  --cs-shadow-chunky-sm: 3px 3px 0 #1a1a2e;
+  --cs-shadow-chunky-lg: 6px 6px 0 #1a1a2e;
+  --cs-border-chunky: 3px solid #1a1a2e;
+
+  /* ── Transitions ── */
+  --cs-smooth: cubic-bezier(0.4, 0, 0.2, 1);
+  --cs-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+
+/* =============================================================================
+   2. Keyframe Animations
+   ============================================================================= */
+
+@keyframes cs-fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes cs-slide-up {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes cs-scale-in {
+  from { opacity: 0; transform: scale(0.9); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes cs-bounce-in {
+  0%   { opacity: 0; transform: scale(0.3); }
+  50%  { opacity: 1; transform: scale(1.08); }
+  70%  { transform: scale(0.95); }
+  100% { transform: scale(1); }
+}
+
+@keyframes cs-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+@keyframes cs-pulse {
+  0%, 100% { opacity: 1; }
+  50%      { opacity: 0.5; }
+}
+
+@keyframes cs-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+@keyframes cs-spin {
+  from { transform: rotate(0deg); }
+  to   { transform: rotate(360deg); }
+}
+
+@keyframes cs-gradient-shift {
+  0%   { background-position: 0% 50%; }
+  50%  { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes cs-blob-morph {
+  0%, 100% { border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%; }
+  50%      { border-radius: 30% 60% 70% 40% / 50% 60% 30% 60%; }
+}
+
+
+/* =============================================================================
+   3. Animation Utility Classes
+   ============================================================================= */
+
+.cs-animate-fade-in {
+  animation: cs-fade-in 0.4s var(--cs-smooth) both;
+}
+
+.cs-animate-slide-up {
+  animation: cs-slide-up 0.5s var(--cs-smooth) both;
+}
+
+.cs-animate-scale-in {
+  animation: cs-scale-in 0.4s var(--cs-bounce) both;
+}
+
+.cs-animate-bounce-in {
+  animation: cs-bounce-in 0.6s var(--cs-bounce) both;
+}
+
+.cs-animate-float {
+  animation: cs-float 3s ease-in-out infinite;
+}
+
+/* Delay helpers */
+.cs-delay-1 { animation-delay: 0.1s; }
+.cs-delay-2 { animation-delay: 0.2s; }
+.cs-delay-3 { animation-delay: 0.3s; }
+.cs-delay-4 { animation-delay: 0.4s; }
+.cs-delay-5 { animation-delay: 0.5s; }
+
+
+/* =============================================================================
+   4. Page & Root Shells
+   ============================================================================= */
+
+.semiotics-page {
+  background-color: #ffffff;
+  color: var(--cs-text-dark);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.semiotics-root {
+  position: fixed;
+  inset: 0;
+  background-color: #ffffff;
+  z-index: 60;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: var(--cs-text-dark);
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+
+/* =============================================================================
+   5. Intro Wrapper
+   ============================================================================= */
+
+.cs-intro-wrapper {
+  background-color: #ffffff;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+@media (min-width: 768px) {
+  .cs-intro-wrapper {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+}
+
+
+/* =============================================================================
+   6. Typography
+   ============================================================================= */
+
+.cs-font-display {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+}
+
+.cs-font-body {
+  font-family: 'DM Sans', system-ui, sans-serif;
+}
+
+.cs-font-handwritten {
+  font-family: 'Caveat', cursive;
+}
+
+
+/* =============================================================================
+   7. Cards
+   ============================================================================= */
+
+/* ── Chunky Card ── */
+.cs-card-chunky {
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 16px;
+  box-shadow: var(--cs-shadow-chunky);
+  transition: transform 0.2s var(--cs-smooth), box-shadow 0.2s var(--cs-smooth);
+}
+
+.cs-card-chunky:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cs-shadow-chunky-lg);
+}
+
+/* ── Dark Card (for use over video) ── */
+.cs-card-dark {
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  color: #ffffff;
+}
+
+
+/* =============================================================================
+   8. Badges — Sticker Style
+   ============================================================================= */
+
+.cs-badge-sticker {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border: 2px solid var(--cs-navy);
+  border-radius: 9999px;
+  box-shadow: 2px 2px 0 var(--cs-navy);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  line-height: 1.4;
+  white-space: nowrap;
+}
+
+/* Badge color variants */
+.cs-badge-coral {
+  background-color: var(--cs-coral);
+  color: #ffffff;
+}
+
+.cs-badge-yellow {
+  background-color: var(--cs-yellow);
+  color: var(--cs-navy);
+}
+
+.cs-badge-purple {
+  background-color: var(--cs-purple);
+  color: #ffffff;
+}
+
+.cs-badge-teal {
+  background-color: var(--cs-teal);
+  color: var(--cs-navy);
+}
+
+.cs-badge-pink {
+  background-color: var(--cs-pink);
+  color: #ffffff;
+}
+
+.cs-badge-green {
+  background-color: var(--cs-green);
+  color: #ffffff;
+}
+
+.cs-badge-navy {
+  background-color: var(--cs-navy);
+  color: #ffffff;
+}
+
+.cs-badge-orange {
+  background-color: var(--cs-orange);
+  color: var(--cs-navy);
+}
+
+/* ── Soft Badge (pastel bg, subtle border) ── */
+.cs-badge-soft {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  padding: 4px 12px;
+  border-radius: 9999px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  line-height: 1.4;
+  white-space: nowrap;
+  background-color: var(--cs-bg-lavender);
+  color: var(--cs-purple);
+  border: 1px solid rgba(108, 92, 231, 0.2);
+}
+
+
+/* =============================================================================
+   9. Buttons
+   ============================================================================= */
+
+/* ── Base Button ── */
+.cs-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 10px 20px;
+  border: 3px solid var(--cs-navy);
+  border-radius: 12px;
+  box-shadow: var(--cs-shadow-chunky);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  line-height: 1.4;
+  cursor: pointer;
+  transition:
+    transform 0.15s var(--cs-smooth),
+    box-shadow 0.15s var(--cs-smooth),
+    background-color 0.15s var(--cs-smooth);
+  user-select: none;
+  white-space: nowrap;
+  text-decoration: none;
+  color: var(--cs-text-dark);
+  background-color: #ffffff;
+}
+
+.cs-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--cs-shadow-chunky-lg);
+}
+
+.cs-btn:active {
+  transform: translateY(1px);
+  box-shadow: 2px 2px 0 var(--cs-navy);
+}
+
+.cs-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--cs-shadow-chunky);
+}
+
+/* ── Primary (purple) ── */
+.cs-btn-primary {
+  background-color: var(--cs-purple);
+  color: #ffffff;
+}
+
+/* ── Color Variants ── */
+.cs-btn-teal {
+  background-color: var(--cs-teal);
+  color: var(--cs-navy);
+}
+
+.cs-btn-coral {
+  background-color: var(--cs-coral);
+  color: #ffffff;
+}
+
+.cs-btn-yellow {
+  background-color: var(--cs-yellow);
+  color: var(--cs-navy);
+}
+
+.cs-btn-purple {
+  background-color: var(--cs-purple);
+  color: #ffffff;
+}
+
+/* ── Ghost ── */
+.cs-btn-ghost {
+  background-color: transparent;
+  border: 3px solid var(--cs-navy);
+  box-shadow: var(--cs-shadow-chunky-sm);
+  color: var(--cs-text-dark);
+}
+
+.cs-btn-ghost:hover {
+  background-color: var(--cs-bg-lavender);
+  box-shadow: var(--cs-shadow-chunky);
+}
+
+/* ── Golden (gradient) ── */
+.cs-btn-golden {
+  background: linear-gradient(135deg, var(--cs-yellow) 0%, var(--cs-orange) 100%);
+  color: var(--cs-navy);
+}
+
+/* ── Size Variants ── */
+.cs-btn-sm {
+  padding: 6px 14px;
+  font-size: 0.8125rem;
+  border-radius: 10px;
+  border-width: 2px;
+  box-shadow: var(--cs-shadow-chunky-sm);
+}
+
+.cs-btn-lg {
+  padding: 14px 28px;
+  font-size: 1.0625rem;
+  border-radius: 14px;
+}
+
+.cs-btn-xl {
+  padding: 18px 36px;
+  font-size: 1.125rem;
+  border-radius: 16px;
+  box-shadow: var(--cs-shadow-chunky-lg);
+}
+
+
+/* =============================================================================
+   10. Inputs
+   ============================================================================= */
+
+.cs-input {
+  width: 100%;
+  padding: 10px 14px;
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 12px;
+  box-shadow: var(--cs-shadow-chunky-sm);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  color: var(--cs-text-dark);
+  outline: none;
+  transition: border-color 0.2s var(--cs-smooth), box-shadow 0.2s var(--cs-smooth);
+}
+
+.cs-input::placeholder {
+  color: var(--cs-text-light);
+}
+
+.cs-input:focus {
+  border-color: var(--cs-purple);
+  box-shadow: 3px 3px 0 var(--cs-purple);
+}
+
+/* Input with icon */
+.cs-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.cs-input-icon {
+  position: absolute;
+  left: 14px;
+  color: var(--cs-text-light);
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  z-index: 1;
+}
+
+.cs-input-with-icon {
+  padding-left: 42px;
+}
+
+
+/* =============================================================================
+   11. Exam Cards
+   ============================================================================= */
+
+.cs-exam-card {
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 16px;
+  box-shadow: var(--cs-shadow-chunky);
+  padding: 20px;
+  cursor: pointer;
+  transition:
+    transform 0.2s var(--cs-smooth),
+    box-shadow 0.2s var(--cs-smooth),
+    border-color 0.2s var(--cs-smooth);
+  position: relative;
+  overflow: hidden;
+}
+
+.cs-exam-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--cs-shadow-chunky-lg);
+}
+
+.cs-exam-card.selected {
+  border-color: var(--cs-purple);
+  box-shadow: 4px 4px 0 var(--cs-purple);
+}
+
+.cs-exam-card.featured {
+  position: relative;
+}
+
+.cs-exam-card.featured::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 5px;
+  background: linear-gradient(90deg, var(--cs-purple), var(--cs-teal));
+  border-radius: 13px 13px 0 0;
+}
+
+
+/* =============================================================================
+   12. Category Pills
+   ============================================================================= */
+
+.cs-category-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 18px;
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 9999px;
+  box-shadow: var(--cs-shadow-chunky-sm);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--cs-text-dark);
+  cursor: pointer;
+  transition:
+    background-color 0.2s var(--cs-smooth),
+    color 0.2s var(--cs-smooth),
+    transform 0.15s var(--cs-smooth);
+  user-select: none;
+  white-space: nowrap;
+}
+
+.cs-category-pill:hover {
+  transform: translateY(-1px);
+  background-color: var(--cs-bg-lavender);
+}
+
+.cs-category-pill.active {
+  background-color: var(--cs-purple);
+  color: #ffffff;
+  border-color: var(--cs-navy);
+}
+
+
+/* =============================================================================
+   13. Progress Bar
+   ============================================================================= */
+
+.cs-progress-bar {
+  width: 100%;
+  height: 10px;
+  background-color: var(--cs-bg-lavender);
+  border: 2px solid var(--cs-navy);
+  border-radius: 9999px;
+  overflow: hidden;
+}
+
+.cs-progress-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--cs-purple), var(--cs-teal));
+  border-radius: 9999px;
+  transition: width 0.5s var(--cs-smooth);
+}
+
+
+/* =============================================================================
+   14. Panels (Overlays / Side Panels)
+   ============================================================================= */
+
+.cs-panel {
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 16px;
+  box-shadow: var(--cs-shadow-chunky);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+.cs-panel-header {
+  background-color: var(--cs-bg-lavender);
+  border-bottom: 3px solid var(--cs-navy);
+  padding: 16px 20px;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 700;
+  color: var(--cs-text-dark);
+}
+
+.cs-panel-body {
+  padding: 20px;
+  flex: 1;
+  overflow-y: auto;
+}
+
+.cs-panel-footer {
+  padding: 16px 20px;
+  border-top: 2px solid rgba(26, 26, 46, 0.08);
+}
+
+
+/* =============================================================================
+   15. Tip / Alert Boxes
+   ============================================================================= */
+
+.cs-tip-success {
+  background-color: var(--cs-bg-mint);
+  border: 2px solid var(--cs-green);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--cs-text-dark);
+}
+
+.cs-tip-warning {
+  background-color: var(--cs-bg-lemon);
+  border: 2px solid var(--cs-orange);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--cs-text-dark);
+}
+
+.cs-tip-error {
+  background-color: var(--cs-bg-peach);
+  border: 2px solid var(--cs-red);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--cs-text-dark);
+}
+
+.cs-tip-info {
+  background-color: var(--cs-bg-sky);
+  border: 2px solid var(--cs-blue);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--cs-text-dark);
+}
+
+.cs-tip-purple {
+  background-color: var(--cs-bg-lavender);
+  border: 2px solid var(--cs-purple);
+  border-radius: 12px;
+  padding: 14px 18px;
+  color: var(--cs-text-dark);
+}
+
+
+/* =============================================================================
+   16. Hand-Drawn Underlines
+   ============================================================================= */
+
+.cs-underline-hand {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.cs-underline-hand::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: -4px;
+  width: 104%;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%236C5CE7' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+.cs-underline-teal {
+  position: relative;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+.cs-underline-teal::after {
+  content: '';
+  position: absolute;
+  left: -2%;
+  bottom: -4px;
+  width: 104%;
+  height: 16px;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%2300D9C0' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: 100% 100%;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+
+/* =============================================================================
+   17. Video Overlay Controls — Light Glassmorphism
+   ============================================================================= */
+
+.cs-controls-panel {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  border: 1px solid rgba(26, 26, 46, 0.08);
+  border-radius: 16px;
+  color: var(--cs-text-dark);
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.08);
+}
+
+.cs-header-banner {
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-bottom: 1px solid rgba(26, 26, 46, 0.08);
+  color: var(--cs-text-dark);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+
+/* =============================================================================
+   18. Subtitles
+   ============================================================================= */
+
+.cs-subtitle {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border-radius: 10px;
+  padding: 8px 16px;
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 1rem;
+  line-height: 1.6;
+  color: var(--cs-text-dark);
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+}
+
+.cs-subtitle-highlight {
+  background-color: var(--cs-purple);
+  color: #ffffff;
+  padding: 2px 8px;
+  border-radius: 6px;
+  font-weight: 600;
+}
+
+
+/* =============================================================================
+   19. Option Buttons (Quiz / Multi-Choice)
+   ============================================================================= */
+
+.cs-option-btn {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 100%;
+  padding: 14px 18px;
+  background-color: #ffffff;
+  border: 3px solid var(--cs-navy);
+  border-radius: 14px;
+  box-shadow: var(--cs-shadow-chunky-sm);
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  color: var(--cs-text-dark);
+  text-align: left;
+  cursor: pointer;
+  transition:
+    border-color 0.2s var(--cs-smooth),
+    transform 0.15s var(--cs-smooth),
+    box-shadow 0.15s var(--cs-smooth),
+    background-color 0.2s var(--cs-smooth),
+    opacity 0.3s var(--cs-smooth);
+}
+
+.cs-option-btn:hover {
+  border-color: var(--cs-purple);
+  transform: translateY(-1px);
+  box-shadow: var(--cs-shadow-chunky);
+}
+
+.cs-option-btn.correct {
+  background-color: var(--cs-bg-mint);
+  border-color: var(--cs-green);
+  box-shadow: 3px 3px 0 var(--cs-green);
+}
+
+.cs-option-btn.incorrect {
+  background-color: var(--cs-bg-peach);
+  border-color: var(--cs-red);
+  box-shadow: 3px 3px 0 var(--cs-red);
+}
+
+.cs-option-btn.dimmed {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+/* Option letter circle */
+.cs-option-letter {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 32px;
+  height: 32px;
+  min-width: 32px;
+  background-color: var(--cs-purple);
+  color: #ffffff;
+  border: 2px solid var(--cs-navy);
+  border-radius: 10px;
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 700;
+  font-size: 0.875rem;
+}
+
+
+/* =============================================================================
+   20. Intro Background (Animated Pastel Gradient)
+   ============================================================================= */
+
+.cs-intro-bg {
+  background: linear-gradient(
+    -45deg,
+    var(--cs-bg-sky),
+    var(--cs-bg-mint),
+    var(--cs-bg-lavender),
+    var(--cs-bg-cream),
+    var(--cs-bg-sky)
+  );
+  background-size: 400% 400%;
+  animation: cs-gradient-shift 15s ease infinite;
+}
+
+
+/* =============================================================================
+   21. Intro Typography
+   ============================================================================= */
+
+.cs-intro-title {
+  font-family: 'Bricolage Grotesque', system-ui, sans-serif;
+  font-weight: 800;
+  font-size: clamp(2rem, 6vw, 4rem);
+  line-height: 1.1;
+  color: var(--cs-text-dark);
+  letter-spacing: -0.02em;
+}
+
+.cs-intro-subtitle {
+  font-family: 'DM Sans', system-ui, sans-serif;
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--cs-text-muted);
+}
+
+
+/* =============================================================================
+   22. Container
+   ============================================================================= */
+
+.cs-container {
+  width: 100%;
+  max-width: 1280px;
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 768px) {
+  .cs-container {
+    padding-left: 32px;
+    padding-right: 32px;
+  }
+}
+
+
+/* =============================================================================
+   23. Loader / Spinner
+   ============================================================================= */
+
+.cs-loader {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  min-height: 120px;
+  background-color: #ffffff;
+}
+
+.cs-loader::after {
+  content: '';
+  width: 40px;
+  height: 40px;
+  border: 4px solid var(--cs-bg-lavender);
+  border-top-color: var(--cs-purple);
+  border-radius: 50%;
+  animation: cs-spin 0.7s linear infinite;
+}
+
+
+/* =============================================================================
+   24. Segment Dots (Video Progress Indicators)
+   ============================================================================= */
+
+.cs-segment-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: var(--cs-bg-lavender);
+  border: 2px solid var(--cs-text-light);
+  transition:
+    background-color 0.3s var(--cs-smooth),
+    border-color 0.3s var(--cs-smooth),
+    transform 0.2s var(--cs-bounce);
+}
+
+.cs-segment-dot.active {
+  background-color: var(--cs-purple);
+  border-color: var(--cs-navy);
+  transform: scale(1.3);
+  box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+}
+
+.cs-segment-dot.completed {
+  background-color: var(--cs-teal);
+  border-color: var(--cs-navy);
+}
+
+
+/* =============================================================================
+   25. Icon Boxes
+   ============================================================================= */
+
+.cs-icon-box {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  border: 2px solid var(--cs-navy);
+  border-radius: 12px;
+  box-shadow: var(--cs-shadow-chunky-sm);
+  font-size: 1.25rem;
+}
+
+.cs-icon-box-purple {
+  background-color: var(--cs-bg-lavender);
+  color: var(--cs-purple);
+}
+
+.cs-icon-box-teal {
+  background-color: var(--cs-bg-mint);
+  color: var(--cs-teal);
+}
+
+.cs-icon-box-yellow {
+  background-color: var(--cs-bg-lemon);
+  color: var(--cs-orange);
+}
+
+
+/* =============================================================================
+   26. Text Highlights
+   ============================================================================= */
+
+.cs-highlight-purple {
+  background-color: rgba(108, 92, 231, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--cs-purple);
+  font-weight: 600;
+}
+
+.cs-highlight-teal {
+  background-color: rgba(0, 217, 192, 0.12);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: #00a896;
+  font-weight: 600;
+}
+
+.cs-highlight-yellow {
+  background-color: rgba(255, 217, 61, 0.2);
+  padding: 2px 6px;
+  border-radius: 6px;
+  color: var(--cs-orange);
+  font-weight: 600;
+}
+
+
+/* =============================================================================
+   27. Safe Area (Mobile Notch)
+   ============================================================================= */
+
+.cs-safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+
+/* =============================================================================
+   28. Decorative Blob & Squiggle
+   ============================================================================= */
+
+.cs-blob {
+  position: absolute;
+  border-radius: 60% 40% 30% 70% / 60% 30% 70% 40%;
+  opacity: 0.25;
+  filter: blur(40px);
+  animation: cs-blob-morph 8s ease-in-out infinite;
+  pointer-events: none;
+}
+
+.cs-squiggle {
+  position: absolute;
+  width: 120px;
+  height: 30px;
+  opacity: 0.15;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 40' preserveAspectRatio='none'%3E%3Cpath d='M0 20 Q25 5, 50 20 T100 20 T150 20 T200 20' stroke='%236C5CE7' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  background-size: contain;
+  background-repeat: no-repeat;
+  pointer-events: none;
+}
+
+
+/* =============================================================================
+   29. Focus States (Accessibility)
+   ============================================================================= */
+
+.semiotics-page *:focus-visible,
+.semiotics-root *:focus-visible {
+  outline: 3px solid var(--cs-purple);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+
+/* =============================================================================
+   30. Reduced Motion
+   ============================================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  .semiotics-page *,
+  .semiotics-page *::before,
+  .semiotics-page *::after,
+  .semiotics-root *,
+  .semiotics-root *::before,
+  .semiotics-root *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  .cs-blob,
+  .cs-squiggle {
+    animation: none !important;
+  }
+
+  .cs-intro-bg {
+    animation: none !important;
+    background-position: 0% 50%;
+  }
+}
+
+
+/* =============================================================================
+   31. Custom Scrollbar (inside semiotics context)
+   ============================================================================= */
+
+.semiotics-page ::-webkit-scrollbar,
+.semiotics-root ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.semiotics-page ::-webkit-scrollbar-track,
+.semiotics-root ::-webkit-scrollbar-track {
+  background: var(--cs-bg-cream);
+}
+
+.semiotics-page ::-webkit-scrollbar-thumb,
+.semiotics-root ::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 4px;
+  border: 2px solid var(--cs-bg-cream);
+}
+
+.semiotics-page ::-webkit-scrollbar-thumb:hover,
+.semiotics-root ::-webkit-scrollbar-thumb:hover {
+  background: var(--cs-purple);
+}
+
+
+/* =============================================================================
+   32. Selection Color
+   ============================================================================= */
+
+.semiotics-page ::selection,
+.semiotics-root ::selection {
+  background: var(--cs-purple);
+  color: #ffffff;
+}
+
+.semiotics-page ::-moz-selection,
+.semiotics-root ::-moz-selection {
+  background: var(--cs-purple);
+  color: #ffffff;
+}

@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E8FAF7"/>
+  <rect x="45" y="40" width="110" height="90" rx="8" fill="#00D9C0" opacity="0.2"/>
+  <rect x="52" y="47" width="96" height="76" rx="5" fill="#00D9C0" opacity="0.35"/>
+  <rect x="65" y="55" width="70" height="60" rx="3" fill="#009E8E" opacity="0.15"/>
+  <circle cx="100" cy="80" r="14" fill="#009E8E" opacity="0.6"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#009E8E" opacity="0.8">Plant Cell</text>
+</svg>

@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#FFE8E8"/>
+  <path d="M55,90 Q65,50 85,70 Q105,90 100,60 Q120,40 140,75 Q150,100 130,110 Q100,120 80,105 Z" fill="#FF6B6B" opacity="0.4"/>
+  <path d="M60,88 Q70,55 85,72 Q102,88 98,62 Q118,45 138,78 Q146,98 128,108 Q100,116 82,102 Z" fill="#D63031" opacity="0.3"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#D63031" opacity="0.8">Protein</text>
+</svg>

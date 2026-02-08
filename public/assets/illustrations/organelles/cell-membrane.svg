@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#EBE6FF"/>
+  <line x1="30" y1="75" x2="170" y2="75" stroke="#6C5CE7" stroke-width="3" opacity="0.5"/>
+  <line x1="30" y1="95" x2="170" y2="95" stroke="#6C5CE7" stroke-width="3" opacity="0.5"/>
+  <circle cx="40" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="40" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="55" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="55" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="70" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="70" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="85" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="85" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="100" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="100" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="115" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="115" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="130" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="130" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="145" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="145" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <circle cx="160" cy="73" r="5" fill="#4834D4" opacity="0.6"/><circle cx="160" cy="97" r="5" fill="#4834D4" opacity="0.6"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#4834D4" opacity="0.8">Cell Membrane</text>
+</svg>

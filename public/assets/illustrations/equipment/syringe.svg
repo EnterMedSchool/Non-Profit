@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E8F4FF"/>
+  <rect x="55" y="80" width="70" height="12" rx="2" fill="#54A0FF" opacity="0.3"/>
+  <path d="M125,80 L140,83 L140,89 L125,92" fill="#2E86DE" opacity="0.4"/>
+  <line x1="140" y1="86" x2="155" y2="86" stroke="#2E86DE" stroke-width="2" opacity="0.5"/>
+  <rect x="40" y="78" width="15" height="16" rx="2" fill="#54A0FF" opacity="0.4"/>
+  <line x1="75" y1="80" x2="75" y2="92" stroke="#2E86DE" stroke-width="1" opacity="0.3"/>
+  <line x1="85" y1="80" x2="85" y2="92" stroke="#2E86DE" stroke-width="1" opacity="0.3"/>
+  <line x1="95" y1="80" x2="95" y2="92" stroke="#2E86DE" stroke-width="1" opacity="0.3"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#2E86DE" opacity="0.8">Syringe</text>
+</svg>

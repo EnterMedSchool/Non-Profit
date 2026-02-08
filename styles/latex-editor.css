@@ -1,0 +1,263 @@
+/* ── LaTeX Editor Styles ─────────────────────────────────── */
+
+/* CodeMirror base overrides for the LaTeX editor context */
+.latex-editor .cm-editor {
+  height: 100%;
+  font-family: 'JetBrains Mono', 'Fira Code', 'Cascadia Code', 'Consolas', monospace;
+}
+
+.latex-editor .cm-editor.cm-focused {
+  outline: none;
+}
+
+.latex-editor .cm-scroller {
+  overflow: auto;
+  scroll-behavior: smooth;
+}
+
+/* Gutter (line numbers) */
+.latex-editor .cm-gutters {
+  background-color: #f8fafc;
+  border-right: 2px solid #e2e8f0;
+  color: #94a3b8;
+}
+
+.latex-editor .cm-activeLineGutter {
+  background-color: #f1f5f9;
+  color: #475569;
+}
+
+/* Active line */
+.latex-editor .cm-activeLine {
+  background-color: rgba(248, 250, 252, 0.8);
+}
+
+/* Selection */
+.latex-editor .cm-selectionBackground {
+  background-color: rgba(196, 181, 253, 0.25) !important;
+}
+
+.latex-editor .cm-editor.cm-focused .cm-selectionBackground {
+  background-color: rgba(196, 181, 253, 0.4) !important;
+}
+
+/* Cursor */
+.latex-editor .cm-cursor {
+  border-left-color: #7c3aed;
+  border-left-width: 2px;
+}
+
+/* Matching brackets */
+.latex-editor .cm-matchingBracket {
+  background-color: rgba(251, 191, 36, 0.25);
+  outline: 1px solid #fbbf24;
+}
+
+/* Search highlights */
+.latex-editor .cm-searchMatch {
+  background-color: rgba(254, 240, 138, 0.5);
+}
+
+.latex-editor .cm-searchMatch.cm-searchMatch-selected {
+  background-color: rgba(253, 224, 71, 0.5);
+}
+
+/* Fold gutter */
+.latex-editor .cm-foldGutter .cm-gutterElement {
+  cursor: pointer;
+  transition: color 0.15s;
+}
+
+.latex-editor .cm-foldGutter .cm-gutterElement:hover {
+  color: #7c3aed;
+}
+
+/* ── Preview Panel ───────────────────────────────────────── */
+
+/* Make the preview iframe look like a paper page */
+.latex-preview-frame {
+  background: white;
+  box-shadow:
+    0 1px 3px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.04);
+}
+
+/* ── Drag and Drop ───────────────────────────────────────── */
+
+/* Visual feedback when dragging a snippet */
+[draggable="true"] {
+  cursor: grab;
+}
+
+[draggable="true"]:active {
+  cursor: grabbing;
+  opacity: 0.7;
+}
+
+/* Drop target highlight */
+.cm-editor.cm-dropTarget {
+  outline: 2px dashed #7c3aed;
+  outline-offset: -2px;
+}
+
+/* ── Snippet Cards ───────────────────────────────────────── */
+
+.snippet-code-preview {
+  font-family: 'JetBrains Mono', 'Fira Code', monospace;
+  font-size: 11px;
+  line-height: 1.5;
+  tab-size: 2;
+}
+
+/* ── Scrollbar customisation (for sidebar panels) ─────── */
+
+.latex-editor .overflow-auto::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.latex-editor .overflow-auto::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.latex-editor .overflow-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(0, 0, 0, 0.12);
+  border-radius: 3px;
+}
+
+.latex-editor .overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(0, 0, 0, 0.2);
+}
+
+/* ── Responsive Helpers ──────────────────────────────────── */
+
+/* Hide scrollbar on category pills */
+.scrollbar-none {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-none::-webkit-scrollbar {
+  display: none;
+}
+
+/* ── Animations ──────────────────────────────────────────── */
+
+@keyframes slide-up {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slide-up 0.3s ease-out;
+}
+
+/* Toolbar scroll fade indicators */
+.toolbar-scroll-container {
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    black 12px,
+    black calc(100% - 12px),
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to right,
+    transparent 0px,
+    black 12px,
+    black calc(100% - 12px),
+    transparent 100%
+  );
+}
+
+@keyframes latex-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.latex-editor [data-animate="fade-in"] {
+  animation: latex-fade-in 0.3s ease-out;
+}
+
+/* ── Dark Mode ──────────────────────────────────────────── */
+
+/* Dark mode shell styling */
+.latex-editor-dark {
+  color-scheme: dark;
+}
+
+.latex-editor-dark .border-ink-dark\/10,
+.latex-editor-dark .border-ink-dark\/5,
+.latex-editor-dark .border-ink-dark\/8 {
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.latex-editor-dark .bg-white {
+  background-color: #1e1e2e;
+}
+
+.latex-editor-dark .bg-pastel-cream\/30,
+.latex-editor-dark .bg-pastel-cream\/50 {
+  background-color: rgba(49, 50, 68, 0.5);
+}
+
+.latex-editor-dark .bg-pastel-cream {
+  background-color: #313244;
+}
+
+.latex-editor-dark .bg-gray-50 {
+  background-color: #181825;
+}
+
+.latex-editor-dark .text-ink-dark {
+  color: #cdd6f4;
+}
+
+.latex-editor-dark .text-ink-muted {
+  color: #a6adc8;
+}
+
+.latex-editor-dark .text-ink-light {
+  color: #6c7086;
+}
+
+.latex-editor-dark .hover\:bg-pastel-cream:hover {
+  background-color: #313244;
+}
+
+.latex-editor-dark .bg-white\/80 {
+  background-color: rgba(30, 30, 46, 0.8);
+}
+
+/* Dark mode scrollbars */
+.latex-editor-dark .overflow-auto::-webkit-scrollbar-thumb {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+
+.latex-editor-dark .overflow-auto::-webkit-scrollbar-thumb:hover {
+  background-color: rgba(255, 255, 255, 0.25);
+}
+
+/* Dark mode for modals/overlays */
+.latex-editor-dark .shadow-xl,
+.latex-editor-dark .shadow-2xl {
+  --tw-shadow-color: rgba(0, 0, 0, 0.3);
+}
+
+/* ── Print Styles ────────────────────────────────────────── */
+
+@media print {
+  .latex-editor {
+    display: none;
+  }
+}

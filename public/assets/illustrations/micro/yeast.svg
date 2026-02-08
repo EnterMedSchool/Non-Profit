@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E6FAF5"/>
+  <ellipse cx="95" cy="88" rx="35" ry="28" fill="#00B894" opacity="0.35"/>
+  <circle cx="95" cy="85" r="10" fill="#00896B" opacity="0.5"/>
+  <ellipse cx="132" cy="72" rx="18" ry="15" fill="#00B894" opacity="0.3"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#00896B" opacity="0.8">Yeast Cell</text>
+</svg>

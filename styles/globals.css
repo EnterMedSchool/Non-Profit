@@ -1,0 +1,353 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ===== Design Tokens - CSS Custom Properties ===== */
+:root {
+  /* Showcase Colors */
+  --showcase-coral: #7E22CE;
+  --showcase-yellow: #FFD93D;
+  --showcase-purple: #6C5CE7;
+  --showcase-teal: #00D9C0;
+  --showcase-pink: #FF85A2;
+  --showcase-orange: #FF9F43;
+  --showcase-blue: #54A0FF;
+  --showcase-navy: #1a1a2e;
+  --showcase-green: #2ECC71;
+
+  /* Background Pastels — clean, medical-appropriate tones */
+  --showcase-bg-cream: #EDF2FF;
+  --showcase-bg-lavender: #F0EEFF;
+  --showcase-bg-mint: #EEFBF9;
+  --showcase-bg-peach: #FFF0F0;
+  --showcase-bg-lemon: #FAFDF5;
+  --showcase-bg-sky: #EDF4FF;
+
+  /* Text */
+  --showcase-text-dark: #1a1a2e;
+  --showcase-text-muted: #4a4a6a;
+  --showcase-text-light: #8888aa;
+
+  /* Chunky Styling */
+  --shadow-chunky: 4px 4px 0 var(--showcase-navy);
+  --shadow-chunky-sm: 3px 3px 0 var(--showcase-navy);
+  --shadow-chunky-lg: 6px 6px 0 var(--showcase-navy);
+  --border-chunky: 3px solid var(--showcase-navy);
+}
+
+/* ===== Base Styles ===== */
+@layer base {
+  body {
+    @apply text-ink-dark antialiased;
+    font-family: var(--font-dm-sans), "DM Sans", system-ui, sans-serif;
+  }
+
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+  }
+
+  /* Smooth scrolling */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Focus styles for accessibility */
+  *:focus-visible {
+    @apply outline-2 outline-offset-2 outline-showcase-purple;
+  }
+}
+
+/* ===== Component Layer ===== */
+@layer components {
+  /* Hand-drawn underline */
+  .hand-underline {
+    position: relative;
+    display: inline-block;
+    padding-bottom: 8px;
+  }
+
+  .hand-underline::after {
+    content: '';
+    position: absolute;
+    left: -2%;
+    bottom: -4px;
+    width: 104%;
+    height: 16px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%237E22CE' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    pointer-events: none;
+  }
+
+  .hand-underline-purple::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%236C5CE7' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  .hand-underline-teal::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%2300D9C0' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  .hand-underline-yellow::after {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 20' preserveAspectRatio='none'%3E%3Cpath d='M2 12 Q50 5, 100 14 T198 10' stroke='%23FFD93D' stroke-width='4' fill='none' stroke-linecap='round'/%3E%3C/svg%3E");
+  }
+
+  /* Animated gradient background */
+  .gradient-animated {
+    background: linear-gradient(
+      -45deg,
+      var(--showcase-bg-sky),
+      var(--showcase-bg-mint),
+      var(--showcase-bg-lavender),
+      var(--showcase-bg-cream),
+      var(--showcase-bg-sky)
+    );
+    background-size: 400% 400%;
+    animation: gradient-shift 15s ease infinite;
+  }
+
+  @keyframes gradient-shift {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  /* Gradient text utilities */
+  .text-gradient-purple {
+    background: linear-gradient(135deg, #6C5CE7 0%, #00D9C0 50%, #6C5CE7 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  .text-gradient-warm {
+    background: linear-gradient(135deg, #FF9F43 0%, #FF85A2 50%, #FF9F43 100%);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 4s linear infinite;
+  }
+
+  @keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+  }
+
+  /* Glow effects */
+  .glow-purple {
+    box-shadow: 0 0 20px 0 rgba(108, 92, 231, 0.3);
+  }
+  .glow-purple-lg {
+    box-shadow: 0 0 40px 8px rgba(108, 92, 231, 0.4);
+  }
+  .glow-teal {
+    box-shadow: 0 0 20px 0 rgba(0, 217, 192, 0.3);
+  }
+  .glow-teal-lg {
+    box-shadow: 0 0 40px 8px rgba(0, 217, 192, 0.4);
+  }
+  .glow-green {
+    box-shadow: 0 0 20px 0 rgba(46, 204, 113, 0.3);
+  }
+  .glow-yellow {
+    box-shadow: 0 0 20px 0 rgba(255, 217, 61, 0.3);
+  }
+  .glow-pink {
+    box-shadow: 0 0 20px 0 rgba(255, 133, 162, 0.3);
+  }
+
+  /* Glassmorphism */
+  .glass {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(255, 255, 255, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+  }
+  .glass-dark {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    background: rgba(26, 26, 46, 0.6);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  /* Noise overlay */
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+    background-size: 200px 200px;
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+
+  /* Pattern backgrounds */
+  .pattern-dots {
+    background-image: radial-gradient(circle, rgba(26, 26, 46, 0.06) 1px, transparent 1px);
+    background-size: 20px 20px;
+  }
+  .pattern-lines {
+    background-image: repeating-linear-gradient(
+      -45deg,
+      transparent,
+      transparent 10px,
+      rgba(26, 26, 46, 0.03) 10px,
+      rgba(26, 26, 46, 0.03) 20px
+    );
+  }
+  .pattern-grid {
+    background-image:
+      linear-gradient(rgba(26, 26, 46, 0.04) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(26, 26, 46, 0.04) 1px, transparent 1px);
+    background-size: 24px 24px;
+  }
+}
+
+/* ===== Selection color ===== */
+::selection {
+  background: #6C5CE7;
+  color: white;
+}
+::-moz-selection {
+  background: #6C5CE7;
+  color: white;
+}
+
+/* ===== Custom scrollbar ===== */
+::-webkit-scrollbar {
+  width: 10px;
+}
+::-webkit-scrollbar-track {
+  background: #F0F4FF;
+}
+::-webkit-scrollbar-thumb {
+  background: #c4b5fd;
+  border-radius: 5px;
+  border: 2px solid #F0F4FF;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #6C5CE7;
+}
+
+/* ===== PDF Reader: Chapter Content Styles ===== */
+.chapter-content h4 {
+  @apply font-display text-lg font-bold text-ink-dark mt-6 mb-2;
+}
+
+.chapter-content ul,
+.chapter-content ol {
+  @apply my-3 space-y-2 pl-6;
+}
+
+.chapter-content ul li {
+  @apply list-disc;
+}
+
+.chapter-content ol li {
+  @apply list-decimal;
+}
+
+.chapter-content p {
+  @apply my-3 leading-relaxed;
+}
+
+.chapter-content strong {
+  @apply font-bold text-ink-dark;
+}
+
+.chapter-content em {
+  @apply italic;
+}
+
+/* Clinical Pearl callout box */
+.chapter-content .clinical-pearl {
+  @apply my-6 rounded-2xl border-3 border-showcase-teal/30 bg-showcase-teal/5 p-5;
+}
+
+.chapter-content .clinical-pearl h4 {
+  @apply mt-0 flex items-center gap-2 text-showcase-teal;
+}
+
+.chapter-content .clinical-pearl h4::before {
+  content: "🩺";
+}
+
+.chapter-content .clinical-pearl p {
+  @apply text-ink-muted;
+}
+
+.chapter-content .clinical-pearl ul {
+  @apply my-2 space-y-1;
+}
+
+.chapter-content .clinical-pearl li {
+  @apply text-ink-muted text-sm;
+}
+
+/* Equation display box */
+.chapter-content .equation {
+  @apply my-5 rounded-xl border-2 border-showcase-purple/20 bg-showcase-purple/5 px-5 py-3 text-center;
+}
+
+.chapter-content .equation p {
+  @apply font-mono text-lg text-showcase-purple my-0;
+}
+
+/* Highlight mark styles */
+.chapter-content mark {
+  @apply rounded-sm px-0.5;
+  cursor: pointer;
+  transition: opacity 0.15s;
+}
+
+.chapter-content mark:hover {
+  opacity: 0.7;
+}
+
+/* Sepia theme overrides */
+.prose-amber .chapter-content .clinical-pearl {
+  @apply border-amber-700/20 bg-amber-100/50;
+}
+
+.prose-amber .chapter-content .equation {
+  @apply border-amber-700/20 bg-amber-100/50;
+}
+
+/* Dark theme overrides */
+.prose-invert .chapter-content .clinical-pearl {
+  @apply border-teal-400/20 bg-teal-900/20;
+}
+
+.prose-invert .chapter-content .clinical-pearl h4 {
+  @apply text-teal-300;
+}
+
+.prose-invert .chapter-content .clinical-pearl p,
+.prose-invert .chapter-content .clinical-pearl li {
+  @apply text-gray-300;
+}
+
+.prose-invert .chapter-content .equation {
+  @apply border-purple-400/20 bg-purple-900/20;
+}
+
+.prose-invert .chapter-content .equation p {
+  @apply text-purple-300;
+}
+
+/* ===== Reduced Motion ===== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

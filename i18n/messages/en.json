@@ -1,0 +1,866 @@
+{
+  "metadata": {
+    "siteName": "EnterMedSchool.org",
+    "siteDescription": "Free, open-source medical education resources, tools, and guides for students and professors worldwide.",
+    "titleTemplate": "{title} | EnterMedSchool.org"
+  },
+  "nav": {
+    "home": "Home",
+    "resources": "Resources",
+    "tools": "Tools",
+    "forProfessors": "For Professors",
+    "forStudents": "For Students",
+    "events": "Events",
+    "about": "About",
+    "license": "License",
+    "privacy": "Privacy",
+    "visitCom": "Visit entermedschool.com",
+    "search": "Search",
+    "searchSite": "Search the site...",
+    "menu": "Menu",
+    "closeMenu": "Close menu",
+    "questions": "Practice Questions",
+    "videos": "Video Lessons",
+    "pdfs": "PDFs & Summaries",
+    "visuals": "Medical Visuals",
+    "clinicalSemiotics": "Clinical Semiotics",
+    "clinicalSemioticsDesc": "Interactive video-based clinical exam training with tips and quizzes.",
+    "templates": "Slide Templates",
+    "guides": "Teaching Guides",
+    "assets": "Teaching Assets",
+    "questionsDesc": "Clinical cases and practice questions for deep understanding.",
+    "videosDesc": "Clear video explanations of complex medical topics.",
+    "pdfsDesc": "Downloadable summaries, study materials, and reference sheets.",
+    "visualsDesc": "Anatomy diagrams, clinical visuals, and educational illustrations.",
+    "templatesDesc": "Ready-to-use presentation templates for medical lectures.",
+    "guidesDesc": "Learn how to enhance your teaching with modern tools.",
+    "assetsDesc": "Diagrams, visuals, and assets ready for your lectures.",
+    "viewAll": "View all"
+  },
+  "hero": {
+    "title": "Open-Source Medical Education for Everyone",
+    "subtitle": "The non-profit, open-source arm of EnterMedSchool. A free archive of medical education resources, tools, and guides — built for professors and students to download, use, and share.",
+    "identityPill": "EnterMedSchool.org is the non-profit sister project of",
+    "identityLink": "entermedschool.com",
+    "cta1": "Browse Resources",
+    "cta2": "For Professors",
+    "badge": "100% Free & Open Source",
+    "ankiAddon": "Anki Addon",
+    "chromeExtension": "Chrome Extension"
+  },
+  "whatWeOffer": {
+    "title": "Everything You Need",
+    "subtitle": "Free tools and resources to enhance medical education",
+    "questions": {
+      "title": "Practice Questions",
+      "description": "Clinical cases and practice questions designed for deep understanding, not memorization."
+    },
+    "videos": {
+      "title": "Video Lessons",
+      "description": "Clear, concise video explanations of complex medical topics."
+    },
+    "pdfs": {
+      "title": "PDFs & Summaries",
+      "description": "Downloadable study materials, summaries, and reference sheets."
+    },
+    "visuals": {
+      "title": "Medical Visuals",
+      "description": "Anatomy diagrams, clinical visuals, and educational illustrations."
+    },
+    "tools": {
+      "title": "Medical Tools",
+      "description": "Calculators, simulators, and interactive learning tools."
+    },
+    "templates": {
+      "title": "Teaching Templates",
+      "description": "Slide templates, lesson plans, and teaching materials for professors."
+    },
+    "ankiAddon": {
+      "title": "Anki Addon",
+      "description": "Enhance your Anki experience with our free, open-source addon."
+    },
+    "chromeExtension": {
+      "title": "Chrome Extension",
+      "description": "Study tools right in your browser with our free extension."
+    }
+  },
+  "forWhom": {
+    "title": "Built for You",
+    "students": {
+      "title": "For Students",
+      "description": "Everything you need to study smarter, not harder.",
+      "benefits": [
+        "Free practice questions & clinical cases",
+        "Video lessons on complex topics",
+        "Downloadable study materials",
+        "Tools focused on clinical understanding"
+      ],
+      "cta": "Start Learning"
+    },
+    "professors": {
+      "title": "For Professors",
+      "description": "Resources to enhance your teaching and inspire your students.",
+      "benefits": [
+        "Ready-to-use slide templates",
+        "Clinical cases for your curriculum",
+        "Visual assets for your lectures",
+        "Guides on using AI in teaching"
+      ],
+      "cta": "Explore Resources"
+    }
+  },
+  "timeline": {
+    "title": "Our Journey",
+    "subtitle": "From a student forum to a worldwide open-source education platform",
+    "milestones": {
+      "2019": {
+        "year": "2019",
+        "title": "EnterMedSchool is Born",
+        "description": "Ari Horesh creates EnterMedSchool as a forum for IMAT exam students to help each other study and share resources."
+      },
+      "2020": {
+        "year": "2020",
+        "title": "Free Content Begins",
+        "description": "Ari starts releasing free educational content, collaborating with OpenStax materials to provide quality open-source study resources."
+      },
+      "2021": {
+        "year": "2021",
+        "title": "Leading IMAT Course",
+        "description": "Launch of paid IMAT courses, becoming the world's leading IMAT preparation course for international students. Revenue funds the creation of free resources."
+      },
+      "2025": {
+        "year": "2025",
+        "title": "New Generation",
+        "description": "Expanding to medical students, connecting with professors and doctors worldwide to verify and create content, releasing everything for free."
+      },
+      "2026": {
+        "year": "2026",
+        "title": "Open Source Goes Official",
+        "description": "Launch of EnterMedSchool.org, Anki addon, Chrome extension, and a wave of open-source resources. The goal of EnterMedSchool was always to fund this project — and we finally did it."
+      }
+    }
+  },
+  "mission": {
+    "title": "Our Mission",
+    "quote": "We believe knowledge and tools to improve the quality of teaching should be open source.",
+    "description": "EnterMedSchool focuses on deep clinical understanding, not memorization. We provide professors and students with the tools to visualize what matters clinically, creating better doctors worldwide.",
+    "relationship": "EnterMedSchool.com funds this project through paid courses and services. Everything here on .org is free, open-source, and always will be. This is the archive — download, adapt, and use anything you find for your classroom.",
+    "badges": {
+      "nonCommercial": "Non-Commercial",
+      "attribution": "Attribution Required",
+      "freeForever": "Free Forever"
+    }
+  },
+  "impact": {
+    "title": "Our Impact",
+    "resources": "Free Resources",
+    "countries": "Countries Reached",
+    "tools": "Open-Source Tools",
+    "professors": "Professors Helped"
+  },
+  "cta": {
+    "title": "Download, Embed, or Adapt for Your Classroom",
+    "subtitle": "Every resource on EnterMedSchool.org is free and open-source. Use them in your slides, teaching materials, or share with your students.",
+    "browseResources": "Browse Resources",
+    "forProfessors": "For Professors",
+    "viewOnGitHub": "View on GitHub"
+  },
+  "about": {
+    "title": "About EnterMedSchool",
+    "metaDescription": "Learn about the story of EnterMedSchool, from a student forum to a worldwide open-source medical education platform.",
+    "story": {
+      "title": "Our Story",
+      "content": "EnterMedSchool was created in 2019 by Ari Horesh as a simple forum where IMAT exam students could help each other. What started as a community project grew into the world's leading IMAT preparation platform, and now, an open-source medical education resource for the world."
+    },
+    "orgMission": {
+      "title": "Why .org?",
+      "content": "The goal of EnterMedSchool.com was always to fund this project. The paid courses and services on our main site enable us to create and maintain free, open-source educational tools for students and professors worldwide. EnterMedSchool.org is where that mission lives."
+    },
+    "values": {
+      "title": "What We Believe",
+      "openSource": "Open Source First",
+      "openSourceDesc": "All our resources are free to use for non-commercial educational purposes.",
+      "understanding": "Understanding Over Memorization",
+      "understandingDesc": "Our content focuses on deep clinical understanding, not rote memorization.",
+      "worldwide": "Worldwide Access",
+      "worldwideDesc": "Quality medical education resources should be accessible to everyone, everywhere.",
+      "collaboration": "Collaboration",
+      "collaborationDesc": "We work with professors and doctors worldwide to verify and create content."
+    }
+  },
+  "resources": {
+    "title": "Free Resources",
+    "metaDescription": "Browse our free, open-source medical education resources: practice questions, video lessons, PDFs, and visual aids.",
+    "searchPlaceholder": "Search resources...",
+    "categories": {
+      "all": "All",
+      "questions": "Questions",
+      "videos": "Videos",
+      "pdfs": "PDFs",
+      "visuals": "Visuals"
+    },
+    "downloadBtn": "Download",
+    "viewSourceBtn": "View Source",
+    "previewBtn": "Preview",
+    "questions": {
+      "title": "Practice Questions & Clinical Cases",
+      "metaDescription": "Free practice questions and clinical cases for medical students. Designed for deep clinical understanding."
+    },
+    "videos": {
+      "title": "Video Lessons",
+      "metaDescription": "Free video lessons covering complex medical topics. Clear explanations for students and professors."
+    },
+    "pdfs": {
+      "title": "PDFs & Study Materials",
+      "metaDescription": "Free downloadable PDFs, summaries, and study materials for medical education."
+    },
+    "visuals": {
+      "title": "Medical Visuals & Diagrams",
+      "metaDescription": "Free anatomy diagrams, clinical visuals, and educational illustrations for medical education."
+    }
+  },
+  "tools": {
+    "title": "Free Medical Tools — Use, Embed, and Get the Code",
+    "metaDescription": "Free, open-source medical tools: calculators, simulators, anatomy viewers, and more. Embeddable and downloadable.",
+    "subtitle": "Every tool we build will be open-source. Embed them in your website, use them in your classroom, or download the code and adapt them.",
+    "useToolBtn": "Use Tool",
+    "embedCodeBtn": "Embed Code",
+    "viewSourceBtn": "View Source",
+    "comingSoon": "Coming Soon",
+    "available": "Available",
+    "notifyMe": "Notify Me",
+    "vision": "Every calculator, simulator, and tool will be open-source and embeddable. Professors can embed them directly in their LMS, slides, or websites.",
+    "visionTitle": "Our Vision for Tools",
+    "backToTools": "Back to Tools",
+    "toolNotFound": "Tool not found",
+    "toolNotFoundDesc": "The tool you're looking for doesn't exist or hasn't been released yet.",
+    "egfr": {
+      "title": "eGFR Calculator",
+      "description": "Estimate glomerular filtration rate using CKD-EPI and MDRD equations."
+    },
+    "dose": {
+      "title": "Drug Dose Calculator",
+      "description": "Calculate pediatric and adult drug doses with weight-based adjustments."
+    },
+    "anatomy": {
+      "title": "3D Anatomy Viewer",
+      "description": "Interactive 3D anatomy model for exploring human body systems."
+    },
+    "ecg": {
+      "title": "ECG Simulator",
+      "description": "Practice reading ECGs with realistic simulated tracings and interpretations."
+    },
+    "pharm": {
+      "title": "Pharmacology Explorer",
+      "description": "Interactive tool for exploring drug mechanisms, interactions, and clinical applications."
+    },
+    "flashcardMaker": {
+      "title": "Flashcard Maker",
+      "metaTitle": "Flashcard Maker — Import CSV & Print Physical Flashcards | EnterMedSchool",
+      "metaDescription": "Import your Anki or CSV flashcards, customize them with backgrounds, fonts, and decorations, then export a printable PDF to make physical flashcards. Free and open-source.",
+      "description": "Import CSV/TSV flashcards (from Anki or anywhere), customize their look, and export a foldable, printable PDF to make real physical flashcards."
+    },
+    "mcqMaker": {
+      "title": "MCQ Maker",
+      "metaTitle": "MCQ Maker — Create, Import & Export Multiple Choice Questions | EnterMedSchool",
+      "metaDescription": "Create multiple choice questions, import from CSV/TSV, export beautiful exam PDFs with answer keys, and embed interactive quizzes on your website. Free and open-source.",
+      "description": "Create, import, and export multiple choice questions & exams. Generate beautiful PDFs, answer keys, study guides, and embeddable quizzes — all in your browser.",
+      "export": {
+        "title": "Export",
+        "pdfFormat": "PDF Format",
+        "examPaper": "Exam Paper",
+        "examPaperDesc": "Questions with answer bubbles",
+        "answerKey": "Answer Key",
+        "answerKeyDesc": "Correct answers + explanations",
+        "studyGuide": "Study Guide",
+        "studyGuideDesc": "Grouped by topic with answers",
+        "subtitle": "Subtitle",
+        "examVariants": "Exam Variants",
+        "shuffleQuestions": "Shuffle question order",
+        "shuffleOptions": "Shuffle option order",
+        "customizeStying": "Customize PDF Styling",
+        "preview": "Preview",
+        "download": "Download PDF",
+        "downloadVariants": "Download Variants (ZIP)",
+        "pdfPreview": "PDF Preview",
+        "generating": "Generating...",
+        "noQuestions": "No questions to export",
+        "createFirst": "Create or import questions first.",
+        "pdfSuccess": "PDF exported successfully!",
+        "pdfFailed": "PDF generation failed. Please check your settings and try again.",
+        "watermark": "Watermark (optional)",
+        "watermarkHint": "Diagonal watermark will appear on every page",
+        "margins": "Page Margins (mm)"
+      }
+    },
+    "latexEditor": {
+      "title": "LaTeX Editor",
+      "metaTitle": "LaTeX Editor — Free Overleaf Alternative for Medical Students | EnterMedSchool",
+      "metaDescription": "Learn and write LaTeX for free. Drag-and-drop code snippets, use medical templates, and see a live preview. Perfect for thesis writing, research papers, and scientific documents.",
+      "description": "Learn and write LaTeX with a live preview, drag-and-drop snippets, and medical templates. Perfect for thesis writing, research papers, and scientific documents. A free, open-source Overleaf alternative."
+    },
+    "illustrationMaker": {
+      "title": "Scientific Illustration Maker",
+      "metaTitle": "Scientific Illustration Maker — Free BioRender Alternative | EnterMedSchool",
+      "metaDescription": "Create professional scientific illustrations for free. Drag-and-drop cells, organs, molecules, and lab equipment onto a canvas. Export to PNG or JPEG. Open-source BioRender alternative.",
+      "description": "Create beautiful scientific figures with our free drag-and-drop illustration maker. A fully open-source alternative to BioRender — made for professors, students, and researchers."
+    },
+    "bmi": {
+      "title": "BMI Calculator",
+      "metaTitle": "BMI Calculator — Free Online Body Mass Index Tool | EnterMedSchool",
+      "metaDescription": "Calculate your Body Mass Index (BMI) with clinical interpretation, BMI Prime, Ponderal Index, and WHO risk categories. Free, open-source, and embeddable.",
+      "description": "Calculate Body Mass Index with clinical interpretation, risk assessment, and WHO classification.",
+      "labels": {
+        "height": "Height",
+        "weight": "Weight",
+        "age": "Age (years)",
+        "sex": "Sex",
+        "male": "Male",
+        "female": "Female",
+        "metric": "Metric",
+        "imperial": "Imperial",
+        "cm": "cm",
+        "kg": "kg",
+        "ft": "ft",
+        "in": "in",
+        "lbs": "lbs",
+        "calculate": "Calculate BMI",
+        "reset": "Reset",
+        "result": "Your BMI",
+        "bmiPrime": "BMI Prime",
+        "bmiPrimeDesc": "Ratio of your BMI to the upper limit of normal (25). Values below 1.0 are within the healthy range.",
+        "ponderalIndex": "Ponderal Index",
+        "ponderalIndexDesc": "A measure that adjusts for height better than BMI. Normal range: 11–15 kg/m³.",
+        "whoCategory": "WHO Category",
+        "riskLevel": "Health Risk",
+        "waistGuidance": "Waist Circumference Guidance",
+        "waistGuidanceDesc": "BMI alone does not capture abdominal fat distribution. Measure your waist circumference for a more complete risk picture.",
+        "waistMaleRisk": "Men: Increased risk above 94 cm (37 in) — High risk above 102 cm (40 in)",
+        "waistFemaleRisk": "Women: Increased risk above 80 cm (31.5 in) — High risk above 88 cm (34.6 in)",
+        "ageContext": "Age & Sex Context",
+        "ageContextDesc": "BMI thresholds are designed for adults aged 20+. Interpretation may vary with age, sex, muscle mass, and ethnicity.",
+        "ageContextUnder20": "For individuals under 20, BMI is interpreted using age- and sex-specific percentile charts (CDC or WHO). The standard adult BMI categories shown above may not apply.",
+        "healthyRange": "For your height, a healthy weight (BMI 18.5–25) is {min}–{max} {unit}.",
+        "scaleAlt": "BMI color scale ranging from underweight through normal to obese categories",
+        "validationHeight": "Height must be between {min} and {max} {unit}.",
+        "validationWeight": "Weight must be between {min} and {max} {unit}.",
+        "validationAge": "Age must be between 2 and 120 years.",
+        "disclaimer": "This calculator is for educational purposes only. It is not a substitute for professional medical judgment. Always consult a healthcare professional for clinical decisions.",
+        "weightAbove": "You are {value} {unit} above the upper end of the healthy range.",
+        "weightBelow": "You are {value} {unit} below the lower end of the healthy range.",
+        "weightWithin": "Your weight is within the healthy range.",
+        "whoTableTitle": "WHO BMI Classification Table",
+        "whoTableCategory": "Category",
+        "whoTableRange": "BMI Range (kg/m²)",
+        "whoTableRisk": "Health Risk",
+        "emptyStateTitle": "Enter your height and weight",
+        "emptyStateDesc": "Results will appear here automatically as you type."
+      },
+      "categories": {
+        "severeThinness": "Severe Thinness",
+        "moderateThinness": "Moderate Thinness",
+        "mildThinness": "Mild Thinness",
+        "normal": "Normal Weight",
+        "overweight": "Overweight (Pre-obese)",
+        "obeseI": "Obese — Class I",
+        "obeseII": "Obese — Class II",
+        "obeseIII": "Obese — Class III"
+      },
+      "risks": {
+        "veryLow": "Very Low",
+        "low": "Low",
+        "average": "Average",
+        "increased": "Increased",
+        "high": "High",
+        "veryHigh": "Very High",
+        "extremelyHigh": "Extremely High"
+      },
+      "faq": {
+        "q1": "What is BMI?",
+        "a1": "Body Mass Index (BMI) is a numerical value calculated from a person's weight and height. It is used as a screening tool to categorize individuals into weight status categories such as underweight, normal weight, overweight, and obese. The World Health Organization (WHO) uses BMI as a standard measure for population-level health assessments.",
+        "q2": "How is BMI calculated?",
+        "a2": "BMI is calculated by dividing a person's weight in kilograms by their height in meters squared (kg/m²). For example, a person weighing 70 kg with a height of 1.75 m would have a BMI of 70 / (1.75 × 1.75) = 22.9. In imperial units, you can multiply weight in pounds by 703 and divide by height in inches squared.",
+        "q3": "What is a healthy BMI range?",
+        "a3": "According to the WHO, a healthy BMI for adults is between 18.5 and 24.9 kg/m². A BMI below 18.5 is classified as underweight, 25.0 to 29.9 as overweight, and 30.0 or above as obese. These thresholds are designed for adults aged 20 and older; children and adolescents use age- and sex-specific percentile charts.",
+        "q4": "What are the limitations of BMI?",
+        "a4": "BMI does not distinguish between muscle mass, bone density, and fat mass. Athletes or muscular individuals may have a high BMI despite having low body fat. BMI also does not account for fat distribution — abdominal fat carries higher health risks than fat stored in other areas. Ethnicity, age, and sex can also influence the relationship between BMI and health risk.",
+        "q5": "What is BMI Prime?",
+        "a5": "BMI Prime is the ratio of a person's BMI to the upper limit of the healthy range (BMI 25). A BMI Prime of 1.0 means you are at the upper boundary of normal weight. Values below 1.0 indicate you are within or below the healthy range, while values above 1.0 indicate overweight or obesity. It provides a quick, intuitive way to see how far from the healthy threshold you are."
+      },
+      "education": {
+        "aboutTitle": "What Is Body Mass Index (BMI)?",
+        "aboutBody": "Body Mass Index (BMI) is one of the most widely used measures in public health and clinical medicine. Developed by Belgian mathematician Adolphe Quetelet in the 1830s, BMI provides a simple numerical relationship between a person's weight and height. The World Health Organization (WHO), the Centers for Disease Control and Prevention (CDC), and national health services worldwide use BMI to screen for weight categories that may lead to health problems. While it is not a diagnostic tool on its own, BMI serves as a useful starting point for identifying potential health risks related to body weight.",
+        "formulaTitle": "How Is BMI Calculated?",
+        "formulaBody": "The BMI formula divides a person's body mass (in kilograms) by the square of their height (in meters). This produces a single number expressed in units of kg/m².",
+        "formulaExample": "For example, a person who weighs 70 kg and is 1.75 m tall has a BMI of 70 / (1.75 × 1.75) = 22.9 kg/m², which falls within the normal weight category. In imperial units, the formula is: weight (lbs) × 703 / height (in)².",
+        "limitationsTitle": "Limitations of BMI",
+        "limitationsBody": "While BMI is a convenient screening metric, it has well-documented limitations that clinicians and researchers recognize:",
+        "limitation1": "BMI does not distinguish between lean muscle mass, bone density, and body fat. Athletes and muscular individuals may be classified as overweight or obese despite having low body fat percentages.",
+        "limitation2": "BMI does not account for fat distribution. Visceral (abdominal) fat is strongly associated with cardiovascular disease and type 2 diabetes, but BMI cannot measure where fat is stored in the body.",
+        "limitation3": "The standard BMI thresholds were developed primarily from data on European populations. Research suggests that health risks associated with a given BMI may vary across different ethnic groups — for example, some Asian populations experience elevated risk at lower BMI values.",
+        "limitation4": "BMI is designed for adults aged 20 and older. For children and adolescents, BMI is interpreted using age- and sex-specific percentile charts published by the WHO or CDC, as body composition changes significantly during growth and development.",
+        "faqTitle": "Frequently Asked Questions"
+      }
+    },
+    "embed": {
+      "poweredBy": "Powered by",
+      "freeOpenSource": "Free & Open Source",
+      "viewFullTool": "Use the full tool at",
+      "embedTitle": "Embed This Tool",
+      "embedDescription": "Add this calculator to your website, Notion page, or LMS. Attribution is included automatically with links back to EnterMedSchool.",
+      "tabWebsite": "Website / HTML",
+      "tabNotion": "Notion",
+      "tabLMS": "LMS",
+      "tabSlides": "Presentations",
+      "copyIframe": "Copy iframe Code",
+      "copied": "Copied!",
+      "iframeInstructions": "Paste this code into any HTML page, blog, or website builder.",
+      "notionInstructions": "Paste this URL into any Notion page and choose \"Create embed\":",
+      "notionCopyUrl": "Copy Embed URL",
+      "lmsInstructions": "Paste the iframe code below into the HTML editor of your LMS (Moodle, Canvas, Blackboard, etc.).",
+      "slidesInstructions": "Live embeds aren't supported in most presentation tools. Instead, share the link with your audience or add the QR code to your slides so students can open the tool on their phones.",
+      "slidesDownloadQR": "Download QR Code",
+      "slidesCopyLink": "Copy Link",
+      "previewTitle": "Embed Preview",
+      "previewLoading": "Loading preview...",
+      "embedCodeLabel": "Embed Code",
+      "embedCompatibility": "Works with Notion, WordPress, Squarespace, Wix, and any HTML page.",
+      "customizer": {
+        "title": "Customize Appearance",
+        "subtitle": "Adjust the look of your embed to match your site",
+        "reset": "Reset to Defaults",
+        "colorsSection": "Colors",
+        "bgColor": "Background",
+        "accentColor": "Accent",
+        "textColor": "Text",
+        "mutedColor": "Muted Text",
+        "typographySection": "Typography",
+        "fontFamily": "Font Family",
+        "fontSize": "Font Size",
+        "layoutSection": "Layout",
+        "borderRadius": "Corner Radius",
+        "borderStyle": "Border Style",
+        "borderChunky": "Chunky",
+        "borderThin": "Thin",
+        "borderNone": "None",
+        "cardShadow": "Card Shadow",
+        "darkMode": "Dark Mode",
+        "compactMode": "Compact Mode",
+        "compactModeDesc": "Show only calculator and main result",
+        "sectionsSection": "Show / Hide Sections",
+        "showBmiPrime": "BMI Prime",
+        "showPonderalIndex": "Ponderal Index",
+        "showWaistGuidance": "Waist Guidance",
+        "showAgeContext": "Age Context",
+        "showDisclaimer": "Disclaimer",
+        "attributionSection": "Attribution Bar",
+        "attributionFull": "Full (logo + QR + links)",
+        "attributionCompact": "Compact (logo + link only)",
+        "on": "On",
+        "off": "Off",
+        "px": "px"
+      }
+    }
+  },
+  "professors": {
+    "title": "For Professors",
+    "metaDescription": "Free teaching resources for medical professors: slide templates, lesson plans, visual assets, video tutorials, and AI guides.",
+    "subtitle": "Everything you need to enhance your medical teaching — completely free.",
+    "licenseNote": "All resources are free for non-commercial educational use with attribution. Contact ari@entermedschool.com for questions.",
+    "searchPlaceholder": "Search templates, guides, assets, tutorials...",
+    "findTitle": "Find What You Need",
+    "findSubtitle": "Search across all templates, guides, assets, and video tutorials",
+    "quickStartTitle": "Get Started in 3 Steps",
+    "quickStartSubtitle": "Everything is free and requires no account. Just browse, download, and use.",
+    "videoTitle": "Video Tutorials",
+    "videoSubtitle": "Step-by-step video guides to help you make the most of every resource.",
+    "exploreTitle": "Explore by Section",
+    "exploreSubtitle": "Jump directly to the section you need",
+    "noResults": "No resources found",
+    "noResultsHint": "Try a different search term or clear the filters.",
+    "clearFilters": "Clear all filters",
+    "allResources": "All Resources",
+    "templates": {
+      "title": "Slide Templates & Lesson Packs",
+      "metaDescription": "Free slide templates and lesson packs for medical professors. PowerPoint and Google Slides formats.",
+      "description": "Ready-to-use presentation templates for your medical lectures.",
+      "searchPlaceholder": "Search templates...",
+      "allCategories": "All",
+      "preview": "Preview",
+      "download": "Download",
+      "featured": "Featured",
+      "comingSoon": "Coming Soon",
+      "previewComingSoon": "Preview coming soon",
+      "slides": "slides",
+      "sheets": "sheets",
+      "resultsFor": "results for",
+      "noResults": "No templates found",
+      "noResultsHint": "Try a different search term or clear the filters.",
+      "clearFilters": "Clear all filters",
+      "clearSearch": "Clear search",
+      "close": "Close"
+    },
+    "guides": {
+      "title": "Teaching Guides",
+      "metaDescription": "Guides for medical professors on using AI, clinical cases, and EnterMedSchool resources in teaching.",
+      "description": "Learn how to enhance your teaching with modern tools and techniques.",
+      "aiSlides": "How to Use AI to Enhance Your Slides",
+      "clinicalCases": "Using Clinical Cases in Your Curriculum",
+      "emsResources": "Adding EnterMedSchool Resources to Your Teaching"
+    },
+    "assets": {
+      "title": "Downloadable Teaching Assets",
+      "metaDescription": "Free downloadable teaching assets for medical professors: logos, diagrams, anatomical visuals.",
+      "description": "Diagrams, visuals, and assets ready to use in your lectures and materials."
+    },
+    "videos": {
+      "title": "Video Tutorials & How-To",
+      "metaDescription": "Free video tutorials for medical professors on using teaching resources, AI tools, and embedding educational tools.",
+      "description": "Step-by-step video guides to help you make the most of every resource."
+    }
+  },
+  "students": {
+    "title": "For Students",
+    "metaDescription": "Start here: a curated guide to free medical education resources, study tools, and practice questions.",
+    "subtitle": "Your guided path to the best free medical education resources.",
+    "startHere": "Start Here",
+    "sections": {
+      "exams": {
+        "title": "Studying for Exams?",
+        "description": "Practice questions and clinical cases designed for deep understanding."
+      },
+      "visuals": {
+        "title": "Need Visual Aids?",
+        "description": "Anatomy diagrams, clinical visuals, and educational illustrations."
+      },
+      "practice": {
+        "title": "Want Practice Questions?",
+        "description": "Thousands of free practice questions across all medical subjects."
+      },
+      "tools": {
+        "title": "Looking for Study Tools?",
+        "description": "Medical calculators, our Anki addon, Chrome extension, and more."
+      }
+    },
+    "tip": "Focus on understanding, not memorization. Our resources are designed to help you think like a clinician."
+  },
+  "events": {
+    "title": "Events & Community",
+    "metaDescription": "EnterMedSchool events, community building, and student organization resources.",
+    "subtitle": "Building healthy medical school communities worldwide.",
+    "pastEvents": {
+      "title": "Past Events",
+      "pavia": {
+        "title": "Student BBQ — University of Pavia",
+        "description": "Bringing medical students together over food and conversation. Building connections that last beyond the classroom."
+      },
+      "merch": {
+        "title": "Free Merch for Medical Students",
+        "description": "Custom-designed merchandise to build community pride and help students feel part of something bigger."
+      }
+    },
+    "whatWeOffer": {
+      "title": "How We Help",
+      "orgs": "Student Organization Advice",
+      "orgsDesc": "Help starting and running student organizations at your university.",
+      "merch": "Merch Design & Printing",
+      "merchDesc": "Free advice on designing and printing custom merch for your student group.",
+      "resources": "Study Resource Organization",
+      "resourcesDesc": "Learn how to set up shared Google Drives, coordinate resource sharing, and build study groups.",
+      "networking": "Networking Events",
+      "networkingDesc": "Ideas and support for organizing events that bring students together."
+    },
+    "philosophy": {
+      "title": "Collaboration Over Competition",
+      "content": "Medical school can sometimes push you to compete with your peers. We believe the best doctors are built through collaboration. We encourage students to help each other, share resources, and build healthy communities."
+    },
+    "contactCta": "Want help organizing events or building community at your university? Get in touch!"
+  },
+  "license": {
+    "title": "License & Attribution",
+    "metaDescription": "Learn about the EnterMedSchool.org license for free educational resources and generate your attribution badge.",
+    "info": {
+      "title": "Our License",
+      "description": "All resources on EnterMedSchool.org are free for non-commercial educational use with proper attribution.",
+      "canDo": {
+        "title": "What You CAN Do",
+        "items": [
+          "Use resources in your teaching and lectures",
+          "Share materials with your students",
+          "Modify content for your classes",
+          "Include in non-commercial presentations",
+          "Print for educational handouts"
+        ]
+      },
+      "cannotDo": {
+        "title": "What You CANNOT Do",
+        "items": [
+          "Sell or monetize our resources",
+          "Use for commercial purposes without permission",
+          "Remove attribution from materials",
+          "Claim our work as your own"
+        ]
+      },
+      "contact": "Questions about licensing? Contact"
+    },
+    "generator": {
+      "title": "Attribution Badge Generator",
+      "description": "Generate a slim attribution badge to include in your slides, PDFs, and materials. Your details are saved in your browser so you won't need to re-enter them.",
+      "nameLabel": "Your Name",
+      "namePlaceholder": "Prof. Maria Rossi",
+      "positionLabel": "Position / Institution (optional)",
+      "positionPlaceholder": "Department of Medicine, University of Pavia",
+      "previewTitle": "Live Preview",
+      "downloadBtn": "Download PNG",
+      "embedCodeLabel": "Embed Code",
+      "embedCodeDescription": "Paste this HTML into your website, blog, or any platform that supports HTML. Contains dofollow links to EnterMedSchool.",
+      "copyEmbedBtn": "Copy Embed Code",
+      "copiedMsg": "Copied!",
+      "embedTitle": "How to Use Your Badge",
+      "embedComingSoon": "Video tutorials on adding badges to PowerPoint, Google Slides, Anki, and more are coming soon."
+    }
+  },
+  "privacy": {
+    "title": "Privacy Policy",
+    "metaDescription": "EnterMedSchool.org privacy policy. Learn how we protect your data."
+  },
+  "search": {
+    "title": "Search",
+    "placeholder": "Search resources, tools, guides...",
+    "noResults": "No results found",
+    "noResultsSuggestion": "Try searching for 'anatomy', 'flashcards', or 'templates'",
+    "browseAll": "Browse all resources",
+    "hint": "Press Ctrl+K to search",
+    "hintMac": "Press ⌘K to search",
+    "quickLinks": "Quick Links",
+    "keyNav": "navigate",
+    "keyOpen": "open",
+    "keyClose": "close",
+    "resultCount": "results",
+    "categories": {
+      "page": "Pages",
+      "resource": "Resources",
+      "tool": "Tools",
+      "guide": "Guides",
+      "visual": "Visuals"
+    }
+  },
+  "breadcrumbs": {
+    "home": "Home",
+    "resources": "Resources",
+    "questions": "Questions",
+    "videos": "Videos",
+    "pdfs": "PDFs",
+    "visuals": "Visuals",
+    "tools": "Tools",
+    "forProfessors": "For Professors",
+    "templates": "Templates",
+    "guides": "Guides",
+    "assets": "Assets",
+    "forStudents": "For Students",
+    "events": "Events",
+    "about": "About",
+    "license": "License",
+    "privacy": "Privacy"
+  },
+  "footer": {
+    "copyright": "© {year} EnterMedSchool.org. All rights reserved.",
+    "cookieSettings": "Cookie Settings",
+    "partOf": "A project by",
+    "description": "The non-profit, open-source arm of EnterMedSchool — providing free medical education resources built for students and professors to download, use, and share.",
+    "badges": {
+      "freeForever": "Free Forever",
+      "openSource": "Open Source",
+      "nonCommercial": "Non-Commercial"
+    },
+    "relationship": {
+      "title": "How it works:",
+      "description": "EnterMedSchool.com funds this project through its paid courses and services. Everything here on .org is free, open-source, and always will be. This is the archive — download, adapt, and use anything you find."
+    },
+    "links": {
+      "questions": "Practice Questions",
+      "videos": "Video Lessons",
+      "pdfs": "PDFs & Summaries",
+      "visuals": "Medical Visuals",
+      "clinicalSemiotics": "Clinical Semiotics",
+      "explore": "Explore",
+      "legal": "Legal & Info"
+    }
+  },
+  "notFound": {
+    "title": "Page Not Found",
+    "description": "The page you're looking for doesn't exist or has been moved.",
+    "backHome": "Go Home"
+  },
+  "clinicalSemiotics": {
+    "title": "Clinical Semiotics Studio",
+    "description": "Interactive video-based clinical examination training with real medical procedures, bilingual subtitles, and knowledge checks.",
+    "seo": {
+      "title": "Clinical Semiotics Studio | EnterMedSchool.org",
+      "description": "Free, open-source interactive clinical examination videos with tips, questions, and bilingual Italian-English subtitles. Practice manual BP, cardiac, and thoracic exams."
+    },
+    "intro": {
+      "eyebrow": "EnterMedSchool Presents",
+      "headline": "Clinical Semiotics Studio",
+      "tagline": "Made for international medical students in Italy",
+      "actionLabel": "Access the Studio"
+    },
+    "exams": {
+      "manualBp": "Manual Blood Pressure Examination",
+      "manualBpDesc": "Practice accurate manual blood pressure measurement with Italian medical language.",
+      "cardiac": "Cardiac Examination",
+      "cardiacDesc": "Master cardiac auscultation and examination skills with interactive video walkthrough.",
+      "thoracic": "Thoracic Examination Essentials",
+      "thoracicDesc": "Follow the inspection, palpation, and auscultation flow end to end."
+    },
+    "ui": {
+      "downloadAssets": "Download Assets",
+      "embed": "Embed",
+      "copyCode": "Copy Code",
+      "copied": "Copied!",
+      "startExam": "Start Exam",
+      "resume": "Resume",
+      "startOver": "Start Over",
+      "completed": "Completed",
+      "comingSoon": "Coming Soon",
+      "loading": "Loading...",
+      "retry": "Retry",
+      "continue": "Continue",
+      "exitExam": "Exit Exam"
+    },
+    "embed": {
+      "title": "Embed Clinical Semiotics",
+      "subtitle": "Add this interactive exam to your website",
+      "bgColor": "Background Color",
+      "accentColor": "Accent Color",
+      "borderRadius": "Border Radius",
+      "theme": "Theme",
+      "light": "Light",
+      "dark": "Dark",
+      "width": "Width",
+      "height": "Height",
+      "preview": "Preview",
+      "copyIframe": "Copy Iframe Code",
+      "attribution": "Attribution required when embedding"
+    },
+    "attribution": {
+      "reminder": "Please add your attribution details before downloading assets."
+    }
+  },
+  "pdfViewer": {
+    "catalog": {
+      "title": "Interactive Textbooks & Study Guides",
+      "metaDescription": "Free, open-source medical textbooks with interactive reading tools, highlighting, note-taking, and chapter downloads. Read online or download PDF.",
+      "subtitle": "Read online with interactive tools, or download the full PDF. Completely free and open source.",
+      "searchPlaceholder": "Search textbooks...",
+      "noResults": "No textbooks found",
+      "clearFilters": "Clear Filters",
+      "allSubjects": "All"
+    },
+    "reader": {
+      "tableOfContents": "Table of Contents",
+      "complete": "complete",
+      "chapters": "chapters",
+      "chapter": "Chapter",
+      "minRead": "min read",
+      "previous": "Previous",
+      "next": "Next",
+      "backToOverview": "Book Overview",
+      "congratulations": "Congratulations!",
+      "finishedBook": "You've finished the book"
+    },
+    "toolbar": {
+      "highlightMode": "Highlight mode (H)",
+      "notes": "Notes (N)",
+      "settings": "Settings",
+      "download": "Download (D)",
+      "sidebar": "Table of Contents (S)",
+      "hideSidebar": "Hide sidebar (S)",
+      "search": "Search in book (/)",
+      "print": "Print chapter (P)",
+      "readingSettings": "Reading Settings",
+      "fontSize": "Font Size",
+      "theme": "Theme",
+      "highlightColor": "Highlight Color",
+      "annotations": "Annotations",
+      "exportAnnotations": "Export annotations",
+      "importAnnotations": "Import annotations",
+      "keyboardShortcuts": "Keyboard Shortcuts",
+      "highlight": "Highlight",
+      "prevChapter": "Prev chapter",
+      "nextChapter": "Next chapter",
+      "closeSettings": "Close settings"
+    },
+    "search": {
+      "placeholder": "Search in this book...",
+      "minChars": "Type at least 2 characters to search",
+      "noResults": "No results found for",
+      "results": "result",
+      "resultsPlural": "results",
+      "found": "found"
+    },
+    "notes": {
+      "title": "Notes",
+      "addPlaceholder": "Add a note for this chapter...",
+      "ctrlEnter": "Ctrl+Enter to save",
+      "noNotes": "No notes yet...",
+      "addFirst": "Add your first note above",
+      "edit": "Edit",
+      "delete": "Delete",
+      "cancel": "Cancel",
+      "save": "Save"
+    },
+    "download": {
+      "title": "Download Resources",
+      "fullBook": "Full Book",
+      "chapterPdf": "Chapter PDF",
+      "downloadChapterOnly": "Download this chapter only",
+      "completePdf": "Complete PDF",
+      "individualChapters": "Individual Chapters",
+      "attributionRequired": "Attribution Required",
+      "attributionNote": "Please include proper attribution when using these materials.",
+      "error": "Download Error",
+      "fileNotAvailable": "File not available. The PDF may not be uploaded yet.",
+      "close": "Close"
+    },
+    "educator": {
+      "title": "Use This in Your Course",
+      "subtitle": "This textbook is free for non-commercial educational use. Here's how to incorporate it into your teaching.",
+      "assignReading": "Assign as Reading",
+      "assignReadingDesc": "Link directly to specific chapters for your students. Each chapter has its own URL.",
+      "printDistribute": "Print & Distribute",
+      "printDistributeDesc": "Download the full PDF or individual chapters. Print for handouts or add to your LMS.",
+      "embedLMS": "Embed in Your LMS",
+      "embedLMSDesc": "Link chapter URLs in Moodle, Canvas, or Blackboard. Students can highlight and take notes.",
+      "requestMods": "Request Modifications",
+      "requestModsDesc": "Need a custom version? Contact us to discuss adaptations for your specific curriculum.",
+      "contactCta": "Contact Us to Get Started",
+      "viewLicense": "View Full License"
+    },
+    "attribution": {
+      "title": "How to Attribute This Work",
+      "subtitle": "Copy one of the attribution snippets below when using this material.",
+      "plainText": "Plain Text",
+      "html": "HTML (with dofollow links)",
+      "copy": "Copy",
+      "copied": "Copied!",
+      "fullLicense": "Full License Details",
+      "badgeGenerator": "Badge Generator"
+    },
+    "overview": {
+      "startReading": "Start Reading",
+      "downloadPdf": "Download PDF",
+      "chaptersTitle": "Chapters",
+      "freeOpenSource": "Free & Open Source"
+    }
+  },
+  "common": {
+    "learnMore": "Learn More",
+    "viewAll": "View All",
+    "download": "Download",
+    "openSource": "Open Source",
+    "free": "Free",
+    "comingSoon": "Coming Soon",
+    "contactEmail": "ari@entermedschool.com"
+  }
+}

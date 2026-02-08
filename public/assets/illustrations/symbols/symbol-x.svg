@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#FFF8E1"/>
+  <line x1="60" y1="55" x2="140" y2="115" stroke="#FFD93D" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  <line x1="140" y1="55" x2="60" y2="115" stroke="#FFD93D" stroke-width="8" stroke-linecap="round" opacity="0.6"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#F39C12" opacity="0.8">X Mark</text>
+</svg>

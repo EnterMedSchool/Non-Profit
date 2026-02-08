@@ -1,0 +1,342 @@
+/**
+ * Klaro cookie consent - blue playful chunky theme
+ * Loaded only when consent UI is needed (does not block initial page load)
+ * Mobile-friendly: touch targets, safe area, readable sizes
+ */
+#ems-klaro .klaro .cookie-modal .cm-bg {
+  background: rgba(30, 58, 95, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+#ems-klaro .klaro .cookie-notice,
+#ems-klaro .klaro .cookie-modal .cm-modal {
+  background: linear-gradient(165deg, #f0f9ff 0%, #e0f2fe 50%, #f0f9ff 100%);
+  border: 3px solid #1e3a5f;
+  border-radius: 1rem;
+  box-shadow: 4px 4px 0 #1e3a5f;
+  color: #0f172a;
+  overflow: hidden;
+}
+
+#ems-klaro .klaro .cookie-notice {
+  margin: 1rem;
+  max-width: min(420px, calc(100vw - 2rem));
+  border-top: 4px solid #0ea5e9;
+}
+
+#ems-klaro .klaro .cookie-notice .cn-body {
+  padding: 1.5rem 1.75rem 1.75rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  font-family: var(--font-dm-sans, "DM Sans"), system-ui, sans-serif;
+  font-size: 0.9375rem;
+  line-height: 1.5;
+}
+
+#ems-klaro .klaro .cookie-notice .cn-ok {
+  display: flex;
+  align-items: stretch;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+#ems-klaro .klaro .cookie-notice .cn-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+#ems-klaro .klaro .cookie-modal .cm-modal {
+  width: min(640px, calc(100vw - 2rem));
+  max-height: calc(100vh - 2rem);
+  display: flex;
+  flex-direction: column;
+}
+
+#ems-klaro .klaro .cm-modal .cm-header {
+  padding: 1.5rem 1.5rem 1rem;
+  border-bottom: 3px solid #0ea5e9;
+  position: relative;
+  background: linear-gradient(
+    to right,
+    rgba(14, 165, 233, 0.2),
+    rgba(56, 189, 248, 0.12),
+    rgba(14, 165, 233, 0.2)
+  );
+  flex-shrink: 0;
+}
+
+#ems-klaro .klaro .cm-modal .cm-header .title {
+  margin: 0 0 0.35rem;
+  font-size: 1.375rem;
+  font-weight: 700;
+  color: #0f172a;
+  font-family: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+#ems-klaro .klaro .cm-modal .cm-header p {
+  margin: 0;
+  font-size: 0.9375rem;
+  color: #475569;
+  line-height: 1.55;
+  font-family: var(--font-dm-sans, "DM Sans"), system-ui, sans-serif;
+}
+
+#ems-klaro .klaro .cm-modal .cm-body {
+  padding: 1rem 1.5rem 0;
+  max-height: min(60vh, 480px);
+  overflow-y: auto;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  -webkit-overflow-scrolling: touch;
+}
+
+#ems-klaro .klaro .cm-modal .cm-footer {
+  padding: 1.5rem 1.75rem 1.75rem;
+  border-top: 3px solid #0ea5e9;
+  flex-shrink: 0;
+}
+
+#ems-klaro .klaro .cm-footer-buttons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+#ems-klaro .klaro .cm-powered-by {
+  display: none;
+}
+
+#ems-klaro .klaro .cookie-notice h2,
+#ems-klaro .klaro .cm-modal h1,
+#ems-klaro .klaro .cm-modal h2 {
+  color: #0f172a;
+  margin: 0;
+  font-weight: 700;
+  font-size: 1.125rem;
+  font-family: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+#ems-klaro .klaro .cookie-notice p,
+#ems-klaro .klaro .cm-modal p,
+#ems-klaro .klaro .cm-modal li {
+  color: #475569;
+  line-height: 1.55;
+  font-family: var(--font-dm-sans, "DM Sans"), system-ui, sans-serif;
+  font-size: 0.9375rem;
+}
+
+#ems-klaro .klaro .cookie-notice strong,
+#ems-klaro .klaro .cm-modal strong {
+  color: #0f172a;
+}
+
+#ems-klaro .klaro .cookie-notice a,
+#ems-klaro .klaro .cm-modal a {
+  color: #0369a1;
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+#ems-klaro .klaro .cm-btn {
+  border-radius: 12px;
+  border: 3px solid #1e3a5f;
+  padding: 0.75rem 1.5rem;
+  min-height: 44px;
+  min-width: 10rem;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  font-family: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+  transition: transform 160ms ease, box-shadow 160ms ease, background-color 160ms ease, color 160ms ease;
+  background: #f0f9ff;
+  color: #0f172a;
+  box-shadow: 3px 3px 0 #1e3a5f;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#ems-klaro .klaro .cm-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #1e3a5f;
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-success {
+  background: linear-gradient(180deg, #38bdf8 0%, #0ea5e9 100%);
+  color: #fff;
+  border-color: #0369a1;
+  box-shadow: 4px 4px 0 #0369a1;
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-success:hover {
+  transform: translateY(-2px);
+  box-shadow: 5px 5px 0 #0369a1;
+  background: linear-gradient(180deg, #7dd3fc 0%, #38bdf8 100%);
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-decline,
+#ems-klaro .klaro .cm-btn.cm-btn-close,
+#ems-klaro .klaro .cm-btn.cm-btn-danger {
+  background: #f0f9ff;
+  color: #0f172a;
+  border-color: #1e3a5f;
+  box-shadow: 3px 3px 0 #1e3a5f;
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-decline:hover,
+#ems-klaro .klaro .cm-btn.cm-btn-close:hover,
+#ems-klaro .klaro .cm-btn.cm-btn-danger:hover {
+  transform: translateY(-2px);
+  box-shadow: 4px 4px 0 #1e3a5f;
+  background: #e0f2fe;
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-info {
+  background: transparent;
+  border-color: #0ea5e9;
+  color: #0369a1;
+  box-shadow: 2px 2px 0 #0ea5e9;
+}
+
+#ems-klaro .klaro .cm-btn.cm-btn-info:hover {
+  transform: translateY(-2px);
+  background: rgba(14, 165, 233, 0.1);
+  box-shadow: 3px 3px 0 #0ea5e9;
+}
+
+#ems-klaro .klaro .cm-switch-container {
+  padding: 1rem 1rem 1rem 4rem;
+  border-bottom: 2px solid rgba(30, 58, 95, 0.12);
+  min-height: 52px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#ems-klaro .klaro .cm-switch-container:hover {
+  background: rgba(14, 165, 233, 0.08);
+}
+
+#ems-klaro .klaro .cm-list-title {
+  font-size: 0.9375rem;
+  font-weight: 600;
+  color: #0f172a;
+  font-family: var(--font-bricolage), "Bricolage Grotesque", system-ui, sans-serif;
+}
+
+#ems-klaro .klaro .cm-list-description {
+  color: #475569;
+  margin-top: 0.25rem;
+  font-size: 0.875rem;
+  font-family: var(--font-dm-sans, "DM Sans"), system-ui, sans-serif;
+  line-height: 1.45;
+}
+
+#ems-klaro .klaro .cm-list-label .slider {
+  background: rgba(30, 58, 95, 0.1);
+  box-shadow: none;
+  border: 2px solid rgba(30, 58, 95, 0.25);
+  border-radius: 999px;
+  transition: background-color 180ms ease, border-color 180ms ease;
+}
+
+#ems-klaro .klaro .cm-list-label .slider::before {
+  background: #fff;
+  box-shadow: 0 2px 6px rgba(15, 23, 42, 0.12);
+  border: 2px solid rgba(30, 58, 95, 0.2);
+}
+
+#ems-klaro .klaro .cm-list-input:checked + .cm-list-label .slider {
+  background: #38bdf8;
+  border-color: #0369a1;
+}
+
+#ems-klaro .klaro .cm-list-input:checked + .cm-list-label .slider::before {
+  background: #fff;
+  border-color: #0369a1;
+}
+
+#ems-klaro .klaro .cm-list-input.only-required + .cm-list-label .slider,
+#ems-klaro .klaro .cm-list-input.required:checked + .cm-list-label .slider {
+  background: rgba(56, 189, 248, 0.5);
+  border-color: #0369a1;
+}
+
+#ems-klaro .klaro .cm-list-input.only-required + .cm-list-label .slider::before,
+#ems-klaro .klaro .cm-list-input.required:checked + .cm-list-label .slider::before {
+  background: #fff;
+  border-color: #0369a1;
+}
+
+#ems-klaro .klaro .cm-link.cn-learn-more {
+  color: #0369a1;
+  font-weight: 600;
+}
+
+/* Mobile: smaller shadow, full-width buttons, safe area */
+@media (max-width: 640px) {
+  #ems-klaro .klaro .cookie-notice,
+  #ems-klaro .klaro .cookie-modal .cm-modal {
+    box-shadow: 3px 3px 0 #1e3a5f;
+  }
+
+  #ems-klaro .klaro .cookie-notice {
+    margin: 0.75rem;
+    max-width: calc(100vw - 1.5rem);
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  #ems-klaro .klaro .cookie-notice .cn-body {
+    padding: 1rem 1.25rem 1.25rem;
+  }
+
+  #ems-klaro .klaro .cookie-notice .cn-ok {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  #ems-klaro .klaro .cookie-notice .cn-buttons {
+    width: 100%;
+    gap: 0.5rem;
+  }
+
+  #ems-klaro .klaro .cookie-notice .cm-btn,
+  #ems-klaro .klaro .cookie-notice .cm-btn.cm-btn-success {
+    width: 100%;
+    min-width: 0;
+    justify-content: center;
+    text-align: center;
+    min-height: 48px;
+  }
+
+  #ems-klaro .klaro .cookie-modal .cm-modal {
+    width: calc(100vw - 1.5rem);
+    max-height: calc(100vh - 1.5rem - env(safe-area-inset-top, 0px) - env(safe-area-inset-bottom, 0px));
+  }
+
+  #ems-klaro .klaro .cm-modal .cm-body {
+    max-height: 60vh;
+  }
+
+  #ems-klaro .klaro .cm-footer-buttons {
+    gap: 0.625rem;
+  }
+
+  #ems-klaro .klaro .cm-footer-buttons .cm-btn {
+    min-height: 48px;
+    min-width: 0;
+    flex: 1 1 auto;
+  }
+}

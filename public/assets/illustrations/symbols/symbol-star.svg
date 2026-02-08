@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#FFF8E1"/>
+  <polygon points="100,45 112,75 145,78 120,98 127,130 100,112 73,130 80,98 55,78 88,75" fill="#FFD93D" opacity="0.5"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#F39C12" opacity="0.8">Star</text>
+</svg>

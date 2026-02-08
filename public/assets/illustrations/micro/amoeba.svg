@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#E6FAF5"/>
+  <path d="M60,80 Q50,55 80,50 Q110,40 130,60 Q155,65 150,90 Q155,115 130,120 Q100,130 75,115 Q45,105 60,80 Z" fill="#00B894" opacity="0.35"/>
+  <circle cx="100" cy="82" r="12" fill="#00896B" opacity="0.5"/>
+  <circle cx="85" cy="95" r="5" fill="#00896B" opacity="0.3"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#00896B" opacity="0.8">Amoeba</text>
+</svg>

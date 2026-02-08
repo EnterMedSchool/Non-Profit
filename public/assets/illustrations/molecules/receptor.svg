@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
+  <rect width="200" height="200" rx="20" fill="#FFE8E8"/>
+  <rect x="90" y="85" width="20" height="50" rx="3" fill="#FF6B6B" opacity="0.5"/>
+  <path d="M70,85 Q100,55 130,85" fill="#D63031" opacity="0.4"/>
+  <path d="M75,85 Q100,60 125,85" fill="#FF6B6B" opacity="0.3"/>
+  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#D63031" opacity="0.8">Receptor</text>
+</svg>

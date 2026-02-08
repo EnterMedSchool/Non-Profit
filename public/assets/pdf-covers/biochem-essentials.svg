@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="400" height="520" viewBox="0 0 400 520" fill="none">
+  <defs>
+    <linearGradient id="bgGrad" x1="0" y1="0" x2="400" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#6C5CE7"/>
+      <stop offset="50%" stop-color="#00B894"/>
+      <stop offset="100%" stop-color="#FDCB6E"/>
+    </linearGradient>
+    <linearGradient id="overlayGrad" x1="200" y1="0" x2="200" y2="520" gradientUnits="userSpaceOnUse">
+      <stop offset="0%" stop-color="#ffffff" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#000000" stop-opacity="0.1"/>
+    </linearGradient>
+  </defs>
+  <!-- Background -->
+  <rect width="400" height="520" rx="16" fill="url(#bgGrad)"/>
+  <rect width="400" height="520" rx="16" fill="url(#overlayGrad)"/>
+  <!-- Decorative molecule shapes -->
+  <circle cx="320" cy="80" r="40" fill="white" fill-opacity="0.08"/>
+  <circle cx="340" cy="60" r="20" fill="white" fill-opacity="0.06"/>
+  <circle cx="80" cy="440" r="50" fill="white" fill-opacity="0.06"/>
+  <circle cx="60" cy="400" r="25" fill="white" fill-opacity="0.05"/>
+  <line x1="320" y1="80" x2="340" y2="60" stroke="white" stroke-opacity="0.1" stroke-width="2"/>
+  <line x1="80" y1="440" x2="60" y2="400" stroke="white" stroke-opacity="0.08" stroke-width="2"/>
+  <!-- Hexagon (benzene ring motif) -->
+  <polygon points="200,140 230,157 230,193 200,210 170,193 170,157" fill="none" stroke="white" stroke-opacity="0.12" stroke-width="2"/>
+  <circle cx="200" cy="175" r="18" fill="none" stroke="white" stroke-opacity="0.08" stroke-width="1.5"/>
+  <!-- Double helix motif -->
+  <path d="M60,180 Q100,200 80,240 Q60,280 100,300 Q140,320 120,360" fill="none" stroke="white" stroke-opacity="0.1" stroke-width="2"/>
+  <path d="M100,180 Q60,200 80,240 Q100,280 60,300 Q20,320 40,360" fill="none" stroke="white" stroke-opacity="0.08" stroke-width="2"/>
+  <!-- Title area -->
+  <text x="200" y="310" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="white" letter-spacing="-0.5">Biochemistry</text>
+  <text x="200" y="345" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="28" font-weight="800" fill="white" letter-spacing="-0.5">Essentials</text>
+  <!-- Subtitle -->
+  <text x="200" y="380" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="13" font-weight="500" fill="white" fill-opacity="0.8">A Concise Guide for Medical Students</text>
+  <!-- Bottom branding -->
+  <rect x="130" y="450" width="140" height="32" rx="8" fill="white" fill-opacity="0.15"/>
+  <text x="200" y="471" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="700" fill="white">EnterMedSchool.org</text>
+  <!-- Free badge -->
+  <rect x="155" y="410" width="90" height="24" rx="12" fill="white" fill-opacity="0.2"/>
+  <text x="200" y="426" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="11" font-weight="700" fill="white" letter-spacing="1">FREE</text>
+</svg>
