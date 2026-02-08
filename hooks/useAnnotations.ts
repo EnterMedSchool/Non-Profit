@@ -93,7 +93,7 @@ export function getNodePath(root: Node, target: Node): string {
   const path: number[] = [];
   let current: Node | null = target;
   while (current && current !== root) {
-    const parent = current.parentNode;
+    const parent: Node | null = current.parentNode;
     if (!parent) break;
     const children = Array.from(parent.childNodes);
     path.unshift(children.indexOf(current as ChildNode));

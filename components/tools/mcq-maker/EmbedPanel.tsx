@@ -71,8 +71,8 @@ export default function EmbedPanel() {
   const [height, setHeight] = useState("600");
   const [copied, setCopied] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
-  const celebrationRef = useRef<ReturnType<typeof setTimeout>>();
-  const copiedRef = useRef<ReturnType<typeof setTimeout>>();
+  const celebrationRef = useRef<ReturnType<typeof setTimeout>>(undefined);
+  const copiedRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   useEffect(() => {
     return () => {

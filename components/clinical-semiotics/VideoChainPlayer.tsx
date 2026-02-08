@@ -6,7 +6,7 @@ import type Hls from "hls.js";
 import {
   Play, Pause, Volume2, VolumeX,
   RotateCcw, AlertTriangle,
-  Check, X, Lightbulb, HelpCircle,
+  Check, X, Lightbulb, HelpCircle, FileText,
 } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -171,7 +171,7 @@ export default function VideoChainPlayer({
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
   const [showExplanation, setShowExplanation] = useState(false);
   const [controlsVisible, setControlsVisible] = useState(true);
-  const controlsTimerRef = useRef<ReturnType<typeof setTimeout>>();
+  const controlsTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const [completedSet, setCompletedSet] = useState<Set<string>>(
     () => new Set(completedSegments),
   );

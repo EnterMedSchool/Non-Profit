@@ -60,7 +60,7 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
     }
 
     // Bottom rule
-    if (borderStyle === "horizontal" && !(borderStyle === "all")) {
+    if (borderStyle === "horizontal") {
       lines.push("    \\hline");
     }
 

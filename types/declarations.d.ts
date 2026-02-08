@@ -1,3 +1,13 @@
+declare module "latex.js" {
+  export class HtmlGenerator {
+    constructor(options?: { hyphenate?: boolean });
+  }
+  export function parse(
+    input: string,
+    options?: { generator?: HtmlGenerator },
+  ): { htmlDocument(): Document };
+}
+
 declare module "klaro/dist/klaro.css" {
   const content: string;
   export default content;

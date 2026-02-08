@@ -86,7 +86,7 @@ export default function QuestionEditor() {
   const [imageError, setImageError] = useState<string | null>(null);
   const questionInputRef = useRef<HTMLTextAreaElement>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout>>();
+  const flashTimeoutRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   // Clean up flash timeout on unmount (Phase 1.12)
   useEffect(() => {
