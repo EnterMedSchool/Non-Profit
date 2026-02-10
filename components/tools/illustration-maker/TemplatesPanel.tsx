@@ -1,12 +1,10 @@
 "use client";
 
-import { useState, useCallback } from "react";
+import { useState, useCallback, useEffect } from "react";
 import { X, LayoutTemplate, ChevronRight } from "lucide-react";
-import {
-  templateCategories,
-  illustrationTemplates,
-  getTemplatesByCategory,
-  type IllustrationTemplate,
+import type {
+  IllustrationTemplate,
+  TemplateCategory,
 } from "@/data/illustration-templates";
 import { useIllustration } from "./IllustrationContext";
 
@@ -20,10 +18,20 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
     refreshObjects,
   } = useIllustration();
 
-  const [activeCategory, setActiveCategory] = useState(templateCategories[0].id);
+  const [allCategories, setAllCategories] = useState<TemplateCategory[]>([]);
+  const [allTemplates, setAllTemplates] = useState<IllustrationTemplate[]>([]);
+  const [activeCategory, setActiveCategory] = useState("");
   const [confirmTemplate, setConfirmTemplate] = useState<IllustrationTemplate | null>(null);
 
-  const templates = getTemplatesByCategory(activeCategory);
+  useEffect(() => {
+    import("@/data/illustration-templates").then((mod) => {
+      setAllCategories(mod.templateCategories);
+      setAllTemplates(mod.illustrationTemplates);
+      setActiveCategory(mod.templateCategories[0]?.id ?? "");
+    });
+  }, []);
+
+  const templates = allTemplates.filter((t) => t.category === activeCategory);
 
   const applyTemplate = useCallback(async (template: IllustrationTemplate) => {
     if (!canvas) return;
@@ -129,7 +137,7 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
         <div className="flex" style={{ minHeight: 400 }}>
           {/* Category sidebar */}
           <div className="w-48 border-r border-showcase-navy/5 p-3">
-            {templateCategories.map((cat) => (
+            {allCategories.map((cat) => (
               <button
                 key={cat.id}
                 onClick={() => setActiveCategory(cat.id)}

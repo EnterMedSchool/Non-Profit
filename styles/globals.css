@@ -384,12 +384,45 @@
   @apply text-purple-300;
 }
 
+/* ===== Desktop-only fixed background (causes full-page repaints on mobile) ===== */
+@media (min-width: 1024px) {
+  .bg-fixed-desktop {
+    background-attachment: fixed;
+  }
+}
+
+/* ===== Performance: will-change hints for continuously animated elements ===== */
+.animate-float-playful,
+.animate-float-gentle,
+.animate-marquee {
+  will-change: transform;
+}
+
 /* ===== Reduced Motion ===== */
+/* Disable infinite / decorative animations while keeping basic UI transitions */
 @media (prefers-reduced-motion: reduce) {
-  *, *::before, *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
+  html {
     scroll-behavior: auto !important;
+  }
+
+  .animate-float-playful,
+  .animate-float-gentle,
+  .animate-gradient-shift,
+  .animate-pulse-glow,
+  .animate-shimmer,
+  .animate-sparkle,
+  .animate-marquee,
+  .animate-morph,
+  .animate-border-rainbow,
+  .animate-bounce,
+  .gradient-animated,
+  .marquee-strip {
+    animation: none !important;
+  }
+
+  .text-gradient-purple,
+  .text-gradient-warm,
+  .text-gradient-rainbow {
+    animation: none !important;
   }
 }

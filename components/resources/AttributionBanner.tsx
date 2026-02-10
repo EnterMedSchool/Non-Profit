@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { Shield, Pencil, ExternalLink, ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { loadAttribution, hasValidAttribution } from "@/lib/attribution";
 import AttributionReminderModal from "./AttributionReminderModal";
 
@@ -69,7 +69,7 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
     <>
       <AnimatePresence mode="wait">
         {collapsed ? (
-          <motion.button
+          <m.button
             key="collapsed"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -83,9 +83,9 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
               Attributed to <strong className="text-ink-dark">{details.name}</strong>
             </span>
             <ChevronDown className="h-3 w-3 text-ink-light" />
-          </motion.button>
+          </m.button>
         ) : (
-          <motion.div
+          <m.div
             key="expanded"
             initial={{ opacity: 0, y: -4 }}
             animate={{ opacity: 1, y: 0 }}
@@ -131,7 +131,7 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
                 </svg>
               </button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 

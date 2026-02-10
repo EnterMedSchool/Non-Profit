@@ -13,10 +13,6 @@ import {
   generateHowToAttributeText,
   loadAttribution,
 } from "@/lib/attribution";
-import { EXAM_COPY, getExamChain } from "@/components/clinical-semiotics/examChains";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
-
 export default function ClinicalSemioticsClient() {
   /* ── State ── */
   const [embedExamType, setEmbedExamType] = useState<string | null>(null);
@@ -40,6 +36,12 @@ export default function ClinicalSemioticsClient() {
   const buildAndDownloadZip = useCallback(async (examType: string) => {
     const attribution = loadAttribution();
     if (!attribution || !attribution.name.trim()) return;
+
+    const [{ default: JSZip }, { saveAs }, { getExamChain, EXAM_COPY }] = await Promise.all([
+      import("jszip"),
+      import("file-saver"),
+      import("@/components/clinical-semiotics/examChains"),
+    ]);
 
     const chain = getExamChain(examType);
     const copy = EXAM_COPY[examType];

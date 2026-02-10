@@ -33,7 +33,7 @@ export default function HighlightLayer({ contentRef }: HighlightLayerProps) {
 
   const highlightsApplied = useRef<Set<string>>(new Set());
 
-  // ── Apply saved highlights ──
+  // ── Apply saved highlights (batched via rAF to avoid layout thrashing) ──
   const applyHighlights = useCallback(() => {
     if (!contentRef.current) return;
     const root = contentRef.current;
@@ -41,12 +41,41 @@ export default function HighlightLayer({ contentRef }: HighlightLayerProps) {
       currentChapter.slug,
     );
 
-    // Remove previously applied highlights that no longer exist
+    // Phase 1 (sync): Collect all DOM operations
+    const removals: { mark: Element; id: string }[] = [];
+    const replacements: { parent: Node; textNode: Text; fragment: DocumentFragment }[] = [];
+    const idsToAdd: string[] = [];
+
+    // Collect marks to remove
     const existingMarks = root.querySelectorAll("mark[data-highlight-id]");
     existingMarks.forEach((mark) => {
       const id = mark.getAttribute("data-highlight-id");
       if (id && !chapterHighlights.find((h) => h.id === id)) {
-        // Unwrap the mark
+        removals.push({ mark, id });
+      }
+    });
+
+    // Collect replacements for new highlights
+    chapterHighlights.forEach((highlight) => {
+      if (highlightsApplied.current.has(highlight.id)) return;
+      try {
+        const ops = collectHighlightOperations(root, highlight);
+        if (ops.length > 0) {
+          replacements.push(...ops);
+          idsToAdd.push(highlight.id);
+        }
+      } catch {
+        // Range resolution failed, skip this highlight
+      }
+    });
+
+    // Phase 2 (deferred): Apply all DOM changes in a single rAF
+    if (removals.length === 0 && replacements.length === 0) return;
+
+    requestAnimationFrame(() => {
+      if (!contentRef.current) return;
+      // Apply removals first
+      for (const { mark, id } of removals) {
         const parent = mark.parentNode;
         if (parent) {
           while (mark.firstChild) {
@@ -57,17 +86,14 @@ export default function HighlightLayer({ contentRef }: HighlightLayerProps) {
           highlightsApplied.current.delete(id);
         }
       }
-    });
-
-    // Apply new highlights
-    chapterHighlights.forEach((highlight) => {
-      if (highlightsApplied.current.has(highlight.id)) return;
-      try {
-        applyHighlightToDOM(root, highlight);
-        highlightsApplied.current.add(highlight.id);
-      } catch {
-        // Range resolution failed, skip this highlight
+      // Apply replacements (in reverse order to avoid DOM reference invalidation)
+      for (let i = replacements.length - 1; i >= 0; i--) {
+        const { parent, textNode, fragment } = replacements[i];
+        if (textNode.parentNode === parent) {
+          parent.replaceChild(fragment, textNode);
+        }
       }
+      idsToAdd.forEach((id) => highlightsApplied.current.add(id));
     });
   }, [annotations, contentRef, currentChapter.slug]);
 
@@ -177,17 +203,28 @@ export default function HighlightLayer({ contentRef }: HighlightLayerProps) {
   return null; // This component operates via DOM side-effects
 }
 
-// ─── DOM manipulation helper ────────────────────────────────────────────────
+// ─── DOM manipulation helpers ───────────────────────────────────────────────
+
+type ReplacementOp = {
+  parent: Node;
+  textNode: Text;
+  fragment: DocumentFragment;
+};
 
 /**
- * Apply a highlight to the DOM using a TreeWalker to wrap individual
- * text nodes. This handles cross-element selections that
- * range.surroundContents() cannot.
+ * Collect highlight replacement operations without applying them.
+ * Uses TreeWalker to find text nodes and builds DocumentFragments for each.
+ * Operations are applied later in a single requestAnimationFrame to avoid layout thrashing.
  */
-function applyHighlightToDOM(root: Node, highlight: Highlight): void {
+function collectHighlightOperations(
+  root: Node,
+  highlight: Highlight,
+): ReplacementOp[] {
   const startNode = resolveNodePath(root, highlight.startContainerPath);
   const endNode = resolveNodePath(root, highlight.endContainerPath);
-  if (!startNode || !endNode) return;
+  if (!startNode || !endNode) return [];
+
+  const operations: ReplacementOp[] = [];
 
   try {
     const range = document.createRange();
@@ -201,7 +238,6 @@ function applyHighlightToDOM(root: Node, highlight: Highlight): void {
       NodeFilter.SHOW_TEXT,
       {
         acceptNode(node) {
-          // Check if this text node is within the range
           const nodeRange = document.createRange();
           nodeRange.selectNodeContents(node);
           if (
@@ -221,30 +257,25 @@ function applyHighlightToDOM(root: Node, highlight: Highlight): void {
       currentNode = walker.nextNode();
     }
 
-    // Handle the case where start and end are in the same text node
     if (textNodes.length === 0 && startNode === endNode && startNode.nodeType === Node.TEXT_NODE) {
       textNodes.push(startNode as Text);
     }
 
-    // Wrap each text node in a <mark>
     for (const textNode of textNodes) {
-      // Determine the portion of this text node that falls within the range
       let sliceStart = 0;
       let sliceEnd = textNode.textContent?.length ?? 0;
 
-      if (textNode === startNode) {
-        sliceStart = highlight.startOffset;
-      }
-      if (textNode === endNode) {
-        sliceEnd = highlight.endOffset;
-      }
+      if (textNode === startNode) sliceStart = highlight.startOffset;
+      if (textNode === endNode) sliceEnd = highlight.endOffset;
 
-      // Split the text node if needed
       const parent = textNode.parentNode;
       if (!parent) continue;
 
-      // Skip nodes already wrapped in a highlight mark
-      if (parent instanceof HTMLElement && parent.tagName === "MARK" && parent.hasAttribute("data-highlight-id")) {
+      if (
+        parent instanceof HTMLElement &&
+        parent.tagName === "MARK" &&
+        parent.hasAttribute("data-highlight-id")
+      ) {
         continue;
       }
 
@@ -255,7 +286,6 @@ function applyHighlightToDOM(root: Node, highlight: Highlight): void {
 
       if (!highlightText) continue;
 
-      // Create the mark element
       const mark = document.createElement("mark");
       mark.setAttribute("data-highlight-id", highlight.id);
       mark.style.backgroundColor = colorToBg[highlight.color];
@@ -265,15 +295,16 @@ function applyHighlightToDOM(root: Node, highlight: Highlight): void {
       mark.title = "Click to remove";
       mark.textContent = highlightText;
 
-      // Replace the text node with before + mark + after
       const fragment = document.createDocumentFragment();
       if (beforeText) fragment.appendChild(document.createTextNode(beforeText));
       fragment.appendChild(mark);
       if (afterText) fragment.appendChild(document.createTextNode(afterText));
 
-      parent.replaceChild(fragment, textNode);
+      operations.push({ parent, textNode, fragment });
     }
   } catch {
-    // If anything fails, silently skip
+    // If anything fails, return empty
   }
+
+  return operations;
 }

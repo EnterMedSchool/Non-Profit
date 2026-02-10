@@ -2,7 +2,7 @@
 
 import { useEffect, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   X,
   Download,
@@ -62,7 +62,7 @@ export default function TemplatePreviewModal({
   return (
     <AnimatePresence>
       {template && (
-        <motion.div
+        <m.div
           className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6"
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
@@ -70,7 +70,7 @@ export default function TemplatePreviewModal({
           transition={{ duration: 0.2 }}
         >
           {/* Backdrop */}
-          <motion.div
+          <m.div
             className="absolute inset-0 bg-showcase-navy/60 backdrop-blur-sm"
             onClick={onClose}
             initial={{ opacity: 0 }}
@@ -79,7 +79,7 @@ export default function TemplatePreviewModal({
           />
 
           {/* Modal panel */}
-          <motion.div
+          <m.div
             className="relative z-10 w-full max-w-3xl overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-xl"
             initial={{ scale: 0.9, opacity: 0, y: 20 }}
             animate={{ scale: 1, opacity: 1, y: 0 }}
@@ -172,8 +172,8 @@ export default function TemplatePreviewModal({
                 </ChunkyButton>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

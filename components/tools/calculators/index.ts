@@ -1,7 +1,5 @@
 import type { ComponentType } from "react";
 import type { VisibleSections } from "@/lib/embedTheme";
-import BMICalculator from "./BMICalculator";
-import LaTeXEditor from "@/components/tools/latex-editor";
 
 /**
  * Props that all calculator components accept for embed theming.
@@ -16,15 +14,19 @@ export interface CalculatorEmbedProps {
 }
 
 /**
- * Registry mapping tool `id` (from data/tools.ts) to its component.
+ * Lazy registry mapping tool `id` (from data/tools.ts) to a dynamic import loader.
  *
- * Both the tool detail page and embed page use this registry
- * to dynamically render the correct tool.
+ * Both the tool detail page and embed page use this registry via CalculatorLoader
+ * to dynamically render the correct tool. Components are loaded on demand
+ * to avoid bundling all calculators in every page.
  *
  * Note: The Illustration Maker has its own full-screen route at /create
  * and is not part of this registry.
  */
-export const calculatorRegistry: Record<string, ComponentType<CalculatorEmbedProps>> = {
-  "bmi-calc": BMICalculator,
-  "latex-editor": LaTeXEditor as ComponentType<CalculatorEmbedProps>,
+export const calculatorRegistry: Record<
+  string,
+  () => Promise<{ default: ComponentType<CalculatorEmbedProps> }>
+> = {
+  "bmi-calc": () => import("./BMICalculator"),
+  "latex-editor": () => import("@/components/tools/latex-editor"),
 };

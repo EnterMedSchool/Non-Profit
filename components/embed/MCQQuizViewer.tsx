@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import type { MCQQuestion, MCQEmbedTheme } from "@/components/tools/mcq-maker/types";
 import { DEFAULT_EMBED_THEME } from "@/components/tools/mcq-maker/types";
 
@@ -207,14 +207,14 @@ export default function MCQQuizViewer({
         className="flex flex-col items-center justify-center p-6 text-center"
       >
         {theme.animation ? (
-          <motion.div
+          <m.div
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.5, ease: "easeOut" }}
             className="w-full max-w-sm"
           >
             <ResultsContent />
-          </motion.div>
+          </m.div>
         ) : (
           <div className="w-full max-w-sm">
             <ResultsContent />
@@ -580,7 +580,7 @@ export default function MCQQuizViewer({
       <div className="flex-1 flex items-start justify-center overflow-y-auto">
         {theme.animation ? (
           <AnimatePresence mode="wait">
-            <motion.div
+            <m.div
               key={currentIndex}
               initial={{ opacity: 0, x: 20 }}
               animate={{ opacity: 1, x: 0 }}
@@ -589,7 +589,7 @@ export default function MCQQuizViewer({
               className="w-full"
             >
               {questionContent}
-            </motion.div>
+            </m.div>
           </AnimatePresence>
         ) : (
           questionContent

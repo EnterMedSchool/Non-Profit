@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/cn";
 import { Code, Link2, ArrowRight } from "lucide-react";
@@ -50,7 +50,7 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
 
   return (
     <div className="cs-intro-wrapper cs-intro-bg min-h-screen">
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: entered ? 0 : 1 }}
         transition={{ duration: 0.25 }}
@@ -58,7 +58,7 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
       >
         <div className="max-w-2xl w-full flex flex-col items-center gap-6 text-center">
           {/* Logo */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.85 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.1, type: "spring", stiffness: 200 }}
@@ -71,10 +71,10 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
               className="rounded-2xl"
               priority
             />
-          </motion.div>
+          </m.div>
 
           {/* Eyebrow */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.15 }}
@@ -82,10 +82,10 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
             <span className="cs-badge-sticker cs-badge-purple">
               Clinical Semiotics for Educators
             </span>
-          </motion.div>
+          </m.div>
 
           {/* Headline */}
-          <motion.h1
+          <m.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
@@ -94,10 +94,10 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
           >
             Interactive Clinical Exams,{" "}
             <span className="cs-underline-hand">Ready to Embed</span>
-          </motion.h1>
+          </m.h1>
 
           {/* Tagline */}
-          <motion.p
+          <m.p
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.3 }}
@@ -107,10 +107,10 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
             Embed interactive video walkthroughs on your website, share links
             in slides, or add them to your LMS. Students get guided exams
             with real-time questions and clinical tips.
-          </motion.p>
+          </m.p>
 
           {/* Feature pills */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
@@ -124,10 +124,10 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
               <Link2 className="w-3.5 h-3.5 text-teal-500" />
               Direct link for slides
             </div>
-          </motion.div>
+          </m.div>
 
           {/* CTA */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.5, type: "spring", stiffness: 200 }}
@@ -150,9 +150,9 @@ export default function IntroVideo({ onEnterStudio }: IntroVideoProps) {
             >
               Free &middot; No sign-up required &middot; Attribution included
             </p>
-          </motion.div>
+          </m.div>
         </div>
-      </motion.div>
+      </m.div>
     </div>
   );
 }

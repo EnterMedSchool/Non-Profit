@@ -4,6 +4,7 @@ import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskCon
 import Link from "next/link";
 import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
+import CalculatorLoader from "@/components/tools/calculators/CalculatorLoader";
 import { getToolJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -73,8 +74,7 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
     notFound();
   }
 
-  const CalculatorComponent = calculatorRegistry[id];
-  if (!CalculatorComponent) {
+  if (!calculatorRegistry[id]) {
     notFound();
   }
 
@@ -146,7 +146,7 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
         {/* Calculator */}
         <AnimatedSection delay={0.1} animation="blurIn">
           <div className="mt-8">
-            <CalculatorComponent />
+            <CalculatorLoader id={id} />
           </div>
         </AnimatedSection>
 

@@ -1,5 +1,3 @@
-import { visualLessons } from "@/data/visuals";
-
 export interface SearchItem {
   title: string;
   description: string;
@@ -8,11 +6,9 @@ export interface SearchItem {
 }
 
 /**
- * Static search index — all searchable content across the site.
- * This is imported client-side by the SearchDialog component.
- * Add new items here as pages and resources are created.
+ * Static search items — pages, resources, tools (always available).
  */
-export const searchItems: SearchItem[] = [
+const staticItems: SearchItem[] = [
   // Pages
   {
     title: "Home",
@@ -126,12 +122,32 @@ export const searchItems: SearchItem[] = [
     href: "/editor",
     category: "tool",
   },
-
-  // ── Visual Lessons (auto-generated) ──
-  ...visualLessons.map((lesson) => ({
-    title: `Visual: ${lesson.title}`,
-    description: lesson.description,
-    href: "/en/resources/visuals",
-    category: "visual" as const,
-  })),
 ];
+
+/**
+ * Async factory — loads visual lessons data on first call, then caches.
+ * This avoids eagerly importing ~25KB of visuals data at module scope.
+ */
+let cachedItems: SearchItem[] | null = null;
+
+export async function getSearchItems(): Promise<SearchItem[]> {
+  if (cachedItems) return cachedItems;
+
+  const { visualLessons } = await import("@/data/visuals");
+  cachedItems = [
+    ...staticItems,
+    ...visualLessons.map((lesson: { title: string; description: string }) => ({
+      title: `Visual: ${lesson.title}`,
+      description: lesson.description,
+      href: "/en/resources/visuals",
+      category: "visual" as const,
+    })),
+  ];
+  return cachedItems;
+}
+
+/**
+ * @deprecated Use `getSearchItems()` instead. Kept for backward compat.
+ * This eagerly exports only static items (no visuals).
+ */
+export const searchItems: SearchItem[] = staticItems;

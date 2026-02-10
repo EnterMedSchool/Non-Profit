@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, Copy, Check, Monitor, Info, Lock } from "lucide-react";
 import type { VisualLesson } from "@/data/visuals";
 
@@ -78,7 +78,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
   const iframeCode = useMemo(() => {
     if (!lesson) return "";
     const accentHex = `#${accent}`;
-    return `<!-- EnterMedSchool Visual: ${lesson.title} -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="${width}" height="${height}"\n    style="border:none;border-radius:${radius}px;"\n    title="${lesson.title} - EnterMedSchool"\n    allow="autoplay"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    Created by <a href="https://entermedschool.com" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="https://entermedschool.org" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${lessonPageUrl}" rel="dofollow" style="color:${accentHex};text-decoration:none;">Original Lesson</a>\n  </p>\n</div>`;
+    return `<!-- EnterMedSchool Visual: ${lesson.title} -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="${width}" height="${height}"\n    style="border:none;border-radius:${radius}px;"\n    title="${lesson.title} - EnterMedSchool"\n    allow="autoplay"\n    loading="lazy"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    Created by <a href="https://entermedschool.com" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="https://entermedschool.org" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${lessonPageUrl}" rel="dofollow" style="color:${accentHex};text-decoration:none;">Original Lesson</a>\n  </p>\n</div>`;
   }, [lesson, embedUrl, width, height, radius, accent, lessonPageUrl]);
 
   const tokens = useMemo(() => tokenize(iframeCode), [iframeCode]);
@@ -104,7 +104,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
     <AnimatePresence>
       {lesson && (
         <>
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -112,7 +112,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
             onClick={onClose}
           />
 
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.94, y: 30 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.94, y: 30 }}
@@ -167,13 +167,13 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                           title={p.label}
                         >
                           {bg === p.value && (
-                            <motion.div
+                            <m.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
                               className="absolute inset-0 flex items-center justify-center"
                             >
                               <Check className={`h-4 w-4 ${parseInt(p.value, 16) < 0x888888 ? "text-white" : "text-showcase-navy"}`} />
-                            </motion.div>
+                            </m.div>
                           )}
                         </button>
                       ))}
@@ -206,13 +206,13 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                           title={p.label}
                         >
                           {accent === p.value && (
-                            <motion.div
+                            <m.div
                               initial={{ scale: 0 }}
                               animate={{ scale: 1 }}
                               className="absolute inset-0 flex items-center justify-center"
                             >
                               <Check className="h-4 w-4 text-white" />
-                            </motion.div>
+                            </m.div>
                           )}
                         </button>
                       ))}
@@ -307,7 +307,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                         {showCelebration && (
                           <>
                             {[...Array(8)].map((_, i) => (
-                              <motion.div
+                              <m.div
                                 key={i}
                                 initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
                                 animate={{
@@ -373,12 +373,13 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                       height="100%"
                       style={{ border: "none", borderRadius: `${radius}px`, minHeight: "300px" }}
                       title={`${lesson.title} - Preview`}
+                      loading="lazy"
                     />
                   </div>
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

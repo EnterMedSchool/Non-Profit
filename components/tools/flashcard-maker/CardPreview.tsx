@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight, RotateCcw, Pencil, Check, X } from "lucide-react";
 import { useFlashcards } from "./FlashcardContext";
 import { solidBackgrounds, getBackgroundById } from "@/data/flashcard-assets";
@@ -228,7 +228,7 @@ export default function CardPreview() {
           <Pencil className="h-3.5 w-3.5" />
         </button>
 
-        <motion.div
+        <m.div
           animate={{ rotateY: flipped ? 180 : 0 }}
           transition={{ duration: 0.5, ease: "easeInOut" }}
           style={{
@@ -276,7 +276,7 @@ export default function CardPreview() {
               )}
             </p>
           </div>
-        </motion.div>
+        </m.div>
       </div>
 
       {/* Flip hint */}

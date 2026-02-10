@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Search, X, BookOpen, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -26,7 +26,13 @@ export default function BookSearch() {
   const locale = pathname.split("/")[1] || "en";
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
+  const [debouncedQuery, setDebouncedQuery] = useState("");
   const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 300);
+    return () => clearTimeout(timer);
+  }, [query]);
 
   // Focus input when opening
   useEffect(() => {
@@ -37,10 +43,10 @@ export default function BookSearch() {
 
   // Search through all chapter content
   const results = useMemo((): SearchResult[] => {
-    if (!query || query.length < 2) return [];
+    if (!debouncedQuery || debouncedQuery.length < 2) return [];
 
     const results: SearchResult[] = [];
-    const lowerQuery = query.toLowerCase();
+    const lowerQuery = debouncedQuery.toLowerCase();
 
     for (const chapter of book.chapters) {
       for (const section of chapter.sections) {
@@ -55,7 +61,7 @@ export default function BookSearch() {
 
           // Extract context around the match
           const contextStart = Math.max(0, idx - 40);
-          const contextEnd = Math.min(plainText.length, idx + query.length + 40);
+          const contextEnd = Math.min(plainText.length, idx + debouncedQuery.length + 40);
           const excerpt = (contextStart > 0 ? "..." : "") +
             plainText.slice(contextStart, contextEnd).trim() +
             (contextEnd < plainText.length ? "..." : "");
@@ -70,10 +76,10 @@ export default function BookSearch() {
             sectionId: section.id,
             excerpt,
             matchStart,
-            matchLength: query.length,
+            matchLength: debouncedQuery.length,
           });
 
-          searchFrom = idx + query.length;
+          searchFrom = idx + debouncedQuery.length;
 
           // Limit results per section
           if (results.length >= 50) break;
@@ -97,14 +103,14 @@ export default function BookSearch() {
       {/* Search trigger button (rendered externally via ReaderToolbar) */}
       {isOpen && (
         <AnimatePresence>
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-[90] bg-black/30 backdrop-blur-sm"
             onClick={handleClose}
           />
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20, scale: 0.97 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
             exit={{ opacity: 0, y: -20, scale: 0.97 }}
@@ -144,7 +150,7 @@ export default function BookSearch() {
 
             {/* Results */}
             <div className="max-h-[60vh] overflow-y-auto">
-              {query.length < 2 ? (
+              {debouncedQuery.length < 2 ? (
                 <div className="px-4 py-8 text-center">
                   <BookOpen className="mx-auto h-8 w-8 text-ink-light/40" />
                   <p className="mt-2 text-sm text-ink-muted">
@@ -154,7 +160,7 @@ export default function BookSearch() {
               ) : results.length === 0 ? (
                 <div className="px-4 py-8 text-center">
                   <p className="text-sm text-ink-muted">
-                    No results found for &ldquo;{query}&rdquo;
+                    No results found for &ldquo;{debouncedQuery}&rdquo;
                   </p>
                 </div>
               ) : (
@@ -197,7 +203,7 @@ export default function BookSearch() {
                 </div>
               )}
             </div>
-          </motion.div>
+          </m.div>
         </AnimatePresence>
       )}
     </>

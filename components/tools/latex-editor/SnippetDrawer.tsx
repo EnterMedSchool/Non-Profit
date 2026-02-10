@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
-import { latexSnippets, getSnippetCategories } from "@/data/latex-snippets";
 import SnippetCard from "./SnippetCard";
 import type { LaTeXSnippet } from "./types";
 import { Search, X, Puzzle, Star, Clock, Sparkles } from "lucide-react";
@@ -17,8 +16,16 @@ export default function SnippetDrawer() {
   const [searchQuery, setSearchQuery] = useState("");
   const [favorites, setFavorites] = useState<Set<string>>(new Set());
   const [recentIds, setRecentIds] = useState<string[]>([]);
+  const [latexSnippets, setLatexSnippets] = useState<LaTeXSnippet[]>([]);
 
-  const categories = useMemo(() => getSnippetCategories(), []);
+  useEffect(() => {
+    import("@/data/latex-snippets").then((mod) => setLatexSnippets(mod.latexSnippets));
+  }, []);
+
+  const categories = useMemo(
+    () => [...new Set(latexSnippets.map((s) => s.category))],
+    [latexSnippets],
+  );
 
   // Load favorites and recent from localStorage
   useEffect(() => {
@@ -97,7 +104,7 @@ export default function SnippetDrawer() {
     }
 
     return suggestions.slice(0, 5);
-  }, [activeDocument?.content]);
+  }, [activeDocument?.content, latexSnippets]);
 
   const filtered = useMemo(() => {
     if (activeCategory === "favorites") {
@@ -127,7 +134,7 @@ export default function SnippetDrawer() {
       );
     }
     return result;
-  }, [activeCategory, searchQuery, favorites, recentIds, suggestedSnippets]);
+  }, [activeCategory, searchQuery, favorites, recentIds, suggestedSnippets, latexSnippets]);
 
   const handleInsert = (snippet: LaTeXSnippet) => {
     insertAtCursor(snippet.code);

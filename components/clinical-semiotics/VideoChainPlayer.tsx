@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import type Hls from "hls.js";
 import {
   Play, Pause, Volume2, VolumeX,
@@ -552,6 +552,7 @@ export default function VideoChainPlayer({
         className="w-full aspect-video bg-black"
         poster={currentSegment.poster}
         playsInline
+        preload="none"
         onLoadedMetadata={handleLoadedMetadata}
         onTimeUpdate={handleTimeUpdate}
         onEnded={handleEnded}
@@ -564,7 +565,7 @@ export default function VideoChainPlayer({
       {/* ---- Loading overlay ---- */}
       <AnimatePresence>
         {isLoading && !hasError && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -575,14 +576,14 @@ export default function VideoChainPlayer({
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-indigo-500" />
               <p className="text-sm font-medium text-gray-600">Loading…</p>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* ---- Error overlay ---- */}
       <AnimatePresence>
         {hasError && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -607,14 +608,14 @@ export default function VideoChainPlayer({
                 Retry
               </button>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* ---- Scene overlay (tips / questions / info / warnings) ---- */}
       <AnimatePresence>
         {activeOverlay && (
-          <motion.div
+          <m.div
             key={activeOverlay.id}
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -696,20 +697,20 @@ export default function VideoChainPlayer({
                           </div>
                         </button>
                         {showResult && answer.explanation && (
-                          <motion.p
+                          <m.p
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
                             className="mt-1.5 pl-6 text-xs leading-relaxed text-gray-600"
                           >
                             {answer.explanation}
-                          </motion.p>
+                          </m.p>
                         )}
                       </div>
                     );
                   })}
 
                   {showExplanation && (
-                    <motion.div
+                    <m.div
                       initial={{ opacity: 0 }}
                       animate={{ opacity: 1 }}
                       className="mt-3 flex justify-end"
@@ -721,12 +722,12 @@ export default function VideoChainPlayer({
                         Continue
                         <Play className="w-3.5 h-3.5" />
                       </button>
-                    </motion.div>
+                    </m.div>
                   )}
                 </div>
               )}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
@@ -740,7 +741,7 @@ export default function VideoChainPlayer({
       {/* ---- Controls overlay ---- */}
       <AnimatePresence>
         {(controlsVisible || !isPlaying) && !activeOverlay && !hasError && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -827,14 +828,14 @@ export default function VideoChainPlayer({
                 </div>
               </div>
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
 
       {/* ---- Big play button (shown when paused, not loading/error) ---- */}
       <AnimatePresence>
         {!isPlaying && !isLoading && !hasError && !activeOverlay && (
-          <motion.button
+          <m.button
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.8 }}
@@ -846,7 +847,7 @@ export default function VideoChainPlayer({
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform hover:scale-110 active:scale-95">
               <Play className="w-7 h-7 text-gray-800 ml-1" />
             </div>
-          </motion.button>
+          </m.button>
         )}
       </AnimatePresence>
 

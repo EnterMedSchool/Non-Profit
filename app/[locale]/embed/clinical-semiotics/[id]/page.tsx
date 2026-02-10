@@ -1,11 +1,9 @@
 "use client";
 
 import "@/styles/clinical-semiotics.css";
-import { Suspense } from "react";
+import { Suspense, useState, useEffect } from "react";
 import { useParams, useSearchParams } from "next/navigation";
-import { useMemo } from "react";
 import dynamic from "next/dynamic";
-import { EXAM_COPY } from "@/components/clinical-semiotics/examChains";
 
 const ClinicalSemioticsEmbedViewer = dynamic(
   () => import("@/components/embed/ClinicalSemioticsEmbedViewer"),
@@ -31,8 +29,25 @@ function EmbedContent() {
   const radius = parseInt(searchParams.get("radius") || "12", 10);
   const theme = (searchParams.get("theme") || "light") as "light" | "dark";
 
-  // Validate exam type
-  const isValid = useMemo(() => !!EXAM_COPY[examType], [examType]);
+  // Dynamically validate exam type
+  const [isValid, setIsValid] = useState<boolean | null>(null);
+
+  useEffect(() => {
+    import("@/components/clinical-semiotics/examChains").then((mod) => {
+      setIsValid(!!mod.EXAM_COPY[examType]);
+    });
+  }, [examType]);
+
+  if (isValid === null) {
+    return (
+      <div
+        className="flex h-screen items-center justify-center"
+        style={{ backgroundColor: `#${bg}` }}
+      >
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-200 border-t-purple-500" />
+      </div>
+    );
+  }
 
   if (!isValid) {
     return (

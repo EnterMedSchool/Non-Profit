@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import MotionProvider from "@/components/shared/MotionProvider";
 
 export const metadata: Metadata = {
   metadataBase: new URL(
@@ -20,5 +21,5 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  return children;
+  return <MotionProvider>{children}</MotionProvider>;
 }

@@ -2,7 +2,7 @@
 
 import { useRef } from "react";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform } from "framer-motion";
+import { m, useScroll, useTransform } from "framer-motion";
 import { MessageCircle, BookOpen, GraduationCap, Rocket, Globe } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -75,7 +75,7 @@ export default function ProjectTimeline() {
           <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-showcase-navy/10 sm:left-1/2 sm:-translate-x-0.5" />
 
           {/* Animated drawing line */}
-          <motion.div
+          <m.div
             className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-showcase-purple via-showcase-teal to-showcase-green origin-top sm:left-1/2 sm:-translate-x-0.5"
             style={{ scaleY: lineScaleY }}
           />

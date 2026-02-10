@@ -71,6 +71,7 @@ export function VideoPlayer({
         className={resolvedMediaClass}
         controls
         playsInline
+        preload="none"
         onEnded={onEnded}
         onPlay={onPlay}
         poster={asset.thumbnail}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { Search, Star, Code, Download } from "lucide-react";
 import { cn } from "@/lib/cn";
 
@@ -122,7 +122,7 @@ function ExamCard({
   const diffStyle = DIFFICULTY_STYLE[exam.difficulty] ?? DIFFICULTY_STYLE.beginner;
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: 16 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ type: "spring", stiffness: 260, damping: 24 }}
@@ -209,7 +209,7 @@ function ExamCard({
           </button>
         )}
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -269,7 +269,7 @@ export default function ExamSelection({
       <div className="mx-auto max-w-4xl px-4 py-10 md:py-16">
         {/* ---- Title ---- */}
         {showTitle && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
             className="mb-8 text-center"
@@ -284,11 +284,11 @@ export default function ExamSelection({
             >
               Preview, embed, or share any exam with your students.
             </p>
-          </motion.div>
+          </m.div>
         )}
 
         {/* ---- Search ---- */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
@@ -306,10 +306,10 @@ export default function ExamSelection({
               className="cs-input cs-input-with-icon"
             />
           </div>
-        </motion.div>
+        </m.div>
 
         {/* ---- Category pills ---- */}
-        <motion.div
+        <m.div
           initial={{ opacity: 0, y: 8 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.15 }}
@@ -327,7 +327,7 @@ export default function ExamSelection({
               {cat.label}
             </button>
           ))}
-        </motion.div>
+        </m.div>
 
         {/* ---- Exam grid ---- */}
         {filteredExams.length > 0 ? (
@@ -343,7 +343,7 @@ export default function ExamSelection({
             ))}
           </div>
         ) : (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             className="cs-card-chunky p-8 text-center"
@@ -357,7 +357,7 @@ export default function ExamSelection({
             <p className="text-sm" style={{ color: "var(--cs-text-muted)" }}>
               Try a different search term or category.
             </p>
-          </motion.div>
+          </m.div>
         )}
       </div>
     </div>

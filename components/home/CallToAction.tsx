@@ -1,55 +1,44 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m, useReducedMotion } from "framer-motion";
 import { ArrowRight, Github, Share2, Sparkles } from "lucide-react";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
-/* ── Floating emoji reactions ── */
+/* ── Floating emoji reactions — reduced from 8 → 4 ── */
 const floatingReactions = [
   { emoji: "🧠", top: "8%", left: "5%", delay: 0, size: 28 },
   { emoji: "🩺", top: "15%", right: "8%", delay: 1, size: 24 },
   { emoji: "📚", top: "70%", left: "6%", delay: 2, size: 26 },
   { emoji: "💡", top: "65%", right: "5%", delay: 0.5, size: 22 },
-  { emoji: "🎓", top: "40%", left: "3%", delay: 1.5, size: 30 },
-  { emoji: "❤️", top: "45%", right: "4%", delay: 2.5, size: 20 },
-  { emoji: "🔬", top: "85%", left: "12%", delay: 3, size: 24 },
-  { emoji: "✨", top: "20%", right: "15%", delay: 0.8, size: 22 },
 ];
 
-function SparkleParticles() {
-  const particles = Array.from({ length: 24 }, (_, i) => ({
-    left: `${5 + Math.random() * 90}%`,
-    delay: Math.random() * 5,
-    duration: 3 + Math.random() * 4,
-    size: 2 + Math.random() * 4,
-  }));
+/* ── CSS-animated sparkle particles — reduced from 24 → 10 ── */
+const sparkleParticles = Array.from({ length: 10 }, (_, i) => ({
+  left: `${5 + (i * 9.5)}%`,
+  delay: i * 0.5,
+  duration: 3 + (i % 4),
+  size: 2 + (i % 3) * 2,
+}));
 
+function SparkleParticles() {
   return (
     <div
       className="absolute inset-0 overflow-hidden pointer-events-none"
       aria-hidden="true"
     >
-      {particles.map((p, i) => (
-        <motion.div
+      {sparkleParticles.map((p, i) => (
+        <div
           key={i}
-          className="absolute rounded-full bg-white/50"
+          className="absolute rounded-full bg-white/50 animate-float-gentle"
           style={{
             left: p.left,
             bottom: "-5%",
             width: p.size,
             height: p.size,
-          }}
-          animate={{
-            y: [0, -300],
-            opacity: [0, 0.9, 0.9, 0],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeOut",
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
           }}
         />
       ))}
@@ -71,6 +60,7 @@ function handleShare() {
 
 export default function CallToAction() {
   const t = useTranslations("cta");
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section className="relative z-10 py-12 sm:py-16">
@@ -82,41 +72,35 @@ export default function CallToAction() {
               background:
                 "linear-gradient(-45deg, #6C5CE7, #00D9C0, #FF85A2, #54A0FF, #7E22CE, #6C5CE7)",
               backgroundSize: "600% 600%",
-              animation: "gradient-shift 6s ease infinite",
+              animation: prefersReducedMotion
+                ? "none"
+                : "gradient-shift 6s ease infinite",
             }}
           >
-            {/* Sparkle particles */}
-            <SparkleParticles />
+            {/* Sparkle particles — CSS animated */}
+            {!prefersReducedMotion && <SparkleParticles />}
 
-            {/* Floating emoji reactions */}
-            {floatingReactions.map((item, i) => (
-              <motion.div
-                key={i}
-                className="absolute pointer-events-none hidden sm:block select-none"
-                style={{
-                  top: item.top,
-                  left: item.left,
-                  right: item.right,
-                  fontSize: item.size,
-                }}
-                animate={{
-                  y: [0, -12, -4, -16, 0],
-                  rotate: [0, 8, -5, 3, 0],
-                  scale: [1, 1.1, 0.95, 1.05, 1],
-                }}
-                transition={{
-                  duration: 6 + i * 0.5,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                  delay: item.delay,
-                }}
-              >
-                {item.emoji}
-              </motion.div>
-            ))}
+            {/* Floating emoji reactions — CSS animated */}
+            {!prefersReducedMotion &&
+              floatingReactions.map((item, i) => (
+                <div
+                  key={i}
+                  className="absolute pointer-events-none hidden sm:block select-none animate-float-playful"
+                  style={{
+                    top: item.top,
+                    left: item.left,
+                    right: (item as Record<string, unknown>).right as string | undefined,
+                    fontSize: item.size,
+                    animationDelay: `${item.delay}s`,
+                    animationDuration: `${6 + i * 0.5}s`,
+                  }}
+                >
+                  {item.emoji}
+                </div>
+              ))}
 
             {/* Handwritten annotation with draw animation */}
-            <motion.div
+            <m.div
               className="absolute -top-3 right-8 sm:right-16 rotate-6 pointer-events-none"
               aria-hidden="true"
               initial={{ opacity: 0, scale: 0.5 }}
@@ -138,7 +122,7 @@ export default function CallToAction() {
                 viewBox="0 0 60 15"
                 fill="none"
               >
-                <motion.path
+                <m.path
                   d="M2 12 C20 2, 40 14, 58 4"
                   stroke="currentColor"
                   strokeWidth="2"
@@ -149,7 +133,7 @@ export default function CallToAction() {
                   viewport={{ once: true }}
                 />
               </svg>
-            </motion.div>
+            </m.div>
 
             <div className="relative z-10">
               <h2 className="font-display text-2xl font-extrabold sm:text-3xl md:text-4xl lg:text-5xl drop-shadow-sm">
@@ -195,8 +179,8 @@ export default function CallToAction() {
                 </ChunkyButton>
               </div>
 
-              {/* Share CTA -- encourages viral sharing */}
-              <motion.div
+              {/* Share CTA */}
+              <m.div
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.5 }}
@@ -210,7 +194,7 @@ export default function CallToAction() {
                   <Share2 className="h-4 w-4" />
                   {t("share")}
                 </button>
-              </motion.div>
+              </m.div>
             </div>
           </div>
         </AnimatedSection>

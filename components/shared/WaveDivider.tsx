@@ -1,7 +1,3 @@
-"use client";
-
-import { motion } from "framer-motion";
-
 type WaveVariant = "gentle" | "double" | "scallop";
 
 interface WaveDividerProps {
@@ -55,20 +51,11 @@ export default function WaveDivider({
 
         {/* Secondary wave for double variant */}
         {wave.d2 && (
-          <motion.path
-            d={wave.d2}
-            fill={bottomColor}
-            opacity={0.5}
-            initial={{ d: wave.d2 }}
-          />
+          <path d={wave.d2} fill={bottomColor} opacity={0.5} />
         )}
 
         {/* Primary wave */}
-        <motion.path
-          d={wave.d1}
-          fill={bottomColor}
-          initial={{ d: wave.d1 }}
-        />
+        <path d={wave.d1} fill={bottomColor} />
       </svg>
     </div>
   );

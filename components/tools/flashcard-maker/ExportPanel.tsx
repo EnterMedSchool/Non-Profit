@@ -343,6 +343,7 @@ export default function ExportPanel() {
                 src={previewUrl}
                 title="Flashcard PDF Preview"
                 className="w-full h-[400px] border-0"
+                loading="lazy"
               />
             </div>
           )}

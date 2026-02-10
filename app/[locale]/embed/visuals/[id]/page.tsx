@@ -3,8 +3,20 @@
 import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
+import dynamic from "next/dynamic";
 import { visualLessons } from "@/data/visuals";
-import EmbedLayerViewer from "@/components/embed/EmbedLayerViewer";
+
+const EmbedLayerViewer = dynamic(
+  () => import("@/components/embed/EmbedLayerViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex h-screen items-center justify-center bg-white">
+        <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-200 border-t-purple-500" />
+      </div>
+    ),
+  }
+);
 
 function EmbedContent() {
   const params = useParams();

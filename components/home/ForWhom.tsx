@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { BookOpen, GraduationCap, ArrowRight, Check } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
@@ -68,7 +68,7 @@ export default function ForWhom() {
                 spring
                 className="h-full"
               >
-                <motion.div
+                <m.div
                   className="tilt-3d h-full"
                   whileHover={{
                     rotateX: -1,
@@ -126,7 +126,7 @@ export default function ForWhom() {
 
                       <ul className="space-y-3 mb-8 flex-1">
                         {benefits.map((benefit: string, j: number) => (
-                          <motion.li
+                          <m.li
                             key={j}
                             initial={{ opacity: 0, x: -10 }}
                             whileInView={{ opacity: 1, x: 0 }}
@@ -143,7 +143,7 @@ export default function ForWhom() {
                               />
                             </span>
                             <span className="leading-relaxed">{benefit}</span>
-                          </motion.li>
+                          </m.li>
                         ))}
                       </ul>
 
@@ -159,7 +159,7 @@ export default function ForWhom() {
                       </ChunkyButton>
                     </div>
                   </div>
-                </motion.div>
+                </m.div>
               </AnimatedSection>
             );
           })}

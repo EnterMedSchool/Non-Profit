@@ -18,9 +18,9 @@ import {
   SearchX,
   Sparkles,
 } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import Fuse from "fuse.js";
-import { searchItems, type SearchItem } from "@/lib/search/searchIndex";
+import { getSearchItems, type SearchItem } from "@/lib/search/searchIndex";
 
 /* ─── Category config ──────────────────────────────────────────────────── */
 
@@ -166,14 +166,19 @@ export default function SearchDialog() {
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
+  const fuseRef = useRef<Fuse<SearchItem> | null>(null);
 
-  const fuse = useRef(
-    new Fuse(searchItems, {
-      keys: ["title", "description", "category"],
-      threshold: 0.3,
-      includeScore: true,
-    })
-  );
+  /* Lazy-init Fuse with full search items (including visuals) on first open */
+  useEffect(() => {
+    if (!open || fuseRef.current) return;
+    getSearchItems().then((items) => {
+      fuseRef.current = new Fuse(items, {
+        keys: ["title", "description", "category"],
+        threshold: 0.3,
+        includeScore: true,
+      });
+    });
+  }, [open]);
 
   /* ── Grouped results ────────────────────────────────────────────────── */
 
@@ -283,7 +288,7 @@ export default function SearchDialog() {
     }
   }, [open]);
 
-  /* ── Search on query change ─────────────────────────────────────────── */
+  /* ── Search on query change (300ms debounce) ──────────────────────── */
 
   useEffect(() => {
     if (!query.trim()) {
@@ -291,9 +296,13 @@ export default function SearchDialog() {
       setActiveIndex(-1);
       return;
     }
-    const fuseResults = fuse.current.search(query);
-    setResults(fuseResults.map((r) => r.item));
-    setActiveIndex(-1);
+    const timer = setTimeout(() => {
+      if (!fuseRef.current) return;
+      const fuseResults = fuseRef.current.search(query);
+      setResults(fuseResults.map((r) => r.item));
+      setActiveIndex(-1);
+    }, 300);
+    return () => clearTimeout(timer);
   }, [query]);
 
   /* ── Compute group offsets for flat indexing ─────────────────────────── */
@@ -315,7 +324,7 @@ export default function SearchDialog() {
       {open && (
         <>
           {/* ── Backdrop ──────────────────────────────────────────────── */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -326,7 +335,7 @@ export default function SearchDialog() {
 
           {/* ── Dialog container (flex-centered, fixes translate bug) ── */}
           <div className="fixed inset-0 z-[101] flex items-start justify-center px-4 pt-[12vh] sm:pt-[15vh]">
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95, y: -12 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: -12 }}
@@ -545,7 +554,7 @@ export default function SearchDialog() {
                   </span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </div>
         </>
       )}

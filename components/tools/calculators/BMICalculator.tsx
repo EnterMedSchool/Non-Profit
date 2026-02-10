@@ -121,6 +121,13 @@ function validate(
   return errors;
 }
 
+// ── Input class helper (pure) ──────────────────────────────────────────
+function inputCls(hasError: boolean): string {
+  return `w-full rounded-xl border-3 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-showcase-purple ${
+    hasError ? "border-red-400" : "border-showcase-navy/20"
+  }`;
+}
+
 // ── Props ─────────────────────────────────────────────────────────────
 interface BMICalculatorProps {
   /** When true, hide secondary metrics and show only main result */
@@ -246,12 +253,6 @@ export default function BMICalculator({
     }
     return { status: "within" as const, diffKg: 0, diffLbs: 0 };
   }, [result]);
-
-  // ── Input class helper ─────────────────────────────────────────────
-  const inputCls = (hasError: boolean) =>
-    `w-full rounded-xl border-3 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-showcase-purple ${
-      hasError ? "border-red-400" : "border-showcase-navy/20"
-    }`;
 
   // Check if user has started entering data
   const hasInput = unit === "metric"

@@ -1,9 +1,20 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import MCQQuizViewer from "@/components/embed/MCQQuizViewer";
+import dynamic from "next/dynamic";
 import type { MCQQuestion, MCQEmbedTheme } from "@/components/tools/mcq-maker/types";
-import { DEFAULT_EMBED_THEME } from "@/components/tools/mcq-maker/types";
+
+const MCQQuizViewer = dynamic(
+  () => import("@/components/embed/MCQQuizViewer"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-purple-500" />
+      </div>
+    ),
+  }
+);
 
 /**
  * Embed route for the MCQ quiz viewer.

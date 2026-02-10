@@ -11,23 +11,24 @@ import DeferredConsent from "@/components/consent/DeferredConsent";
 import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
 import "@/styles/globals.css";
 
+/* Font weights reduced from 12 → 6 files for faster loading */
 const bricolage = Bricolage_Grotesque({
   subsets: ["latin"],
-  weight: ["400", "600", "700", "800"],
+  weight: ["700", "800"],
   variable: "--font-bricolage",
   display: "swap",
 });
 
 const dmSans = DM_Sans({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-dm-sans",
   display: "swap",
 });
 
 const caveat = Caveat({
   subsets: ["latin"],
-  weight: ["400", "500", "600", "700"],
+  weight: ["400", "600"],
   variable: "--font-caveat",
   display: "swap",
 });
@@ -95,7 +96,7 @@ export default async function LocaleLayout({
       className={`${bricolage.variable} ${dmSans.variable} ${caveat.variable}`}
     >
       <body
-        className="min-h-screen text-ink-dark font-body"
+        className="min-h-screen text-ink-dark font-body bg-fixed-desktop"
         style={{
           backgroundColor: "#EDF2FF",
           backgroundImage: [
@@ -104,7 +105,6 @@ export default async function LocaleLayout({
             "radial-gradient(ellipse 80% 60% at 50% 80%, rgba(84, 160, 255, 0.07) 0%, transparent 70%)",
             "linear-gradient(170deg, #EDF2FF 0%, #E5ECFF 25%, #E8FAF7 50%, #EBE6FF 75%, #EDF2FF 100%)",
           ].join(", "),
-          backgroundAttachment: "fixed",
         }}
       >
         <NextIntlClientProvider messages={messages}>

@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { ChevronDown } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 
 interface FAQItem {
   question: string;
@@ -36,7 +36,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
               <span className="font-display text-sm font-bold text-ink-dark sm:text-base">
                 {item.question}
               </span>
-              <motion.span
+              <m.span
                 animate={{ rotate: isOpen ? 180 : 0 }}
                 transition={{ duration: 0.2 }}
                 className="flex-shrink-0"
@@ -46,12 +46,12 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                     isOpen ? "text-showcase-purple" : "text-ink-light"
                   }`}
                 />
-              </motion.span>
+              </m.span>
             </button>
 
             <AnimatePresence initial={false}>
               {isOpen && (
-                <motion.div
+                <m.div
                   initial={{ height: 0, opacity: 0 }}
                   animate={{ height: "auto", opacity: 1 }}
                   exit={{ height: 0, opacity: 0 }}
@@ -63,7 +63,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
                       {item.answer}
                     </p>
                   </div>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>

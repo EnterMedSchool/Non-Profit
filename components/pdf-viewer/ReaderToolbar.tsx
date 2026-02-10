@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback, useRef, useEffect, memo } from "react";
 import { useRouter, usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   Highlighter,
   StickyNote,
@@ -29,7 +29,6 @@ import {
   type ReaderTheme,
 } from "@/hooks/useReaderPreferences";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
-import { getAdjacentChapters } from "@/data/pdf-books";
 
 const HIGHLIGHT_COLORS: { color: HighlightColor; bg: string; label: string }[] =
   [
@@ -79,7 +78,13 @@ export default function ReaderToolbar() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [showAnnotationMenu, setShowAnnotationMenu] = useState(false);
 
-  const { prev, next } = getAdjacentChapters(book, currentChapter.slug);
+  const { prev, next } = useMemo(() => {
+    const idx = book.chapters.findIndex((c) => c.slug === currentChapter.slug);
+    return {
+      prev: idx > 0 ? book.chapters[idx - 1] : null,
+      next: idx < book.chapters.length - 1 ? book.chapters[idx + 1] : null,
+    };
+  }, [book, currentChapter.slug]);
 
   // ── Keyboard shortcuts ──
   const shortcuts = useMemo(
@@ -178,7 +183,7 @@ export default function ReaderToolbar() {
           {/* Highlight color picker (visible when highlight mode is on) */}
           <AnimatePresence>
             {highlightMode && (
-              <motion.div
+              <m.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -197,7 +202,7 @@ export default function ReaderToolbar() {
                     aria-label={`Highlight color: ${color}`}
                   />
                 ))}
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
 
@@ -222,7 +227,7 @@ export default function ReaderToolbar() {
             />
             <AnimatePresence>
               {showAnnotationMenu && (
-                <motion.div
+                <m.div
                   initial={{ opacity: 0, x: 10 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: 10 }}
@@ -242,7 +247,7 @@ export default function ReaderToolbar() {
                     <FileUp className="h-3.5 w-3.5" />
                     Import annotations
                   </button>
-                </motion.div>
+                </m.div>
               )}
             </AnimatePresence>
           </div>
@@ -317,7 +322,7 @@ export default function ReaderToolbar() {
       <AnimatePresence>
         {settingsOpen && (
           <>
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -325,7 +330,7 @@ export default function ReaderToolbar() {
               onClick={() => setSettingsOpen(false)}
               role="presentation"
             />
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.95, y: 10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
@@ -432,7 +437,7 @@ export default function ReaderToolbar() {
                   <span><kbd className="rounded bg-gray-200 px-1 font-mono">&rarr;</kbd> Next chapter</span>
                 </div>
               </div>
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>
@@ -509,14 +514,14 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
 
   return (
     <>
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
         className="fixed inset-0 z-[90] bg-black/30 backdrop-blur-sm"
         onClick={onClose}
       />
-      <motion.div
+      <m.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
         exit={{ opacity: 0, y: -20 }}
@@ -589,7 +594,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
             </div>
           )}
         </div>
-      </motion.div>
+      </m.div>
     </>
   );
 }

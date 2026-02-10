@@ -481,6 +481,7 @@ export default function PreviewPanel() {
             style={{ minHeight: "600px", height: "100%" }}
             title="LaTeX Preview"
             sandbox="allow-same-origin"
+            loading="lazy"
           />
         </div>
       </div>

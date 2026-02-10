@@ -1,5 +1,3 @@
-"use client";
-
 import { Download, Code, Eye } from "lucide-react";
 import type { Resource } from "@/data/resources";
 import StickerBadge from "@/components/shared/StickerBadge";

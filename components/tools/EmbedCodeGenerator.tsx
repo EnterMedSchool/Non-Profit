@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Copy, Check, Download, Link as LinkIcon, Monitor, StickyNote, GraduationCap, Presentation, Lock, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { generateQRCodeDataURL } from "@/lib/qrcode";
@@ -159,7 +159,7 @@ export default function EmbedCodeGenerator({
             {showCelebration && copied === copyId && (
               <>
                 {[...Array(8)].map((_, i) => (
-                  <motion.div
+                  <m.div
                     key={i}
                     initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
                     animate={{
@@ -257,7 +257,7 @@ export default function EmbedCodeGenerator({
                   {showCelebration && copied === "notion" && (
                     <>
                       {[...Array(8)].map((_, i) => (
-                        <motion.div
+                        <m.div
                           key={i}
                           initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
                           animate={{

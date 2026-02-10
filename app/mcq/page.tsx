@@ -1,4 +1,18 @@
-import MCQMaker from "@/components/tools/mcq-maker";
+"use client";
+
+import dynamic from "next/dynamic";
+
+const MCQMaker = dynamic(
+  () => import("@/components/tools/mcq-maker"),
+  {
+    ssr: false,
+    loading: () => (
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-showcase-purple border-t-transparent" />
+      </div>
+    ),
+  }
+);
 
 /**
  * Full-screen MCQ maker tool.

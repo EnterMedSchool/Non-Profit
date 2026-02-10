@@ -1,8 +1,8 @@
 "use client";
 
-import { useMemo } from "react";
+import { useMemo, useState, useEffect } from "react";
 import dynamic from "next/dynamic";
-import { getExamChain, EXAM_COPY } from "@/components/clinical-semiotics/examChains";
+import type { ExamChain } from "@/components/clinical-semiotics/VideoChainPlayer";
 import EmbedAttribution from "@/components/embed/EmbedAttribution";
 
 const VideoChainPlayer = dynamic(
@@ -32,18 +32,38 @@ export default function ClinicalSemioticsEmbedViewer({
   radius,
   theme,
 }: ClinicalSemioticsEmbedViewerProps) {
-  // Derive chain and error state without calling setState during render
-  const chain = useMemo(() => {
-    try {
-      return getExamChain(examType);
-    } catch {
-      return null;
-    }
-  }, [examType]);
+  // Dynamically load exam chain data
+  const [chain, setChain] = useState<ExamChain | null>(null);
+  const [title, setTitle] = useState(examType);
+  const [loading, setLoading] = useState(true);
 
-  const copy = EXAM_COPY[examType];
-  const title = copy?.title ?? examType;
+  useEffect(() => {
+    setLoading(true);
+    import("@/components/clinical-semiotics/examChains")
+      .then((mod) => {
+        try {
+          setChain(mod.getExamChain(examType));
+        } catch {
+          setChain(null);
+        }
+        const copy = mod.EXAM_COPY[examType];
+        setTitle(copy?.title ?? examType);
+      })
+      .finally(() => setLoading(false));
+  }, [examType]);
   const isDark = theme === "dark";
+
+  if (loading) {
+    return (
+      <div
+        className="flex h-screen items-center justify-center"
+        style={{ backgroundColor: `#${bg}` }}
+      >
+        <div className="h-8 w-8 animate-spin rounded-full border-3 border-gray-200 border-t-purple-500" />
+      </div>
+    );
+  }
+
   const hasError = !chain || chain.segments.length === 0;
 
   if (hasError) {

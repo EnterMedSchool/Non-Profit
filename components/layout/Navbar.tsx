@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
-import { motion, useScroll, useTransform, AnimatePresence } from "framer-motion";
+import { m, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   Search,
   Menu,
@@ -137,7 +137,7 @@ function ScrollProgressBar() {
   useEffect(() => setMounted(true), []);
   if (!mounted) return null;
   return (
-    <motion.div
+    <m.div
       className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green"
       style={{ width: progressWidth }}
     />
@@ -157,7 +157,7 @@ function MegaMenuPanel({
   const cols = item.children.length >= 4 ? "sm:grid-cols-2" : "sm:grid-cols-1";
 
   return (
-    <motion.div
+    <m.div
       initial={{ opacity: 0, y: -8, scale: 0.97, filter: "blur(4px)" }}
       animate={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
       exit={{ opacity: 0, y: -8, scale: 0.97, filter: "blur(4px)" }}
@@ -210,7 +210,7 @@ function MegaMenuPanel({
           </Link>
         </div>
       </div>
-    </motion.div>
+    </m.div>
   );
 }
 
@@ -227,9 +227,19 @@ export default function Navbar() {
   const navRef = useRef<HTMLElement>(null);
 
   useEffect(() => {
-    const handleScroll = () => setScrolled(window.scrollY > 20);
+    let rafId = 0;
+    const handleScroll = () => {
+      if (rafId) return; // throttle to 1 update per frame
+      rafId = requestAnimationFrame(() => {
+        setScrolled(window.scrollY > 20);
+        rafId = 0;
+      });
+    };
     window.addEventListener("scroll", handleScroll, { passive: true });
-    return () => window.removeEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+      if (rafId) cancelAnimationFrame(rafId);
+    };
   }, []);
 
   // Close mobile menu on route change
@@ -344,19 +354,13 @@ export default function Navbar() {
                         }`}
                       />
                     )}
-                    {/* Sliding highlight pill */}
-                    {isHighlighted && (
-                      <motion.div
-                        layoutId="nav-highlight"
-                        className="absolute inset-0 rounded-full bg-pastel-lavender/70"
-                        style={{ zIndex: -1 }}
-                        transition={{
-                          type: "spring",
-                          stiffness: 400,
-                          damping: 30,
-                        }}
-                      />
-                    )}
+                    {/* Highlight pill — CSS transition instead of layoutId for perf */}
+                    <div
+                      className={`absolute inset-0 rounded-full bg-pastel-lavender/70 transition-opacity duration-200 ${
+                        isHighlighted ? "opacity-100" : "opacity-0"
+                      }`}
+                      style={{ zIndex: -1 }}
+                    />
                   </Link>
 
                   {/* Mega menu */}

@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 
 export default function ReadingProgressBar() {
   const [scrollPercent, setScrollPercent] = useState(0);
@@ -33,7 +33,7 @@ export default function ReadingProgressBar() {
 
   return (
     <div className="fixed left-0 right-0 top-0 z-[60] h-1">
-      <motion.div
+      <m.div
         className="h-full bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green"
         style={{ width: `${scrollPercent}%` }}
         transition={{ duration: 0.1 }}

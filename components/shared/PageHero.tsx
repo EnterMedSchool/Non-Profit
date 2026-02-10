@@ -1,5 +1,3 @@
-"use client";
-
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
 interface PageHeroProps {

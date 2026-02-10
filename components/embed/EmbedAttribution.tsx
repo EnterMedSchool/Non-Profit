@@ -1,5 +1,3 @@
-"use client";
-
 interface EmbedAttributionProps {
   lessonTitle: string;
   lessonUrl: string;

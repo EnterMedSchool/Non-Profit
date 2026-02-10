@@ -2,7 +2,7 @@
 
 import { useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   ChevronLeft,
   ChevronRight,
@@ -254,7 +254,7 @@ export default function EmbedLayerViewer({
               if (!isRevealed) return null;
 
               return (
-                <motion.div
+                <m.div
                   key={layer.index}
                   className="absolute inset-0"
                   style={{ zIndex: i + 1 }}
@@ -264,7 +264,7 @@ export default function EmbedLayerViewer({
                   transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
                 >
                   {/* Drawing reveal via clip-path */}
-                  <motion.div
+                  <m.div
                     className="absolute inset-0"
                     initial={{
                       clipPath: isBackground
@@ -293,8 +293,8 @@ export default function EmbedLayerViewer({
                       priority={i <= 1}
                       onLoad={() => handleImageLoad(i, isBackground)}
                     />
-                  </motion.div>
-                </motion.div>
+                  </m.div>
+                </m.div>
               );
             })}
           </AnimatePresence>
@@ -303,7 +303,7 @@ export default function EmbedLayerViewer({
         {/* Loading spinner overlay */}
         <AnimatePresence>
           {isCurrentBusy && currentIndex > 0 && (
-            <motion.div
+            <m.div
               className="absolute inset-0 z-50 flex items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
@@ -328,21 +328,21 @@ export default function EmbedLayerViewer({
                   Loading...
                 </span>
               </div>
-            </motion.div>
+            </m.div>
           )}
         </AnimatePresence>
 
         {/* Play hint overlay — shown on first layer before any audio is played */}
         <AnimatePresence>
           {!hasEverPlayed && !isPlaying && !showOnboarding && currentIndex === 0 && (
-            <motion.div
+            <m.div
               className="absolute inset-0 z-20 flex items-center justify-center"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
               transition={{ duration: 0.3 }}
             >
-              <motion.button
+              <m.button
                 onClick={() => toggle()}
                 className="flex items-center gap-2.5 rounded-2xl px-5 py-3 transition-all hover:scale-105 active:scale-95"
                 style={{
@@ -383,8 +383,8 @@ export default function EmbedLayerViewer({
                     Listen to the narration for each layer
                   </p>
                 </div>
-              </motion.button>
-            </motion.div>
+              </m.button>
+            </m.div>
           )}
         </AnimatePresence>
 
@@ -441,7 +441,7 @@ export default function EmbedLayerViewer({
             className="h-1.5 w-full rounded-full overflow-hidden"
             style={{ backgroundColor: surfaceBg }}
           >
-            <motion.div
+            <m.div
               className="h-full rounded-full"
               style={{ backgroundColor: accentHex }}
               initial={false}
@@ -476,7 +476,7 @@ export default function EmbedLayerViewer({
 
         <div className="flex items-center gap-2">
           {/* Play/Pause button */}
-          <motion.button
+          <m.button
             onClick={() => toggle()}
             className="flex h-9 w-9 items-center justify-center rounded-full flex-shrink-0 transition-all hover:scale-105 active:scale-95"
             style={{ backgroundColor: accentHex, color: "#fff" }}
@@ -500,7 +500,7 @@ export default function EmbedLayerViewer({
             ) : (
               <Play className="h-4 w-4 ml-0.5" />
             )}
-          </motion.button>
+          </m.button>
 
           {/* Layer info */}
           <div className="min-w-0 flex-1">

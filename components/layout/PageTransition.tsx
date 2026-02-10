@@ -1,7 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { useReducedMotion } from "framer-motion";
 
 export default function PageTransition({
@@ -12,13 +12,15 @@ export default function PageTransition({
   const pathname = usePathname();
   const prefersReducedMotion = useReducedMotion();
 
-  if (prefersReducedMotion) {
+  // Skip transition for embed routes — they're lightweight and shouldn't
+  // pay for page-transition animations.
+  if (prefersReducedMotion || pathname.startsWith("/embed")) {
     return <>{children}</>;
   }
 
   return (
     <AnimatePresence mode="wait">
-      <motion.div
+      <m.div
         key={pathname}
         initial={{ opacity: 0, y: 8 }}
         animate={{ opacity: 1, y: 0 }}
@@ -29,7 +31,7 @@ export default function PageTransition({
         }}
       >
         {children}
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }

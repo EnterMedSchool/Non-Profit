@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import {
   HelpCircle,
   Video,
@@ -145,7 +145,7 @@ function BentoCard({
             : ""
       }
     >
-      <motion.div
+      <m.div
         className="tilt-3d h-full"
         whileHover={{
           rotateX: -2,
@@ -222,7 +222,7 @@ function BentoCard({
             </div>
           </div>
         </CardWrapper>
-      </motion.div>
+      </m.div>
     </AnimatedSection>
   );
 }

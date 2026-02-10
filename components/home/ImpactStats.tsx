@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { useInView, motion } from "framer-motion";
+import { useInView, useReducedMotion } from "framer-motion";
 import { useTranslations } from "next-intl";
 import { BookOpen, Globe, Wrench, GraduationCap } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -77,38 +77,31 @@ const stats = [
   },
 ];
 
-function DarkSectionSparkles() {
-  const particles = Array.from({ length: 20 }, (_, i) => ({
-    left: `${5 + Math.random() * 90}%`,
-    delay: Math.random() * 5,
-    duration: 4 + Math.random() * 4,
-    size: 2 + Math.random() * 3,
-  }));
+/* CSS-animated sparkle particles — reduced from 20 → 8 */
+const darkSparkles = Array.from({ length: 8 }, (_, i) => ({
+  left: `${5 + i * 12}%`,
+  delay: i * 0.6,
+  duration: 4 + (i % 4),
+  size: 2 + (i % 3) * 1.5,
+}));
 
+function DarkSectionSparkles() {
   return (
     <div
       className="absolute inset-0 overflow-hidden pointer-events-none"
       aria-hidden="true"
     >
-      {particles.map((p, i) => (
-        <motion.div
+      {darkSparkles.map((p, i) => (
+        <div
           key={i}
-          className="absolute rounded-full bg-white/30"
+          className="absolute rounded-full bg-white/30 animate-float-gentle"
           style={{
             left: p.left,
             bottom: "-5%",
             width: p.size,
             height: p.size,
-          }}
-          animate={{
-            y: [0, -350],
-            opacity: [0, 0.7, 0.7, 0],
-          }}
-          transition={{
-            duration: p.duration,
-            repeat: Infinity,
-            delay: p.delay,
-            ease: "easeOut",
+            animationDelay: `${p.delay}s`,
+            animationDuration: `${p.duration}s`,
           }}
         />
       ))}
@@ -162,6 +155,7 @@ export default function ImpactStats() {
   const t = useTranslations("impact");
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "0px 0px 100px 0px" });
+  const prefersReducedMotion = useReducedMotion();
 
   return (
     <section className="relative z-10 py-12 sm:py-16" ref={ref}>
@@ -197,8 +191,8 @@ export default function ImpactStats() {
           }}
         />
 
-        {/* Sparkle particles */}
-        <DarkSectionSparkles />
+        {/* Sparkle particles — skip for reduced motion */}
+        {!prefersReducedMotion && <DarkSectionSparkles />}
 
         <div className="relative z-10 py-14 sm:py-20 px-4 sm:px-8 lg:px-12 mx-auto max-w-6xl">
           <AnimatedSection animation="blurIn">

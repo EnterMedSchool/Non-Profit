@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   ChevronRight,
@@ -40,7 +40,7 @@ export default function TableOfContents() {
       {/* Mobile overlay */}
       <AnimatePresence>
         {sidebarOpen && (
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -53,7 +53,7 @@ export default function TableOfContents() {
       {/* Sidebar */}
       <AnimatePresence>
         {sidebarOpen && (
-          <motion.aside
+          <m.aside
             initial={{ x: -320, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: -320, opacity: 0 }}
@@ -91,7 +91,7 @@ export default function TableOfContents() {
                 </span>
               </div>
               <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-gray-100">
-                <motion.div
+                <m.div
                   className="h-full rounded-full bg-gradient-to-r from-showcase-purple to-showcase-teal"
                   initial={{ width: 0 }}
                   animate={{ width: `${overallProgress}%` }}
@@ -155,7 +155,7 @@ export default function TableOfContents() {
                       {/* Sections */}
                       <AnimatePresence>
                         {isExpanded && (
-                          <motion.ul
+                          <m.ul
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -180,7 +180,7 @@ export default function TableOfContents() {
                                 </Link>
                               </li>
                             ))}
-                          </motion.ul>
+                          </m.ul>
                         )}
                       </AnimatePresence>
                     </li>
@@ -198,7 +198,7 @@ export default function TableOfContents() {
                 v{book.version} &middot; {book.totalPages} pages
               </p>
             </div>
-          </motion.aside>
+          </m.aside>
         )}
       </AnimatePresence>
     </>

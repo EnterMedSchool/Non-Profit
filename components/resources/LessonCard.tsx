@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useCallback } from "react";
 import Image from "next/image";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   ChevronDown,
   ChevronUp,
@@ -17,8 +17,6 @@ import {
   Loader2,
   Sparkles,
 } from "lucide-react";
-import JSZip from "jszip";
-import { saveAs } from "file-saver";
 import StickerBadge from "@/components/shared/StickerBadge";
 import AttributionReminderModal from "@/components/resources/AttributionReminderModal";
 import AttributionBanner from "@/components/resources/AttributionBanner";
@@ -109,7 +107,10 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
         const details = name
           ? { name, position: position || "" }
           : loadAttribution() || { name: "User", position: "" };
-        const { default: JSZip } = await import("jszip");
+        const [{ default: JSZip }, { saveAs }] = await Promise.all([
+          import("jszip"),
+          import("file-saver"),
+        ]);
         const zip = new JSZip();
         const files: { path: string; url: string }[] = [];
         for (const layer of lesson.layers) {
@@ -262,7 +263,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
           {/* ── Expanded section with framer-motion ── */}
           <AnimatePresence>
             {expanded && (
-              <motion.div
+              <m.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -271,17 +272,17 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
               >
                 <div className="border-t-3 border-showcase-navy/10 bg-pastel-cream/30 p-5 sm:p-6">
                   {/* Attribution banner / reminder */}
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
                     className="mb-5"
                   >
                     <AttributionBanner />
-                  </motion.div>
+                  </m.div>
 
                   {/* Download All -- Hero CTA */}
-                  <motion.div
+                  <m.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.15 }}
@@ -320,12 +321,12 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                         />
                       </div>
                     )}
-                  </motion.div>
+                  </m.div>
 
                   {/* Asset list with staggered animations */}
                   <div className="space-y-2">
                     {lesson.layers.map((layer, idx) => (
-                      <motion.div
+                      <m.div
                         key={layer.index}
                         initial={{ opacity: 0, x: -20 }}
                         animate={{ opacity: 1, x: 0 }}
@@ -363,7 +364,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                             <span className="hidden sm:inline">MP3</span>
                           </a>
                         </div>
-                      </motion.div>
+                      </m.div>
                     ))}
                   </div>
 
@@ -381,7 +382,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
 
                       <AnimatePresence>
                         {showFacts && (
-                          <motion.div
+                          <m.div
                             initial={{ height: 0, opacity: 0 }}
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
@@ -423,7 +424,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                                   const cfg = factCategoryConfig[fact.category];
                                   const borderColor = factBorderColors[fact.category] || "border-l-gray-300";
                                   return (
-                                    <motion.div
+                                    <m.div
                                       key={`${fact.term}-${i}`}
                                       initial={{ opacity: 0, x: -10 }}
                                       animate={{ opacity: 1, x: 0 }}
@@ -448,18 +449,18 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                                           {fact.visualCue}
                                         </p>
                                       )}
-                                    </motion.div>
+                                    </m.div>
                                   );
                                 })}
                               </div>
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>
                   )}
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>

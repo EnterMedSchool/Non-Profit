@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, memo } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   X,
   Download,
@@ -76,7 +76,7 @@ export default function DownloadPanel() {
       <AnimatePresence>
         {downloadPanelOpen && (
           <>
-            <motion.div
+            <m.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function DownloadPanel() {
               onClick={() => setDownloadPanelOpen(false)}
               role="presentation"
             />
-            <motion.div
+            <m.div
               initial={{ opacity: 0, scale: 0.96, y: -10 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.96, y: -10 }}
@@ -191,7 +191,7 @@ export default function DownloadPanel() {
                 {/* Attribution banner / notice */}
                 <AttributionBanner />
               </div>
-            </motion.div>
+            </m.div>
           </>
         )}
       </AnimatePresence>

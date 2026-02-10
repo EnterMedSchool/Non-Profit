@@ -1,6 +1,6 @@
 "use client";
 
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import { X, CheckCircle2, AlertCircle, AlertTriangle, Info } from "lucide-react";
 import type { Toast, ToastType } from "@/hooks/useToast";
 
@@ -37,7 +37,7 @@ export default function ToastContainer({ toasts, onDismiss }: ToastContainerProp
         {toasts.map((toast) => {
           const Icon = ICONS[toast.type];
           return (
-            <motion.div
+            <m.div
               key={toast.id}
               layout
               initial={{ opacity: 0, x: 50, scale: 0.95 }}
@@ -54,7 +54,7 @@ export default function ToastContainer({ toasts, onDismiss }: ToastContainerProp
               >
                 <X className="h-3.5 w-3.5" />
               </button>
-            </motion.div>
+            </m.div>
           );
         })}
       </AnimatePresence>

@@ -4,7 +4,7 @@ import { useState, useMemo, useEffect } from "react";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { useSearchParams } from "next/navigation";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import { X } from "lucide-react";
 
 import ExamSelection from "./ExamSelection";
@@ -152,7 +152,7 @@ export default function ClinicalSemioticsExperience({
     return (
       <div className="semiotics-root">
         <div className="flex-1 flex items-center justify-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             className="cs-card-chunky p-8 flex flex-col items-center gap-4 text-center max-w-sm"
@@ -165,14 +165,14 @@ export default function ClinicalSemioticsExperience({
               Preparing {currentCopy?.title ?? "exam"} content.
             </p>
             <div className="cs-progress-bar w-full">
-              <motion.div
+              <m.div
                 className="cs-progress-fill"
                 initial={{ width: "10%" }}
                 animate={{ width: "80%" }}
                 transition={{ duration: 2, ease: "easeOut" }}
               />
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     );
@@ -185,7 +185,7 @@ export default function ClinicalSemioticsExperience({
     return (
       <div className="semiotics-root">
         <div className="flex-1 flex items-center justify-center">
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             className="cs-card-chunky p-8 flex flex-col items-center gap-4 text-center max-w-sm"
@@ -214,7 +214,7 @@ export default function ClinicalSemioticsExperience({
                 Back to Exams
               </button>
             </div>
-          </motion.div>
+          </m.div>
         </div>
       </div>
     );
@@ -226,7 +226,7 @@ export default function ClinicalSemioticsExperience({
   return (
     <div className="semiotics-root">
       {/* ---- Header banner overlay ---- */}
-      <motion.div
+      <m.div
         initial={{ y: -60, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ type: "spring", stiffness: 200, damping: 25 }}
@@ -266,7 +266,7 @@ export default function ClinicalSemioticsExperience({
           <X className="w-4 h-4" />
           <span className="hidden sm:inline">Exit</span>
         </button>
-      </motion.div>
+      </m.div>
 
       {/* ---- Video player ---- */}
       <div className="flex-1 relative overflow-hidden">

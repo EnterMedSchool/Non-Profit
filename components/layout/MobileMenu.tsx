@@ -5,7 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { X, ExternalLink, Search, ChevronDown } from "lucide-react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence, m } from "framer-motion";
 import type { NavItem, NavItemWithChildren } from "./Navbar";
 
 interface MobileMenuProps {
@@ -105,7 +105,7 @@ export default function MobileMenu({
   return (
     <AnimatePresence>
       {open && (
-        <motion.div
+        <m.div
           variants={overlayVariants}
           initial="hidden"
           animate="visible"
@@ -123,7 +123,7 @@ export default function MobileMenu({
           }}
         >
           {/* Top bar */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -147,7 +147,7 @@ export default function MobileMenu({
                 Open-Source
               </span>
             </Link>
-            <motion.button
+            <m.button
               ref={closeRef}
               onClick={onClose}
               initial={{ opacity: 0, rotate: -90 }}
@@ -157,13 +157,13 @@ export default function MobileMenu({
               aria-label={t("closeMenu")}
             >
               <X className="h-5 w-5" />
-            </motion.button>
-          </motion.div>
+            </m.button>
+          </m.div>
 
           {/* Navigation links -- centered vertically */}
           <div className="flex flex-1 flex-col justify-center px-6 py-4">
             {/* Home link */}
-            <motion.div
+            <m.div
               custom={0}
               variants={linkVariants}
               initial="hidden"
@@ -177,7 +177,7 @@ export default function MobileMenu({
               >
                 {t("home")}
               </Link>
-            </motion.div>
+            </m.div>
 
             {/* Nav items */}
             {navItems.map((item, i) => {
@@ -185,7 +185,7 @@ export default function MobileMenu({
               const isExpanded = expanded === item.labelKey;
 
               return (
-                <motion.div
+                <m.div
                   key={item.labelKey}
                   custom={i + 1}
                   variants={linkVariants}
@@ -211,7 +211,7 @@ export default function MobileMenu({
                       {/* Accordion children */}
                       <AnimatePresence>
                         {isExpanded && (
-                          <motion.div
+                          <m.div
                             variants={childVariants}
                             initial="hidden"
                             animate="visible"
@@ -254,7 +254,7 @@ export default function MobileMenu({
                                 <span aria-hidden="true">&rarr;</span>
                               </Link>
                             </div>
-                          </motion.div>
+                          </m.div>
                         )}
                       </AnimatePresence>
                     </div>
@@ -268,13 +268,13 @@ export default function MobileMenu({
                       {t(item.labelKey)}
                     </Link>
                   )}
-                </motion.div>
+                </m.div>
               );
             })}
           </div>
 
           {/* Bottom section */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0 }}
@@ -305,8 +305,8 @@ export default function MobileMenu({
               {t("visitCom")}
               <ExternalLink className="h-4 w-4" />
             </a>
-          </motion.div>
-        </motion.div>
+          </m.div>
+        </m.div>
       )}
     </AnimatePresence>
   );

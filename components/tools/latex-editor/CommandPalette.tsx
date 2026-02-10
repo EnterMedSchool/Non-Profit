@@ -2,7 +2,6 @@
 
 import { useState, useMemo, useEffect, useRef } from "react";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
-import { latexSnippets } from "@/data/latex-snippets";
 import { Search, CornerDownLeft, X } from "lucide-react";
 
 interface CommandItem {
@@ -20,18 +19,22 @@ export default function CommandPalette() {
   const inputRef = useRef<HTMLInputElement>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  // Build command list from snippets
-  const allCommands: CommandItem[] = useMemo(
-    () =>
-      latexSnippets.map((s) => ({
-        id: s.id,
-        title: s.title,
-        category: s.category,
-        description: s.description,
-        code: s.code,
-      })),
-    []
-  );
+  // Dynamically load snippets
+  const [allCommands, setAllCommands] = useState<CommandItem[]>([]);
+
+  useEffect(() => {
+    import("@/data/latex-snippets").then((mod) => {
+      setAllCommands(
+        mod.latexSnippets.map((s) => ({
+          id: s.id,
+          title: s.title,
+          category: s.category,
+          description: s.description,
+          code: s.code,
+        })),
+      );
+    });
+  }, []);
 
   // Filter
   const filtered = useMemo(() => {

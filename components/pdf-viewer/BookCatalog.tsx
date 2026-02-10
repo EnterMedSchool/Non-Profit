@@ -1,36 +1,47 @@
 "use client";
 
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import { Search, SlidersHorizontal, BookOpen, X } from "lucide-react";
 import BookCard from "./BookCard";
-import { pdfBooks } from "@/data/pdf-books";
+import type { PDFBook } from "@/data/pdf-books";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
 export default function BookCatalog() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
+  const [pdfBooks, setPdfBooks] = useState<PDFBook[]>([]);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearchQuery(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
+
+  useEffect(() => {
+    import("@/data/pdf-books").then((mod) => setPdfBooks(mod.pdfBooks));
+  }, []);
 
   // Extract unique subjects
   const subjects = useMemo(() => {
     const set = new Set(pdfBooks.map((b) => b.subject));
     return Array.from(set).sort();
-  }, []);
+  }, [pdfBooks]);
 
   // Filter books
   const filteredBooks = useMemo(() => {
     return pdfBooks.filter((book) => {
       const matchesSearch =
-        !searchQuery ||
-        book.title.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        book.description.toLowerCase().includes(searchQuery.toLowerCase()) ||
+        !debouncedSearchQuery ||
+        book.title.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
+        book.description.toLowerCase().includes(debouncedSearchQuery.toLowerCase()) ||
         book.tags.some((t) =>
-          t.toLowerCase().includes(searchQuery.toLowerCase()),
+          t.toLowerCase().includes(debouncedSearchQuery.toLowerCase()),
         );
       const matchesSubject =
         !selectedSubject || book.subject === selectedSubject;
       return matchesSearch && matchesSubject;
     });
-  }, [searchQuery, selectedSubject]);
+  }, [debouncedSearchQuery, selectedSubject, pdfBooks]);
 
   return (
     <div>

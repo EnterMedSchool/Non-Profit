@@ -2,7 +2,7 @@
 
 import { useRef, useEffect, useState } from "react";
 import {
-  motion,
+  m,
   useReducedMotion,
   useInView,
   type TargetAndTransition,
@@ -116,7 +116,7 @@ export default function AnimatedSection({
   const shouldShow = !ready || isInView;
 
   return (
-    <motion.div
+    <m.div
       ref={ref}
       animate={shouldShow ? animateTarget : initial}
       transition={shouldShow && ready ? userTransition : { duration: 0 }}
@@ -124,6 +124,6 @@ export default function AnimatedSection({
       style={style}
     >
       {children}
-    </motion.div>
+    </m.div>
   );
 }

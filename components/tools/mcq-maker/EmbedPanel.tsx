@@ -12,7 +12,7 @@ import {
   ChevronDown,
   Info,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { useMCQ } from "./MCQContext";
 import type { MCQEmbedTheme } from "./types";
 import { DEFAULT_EMBED_THEME } from "./types";
@@ -338,7 +338,7 @@ export default function EmbedPanel() {
               aria-pressed={embedTheme.bg === p.value}
             >
               {embedTheme.bg === p.value && (
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="absolute inset-0 flex items-center justify-center"
@@ -348,7 +348,7 @@ export default function EmbedPanel() {
                       p.value < "#888888" ? "text-white" : "text-showcase-navy"
                     }`}
                   />
-                </motion.div>
+                </m.div>
               )}
             </button>
           ))}
@@ -376,13 +376,13 @@ export default function EmbedPanel() {
               aria-pressed={embedTheme.accent === p.value}
             >
               {embedTheme.accent === p.value && (
-                <motion.div
+                <m.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="absolute inset-0 flex items-center justify-center"
                 >
                   <Check className="h-3.5 w-3.5 text-white" />
-                </motion.div>
+                </m.div>
               )}
             </button>
           ))}
@@ -488,7 +488,7 @@ export default function EmbedPanel() {
                 {showCelebration && (
                   <>
                     {[...Array(8)].map((_, i) => (
-                      <motion.div
+                      <m.div
                         key={i}
                         initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
                         animate={{

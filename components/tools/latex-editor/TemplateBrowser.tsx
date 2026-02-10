@@ -1,8 +1,7 @@
 "use client";
 
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
-import { latexTemplates } from "@/data/latex-templates";
 import TemplateCard from "./TemplateCard";
 import type { LaTeXTemplate, TemplateCategory } from "./types";
 import { X, Search, Eye, Code2 } from "lucide-react";
@@ -23,6 +22,11 @@ export default function TemplateBrowser() {
   const [activeCategory, setActiveCategory] = useState<TemplateCategory | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [previewTemplate, setPreviewTemplate] = useState<LaTeXTemplate | null>(null);
+  const [latexTemplates, setLatexTemplates] = useState<LaTeXTemplate[]>([]);
+
+  useEffect(() => {
+    import("@/data/latex-templates").then((mod) => setLatexTemplates(mod.latexTemplates));
+  }, []);
 
   const filtered = useMemo(() => {
     let result = latexTemplates;
@@ -39,7 +43,7 @@ export default function TemplateBrowser() {
       );
     }
     return result;
-  }, [activeCategory, searchQuery]);
+  }, [activeCategory, searchQuery, latexTemplates]);
 
   const handleUse = (template: LaTeXTemplate) => {
     const docs = template.files.map((f) => ({
@@ -313,6 +317,7 @@ function TemplatePreview({
             style={{ minHeight: "400px", maxHeight: "50vh" }}
             title="Template Preview"
             sandbox="allow-same-origin"
+            loading="lazy"
           />
         )}
       </div>

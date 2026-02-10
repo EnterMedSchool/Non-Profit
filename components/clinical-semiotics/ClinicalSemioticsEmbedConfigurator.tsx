@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { X, Copy, Check, Code, Link2 } from "lucide-react";
 import { EXAM_COPY } from "./examChains";
 
@@ -24,6 +24,11 @@ const ACCENT_PRESETS = [
   { label: "Coral", value: "ff7675" },
   { label: "Blue", value: "0984e3" },
   { label: "Navy", value: "1a1a2e" },
+];
+
+const CELEBRATION_COLORS = [
+  "#6C5CE7", "#00D9C0", "#FFD93D", "#FF85A2",
+  "#54A0FF", "#2ECC71", "#FF9F43", "#7E22CE",
 ];
 
 /* ── Hex validation ── */
@@ -102,7 +107,7 @@ function ColorField({
             title={p.label}
           >
             {value === p.value && (
-              <motion.div
+              <m.div
                 initial={{ scale: 0 }}
                 animate={{ scale: 1 }}
                 className="absolute inset-0 flex items-center justify-center"
@@ -114,7 +119,7 @@ function ColorField({
                       : "text-showcase-navy"
                   }`}
                 />
-              </motion.div>
+              </m.div>
             )}
           </button>
         ))}
@@ -245,7 +250,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
   return (
     <AnimatePresence>
       {/* Backdrop */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         exit={{ opacity: 0 }}
@@ -260,7 +265,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
       />
 
       {/* Modal */}
-      <motion.div
+      <m.div
         initial={{ opacity: 0, scale: 0.94, y: 30 }}
         animate={{ opacity: 1, scale: 1, y: 0 }}
         exit={{ opacity: 0, scale: 0.94, y: 30 }}
@@ -427,7 +432,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                         {showCelebration && (
                           <>
                             {[...Array(8)].map((_, i) => (
-                              <motion.div
+                              <m.div
                                 key={i}
                                 initial={{ opacity: 1, scale: 0.5, x: 0, y: 0 }}
                                 animate={{
@@ -439,12 +444,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                                 exit={{ opacity: 0 }}
                                 transition={{ duration: 0.7, ease: "easeOut" }}
                                 className="absolute top-1/2 left-1/2 h-2 w-2 rounded-full pointer-events-none"
-                                style={{
-                                  backgroundColor: [
-                                    "#6C5CE7", "#00D9C0", "#FFD93D", "#FF85A2",
-                                    "#54A0FF", "#2ECC71", "#FF9F43", "#7E22CE",
-                                  ][i],
-                                }}
+                                style={{ backgroundColor: CELEBRATION_COLORS[i] }}
                               />
                             ))}
                           </>
@@ -582,7 +582,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
             </div>
           </div>
         </div>
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }

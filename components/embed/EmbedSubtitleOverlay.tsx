@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
 
 interface EmbedSubtitleOverlayProps {
@@ -51,7 +51,7 @@ export default function EmbedSubtitleOverlay({
 
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         key={`subtitle-${layerIndex}`}
         className="absolute bottom-0 left-0 right-0 z-40"
         initial={{ y: 20, opacity: 0 }}
@@ -108,7 +108,7 @@ export default function EmbedSubtitleOverlay({
           {/* Narration text body */}
           <AnimatePresence>
             {isExpanded && (
-              <motion.div
+              <m.div
                 initial={{ height: 0, opacity: 0 }}
                 animate={{ height: "auto", opacity: 1 }}
                 exit={{ height: 0, opacity: 0 }}
@@ -134,11 +134,11 @@ export default function EmbedSubtitleOverlay({
                     </p>
                   ))}
                 </div>
-              </motion.div>
+              </m.div>
             )}
           </AnimatePresence>
         </div>
-      </motion.div>
+      </m.div>
     </AnimatePresence>
   );
 }

@@ -15,7 +15,7 @@ import {
   Sliders,
   User,
 } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import { generateQRCodeImage } from "@/lib/qrcode";
 import {
@@ -57,13 +57,13 @@ function Section({
           <Icon className="h-4 w-4 text-showcase-purple" />
           {title}
         </span>
-        <motion.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
+        <m.span animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.2 }}>
           <ChevronDown className="h-4 w-4 text-ink-light" />
-        </motion.span>
+        </m.span>
       </button>
       <AnimatePresence initial={false}>
         {open && (
-          <motion.div
+          <m.div
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: "auto", opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
@@ -73,7 +73,7 @@ function Section({
             <div className="border-t border-showcase-navy/5 px-4 pb-4 pt-3">
               {children}
             </div>
-          </motion.div>
+          </m.div>
         )}
       </AnimatePresence>
     </div>

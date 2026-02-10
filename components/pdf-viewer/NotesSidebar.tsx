@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import {
   X,
   Plus,
@@ -54,7 +54,7 @@ export default function NotesSidebar() {
       {notesPanelOpen && (
         <>
           {/* Overlay */}
-          <motion.div
+          <m.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -64,7 +64,7 @@ export default function NotesSidebar() {
           />
 
           {/* Panel */}
-          <motion.div
+          <m.div
             initial={{ x: 400, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
             exit={{ x: 400, opacity: 0 }}
@@ -212,7 +212,7 @@ export default function NotesSidebar() {
               </p>
               <p className="text-xs text-ink-muted">{currentChapter.title}</p>
             </div>
-          </motion.div>
+          </m.div>
         </>
       )}
     </AnimatePresence>

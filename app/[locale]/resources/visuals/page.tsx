@@ -1,7 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
-import { useState, useRef, useMemo } from "react";
+import { useState, useRef, useMemo, useEffect } from "react";
 import {
   Search,
   Download,
@@ -16,7 +16,7 @@ import {
   Sparkles,
   SearchX,
 } from "lucide-react";
-import { motion } from "framer-motion";
+import { m } from "framer-motion";
 import Fuse from "fuse.js";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -56,8 +56,14 @@ export default function VisualsPage() {
   const t = useTranslations("resources");
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [searchFocused, setSearchFocused] = useState(false);
   const [embedLesson, setEmbedLesson] = useState<VisualLesson | null>(null);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedSearchQuery(searchQuery), 300);
+    return () => clearTimeout(timer);
+  }, [searchQuery]);
 
   const categories = [
     "all",
@@ -84,8 +90,8 @@ export default function VisualsPage() {
 
   const filteredLessons = useMemo(() => {
     let results = visualLessons;
-    if (searchQuery.trim()) {
-      results = fuse.current.search(searchQuery).map((r) => r.item);
+    if (debouncedSearchQuery.trim()) {
+      results = fuse.current.search(debouncedSearchQuery).map((r) => r.item);
     }
     if (activeCategory !== "all") {
       results = results.filter((l) => l.category === activeCategory);
@@ -225,21 +231,21 @@ export default function VisualsPage() {
           </AnimatedSection>
 
           {/* Match count */}
-          {(searchQuery.trim() || activeCategory !== "all") && (
-            <motion.p
+          {(debouncedSearchQuery.trim() || activeCategory !== "all") && (
+            <m.p
               initial={{ opacity: 0, y: -5 }}
               animate={{ opacity: 1, y: 0 }}
               className="mt-3 text-sm text-ink-muted"
             >
               <span className="font-bold text-showcase-purple">{filteredLessons.length}</span>{" "}
               {filteredLessons.length === 1 ? "result" : "results"} found
-              {searchQuery.trim() && (
-                <span> for &ldquo;<span className="font-semibold">{searchQuery}</span>&rdquo;</span>
+              {debouncedSearchQuery.trim() && (
+                <span> for &ldquo;<span className="font-semibold">{debouncedSearchQuery}</span>&rdquo;</span>
               )}
               {activeCategory !== "all" && (
                 <span> in <span className="font-semibold">{activeCategory}</span></span>
               )}
-            </motion.p>
+            </m.p>
           )}
 
           {/* ── Lesson Cards ── */}

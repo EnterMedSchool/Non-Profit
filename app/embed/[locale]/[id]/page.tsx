@@ -2,6 +2,7 @@ import { notFound } from "next/navigation";
 import { NextIntlClientProvider } from "next-intl";
 import { getToolById } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
+import CalculatorLoader from "@/components/tools/calculators/CalculatorLoader";
 import EmbedAttribution from "@/components/tools/EmbedAttribution";
 import EmbedThemeProvider from "@/components/tools/EmbedThemeProvider";
 import { routing } from "@/i18n/routing";
@@ -36,8 +37,7 @@ export default async function EmbedPage({ params, searchParams }: EmbedPageProps
   }
 
   // Check if there's a calculator component for this tool
-  const CalculatorComponent = calculatorRegistry[id];
-  if (!CalculatorComponent) {
+  if (!calculatorRegistry[id]) {
     notFound();
   }
 
@@ -53,7 +53,8 @@ export default async function EmbedPage({ params, searchParams }: EmbedPageProps
       <EmbedThemeProvider theme={theme}>
         <div className="flex min-h-screen flex-col">
           <main className="flex-1 p-4 sm:p-6">
-            <CalculatorComponent
+            <CalculatorLoader
+              id={id}
               compact={theme.cp}
               visibleSections={visibleSections}
               themed

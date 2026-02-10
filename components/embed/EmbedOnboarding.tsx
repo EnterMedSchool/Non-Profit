@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { motion, AnimatePresence } from "framer-motion";
+import { m, AnimatePresence } from "framer-motion";
 import { Play, ChevronRight, MessageSquareText, Layers } from "lucide-react";
 
 const STORAGE_KEY = "ems-embed-onboarding-seen";
@@ -75,7 +75,7 @@ export default function EmbedOnboarding({
 
   return (
     <AnimatePresence>
-      <motion.div
+      <m.div
         className="absolute inset-0 z-[9999] flex items-center justify-center"
         style={{ backgroundColor: bgOverlay }}
         initial={{ opacity: 0 }}
@@ -84,7 +84,7 @@ export default function EmbedOnboarding({
         transition={{ duration: 0.3 }}
         onClick={dismiss}
       >
-        <motion.div
+        <m.div
           className="mx-4 max-w-sm w-full rounded-2xl overflow-hidden"
           style={{
             backgroundColor: cardBg,
@@ -179,8 +179,8 @@ export default function EmbedOnboarding({
               or click anywhere / press any key
             </p>
           </div>
-        </motion.div>
-      </motion.div>
+        </m.div>
+      </m.div>
     </AnimatePresence>
   );
 }

@@ -2,15 +2,21 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useMemo } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePDFViewer } from "./PDFViewerContext";
-import { getAdjacentChapters } from "@/data/pdf-books";
 
 export default function ChapterNav() {
   const { book, currentChapter } = usePDFViewer();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
-  const { prev, next } = getAdjacentChapters(book, currentChapter.slug);
+  const { prev, next } = useMemo(() => {
+    const idx = book.chapters.findIndex((c) => c.slug === currentChapter.slug);
+    return {
+      prev: idx > 0 ? book.chapters[idx - 1] : null,
+      next: idx < book.chapters.length - 1 ? book.chapters[idx + 1] : null,
+    };
+  }, [book, currentChapter.slug]);
 
   return (
     <nav className="mt-12 flex flex-col gap-3 sm:flex-row sm:items-stretch sm:justify-between">

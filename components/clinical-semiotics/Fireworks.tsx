@@ -4,6 +4,7 @@ import { useEffect } from "react";
 
 export function Fireworks() {
   useEffect(() => {
+    let rafId: number;
     const canvas = document.createElement("canvas");
     canvas.style.position = "fixed";
     canvas.style.top = "0";
@@ -82,15 +83,16 @@ export function Fireworks() {
       }
 
       if (particles.length > 0) {
-        requestAnimationFrame(animate);
+        rafId = requestAnimationFrame(animate);
       } else {
         document.body.removeChild(canvas);
       }
     }
 
-    animate();
+    rafId = requestAnimationFrame(animate);
 
     return () => {
+      cancelAnimationFrame(rafId);
       if (canvas.parentNode) {
         document.body.removeChild(canvas);
       }

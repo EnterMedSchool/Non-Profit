@@ -1,5 +1,3 @@
-"use client";
-
 interface Blob {
   color: string;
   size: number;
@@ -16,23 +14,19 @@ interface BlobBackgroundProps {
   className?: string;
 }
 
+/* Reduced from 12 → 6 blobs with lower blur (80→50, 65→40, 45→30) for GPU perf */
 const defaultBlobs: Blob[] = [
-  // Back layer -- large, slow, well-separated (cool medical tones: blue, teal, indigo)
-  { color: "rgba(108, 92, 231, 0.22)", size: 600, top: "-10%", left: "-15%", delay: 0, blur: 80, layer: "back" },
-  { color: "rgba(84, 160, 255, 0.18)", size: 550, top: "15%", right: "-12%", delay: 2, blur: 80, layer: "back" },
-  { color: "rgba(0, 217, 192, 0.18)", size: 500, top: "50%", left: "-10%", delay: 4, blur: 80, layer: "back" },
-  { color: "rgba(99, 102, 241, 0.16)", size: 480, top: "75%", right: "-5%", delay: 1, blur: 80, layer: "back" },
+  // Back layer — 2 blobs (was 4)
+  { color: "rgba(108, 92, 231, 0.22)", size: 600, top: "-10%", left: "-15%", delay: 0, blur: 50, layer: "back" },
+  { color: "rgba(0, 217, 192, 0.18)", size: 500, top: "50%", right: "-10%", delay: 3, blur: 50, layer: "back" },
 
-  // Mid layer -- medium, scattered to edges (softer teal, blue, lavender)
-  { color: "rgba(0, 217, 192, 0.16)", size: 350, top: "5%", left: "20%", delay: 1.5, blur: 65, layer: "mid" },
-  { color: "rgba(139, 92, 246, 0.14)", size: 330, top: "30%", right: "15%", delay: 3, blur: 65, layer: "mid" },
-  { color: "rgba(84, 160, 255, 0.16)", size: 370, top: "55%", left: "10%", delay: 2.5, blur: 65, layer: "mid" },
-  { color: "rgba(0, 217, 192, 0.14)", size: 300, top: "80%", right: "5%", delay: 0.5, blur: 65, layer: "mid" },
+  // Mid layer — 2 blobs (was 4)
+  { color: "rgba(0, 217, 192, 0.16)", size: 350, top: "5%", left: "20%", delay: 1.5, blur: 40, layer: "mid" },
+  { color: "rgba(139, 92, 246, 0.14)", size: 330, top: "55%", right: "15%", delay: 2.5, blur: 40, layer: "mid" },
 
-  // Front layer -- smaller accents (gentle highlights)
-  { color: "rgba(108, 92, 231, 0.12)", size: 200, top: "8%", right: "25%", delay: 3.5, blur: 45, layer: "front" },
-  { color: "rgba(0, 217, 192, 0.10)", size: 180, top: "40%", left: "30%", delay: 4.5, blur: 45, layer: "front" },
-  { color: "rgba(84, 160, 255, 0.10)", size: 160, top: "65%", right: "20%", delay: 1.5, blur: 45, layer: "front" },
+  // Front layer — 2 blobs (was 3)
+  { color: "rgba(108, 92, 231, 0.12)", size: 200, top: "8%", right: "25%", delay: 3.5, blur: 30, layer: "front" },
+  { color: "rgba(84, 160, 255, 0.10)", size: 160, top: "65%", left: "30%", delay: 1.5, blur: 30, layer: "front" },
 ];
 
 const layerSpeed: Record<string, string> = {
