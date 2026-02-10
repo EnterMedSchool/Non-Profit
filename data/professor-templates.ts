@@ -37,8 +37,6 @@ export interface ProfessorTemplate {
   tags: string[];
   /** Show as featured in the gallery */
   featured?: boolean;
-  /** Template not yet available for download */
-  comingSoon?: boolean;
 }
 
 /* ── Category metadata for filter pills ──────────────────────────── */
@@ -58,92 +56,7 @@ export const templateCategories: TemplateCategoryMeta[] = [
 
 /* ── Template data ───────────────────────────────────────────────── */
 
-export const professorTemplates: ProfessorTemplate[] = [
-  {
-    id: "medical-lecture-template",
-    title: "Medical Lecture Template",
-    description:
-      "Clean, professional slide template for medical lectures. Includes title, content, diagram, and summary layouts with a modern design.",
-    category: "lectures",
-    format: "pptx",
-    formatLabel: "PowerPoint",
-    thumbnailPath: "/templates/thumbnails/medical-lecture-template.png",
-    downloadPath: "/templates/medical-lecture-template.pptx",
-    slideCount: 12,
-    tags: ["lecture", "slides", "presentation", "medical", "professional"],
-    featured: true,
-    comingSoon: true,
-  },
-  {
-    id: "clinical-case-presentation",
-    title: "Clinical Case Presentation",
-    description:
-      "Template for presenting clinical cases with structured sections for patient history, findings, diagnosis, and treatment plans.",
-    category: "cases",
-    format: "pptx",
-    formatLabel: "PowerPoint",
-    thumbnailPath: "/templates/thumbnails/clinical-case-presentation.png",
-    downloadPath: "/templates/clinical-case-presentation.pptx",
-    slideCount: 10,
-    tags: ["clinical", "case", "patient", "diagnosis", "treatment"],
-    comingSoon: true,
-  },
-  {
-    id: "anatomy-lesson-pack",
-    title: "Anatomy Lesson Pack",
-    description:
-      "Pre-designed slides with anatomy diagram placeholders, labeling exercises, and quiz slides. Perfect for anatomy courses.",
-    category: "anatomy",
-    format: "pptx",
-    formatLabel: "PowerPoint",
-    thumbnailPath: "/templates/thumbnails/anatomy-lesson-pack.png",
-    downloadPath: "/templates/anatomy-lesson-pack.pptx",
-    slideCount: 15,
-    tags: ["anatomy", "diagrams", "labeling", "quiz", "lesson"],
-    comingSoon: true,
-  },
-  {
-    id: "pharmacology-module",
-    title: "Pharmacology Module",
-    description:
-      "Drug class overview template with mechanism diagrams, side effects tables, clinical pearls, and comparison charts.",
-    category: "pharmacology",
-    format: "pptx",
-    formatLabel: "PowerPoint",
-    thumbnailPath: "/templates/thumbnails/pharmacology-module.png",
-    downloadPath: "/templates/pharmacology-module.pptx",
-    slideCount: 14,
-    tags: ["pharmacology", "drugs", "mechanism", "side effects", "clinical"],
-    comingSoon: true,
-  },
-  {
-    id: "lab-results-tracker",
-    title: "Lab Results Tracker",
-    description:
-      "Spreadsheet template for tracking and comparing patient lab results over time. Includes auto-calculated reference ranges and highlighting.",
-    category: "general",
-    format: "xlsx",
-    formatLabel: "Excel",
-    thumbnailPath: "/templates/thumbnails/lab-results-tracker.png",
-    downloadPath: "/templates/lab-results-tracker.xlsx",
-    tags: ["lab", "results", "tracker", "spreadsheet", "reference ranges"],
-    comingSoon: true,
-  },
-  {
-    id: "pathophysiology-flowchart",
-    title: "Pathophysiology Flowchart",
-    description:
-      "Editable flowchart slides for mapping disease pathways, from etiology through pathogenesis to clinical manifestations.",
-    category: "lectures",
-    format: "pptx",
-    formatLabel: "PowerPoint",
-    thumbnailPath: "/templates/thumbnails/pathophysiology-flowchart.png",
-    downloadPath: "/templates/pathophysiology-flowchart.pptx",
-    slideCount: 8,
-    tags: ["pathophysiology", "flowchart", "disease", "pathway", "etiology"],
-    comingSoon: true,
-  },
-];
+export const professorTemplates: ProfessorTemplate[] = [];
 
 /* ── Helpers ──────────────────────────────────────────────────────── */
 

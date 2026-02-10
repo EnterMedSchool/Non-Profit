@@ -299,8 +299,7 @@ export default function CustomizePanel() {
 
         {decorations.length === 0 && theme.decorations.length === 0 && (
           <p className="text-xs text-ink-muted rounded-xl border-2 border-dashed border-ink-light/20 p-3 text-center">
-            No decorations available yet. Check back soon for stickers and
-            decorative elements to add to your cards.
+            No decorations available.
           </p>
         )}
 

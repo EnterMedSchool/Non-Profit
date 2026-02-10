@@ -70,7 +70,6 @@ export default function TemplateGallery() {
   }, []);
 
   const handleDownload = useCallback(async (template: ProfessorTemplate) => {
-    if (template.comingSoon) return;
     try {
       const response = await fetch(template.downloadPath);
       const blob = await response.blob();

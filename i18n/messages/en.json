@@ -8,6 +8,7 @@
     "home": "Home",
     "resources": "Resources",
     "tools": "Tools",
+    "calculators": "Calculators",
     "forProfessors": "For Professors",
     "forStudents": "For Students",
     "events": "Events",
@@ -25,21 +26,21 @@
     "visuals": "Medical Visuals",
     "clinicalSemiotics": "Clinical Semiotics",
     "clinicalSemioticsDesc": "Interactive video-based clinical exam training with tips and quizzes.",
-    "templates": "Slide Templates",
     "guides": "Teaching Guides",
     "assets": "Teaching Assets",
     "questionsDesc": "Clinical cases and practice questions for deep understanding.",
     "videosDesc": "Clear video explanations of complex medical topics.",
     "pdfsDesc": "Downloadable summaries, study materials, and reference sheets.",
     "visualsDesc": "Anatomy diagrams, clinical visuals, and educational illustrations.",
-    "templatesDesc": "Ready-to-use presentation templates for medical lectures.",
+    "toolsDesc": "Illustration maker, flashcard creator, LaTeX editor, and more.",
+    "calculatorsDesc": "BMI calculator and clinical algorithms for medical education.",
     "guidesDesc": "Learn how to enhance your teaching with modern tools.",
     "assetsDesc": "Diagrams, visuals, and assets ready for your lectures.",
     "viewAll": "View all"
   },
   "hero": {
     "title": "Open-Source Medical Education for Everyone",
-    "subtitle": "The non-profit, open-source arm of EnterMedSchool. A free archive of medical education resources, tools, and guides — built for professors and students to download, use, and share.",
+    "subtitle": "500+ free resources for your lectures, slides, and classroom. Download, adapt, and share — no paywalls, no restrictions.",
     "identityPill": "EnterMedSchool.org is the non-profit sister project of",
     "identityLink": "entermedschool.com",
     "cta1": "Browse Resources",
@@ -50,7 +51,7 @@
   },
   "whatWeOffer": {
     "title": "Everything You Need",
-    "subtitle": "Free tools and resources to enhance medical education",
+    "subtitle": "Free tools and assets for your classroom — ready to download, embed, or adapt",
     "questions": {
       "title": "Practice Questions",
       "description": "Clinical cases and practice questions designed for deep understanding, not memorization."
@@ -159,11 +160,12 @@
     "professors": "Professors Helped"
   },
   "cta": {
-    "title": "Download, Embed, or Adapt for Your Classroom",
-    "subtitle": "Every resource on EnterMedSchool.org is free and open-source. Use them in your slides, teaching materials, or share with your students.",
+    "title": "Ready to Transform Your Classroom?",
+    "subtitle": "Every resource is free and open-source. Use them in your slides, share with your students, or adapt for your curriculum.",
     "browseResources": "Browse Resources",
     "forProfessors": "For Professors",
-    "viewOnGitHub": "View on GitHub"
+    "viewOnGitHub": "View on GitHub",
+    "share": "Share with a colleague"
   },
   "about": {
     "title": "About EnterMedSchool",
@@ -190,8 +192,25 @@
   },
   "resources": {
     "title": "Free Resources",
-    "metaDescription": "Browse our free, open-source medical education resources: practice questions, video lessons, PDFs, and visual aids.",
+    "metaDescription": "Browse our free, open-source medical education resources: tools, calculators, study materials, visual lessons, and more.",
     "searchPlaceholder": "Search resources...",
+    "hub": {
+      "tools": "Creative Tools",
+      "toolsDesc": "Illustration maker, flashcard creator, LaTeX editor, MCQ maker, and more open-source tools for learning.",
+      "calculators": "Medical Calculators",
+      "calculatorsDesc": "BMI calculator and clinical algorithms — free, embeddable, and ready for your classroom.",
+      "pdfs": "PDFs & Study Materials",
+      "pdfsDesc": "Downloadable textbooks, summaries, and reference sheets for medical education.",
+      "visuals": "Visual Lessons",
+      "visualsDesc": "Anatomy diagrams, clinical illustrations, and interactive visual learning materials.",
+      "clinicalSemiotics": "Clinical Semiotics",
+      "clinicalSemioticsDesc": "Interactive video-based clinical exam training with branching scenarios and quizzes.",
+      "questions": "Practice Questions",
+      "questionsDesc": "Clinical cases and exam-style practice questions for deep understanding.",
+      "videos": "Video Lessons",
+      "videosDesc": "Clear video explanations of complex medical topics and procedures.",
+      "explore": "Explore"
+    },
     "categories": {
       "all": "All",
       "questions": "Questions",
@@ -226,34 +245,12 @@
     "useToolBtn": "Use Tool",
     "embedCodeBtn": "Embed Code",
     "viewSourceBtn": "View Source",
-    "comingSoon": "Coming Soon",
     "available": "Available",
-    "notifyMe": "Notify Me",
     "vision": "Every calculator, simulator, and tool will be open-source and embeddable. Professors can embed them directly in their LMS, slides, or websites.",
     "visionTitle": "Our Vision for Tools",
     "backToTools": "Back to Tools",
     "toolNotFound": "Tool not found",
     "toolNotFoundDesc": "The tool you're looking for doesn't exist or hasn't been released yet.",
-    "egfr": {
-      "title": "eGFR Calculator",
-      "description": "Estimate glomerular filtration rate using CKD-EPI and MDRD equations."
-    },
-    "dose": {
-      "title": "Drug Dose Calculator",
-      "description": "Calculate pediatric and adult drug doses with weight-based adjustments."
-    },
-    "anatomy": {
-      "title": "3D Anatomy Viewer",
-      "description": "Interactive 3D anatomy model for exploring human body systems."
-    },
-    "ecg": {
-      "title": "ECG Simulator",
-      "description": "Practice reading ECGs with realistic simulated tracings and interpretations."
-    },
-    "pharm": {
-      "title": "Pharmacology Explorer",
-      "description": "Interactive tool for exploring drug mechanisms, interactions, and clinical applications."
-    },
     "flashcardMaker": {
       "title": "Flashcard Maker",
       "metaTitle": "Flashcard Maker — Import CSV & Print Physical Flashcards | EnterMedSchool",
@@ -462,6 +459,12 @@
       }
     }
   },
+  "calculators": {
+    "title": "Medical Calculators & Algorithms",
+    "metaDescription": "Free, open-source medical calculators and clinical algorithms. BMI calculator, and more coming soon. Embeddable and downloadable.",
+    "subtitle": "Free clinical calculators and algorithms you can use, embed, or download. Open-source and built for medical education.",
+    "backToCalculators": "Back to Calculators"
+  },
   "professors": {
     "title": "For Professors",
     "metaDescription": "Free teaching resources for medical professors: slide templates, lesson plans, visual assets, video tutorials, and AI guides.",
@@ -489,8 +492,6 @@
       "preview": "Preview",
       "download": "Download",
       "featured": "Featured",
-      "comingSoon": "Coming Soon",
-      "previewComingSoon": "Preview coming soon",
       "slides": "slides",
       "sheets": "sheets",
       "resultsFor": "results for",
@@ -579,6 +580,11 @@
   "license": {
     "title": "License & Attribution",
     "metaDescription": "Learn about the EnterMedSchool.org license for free educational resources and generate your attribution badge.",
+    "licenseType": {
+      "badge": "Free for Education",
+      "title": "Non-Commercial Educational Use",
+      "description": "All EnterMedSchool.org resources are licensed for free educational use with proper attribution. No fees, no subscriptions -- just give credit where it's due."
+    },
     "info": {
       "title": "Our License",
       "description": "All resources on EnterMedSchool.org are free for non-commercial educational use with proper attribution.",
@@ -590,7 +596,8 @@
           "Modify content for your classes",
           "Include in non-commercial presentations",
           "Print for educational handouts"
-        ]
+        ],
+        "icons": ["GraduationCap", "Users", "Pencil", "Presentation", "Printer"]
       },
       "cannotDo": {
         "title": "What You CANNOT Do",
@@ -599,9 +606,31 @@
           "Use for commercial purposes without permission",
           "Remove attribution from materials",
           "Claim our work as your own"
-        ]
+        ],
+        "icons": ["DollarSign", "Building", "EyeOff", "UserX"]
       },
       "contact": "Questions about licensing? Contact"
+    },
+    "quickStart": {
+      "title": "Get Started in 3 Steps",
+      "subtitle": "Adding attribution is quick and easy. Here's how:",
+      "steps": [
+        {
+          "number": "1",
+          "title": "Fill In Your Details",
+          "description": "Enter your name and institution below. We'll save it so you only have to do this once."
+        },
+        {
+          "number": "2",
+          "title": "Download Your Badge",
+          "description": "Customize the look and download a PNG badge, or copy the HTML embed code."
+        },
+        {
+          "number": "3",
+          "title": "Add to Your Materials",
+          "description": "Place the badge on your slides, PDFs, or website wherever you use our resources."
+        }
+      ]
     },
     "generator": {
       "title": "Attribution Badge Generator",
@@ -617,7 +646,103 @@
       "copyEmbedBtn": "Copy Embed Code",
       "copiedMsg": "Copied!",
       "embedTitle": "How to Use Your Badge",
-      "embedComingSoon": "Video tutorials on adding badges to PowerPoint, Google Slides, Anki, and more are coming soon."
+      "detailsSection": "Your Details",
+      "styleSection": "Badge Style",
+      "colorsSection": "Colors & Background",
+      "optionsSection": "Options",
+      "shapeLabel": "Shape",
+      "shapes": {
+        "horizontal": "Banner",
+        "square": "Square",
+        "compact": "Compact",
+        "vertical": "Vertical"
+      },
+      "sizeLabel": "Size",
+      "sizes": {
+        "small": "Small",
+        "medium": "Medium",
+        "large": "Large"
+      },
+      "colorThemeLabel": "Color Theme",
+      "themes": {
+        "purple": "Purple",
+        "teal": "Teal",
+        "green": "Green",
+        "coral": "Coral",
+        "navy": "Navy",
+        "custom": "Custom"
+      },
+      "bgStyleLabel": "Background",
+      "bgStyles": {
+        "white": "White",
+        "gradient": "Gradient",
+        "dark": "Dark",
+        "transparent": "Transparent"
+      },
+      "showQR": "Show QR Code",
+      "showFinePrint": "Show License Text",
+      "showPosition": "Show Position"
+    },
+    "whereToBadge": {
+      "title": "Where to Add Your Badge",
+      "subtitle": "Include attribution wherever you use EnterMedSchool resources.",
+      "items": [
+        {
+          "title": "Presentations & Slides",
+          "description": "Add the badge to your title slide or last slide. Works great in PowerPoint, Google Slides, and Keynote.",
+          "icon": "Presentation"
+        },
+        {
+          "title": "PDFs & Documents",
+          "description": "Place the badge in the footer or on the credits page of your handouts, summaries, or study guides.",
+          "icon": "FileText"
+        },
+        {
+          "title": "Websites & Blogs",
+          "description": "Use the HTML embed code to add a clean attribution link wherever you publish our content online.",
+          "icon": "Globe"
+        },
+        {
+          "title": "Printed Materials",
+          "description": "Include the badge image on printed handouts, posters, or any physical educational material.",
+          "icon": "Printer"
+        }
+      ]
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "items": [
+        {
+          "question": "Can I use these resources at my university?",
+          "answer": "Yes! All resources are free for educational use at universities, medical schools, and other non-commercial educational institutions. Just include the attribution badge."
+        },
+        {
+          "question": "Do I need to pay anything?",
+          "answer": "No. All resources are completely free for non-commercial educational use. There are no fees, subscriptions, or hidden costs."
+        },
+        {
+          "question": "What counts as commercial use?",
+          "answer": "Commercial use includes selling our resources, including them in paid courses or materials, or using them to generate revenue. If you're unsure, contact us at ari@entermedschool.com."
+        },
+        {
+          "question": "Can I modify the resources for my classes?",
+          "answer": "Absolutely. You can adapt, translate, and modify resources for your teaching needs. Just keep the attribution badge visible and don't remove our branding."
+        },
+        {
+          "question": "Do I need approval before using resources?",
+          "answer": "Yes, you must contact ari@entermedschool.com for approval. This helps us track usage and ensure proper attribution. Approval is typically granted quickly for educational use."
+        },
+        {
+          "question": "What if I want to use resources commercially?",
+          "answer": "Contact us at ari@entermedschool.com to discuss commercial licensing. We evaluate commercial requests on a case-by-case basis."
+        }
+      ]
+    },
+    "contactCta": {
+      "title": "Need Approval or Have Questions?",
+      "description": "Before using our resources, please contact us for approval. We typically respond within 24-48 hours and are happy to help educators.",
+      "buttonText": "Contact Us for Approval",
+      "email": "ari@entermedschool.com"
     }
   },
   "privacy": {
@@ -722,7 +847,6 @@
       "resume": "Resume",
       "startOver": "Start Over",
       "completed": "Completed",
-      "comingSoon": "Coming Soon",
       "loading": "Loading...",
       "retry": "Retry",
       "continue": "Continue",
@@ -860,7 +984,6 @@
     "download": "Download",
     "openSource": "Open Source",
     "free": "Free",
-    "comingSoon": "Coming Soon",
     "contactEmail": "ari@entermedschool.com"
   }
 }

@@ -49,7 +49,7 @@ export function VideoPlayer({
         <div className="absolute inset-0 bg-gradient-to-br from-pastel-lavender via-pastel-cream to-pastel-sky opacity-90" />
         <div className="relative z-10 flex max-w-lg flex-col items-center gap-3 px-6 text-center text-ink-dark">
           <span className="text-lg font-semibold sm:text-2xl font-display">
-            {asset.label ?? "Video coming soon"}
+            {asset.label ?? "Video preview unavailable"}
           </span>
           {asset.description && (
             <span className="text-sm text-ink-muted sm:text-base">

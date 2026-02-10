@@ -69,10 +69,10 @@ export const searchItems: SearchItem[] = [
     category: "page",
   },
   {
-    title: "Slide Templates",
-    description: "Ready-to-use presentation templates for medical lectures",
-    href: "/en/for-professors/templates",
-    category: "guide",
+    title: "Medical Calculators",
+    description: "Free medical calculators and clinical algorithms",
+    href: "/en/calculators",
+    category: "tool",
   },
   {
     title: "Teaching Guides",

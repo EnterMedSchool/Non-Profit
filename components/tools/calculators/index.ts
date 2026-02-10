@@ -27,6 +27,4 @@ export interface CalculatorEmbedProps {
 export const calculatorRegistry: Record<string, ComponentType<CalculatorEmbedProps>> = {
   "bmi-calc": BMICalculator,
   "latex-editor": LaTeXEditor as ComponentType<CalculatorEmbedProps>,
-  // "gfr-calc": EGFRCalculator,   // coming soon
-  // "dose-calc": DoseCalculator,  // coming soon
 };

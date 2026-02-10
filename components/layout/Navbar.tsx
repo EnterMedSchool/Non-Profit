@@ -15,10 +15,11 @@ import {
   PlayCircle,
   FileText,
   ImageIcon,
-  LayoutTemplate,
   BookOpen,
   Palette,
   Stethoscope,
+  Wrench,
+  Calculator,
 } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import type { LucideIcon } from "lucide-react";
@@ -53,18 +54,18 @@ const navItems: NavItem[] = [
     href: "/resources",
     children: [
       {
-        href: "/resources/questions",
-        labelKey: "questions",
-        descKey: "questionsDesc",
-        icon: HelpCircle,
-        color: "bg-showcase-purple/15 text-showcase-purple",
+        href: "/tools",
+        labelKey: "tools",
+        descKey: "toolsDesc",
+        icon: Wrench,
+        color: "bg-showcase-teal/15 text-showcase-teal",
       },
       {
-        href: "/resources/videos",
-        labelKey: "videos",
-        descKey: "videosDesc",
-        icon: PlayCircle,
-        color: "bg-showcase-teal/15 text-showcase-teal",
+        href: "/calculators",
+        labelKey: "calculators",
+        descKey: "calculatorsDesc",
+        icon: Calculator,
+        color: "bg-showcase-purple/15 text-showcase-purple",
       },
       {
         href: "/resources/pdfs",
@@ -87,20 +88,26 @@ const navItems: NavItem[] = [
         icon: Stethoscope,
         color: "bg-showcase-coral/15 text-showcase-coral",
       },
+      {
+        href: "/resources/questions",
+        labelKey: "questions",
+        descKey: "questionsDesc",
+        icon: HelpCircle,
+        color: "bg-showcase-orange/15 text-showcase-orange",
+      },
+      {
+        href: "/resources/videos",
+        labelKey: "videos",
+        descKey: "videosDesc",
+        icon: PlayCircle,
+        color: "bg-showcase-pink/15 text-showcase-pink",
+      },
     ],
   },
-  { labelKey: "tools", href: "/tools" },
   {
     labelKey: "forProfessors",
     href: "/for-professors",
     children: [
-      {
-        href: "/for-professors/templates",
-        labelKey: "templates",
-        descKey: "templatesDesc",
-        icon: LayoutTemplate,
-        color: "bg-showcase-orange/15 text-showcase-orange",
-      },
       {
         href: "/for-professors/guides",
         labelKey: "guides",

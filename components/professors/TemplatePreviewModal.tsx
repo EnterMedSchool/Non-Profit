@@ -102,25 +102,14 @@ export default function TemplatePreviewModal({
             {/* Thumbnail area */}
             <div className="relative w-full bg-gradient-to-br from-pastel-lavender via-pastel-sky to-pastel-mint">
               <div className="relative aspect-[16/9] w-full">
-                {template.comingSoon ? (
-                  <div className="flex h-full w-full items-center justify-center">
-                    <div className="flex flex-col items-center gap-3 opacity-40">
-                      <FormatIcon className="h-16 w-16 text-showcase-purple" />
-                      <span className="font-display text-sm font-bold uppercase tracking-widest text-ink-muted">
-                        {t("previewComingSoon")}
-                      </span>
-                    </div>
-                  </div>
-                ) : (
-                  <Image
-                    src={template.thumbnailPath}
-                    alt={template.title}
-                    fill
-                    className="object-contain"
-                    sizes="(max-width: 768px) 100vw, 768px"
-                    priority
-                  />
-                )}
+                <Image
+                  src={template.thumbnailPath}
+                  alt={template.title}
+                  fill
+                  className="object-contain"
+                  sizes="(max-width: 768px) 100vw, 768px"
+                  priority
+                />
               </div>
             </div>
 
@@ -137,11 +126,6 @@ export default function TemplatePreviewModal({
                 {template.featured && (
                   <StickerBadge color="coral" size="sm">
                     {t("featured")}
-                  </StickerBadge>
-                )}
-                {template.comingSoon && (
-                  <StickerBadge color="green" size="sm">
-                    {t("comingSoon")}
                   </StickerBadge>
                 )}
                 {template.slideCount && (
@@ -178,12 +162,9 @@ export default function TemplatePreviewModal({
                   variant="green"
                   size="md"
                   onClick={() => onDownload(template)}
-                  disabled={template.comingSoon}
                 >
                   <Download className="h-4 w-4" />
-                  {template.comingSoon
-                    ? t("comingSoon")
-                    : `${t("download")} .${template.format}`}
+                  {`${t("download")} .${template.format}`}
                 </ChunkyButton>
 
                 <ChunkyButton variant="ghost" size="md" onClick={onClose}>

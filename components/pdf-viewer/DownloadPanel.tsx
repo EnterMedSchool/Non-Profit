@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, memo } from "react";
-import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -9,21 +8,18 @@ import {
   FileText,
   Package,
   BookOpen,
-  ExternalLink,
-  Shield,
   CheckCircle2,
   AlertCircle,
   Loader2,
 } from "lucide-react";
 import { usePDFViewer } from "./PDFViewerContext";
 import AttributionReminderModal from "@/components/resources/AttributionReminderModal";
+import AttributionBanner from "@/components/resources/AttributionBanner";
 import { hasValidAttribution } from "@/lib/attribution";
 
 export default function DownloadPanel() {
   const { downloadPanelOpen, setDownloadPanelOpen, book, currentChapter } =
     usePDFViewer();
-  const pathname = usePathname();
-  const locale = pathname.split("/")[1] || "en";
   const [showAttribution, setShowAttribution] = useState(false);
   const [pendingDownload, setPendingDownload] = useState<string | null>(null);
   const [downloadError, setDownloadError] = useState<string | null>(null);
@@ -192,27 +188,8 @@ export default function DownloadPanel() {
                   </div>
                 </div>
 
-                {/* Attribution notice */}
-                <div className="flex items-start gap-2.5 rounded-xl border-2 border-showcase-teal/30 bg-showcase-teal/5 p-3">
-                  <Shield className="h-4 w-4 shrink-0 text-showcase-teal mt-0.5" />
-                  <div>
-                    <p className="text-xs font-semibold text-ink-dark">
-                      Attribution Required
-                    </p>
-                    <p className="mt-0.5 text-xs text-ink-muted leading-relaxed">
-                      Please include proper attribution when using these
-                      materials. See our{" "}
-                      <a
-                        href={`/${locale}/license`}
-                        className="font-semibold text-showcase-teal hover:underline"
-                      >
-                        license page
-                        <ExternalLink className="ml-0.5 inline h-2.5 w-2.5" />
-                      </a>{" "}
-                      for details.
-                    </p>
-                  </div>
-                </div>
+                {/* Attribution banner / notice */}
+                <AttributionBanner />
               </div>
             </motion.div>
           </>

@@ -126,6 +126,23 @@ const config: Config = {
           "0%": { transform: "scale(1)", opacity: "0.6" },
           "100%": { transform: "scale(1.8)", opacity: "0" },
         },
+        marquee: {
+          "0%": { transform: "translateX(0)" },
+          "100%": { transform: "translateX(-50%)" },
+        },
+        "text-rotate": {
+          "0%, 18%": { transform: "translateY(0)", opacity: "1" },
+          "22%, 48%": { transform: "translateY(-100%)", opacity: "1" },
+          "52%, 78%": { transform: "translateY(-200%)", opacity: "1" },
+          "82%, 100%": { transform: "translateY(-300%)", opacity: "1" },
+        },
+        "border-rainbow": {
+          "0%": { borderColor: "#6C5CE7" },
+          "25%": { borderColor: "#00D9C0" },
+          "50%": { borderColor: "#FF85A2" },
+          "75%": { borderColor: "#FFD93D" },
+          "100%": { borderColor: "#6C5CE7" },
+        },
       },
       animation: {
         "gradient-shift": "gradient-shift 15s ease infinite",
@@ -140,6 +157,9 @@ const config: Config = {
         shimmer: "shimmer 3s linear infinite",
         "float-particle": "float-particle 6s ease-in-out infinite",
         "pulse-ring": "pulse-ring 1.5s ease-out infinite",
+        marquee: "marquee 30s linear infinite",
+        "marquee-fast": "marquee 20s linear infinite",
+        "border-rainbow": "border-rainbow 4s ease-in-out infinite",
       },
       transitionTimingFunction: {
         smooth: "cubic-bezier(0.4, 0, 0.2, 1)",

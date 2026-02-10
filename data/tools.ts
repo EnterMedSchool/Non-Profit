@@ -2,8 +2,7 @@ export interface Tool {
   id: string;
   /** i18n key under the "tools" namespace, e.g. "bmi" → tools.bmi.title */
   i18nKey: string;
-  category: "calculator" | "simulator" | "viewer" | "creator";
-  status: "coming-soon" | "available";
+  category: "calculator" | "creator";
   sourceUrl?: string;
   icon: string;
   /** Suggested iframe height in px (default 520) */
@@ -17,7 +16,6 @@ export const tools: Tool[] = [
     id: "illustration-maker",
     i18nKey: "illustrationMaker",
     category: "creator",
-    status: "available",
     icon: "Paintbrush",
     embedHeight: 900,
     seoKeywords: [
@@ -35,7 +33,6 @@ export const tools: Tool[] = [
     id: "bmi-calc",
     i18nKey: "bmi",
     category: "calculator",
-    status: "available",
     icon: "Calculator",
     embedHeight: 700,
     seoKeywords: [
@@ -58,56 +55,9 @@ export const tools: Tool[] = [
     ],
   },
   {
-    id: "gfr-calc",
-    i18nKey: "egfr",
-    category: "calculator",
-    status: "coming-soon",
-    icon: "Calculator",
-    seoKeywords: [
-      "eGFR calculator",
-      "CKD-EPI",
-      "MDRD",
-      "glomerular filtration rate",
-    ],
-  },
-  {
-    id: "dose-calc",
-    i18nKey: "dose",
-    category: "calculator",
-    status: "coming-soon",
-    icon: "Pill",
-    seoKeywords: [
-      "drug dose calculator",
-      "pediatric dosing",
-      "weight-based dosing",
-    ],
-  },
-  {
-    id: "anatomy-viewer",
-    i18nKey: "anatomy",
-    category: "viewer",
-    status: "coming-soon",
-    icon: "Eye",
-  },
-  {
-    id: "ecg-simulator",
-    i18nKey: "ecg",
-    category: "simulator",
-    status: "coming-soon",
-    icon: "Activity",
-  },
-  {
-    id: "pharm-tool",
-    i18nKey: "pharm",
-    category: "simulator",
-    status: "coming-soon",
-    icon: "FlaskConical",
-  },
-  {
     id: "flashcard-maker",
     i18nKey: "flashcardMaker",
     category: "creator",
-    status: "available",
     icon: "CreditCard",
     seoKeywords: [
       "flashcard maker",
@@ -125,7 +75,6 @@ export const tools: Tool[] = [
     id: "latex-editor",
     i18nKey: "latexEditor",
     category: "creator",
-    status: "available",
     icon: "FileText",
     embedHeight: 900,
     seoKeywords: [
@@ -145,7 +94,6 @@ export const tools: Tool[] = [
     id: "mcq-maker",
     i18nKey: "mcqMaker",
     category: "creator",
-    status: "available",
     icon: "HelpCircle",
     embedHeight: 700,
     seoKeywords: [
@@ -172,7 +120,12 @@ export function getToolById(id: string): Tool | undefined {
   return tools.find((t) => t.id === id);
 }
 
-/** All tools that are live and embeddable */
-export function getAvailableTools(): Tool[] {
-  return tools.filter((t) => t.status === "available");
+/** All calculator tools */
+export function getCalculatorTools(): Tool[] {
+  return tools.filter((t) => t.category === "calculator");
+}
+
+/** All creator tools */
+export function getCreatorTools(): Tool[] {
+  return tools.filter((t) => t.category === "creator");
 }

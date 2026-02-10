@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { getAvailableTools } from "@/data/tools";
+import { tools, getCalculatorTools } from "@/data/tools";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -14,8 +14,8 @@ const staticPages = [
   "/resources/pdfs",
   "/resources/visuals",
   "/tools",
+  "/calculators",
   "/for-professors",
-  "/for-professors/templates",
   "/for-professors/guides",
   "/for-professors/assets",
   "/for-students",
@@ -45,16 +45,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   }
 
-  // ── Tool detail pages (available tools only) ───────────────────────
-  const availableTools = getAvailableTools();
-  for (const tool of availableTools) {
+  // ── Tool detail pages ───────────────────────────────────────────────
+  for (const tool of tools) {
+    // Calculator tools live under /calculators/[id], creator tools under /tools/[id]
+    const prefix = tool.category === "calculator" ? "/calculators" : "/tools";
     const languages: Record<string, string> = {};
     for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}/tools/${tool.id}`;
+      languages[locale] = `${BASE_URL}/${locale}${prefix}/${tool.id}`;
     }
 
     entries.push({
-      url: `${BASE_URL}/en/tools/${tool.id}`,
+      url: `${BASE_URL}/en${prefix}/${tool.id}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,

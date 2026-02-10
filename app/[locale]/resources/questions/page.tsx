@@ -69,8 +69,8 @@ export default function QuestionsPage() {
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pastel-lavender">
                 <HelpCircle className="h-12 w-12 text-showcase-purple/40 animate-float-gentle" />
               </div>
-              <p className="mt-6 font-handwritten text-2xl text-ink-muted">No questions available yet...</p>
-              <p className="mt-2 text-sm text-ink-light max-w-sm">Check back soon for new practice questions.</p>
+              <p className="mt-6 font-handwritten text-2xl text-ink-muted">No questions available yet.</p>
+              <p className="mt-2 text-sm text-ink-light max-w-sm">Practice questions will appear here when available.</p>
             </div>
           </AnimatedSection>
         )}

@@ -1,6 +1,7 @@
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import Hero from "@/components/home/Hero";
+import Marquee from "@/components/home/Marquee";
 import BlobBackground from "@/components/shared/BlobBackground";
 import { getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/metadata";
 
@@ -36,6 +37,7 @@ export default function HomePage() {
 
       {/* Hero: static import for fast FCP */}
       <Hero />
+      <Marquee />
       <WhatWeOffer />
       <ForWhom />
       <ProjectTimeline />

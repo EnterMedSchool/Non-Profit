@@ -24,9 +24,9 @@ export default async function EmbedPage({ params, searchParams }: EmbedPageProps
     notFound();
   }
 
-  // Validate tool exists and is available
+  // Validate tool exists
   const tool = getToolById(id);
-  if (!tool || tool.status !== "available") {
+  if (!tool) {
     notFound();
   }
 

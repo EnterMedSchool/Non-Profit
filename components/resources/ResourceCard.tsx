@@ -46,11 +46,6 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
             <Eye className="h-3.5 w-3.5" /> Preview
           </a>
         )}
-        {!resource.downloadUrl && !resource.sourceUrl && !resource.previewUrl && (
-          <span className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-green/30 bg-showcase-green/10 px-3 py-1.5 text-xs font-bold text-showcase-green">
-            Coming Soon
-          </span>
-        )}
       </div>
     </div>
   );

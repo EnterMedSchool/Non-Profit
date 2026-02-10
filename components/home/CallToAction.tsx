@@ -2,24 +2,39 @@
 
 import { useTranslations } from "next-intl";
 import { motion } from "framer-motion";
-import { ArrowRight, Github } from "lucide-react";
+import { ArrowRight, Github, Share2, Sparkles } from "lucide-react";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
-function Sparkles() {
-  const particles = Array.from({ length: 18 }, (_, i) => ({
+/* ── Floating emoji reactions ── */
+const floatingReactions = [
+  { emoji: "🧠", top: "8%", left: "5%", delay: 0, size: 28 },
+  { emoji: "🩺", top: "15%", right: "8%", delay: 1, size: 24 },
+  { emoji: "📚", top: "70%", left: "6%", delay: 2, size: 26 },
+  { emoji: "💡", top: "65%", right: "5%", delay: 0.5, size: 22 },
+  { emoji: "🎓", top: "40%", left: "3%", delay: 1.5, size: 30 },
+  { emoji: "❤️", top: "45%", right: "4%", delay: 2.5, size: 20 },
+  { emoji: "🔬", top: "85%", left: "12%", delay: 3, size: 24 },
+  { emoji: "✨", top: "20%", right: "15%", delay: 0.8, size: 22 },
+];
+
+function SparkleParticles() {
+  const particles = Array.from({ length: 24 }, (_, i) => ({
     left: `${5 + Math.random() * 90}%`,
     delay: Math.random() * 5,
-    duration: 4 + Math.random() * 4,
-    size: 2 + Math.random() * 3,
+    duration: 3 + Math.random() * 4,
+    size: 2 + Math.random() * 4,
   }));
 
   return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none" aria-hidden="true">
+    <div
+      className="absolute inset-0 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
       {particles.map((p, i) => (
         <motion.div
           key={i}
-          className="absolute rounded-full bg-white/40"
+          className="absolute rounded-full bg-white/50"
           style={{
             left: p.left,
             bottom: "-5%",
@@ -27,8 +42,8 @@ function Sparkles() {
             height: p.size,
           }}
           animate={{
-            y: [0, -250],
-            opacity: [0, 0.8, 0.8, 0],
+            y: [0, -300],
+            opacity: [0, 0.9, 0.9, 0],
           }}
           transition={{
             duration: p.duration,
@@ -42,58 +57,160 @@ function Sparkles() {
   );
 }
 
+function handleShare() {
+  if (navigator.share) {
+    navigator.share({
+      title: "EnterMedSchool.org",
+      text: "Free, open-source medical education resources for your classroom!",
+      url: window.location.origin,
+    });
+  } else {
+    navigator.clipboard.writeText(window.location.origin);
+  }
+}
+
 export default function CallToAction() {
   const t = useTranslations("cta");
 
   return (
-    <section className="relative z-10 py-10 sm:py-14">
-      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
+    <section className="relative z-10 py-12 sm:py-16">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         <AnimatedSection animation="scaleIn" spring>
           <div
-            className="relative rounded-3xl border-3 border-showcase-navy p-8 text-center text-white shadow-chunky-lg sm:p-12 md:p-16 overflow-hidden"
+            className="relative rounded-3xl border-3 border-showcase-navy p-8 text-center text-white shadow-chunky-xl sm:p-12 md:p-16 overflow-hidden"
             style={{
-              background: "linear-gradient(-45deg, #6C5CE7, #00D9C0, #7E22CE, #6C5CE7)",
-              backgroundSize: "400% 400%",
-              animation: "gradient-shift 8s ease infinite",
+              background:
+                "linear-gradient(-45deg, #6C5CE7, #00D9C0, #FF85A2, #54A0FF, #7E22CE, #6C5CE7)",
+              backgroundSize: "600% 600%",
+              animation: "gradient-shift 6s ease infinite",
             }}
           >
             {/* Sparkle particles */}
-            <Sparkles />
+            <SparkleParticles />
 
-            {/* Handwritten annotation */}
-            <div className="absolute -top-3 right-8 sm:right-16 rotate-6 pointer-events-none" aria-hidden="true">
-              <span className="font-handwritten text-xl text-white/60 select-none">
+            {/* Floating emoji reactions */}
+            {floatingReactions.map((item, i) => (
+              <motion.div
+                key={i}
+                className="absolute pointer-events-none hidden sm:block select-none"
+                style={{
+                  top: item.top,
+                  left: item.left,
+                  right: item.right,
+                  fontSize: item.size,
+                }}
+                animate={{
+                  y: [0, -12, -4, -16, 0],
+                  rotate: [0, 8, -5, 3, 0],
+                  scale: [1, 1.1, 0.95, 1.05, 1],
+                }}
+                transition={{
+                  duration: 6 + i * 0.5,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                  delay: item.delay,
+                }}
+              >
+                {item.emoji}
+              </motion.div>
+            ))}
+
+            {/* Handwritten annotation with draw animation */}
+            <motion.div
+              className="absolute -top-3 right-8 sm:right-16 rotate-6 pointer-events-none"
+              aria-hidden="true"
+              initial={{ opacity: 0, scale: 0.5 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{
+                delay: 0.5,
+                duration: 0.6,
+                type: "spring",
+                stiffness: 200,
+              }}
+              viewport={{ once: true }}
+            >
+              <span className="font-handwritten text-2xl text-white/70 select-none flex items-center gap-1">
+                <Sparkles className="h-4 w-4" />
                 Start now!
               </span>
-              <svg className="absolute -bottom-3 left-0 w-16 h-4 text-white/30" viewBox="0 0 60 15" fill="none">
-                <path d="M2 12 C20 2, 40 14, 58 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" />
+              <svg
+                className="absolute -bottom-3 left-0 w-20 h-5 text-white/30"
+                viewBox="0 0 60 15"
+                fill="none"
+              >
+                <motion.path
+                  d="M2 12 C20 2, 40 14, 58 4"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  strokeLinecap="round"
+                  initial={{ pathLength: 0 }}
+                  whileInView={{ pathLength: 1 }}
+                  transition={{ delay: 0.8, duration: 1, ease: "easeOut" }}
+                  viewport={{ once: true }}
+                />
               </svg>
-            </div>
+            </motion.div>
 
             <div className="relative z-10">
-              <h2 className="font-display text-2xl font-extrabold sm:text-3xl md:text-4xl lg:text-5xl">
+              <h2 className="font-display text-2xl font-extrabold sm:text-3xl md:text-4xl lg:text-5xl drop-shadow-sm">
                 {t("title")}
               </h2>
-              <p className="mt-4 text-lg text-white/80 max-w-2xl mx-auto">
+              <p className="mt-5 text-lg text-white/85 max-w-2xl mx-auto leading-relaxed">
                 {t("subtitle")}
               </p>
 
               <div className="mt-10 flex flex-wrap items-center justify-center gap-4">
                 <div className="relative">
-                  <div className="absolute -inset-1 rounded-2xl bg-showcase-yellow/30 blur-md animate-pulse-glow" style={{ animationDuration: "2s" }} />
-                  <ChunkyButton href="/en/resources" variant="yellow" size="lg" className="relative">
+                  <div
+                    className="absolute -inset-1.5 rounded-2xl bg-showcase-yellow/30 blur-lg animate-pulse-glow"
+                    style={{ animationDuration: "2s" }}
+                  />
+                  <ChunkyButton
+                    href="/en/resources"
+                    variant="yellow"
+                    size="lg"
+                    className="relative"
+                  >
                     {t("browseResources")}
                     <ArrowRight className="h-5 w-5" />
                   </ChunkyButton>
                 </div>
-                <ChunkyButton href="/en/for-professors" variant="ghost" size="lg" className="border-white/50 text-white hover:bg-white/10 shadow-none hover:shadow-none">
+                <ChunkyButton
+                  href="/en/for-professors"
+                  variant="ghost"
+                  size="lg"
+                  className="border-white/50 text-white hover:bg-white/10 shadow-none hover:shadow-none"
+                >
                   {t("forProfessors")}
                 </ChunkyButton>
-                <ChunkyButton href="https://github.com" external variant="ghost" size="lg" className="border-white/50 text-white hover:bg-white/10 shadow-none hover:shadow-none">
+                <ChunkyButton
+                  href="https://github.com"
+                  external
+                  variant="ghost"
+                  size="lg"
+                  className="border-white/50 text-white hover:bg-white/10 shadow-none hover:shadow-none"
+                >
                   <Github className="h-5 w-5" />
                   {t("viewOnGitHub")}
                 </ChunkyButton>
               </div>
+
+              {/* Share CTA -- encourages viral sharing */}
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.6, duration: 0.5 }}
+                viewport={{ once: true }}
+                className="mt-8"
+              >
+                <button
+                  onClick={handleShare}
+                  className="inline-flex items-center gap-2 rounded-full bg-white/15 px-5 py-2.5 text-sm font-semibold text-white/90 backdrop-blur-sm border border-white/20 transition-all duration-300 hover:bg-white/25 hover:scale-105"
+                >
+                  <Share2 className="h-4 w-4" />
+                  {t("share")}
+                </button>
+              </motion.div>
             </div>
           </div>
         </AnimatedSection>

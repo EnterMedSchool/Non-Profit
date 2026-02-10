@@ -139,14 +139,10 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 <li>
-                  <FooterLink href="/en/resources/questions">
-                    {t("links.questions")}
-                  </FooterLink>
+                  <FooterLink href="/en/tools">{nav("tools")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/resources/videos">
-                    {t("links.videos")}
-                  </FooterLink>
+                  <FooterLink href="/en/calculators">{nav("calculators")}</FooterLink>
                 </li>
                 <li>
                   <FooterLink href="/en/resources/pdfs">
@@ -163,6 +159,16 @@ export default function Footer() {
                     {t("links.clinicalSemiotics")}
                   </FooterLink>
                 </li>
+                <li>
+                  <FooterLink href="/en/resources/questions">
+                    {t("links.questions")}
+                  </FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/en/resources/videos">
+                    {t("links.videos")}
+                  </FooterLink>
+                </li>
               </ul>
             </div>
 
@@ -172,9 +178,6 @@ export default function Footer() {
                 {t("links.explore")}
               </h4>
               <ul className="flex flex-col gap-2.5">
-                <li>
-                  <FooterLink href="/en/tools">{nav("tools")}</FooterLink>
-                </li>
                 <li>
                   <FooterLink href="/en/for-professors">
                     {nav("forProfessors")}

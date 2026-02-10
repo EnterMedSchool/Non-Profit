@@ -66,7 +66,6 @@ export default function GuidesPage() {
               <AnimatedSection key={guide.key} delay={i * 0.1} animation="popIn" spring>
                 <ChunkyCard className="p-6 h-full">
                   <Icon className={`h-8 w-8 text-showcase-${guide.color} mb-3`} />
-                  <StickerBadge color="green" size="sm" className="mb-3">Coming Soon</StickerBadge>
                   <h3 className="font-display text-base font-bold text-ink-dark">{t(guide.key)}</h3>
                 </ChunkyCard>
               </AnimatedSection>

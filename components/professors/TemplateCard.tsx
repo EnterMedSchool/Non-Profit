@@ -46,25 +46,13 @@ export default function TemplateCard({
         aria-label={`${t("preview")} ${template.title}`}
       >
         <div className="relative aspect-[16/10] w-full">
-          {template.comingSoon ? (
-            /* Placeholder gradient with format icon */
-            <div className="flex h-full w-full items-center justify-center bg-gradient-to-br from-pastel-lavender via-pastel-sky to-pastel-mint">
-              <div className="flex flex-col items-center gap-2 opacity-40">
-                <FormatIcon className="h-12 w-12 text-showcase-purple" />
-                <span className="font-display text-xs font-bold uppercase tracking-widest text-ink-muted">
-                  {t("previewComingSoon")}
-                </span>
-              </div>
-            </div>
-          ) : (
-            <Image
-              src={template.thumbnailPath}
-              alt={template.title}
-              fill
-              className="object-cover transition-transform duration-500 group-hover:scale-105"
-              sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-            />
-          )}
+          <Image
+            src={template.thumbnailPath}
+            alt={template.title}
+            fill
+            className="object-cover transition-transform duration-500 group-hover:scale-105"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          />
 
           {/* Hover overlay */}
           <div className="absolute inset-0 flex items-center justify-center bg-showcase-navy/0 transition-colors duration-300 group-hover:bg-showcase-navy/30">
@@ -85,11 +73,6 @@ export default function TemplateCard({
           {template.featured && (
             <StickerBadge color="coral" size="sm">
               {t("featured")}
-            </StickerBadge>
-          )}
-          {template.comingSoon && (
-            <StickerBadge color="green" size="sm">
-              {t("comingSoon")}
             </StickerBadge>
           )}
         </div>
@@ -126,8 +109,7 @@ export default function TemplateCard({
           <button
             type="button"
             onClick={() => onDownload(template)}
-            disabled={template.comingSoon}
-            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-showcase-green px-3 py-2 text-xs font-display font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-md disabled:cursor-not-allowed disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-none"
+            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-showcase-green px-3 py-2 text-xs font-display font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-md"
           >
             <Download className="h-3.5 w-3.5" />
             {t("download")}

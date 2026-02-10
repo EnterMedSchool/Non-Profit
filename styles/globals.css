@@ -135,6 +135,48 @@
     100% { background-position: 200% 0; }
   }
 
+  /* Rainbow gradient text */
+  .text-gradient-rainbow {
+    background: linear-gradient(
+      90deg,
+      #6C5CE7 0%,
+      #00D9C0 20%,
+      #FF85A2 40%,
+      #FFD93D 60%,
+      #54A0FF 80%,
+      #6C5CE7 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Card glow on hover */
+  .card-glow-hover {
+    transition: box-shadow 0.4s ease, transform 0.4s ease;
+  }
+  .card-glow-hover:hover {
+    box-shadow:
+      0 0 30px -5px rgba(108, 92, 231, 0.3),
+      0 0 60px -10px rgba(0, 217, 192, 0.2);
+    transform: translateY(-4px);
+  }
+
+  /* 3D tilt perspective container */
+  .tilt-3d {
+    perspective: 800px;
+    transform-style: preserve-3d;
+  }
+
+  /* Marquee strip */
+  .marquee-strip {
+    display: flex;
+    width: max-content;
+    will-change: transform;
+  }
+
   /* Glow effects */
   .glow-purple {
     box-shadow: 0 0 20px 0 rgba(108, 92, 231, 0.3);

@@ -1,8 +1,8 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, Code, ExternalLink, Wrench, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle } from "lucide-react";
+import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle } from "lucide-react";
 import Link from "next/link";
-import { getToolById } from "@/data/tools";
+import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
 import { getToolJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
@@ -12,39 +12,32 @@ import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
-interface ToolPageProps {
+interface CalculatorPageProps {
   params: Promise<{ locale: string; id: string }>;
 }
 
-// ── Static params for build-time generation ──────────────────────────
-// Only generate pages for non-calculator tools that have a registered component.
-// Calculator tools now live at /calculators/[id].
+// Generate static params for calculator tools only
 export async function generateStaticParams() {
-  return Object.keys(calculatorRegistry)
-    .filter((id) => {
-      const tool = getToolById(id);
-      return tool && tool.category !== "calculator";
-    })
-    .map((id) => ({ id }));
+  const calcs = getCalculatorTools();
+  return calcs.map((t) => ({ id: t.id }));
 }
 
-// ── SEO metadata ─────────────────────────────────────────────────────
-export async function generateMetadata({ params }: ToolPageProps) {
+// SEO metadata
+export async function generateMetadata({ params }: CalculatorPageProps) {
   const { locale, id } = await params;
   const tool = getToolById(id);
-  if (!tool) return {};
+  if (!tool || tool.category !== "calculator") return {};
 
   const t = await getTranslations({ locale, namespace: "tools" });
   const title = t(`${tool.i18nKey}.metaTitle`);
   const description = t(`${tool.i18nKey}.metaDescription`);
-  const toolUrl = `${BASE_URL}/${locale}/tools/${id}`;
+  const toolUrl = `${BASE_URL}/${locale}/calculators/${id}`;
 
-  // Build hreflang alternates dynamically from supported locales
   const languages: Record<string, string> = {};
   for (const loc of routing.locales) {
-    languages[loc] = `${BASE_URL}/${loc}/tools/${id}`;
+    languages[loc] = `${BASE_URL}/${loc}/calculators/${id}`;
   }
-  languages["x-default"] = `${BASE_URL}/en/tools/${id}`;
+  languages["x-default"] = `${BASE_URL}/en/calculators/${id}`;
 
   return {
     title,
@@ -61,7 +54,7 @@ export async function generateMetadata({ params }: ToolPageProps) {
       siteName: "EnterMedSchool.org",
     },
     twitter: {
-      card: "summary_large_image",
+      card: "summary_large_image" as const,
       title,
       description,
     },
@@ -69,15 +62,14 @@ export async function generateMetadata({ params }: ToolPageProps) {
   };
 }
 
-// ── Page ──────────────────────────────────────────────────────────────
-export default async function ToolPage({
-  params,
-}: ToolPageProps) {
+// Page
+export default async function CalculatorPage({ params }: CalculatorPageProps) {
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: "tools" });
+  const ct = await getTranslations({ locale, namespace: "calculators" });
   const tool = getToolById(id);
 
-  if (!tool) {
+  if (!tool || tool.category !== "calculator") {
     notFound();
   }
 
@@ -105,7 +97,6 @@ export default async function ToolPage({
     : [];
   const faqJsonLd = hasFaq ? getFAQPageJsonLd(faqItems) : null;
 
-  // Check if this tool has educational content
   const hasEducationalContent = id === "bmi-calc";
 
   return (
@@ -133,22 +124,22 @@ export default async function ToolPage({
         {/* Back link */}
         <AnimatedSection animation="slideLeft">
           <Link
-            href={`/${locale}/tools`}
+            href={`/${locale}/calculators`}
             className="inline-flex items-center gap-1.5 text-sm font-bold text-showcase-purple hover:underline mb-6"
           >
             <ArrowLeft className="h-4 w-4" />
-            {t("backToTools")}
+            {ct("backToCalculators")}
           </Link>
         </AnimatedSection>
 
         {/* Title */}
         <PageHero
           titleHighlight={title}
-          gradient="from-showcase-teal via-showcase-green to-showcase-purple"
+          gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
           subtitle={description}
           floatingIcons={<>
-            <Wrench className="absolute left-[10%] top-[10%] h-7 w-7 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Sparkles className="absolute right-[10%] top-[5%] h-6 w-6 text-showcase-purple/15 animate-float-playful" style={{ animationDelay: "1s" }} />
+            <Calculator className="absolute left-[10%] top-[10%] h-7 w-7 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
+            <Sparkles className="absolute right-[10%] top-[5%] h-6 w-6 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
           </>}
         />
 
@@ -177,11 +168,10 @@ export default async function ToolPage({
           </AnimatedSection>
         )}
 
-        {/* ── Educational content section (BMI-specific) ─────────── */}
+        {/* Educational content section (BMI-specific) */}
         {hasEducationalContent && (
           <AnimatedSection delay={0.15} animation="fadeUp">
             <div className="mt-10 space-y-6">
-              {/* About BMI */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender">
@@ -196,7 +186,6 @@ export default async function ToolPage({
                 </p>
               </div>
 
-              {/* How BMI is calculated */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-teal/20 bg-pastel-mint">
@@ -219,7 +208,6 @@ export default async function ToolPage({
                 </p>
               </div>
 
-              {/* Limitations */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-yellow/30 bg-showcase-yellow/10">
@@ -252,7 +240,6 @@ export default async function ToolPage({
                 </ul>
               </div>
 
-              {/* FAQ section */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-green/20 bg-showcase-green/10">

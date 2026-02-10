@@ -65,7 +65,6 @@ export default function AssetsPage() {
                 <StickerBadge color="purple" size="sm">{asset.type}</StickerBadge>
                 <h3 className="mt-3 font-display text-base font-bold text-ink-dark">{asset.title}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{asset.desc}</p>
-                <StickerBadge color="green" size="sm" className="mt-3">Coming Soon</StickerBadge>
               </ChunkyCard>
             </AnimatedSection>
           ))}

@@ -69,8 +69,8 @@ export default function VideosPage() {
               <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pastel-mint">
                 <Video className="h-12 w-12 text-showcase-teal/40 animate-float-gentle" />
               </div>
-              <p className="mt-6 font-handwritten text-2xl text-ink-muted">No videos available yet...</p>
-              <p className="mt-2 text-sm text-ink-light max-w-sm">Check back soon for new video guides.</p>
+              <p className="mt-6 font-handwritten text-2xl text-ink-muted">No videos available yet.</p>
+              <p className="mt-2 text-sm text-ink-light max-w-sm">Video guides will appear here when available.</p>
             </div>
           </AnimatedSection>
         )}

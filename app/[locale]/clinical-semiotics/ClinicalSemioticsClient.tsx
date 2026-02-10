@@ -5,6 +5,7 @@ import { useState, useCallback } from "react";
 import ClinicalSemioticsExperience from "@/components/clinical-semiotics/ClinicalSemioticsExperience";
 import ClinicalSemioticsEmbedConfigurator from "@/components/clinical-semiotics/ClinicalSemioticsEmbedConfigurator";
 import AttributionReminderModal from "@/components/resources/AttributionReminderModal";
+import AttributionBanner from "@/components/resources/AttributionBanner";
 import {
   hasValidAttribution,
   generateBadgePngBlob,
@@ -76,6 +77,11 @@ export default function ClinicalSemioticsClient() {
   /* ── Render ── */
   return (
     <>
+      {/* Attribution banner for returning users */}
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8 mt-4 mb-2">
+        <AttributionBanner />
+      </div>
+
       <ClinicalSemioticsExperience
         onOpenEmbed={handleOpenEmbed}
         onDownload={handleDownload}

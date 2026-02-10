@@ -10,7 +10,6 @@ import {
   Volume2,
   Layers,
   Clock,
-  Shield,
   Download,
   Code,
   Eye,
@@ -22,6 +21,7 @@ import JSZip from "jszip";
 import { saveAs } from "file-saver";
 import StickerBadge from "@/components/shared/StickerBadge";
 import AttributionReminderModal from "@/components/resources/AttributionReminderModal";
+import AttributionBanner from "@/components/resources/AttributionBanner";
 import {
   categoryColors,
   factCategoryConfig,
@@ -270,24 +270,14 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                 className="overflow-hidden"
               >
                 <div className="border-t-3 border-showcase-navy/10 bg-pastel-cream/30 p-5 sm:p-6">
-                  {/* Attribution reminder */}
+                  {/* Attribution banner / reminder */}
                   <motion.div
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
-                    className="mb-5 flex items-start gap-3 rounded-xl border-2 border-dashed border-showcase-teal/40 bg-white/60 backdrop-blur-sm p-3"
+                    className="mb-5"
                   >
-                    <Shield className="h-4 w-4 mt-0.5 text-showcase-teal flex-shrink-0" />
-                    <p className="text-xs text-ink-muted leading-relaxed">
-                      You <strong>must</strong> attribute EnterMedSchool when using these assets.{" "}
-                      <a href="mailto:ari@entermedschool.com" className="font-semibold text-showcase-teal hover:underline">
-                        Contact us
-                      </a>{" "}
-                      for approval.{" "}
-                      <a href="/en/license" className="font-semibold text-showcase-teal underline hover:no-underline">
-                        Get your badge
-                      </a>
-                    </p>
+                    <AttributionBanner />
                   </motion.div>
 
                   {/* Download All -- Hero CTA */}

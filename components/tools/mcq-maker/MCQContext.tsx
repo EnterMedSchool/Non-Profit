@@ -26,6 +26,7 @@ import {
   DEFAULT_EXAM_SETTINGS,
 } from "./types";
 import { SCHEMA_VERSION } from "./constants";
+import DEMO_QUESTIONS from "./demoQuestions";
 
 // ── Storage keys ─────────────────────────────────────────────────────
 const STORAGE_KEY = "mcq-maker-data";
@@ -179,7 +180,7 @@ export function MCQProvider({ children }: { children: ReactNode }) {
   const persisted = useRef(loadPersistedData());
 
   const [questions, setQuestions] = useState<MCQQuestion[]>(
-    persisted.current?.questions ?? [],
+    persisted.current?.questions ?? DEMO_QUESTIONS,
   );
   const [exams, setExams] = useState<MCQExam[]>(
     persisted.current?.exams ?? [],

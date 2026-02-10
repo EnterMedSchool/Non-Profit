@@ -17,7 +17,6 @@ export type Exam = {
   category: ExamCategory;
   featured: boolean;
   difficulty: "beginner" | "intermediate" | "advanced";
-  comingNextWeek?: boolean;
 };
 
 export type ExamCategory =
@@ -131,11 +130,11 @@ function ExamCard({
         "cs-exam-card",
         exam.featured && "featured",
       )}
-      onClick={() => !exam.comingNextWeek && onSelect(exam.type)}
+      onClick={() => onSelect(exam.type)}
       role="button"
       tabIndex={0}
       onKeyDown={(e) => {
-        if ((e.key === "Enter" || e.key === " ") && !exam.comingNextWeek) {
+        if (e.key === "Enter" || e.key === " ") {
           e.preventDefault();
           onSelect(exam.type);
         }
@@ -159,11 +158,6 @@ function ExamCard({
         >
           {exam.difficulty}
         </span>
-        {exam.comingNextWeek && (
-          <span className="cs-badge-sticker cs-badge-orange text-[10px]">
-            Coming Soon
-          </span>
-        )}
       </div>
 
       {/* Label */}
@@ -201,7 +195,6 @@ function ExamCard({
         <button
           className="cs-btn cs-btn-ghost cs-btn-sm"
           onClick={() => onSelect(exam.type)}
-          disabled={exam.comingNextWeek}
         >
           Preview
         </button>

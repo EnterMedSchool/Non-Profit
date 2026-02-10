@@ -1,24 +1,42 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { Shield, X, ExternalLink } from "lucide-react";
+import { Shield, X, ExternalLink, Pencil } from "lucide-react";
 import { saveAttribution } from "@/lib/attribution";
 
 interface AttributionReminderModalProps {
   open: boolean;
   onClose: () => void;
   onSaved: (name: string, position: string) => void;
+  /** Pre-fill name when editing existing attribution */
+  initialName?: string;
+  /** Pre-fill position when editing existing attribution */
+  initialPosition?: string;
+  /** When true, show "Update" language instead of "Save" */
+  editMode?: boolean;
 }
 
 export default function AttributionReminderModal({
   open,
   onClose,
   onSaved,
+  initialName = "",
+  initialPosition = "",
+  editMode = false,
 }: AttributionReminderModalProps) {
-  const [name, setName] = useState("");
-  const [position, setPosition] = useState("");
+  const [name, setName] = useState(initialName);
+  const [position, setPosition] = useState(initialPosition);
   const [error, setError] = useState(false);
+
+  // Sync with initial values when modal opens
+  useEffect(() => {
+    if (open) {
+      setName(initialName);
+      setPosition(initialPosition);
+      setError(false);
+    }
+  }, [open, initialName, initialPosition]);
 
   const handleSave = () => {
     if (!name.trim()) {
@@ -55,9 +73,13 @@ export default function AttributionReminderModal({
             {/* Header */}
             <div className="flex items-center justify-between border-b-2 border-showcase-navy/10 px-6 py-4">
               <div className="flex items-center gap-2">
-                <Shield className="h-5 w-5 text-showcase-teal" />
+                {editMode ? (
+                  <Pencil className="h-5 w-5 text-showcase-purple" />
+                ) : (
+                  <Shield className="h-5 w-5 text-showcase-teal" />
+                )}
                 <h3 className="font-display text-lg font-bold text-ink-dark">
-                  Attribution Required
+                  {editMode ? "Update Your Attribution" : "Attribution Required"}
                 </h3>
               </div>
               <button
@@ -71,9 +93,9 @@ export default function AttributionReminderModal({
             {/* Content */}
             <div className="p-6">
               <p className="text-sm text-ink-muted leading-relaxed">
-                Before downloading, please tell us who you are so we can
-                generate your attribution badge. This badge will be included in
-                your download ZIP.
+                {editMode
+                  ? "Update your name and institution. This will apply to all future downloads."
+                  : "Before downloading, please tell us who you are so we can generate your attribution badge. This badge will be included in your download ZIP."}
               </p>
 
               <div className="mt-5 space-y-4">
@@ -134,7 +156,7 @@ export default function AttributionReminderModal({
                   onClick={handleSave}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-green px-5 py-2.5 text-sm font-bold text-white shadow-chunky-sm transition-all hover:shadow-chunky hover:-translate-y-0.5"
                 >
-                  Save & Continue Download
+                  {editMode ? "Update & Continue" : "Save & Continue Download"}
                 </button>
                 <a
                   href="/en/license"
