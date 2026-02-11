@@ -1,4 +1,42 @@
 {
+  "consent": {
+    "acceptAll": "קבל הכל",
+    "acceptSelected": "קבל נבחרים",
+    "decline": "דחה",
+    "ok": "אישור",
+    "save": "שמור",
+    "poweredBy": "",
+    "consentNotice": {
+      "title": "הסכמת עוגיות",
+      "changeDescription": "הגדרות העוגיות שלנו השתנו. אנא בדוק ועדכן את ההעדפות שלך.",
+      "description": "אנו משתמשים בעוגיות לתפקוד חיוני של האתר ולאנליטיקה לשיפור החוויה שלך. באפשרותך לבחור אילו עוגיות לקבל.",
+      "learnMore": "למידע נוסף"
+    },
+    "consentModal": {
+      "title": "הגדרות עוגיות",
+      "description": "כאן ניתן לנהל את העדפות העוגיות שלך. עוגיות חיוניות נדרשות לתפקוד תקין של האתר. עוגיות אנליטיקה עוזרות לנו להבין כיצד מבקרים משתמשים באתר."
+    },
+    "purposes": {
+      "essential": "חיוני",
+      "analytics": "אנליטיקה"
+    },
+    "essential": {
+      "title": "עוגיות חיוניות",
+      "description": "עוגיות אלו נדרשות לתפקוד תקין של האתר. לא ניתן לבטל אותן."
+    },
+    "analytics": {
+      "title": "עוגיות אנליטיקה",
+      "description": "עוגיות אלו עוזרות לנו להבין כיצד מבקרים מתקשרים עם האתר, מה שמאפשר לנו לשפר את החוויה."
+    },
+    "privacyPolicy": {
+      "name": "מדיניות פרטיות",
+      "text": "למידע נוסף, אנא קרא את {privacyPolicy}."
+    },
+    "services": {
+      "essential": "שירותים חיוניים",
+      "analytics": "Google Analytics"
+    }
+  },
   "metadata": {
     "siteName": "EnterMedSchool.org",
     "siteDescription": "משאבי חינוך רפואי חינמיים וקוד פתוח, כלים ומדריכים למחנכים. הורדה, הטמעה ושיתוף עם הסטודנטים.",
@@ -47,7 +85,8 @@
     "cta2": "חקור כלים",
     "badge": "100% חינמי וקוד פתוח",
     "ankiAddon": "תוסף Anki",
-    "chromeExtension": "תוסף Chrome"
+    "chromeExtension": "תוסף Chrome",
+    "mascotAlt": "הקמע של EnterMedSchool"
   },
   "whatWeOffer": {
     "title": "כל מה שצריך",
