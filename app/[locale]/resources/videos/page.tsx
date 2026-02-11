@@ -1,6 +1,7 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations } from "next-intl";
-import { Video, Play, Sparkles, Monitor } from "lucide-react";
+import { Video, Play, Sparkles, Monitor, Shield } from "lucide-react";
+import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ResourceCard from "@/components/resources/ResourceCard";
@@ -54,6 +55,12 @@ export default function VideosPage() {
             <Monitor className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
           </>}
         />
+
+        {/* ── Attribution Reminder ── */}
+        <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+          <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
+          <span>All resources are free for non-commercial educational use. <Link href="/en/license" className="font-semibold text-showcase-purple hover:underline">Attribution required</Link>.</span>
+        </div>
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
           {items.map((r, i) => (

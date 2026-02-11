@@ -32,7 +32,7 @@ const sectionNav = [
 
 const guides = [
   { id: "ai-slides", title: "How to Use AI to Enhance Your Slides", desc: "Step-by-step guide to using AI tools for creating better medical presentations and lecture content.", icon: Sparkles, badge: "New", badgeColor: "purple" as const },
-  { id: "clinical-cases-guide", title: "Using Clinical Cases in Your Curriculum", desc: "Best practices for integrating clinical case studies into medical courses for deeper student engagement.", icon: Stethoscope },
+  { id: "clinical-cases-guide", title: "Using Clinical Cases in Your Curriculum", desc: "Best practices for integrating clinical case studies into medical courses for deeper learner engagement.", icon: Stethoscope },
   { id: "ems-resources", title: "Adding EnterMedSchool Resources to Your Teaching", desc: "How to embed, share, and integrate EnterMedSchool tools and resources into your LMS and lectures.", icon: BookOpen },
   { id: "mcq-maker-guide", title: "Create & Share MCQ Exams", desc: "Build multiple choice questions, generate exam PDFs with answer keys, and embed interactive quizzes directly on your website.", icon: GraduationCap, badge: "New", badgeColor: "teal" as const },
 ];

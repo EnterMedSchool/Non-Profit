@@ -95,7 +95,7 @@ export default async function Image() {
               maxWidth: 700,
             }}
           >
-            Free resources, tools, and guides for medical students and professors worldwide
+            Free resources, tools, and guides for medical educators worldwide
           </p>
 
           {/* Badges */}

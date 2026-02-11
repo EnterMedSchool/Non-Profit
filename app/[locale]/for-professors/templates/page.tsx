@@ -1,4 +1,5 @@
 import { getTranslations } from "next-intl/server";
+import { useTranslations } from "next-intl";
 import { Presentation, FileText, Sparkles, Layers } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import TemplateGallery from "@/components/professors/TemplateGallery";
@@ -22,6 +23,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 }
 
 export default function TemplatesPage() {
+  const t = useTranslations("professors.templates");
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
   return (
@@ -48,7 +50,7 @@ export default function TemplatesPage() {
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
           annotation="download & customize!"
           annotationColor="text-showcase-purple"
-          subtitle="Professional slide templates and spreadsheets designed for medical lectures and presentations. Browse, preview, and download for free."
+          subtitle={t("description")}
           floatingIcons={
             <>
               <Presentation

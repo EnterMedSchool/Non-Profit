@@ -28,7 +28,7 @@ export default function AboutPage() {
 
   const values = [
     { key: "openSource", icon: Heart, color: "bg-showcase-green/10 text-showcase-green border-showcase-green" },
-    { key: "understanding", icon: BookOpen, color: "bg-showcase-purple/10 text-showcase-purple border-showcase-purple" },
+    { key: "teaching", icon: BookOpen, color: "bg-showcase-purple/10 text-showcase-purple border-showcase-purple" },
     { key: "worldwide", icon: Globe, color: "bg-showcase-teal/10 text-showcase-teal border-showcase-teal" },
     { key: "collaboration", icon: Users, color: "bg-showcase-orange/10 text-showcase-orange border-showcase-orange" },
   ];
@@ -45,7 +45,7 @@ export default function AboutPage() {
             titlePre="Our"
             titleHighlight="Story"
             gradient="from-showcase-purple via-showcase-teal to-showcase-green"
-            annotation="from one student to many!"
+            annotation="from one project to many educators!"
             annotationColor="text-showcase-purple"
             subtitle={t("story.content")}
             floatingIcons={<>

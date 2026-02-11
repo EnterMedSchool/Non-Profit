@@ -30,16 +30,15 @@ export default function ForProfessorsPage() {
   return (
     <main className="relative z-10 py-12 sm:py-20 overflow-hidden">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebPageJsonLd("For Professors & Educators", "Free slide templates, teaching guides, video tutorials, and visual assets for medical education professors.", `${BASE_URL}/en/for-professors`)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebPageJsonLd("Guides & Templates for Educators", "Free teaching guides, slide templates, and visual assets for medical educators.", `${BASE_URL}/en/for-professors`)) }} />
 
       {/* ── Hero Section (constrained) ── */}
       <div className="mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
         <PageHero
-          titlePre="For"
-          titleHighlight="Professors"
-          titlePost="& Educators"
+          titleHighlight="Guides"
+          titlePost="& Templates"
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
-          annotation="built for your classroom!"
+          annotation="built for educators!"
           annotationColor="text-showcase-purple"
           subtitle={t("subtitle")}
           floatingIcons={<>

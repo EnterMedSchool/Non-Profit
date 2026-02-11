@@ -50,7 +50,7 @@ function handleShare() {
   if (navigator.share) {
     navigator.share({
       title: "EnterMedSchool.org",
-      text: "Free, open-source medical education resources for your classroom!",
+      text: "Free, open-source medical education resources for educators — download, embed, and share!",
       url: window.location.origin,
     });
   } else {
@@ -160,12 +160,12 @@ export default function CallToAction() {
                   </ChunkyButton>
                 </div>
                 <ChunkyButton
-                  href="/en/for-professors"
+                  href="/en/license#generator"
                   variant="ghost"
                   size="lg"
                   className="border-white/50 text-white hover:bg-white/10 shadow-none hover:shadow-none"
                 >
-                  {t("forProfessors")}
+                  {t("getAttributionBadge")}
                 </ChunkyButton>
                 <ChunkyButton
                   href="https://github.com"

@@ -65,7 +65,7 @@ const stats = [
     percent: 50,
   },
   {
-    key: "professors",
+    key: "educators",
     value: 200,
     suffix: "+",
     icon: GraduationCap,
@@ -198,7 +198,7 @@ export default function ImpactStats() {
           <AnimatedSection animation="blurIn">
             <SectionHeading
               title={t("title")}
-              highlight="Impact"
+              highlight="Reach"
               underlineColor="teal"
               dark
             />

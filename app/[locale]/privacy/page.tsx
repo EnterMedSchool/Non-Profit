@@ -86,7 +86,7 @@ export default function PrivacyPage() {
               <p>Our website may contain links to entermedschool.com and other external sites. We are not responsible for the privacy practices of other sites. We encourage you to review their privacy policies.</p>
 
               <h2>Children&rsquo;s Privacy</h2>
-              <p>Our website is intended for educational use by medical students and professors. We do not knowingly collect information from children under 13.</p>
+              <p>Our website is intended for educational use by medical educators. We do not knowingly collect information from children under 13.</p>
 
               <h2>Changes to This Policy</h2>
               <p>We may update this policy from time to time. Changes will be posted on this page with an updated date.</p>

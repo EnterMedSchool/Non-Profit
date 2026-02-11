@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle } from "lucide-react";
+import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle, Shield } from "lucide-react";
 import Link from "next/link";
 import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
@@ -9,6 +9,7 @@ import { getToolJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import EmbedCodeGenerator from "@/components/tools/EmbedCodeGenerator";
+import ShareLinkButton from "@/components/shared/ShareLinkButton";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -261,6 +262,20 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
             </div>
           </AnimatedSection>
         )}
+
+        {/* Share with Students + Attribution */}
+        <AnimatedSection delay={0.18} animation="fadeUp">
+          <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
+            <ShareLinkButton
+              url={`${BASE_URL}/${locale}/calculators/${id}`}
+              label={t("shareWithStudents")}
+            />
+          </div>
+          <div className="mt-4 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+            <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
+            <span>{ct("attributionReminder")} <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">Learn more</Link>.</span>
+          </div>
+        </AnimatedSection>
 
         {/* Embed section */}
         <AnimatedSection delay={0.2} animation="rotateIn">

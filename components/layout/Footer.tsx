@@ -179,17 +179,18 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 <li>
-                  <FooterLink href="/en/for-professors">
-                    {nav("forProfessors")}
-                  </FooterLink>
+                  <FooterLink href="/en/tools">{nav("tools")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/for-students">
-                    {nav("forStudents")}
+                  <FooterLink href="/en/for-professors">
+                    {nav("guides")}
                   </FooterLink>
                 </li>
                 <li>
                   <FooterLink href="/en/events">{nav("events")}</FooterLink>
+                </li>
+                <li>
+                  <FooterLink href="/en/license">{nav("license")}</FooterLink>
                 </li>
               </ul>
             </div>

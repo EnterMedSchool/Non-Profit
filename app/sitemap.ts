@@ -18,7 +18,6 @@ const staticPages = [
   "/for-professors",
   "/for-professors/guides",
   "/for-professors/assets",
-  "/for-students",
   "/events",
   "/license",
   "/privacy",

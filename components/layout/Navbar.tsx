@@ -54,20 +54,6 @@ const navItems: NavItem[] = [
     href: "/resources",
     children: [
       {
-        href: "/tools",
-        labelKey: "tools",
-        descKey: "toolsDesc",
-        icon: Wrench,
-        color: "bg-showcase-teal/15 text-showcase-teal",
-      },
-      {
-        href: "/calculators",
-        labelKey: "calculators",
-        descKey: "calculatorsDesc",
-        icon: Calculator,
-        color: "bg-showcase-purple/15 text-showcase-purple",
-      },
-      {
         href: "/resources/pdfs",
         labelKey: "pdfs",
         descKey: "pdfsDesc",
@@ -105,26 +91,52 @@ const navItems: NavItem[] = [
     ],
   },
   {
-    labelKey: "forProfessors",
+    labelKey: "tools",
+    href: "/tools",
+    children: [
+      {
+        href: "/tools",
+        labelKey: "tools",
+        descKey: "toolsDesc",
+        icon: Wrench,
+        color: "bg-showcase-teal/15 text-showcase-teal",
+      },
+      {
+        href: "/calculators",
+        labelKey: "calculators",
+        descKey: "calculatorsDesc",
+        icon: Calculator,
+        color: "bg-showcase-purple/15 text-showcase-purple",
+      },
+    ],
+  },
+  {
+    labelKey: "guides",
     href: "/for-professors",
     children: [
       {
         href: "/for-professors/guides",
-        labelKey: "guides",
+        labelKey: "teachingGuides",
         descKey: "guidesDesc",
         icon: BookOpen,
         color: "bg-showcase-purple/15 text-showcase-purple",
       },
       {
-        href: "/for-professors/assets",
-        labelKey: "assets",
+        href: "/for-professors/templates",
+        labelKey: "templates",
         descKey: "assetsDesc",
         icon: Palette,
         color: "bg-showcase-pink/15 text-showcase-pink",
       },
+      {
+        href: "/for-professors/assets",
+        labelKey: "teachingAssets",
+        descKey: "assetsDesc",
+        icon: Palette,
+        color: "bg-showcase-orange/15 text-showcase-orange",
+      },
     ],
   },
-  { labelKey: "forStudents", href: "/for-students" },
   { labelKey: "about", href: "/about" },
 ];
 

@@ -68,16 +68,16 @@ const floatingStickers = [
 
 /* ── Rotating words for the hero title ── */
 const rotatingWords = [
-  { text: "for Your Classroom", color: "text-showcase-purple" },
-  { text: "for Your Students", color: "text-showcase-teal" },
-  { text: "for Educators", color: "text-showcase-pink" },
-  { text: "for Everyone", color: "text-showcase-green" },
+  { text: "for Your Lectures", color: "text-showcase-purple" },
+  { text: "for Your Slides", color: "text-showcase-teal" },
+  { text: "for Your Curriculum", color: "text-showcase-pink" },
+  { text: "for Your Website", color: "text-showcase-green" },
 ];
 
 /* ── Social proof items ── */
 const socialProofItems = [
   { icon: Globe, text: "80+ Countries", color: "text-showcase-teal" },
-  { icon: Users, text: "200+ Professors", color: "text-showcase-purple" },
+  { icon: Users, text: "200+ Educators", color: "text-showcase-purple" },
   { icon: BookOpen, text: "500+ Resources", color: "text-showcase-orange" },
 ];
 
@@ -229,7 +229,7 @@ export default function Hero() {
             <ArrowRight className="h-5 w-5" />
           </ChunkyButton>
         </div>
-        <ChunkyButton href="/en/for-professors" variant="ghost" size="lg">
+        <ChunkyButton href="/en/tools" variant="ghost" size="lg">
           {t("cta2")}
         </ChunkyButton>
       </m.div>

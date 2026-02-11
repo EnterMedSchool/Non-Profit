@@ -22,7 +22,7 @@ export function getOrganizationJsonLd() {
     url: BASE_URL,
     logo: `${BASE_URL}/logo.png`,
     description:
-      "Free, open-source medical education resources, tools, and guides for students and professors worldwide.",
+      "Free, open-source medical education resources, tools, and guides for educators worldwide.",
     foundingDate: "2019",
     nonprofitStatus: "NonprofitType",
     founder: {
@@ -51,7 +51,7 @@ export function getWebSiteJsonLd() {
     name: "EnterMedSchool.org",
     url: BASE_URL,
     description:
-      "Free, open-source medical education resources for students and professors worldwide.",
+      "Free, open-source medical education resources for educators worldwide.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
@@ -167,7 +167,7 @@ export function getAboutPageJsonLd(locale: string) {
         name: "Ari Horesh",
       },
       description:
-        "Free, open-source medical education resources, tools, and guides for students and professors worldwide.",
+        "Free, open-source medical education resources, tools, and guides for educators worldwide.",
       sameAs: [
         "https://entermedschool.com",
         "https://github.com/entermedschool",

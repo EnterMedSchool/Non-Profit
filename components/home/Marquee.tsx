@@ -13,16 +13,16 @@ import {
 
 const marqueeItems = [
   { text: "Slide Templates", icon: Presentation, color: "bg-showcase-purple" },
-  { text: "Practice Questions", icon: BookOpen, color: "bg-showcase-teal" },
-  { text: "Video Lessons", icon: Video, color: "bg-showcase-pink" },
+  { text: "Question Banks", icon: BookOpen, color: "bg-showcase-teal" },
+  { text: "Video Assets", icon: Video, color: "bg-showcase-pink" },
   { text: "Free Forever", icon: Heart, color: "bg-showcase-green" },
   { text: "Open Source", icon: Globe, color: "bg-showcase-blue" },
   { text: "Visual Assets", icon: Eye, color: "bg-showcase-orange" },
   { text: "Teaching Guides", icon: FileText, color: "bg-showcase-coral" },
-  { text: "Medical Tools", icon: Wrench, color: "bg-showcase-yellow" },
-  { text: "Download & Adapt", icon: Download, color: "bg-showcase-teal" },
-  { text: "80+ Countries", icon: Globe, color: "bg-showcase-purple" },
-  { text: "Anki Addon", icon: Layers, color: "bg-showcase-green" },
+  { text: "Interactive Tools", icon: Wrench, color: "bg-showcase-yellow" },
+  { text: "Embed Anywhere", icon: Download, color: "bg-showcase-teal" },
+  { text: "Share with Students", icon: Globe, color: "bg-showcase-purple" },
+  { text: "Attribution Required", icon: Layers, color: "bg-showcase-green" },
 ];
 
 function MarqueeContent() {

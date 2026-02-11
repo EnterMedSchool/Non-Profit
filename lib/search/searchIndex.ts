@@ -83,12 +83,6 @@ const staticItems: SearchItem[] = [
     category: "resource",
   },
   {
-    title: "For Students",
-    description: "Curated guide to free medical education resources",
-    href: "/en/for-students",
-    category: "page",
-  },
-  {
     title: "Events & Community",
     description: "Events, community building, and student organization resources",
     href: "/en/events",

@@ -1,7 +1,7 @@
 {
   "metadata": {
     "siteName": "EnterMedSchool.org",
-    "siteDescription": "Free, open-source medical education resources, tools, and guides for students and professors worldwide.",
+    "siteDescription": "Free, open-source medical education resources, tools, and guides for educators. Download, embed, and share with your students.",
     "titleTemplate": "{title} | EnterMedSchool.org"
   },
   "nav": {
@@ -9,8 +9,7 @@
     "resources": "Resources",
     "tools": "Tools",
     "calculators": "Calculators",
-    "forProfessors": "For Professors",
-    "forStudents": "For Students",
+    "guides": "Guides",
     "events": "Events",
     "about": "About",
     "license": "License",
@@ -20,99 +19,111 @@
     "searchSite": "Search the site...",
     "menu": "Menu",
     "closeMenu": "Close menu",
-    "questions": "Practice Questions",
-    "videos": "Video Lessons",
-    "pdfs": "PDFs & Summaries",
-    "visuals": "Medical Visuals",
+    "questions": "Question Banks",
+    "videos": "Video Assets",
+    "pdfs": "Textbooks & Handouts",
+    "visuals": "Visual Assets",
     "clinicalSemiotics": "Clinical Semiotics",
-    "clinicalSemioticsDesc": "Interactive video-based clinical exam training with tips and quizzes.",
-    "guides": "Teaching Guides",
-    "assets": "Teaching Assets",
-    "questionsDesc": "Clinical cases and practice questions for deep understanding.",
-    "videosDesc": "Clear video explanations of complex medical topics.",
-    "pdfsDesc": "Downloadable summaries, study materials, and reference sheets.",
-    "visualsDesc": "Anatomy diagrams, clinical visuals, and educational illustrations.",
-    "toolsDesc": "Illustration maker, flashcard creator, LaTeX editor, and more.",
-    "calculatorsDesc": "BMI calculator and clinical algorithms for medical education.",
-    "guidesDesc": "Learn how to enhance your teaching with modern tools.",
-    "assetsDesc": "Diagrams, visuals, and assets ready for your lectures.",
-    "viewAll": "View all"
+    "clinicalSemioticsDesc": "Interactive clinical exam videos — embed on your site or share with your students.",
+    "teachingGuides": "Teaching Guides",
+    "teachingAssets": "Teaching Assets",
+    "questionsDesc": "Question banks for your exams — download, adapt, or share with your students.",
+    "videosDesc": "Video assets for your lectures — download or embed on your website.",
+    "pdfsDesc": "Textbooks and reference sheets — assign to your students or print as handouts.",
+    "visualsDesc": "Anatomy diagrams and clinical visuals — grab them for your slides.",
+    "toolsDesc": "Create illustrations, flashcards, MCQs, and more — embed or share the results.",
+    "calculatorsDesc": "Medical calculators and algorithms — embed on your website or use in class.",
+    "guidesDesc": "Guides on teaching techniques, embedding resources, and using templates.",
+    "assetsDesc": "Diagrams, visuals, and assets ready to drop into your lectures.",
+    "viewAll": "View all",
+    "templates": "Templates"
   },
   "hero": {
-    "title": "Open-Source Medical Education for Everyone",
-    "subtitle": "500+ free resources for your lectures, slides, and classroom. Download, adapt, and share — no paywalls, no restrictions.",
+    "title": "Open-Source Medical Education Resources",
+    "subtitle": "500+ free resources for your lectures, slides, and website. Download, embed, and share with your students — no paywalls, no restrictions. Attribution required.",
     "identityPill": "EnterMedSchool.org is the non-profit sister project of",
     "identityLink": "entermedschool.com",
     "cta1": "Browse Resources",
-    "cta2": "For Professors",
+    "cta2": "Explore Tools",
     "badge": "100% Free & Open Source",
     "ankiAddon": "Anki Addon",
     "chromeExtension": "Chrome Extension"
   },
   "whatWeOffer": {
     "title": "Everything You Need",
-    "subtitle": "Free tools and assets for your classroom — ready to download, embed, or adapt",
+    "subtitle": "Free resources and tools for your classroom — download, embed, or share with your students",
     "questions": {
-      "title": "Practice Questions",
-      "description": "Clinical cases and practice questions designed for deep understanding, not memorization."
+      "title": "Question Banks",
+      "description": "Ready-made question banks for your exams. Download, adapt, and share with your students."
     },
     "videos": {
-      "title": "Video Lessons",
-      "description": "Clear, concise video explanations of complex medical topics."
+      "title": "Video Assets",
+      "description": "Video explanations of complex medical topics. Embed on your website or use in your lectures."
     },
     "pdfs": {
-      "title": "PDFs & Summaries",
-      "description": "Downloadable study materials, summaries, and reference sheets."
+      "title": "Textbooks & Handouts",
+      "description": "Downloadable textbooks and reference sheets. Assign to your students or print as handouts."
     },
     "visuals": {
-      "title": "Medical Visuals",
-      "description": "Anatomy diagrams, clinical visuals, and educational illustrations."
+      "title": "Visual Assets",
+      "description": "Anatomy diagrams, clinical visuals, and illustrations. Grab them for your slides."
     },
     "tools": {
-      "title": "Medical Tools",
-      "description": "Calculators, simulators, and interactive learning tools."
+      "title": "Interactive Tools",
+      "description": "Create MCQs, flashcards, and illustrations. Embed the results on your website."
     },
     "templates": {
       "title": "Teaching Templates",
-      "description": "Slide templates, lesson plans, and teaching materials for professors."
+      "description": "Slide templates and lesson materials. Download and customize for your lectures."
     },
     "ankiAddon": {
       "title": "Anki Addon",
-      "description": "Enhance your Anki experience with our free, open-source addon."
+      "description": "Share with your students — a free, open-source Anki addon."
     },
     "chromeExtension": {
       "title": "Chrome Extension",
-      "description": "Study tools right in your browser with our free extension."
+      "description": "Share with your students — a free Chrome extension with study tools."
     }
   },
   "forWhom": {
-    "title": "Built for You",
-    "students": {
-      "title": "For Students",
-      "description": "Everything you need to study smarter, not harder.",
+    "title": "What You Can Do Here",
+    "resources": {
+      "title": "Browse & Download Resources",
+      "description": "Visuals, question banks, textbooks, and videos — all free to use in your teaching.",
       "benefits": [
-        "Free practice questions & clinical cases",
-        "Video lessons on complex topics",
-        "Downloadable study materials",
-        "Tools focused on clinical understanding"
+        "Download visuals for your slides",
+        "Grab question banks for your exams",
+        "Assign textbooks to your students",
+        "Embed videos on your website"
       ],
-      "cta": "Start Learning"
+      "cta": "Browse Resources"
     },
-    "professors": {
-      "title": "For Professors",
-      "description": "Resources to enhance your teaching and inspire your students.",
+    "tools": {
+      "title": "Use Our Tools",
+      "description": "Create your own MCQs, flashcards, illustrations, and more.",
       "benefits": [
-        "Ready-to-use slide templates",
-        "Clinical cases for your curriculum",
-        "Visual assets for your lectures",
-        "Guides on using AI in teaching"
+        "Create exam papers with the MCQ Maker",
+        "Make printable flashcards for your class",
+        "Build figures for your slides",
+        "Embed calculators on your website"
       ],
-      "cta": "Explore Resources"
+      "cta": "Open Tools"
+    },
+    "guides": {
+      "title": "Read Our Guides",
+      "description": "Guides on teaching techniques, embedding resources, and using templates.",
+      "benefits": [
+        "Learn how to embed resources on your site",
+        "Get tips on using templates",
+        "Read about teaching techniques",
+        "Find out how to attribute properly"
+      ],
+      "cta": "Read Guides"
     }
   },
   "timeline": {
     "title": "Our Journey",
-    "subtitle": "From a student forum to a worldwide open-source education platform",
+    "subtitle": "From a student forum to a worldwide open-source education resource",
     "milestones": {
       "2019": {
         "year": "2019",
@@ -122,30 +133,30 @@
       "2020": {
         "year": "2020",
         "title": "Free Content Begins",
-        "description": "Ari starts releasing free educational content, collaborating with OpenStax materials to provide quality open-source study resources."
+        "description": "Ari starts releasing free educational content, collaborating with OpenStax materials to provide quality open-source resources."
       },
       "2021": {
         "year": "2021",
         "title": "Leading IMAT Course",
-        "description": "Launch of paid IMAT courses, becoming the world's leading IMAT preparation course for international students. Revenue funds the creation of free resources."
+        "description": "Launch of paid IMAT courses, becoming the world's leading IMAT preparation course. Revenue funds the creation of free resources."
       },
       "2025": {
         "year": "2025",
         "title": "New Generation",
-        "description": "Expanding to medical students, connecting with professors and doctors worldwide to verify and create content, releasing everything for free."
+        "description": "Connecting with professors and doctors worldwide to verify and create content, releasing everything for free."
       },
       "2026": {
         "year": "2026",
         "title": "Open Source Goes Official",
-        "description": "Launch of EnterMedSchool.org, Anki addon, Chrome extension, and a wave of open-source resources. The goal of EnterMedSchool was always to fund this project — and we finally did it."
+        "description": "Launch of EnterMedSchool.org — a free resource archive for medical educators. Anki addon, Chrome extension, and hundreds of open-source resources."
       }
     }
   },
   "mission": {
     "title": "Our Mission",
-    "quote": "We believe knowledge and tools to improve the quality of teaching should be open source.",
-    "description": "EnterMedSchool focuses on deep clinical understanding, not memorization. We provide professors and students with the tools to visualize what matters clinically, creating better doctors worldwide.",
-    "relationship": "EnterMedSchool.com funds this project through paid courses and services. Everything here on .org is free, open-source, and always will be. This is the archive — download, adapt, and use anything you find for your classroom.",
+    "quote": "We believe the resources and tools educators need to teach well should be free and open source.",
+    "description": "EnterMedSchool.org is a resource archive for medical educators. Everything here is free to download, embed on your website, and share with your students. Just remember to attribute.",
+    "relationship": "EnterMedSchool.com funds this project through paid courses and services. Everything here on .org is free, open-source, and always will be. Download, embed, and use anything you find for your classroom.",
     "badges": {
       "nonCommercial": "Non-Commercial",
       "attribution": "Attribution Required",
@@ -153,62 +164,67 @@
     }
   },
   "impact": {
-    "title": "Our Impact",
+    "title": "Our Reach",
     "resources": "Free Resources",
     "countries": "Countries Reached",
     "tools": "Open-Source Tools",
-    "professors": "Professors Helped"
+    "educators": "Educators Using This"
   },
   "cta": {
-    "title": "Ready to Transform Your Classroom?",
-    "subtitle": "Every resource is free and open-source. Use them in your slides, share with your students, or adapt for your curriculum.",
+    "title": "Everything here is free. Just give credit.",
+    "subtitle": "Download resources for your slides, embed tools on your website, or share directly with your students. All we ask is that you attribute.",
     "browseResources": "Browse Resources",
-    "forProfessors": "For Professors",
+    "getAttributionBadge": "Get Your Attribution Badge",
     "viewOnGitHub": "View on GitHub",
     "share": "Share with a colleague"
   },
   "about": {
     "title": "About EnterMedSchool",
-    "metaDescription": "Learn about the story of EnterMedSchool, from a student forum to a worldwide open-source medical education platform.",
+    "metaDescription": "Learn about EnterMedSchool — a free, open-source resource archive for medical educators worldwide.",
     "story": {
       "title": "Our Story",
-      "content": "EnterMedSchool was created in 2019 by Ari Horesh as a simple forum where IMAT exam students could help each other. What started as a community project grew into the world's leading IMAT preparation platform, and now, an open-source medical education resource for the world."
+      "content": "EnterMedSchool was created in 2019 by Ari Horesh as a simple forum where IMAT exam students could help each other. What started as a community project grew into the world's leading IMAT preparation platform, and now, an open-source resource archive for medical educators worldwide."
     },
     "orgMission": {
       "title": "Why .org?",
-      "content": "The goal of EnterMedSchool.com was always to fund this project. The paid courses and services on our main site enable us to create and maintain free, open-source educational tools for students and professors worldwide. EnterMedSchool.org is where that mission lives."
+      "content": "The goal of EnterMedSchool.com was always to fund this project. The paid courses and services on our main site enable us to create and maintain free, open-source resources for medical educators worldwide. EnterMedSchool.org is where that mission lives — a free archive of tools, visuals, textbooks, and guides that you can download, embed, and share with your students."
     },
     "values": {
       "title": "What We Believe",
       "openSource": "Open Source First",
-      "openSourceDesc": "All our resources are free to use for non-commercial educational purposes.",
-      "understanding": "Understanding Over Memorization",
-      "understandingDesc": "Our content focuses on deep clinical understanding, not rote memorization.",
+      "openSourceDesc": "All our resources are free to download, embed, and share for non-commercial educational use.",
+      "teaching": "Built for Educators",
+      "teachingDesc": "Every resource is designed to be used in your lectures, on your website, or shared with your students.",
       "worldwide": "Worldwide Access",
-      "worldwideDesc": "Quality medical education resources should be accessible to everyone, everywhere.",
+      "worldwideDesc": "Medical educators everywhere deserve access to quality teaching resources.",
       "collaboration": "Collaboration",
       "collaborationDesc": "We work with professors and doctors worldwide to verify and create content."
     }
   },
   "resources": {
-    "title": "Free Resources",
-    "metaDescription": "Browse our free, open-source medical education resources: tools, calculators, study materials, visual lessons, and more.",
+    "title": "Resources",
+    "metaDescription": "Free, open-source medical education resources for educators. Download, embed, and share — visuals, question banks, textbooks, videos, and more.",
     "searchPlaceholder": "Search resources...",
+    "attributionReminder": "All resources are free for non-commercial educational use. Attribution is required.",
+    "shareWithStudents": "Share with Students",
+    "addToSlides": "Add to Your Slides",
+    "embedOnWebsite": "Embed on Your Website",
+    "downloadForLecture": "Download for Your Lecture",
     "hub": {
-      "tools": "Creative Tools",
-      "toolsDesc": "Illustration maker, flashcard creator, LaTeX editor, MCQ maker, and more open-source tools for learning.",
+      "tools": "Interactive Tools",
+      "toolsDesc": "Create MCQs, flashcards, illustrations, and more. Embed the results on your website or share with your students.",
       "calculators": "Medical Calculators",
-      "calculatorsDesc": "BMI calculator and clinical algorithms — free, embeddable, and ready for your classroom.",
-      "pdfs": "PDFs & Study Materials",
-      "pdfsDesc": "Downloadable textbooks, summaries, and reference sheets for medical education.",
-      "visuals": "Visual Lessons",
-      "visualsDesc": "Anatomy diagrams, clinical illustrations, and interactive visual learning materials.",
+      "calculatorsDesc": "Medical calculators and algorithms — embed on your website or use in your lectures.",
+      "pdfs": "Textbooks & Handouts",
+      "pdfsDesc": "Downloadable textbooks and reference sheets. Assign to your students or print as handouts.",
+      "visuals": "Visual Assets",
+      "visualsDesc": "Anatomy diagrams, clinical illustrations, and layered visuals. Grab them for your slides or embed on your site.",
       "clinicalSemiotics": "Clinical Semiotics",
-      "clinicalSemioticsDesc": "Interactive video-based clinical exam training with branching scenarios and quizzes.",
-      "questions": "Practice Questions",
-      "questionsDesc": "Clinical cases and exam-style practice questions for deep understanding.",
-      "videos": "Video Lessons",
-      "videosDesc": "Clear video explanations of complex medical topics and procedures.",
+      "clinicalSemioticsDesc": "Interactive clinical exam videos. Embed on your website or share with your students.",
+      "questions": "Question Banks",
+      "questionsDesc": "Question banks for your exams. Download, adapt, and share with your students.",
+      "videos": "Video Assets",
+      "videosDesc": "Video explanations of medical topics. Embed on your website or use in your lectures.",
       "explore": "Explore"
     },
     "categories": {
@@ -222,46 +238,48 @@
     "viewSourceBtn": "View Source",
     "previewBtn": "Preview",
     "questions": {
-      "title": "Practice Questions & Clinical Cases",
-      "metaDescription": "Free practice questions and clinical cases for medical students. Designed for deep clinical understanding."
+      "title": "Question Banks",
+      "metaDescription": "Free question banks for medical educators. Download for your exams, adapt for your curriculum, and share with your students."
     },
     "videos": {
-      "title": "Video Lessons",
-      "metaDescription": "Free video lessons covering complex medical topics. Clear explanations for students and professors."
+      "title": "Video Assets",
+      "metaDescription": "Free video assets for medical educators. Download for your lectures or embed on your website."
     },
     "pdfs": {
-      "title": "PDFs & Study Materials",
-      "metaDescription": "Free downloadable PDFs, summaries, and study materials for medical education."
+      "title": "Textbooks & Handouts",
+      "metaDescription": "Free downloadable textbooks and reference sheets for medical education. Assign to your students or print as handouts."
     },
     "visuals": {
-      "title": "Medical Visuals & Diagrams",
-      "metaDescription": "Free anatomy diagrams, clinical visuals, and educational illustrations for medical education."
+      "title": "Visual Assets & Diagrams",
+      "metaDescription": "Free anatomy diagrams, clinical visuals, and educational illustrations. Download for your slides or embed on your website."
     }
   },
   "tools": {
-    "title": "Free Medical Tools — Use, Embed, and Get the Code",
-    "metaDescription": "Free, open-source medical tools: calculators, simulators, anatomy viewers, and more. Embeddable and downloadable.",
-    "subtitle": "Every tool we build will be open-source. Embed them in your website, use them in your classroom, or download the code and adapt them.",
-    "useToolBtn": "Use Tool",
-    "embedCodeBtn": "Embed Code",
+    "title": "Free Medical Tools — Use, Embed, and Share",
+    "metaDescription": "Free, open-source medical tools for educators. Create MCQs, flashcards, illustrations, and more. Embed on your website or share with your students.",
+    "subtitle": "Every tool is open-source. Create content for your teaching, embed tools on your website, or share them with your students. Attribution required.",
+    "useToolBtn": "Open Tool",
+    "embedCodeBtn": "Embed on Your Website",
     "viewSourceBtn": "View Source",
+    "shareWithStudents": "Share with Students",
     "available": "Available",
-    "vision": "Every calculator, simulator, and tool will be open-source and embeddable. Professors can embed them directly in their LMS, slides, or websites.",
-    "visionTitle": "Our Vision for Tools",
+    "vision": "Every tool is open-source and embeddable. Embed them directly in your LMS, website, or share the link with your students.",
+    "visionTitle": "Built for Your Classroom",
     "backToTools": "Back to Tools",
     "toolNotFound": "Tool not found",
     "toolNotFoundDesc": "The tool you're looking for doesn't exist or hasn't been released yet.",
+    "attributionReminder": "Attribution required when using or embedding these tools.",
     "flashcardMaker": {
       "title": "Flashcard Maker",
-      "metaTitle": "Flashcard Maker — Import CSV & Print Physical Flashcards | EnterMedSchool",
-      "metaDescription": "Import your Anki or CSV flashcards, customize them with backgrounds, fonts, and decorations, then export a printable PDF to make physical flashcards. Free and open-source.",
-      "description": "Import CSV/TSV flashcards (from Anki or anywhere), customize their look, and export a foldable, printable PDF to make real physical flashcards."
+      "metaTitle": "Flashcard Maker — Create Printable Flashcards for Your Class | EnterMedSchool",
+      "metaDescription": "Create printable flashcards for your class. Import from CSV/Anki, customize the look, and export a foldable PDF. Free and open-source.",
+      "description": "Create printable flashcards for your class. Import CSV/TSV flashcards (from Anki or anywhere), customize their look, and export a foldable, printable PDF."
     },
     "mcqMaker": {
       "title": "MCQ Maker",
-      "metaTitle": "MCQ Maker — Create, Import & Export Multiple Choice Questions | EnterMedSchool",
-      "metaDescription": "Create multiple choice questions, import from CSV/TSV, export beautiful exam PDFs with answer keys, and embed interactive quizzes on your website. Free and open-source.",
-      "description": "Create, import, and export multiple choice questions & exams. Generate beautiful PDFs, answer keys, study guides, and embeddable quizzes — all in your browser.",
+      "metaTitle": "MCQ Maker — Create Exam Papers & Share Quizzes | EnterMedSchool",
+      "metaDescription": "Create exam papers, import from CSV/TSV, export PDFs with answer keys, and embed interactive quizzes on your website for your students. Free and open-source.",
+      "description": "Create exam papers and quizzes for your students. Import questions, export beautiful PDFs with answer keys, and embed interactive quizzes on your website.",
       "export": {
         "title": "Export",
         "pdfFormat": "PDF Format",
@@ -292,21 +310,21 @@
     },
     "latexEditor": {
       "title": "LaTeX Editor",
-      "metaTitle": "LaTeX Editor — Free Overleaf Alternative for Medical Students | EnterMedSchool",
-      "metaDescription": "Learn and write LaTeX for free. Drag-and-drop code snippets, use medical templates, and see a live preview. Perfect for thesis writing, research papers, and scientific documents.",
-      "description": "Learn and write LaTeX with a live preview, drag-and-drop snippets, and medical templates. Perfect for thesis writing, research papers, and scientific documents. A free, open-source Overleaf alternative."
+      "metaTitle": "LaTeX Editor — Free Online LaTeX for Educators | EnterMedSchool",
+      "metaDescription": "Write and edit LaTeX for your handouts, papers, and teaching materials. Drag-and-drop snippets, medical templates, and live preview. Free and open-source.",
+      "description": "Write and edit LaTeX for your handouts and papers. Live preview, drag-and-drop snippets, and medical templates. A free, open-source Overleaf alternative."
     },
     "illustrationMaker": {
       "title": "Scientific Illustration Maker",
-      "metaTitle": "Scientific Illustration Maker — Free BioRender Alternative | EnterMedSchool",
-      "metaDescription": "Create professional scientific illustrations for free. Drag-and-drop cells, organs, molecules, and lab equipment onto a canvas. Export to PNG or JPEG. Open-source BioRender alternative.",
-      "description": "Create beautiful scientific figures with our free drag-and-drop illustration maker. A fully open-source alternative to BioRender — made for professors, students, and researchers."
+      "metaTitle": "Scientific Illustration Maker — Create Figures for Your Slides | EnterMedSchool",
+      "metaDescription": "Create scientific illustrations for your slides and publications. Drag-and-drop cells, organs, molecules, and lab equipment. Export to PNG or JPEG. Free and open-source.",
+      "description": "Create scientific figures for your slides and publications. Drag-and-drop cells, organs, molecules, and lab equipment onto a canvas. A free, open-source alternative to BioRender."
     },
     "bmi": {
       "title": "BMI Calculator",
-      "metaTitle": "BMI Calculator — Free Online Body Mass Index Tool | EnterMedSchool",
-      "metaDescription": "Calculate your Body Mass Index (BMI) with clinical interpretation, BMI Prime, Ponderal Index, and WHO risk categories. Free, open-source, and embeddable.",
-      "description": "Calculate Body Mass Index with clinical interpretation, risk assessment, and WHO classification.",
+      "metaTitle": "BMI Calculator — Free, Embeddable Body Mass Index Tool | EnterMedSchool",
+      "metaDescription": "A free BMI calculator you can embed on your website or use in your lectures. Clinical interpretation, WHO classification, and educational content included.",
+      "description": "A BMI calculator with clinical interpretation and WHO classification. Embed on your website or use in your lectures.",
       "labels": {
         "height": "Height",
         "weight": "Weight",
@@ -404,7 +422,7 @@
       "freeOpenSource": "Free & Open Source",
       "viewFullTool": "Use the full tool at",
       "embedTitle": "Embed This Tool",
-      "embedDescription": "Add this calculator to your website, Notion page, or LMS. Attribution is included automatically with links back to EnterMedSchool.",
+      "embedDescription": "Add this tool to your website, Notion page, or LMS. Attribution is included automatically with links back to EnterMedSchool.",
       "tabWebsite": "Website / HTML",
       "tabNotion": "Notion",
       "tabLMS": "LMS",
@@ -415,7 +433,7 @@
       "notionInstructions": "Paste this URL into any Notion page and choose \"Create embed\":",
       "notionCopyUrl": "Copy Embed URL",
       "lmsInstructions": "Paste the iframe code below into the HTML editor of your LMS (Moodle, Canvas, Blackboard, etc.).",
-      "slidesInstructions": "Live embeds aren't supported in most presentation tools. Instead, share the link with your audience or add the QR code to your slides so students can open the tool on their phones.",
+      "slidesInstructions": "Live embeds aren't supported in most presentation tools. Instead, share the link with your class or add the QR code to your slides so students can open the tool on their phones.",
       "slidesDownloadQR": "Download QR Code",
       "slidesCopyLink": "Copy Link",
       "previewTitle": "Embed Preview",
@@ -461,18 +479,19 @@
   },
   "calculators": {
     "title": "Medical Calculators & Algorithms",
-    "metaDescription": "Free, open-source medical calculators and clinical algorithms. BMI calculator, and more coming soon. Embeddable and downloadable.",
-    "subtitle": "Free clinical calculators and algorithms you can use, embed, or download. Open-source and built for medical education.",
-    "backToCalculators": "Back to Calculators"
+    "metaDescription": "Free, open-source medical calculators for educators. Embed on your website or use in your lectures.",
+    "subtitle": "Free clinical calculators and algorithms. Embed on your website, use in your lectures, or share with your students. Attribution required.",
+    "backToCalculators": "Back to Calculators",
+    "attributionReminder": "Attribution required when using or embedding these calculators."
   },
   "professors": {
-    "title": "For Professors",
-    "metaDescription": "Free teaching resources for medical professors: slide templates, lesson plans, visual assets, video tutorials, and AI guides.",
-    "subtitle": "Everything you need to enhance your medical teaching — completely free.",
+    "title": "Guides & Templates",
+    "metaDescription": "Free teaching guides and templates for medical educators: slide templates, lesson plans, visual assets, and embedding tutorials.",
+    "subtitle": "Guides, templates, and assets for your teaching — all free to download and use.",
     "licenseNote": "All resources are free for non-commercial educational use with attribution. Contact ari@entermedschool.com for questions.",
-    "searchPlaceholder": "Search templates, guides, assets, tutorials...",
+    "searchPlaceholder": "Search guides, templates, assets...",
     "findTitle": "Find What You Need",
-    "findSubtitle": "Search across all templates, guides, assets, and video tutorials",
+    "findSubtitle": "Search across all templates, guides, and assets",
     "quickStartTitle": "Get Started in 3 Steps",
     "quickStartSubtitle": "Everything is free and requires no account. Just browse, download, and use.",
     "videoTitle": "Video Tutorials",
@@ -485,12 +504,12 @@
     "allResources": "All Resources",
     "templates": {
       "title": "Slide Templates & Lesson Packs",
-      "metaDescription": "Free slide templates and lesson packs for medical professors. PowerPoint and Google Slides formats.",
-      "description": "Ready-to-use presentation templates for your medical lectures.",
+      "metaDescription": "Free slide templates and lesson packs for medical educators. PowerPoint and Google Slides formats. Attribution required.",
+      "description": "Ready-to-use presentation templates for your lectures. Download, customize, and attribute.",
       "searchPlaceholder": "Search templates...",
       "allCategories": "All",
       "preview": "Preview",
-      "download": "Download",
+      "download": "Download for Your Lecture",
       "featured": "Featured",
       "slides": "slides",
       "sheets": "sheets",
@@ -499,51 +518,28 @@
       "noResultsHint": "Try a different search term or clear the filters.",
       "clearFilters": "Clear all filters",
       "clearSearch": "Clear search",
-      "close": "Close"
+      "close": "Close",
+      "attributionReminder": "Remember to include attribution when using these templates."
     },
     "guides": {
       "title": "Teaching Guides",
-      "metaDescription": "Guides for medical professors on using AI, clinical cases, and EnterMedSchool resources in teaching.",
-      "description": "Learn how to enhance your teaching with modern tools and techniques.",
+      "metaDescription": "Guides for medical educators on using resources, embedding tools, and teaching techniques.",
+      "description": "Guides on teaching techniques, embedding resources, and getting the most out of your materials.",
       "aiSlides": "How to Use AI to Enhance Your Slides",
       "clinicalCases": "Using Clinical Cases in Your Curriculum",
       "emsResources": "Adding EnterMedSchool Resources to Your Teaching"
     },
     "assets": {
       "title": "Downloadable Teaching Assets",
-      "metaDescription": "Free downloadable teaching assets for medical professors: logos, diagrams, anatomical visuals.",
-      "description": "Diagrams, visuals, and assets ready to use in your lectures and materials."
+      "metaDescription": "Free downloadable teaching assets for medical educators: logos, diagrams, anatomical visuals. Attribution required.",
+      "description": "Diagrams, visuals, and assets ready to drop into your lectures and materials. Attribution required.",
+      "attributionReminder": "Remember to include attribution when using these assets."
     },
     "videos": {
       "title": "Video Tutorials & How-To",
-      "metaDescription": "Free video tutorials for medical professors on using teaching resources, AI tools, and embedding educational tools.",
+      "metaDescription": "Free video tutorials for medical educators on using teaching resources and embedding educational tools.",
       "description": "Step-by-step video guides to help you make the most of every resource."
     }
-  },
-  "students": {
-    "title": "For Students",
-    "metaDescription": "Start here: a curated guide to free medical education resources, study tools, and practice questions.",
-    "subtitle": "Your guided path to the best free medical education resources.",
-    "startHere": "Start Here",
-    "sections": {
-      "exams": {
-        "title": "Studying for Exams?",
-        "description": "Practice questions and clinical cases designed for deep understanding."
-      },
-      "visuals": {
-        "title": "Need Visual Aids?",
-        "description": "Anatomy diagrams, clinical visuals, and educational illustrations."
-      },
-      "practice": {
-        "title": "Want Practice Questions?",
-        "description": "Thousands of free practice questions across all medical subjects."
-      },
-      "tools": {
-        "title": "Looking for Study Tools?",
-        "description": "Medical calculators, our Anki addon, Chrome extension, and more."
-      }
-    },
-    "tip": "Focus on understanding, not memorization. Our resources are designed to help you think like a clinician."
   },
   "events": {
     "title": "Events & Community",
@@ -591,13 +587,13 @@
       "canDo": {
         "title": "What You CAN Do",
         "items": [
-          "Use resources in your teaching and lectures",
+          "Download resources for your lectures and slides",
+          "Embed tools and visuals on your website",
           "Share materials with your students",
           "Modify content for your classes",
-          "Include in non-commercial presentations",
           "Print for educational handouts"
         ],
-        "icons": ["GraduationCap", "Users", "Pencil", "Presentation", "Printer"]
+        "icons": ["GraduationCap", "Globe", "Users", "Pencil", "Printer"]
       },
       "cannotDo": {
         "title": "What You CANNOT Do",
@@ -778,11 +774,10 @@
     "pdfs": "PDFs",
     "visuals": "Visuals",
     "tools": "Tools",
-    "forProfessors": "For Professors",
-    "templates": "Templates",
     "guides": "Guides",
+    "templates": "Templates",
+    "teachingGuides": "Teaching Guides",
     "assets": "Assets",
-    "forStudents": "For Students",
     "events": "Events",
     "about": "About",
     "license": "License",
@@ -792,21 +787,22 @@
     "copyright": "© {year} EnterMedSchool.org. All rights reserved.",
     "cookieSettings": "Cookie Settings",
     "partOf": "A project by",
-    "description": "The non-profit, open-source arm of EnterMedSchool — providing free medical education resources built for students and professors to download, use, and share.",
+    "description": "The non-profit, open-source arm of EnterMedSchool — free medical education resources for educators to download, embed, and share with their students.",
     "badges": {
       "freeForever": "Free Forever",
       "openSource": "Open Source",
-      "nonCommercial": "Non-Commercial"
+      "nonCommercial": "Non-Commercial",
+      "attributionRequired": "Attribution Required"
     },
     "relationship": {
       "title": "How it works:",
-      "description": "EnterMedSchool.com funds this project through its paid courses and services. Everything here on .org is free, open-source, and always will be. This is the archive — download, adapt, and use anything you find."
+      "description": "EnterMedSchool.com funds this project through its paid courses and services. Everything here on .org is free, open-source, and always will be. Download, embed, and use anything you find — just remember to attribute."
     },
     "links": {
-      "questions": "Practice Questions",
-      "videos": "Video Lessons",
-      "pdfs": "PDFs & Summaries",
-      "visuals": "Medical Visuals",
+      "questions": "Question Banks",
+      "videos": "Video Assets",
+      "pdfs": "Textbooks & Handouts",
+      "visuals": "Visual Assets",
       "clinicalSemiotics": "Clinical Semiotics",
       "explore": "Explore",
       "legal": "Legal & Info"
@@ -819,28 +815,29 @@
   },
   "clinicalSemiotics": {
     "title": "Clinical Semiotics Studio",
-    "description": "Interactive video-based clinical examination training with real medical procedures, bilingual subtitles, and knowledge checks.",
+    "description": "Interactive clinical examination videos with real medical procedures, bilingual subtitles, and knowledge checks. Embed on your website or share with your students.",
     "seo": {
       "title": "Clinical Semiotics Studio | EnterMedSchool.org",
-      "description": "Free, open-source interactive clinical examination videos with tips, questions, and bilingual Italian-English subtitles. Practice manual BP, cardiac, and thoracic exams."
+      "description": "Free, open-source interactive clinical examination videos. Embed on your website or share with your students. Manual BP, cardiac, and thoracic exams."
     },
     "intro": {
       "eyebrow": "EnterMedSchool Presents",
       "headline": "Clinical Semiotics Studio",
-      "tagline": "Made for international medical students in Italy",
+      "tagline": "Interactive clinical exam videos — embed or share with your students",
       "actionLabel": "Access the Studio"
     },
     "exams": {
       "manualBp": "Manual Blood Pressure Examination",
-      "manualBpDesc": "Practice accurate manual blood pressure measurement with Italian medical language.",
+      "manualBpDesc": "Manual blood pressure measurement with Italian medical language. Embed or share with your students.",
       "cardiac": "Cardiac Examination",
-      "cardiacDesc": "Master cardiac auscultation and examination skills with interactive video walkthrough.",
+      "cardiacDesc": "Cardiac auscultation and examination skills with interactive video walkthrough.",
       "thoracic": "Thoracic Examination Essentials",
-      "thoracicDesc": "Follow the inspection, palpation, and auscultation flow end to end."
+      "thoracicDesc": "Inspection, palpation, and auscultation flow end to end."
     },
     "ui": {
       "downloadAssets": "Download Assets",
-      "embed": "Embed",
+      "embed": "Embed on Your Website",
+      "shareWithStudents": "Share with Students",
       "copyCode": "Copy Code",
       "copied": "Copied!",
       "startExam": "Start Exam",
@@ -854,7 +851,7 @@
     },
     "embed": {
       "title": "Embed Clinical Semiotics",
-      "subtitle": "Add this interactive exam to your website",
+      "subtitle": "Add this interactive exam to your website or LMS",
       "bgColor": "Background Color",
       "accentColor": "Accent Color",
       "borderRadius": "Border Radius",
@@ -873,9 +870,9 @@
   },
   "pdfViewer": {
     "catalog": {
-      "title": "Interactive Textbooks & Study Guides",
-      "metaDescription": "Free, open-source medical textbooks with interactive reading tools, highlighting, note-taking, and chapter downloads. Read online or download PDF.",
-      "subtitle": "Read online with interactive tools, or download the full PDF. Completely free and open source.",
+      "title": "Textbooks & Reference Materials",
+      "metaDescription": "Free, open-source medical textbooks for educators. Assign to your students, print as handouts, or embed in your LMS.",
+      "subtitle": "Assign to your students, print as handouts, or embed chapter links in your LMS. All free and open-source.",
       "searchPlaceholder": "Search textbooks...",
       "noResults": "No textbooks found",
       "clearFilters": "Clear Filters",
@@ -942,20 +939,20 @@
       "completePdf": "Complete PDF",
       "individualChapters": "Individual Chapters",
       "attributionRequired": "Attribution Required",
-      "attributionNote": "Please include proper attribution when using these materials.",
+      "attributionNote": "Please include proper attribution when using these materials in your teaching.",
       "error": "Download Error",
       "fileNotAvailable": "File not available. The PDF may not be uploaded yet.",
       "close": "Close"
     },
     "educator": {
       "title": "Use This in Your Course",
-      "subtitle": "This textbook is free for non-commercial educational use. Here's how to incorporate it into your teaching.",
-      "assignReading": "Assign as Reading",
+      "subtitle": "This textbook is free for non-commercial educational use. Here's how to use it in your teaching.",
+      "assignReading": "Assign to Your Students",
       "assignReadingDesc": "Link directly to specific chapters for your students. Each chapter has its own URL.",
       "printDistribute": "Print & Distribute",
       "printDistributeDesc": "Download the full PDF or individual chapters. Print for handouts or add to your LMS.",
       "embedLMS": "Embed in Your LMS",
-      "embedLMSDesc": "Link chapter URLs in Moodle, Canvas, or Blackboard. Students can highlight and take notes.",
+      "embedLMSDesc": "Link chapter URLs in Moodle, Canvas, or Blackboard.",
       "requestMods": "Request Modifications",
       "requestModsDesc": "Need a custom version? Contact us to discuss adaptations for your specific curriculum.",
       "contactCta": "Contact Us to Get Started",
@@ -972,7 +969,8 @@
       "badgeGenerator": "Badge Generator"
     },
     "overview": {
-      "startReading": "Start Reading",
+      "startReading": "Preview Content",
+      "assignToStudents": "Assign to Students",
       "downloadPdf": "Download PDF",
       "chaptersTitle": "Chapters",
       "freeOpenSource": "Free & Open Source"
@@ -984,6 +982,10 @@
     "download": "Download",
     "openSource": "Open Source",
     "free": "Free",
-    "contactEmail": "ari@entermedschool.com"
+    "contactEmail": "ari@entermedschool.com",
+    "attributionRequired": "Attribution Required",
+    "shareWithStudents": "Share with Students",
+    "embedOnWebsite": "Embed on Your Website",
+    "addToSlides": "Add to Your Slides"
   }
 }
