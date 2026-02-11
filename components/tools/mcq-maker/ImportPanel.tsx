@@ -197,7 +197,7 @@ export default function ImportPanel() {
       complete(results) {
         const data = results.data as string[][];
         if (data.length < 2) {
-          setError("File must have at least a header row and one data row.");
+          setError(t("fileMinRows"));
           return;
         }
         const headers = data[0].map((h) => h.trim());
@@ -210,7 +210,7 @@ export default function ImportPanel() {
         setStep("mapping");
       },
       error(err) {
-        setError(`Parse error: ${err.message}`);
+        setError(t("parseError", { message: err.message }));
       },
     });
   }, [t]);
@@ -260,12 +260,12 @@ export default function ImportPanel() {
       : -1;
 
     if (qIdx < 0) {
-      setError("Please select a valid question column.");
+      setError(t("selectQuestionColumn"));
       return;
     }
 
     if (optionIdxs.filter((i) => i >= 0).length < 2) {
-      setError("Please map at least 2 option columns.");
+      setError(t("mapOptionColumns"));
       return;
     }
 
@@ -289,7 +289,7 @@ export default function ImportPanel() {
 
       if (options.length < 2) {
         importWarnings.push(
-          `Row ${rowNum + 2}: Skipped — fewer than 2 non-empty options.`,
+          t("rowSkipped", { row: rowNum + 2 }),
         );
         continue;
       }
@@ -400,7 +400,7 @@ export default function ImportPanel() {
     <div className="flex flex-col gap-4 h-full">
       <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
         <Upload className="h-5 w-5 text-showcase-teal" />
-        Import Questions
+        {t("importQuestions")}
       </h2>
 
       {error && (
@@ -416,7 +416,7 @@ export default function ImportPanel() {
           <div
             role="button"
             tabIndex={0}
-            aria-label="Drop CSV or TSV file here, or click to browse"
+            aria-label={t("dropFileAria")}
             onDragOver={onDragOver}
             onDragLeave={onDragLeave}
             onDrop={onDrop}
@@ -441,10 +441,10 @@ export default function ImportPanel() {
             </div>
             <div>
               <p className="font-display font-bold text-ink-dark">
-                Drop your CSV or TSV file here
+                {t("dropFileHere")}
               </p>
               <p className="mt-1 text-sm text-ink-muted">
-                or click to browse
+                {t("orClickToBrowse")}
               </p>
             </div>
           </div>
@@ -462,20 +462,20 @@ export default function ImportPanel() {
             className="inline-flex items-center justify-center gap-2 text-sm font-bold text-showcase-purple hover:underline"
           >
             <Download className="h-4 w-4" />
-            Download sample CSV
+            {t("downloadSampleCsv")}
           </button>
 
           {/* Format help */}
           <div className="rounded-xl border-2 border-ink-light/15 bg-pastel-cream/20 p-3">
             <p className="text-xs font-bold text-ink-dark mb-1">
-              Supported formats:
+              {t("supportedFormats")}
             </p>
             <ul className="text-xs text-ink-muted space-y-0.5">
               <li>
-                CSV/TSV with columns: question, option_a..d, correct, explanation
+                {t("formatHint1")}
               </li>
-              <li>Auto-detects column names and maps them</li>
-              <li>Correct answer can be a letter (A, B...) or the full text</li>
+              <li>{t("formatHint2")}</li>
+              <li>{t("formatHint3")}</li>
             </ul>
           </div>
         </>
@@ -485,14 +485,13 @@ export default function ImportPanel() {
       {step === "mapping" && (
         <div className="flex flex-col gap-4 overflow-y-auto">
           <p className="text-sm text-ink-muted">
-            Found <strong>{parsedRows.length}</strong> rows and{" "}
-            <strong>{parsedHeaders.length}</strong> columns. Map them below:
+            {t("foundRowsColumns", { rows: parsedRows.length, columns: parsedHeaders.length })}
           </p>
 
           {/* Question column */}
           <label className="flex flex-col gap-1">
             <span className="text-sm font-bold text-ink-dark">
-              Question column <span className="text-red-400">*</span>
+              {t("questionColumn")} <span className="text-red-400">*</span>
             </span>
             <div className="relative">
               <select
@@ -500,22 +499,22 @@ export default function ImportPanel() {
                 onChange={(e) =>
                   setMapping((m) => ({ ...m, question: e.target.value }))
                 }
-                className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
               >
                 {parsedHeaders.map((h) => (
                   <option key={h} value={h}>{h}</option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+              <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
             </div>
           </label>
 
           {/* Option columns */}
           <div className="flex flex-col gap-2">
             <span className="text-sm font-bold text-ink-dark">
-              Option columns <span className="text-red-400">*</span>
-              <span className="ml-1 text-xs font-normal text-ink-muted">
-                (min 2)
+              {t("optionColumns")} <span className="text-red-400">*</span>
+              <span className="ms-1 text-xs font-normal text-ink-muted">
+                {t("minTwoOptions")}
               </span>
             </span>
             {mapping.options.map((opt, idx) => (
@@ -527,14 +526,14 @@ export default function ImportPanel() {
                   <select
                     value={opt}
                     onChange={(e) => updateMappingOption(idx, e.target.value)}
-                    className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                    className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                   >
                     <option value="">{t("selectOption")}</option>
                     {parsedHeaders.map((h) => (
                       <option key={h} value={h}>{h}</option>
                     ))}
                   </select>
-                  <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+                  <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
                 </div>
                 {mapping.options.length > 2 && (
                   <button
@@ -567,14 +566,14 @@ export default function ImportPanel() {
                 onChange={(e) =>
                   setMapping((m) => ({ ...m, correct: e.target.value }))
                 }
-                className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
               >
                 <option value="">{t("noneOption")}</option>
                 {parsedHeaders.map((h) => (
                   <option key={h} value={h}>{h}</option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+              <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
             </div>
           </label>
 
@@ -594,14 +593,14 @@ export default function ImportPanel() {
                       explanation: e.target.value || undefined,
                     }))
                   }
-                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
                   <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+                <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
               </div>
             </label>
 
@@ -619,14 +618,14 @@ export default function ImportPanel() {
                       category: e.target.value || undefined,
                     }))
                   }
-                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
                   <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+                <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
               </div>
             </label>
 
@@ -644,14 +643,14 @@ export default function ImportPanel() {
                       difficulty: e.target.value || undefined,
                     }))
                   }
-                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
+                  className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pe-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
                   <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+                <ChevronDown className="absolute end-3 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light pointer-events-none" />
               </div>
             </label>
           </div>
@@ -662,7 +661,7 @@ export default function ImportPanel() {
               <thead>
                 <tr className="bg-pastel-cream/50">
                   {parsedHeaders.map((h) => (
-                    <th key={h} className="px-2 py-1.5 text-left font-bold text-ink-dark whitespace-nowrap">
+                    <th key={h} className="px-2 py-1.5 text-start font-bold text-ink-dark whitespace-nowrap">
                       {h}
                     </th>
                   ))}
@@ -682,7 +681,7 @@ export default function ImportPanel() {
             </table>
             {parsedRows.length > 5 && (
               <p className="px-2 py-1 text-xs text-ink-muted text-center bg-pastel-cream/30">
-                ...and {parsedRows.length - 5} more rows
+                {t("moreRows", { count: parsedRows.length - 5 })}
               </p>
             )}
           </div>

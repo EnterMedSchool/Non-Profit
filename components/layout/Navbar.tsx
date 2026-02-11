@@ -22,6 +22,7 @@ import {
   Calculator,
 } from "lucide-react";
 import MobileMenu from "./MobileMenu";
+import { LocaleSwitcherDesktop } from "@/components/shared/LocaleSwitcher";
 import type { LucideIcon } from "lucide-react";
 
 /* ---------- nav data ---------- */
@@ -150,7 +151,7 @@ function ScrollProgressBar() {
   if (!mounted) return null;
   return (
     <m.div
-      className="absolute top-0 left-0 h-[3px] bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green"
+      className="absolute top-0 start-0 h-[3px] bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green"
       style={{ width: progressWidth }}
     />
   );
@@ -219,7 +220,7 @@ function MegaMenuPanel({
             className="inline-flex items-center gap-1.5 text-xs font-bold text-showcase-purple transition-colors hover:text-showcase-purple/70"
           >
             {t("viewAll")} {t(item.labelKey).toLowerCase()}
-            <span aria-hidden="true">&rarr;</span>
+            <span className="rtl:-scale-x-100" aria-hidden="true">&rarr;</span>
           </Link>
         </div>
       </div>
@@ -291,7 +292,7 @@ export default function Navbar() {
     <>
       <nav
         ref={navRef}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        className={`fixed top-0 inset-x-0 z-50 transition-all duration-300 ${
           scrolled
             ? "bg-white/80 backdrop-blur-xl border-b border-showcase-purple/10 shadow-sm"
             : "bg-white/40 backdrop-blur-md"
@@ -404,6 +405,9 @@ export default function Navbar() {
             >
               <Search className="h-4.5 w-4.5" />
             </button>
+
+            {/* Language switcher */}
+            <LocaleSwitcherDesktop />
 
             {/* Separator */}
             <div className="hidden h-5 w-px bg-showcase-purple/15 md:block" />

@@ -33,7 +33,7 @@ function BookCard({ book, progress }: BookCardProps) {
         />
 
         {/* Free badge */}
-        <div className="absolute left-3 top-3">
+        <div className="absolute start-3 top-3">
           <StickerBadge color="green" size="sm">
             {t("free")}
           </StickerBadge>
@@ -41,7 +41,7 @@ function BookCard({ book, progress }: BookCardProps) {
 
         {/* Progress overlay */}
         {progress !== undefined && progress > 0 && (
-          <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-8">
+          <div className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-8">
             <div className="flex items-center justify-between text-xs text-white/90">
               <span className="font-semibold">{t("percentRead", { percent: progress })}</span>
               <span>{Math.round((progress / 100) * book.chapters.length)}/{book.chapters.length} {t("chapters")}</span>

@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import {
   X,
@@ -16,6 +16,7 @@ import {
 
 export default function ExportPanel() {
   const t = useTranslations("tools.latexEditor.ui");
+  const locale = useLocale();
   const { setIsExportPanelOpen, documents, documentTitle } = useLaTeXEditor();
   const [copiedTex, setCopiedTex] = useState(false);
   const [exportStatus, setExportStatus] = useState<string | null>(null);
@@ -64,7 +65,7 @@ To compile this document:
 2. Or install a local LaTeX distribution (TeX Live / MiKTeX)
    and run: pdflatex main.tex
 
-Created: ${new Date().toLocaleDateString()}
+Created: ${new Date().toLocaleDateString(locale)}
 `
       );
 
@@ -208,7 +209,7 @@ function ExportOption({
   return (
     <button
       onClick={onClick}
-      className={`flex items-center gap-3 w-full p-3 rounded-xl border-2 text-left transition-all hover:shadow-md ${
+      className={`flex items-center gap-3 w-full p-3 rounded-xl border-2 text-start transition-all hover:shadow-md ${
         highlight
           ? "border-showcase-purple/30 bg-showcase-purple/5 hover:border-showcase-purple/50"
           : "border-ink-dark/8 hover:border-ink-dark/15"

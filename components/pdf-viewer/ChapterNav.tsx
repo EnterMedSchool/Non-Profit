@@ -28,7 +28,7 @@ export default function ChapterNav() {
           className="group flex flex-1 items-center gap-3 rounded-2xl border-3 border-showcase-navy/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-showcase-purple/30 hover:shadow-chunky-sm"
         >
           <ChevronLeft className="h-5 w-5 shrink-0 text-ink-light transition-colors group-hover:text-showcase-purple" />
-          <div className="min-w-0 text-left">
+          <div className="min-w-0 text-start">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
               {t("previous")}
             </span>
@@ -43,7 +43,7 @@ export default function ChapterNav() {
           className="group flex flex-1 items-center gap-3 rounded-2xl border-3 border-showcase-navy/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-showcase-purple/30 hover:shadow-chunky-sm"
         >
           <ChevronLeft className="h-5 w-5 shrink-0 text-ink-light transition-colors group-hover:text-showcase-purple" />
-          <div className="min-w-0 text-left">
+          <div className="min-w-0 text-start">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
               {t("backTo")}
             </span>
@@ -59,7 +59,7 @@ export default function ChapterNav() {
           href={`/${locale}/resources/pdfs/${book.slug}/${next.slug}`}
           className="group flex flex-1 items-center justify-end gap-3 rounded-2xl border-3 border-showcase-navy/10 bg-white p-4 transition-all hover:-translate-y-0.5 hover:border-showcase-teal/30 hover:shadow-chunky-sm"
         >
-          <div className="min-w-0 text-right">
+          <div className="min-w-0 text-end">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
               {t("next")}
             </span>
@@ -71,7 +71,7 @@ export default function ChapterNav() {
         </Link>
       ) : (
         <div className="flex flex-1 items-center justify-end gap-3 rounded-2xl border-3 border-dashed border-showcase-green/30 bg-showcase-green/5 p-4">
-          <div className="text-right">
+          <div className="text-end">
             <span className="text-xs font-bold uppercase tracking-wider text-showcase-green">
               {t("congratulations")}
             </span>

@@ -93,17 +93,18 @@ function MobilePreviewSheet({
   open: boolean;
   onClose: () => void;
 }) {
+  const t = useTranslations("tools.mcqMaker.ui");
   if (!open) return null;
   return (
     <div className="fixed inset-0 z-50 lg:hidden flex flex-col bg-white">
       <div className="flex items-center justify-between border-b-2 border-ink-light/10 px-4 py-3">
         <h2 className="font-display text-base font-bold text-ink-dark">
-          Question Preview
+          {t("questionPreview")}
         </h2>
         <button
           onClick={onClose}
           className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-ink-light/20 text-ink-muted hover:text-ink-dark transition-colors"
-          aria-label="Close preview"
+          aria-label={t("closePreview")}
         >
           <X className="h-4 w-4" />
         </button>
@@ -181,7 +182,7 @@ function MCQMakerInner() {
           <Link
             href="/"
             className="flex h-8 w-8 items-center justify-center rounded-lg border-2 border-ink-light/20 bg-white text-ink-muted hover:border-showcase-purple hover:text-showcase-purple transition-colors"
-            aria-label="Back to Home"
+            aria-label={t("backToHome")}
           >
             <ArrowLeft className="h-4 w-4" />
           </Link>
@@ -260,7 +261,7 @@ function MCQMakerInner() {
         {/* Desktop sidebar tabs */}
         <nav
           ref={tabListRef}
-          className="hidden lg:flex flex-col gap-1 border-r-2 border-ink-light/10 bg-white px-2 py-3 w-16"
+          className="hidden lg:flex flex-col gap-1 border-e-2 border-ink-light/10 bg-white px-2 py-3 w-16"
           role="tablist"
           aria-label="MCQ Maker tools"
           aria-orientation="vertical"
@@ -285,7 +286,7 @@ function MCQMakerInner() {
                 }`}
               >
                 <Icon className="h-4 w-4" />
-                {tab.label}
+                {t(tab.key)}
               </button>
             );
           })}
@@ -297,7 +298,7 @@ function MCQMakerInner() {
           role="tabpanel"
           aria-labelledby={`mcq-tab-${activePanel}`}
           className={`
-            w-full lg:w-80 xl:w-96 shrink-0 border-r-2 border-ink-light/10 bg-white overflow-y-auto p-4
+            w-full lg:w-80 xl:w-96 shrink-0 border-e-2 border-ink-light/10 bg-white overflow-y-auto p-4
             ${!showPreview ? "lg:flex-1 lg:max-w-none" : ""}
           `}
         >
@@ -323,7 +324,6 @@ function MCQMakerInner() {
       <MobilePreviewSheet
         open={mobilePreview}
         onClose={() => setMobilePreview(false)}
-        t={t}
       />
     </div>
   );
@@ -331,9 +331,8 @@ function MCQMakerInner() {
 
 // ── Root export ──────────────────────────────────────────────────────
 function MCQMakerWithTranslations() {
-  const t = useTranslations("tools.mcqMaker.ui");
   return (
-    <MCQErrorBoundary t={t}>
+    <MCQErrorBoundary>
       <MCQMakerInner />
     </MCQErrorBoundary>
   );

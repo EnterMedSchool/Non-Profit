@@ -411,7 +411,7 @@ export default function LearningSidebar() {
                 onClick={() =>
                   setExpandedLesson(isExpanded ? null : lesson.id)
                 }
-                className={`flex items-center gap-2 w-full px-3 py-2.5 text-left transition-colors ${
+                className={`flex items-center gap-2 w-full px-3 py-2.5 text-start transition-colors ${
                   isExpanded
                     ? "bg-showcase-purple/5"
                     : "hover:bg-pastel-cream/50"
@@ -483,7 +483,7 @@ export default function LearningSidebar() {
                               key={oi}
                               onClick={() => handleQuizAnswer(lesson.id, oi)}
                               disabled={answered}
-                              className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-[11px] text-left transition-colors ${
+                              className={`flex items-center gap-2 w-full px-2 py-1.5 rounded-md text-[11px] text-start transition-colors ${
                                 answered && selected && isCorrect
                                   ? "bg-green-100 text-green-700 border border-green-300"
                                   : answered && selected && !isCorrect

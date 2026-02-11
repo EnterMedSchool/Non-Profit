@@ -94,13 +94,13 @@ export async function generateMetadata({ params }: VisualDetailPageProps) {
 /* ── Fact border colours ────────────────────────────────────────── */
 
 const factBorderColors: Record<string, string> = {
-  pathology: "border-l-red-400",
-  drug: "border-l-purple-400",
-  anatomy: "border-l-rose-400",
-  symptom: "border-l-amber-400",
-  diagnostic: "border-l-blue-400",
-  treatment: "border-l-green-400",
-  mnemonic: "border-l-yellow-400",
+  pathology: "border-s-red-400",
+  drug: "border-s-purple-400",
+  anatomy: "border-s-rose-400",
+  symptom: "border-s-amber-400",
+  diagnostic: "border-s-blue-400",
+  treatment: "border-s-green-400",
+  mnemonic: "border-s-yellow-400",
 };
 
 /* ── Accent map per category ────────────────────────────────────── */
@@ -253,7 +253,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
                       {facts.map((fact, i) => (
                         <div
                           key={`${fact.term}-${i}`}
-                          className={`rounded-xl border-2 border-showcase-navy/8 bg-white p-4 border-l-4 ${borderColor}`}
+                          className={`rounded-xl border-2 border-showcase-navy/8 bg-white p-4 border-s-4 ${borderColor}`}
                         >
                           <p className="text-sm font-semibold text-ink-dark">
                             {fact.term}

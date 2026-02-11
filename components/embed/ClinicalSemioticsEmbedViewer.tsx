@@ -578,7 +578,7 @@ export default function ClinicalSemioticsEmbedViewer({
               <Pause className={isCompact ? "h-3 w-3" : "h-4 w-4"} />
             ) : (
               <Play
-                className={`${isCompact ? "h-3 w-3" : "h-4 w-4"} ml-0.5`}
+                className={`${isCompact ? "h-3 w-3" : "h-4 w-4"} ms-0.5`}
               />
             )}
           </m.button>

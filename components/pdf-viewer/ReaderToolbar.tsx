@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect, memo } from "react";
+import { useTranslations } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
 import {
@@ -28,6 +29,7 @@ import {
   type ReaderTheme,
 } from "@/hooks/useReaderPreferences";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
+import { isRTLLocale, rtlX } from "@/lib/i18n";
 
 const HIGHLIGHT_COLORS: { color: HighlightColor; bg: string; labelKey: string }[] =
   [
@@ -79,6 +81,7 @@ export default function ReaderToolbar() {
   const router = useRouter();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
+  const isRTL = isRTLLocale(locale);
 
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [searchOpen, setSearchOpen] = useState(false);
@@ -158,7 +161,7 @@ export default function ReaderToolbar() {
   return (
     <>
       {/* Desktop toolbar — fixed on the right side */}
-      <div className="fixed right-4 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-2 lg:flex">
+      <div className="fixed end-4 top-1/2 z-50 hidden -translate-y-1/2 flex-col gap-2 lg:flex">
         <div className="flex flex-col gap-1.5 rounded-2xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky-sm">
           {/* Sidebar toggle */}
           <ToolbarButton
@@ -180,7 +183,7 @@ export default function ReaderToolbar() {
           {/* Highlight toggle */}
           <ToolbarButton
             icon={Highlighter}
-            label="Highlight mode (H)"
+            label={t("highlightMode")}
             onClick={() => setHighlightMode(!highlightMode)}
             active={highlightMode}
             activeColor="text-yellow-600 bg-yellow-50"
@@ -215,7 +218,7 @@ export default function ReaderToolbar() {
           {/* Notes */}
           <ToolbarButton
             icon={StickyNote}
-            label="Notes (N)"
+            label={t("notes")}
             onClick={toggleNotesPanel}
             active={notesPanelOpen}
             activeColor="text-showcase-teal bg-showcase-teal/10"
@@ -234,10 +237,10 @@ export default function ReaderToolbar() {
             <AnimatePresence>
               {showAnnotationMenu && (
                 <m.div
-                  initial={{ opacity: 0, x: 10 }}
+                  initial={{ opacity: 0, x: rtlX(10, isRTL) }}
                   animate={{ opacity: 1, x: 0 }}
-                  exit={{ opacity: 0, x: 10 }}
-                  className="absolute right-12 top-0 z-10 w-44 rounded-xl border-2 border-showcase-navy/10 bg-white p-1.5 shadow-lg"
+                  exit={{ opacity: 0, x: rtlX(10, isRTL) }}
+                  className="absolute end-12 top-0 z-10 w-44 rounded-xl border-2 border-showcase-navy/10 bg-white p-1.5 shadow-lg"
                 >
                   <button
                     onClick={handleExportAnnotations}
@@ -283,7 +286,7 @@ export default function ReaderToolbar() {
       </div>
 
       {/* Mobile toolbar — fixed at the bottom */}
-      <div className="fixed bottom-0 left-0 right-0 z-50 border-t-2 border-showcase-navy/10 bg-white/95 px-2 py-2 backdrop-blur-sm lg:hidden">
+      <div className="fixed bottom-0 inset-x-0 z-50 border-t-2 border-showcase-navy/10 bg-white/95 px-2 py-2 backdrop-blur-sm lg:hidden">
         <div className="mx-auto flex max-w-lg items-center justify-around">
           <MobileToolbarButton
             icon={sidebarOpen ? PanelLeftClose : PanelLeft}
@@ -343,11 +346,11 @@ export default function ReaderToolbar() {
               role="dialog"
               aria-modal="true"
               aria-label={t("ariaReadingSettings")}
-              className="fixed bottom-16 right-4 z-[71] w-72 rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky lg:bottom-auto lg:right-20 lg:top-1/2 lg:-translate-y-1/2"
+              className="fixed bottom-16 end-4 z-[71] w-72 rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky lg:bottom-auto lg:end-20 lg:top-1/2 lg:-translate-y-1/2"
             >
               <div className="flex items-center justify-between mb-4">
                 <h3 className="font-display text-sm font-bold text-ink-dark">
-                  Reading Settings
+                  {t("readingSettings")}
                 </h3>
                 <button
                   onClick={() => setSettingsOpen(false)}
@@ -362,7 +365,7 @@ export default function ReaderToolbar() {
               <div className="mb-4">
                 <label className="mb-2 flex items-center gap-1.5 text-xs font-bold text-ink-muted">
                   <Type className="h-3.5 w-3.5" />
-                  Font Size
+                  {t("fontSize")}
                 </label>
                 <div className="flex gap-1">
                   {FONT_SIZES.map((size) => (
@@ -534,7 +537,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
         exit={{ opacity: 0, y: -20 }}
         role="dialog"
         aria-modal="true"
-        aria-label="Search in book"
+        aria-label={t("ariaLabel")}
         className="fixed left-1/2 top-[8vh] z-[91] w-[94vw] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-lg"
       >
         <div className="flex items-center gap-3 border-b-2 border-showcase-navy/10 px-4 py-3">
@@ -554,7 +557,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
             </button>
           )}
           <button onClick={onClose} className="rounded-lg px-2 py-1 text-xs font-bold text-ink-muted hover:bg-gray-100">
-            ESC
+            {t("esc")}
           </button>
         </div>
 
@@ -584,7 +587,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
                 >
                   <div className="flex-1 min-w-0">
                     <div className="flex items-center gap-2 text-[10px]">
-                      <span className="font-bold text-showcase-purple">Ch. {r.chapterNumber}</span>
+                      <span className="font-bold text-showcase-purple">{t("chPrefix")} {r.chapterNumber}</span>
                       <span className="text-ink-light">&middot;</span>
                       <span className="font-semibold text-ink-muted truncate">{r.sectionTitle}</span>
                     </div>

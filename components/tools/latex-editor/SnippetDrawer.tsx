@@ -169,17 +169,17 @@ export default function SnippetDrawer() {
 
         {/* Search */}
         <div className="relative">
-          <Search size={12} className="absolute left-2.5 top-1/2 -translate-y-1/2 text-ink-light" />
+          <Search size={12} className="absolute start-2.5 top-1/2 -translate-y-1/2 text-ink-light" />
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("searchSnippetsPlaceholder")}
-            className="w-full pl-7 pr-3 py-1.5 rounded-lg border border-ink-dark/10 text-xs focus:outline-none focus:border-showcase-purple/40"
+            className="w-full ps-7 pe-3 py-1.5 rounded-lg border border-ink-dark/10 text-xs focus:outline-none focus:border-showcase-purple/40"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-light hover:text-ink-muted"
+              className="absolute end-2 top-1/2 -translate-y-1/2 text-ink-light hover:text-ink-muted"
             >
               <X size={10} />
             </button>

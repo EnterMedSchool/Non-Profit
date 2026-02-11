@@ -133,22 +133,22 @@
       "2020": {
         "year": "2020",
         "title": "Free Content Begins",
-        "description": "Ari starts releasing free educational content, collaborating with OpenStax materials to provide quality open-source resources."
+        "description": "Ari starts releasing free educational content, collaborating with OpenStax materials to provide quality open-source study resources."
       },
       "2021": {
         "year": "2021",
-        "title": "Leading IMAT Course",
-        "description": "Launch of paid IMAT courses, becoming the world's leading IMAT preparation course. Revenue funds the creation of free resources."
+        "title": "World's Leading IMAT Course",
+        "description": "Launch of paid IMAT courses, becoming the world's leading course for international students. Revenue funds the creation of free resources for everyone."
       },
       "2025": {
         "year": "2025",
-        "title": "New Generation",
-        "description": "Connecting with professors and doctors worldwide to verify and create content, releasing everything for free."
+        "title": "The New Generation",
+        "description": "Expanding to medical students, connecting with professors and doctors worldwide to verify and create content. Releasing everything for free."
       },
       "2026": {
         "year": "2026",
         "title": "Open Source Goes Official",
-        "description": "Launch of EnterMedSchool.org — a free resource archive for medical educators. Anki addon, Chrome extension, and hundreds of open-source resources."
+        "description": "Launch of EnterMedSchool.org, our Anki addon, Chrome extension, and a wave of open-source resources. The goal was always to fund this project — and we finally did it."
       }
     }
   },
@@ -762,6 +762,18 @@
         "questionPreviewDesc": "Create or select a question to see a live preview here.",
         "yourQuestionHere": "Your question will appear here...",
         "optionPlaceholder": "Option {letter}...",
+        "deleteConfirmSingle": "Delete this question? This cannot be undone.",
+        "deleteConfirmBulk": "Delete {count} selected questions? This cannot be undone.",
+        "marginTop": "Top",
+        "marginRight": "Right",
+        "marginBottom": "Bottom",
+        "marginLeft": "Left",
+        "logoAlt": "Logo",
+        "backToHome": "Back to Home",
+        "minTwoOptions": "(min 2)",
+        "formatHint1": "CSV/TSV with columns: question, option_a..d, correct, explanation",
+        "formatHint2": "Auto-detects column names and maps them",
+        "formatHint3": "Correct answer can be a letter (A, B...) or the full text",
         "showingPreview": "Showing {type} of {count} question",
         "showingPreviewPlural": "Showing {type} of {count} questions",
         "livePreviewUpdates": "Live preview updates as you type",
@@ -950,7 +962,7 @@
         "templates": {
           "title": "Templates",
           "noTemplatesInCategory": "No templates in this category yet",
-          "applyConfirm": "Apply {name}? This will replace the current canvas.",
+          "applyConfirm": "Apply <bold>{name}</bold>? This will replace the current canvas.",
           "cancel": "Cancel",
           "apply": "Apply Template"
         },
@@ -969,6 +981,9 @@
           "image": "Image",
           "path": "Path",
           "object": "object",
+          "textPreview": "Text: \"{preview}\"",
+          "textFallback": "Text {index}",
+          "layerLabel": "{type} {index}",
           "hide": "Hide",
           "show": "Show",
           "unlock": "Unlock",
@@ -1662,6 +1677,7 @@
     "resultCount": "results",
     "ariaSearch": "Search",
     "ariaClose": "Close search",
+    "escKey": "ESC",
     "quickLinkResources": "Resources",
     "quickLinkResourcesDesc": "Browse all resources",
     "quickLinkPracticeQuestions": "Practice Questions",
@@ -2041,15 +2057,19 @@
       "ariaReadingSettings": "Reading Settings"
     },
     "search": {
+      "ariaLabel": "Search in book",
       "placeholder": "Search in this book...",
       "minChars": "Type at least 2 characters to search",
       "noResults": "No results found for",
       "results": "result",
       "resultsPlural": "results",
-      "found": "found"
+      "found": "found",
+      "esc": "ESC",
+      "chPrefix": "Ch."
     },
     "notes": {
       "title": "Notes",
+      "closePanel": "Close notes",
       "addPlaceholder": "Add a note for this chapter...",
       "ctrlEnter": "Ctrl+Enter to save",
       "noNotes": "No notes yet...",
@@ -2057,7 +2077,8 @@
       "edit": "Edit",
       "delete": "Delete",
       "cancel": "Cancel",
-      "save": "Save"
+      "save": "Save",
+      "chapterPrefix": "Chapter"
     },
     "download": {
       "title": "Download Resources",
@@ -2118,6 +2139,7 @@
     }
   },
   "common": {
+    "switchLanguage": "Switch language",
     "learnMore": "Learn More",
     "viewAll": "View All",
     "linkCopied": "Link Copied!",
@@ -2127,6 +2149,8 @@
     "free": "Free",
     "contactEmail": "ari@entermedschool.com",
     "attributionRequired": "Attribution Required",
+    "licenseNote": "All tools are free and open-source for educational use.",
+    "attributionRequiredLink": "View license & attribution details",
     "shareWithStudents": "Share with Students",
     "embedOnWebsite": "Embed on Your Website",
     "addToSlides": "Add to Your Slides",
@@ -2195,6 +2219,110 @@
       "a4": "Yes. The attribution links are required under our open-source license. They help us keep this tool free for everyone. Removing them is not permitted.",
       "q5": "Does it work on mobile devices?",
       "a5": "Yes. The embedded tool is fully responsive and works on all screen sizes — desktop, tablet, and mobile."
+    }
+  },
+  "data": {
+    "resources": {
+      "anatomyUpperLimb": {
+        "title": "Upper Limb Anatomy – Practice MCQs",
+        "description": "50 exam-style multiple-choice questions covering the brachial plexus, shoulder joint, forearm compartments, and hand innervation.",
+        "badge": "Anatomy"
+      },
+      "physiologyCardio": {
+        "title": "Cardiovascular Physiology – Mock Exam",
+        "description": "40 questions on cardiac output, blood pressure regulation, ECG interpretation, and the cardiac cycle. Includes detailed explanations.",
+        "badge": "Physiology"
+      },
+      "biochemMetabolism": {
+        "title": "Biochemistry – Metabolism & Enzymes",
+        "description": "35 questions on glycolysis, the TCA cycle, oxidative phosphorylation, and enzyme kinetics. Great for first-year revision.",
+        "badge": "Biochemistry"
+      },
+      "pharmaAutonomic": {
+        "title": "Pharmacology – Autonomic Nervous System",
+        "description": "30 clinical-scenario questions on cholinergic and adrenergic drugs, receptor subtypes, and common side effects.",
+        "badge": "Pharmacology"
+      },
+      "histoTissues": {
+        "title": "Histology – Tissue Types & Identification",
+        "description": "25 image-based questions with micrographs. Identify epithelial, connective, muscle, and nervous tissue under the microscope.",
+        "badge": "Histology"
+      },
+      "neuroCranialNerves": {
+        "title": "Neuroanatomy – Cranial Nerves Quiz",
+        "description": "20 targeted questions on cranial nerve origins, pathways, and clinical lesions. Perfect for OSCE preparation.",
+        "badge": "Neuroanatomy"
+      }
+    },
+    "illustrationAssets": {
+      "categories": {
+        "cells": "Cells",
+        "organelles": "Organelles",
+        "molecules": "Molecules",
+        "organs": "Organs",
+        "equipment": "Lab Equipment",
+        "arrows": "Arrows",
+        "symbols": "Symbols",
+        "micro": "Microorganisms"
+      },
+      "assets": {
+        "animalCell": "Animal Cell",
+        "plantCell": "Plant Cell",
+        "bacteria": "Bacteria",
+        "redBloodCell": "Red Blood Cell",
+        "whiteBloodCell": "White Blood Cell",
+        "neuron": "Neuron",
+        "epithelialCell": "Epithelial Cell",
+        "stemCell": "Stem Cell",
+        "nucleus": "Nucleus",
+        "mitochondria": "Mitochondria",
+        "roughEr": "Rough ER",
+        "smoothEr": "Smooth ER",
+        "golgiApparatus": "Golgi Apparatus",
+        "ribosome": "Ribosome",
+        "lysosome": "Lysosome",
+        "cellMembrane": "Cell Membrane",
+        "dnaHelix": "DNA Helix",
+        "rnaStrand": "RNA Strand",
+        "protein": "Protein",
+        "antibody": "Antibody",
+        "receptor": "Receptor",
+        "enzyme": "Enzyme",
+        "atp": "ATP",
+        "glucose": "Glucose",
+        "heart": "Heart",
+        "brain": "Brain",
+        "lungs": "Lungs",
+        "liver": "Liver",
+        "kidney": "Kidney",
+        "stomach": "Stomach",
+        "eyeOrgan": "Eye",
+        "bone": "Bone",
+        "microscope": "Microscope",
+        "testTube": "Test Tube",
+        "beaker": "Beaker",
+        "pipette": "Pipette",
+        "petriDish": "Petri Dish",
+        "syringe": "Syringe",
+        "flask": "Erlenmeyer Flask",
+        "centrifuge": "Centrifuge",
+        "arrowRight": "Right Arrow",
+        "arrowLeft": "Left Arrow",
+        "arrowBidirectional": "Bidirectional Arrow",
+        "arrowCurved": "Curved Arrow",
+        "arrowInhibition": "Inhibition Arrow",
+        "arrowActivation": "Activation Arrow",
+        "symbolPlus": "Plus Sign",
+        "symbolMinus": "Minus Sign",
+        "symbolCheck": "Checkmark",
+        "symbolX": "X Mark",
+        "symbolStar": "Star",
+        "symbolLabel": "Label Box",
+        "virus": "Virus",
+        "bacteriophage": "Bacteriophage",
+        "yeast": "Yeast Cell",
+        "amoeba": "Amoeba"
+      }
     }
   }
 }

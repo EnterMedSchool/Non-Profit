@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations, useLocale } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
 import {
   X,
@@ -12,8 +13,12 @@ import {
   MessageSquare,
 } from "lucide-react";
 import { usePDFViewer } from "./PDFViewerContext";
+import { isRTLLocale, rtlX } from "@/lib/i18n";
 
 export default function NotesSidebar() {
+  const t = useTranslations("pdfViewer.notes");
+  const locale = useLocale();
+  const isRTL = isRTLLocale(locale);
   const {
     notesPanelOpen,
     setNotesPanelOpen,
@@ -65,14 +70,14 @@ export default function NotesSidebar() {
 
           {/* Panel */}
           <m.div
-            initial={{ x: 400, opacity: 0 }}
+            initial={{ x: rtlX(400, isRTL), opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: 400, opacity: 0 }}
+            exit={{ x: rtlX(400, isRTL), opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             role="dialog"
             aria-modal="true"
             aria-label={t("title")}
-            className="fixed right-0 top-0 z-[61] flex h-full w-full max-w-md flex-col border-l-3 border-showcase-navy/10 bg-white shadow-lg"
+            className="fixed end-0 top-0 z-[61] flex h-full w-full max-w-md flex-col border-s-3 border-showcase-navy/10 bg-white shadow-lg"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b-2 border-showcase-navy/10 px-5 py-4">
@@ -174,7 +179,7 @@ export default function NotesSidebar() {
                           </p>
                             <div className="mt-2 flex items-center justify-between">
                             <span className="text-[10px] text-ink-light">
-                              {new Date(note.createdAt).toLocaleDateString()}
+                              {new Date(note.createdAt).toLocaleDateString(locale)}
                             </span>
                             <div className="flex gap-1 opacity-100 lg:opacity-0 lg:transition-opacity lg:group-hover:opacity-100">
                               <button
@@ -208,7 +213,7 @@ export default function NotesSidebar() {
             {/* Chapter indicator */}
             <div className="border-t-2 border-showcase-navy/10 px-5 py-3">
               <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-light">
-                Chapter {currentChapter.number}
+                {t("chapterPrefix")} {currentChapter.number}
               </p>
               <p className="text-xs text-ink-muted">{currentChapter.title}</p>
             </div>

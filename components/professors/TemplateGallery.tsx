@@ -90,7 +90,7 @@ export default function TemplateGallery() {
         <AnimatedSection delay={0.1} animation="fadeUp">
           <div className="relative mx-auto max-w-xl">
             <div className="relative flex items-center overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all focus-within:shadow-chunky-lg focus-within:-translate-y-0.5">
-              <Search className="ml-4 h-5 w-5 flex-shrink-0 text-ink-muted" />
+              <Search className="ms-4 h-5 w-5 flex-shrink-0 text-ink-muted" />
               <input
                 ref={searchInputRef}
                 type="text"
@@ -103,7 +103,7 @@ export default function TemplateGallery() {
               {searchQuery && (
                 <button
                   onClick={clearSearch}
-                  className="mr-3 flex h-7 w-7 items-center justify-center rounded-lg bg-pastel-lavender text-ink-muted transition-colors hover:bg-showcase-purple hover:text-white"
+                  className="me-3 flex h-7 w-7 items-center justify-center rounded-lg bg-pastel-lavender text-ink-muted transition-colors hover:bg-showcase-purple hover:text-white"
                   aria-label={t("clearSearch")}
                 >
                   <X className="h-4 w-4" />

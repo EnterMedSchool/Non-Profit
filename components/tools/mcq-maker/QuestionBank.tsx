@@ -141,7 +141,7 @@ export default function QuestionBank() {
   const deleteSelected = useCallback(() => {
     if (
       !window.confirm(
-        `Delete ${selectedIds.size} selected question${selectedIds.size !== 1 ? "s" : ""}? This cannot be undone.`,
+        t("deleteConfirmBulk", { count: selectedIds.size }),
       )
     )
       return;
@@ -258,13 +258,13 @@ export default function QuestionBank() {
       {/* Search & Filter bar */}
       <div className="flex gap-2">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-light" />
+          <Search className="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-light" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("searchPlaceholder")}
-            className="w-full rounded-xl border-2 border-ink-light/30 bg-white pl-9 pr-3 py-2 text-sm text-ink-dark placeholder:text-ink-light/50 focus:border-showcase-purple focus:outline-none transition-all"
+            className="w-full rounded-xl border-2 border-ink-light/30 bg-white ps-9 pe-3 py-2 text-sm text-ink-dark placeholder:text-ink-light/50 focus:border-showcase-purple focus:outline-none transition-all"
           />
         </div>
         <button
@@ -302,7 +302,7 @@ export default function QuestionBank() {
               onChange={(e) =>
                 setCategoryFilter(e.target.value || null)
               }
-              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white ps-3 pe-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
               <option value="">{t("allCategories")}</option>
               {allCategories.map((c) => (
@@ -311,7 +311,7 @@ export default function QuestionBank() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+            <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
 
           {/* Difficulty */}
@@ -321,14 +321,14 @@ export default function QuestionBank() {
               onChange={(e) =>
                 setDifficultyFilter(e.target.value || null)
               }
-              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white ps-3 pe-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
               <option value="">{t("allDifficulties")}</option>
               <option value="easy">{t("easy")}</option>
               <option value="medium">{t("medium")}</option>
               <option value="hard">{t("hard")}</option>
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+            <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
 
           {/* Tag */}
@@ -337,7 +337,7 @@ export default function QuestionBank() {
               <select
                 value={tagFilter ?? ""}
                 onChange={(e) => setTagFilter(e.target.value || null)}
-                className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+                className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white ps-3 pe-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
               >
                 <option value="">{t("allTags")}</option>
                 {allTags.map((t) => (
@@ -346,7 +346,7 @@ export default function QuestionBank() {
                   </option>
                 ))}
               </select>
-              <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+              <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
             </div>
           )}
 
@@ -355,14 +355,14 @@ export default function QuestionBank() {
             <select
               value={sortField}
               onChange={(e) => setSortField(e.target.value as SortField)}
-              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+              className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white ps-3 pe-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
               <option value="date">{t("sortDate")}</option>
               <option value="question">{t("sortQuestion")}</option>
               <option value="category">{t("sortCategory")}</option>
               <option value="difficulty">{t("sortDifficulty")}</option>
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+            <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
 
           {activeFilterCount > 0 && (
@@ -392,7 +392,7 @@ export default function QuestionBank() {
           </button>
           <button
             onClick={() => setSelectedIds(new Set())}
-            className="text-xs font-bold text-ink-muted hover:underline ml-auto"
+            className="text-xs font-bold text-ink-muted hover:underline ms-auto"
           >
             {t("deselect")}
           </button>
@@ -400,7 +400,7 @@ export default function QuestionBank() {
       )}
 
       {/* Question list */}
-      <div className="flex flex-col gap-1.5 overflow-y-auto flex-1 pr-1">
+      <div className="flex flex-col gap-1.5 overflow-y-auto flex-1 pe-1">
         {/* Select all */}
         {filtered.length > 0 && (
           <button
@@ -455,7 +455,7 @@ export default function QuestionBank() {
               {/* Content */}
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-ink-dark truncate">
-                  <span className="text-ink-muted mr-1.5">{i + 1}.</span>
+                  <span className="text-ink-muted me-1.5">{i + 1}.</span>
                   {q.question || t("emptyQuestion")}
                 </p>
                 <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-muted">

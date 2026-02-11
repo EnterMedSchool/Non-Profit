@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useRef, useCallback } from "react";
+import { useState, useRef, useCallback, useMemo } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import {
   Search,
@@ -21,30 +21,6 @@ import ChunkyCard from "@/components/shared/ChunkyCard";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import StickerBadge from "@/components/shared/StickerBadge";
 
-/* ─────────────────────── Section Jump Targets ──────────────────────── */
-
-const sectionNav = [
-  { id: "section-guides", label: "Guides", icon: BookOpen, color: "bg-showcase-teal", text: "text-ink-dark" },
-  { id: "section-assets", label: "Assets", icon: Image, color: "bg-showcase-orange", text: "text-ink-dark" },
-];
-
-/* ─────────────────────── Guide Data ────────────────────────────────── */
-
-const guides = [
-  { id: "ai-slides", title: "How to Use AI to Enhance Your Slides", desc: "Step-by-step guide to using AI tools for creating better medical presentations and lecture content.", icon: Sparkles, badge: "New", badgeColor: "purple" as const },
-  { id: "clinical-cases-guide", title: "Using Clinical Cases in Your Curriculum", desc: "Best practices for integrating clinical case studies into medical courses for deeper learner engagement.", icon: Stethoscope },
-  { id: "ems-resources", title: "Adding EnterMedSchool Resources to Your Teaching", desc: "How to embed, share, and integrate EnterMedSchool tools and resources into your LMS and lectures.", icon: BookOpen },
-  { id: "mcq-maker-guide", title: "Create & Share MCQ Exams", desc: "Build multiple choice questions, generate exam PDFs with answer keys, and embed interactive quizzes directly on your website.", icon: GraduationCap, badge: "New", badgeColor: "teal" as const },
-];
-
-/* ─────────────────────── Asset Data ────────────────────────────────── */
-
-const assets = [
-  { id: "logo-pack", title: "EnterMedSchool Logo Pack", desc: "Official logos in SVG, PNG formats for use in your slides and materials.", type: "Logos", icon: Image },
-  { id: "anatomy-diagrams", title: "Anatomy Diagram Set", desc: "Collection of labeled anatomy diagrams ready to embed in presentations.", type: "Diagrams", icon: Palette },
-  { id: "clinical-icons", title: "Clinical Icons Collection", desc: "Medical and clinical icons for use in your educational materials and presentations.", type: "Icons", icon: Download },
-];
-
 /* ═══════════════════════════════════════════════════════════════════════
    Main Component
    ═══════════════════════════════════════════════════════════════════════ */
@@ -52,6 +28,30 @@ const assets = [
 export default function ForProfessorsHub() {
   const t = useTranslations("professors");
   const locale = useLocale();
+
+  /* ─────────────────────── Section Jump Targets ──────────────────────── */
+
+  const sectionNav = useMemo(() => [
+    { id: "section-guides", label: t("hub.sectionGuides"), icon: BookOpen, color: "bg-showcase-teal", text: "text-ink-dark" },
+    { id: "section-assets", label: t("hub.sectionAssets"), icon: Image, color: "bg-showcase-orange", text: "text-ink-dark" },
+  ], [t]);
+
+  /* ─────────────────────── Guide Data ────────────────────────────────── */
+
+  const guides = useMemo(() => [
+    { id: "ai-slides", title: t("hub.guides.aiSlides.title"), desc: t("hub.guides.aiSlides.desc"), icon: Sparkles, badge: t("hub.badgeNew"), badgeColor: "purple" as const },
+    { id: "clinical-cases-guide", title: t("hub.guides.clinicalCases.title"), desc: t("hub.guides.clinicalCases.desc"), icon: Stethoscope },
+    { id: "ems-resources", title: t("hub.guides.emsResources.title"), desc: t("hub.guides.emsResources.desc"), icon: BookOpen },
+    { id: "mcq-maker-guide", title: t("hub.guides.mcqMaker.title"), desc: t("hub.guides.mcqMaker.desc"), icon: GraduationCap, badge: t("hub.badgeNew"), badgeColor: "teal" as const },
+  ], [t]);
+
+  /* ─────────────────────── Asset Data ────────────────────────────────── */
+
+  const assets = useMemo(() => [
+    { id: "logo-pack", title: t("hub.assets.logoPack.title"), desc: t("hub.assets.logoPack.desc"), type: t("hub.assets.logoPack.type"), icon: Image },
+    { id: "anatomy-diagrams", title: t("hub.assets.anatomyDiagrams.title"), desc: t("hub.assets.anatomyDiagrams.desc"), type: t("hub.assets.anatomyDiagrams.type"), icon: Palette },
+    { id: "clinical-icons", title: t("hub.assets.clinicalIcons.title"), desc: t("hub.assets.clinicalIcons.desc"), type: t("hub.assets.clinicalIcons.type"), icon: Download },
+  ], [t]);
 
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -95,21 +95,21 @@ export default function ForProfessorsHub() {
           {/* Search */}
           <div className="relative mx-auto max-w-2xl">
             <div className="relative flex items-center overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all focus-within:shadow-chunky-lg focus-within:-translate-y-0.5">
-              <Search className="ml-4 h-5 w-5 flex-shrink-0 text-ink-muted" />
+              <Search className="ms-4 h-5 w-5 flex-shrink-0 text-ink-muted" />
               <input
                 ref={searchInputRef}
                 type="text"
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
-                placeholder="Search guides and assets..."
+                placeholder={t("hub.searchPlaceholder")}
                 className="w-full bg-transparent px-3 py-3.5 text-base font-body text-ink-dark outline-none placeholder:text-ink-light"
-                aria-label="Search professor resources"
+                aria-label={t("hub.ariaSearch")}
               />
               {searchQuery && (
                 <button
                   onClick={clearSearch}
-                  className="mr-3 flex h-7 w-7 items-center justify-center rounded-lg bg-pastel-lavender text-ink-muted transition-colors hover:bg-showcase-purple hover:text-white"
-                  aria-label="Clear search"
+                  className="me-3 flex h-7 w-7 items-center justify-center rounded-lg bg-pastel-lavender text-ink-muted transition-colors hover:bg-showcase-purple hover:text-white"
+                  aria-label={t("hub.ariaClearSearch")}
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -117,14 +117,14 @@ export default function ForProfessorsHub() {
             </div>
             {isSearching && (
               <p className="mt-2 text-center text-xs text-ink-muted">
-                {totalResults} result{totalResults !== 1 ? "s" : ""} for &ldquo;{searchQuery}&rdquo;
+                {totalResults} {totalResults !== 1 ? t("hub.resultCountPlural") : t("hub.resultCount")} {t("hub.resultsFor")} &ldquo;{searchQuery}&rdquo;
               </p>
             )}
           </div>
 
           {/* Section jump pills */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            {sectionNavConfig.map((s) => {
+            {sectionNav.map((s) => {
               const Icon = s.icon;
               return (
                 <button
@@ -133,7 +133,7 @@ export default function ForProfessorsHub() {
                   className={`inline-flex items-center gap-2 rounded-xl ${s.color} ${s.text} border-2 border-showcase-navy/20 px-4 py-2 text-sm font-display font-bold transition-all hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0`}
                 >
                   <Icon className="h-4 w-4" />
-                  {th(s.labelKey)}
+                  {s.label}
                 </button>
               );
             })}
@@ -165,7 +165,7 @@ export default function ForProfessorsHub() {
             </AnimatedSection>
 
             {filteredGuides.length === 0 && isSearching ? (
-              <p className="py-8 text-center text-sm text-ink-muted">{th("emptyStateGuides")}</p>
+              <p className="py-8 text-center text-sm text-ink-muted">{t("hub.emptyStateGuides")}</p>
             ) : (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {filteredGuides.map((guide, i) => {
@@ -183,7 +183,7 @@ export default function ForProfessorsHub() {
                         <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-muted">{guide.desc}</p>
                         <div className="mt-3">
                           <span className="inline-flex items-center gap-1 text-sm font-bold text-showcase-teal">
-                            Read Guide <ArrowRight className="h-3.5 w-3.5" />
+                            {t("hub.readGuide")} <ArrowRight className="h-3.5 w-3.5" />
                           </span>
                         </div>
                       </ChunkyCard>
@@ -220,7 +220,7 @@ export default function ForProfessorsHub() {
             </AnimatedSection>
 
             {filteredAssets.length === 0 && isSearching ? (
-              <p className="py-8 text-center text-sm text-ink-muted">No assets match your search.</p>
+              <p className="py-8 text-center text-sm text-ink-muted">{t("hub.emptyStateAssets")}</p>
             ) : (
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
                 {filteredAssets.map((asset, i) => {
@@ -238,7 +238,7 @@ export default function ForProfessorsHub() {
                         <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-muted">{asset.desc}</p>
                         <div className="mt-3">
                           <span className="inline-flex items-center gap-1 text-sm font-bold text-showcase-orange">
-                            {th("download")} <ArrowRight className="h-3.5 w-3.5" />
+                            {t("hub.download")} <ArrowRight className="h-3.5 w-3.5" />
                           </span>
                         </div>
                       </ChunkyCard>
@@ -267,7 +267,7 @@ export default function ForProfessorsHub() {
                 </div>
               </div>
               <div>
-                <h3 className="font-display text-base font-bold text-ink-dark sm:text-lg">{th("freeForEducators")}</h3>
+                <h3 className="font-display text-base font-bold text-ink-dark sm:text-lg">{t("hub.freeForEducators")}</h3>
                 <p className="mt-1 text-sm text-ink-muted leading-relaxed">{t("licenseNote")}</p>
               </div>
             </div>
@@ -279,11 +279,11 @@ export default function ForProfessorsHub() {
           <div className="mt-10 mb-4 text-center">
             <div className="inline-flex flex-col items-center gap-3 sm:flex-row">
               <ChunkyButton href={`/${locale}/license`} variant="green">
-                Get Your Attribution Badge
+                {t("hub.getAttributionBadge")}
                 <ArrowRight className="h-4 w-4" />
               </ChunkyButton>
               <ChunkyButton href={`/${locale}/tools`} variant="ghost">
-                Explore Tools
+                {t("hub.exploreTools")}
                 <ExternalLink className="h-4 w-4" />
               </ChunkyButton>
             </div>

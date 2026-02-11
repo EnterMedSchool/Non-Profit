@@ -223,7 +223,7 @@ export default function CardPreview() {
             e.stopPropagation();
             startEdit();
           }}
-          className="absolute top-2 right-2 z-10 flex h-7 w-7 items-center justify-center rounded-lg bg-white/80 border border-ink-light/20 text-ink-muted opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-showcase-purple"
+          className="absolute top-2 end-2 z-10 flex h-7 w-7 items-center justify-center rounded-lg bg-white/80 border border-ink-light/20 text-ink-muted opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-showcase-purple"
           aria-label={t("editCard")}
           title={t("editCard")}
         >
@@ -249,7 +249,7 @@ export default function CardPreview() {
               fontSize: theme.frontFontSize,
             }}
           >
-            <span className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
+            <span className="absolute top-2 start-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
               {t("front")}
             </span>
             <p className="text-center leading-relaxed break-words max-w-full overflow-y-auto max-h-full">
@@ -269,7 +269,7 @@ export default function CardPreview() {
               fontSize: theme.backFontSize,
             }}
           >
-            <span className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
+            <span className="absolute top-2 start-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
               {t("back")}
             </span>
             <p className="text-center leading-relaxed break-words max-w-full overflow-y-auto max-h-full">

@@ -54,7 +54,7 @@ export default function AttributionGuide({ book }: AttributionGuideProps) {
             </pre>
             <button
               onClick={() => handleCopy(attributionText, "text")}
-              className="absolute right-2 top-2 flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-200"
+              className="absolute end-2 top-2 flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-200"
             >
               {copied === "text" ? (
                 <>
@@ -82,7 +82,7 @@ export default function AttributionGuide({ book }: AttributionGuideProps) {
             </pre>
             <button
               onClick={() => handleCopy(attributionHtml, "html")}
-              className="absolute right-2 top-2 flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-200"
+              className="absolute end-2 top-2 flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-200"
             >
               {copied === "html" ? (
                 <>

@@ -181,37 +181,37 @@ export default function EmbedPanel() {
           <Code2 className="h-8 w-8 text-showcase-purple/30" />
         </div>
         <p className="font-display text-lg font-bold text-ink-dark">
-          Embed Panel
+          {t("embedPanel")}
         </p>
         <p className="mt-1 text-sm text-ink-muted max-w-xs">
-          Create questions first, then generate embeddable quizzes.
+          {t("embedPanelDesc")}
         </p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto pr-1">
+    <div className="flex flex-col gap-4 h-full overflow-y-auto pe-1">
       <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
         <Code2 className="h-5 w-5 text-showcase-purple" />
-        Embed Quiz
+        {t("embedQuiz")}
       </h2>
 
       <p className="text-xs text-ink-muted flex items-center gap-1">
         <Info className="h-3 w-3 shrink-0" />
-        Embeddable on Notion, WordPress, Wix, Squarespace, and any HTML page.
+        {t("embedHint")}
       </p>
 
       {/* Title */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          Quiz Title
+          {t("quizTitle")}
         </label>
         <input
           type="text"
           value={embedTitle}
           onChange={(e) => setEmbedTitle(e.target.value)}
-          placeholder="Quiz title"
+          placeholder={t("quizTitlePlaceholder")}
           className="w-full rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 text-sm text-ink-dark focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10"
         />
       </div>
@@ -226,7 +226,7 @@ export default function EmbedPanel() {
             <select
               value={selectedExamId}
               onChange={(e) => setSelectedExamId(e.target.value)}
-              className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pr-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+              className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pe-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
               <option value="">{t("allQuestionsCount", { count: questions.length })}</option>
               {exams.map((exam) => (
@@ -272,7 +272,7 @@ export default function EmbedPanel() {
               <button
                 key={mode.id}
                 onClick={() => updateTheme({ mode: mode.id })}
-                className={`flex-1 flex items-center gap-2 rounded-xl border-2 px-3 py-2.5 text-left transition-all ${
+                className={`flex-1 flex items-center gap-2 rounded-xl border-2 px-3 py-2.5 text-start transition-all ${
                   embedTheme.mode === mode.id
                     ? "border-showcase-purple bg-showcase-purple/5"
                     : "border-ink-light/20 bg-white hover:border-showcase-purple/30"
@@ -300,20 +300,20 @@ export default function EmbedPanel() {
       {/* Theme */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Theme
+          {t("theme")}
         </label>
         <div className="flex gap-2">
-          {(["light", "dark"] as const).map((t) => (
+          {(["light", "dark"] as const).map((themeVal) => (
             <button
-              key={t}
-              onClick={() => updateTheme({ theme: t })}
+              key={themeVal}
+              onClick={() => updateTheme({ theme: themeVal })}
               className={`flex-1 rounded-xl border-2 px-3 py-2 text-xs font-bold transition-all ${
-                embedTheme.theme === t
+                embedTheme.theme === themeVal
                   ? "border-showcase-navy bg-showcase-navy text-white shadow-chunky-sm"
                   : "border-ink-light/15 bg-white text-ink-muted hover:bg-gray-50"
               }`}
             >
-              {t === "light" ? "Light" : "Dark"}
+              {themeVal === "light" ? t("light") : t("dark")}
             </button>
           ))}
         </div>
@@ -322,7 +322,7 @@ export default function EmbedPanel() {
       {/* Background color */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Background
+          {t("background")}
         </label>
         <div className="flex flex-wrap gap-2 mb-2">
           {BG_PRESETS.map((p) => (
@@ -360,7 +360,7 @@ export default function EmbedPanel() {
       {/* Accent color */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Accent Color
+          {t("accentColor")}
         </label>
         <div className="flex flex-wrap gap-2 mb-2">
           {ACCENT_PRESETS.map((p) => (

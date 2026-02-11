@@ -404,7 +404,7 @@ export default function ImportPanel() {
                   {parsedHeaders.map((h) => (
                     <th
                       key={h}
-                      className="px-2 py-1.5 text-left font-bold text-ink-dark"
+                      className="px-2 py-1.5 text-start font-bold text-ink-dark"
                     >
                       {h}
                     </th>
@@ -486,12 +486,12 @@ export default function ImportPanel() {
           </button>
 
           {/* Scrollable card list */}
-          <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[calc(100dvh-380px)] pr-1">
+          <div className="flex flex-col gap-1.5 overflow-y-auto max-h-[calc(100dvh-380px)] pe-1">
             {cards.map((card, i) => (
               <div
                 key={card.id}
                 className={`
-                  flex items-center gap-2 rounded-xl border-2 px-3 py-2 text-left text-sm transition-all
+                  flex items-center gap-2 rounded-xl border-2 px-3 py-2 text-start text-sm transition-all
                   ${
                     i === selectedCardIndex
                       ? "border-showcase-teal bg-showcase-teal/10"

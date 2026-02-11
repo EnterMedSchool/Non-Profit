@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { X, LayoutTemplate, ChevronRight } from "lucide-react";
 import type {
   IllustrationTemplate,
@@ -137,7 +138,7 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
 
         <div className="flex" style={{ minHeight: 400 }}>
           {/* Category sidebar */}
-          <div className="w-48 border-r border-showcase-navy/5 p-3">
+          <div className="w-48 border-e border-showcase-navy/5 p-3">
             {allCategories.map((cat) => (
               <button
                 key={cat.id}
@@ -161,7 +162,7 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
                 <button
                   key={tmpl.id}
                   onClick={() => setConfirmTemplate(tmpl)}
-                  className="group rounded-xl border-2 border-showcase-navy/8 bg-white p-3 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-showcase-purple/30 hover:shadow-md"
+                  className="group rounded-xl border-2 border-showcase-navy/8 bg-white p-3 text-start shadow-sm transition-all hover:-translate-y-0.5 hover:border-showcase-purple/30 hover:shadow-md"
                 >
                   {/* Preview area */}
                   <div className="aspect-video rounded-lg bg-pastel-cream/30 flex items-center justify-center mb-2 overflow-hidden">
@@ -191,7 +192,10 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
         {confirmTemplate && (
           <div className="border-t-2 border-showcase-navy/10 px-6 py-4 flex items-center justify-between bg-pastel-cream/30">
             <p className="text-sm text-ink-muted">
-              Apply <span className="font-bold text-ink-dark">{confirmTemplate.name}</span>? This will replace the current canvas.
+              {t.rich("applyConfirm", {
+                name: confirmTemplate.name,
+                bold: (chunks) => <span className="font-bold text-ink-dark">{chunks}</span>,
+              })}
             </p>
             <div className="flex gap-2">
               <button

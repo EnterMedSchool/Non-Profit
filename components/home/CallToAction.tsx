@@ -101,7 +101,7 @@ export default function CallToAction() {
 
             {/* Handwritten annotation with draw animation */}
             <m.div
-              className="absolute -top-3 right-8 sm:right-16 rotate-6 pointer-events-none"
+              className="absolute -top-3 end-8 sm:end-16 rotate-6 pointer-events-none"
               aria-hidden="true"
               initial={{ opacity: 0, scale: 0.5 }}
               whileInView={{ opacity: 1, scale: 1 }}
@@ -118,7 +118,7 @@ export default function CallToAction() {
                 Start now!
               </span>
               <svg
-                className="absolute -bottom-3 left-0 w-20 h-5 text-white/30"
+                className="absolute -bottom-3 start-0 w-20 h-5 text-white/30"
                 viewBox="0 0 60 15"
                 fill="none"
               >

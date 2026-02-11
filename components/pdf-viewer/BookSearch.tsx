@@ -22,6 +22,7 @@ interface SearchResult {
 }
 
 export default function BookSearch() {
+  const t = useTranslations("pdfViewer.search");
   const { book } = usePDFViewer();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
@@ -118,7 +119,7 @@ export default function BookSearch() {
             transition={{ duration: 0.2 }}
             role="dialog"
             aria-modal="true"
-            aria-label="Search in book"
+            aria-label={t("ariaLabel")}
             className="fixed left-1/2 top-[8vh] z-[91] w-[94vw] max-w-xl -translate-x-1/2 overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-lg"
           >
             {/* Search input */}
@@ -129,7 +130,7 @@ export default function BookSearch() {
                 type="text"
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                placeholder="Search in this book..."
+                placeholder={t("placeholder")}
                 className="flex-1 bg-transparent text-sm text-ink-dark outline-none placeholder:text-ink-light"
                 autoFocus
               />
@@ -145,7 +146,7 @@ export default function BookSearch() {
                 onClick={handleClose}
                 className="shrink-0 rounded-lg px-2 py-1 text-xs font-bold text-ink-muted hover:bg-gray-100"
               >
-                ESC
+                {t("esc")}
               </button>
             </div>
 
@@ -155,13 +156,13 @@ export default function BookSearch() {
                 <div className="px-4 py-8 text-center">
                   <BookOpen className="mx-auto h-8 w-8 text-ink-light/40" />
                   <p className="mt-2 text-sm text-ink-muted">
-                    Type at least 2 characters to search
+                    {t("minChars")}
                   </p>
                 </div>
               ) : results.length === 0 ? (
                 <div className="px-4 py-8 text-center">
                   <p className="text-sm text-ink-muted">
-                    No results found for &ldquo;{debouncedQuery}&rdquo;
+                    {t("noResults")} &ldquo;{debouncedQuery}&rdquo;
                   </p>
                 </div>
               ) : (
@@ -181,7 +182,7 @@ export default function BookSearch() {
                       <div className="flex-1 min-w-0">
                         <div className="flex items-center gap-2">
                           <span className="text-[10px] font-bold text-showcase-purple">
-                            Ch. {result.chapterNumber}
+                            {t("chPrefix")} {result.chapterNumber}
                           </span>
                           <ChevronRight className="h-3 w-3 text-ink-light" />
                           <span className="text-[10px] font-semibold text-ink-muted truncate">

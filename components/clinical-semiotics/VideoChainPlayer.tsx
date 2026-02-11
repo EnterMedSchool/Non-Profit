@@ -712,7 +712,7 @@ const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProp
                           onClick={() => handleSelectAnswer(answer.id)}
                           disabled={showExplanation}
                           className={cn(
-                            "w-full rounded-lg border px-4 py-2.5 text-left text-sm transition-all",
+                            "w-full rounded-lg border px-4 py-2.5 text-start text-sm transition-all",
                             !showExplanation &&
                               "border-gray-200 bg-gray-50 hover:border-indigo-300 hover:bg-indigo-50",
                             showResult && isCorrect &&
@@ -737,7 +737,7 @@ const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProp
                           <m.p
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: "auto" }}
-                            className="mt-1.5 pl-6 text-xs leading-relaxed text-gray-600"
+                            className="mt-1.5 ps-6 text-xs leading-relaxed text-gray-600"
                           >
                             {answer.explanation}
                           </m.p>
@@ -882,7 +882,7 @@ const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProp
             aria-label={t("aria.play")}
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform hover:scale-110 active:scale-95">
-              <Play className="w-7 h-7 text-gray-800 ml-1" />
+              <Play className="w-7 h-7 text-gray-800 ms-1" />
             </div>
           </m.button>
         )}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef } from "react";
+import { useLocale } from "next-intl";
 import { LaTeXEditorProvider, useLaTeXEditor } from "./LaTeXEditorContext";
 import EditorPanel from "./EditorPanel";
 import PreviewPanel from "./PreviewPanel";
@@ -102,7 +103,7 @@ function EditorShell() {
         >
           Preview
           {compileErrors.filter((e) => e.severity === "error").length > 0 && (
-            <span className="ml-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-bold">
+            <span className="ms-1.5 inline-flex items-center justify-center w-4 h-4 rounded-full bg-red-500 text-white text-[9px] font-bold">
               {compileErrors.filter((e) => e.severity === "error").length}
             </span>
           )}
@@ -131,7 +132,7 @@ function EditorShell() {
       <div ref={containerRef} className="flex flex-1 overflow-hidden">
         {/* Left sidebar (snippets / learning / files) — desktop only */}
         {activePanel && (
-          <div className="hidden lg:flex w-72 xl:w-80 border-r-2 border-ink-dark/10 flex-col overflow-hidden bg-pastel-cream/30">
+          <div className="hidden lg:flex w-72 xl:w-80 border-e-2 border-ink-dark/10 flex-col overflow-hidden bg-pastel-cream/30">
             {activePanel === "snippets" && <SnippetDrawer />}
             {activePanel === "learning" && <LearningSidebar />}
             {activePanel === "files" && <FileManager />}
@@ -170,7 +171,7 @@ function EditorShell() {
         {/* Preview */}
         <div
           data-tour="preview-panel"
-          className={`flex flex-col overflow-hidden border-l border-ink-dark/5 ${
+          className={`flex flex-col overflow-hidden border-s border-ink-dark/5 ${
             mobileTab !== "preview" ? "hidden lg:flex" : "flex"
           }`}
           style={{ flex: `0 0 ${100 - settings.splitRatio}%` }}
@@ -213,6 +214,7 @@ function EditorShell() {
 /* ── Status bar ───────────────────────────────────────────── */
 
 function StatusBar() {
+  const locale = useLocale();
   const { cursorPosition, activeDocument, compileErrors, settings } = useLaTeXEditor();
 
   const content = activeDocument.content;
@@ -256,7 +258,7 @@ function StatusBar() {
           Ln {cursorPosition.line}, Col {cursorPosition.col}
         </span>
         <span className="hidden sm:inline flex-shrink-0">{wordCount} words</span>
-        <span className="hidden md:inline flex-shrink-0">{charCount.toLocaleString()} chars</span>
+        <span className="hidden md:inline flex-shrink-0">{charCount.toLocaleString(locale)} chars</span>
         <span className="hidden md:inline flex-shrink-0">~{readingTime} min read</span>
         <span className="hidden lg:inline flex-shrink-0 truncate">{activeDocument.name}</span>
         {envContext && (

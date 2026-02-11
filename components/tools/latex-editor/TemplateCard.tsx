@@ -18,13 +18,13 @@ const DIFFICULTY_COLORS: Record<Difficulty, { bg: string; text: string; label: s
 };
 
 const CATEGORY_COLORS: Record<string, string> = {
-  "getting-started": "border-l-green-400",
-  notes: "border-l-blue-400",
-  essay: "border-l-purple-400",
-  research: "border-l-teal-400",
-  thesis: "border-l-amber-400",
-  presentation: "border-l-pink-400",
-  cv: "border-l-indigo-400",
+  "getting-started": "border-s-green-400",
+  notes: "border-s-blue-400",
+  essay: "border-s-purple-400",
+  research: "border-s-teal-400",
+  thesis: "border-s-amber-400",
+  presentation: "border-s-pink-400",
+  cv: "border-s-indigo-400",
 };
 
 interface TemplateCardProps {
@@ -36,11 +36,11 @@ interface TemplateCardProps {
 export default function TemplateCard({ template, onUse, onPreview }: TemplateCardProps) {
   const IconComponent = ICON_MAP[template.icon] ?? FileText;
   const diff = DIFFICULTY_COLORS[template.difficulty];
-  const borderColor = CATEGORY_COLORS[template.category] ?? "border-l-gray-400";
+  const borderColor = CATEGORY_COLORS[template.category] ?? "border-s-gray-400";
 
   return (
     <div
-      className={`group bg-white rounded-xl border-2 border-ink-dark/8 border-l-4 ${borderColor} hover:border-ink-dark/15 hover:shadow-lg transition-all duration-200 overflow-hidden`}
+      className={`group bg-white rounded-xl border-2 border-ink-dark/8 border-s-4 ${borderColor} hover:border-ink-dark/15 hover:shadow-lg transition-all duration-200 overflow-hidden`}
     >
       {/* Card header */}
       <div className="p-4 pb-2">
@@ -84,7 +84,7 @@ export default function TemplateCard({ template, onUse, onPreview }: TemplateCar
       <div className="flex border-t border-ink-dark/5">
         <button
           onClick={() => onPreview(template)}
-          className="flex-1 py-2.5 text-xs font-medium text-ink-muted hover:text-ink-dark hover:bg-pastel-cream/50 transition-colors border-r border-ink-dark/5"
+          className="flex-1 py-2.5 text-xs font-medium text-ink-muted hover:text-ink-dark hover:bg-pastel-cream/50 transition-colors border-e border-ink-dark/5"
         >
           Preview
         </button>

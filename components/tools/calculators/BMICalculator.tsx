@@ -490,7 +490,7 @@ export default function BMICalculator({
                   </p>
                   <p className="text-xs text-ink-muted mt-1">kg/m²</p>
                 </div>
-                <div className="text-left sm:text-right">
+                <div className="text-start sm:text-end">
                   <p className="text-sm font-bold text-ink-muted uppercase tracking-wide">{t("labels.whoCategory")}</p>
                   <p className={`text-lg font-display font-bold mt-1 ${result.category.color}`}>
                     {t(`categories.${result.category.key}`)}
@@ -522,7 +522,7 @@ export default function BMICalculator({
                     className="absolute -translate-x-1/2 flex flex-col items-center transition-all duration-500"
                     style={{ left: `${scalePercent}%` }}
                   >
-                    <div className="w-0 h-0 border-l-[6px] border-r-[6px] border-b-[8px] border-l-transparent border-r-transparent border-b-showcase-navy" />
+                    <div className="w-0 h-0 border-s-[6px] border-e-[6px] border-b-[8px] border-s-transparent border-e-transparent border-b-showcase-navy" />
                     <span className="text-[10px] font-bold text-ink-dark mt-0.5">{result.bmi.toFixed(1)}</span>
                   </div>
                 </div>
@@ -630,7 +630,7 @@ export default function BMICalculator({
                         <p className="text-sm font-bold text-ink-dark">{t("labels.ponderalIndex")}</p>
                         <p className="text-2xl font-display font-extrabold text-ink-dark">
                           {result.ponderalIndex.toFixed(1)}
-                          <span className="text-sm font-normal text-ink-muted ml-1">kg/m³</span>
+                          <span className="text-sm font-normal text-ink-muted ms-1">kg/m³</span>
                         </p>
                         <p className="text-xs text-ink-muted mt-1 leading-relaxed">{t("labels.ponderalIndexDesc")}</p>
                       </div>
@@ -691,7 +691,7 @@ export default function BMICalculator({
                 <button
                   type="button"
                   onClick={() => setShowWhoTable((v) => !v)}
-                  className="w-full flex items-center justify-between p-4 text-left hover:bg-gray-50 transition-colors"
+                  className="w-full flex items-center justify-between p-4 text-start hover:bg-gray-50 transition-colors"
                 >
                   <div className="flex items-center gap-3">
                     <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border-2 border-showcase-teal/20 bg-pastel-mint">
@@ -709,9 +709,9 @@ export default function BMICalculator({
                       <table className="w-full text-xs">
                         <thead>
                           <tr className="border-b-2 border-showcase-navy/10">
-                            <th className="text-left py-2 pr-3 font-bold text-ink-dark">{t("labels.whoTableCategory")}</th>
-                            <th className="text-left py-2 pr-3 font-bold text-ink-dark">{t("labels.whoTableRange")}</th>
-                            <th className="text-left py-2 font-bold text-ink-dark">{t("labels.whoTableRisk")}</th>
+                            <th className="text-start py-2 pe-3 font-bold text-ink-dark">{t("labels.whoTableCategory")}</th>
+                            <th className="text-start py-2 pe-3 font-bold text-ink-dark">{t("labels.whoTableRange")}</th>
+                            <th className="text-start py-2 font-bold text-ink-dark">{t("labels.whoTableRisk")}</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -722,10 +722,10 @@ export default function BMICalculator({
                                 result && result.category.key === cat.key ? cat.bgColor + " font-bold" : ""
                               }`}
                             >
-                              <td className={`py-2 pr-3 ${cat.color}`}>
+                              <td className={`py-2 pe-3 ${cat.color}`}>
                                 {t(`categories.${cat.key}`)}
                               </td>
-                              <td className="py-2 pr-3 text-ink-muted">
+                              <td className="py-2 pe-3 text-ink-muted">
                                 {cat.min === 0 ? `< ${cat.max}` : cat.max === 100 ? `>= ${cat.min}` : `${cat.min} - ${cat.max}`}
                               </td>
                               <td className="py-2 text-ink-muted">

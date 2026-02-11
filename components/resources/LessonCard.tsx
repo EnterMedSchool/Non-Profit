@@ -26,7 +26,8 @@ import {
   type VisualLesson,
   type FactCategory,
 } from "@/data/visuals";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { isRTLLocale, rtlX } from "@/lib/i18n";
 import {
   loadAttribution,
   hasValidAttribution,
@@ -49,13 +50,13 @@ const accentMap: Record<string, { stripe: string; gradientFrom: string; gradient
 
 /* ── Fact category colors for fact card left borders ── */
 const factBorderColors: Record<string, string> = {
-  pathology: "border-l-red-400",
-  drug: "border-l-purple-400",
-  anatomy: "border-l-rose-400",
-  symptom: "border-l-amber-400",
-  diagnostic: "border-l-blue-400",
-  treatment: "border-l-green-400",
-  mnemonic: "border-l-yellow-400",
+  pathology: "border-s-red-400",
+  drug: "border-s-purple-400",
+  anatomy: "border-s-rose-400",
+  symptom: "border-s-amber-400",
+  diagnostic: "border-s-blue-400",
+  treatment: "border-s-green-400",
+  mnemonic: "border-s-yellow-400",
 };
 
 const factPillColors: Record<string, { active: string; inactive: string }> = {
@@ -71,6 +72,8 @@ const factPillColors: Record<string, { active: string; inactive: string }> = {
 
 export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
   const t = useTranslations("resources.lessonCard");
+  const locale = useLocale();
+  const isRTL = isRTLLocale(locale);
   const [expanded, setExpanded] = useState(false);
   const [showFacts, setShowFacts] = useState(false);
   const [factFilter, setFactFilter] = useState<FactCategory | "all">("all");
@@ -207,7 +210,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                       href={lesson.creator.url || "#"}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-navy/10 bg-pastel-lavender/50 pl-1 pr-2.5 py-0.5 text-[11px] font-bold text-ink-muted hover:bg-pastel-lavender transition-colors"
+                      className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-navy/10 bg-pastel-lavender/50 ps-1 pe-2.5 py-0.5 text-[11px] font-bold text-ink-muted hover:bg-pastel-lavender transition-colors"
                     >
                       <span className={`flex h-5 w-5 items-center justify-center rounded-full text-[9px] font-extrabold text-white ${accent.layerBg}`}>
                         {initials}
@@ -330,7 +333,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                     {lesson.layers.map((layer, idx) => (
                       <m.div
                         key={layer.index}
-                        initial={{ opacity: 0, x: -20 }}
+                        initial={{ opacity: 0, x: rtlX(-20, isRTL) }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.2 + idx * 0.05, duration: 0.3 }}
                         className="flex items-center justify-between gap-3 rounded-xl bg-white border-2 border-showcase-navy/10 p-3 transition-all hover:border-showcase-navy/20 hover:shadow-sm"
@@ -424,14 +427,14 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                               <div className="space-y-2">
                                 {filteredFacts.map((fact, i) => {
                                   const cfg = factCategoryConfig[fact.category];
-                                  const borderColor = factBorderColors[fact.category] || "border-l-gray-300";
+                                  const borderColor = factBorderColors[fact.category] || "border-s-gray-300";
                                   return (
                                     <m.div
                                       key={`${fact.term}-${i}`}
-                                      initial={{ opacity: 0, x: -10 }}
+                                      initial={{ opacity: 0, x: rtlX(-10, isRTL) }}
                                       animate={{ opacity: 1, x: 0 }}
                                       transition={{ delay: i * 0.03 }}
-                                      className={`rounded-xl border-2 border-showcase-navy/8 bg-white p-3 border-l-4 ${borderColor}`}
+                                      className={`rounded-xl border-2 border-showcase-navy/8 bg-white p-3 border-s-4 ${borderColor}`}
                                     >
                                       <div className="flex items-center gap-2">
                                         <span className="text-sm">{cfg.emoji}</span>

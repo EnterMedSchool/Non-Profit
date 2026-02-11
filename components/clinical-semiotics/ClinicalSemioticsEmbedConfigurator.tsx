@@ -323,7 +323,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
         {/* Body */}
         <div className="flex flex-1 flex-col overflow-hidden lg:flex-row">
           {/* Left: Controls */}
-          <div className="w-full overflow-y-auto border-b-2 border-showcase-navy/10 p-4 sm:p-6 lg:w-80 lg:border-b-0 lg:border-r-2 lg:flex-shrink-0">
+          <div className="w-full overflow-y-auto border-b-2 border-showcase-navy/10 p-4 sm:p-6 lg:w-80 lg:border-b-0 lg:border-e-2 lg:flex-shrink-0">
             {/* Tab switcher */}
             <div className="flex gap-1 mb-5 rounded-xl bg-gray-100 p-1">
               <button

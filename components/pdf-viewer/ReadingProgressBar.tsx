@@ -32,7 +32,7 @@ export default function ReadingProgressBar() {
   }, []);
 
   return (
-    <div className="fixed left-0 right-0 top-0 z-[60] h-1">
+    <div className="fixed inset-x-0 top-0 z-[60] h-1">
       <m.div
         className="h-full bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green"
         style={{ width: `${scrollPercent}%` }}

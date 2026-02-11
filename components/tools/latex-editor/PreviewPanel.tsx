@@ -435,7 +435,7 @@ export default function PreviewPanel() {
             </>
           )}
           {lastCompileTime !== null && !isPreviewLoading && (
-            <span className="text-ink-light ml-1">({Math.round(lastCompileTime)}ms)</span>
+            <span className="text-ink-light ms-1">({Math.round(lastCompileTime)}ms)</span>
           )}
         </div>
 
@@ -447,7 +447,7 @@ export default function PreviewPanel() {
           <button onClick={zoomIn} className="p-1 rounded hover:bg-pastel-cream text-ink-muted" title="Zoom in">
             <ZoomIn size={14} />
           </button>
-          <button onClick={resetZoom} className="p-1 rounded hover:bg-pastel-cream text-ink-muted ml-1" title="Reset zoom">
+          <button onClick={resetZoom} className="p-1 rounded hover:bg-pastel-cream text-ink-muted ms-1" title="Reset zoom">
             <RotateCcw size={14} />
           </button>
         </div>
@@ -565,7 +565,7 @@ function ErrorPanel({
           {COMMON_FIXES.map((fix, i) => (
             <div
               key={i}
-              className="flex items-center gap-2 text-[11px] text-ink-muted pl-4"
+              className="flex items-center gap-2 text-[11px] text-ink-muted ps-4"
             >
               <span className="w-4 text-center font-mono text-[10px] text-showcase-purple">
                 {fix.icon}

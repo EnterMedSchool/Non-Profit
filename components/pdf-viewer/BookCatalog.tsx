@@ -50,18 +50,18 @@ export default function BookCatalog() {
       {/* Search & Filter bar */}
       <div className="mb-8 flex flex-col gap-3 sm:flex-row sm:items-center">
         <div className="relative flex-1">
-          <Search className="absolute left-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-light" />
+          <Search className="absolute start-3 top-1/2 h-4 w-4 -translate-y-1/2 text-ink-light" />
           <input
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             placeholder={t("searchPlaceholder")}
-            className="w-full rounded-xl border-3 border-showcase-navy/15 bg-white py-2.5 pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-ink-light focus:border-showcase-purple"
+            className="w-full rounded-xl border-3 border-showcase-navy/15 bg-white py-2.5 ps-10 pe-4 text-sm outline-none transition-colors placeholder:text-ink-light focus:border-showcase-purple"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-3 top-1/2 -translate-y-1/2"
+              className="absolute end-3 top-1/2 -translate-y-1/2"
             >
               <X className="h-4 w-4 text-ink-light hover:text-ink-muted" />
             </button>

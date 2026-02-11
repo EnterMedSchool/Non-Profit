@@ -215,7 +215,7 @@ export default function Footer() {
                 <li>
                   <button
                     onClick={openCookieSettings}
-                    className="text-sm text-ink-muted transition-all hover:text-showcase-purple hover:translate-x-1"
+                    className="text-sm text-ink-muted transition-all hover:text-showcase-purple hover:translate-x-1 rtl:hover:-translate-x-1"
                   >
                     {t("cookieSettings")}
                   </button>
@@ -288,7 +288,7 @@ function FooterLink({
   return (
     <Link
       href={href}
-      className="text-sm text-ink-muted transition-all hover:text-showcase-purple hover:translate-x-1 inline-block"
+      className="text-sm text-ink-muted transition-all hover:text-showcase-purple hover:translate-x-1 rtl:hover:-translate-x-1 inline-block"
     >
       {children}
     </Link>

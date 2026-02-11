@@ -2,7 +2,8 @@
 
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { m, AnimatePresence } from "framer-motion";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
+import { isRTLLocale, rtlX } from "@/lib/i18n";
 import type { MCQQuestion, MCQEmbedTheme } from "@/components/tools/mcq-maker/types";
 import { DEFAULT_EMBED_THEME } from "@/components/tools/mcq-maker/types";
 
@@ -74,6 +75,8 @@ export default function MCQQuizViewer({
   passingScore,
 }: MCQQuizViewerProps) {
   const t = useTranslations("embed.mcqQuiz");
+  const locale = useLocale();
+  const isRTL = isRTLLocale(locale);
   const theme: MCQEmbedTheme = { ...DEFAULT_EMBED_THEME, ...themeProp };
   const isPractice = theme.mode === "practice";
 
@@ -448,7 +451,7 @@ export default function MCQQuizViewer({
               key={opt.id}
               onClick={() => selectAnswer(currentQ.id, opt.id)}
               disabled={submitted || (isPractice && isRevealed)}
-              className="flex items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-left transition-all text-sm"
+              className="flex items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-start transition-all text-sm"
               style={{
                 backgroundColor: bg,
                 borderColor: border,
@@ -584,9 +587,9 @@ export default function MCQQuizViewer({
           <AnimatePresence mode="wait">
             <m.div
               key={currentIndex}
-              initial={{ opacity: 0, x: 20 }}
+              initial={{ opacity: 0, x: rtlX(20, isRTL) }}
               animate={{ opacity: 1, x: 0 }}
-              exit={{ opacity: 0, x: -20 }}
+              exit={{ opacity: 0, x: rtlX(-20, isRTL) }}
               transition={{ duration: 0.2 }}
               className="w-full"
             >

@@ -51,7 +51,7 @@ function Section({
     <div className="rounded-xl border-2 border-showcase-navy/10 bg-white transition-colors hover:border-showcase-navy/15">
       <button
         onClick={() => setOpen(!open)}
-        className="flex w-full items-center justify-between gap-2 px-4 py-3 text-left"
+        className="flex w-full items-center justify-between gap-2 px-4 py-3 text-start"
       >
         <span className="flex items-center gap-2 font-display text-sm font-bold text-ink-dark">
           <Icon className="h-4 w-4 text-showcase-purple" />

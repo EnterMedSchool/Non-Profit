@@ -1119,3 +1119,19 @@
   background: var(--cs-purple);
   color: #ffffff;
 }
+
+/* ===== RTL Overrides ===== */
+[dir="rtl"] .cs-underline-hand::after,
+[dir="rtl"] .cs-underline-teal::after {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .cs-input-icon {
+  left: auto;
+  right: 14px;
+}
+
+[dir="rtl"] .cs-input-with-icon {
+  padding-left: 14px;
+  padding-right: 42px;
+}

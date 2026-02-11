@@ -257,7 +257,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
         <div className="px-5 pt-4 pb-3 border-b border-ink-dark/5 flex-shrink-0">
           <div className="flex items-center gap-2 mb-2">
             <label className="text-xs font-semibold text-ink-dark">{t("yourEquation")}</label>
-            <div className="flex items-center gap-1 ml-auto">
+            <div className="flex items-center gap-1 ms-auto">
               <button
                 onClick={() => setWrapMode("inline")}
                 className={`px-2 py-0.5 rounded text-[10px] font-medium transition-colors ${
@@ -333,12 +333,12 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
           {activeTab === "symbols" ? (
             <div className="flex">
               {/* Category sidebar */}
-              <div className="w-36 border-r border-ink-dark/5 py-2 flex-shrink-0">
+              <div className="w-36 border-e border-ink-dark/5 py-2 flex-shrink-0">
                 {SYMBOL_CATEGORIES.map((cat) => (
                   <button
                     key={cat.name}
                     onClick={() => setActiveCategory(cat.name)}
-                    className={`w-full text-left px-3 py-1.5 text-[11px] font-medium transition-colors ${
+                    className={`w-full text-start px-3 py-1.5 text-[11px] font-medium transition-colors ${
                       activeCategory === cat.name
                         ? "bg-showcase-purple/10 text-showcase-purple"
                         : "text-ink-muted hover:bg-pastel-cream"
@@ -389,7 +389,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
                 <button
                   key={eq.name}
                   onClick={() => handleInsertTemplate(eq)}
-                  className="flex flex-col items-start p-3 rounded-xl border-2 border-ink-dark/8 hover:border-showcase-purple/30 hover:shadow-md transition-all text-left"
+                  className="flex flex-col items-start p-3 rounded-xl border-2 border-ink-dark/8 hover:border-showcase-purple/30 hover:shadow-md transition-all text-start"
                 >
                   <div className="flex items-center gap-2 mb-1">
                     <span className="text-xs font-bold text-ink-dark">{eq.name}</span>

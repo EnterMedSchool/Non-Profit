@@ -50,6 +50,7 @@ export default function ExportPanel() {
   } = useMCQ();
 
   const { toasts, dismiss, success, error: showError } = useToast();
+  const t = useTranslations("tools.mcqMaker.ui");
 
   const [activeTab, setActiveTab] = useState<"pdf" | "csv" | "project">("pdf");
   const [pdfFormat, setPdfFormat] = useState<
@@ -331,20 +332,20 @@ export default function ExportPanel() {
           <FileDown className="h-8 w-8 text-showcase-purple/30" />
         </div>
         <p className="font-display text-lg font-bold text-ink-dark">
-          No questions to export
+          {t("noQuestions")}
         </p>
         <p className="mt-1 text-sm text-ink-muted max-w-xs">
-          Create or import questions first.
+          {t("createFirst")}
         </p>
       </div>
     );
   }
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto pr-1">
+    <div className="flex flex-col gap-4 h-full overflow-y-auto pe-1">
       <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
         <FileDown className="h-5 w-5 text-showcase-purple" />
-        Export
+        {t("export")}
       </h2>
 
       {/* Tab bar */}
@@ -399,7 +400,7 @@ export default function ExportPanel() {
                 <select
                   value={categoryFilter}
                   onChange={(e) => setCategoryFilter(e.target.value)}
-                  className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pr-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+                  className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pe-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
                 >
                   <option value="">{t("allQuestions", { count: questions.length })}</option>
                   {allCategories.map((c) => (
@@ -413,7 +414,7 @@ export default function ExportPanel() {
                     </option>
                   ))}
                 </select>
-                <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+                <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
               </div>
             </div>
           )}
@@ -440,27 +441,27 @@ export default function ExportPanel() {
           {/* Format selection */}
           <div>
             <label className="block text-xs font-bold text-ink-dark mb-2">
-              PDF Format
+              {t("pdfFormat")}
             </label>
             <div className="flex flex-col gap-1.5">
               {(
                 [
                   {
                     id: "exam",
-                    label: "Exam Paper",
-                    desc: "Questions with answer bubbles",
+                    label: t("examPaper"),
+                    desc: t("examPaperDesc"),
                     icon: FileText,
                   },
                   {
                     id: "answer-key",
-                    label: "Answer Key",
-                    desc: "Correct answers + explanations",
+                    label: t("answerKey"),
+                    desc: t("answerKeyDesc"),
                     icon: Key,
                   },
                   {
                     id: "study-guide",
-                    label: "Study Guide",
-                    desc: "Grouped by topic with answers",
+                    label: t("studyGuide"),
+                    desc: t("studyGuideDesc"),
                     icon: BookOpen,
                   },
                 ] as const
@@ -470,7 +471,7 @@ export default function ExportPanel() {
                   <button
                     key={fmt.id}
                     onClick={() => setPdfFormat(fmt.id)}
-                    className={`flex items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-left transition-all ${
+                    className={`flex items-center gap-3 rounded-xl border-2 px-3 py-2.5 text-start transition-all ${
                       pdfFormat === fmt.id
                         ? "border-showcase-purple bg-showcase-purple/5"
                         : "border-ink-light/20 bg-white hover:border-showcase-purple/30"
@@ -499,7 +500,7 @@ export default function ExportPanel() {
           <div className="rounded-xl border-2 border-ink-light/15 bg-pastel-cream/20 p-3">
             <div className="flex items-center justify-between mb-2">
               <span className="text-xs font-bold text-ink-dark">
-                Exam Variants
+                {t("examVariants")}
               </span>
               <input
                 type="number"
@@ -614,7 +615,7 @@ export default function ExportPanel() {
               </div>
               <iframe
                 src={previewUrl}
-                title="PDF Preview"
+                title={t("pdfPreview")}
                 className="w-full h-[400px] border-0"
                 loading="lazy"
               />
@@ -657,21 +658,21 @@ export default function ExportPanel() {
           {/* Column toggles */}
           <div className="flex flex-col gap-2">
             <label className="block text-xs font-bold text-ink-dark">
-              Include columns:
+              {t("includeColumns")}
             </label>
             {[
               {
-                label: "Explanations",
+                label: t("explanations"),
                 checked: csvExplanations,
                 set: setCsvExplanations,
               },
               {
-                label: "Categories",
+                label: t("categories"),
                 checked: csvCategory,
                 set: setCsvCategory,
               },
               {
-                label: "Difficulty",
+                label: t("difficulty"),
                 checked: csvDifficulty,
                 set: setCsvDifficulty,
               },
@@ -699,7 +700,7 @@ export default function ExportPanel() {
               className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-4 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky disabled:opacity-50 disabled:cursor-not-allowed"
             >
               <Download className="h-4 w-4" />
-              Download
+              {t("download")}
             </button>
             <button
               onClick={handleCsvCopy}
@@ -711,7 +712,7 @@ export default function ExportPanel() {
               ) : (
                 <Copy className="h-4 w-4" />
               )}
-              {copied ? "Copied!" : "Copy"}
+              {copied ? t("copied") : t("copy")}
             </button>
           </div>
         </>

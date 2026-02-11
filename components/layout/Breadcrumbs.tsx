@@ -123,7 +123,7 @@ export default function Breadcrumbs() {
           </li>
           {items.map((item) => (
             <li key={item.href} className="flex items-center gap-1">
-              <ChevronRight className="h-3.5 w-3.5 text-ink-light" />
+              <ChevronRight className="h-3.5 w-3.5 text-ink-light rtl:-scale-x-100" />
               {item.isLast ? (
                 <span className="font-medium text-ink-dark">{item.label}</span>
               ) : (

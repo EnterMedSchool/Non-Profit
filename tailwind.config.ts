@@ -43,11 +43,18 @@ const config: Config = {
       fontFamily: {
         display: [
           "var(--font-bricolage)",
+          "var(--font-heebo)",
           "Bricolage Grotesque",
           "system-ui",
           "sans-serif",
         ],
-        body: ["var(--font-dm-sans)", "DM Sans", "system-ui", "sans-serif"],
+        body: [
+          "var(--font-dm-sans)",
+          "var(--font-heebo)",
+          "DM Sans",
+          "system-ui",
+          "sans-serif",
+        ],
         handwritten: ["var(--font-caveat)", "Caveat", "cursive"],
       },
       borderWidth: {

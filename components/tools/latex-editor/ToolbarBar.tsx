@@ -192,7 +192,7 @@ export default function ToolbarBar() {
         >
           <ArrowLeft size={18} />
         </a>
-        <div className="flex items-center gap-2 ml-1 min-w-0">
+        <div className="flex items-center gap-2 ms-1 min-w-0">
           <FileText size={18} className="text-showcase-purple flex-shrink-0" />
           <input
             value={documentTitle}
@@ -399,7 +399,7 @@ function SettingsDropdown({
   };
 
   return (
-    <div className="absolute right-0 top-full mt-1 w-64 bg-white rounded-xl border-2 border-ink-dark/10 shadow-xl p-3 z-50">
+    <div className="absolute end-0 top-full mt-1 w-64 bg-white rounded-xl border-2 border-ink-dark/10 shadow-xl p-3 z-50">
       <h4 className="text-xs font-bold text-ink-dark mb-3 uppercase tracking-wider">
         Editor Settings
       </h4>

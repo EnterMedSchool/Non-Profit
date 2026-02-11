@@ -6,6 +6,7 @@ import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 import { X, ExternalLink, Search, ChevronDown } from "lucide-react";
 import { AnimatePresence, m } from "framer-motion";
+import { LocaleSwitcherMobile } from "@/components/shared/LocaleSwitcher";
 import type { NavItem, NavItemWithChildren } from "./Navbar";
 
 interface MobileMenuProps {
@@ -145,7 +146,7 @@ export default function MobileMenu({
                 className="rounded-md"
               />
               EnterMedSchool
-              <span className="ml-1 bg-gradient-to-r from-showcase-purple to-showcase-teal bg-clip-text text-transparent text-sm font-extrabold">
+              <span className="ms-1 bg-gradient-to-r from-showcase-purple to-showcase-teal bg-clip-text text-transparent text-sm font-extrabold">
                 Open-Source
               </span>
             </Link>
@@ -222,7 +223,7 @@ export default function MobileMenu({
                             exit="exit"
                             className="overflow-hidden"
                           >
-                            <div className="ml-1 border-l-3 border-showcase-purple/20 pl-4 pb-2 pt-1">
+                            <div className="ms-1 border-s-3 border-showcase-purple/20 ps-4 pb-2 pt-1">
                               {/* Sub-page links */}
                               {(item as NavItemWithChildren).children.map(
                                 (child) => {
@@ -255,7 +256,7 @@ export default function MobileMenu({
                               >
                                 {t("viewAll")}{" "}
                                 {t(item.labelKey).toLowerCase()}{" "}
-                                <span aria-hidden="true">&rarr;</span>
+                                <span className="rtl:-scale-x-100" aria-hidden="true">&rarr;</span>
                               </Link>
                             </div>
                           </m.div>
@@ -288,16 +289,19 @@ export default function MobileMenu({
             {/* Search pill */}
             <button
               onClick={openSearch}
-              className="flex items-center gap-3 rounded-2xl bg-white/70 backdrop-blur-sm px-5 py-3.5 text-left transition-all hover:bg-white hover:shadow-sm"
+              className="flex items-center gap-3 rounded-2xl bg-white/70 backdrop-blur-sm px-5 py-3.5 text-start transition-all hover:bg-white hover:shadow-sm"
             >
               <Search className="h-5 w-5 text-ink-light" />
               <span className="text-base text-ink-muted">
                 {t("searchSite")}
               </span>
-              <span className="ml-auto rounded-lg bg-pastel-lavender px-2 py-0.5 text-[11px] font-semibold text-ink-light">
+              <span className="ms-auto rounded-lg bg-pastel-lavender px-2 py-0.5 text-[11px] font-semibold text-ink-light">
                 Ctrl+K
               </span>
             </button>
+
+            {/* Language switcher */}
+            <LocaleSwitcherMobile onSwitch={onClose} />
 
             {/* Visit .com */}
             <a

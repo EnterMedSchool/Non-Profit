@@ -1,5 +1,7 @@
 export interface Resource {
   id: string;
+  /** i18n key under the "data.resources" namespace, e.g. "anatomyUpperLimb" → data.resources.anatomyUpperLimb.title */
+  i18nKey: string;
   language: string;
   title: string;
   description: string;
@@ -15,6 +17,7 @@ export const resources: Resource[] = [
   // ── Questions ─────────────────────────────────────────────────────────
   {
     id: "q-anatomy-upper-limb",
+    i18nKey: "anatomyUpperLimb",
     language: "en",
     title: "Upper Limb Anatomy – Practice MCQs",
     description:
@@ -27,6 +30,7 @@ export const resources: Resource[] = [
   },
   {
     id: "q-physiology-cardio",
+    i18nKey: "physiologyCardio",
     language: "en",
     title: "Cardiovascular Physiology – Mock Exam",
     description:
@@ -39,6 +43,7 @@ export const resources: Resource[] = [
   },
   {
     id: "q-biochem-metabolism",
+    i18nKey: "biochemMetabolism",
     language: "en",
     title: "Biochemistry – Metabolism & Enzymes",
     description:
@@ -51,6 +56,7 @@ export const resources: Resource[] = [
   },
   {
     id: "q-pharma-autonomic",
+    i18nKey: "pharmaAutonomic",
     language: "en",
     title: "Pharmacology – Autonomic Nervous System",
     description:
@@ -62,6 +68,7 @@ export const resources: Resource[] = [
   },
   {
     id: "q-histo-tissues",
+    i18nKey: "histoTissues",
     language: "en",
     title: "Histology – Tissue Types & Identification",
     description:
@@ -73,6 +80,7 @@ export const resources: Resource[] = [
   },
   {
     id: "q-neuro-cranial-nerves",
+    i18nKey: "neuroCranialNerves",
     language: "en",
     title: "Neuroanatomy – Cranial Nerves Quiz",
     description:

@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
 import { getMessages, getTranslations } from "next-intl/server";
-import { Bricolage_Grotesque, DM_Sans, Caveat } from "next/font/google";
+import { Bricolage_Grotesque, DM_Sans, Caveat, Heebo } from "next/font/google";
+import { isRTLLocale } from "@/lib/i18n";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import Breadcrumbs from "@/components/layout/Breadcrumbs";
@@ -32,6 +33,13 @@ const caveat = Caveat({
   subsets: ["latin"],
   weight: ["400", "600"],
   variable: "--font-caveat",
+  display: "swap",
+});
+
+const heebo = Heebo({
+  subsets: ["hebrew", "latin"],
+  weight: ["400", "600", "700", "800"],
+  variable: "--font-heebo",
   display: "swap",
 });
 
@@ -100,7 +108,8 @@ export default async function LocaleLayout({
   return (
     <html
       lang={locale}
-      className={`${bricolage.variable} ${dmSans.variable} ${caveat.variable}`}
+      dir={isRTLLocale(locale) ? "rtl" : "ltr"}
+      className={`${bricolage.variable} ${dmSans.variable} ${caveat.variable} ${heebo.variable}`}
     >
       <body
         className="min-h-screen text-ink-dark font-body bg-fixed-desktop"
@@ -118,7 +127,7 @@ export default async function LocaleLayout({
           <ToastProvider>
             <a
               href="#main-content"
-              className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-xl focus:border-3 focus:border-showcase-navy focus:bg-white focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:text-showcase-purple focus:shadow-chunky"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:top-4 focus:start-4 focus:rounded-xl focus:border-3 focus:border-showcase-navy focus:bg-white focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:text-showcase-purple focus:shadow-chunky"
             >
               {t("skipToContent")}
             </a>

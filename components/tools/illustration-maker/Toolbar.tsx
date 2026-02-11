@@ -281,11 +281,11 @@ export default function Toolbar() {
             <Divider />
             <div className="relative">
               <Btn onClick={() => setShowAlignMenu(!showAlignMenu)} title="Align & Distribute">
-                <AlignCenterVertical className="h-3.5 w-3.5 mr-0.5" />
+                <AlignCenterVertical className="h-3.5 w-3.5 me-0.5" />
                 <ChevronDown className="h-3 w-3" />
               </Btn>
               {showAlignMenu && (
-                <div className="absolute top-full left-0 z-50 mt-1 w-48 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
+                <div className="absolute top-full start-0 z-50 mt-1 w-48 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
                   <p className="px-3 py-1 text-[10px] font-bold text-ink-light">Align</p>
                   <div className="flex gap-0.5 px-2 pb-1">
                     {([
@@ -379,10 +379,10 @@ export default function Toolbar() {
             <span className="text-[10px]">
               {canvasSize.width}x{canvasSize.height}
             </span>
-            <ChevronDown className="ml-0.5 h-3 w-3" />
+            <ChevronDown className="ms-0.5 h-3 w-3" />
           </Btn>
           {showCanvasMenu && (
-            <div className="absolute top-full left-0 z-50 mt-1 w-56 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
+            <div className="absolute top-full start-0 z-50 mt-1 w-56 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
               {CANVAS_PRESETS.map((preset) => (
                 <button
                   key={preset.id}
@@ -430,9 +430,9 @@ export default function Toolbar() {
         {/* ── File operations ─────────────────────────────────── */}
         <div className="relative">
           <Btn onClick={() => setShowFileMenu(!showFileMenu)} title="File">
-            <Save className="h-3.5 w-3.5 mr-1" />
+            <Save className="h-3.5 w-3.5 me-1" />
             <span className="text-[10px]">File</span>
-            <ChevronDown className="ml-0.5 h-3 w-3" />
+            <ChevronDown className="ms-0.5 h-3 w-3" />
           </Btn>
           {showFileMenu && (
             <div className="absolute top-full right-0 z-50 mt-1 w-56 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
@@ -479,7 +479,7 @@ export default function Toolbar() {
 
         {/* ── Export ───────────────────────────────────────────── */}
         <Btn onClick={() => setShowExportDialog(true)} title="Export (Full Dialog)">
-          <Download className="h-3.5 w-3.5 mr-1" />
+          <Download className="h-3.5 w-3.5 me-1" />
           <span className="text-[10px]">Export</span>
         </Btn>
 

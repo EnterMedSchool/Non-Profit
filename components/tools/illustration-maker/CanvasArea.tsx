@@ -729,7 +729,7 @@ export default function CanvasArea() {
       <Minimap />
 
       {/* Zoom indicator */}
-      <div className="absolute bottom-3 right-3 rounded-lg border-2 border-showcase-navy/10 bg-white/90 px-3 py-1 text-xs font-bold text-ink-muted backdrop-blur-sm">
+      <div className="absolute bottom-3 end-3 rounded-lg border-2 border-showcase-navy/10 bg-white/90 px-3 py-1 text-xs font-bold text-ink-muted backdrop-blur-sm">
         {Math.round(zoom * 100)}%
       </div>
 

@@ -201,18 +201,18 @@ export default function AssetPanel() {
       {/* Search */}
       <div className="px-3 py-2">
         <div className="relative">
-          <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light" />
+          <Search className="absolute start-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light" />
           <input
             type="text"
             placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            className="w-full rounded-lg border-2 border-showcase-navy/10 bg-pastel-cream/30 py-1.5 pl-8 pr-8 text-xs text-ink-dark placeholder:text-ink-light focus:border-showcase-purple/40 focus:outline-none focus:ring-1 focus:ring-showcase-purple/20"
+            className="w-full rounded-lg border-2 border-showcase-navy/10 bg-pastel-cream/30 py-1.5 ps-8 pe-8 text-xs text-ink-dark placeholder:text-ink-light focus:border-showcase-purple/40 focus:outline-none focus:ring-1 focus:ring-showcase-purple/20"
           />
           {searchQuery && (
             <button
               onClick={() => setSearchQuery("")}
-              className="absolute right-2 top-1/2 -translate-y-1/2 text-ink-light hover:text-ink-dark"
+              className="absolute end-2 top-1/2 -translate-y-1/2 text-ink-light hover:text-ink-dark"
             >
               <X className="h-3.5 w-3.5" />
             </button>
@@ -267,7 +267,7 @@ export default function AssetPanel() {
                     e.stopPropagation();
                     toggleFavorite(asset.id);
                   }}
-                  className={`absolute right-2 top-2 z-10 rounded-full p-0.5 transition-all ${
+                  className={`absolute end-2 top-2 z-10 rounded-full p-0.5 transition-all ${
                     isFav
                       ? "text-showcase-coral opacity-100"
                       : "text-ink-light opacity-0 hover:text-showcase-coral group-hover:opacity-60"

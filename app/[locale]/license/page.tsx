@@ -329,7 +329,7 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
                       {step.description}
                     </p>
                     {i < quickStartSteps.length - 1 && (
-                      <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block" />
+                      <ArrowRight className="absolute -end-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block" />
                     )}
                   </div>
                 </AnimatedSection>
@@ -380,10 +380,10 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
             {whereToBadgeItems.map((item, i) => {
               const Icon = whereToBadgeIcons[item.icon] || FileText;
               const borderColors = [
-                "border-l-showcase-purple",
-                "border-l-showcase-teal",
-                "border-l-showcase-green",
-                "border-l-showcase-coral",
+                "border-s-showcase-purple",
+                "border-s-showcase-teal",
+                "border-s-showcase-green",
+                "border-s-showcase-coral",
               ];
               const iconBgColors = [
                 "bg-showcase-purple/10 text-showcase-purple",
@@ -398,7 +398,7 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
                   animation="fadeUp"
                 >
                   <div
-                    className={`rounded-xl border-3 border-showcase-navy/10 border-l-4 ${borderColors[i % borderColors.length]} bg-white p-5 transition-all hover:shadow-chunky-sm`}
+                    className={`rounded-xl border-3 border-showcase-navy/10 border-s-4 ${borderColors[i % borderColors.length]} bg-white p-5 transition-all hover:shadow-chunky-sm`}
                   >
                     <div className="flex items-start gap-4">
                       <div

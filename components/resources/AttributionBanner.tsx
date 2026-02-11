@@ -126,7 +126,7 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
               </a>
               <button
                 onClick={handleCollapse}
-                className="ml-1 text-ink-light hover:text-ink-muted transition-colors"
+                className="ms-1 text-ink-light hover:text-ink-muted transition-colors"
                 aria-label={t("ariaMinimize")}
               >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>

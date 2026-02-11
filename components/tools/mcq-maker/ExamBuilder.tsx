@@ -208,7 +208,7 @@ export default function ExamBuilder() {
   }
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto pr-1">
+    <div className="flex flex-col gap-4 h-full overflow-y-auto pe-1">
       <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
         <ClipboardList className="h-5 w-5 text-showcase-purple" />
         {t("examBuilder")}
@@ -229,7 +229,7 @@ export default function ExamBuilder() {
                   setSelectedExamId(exam.id);
                 }
               }}
-              className={`flex items-center justify-between rounded-xl border-2 px-3 py-2 text-left transition-all cursor-pointer ${
+              className={`flex items-center justify-between rounded-xl border-2 px-3 py-2 text-start transition-all cursor-pointer ${
                 selectedExamId === exam.id
                   ? "border-showcase-purple bg-showcase-purple/5"
                   : "border-ink-light/20 bg-white hover:border-showcase-purple/30"
@@ -434,7 +434,7 @@ export default function ExamBuilder() {
                   <div className="flex items-center justify-between bg-pastel-cream/40 px-3 py-2 border-b border-ink-light/10">
                     <span className="text-xs font-bold text-ink-dark">
                       {section.title}
-                      <span className="ml-1 text-ink-muted font-normal">
+                      <span className="ms-1 text-ink-muted font-normal">
                         ({section.questionIds.length})
                       </span>
                     </span>
@@ -497,7 +497,7 @@ export default function ExamBuilder() {
                               [section.id]: e.target.value,
                             }))
                           }
-                          className="w-full appearance-none rounded-lg border border-ink-light/20 bg-white px-2 py-1 pr-6 text-[10px] text-ink-dark focus:outline-none"
+                          className="w-full appearance-none rounded-lg border border-ink-light/20 bg-white px-2 py-1 pe-6 text-[10px] text-ink-dark focus:outline-none"
                           aria-label={t("filterCategoryAria", { title: section.title })}
                         >
                           <option value="">{t("allCategoriesSelect")}</option>
@@ -507,7 +507,7 @@ export default function ExamBuilder() {
                             </option>
                           ))}
                         </select>
-                        <ChevronDown className="absolute right-1.5 top-1/2 h-2.5 w-2.5 -translate-y-1/2 text-ink-light pointer-events-none" />
+                        <ChevronDown className="absolute end-1.5 top-1/2 h-2.5 w-2.5 -translate-y-1/2 text-ink-light pointer-events-none" />
                       </div>
                       <button
                         onClick={() => addBulkToSection(section.id)}
@@ -529,7 +529,7 @@ export default function ExamBuilder() {
                             onClick={() =>
                               addQuestionToSection(section.id, q.id)
                             }
-                            className="flex w-full items-center gap-2 rounded px-2 py-0.5 text-[10px] text-ink-muted hover:bg-showcase-teal/10 hover:text-ink-dark transition-colors text-left"
+                            className="flex w-full items-center gap-2 rounded px-2 py-0.5 text-[10px] text-ink-muted hover:bg-showcase-teal/10 hover:text-ink-dark transition-colors text-start"
                           >
                             <Plus className="h-2.5 w-2.5 shrink-0 text-showcase-teal" />
                             <span className="truncate">{q.question}</span>
@@ -558,7 +558,7 @@ export default function ExamBuilder() {
                   disabled={!newSectionTitle.trim()}
                   className="rounded-lg bg-showcase-teal px-2 py-1.5 text-xs font-bold text-white disabled:opacity-50"
                 >
-                  Add
+                  {t("add")}
                 </button>
               </div>
             ) : (

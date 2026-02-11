@@ -31,7 +31,7 @@ export default function FAQAccordion({ items }: FAQAccordionProps) {
           >
             <button
               onClick={() => setOpenIndex(isOpen ? null : i)}
-              className="flex w-full items-center justify-between gap-3 px-5 py-4 text-left"
+              className="flex w-full items-center justify-between gap-3 px-5 py-4 text-start"
             >
               <span className="font-display text-sm font-bold text-ink-dark sm:text-base">
                 {item.question}

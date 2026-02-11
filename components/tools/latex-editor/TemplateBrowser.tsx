@@ -91,12 +91,12 @@ export default function TemplateBrowser() {
         <div className="px-6 py-3 border-b border-ink-dark/5 space-y-3">
           {/* Search */}
           <div className="relative">
-            <Search size={14} className="absolute left-3 top-1/2 -translate-y-1/2 text-ink-muted" />
+            <Search size={14} className="absolute start-3 top-1/2 -translate-y-1/2 text-ink-muted" />
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
               placeholder={t("searchTemplatesPlaceholder")}
-              className="w-full pl-9 pr-4 py-2 rounded-lg border-2 border-ink-dark/10 text-sm focus:outline-none focus:border-showcase-purple/40"
+              className="w-full ps-9 pe-4 py-2 rounded-lg border-2 border-ink-dark/10 text-sm focus:outline-none focus:border-showcase-purple/40"
             />
           </div>
 

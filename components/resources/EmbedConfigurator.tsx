@@ -151,7 +151,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
             {/* Body */}
             <div className="flex flex-1 flex-col overflow-hidden lg:flex-row">
               {/* Left: Controls */}
-              <div className="w-full overflow-y-auto border-b-2 border-showcase-navy/10 p-6 lg:w-80 lg:border-b-0 lg:border-r-2 lg:flex-shrink-0">
+              <div className="w-full overflow-y-auto border-b-2 border-showcase-navy/10 p-6 lg:w-80 lg:border-b-0 lg:border-e-2 lg:flex-shrink-0">
                 <div className="space-y-5">
                   {/* Background color */}
                   <div>

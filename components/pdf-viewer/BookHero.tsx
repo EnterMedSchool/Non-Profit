@@ -81,7 +81,7 @@ export default function BookHero({ book }: BookHeroProps) {
             </span>
             <span className="flex items-center gap-1.5">
               <Calendar className="h-4 w-4 text-ink-light" />
-              Updated {new Date(book.lastUpdated).toLocaleDateString("en-US", { month: "long", year: "numeric" })}
+              Updated {new Date(book.lastUpdated).toLocaleDateString(locale, { month: "long", year: "numeric" })}
             </span>
           </div>
 

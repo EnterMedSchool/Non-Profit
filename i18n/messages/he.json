@@ -1,0 +1,2353 @@
+{
+  "metadata": {
+    "siteName": "EnterMedSchool.org",
+    "siteDescription": "משאבי חינוך רפואי חינמיים וקוד פתוח, כלים ומדריכים למחנכים. הורדה, הטמעה ושיתוף עם הסטודנטים.",
+    "titleTemplate": "{title} | EnterMedSchool.org"
+  },
+  "nav": {
+    "home": "בית",
+    "resources": "משאבים",
+    "tools": "כלים",
+    "calculators": "מחשבונים",
+    "guides": "מדריכים",
+    "events": "אירועים",
+    "about": "אודות",
+    "license": "רישיון",
+    "privacy": "פרטיות",
+    "visitCom": "ביקור ב-entermedschool.com",
+    "search": "חיפוש",
+    "searchSite": "חפש באתר...",
+    "menu": "תפריט",
+    "closeMenu": "סגור תפריט",
+    "questions": "בנקי שאלות",
+    "videos": "משאבי וידאו",
+    "pdfs": "ספרי לימוד וחומרים",
+    "visuals": "משאבים ויזואליים",
+    "clinicalSemiotics": "סמיאטיקה קלינית",
+    "clinicalSemioticsDesc": "סרטוני בדיקה קלינית אינטראקטיביים — הטמע באתר או שתף עם הסטודנטים.",
+    "teachingGuides": "מדריכי הוראה",
+    "teachingAssets": "נכסי הוראה",
+    "questionsDesc": "בנקי שאלות לבחינות — הורדה, התאמה או שיתוף עם הסטודנטים.",
+    "videosDesc": "משאבי וידאו להרצאות — הורדה או הטמעה באתר.",
+    "pdfsDesc": "ספרי לימוד וגיליונות עזר — הקצה לסטודנטים או הדפס כחומרים.",
+    "visualsDesc": "דיאגרמות אנטומיה וויזואליזציות קליניות — לקחת למצגות.",
+    "toolsDesc": "יצירת איורים, כרטיסיות, שאלות רב־ברירה ועוד — הטמעה או שיתוף התוצאות.",
+    "calculatorsDesc": "מחשבונים רפואיים ואלגוריתמים — הטמעה באתר או שימוש בכיתה.",
+    "guidesDesc": "מדריכים על טכניקות הוראה, הטמעת משאבים ושימוש בתבניות.",
+    "assetsDesc": "דיאגרמות, ויזואליזציות ונכסים מוכנים להזרקה להרצאות.",
+    "viewAll": "הצג הכל",
+    "templates": "תבניות"
+  },
+  "hero": {
+    "title": "משאבי חינוך רפואי בקוד פתוח",
+    "subtitle": "יותר מ־500 משאבים חינמיים להרצאות, מצגות ואתר. הורדה, הטמעה ושיתוף עם הסטודנטים — ללא קירות תשלום, ללא הגבלות. נדרשת ייחוס.",
+    "identityPill": "EnterMedSchool.org הוא מיזם האחות ללא כוונות רווח של",
+    "identityLink": "entermedschool.com",
+    "cta1": "עיין במשאבים",
+    "cta2": "חקור כלים",
+    "badge": "100% חינמי וקוד פתוח",
+    "ankiAddon": "תוסף Anki",
+    "chromeExtension": "תוסף Chrome"
+  },
+  "whatWeOffer": {
+    "title": "כל מה שצריך",
+    "subtitle": "משאבים וכלים חינמיים לכיתה — הורדה, הטמעה או שיתוף עם הסטודנטים",
+    "questions": {
+      "title": "בנקי שאלות",
+      "description": "בנקי שאלות מוכנים לבחינות. הורדה, התאמה ושיתוף עם הסטודנטים."
+    },
+    "videos": {
+      "title": "משאבי וידאו",
+      "description": "הסברים בווידאו על נושאים רפואיים מורכבים. הטמעה באתר או שימוש בהרצאות."
+    },
+    "pdfs": {
+      "title": "ספרי לימוד וחומרים",
+      "description": "ספרי לימוד וגיליונות עזר להורדה. הקצה לסטודנטים או הדפס כחומרים."
+    },
+    "visuals": {
+      "title": "משאבים ויזואליים",
+      "description": "דיאגרמות אנטומיה, ויזואליזציות קליניות ואיורים. לקחת למצגות."
+    },
+    "tools": {
+      "title": "כלים אינטראקטיביים",
+      "description": "יצירת שאלות רב־ברירה, כרטיסיות ואיורים. הטמעת התוצאות באתר."
+    },
+    "templates": {
+      "title": "תבניות הוראה",
+      "description": "תבניות מצגות וחומרי שיעור. הורדה והתאמה להרצאות."
+    },
+    "ankiAddon": {
+      "title": "תוסף Anki",
+      "description": "שתף עם הסטודנטים — תוסף Anki חינמי בקוד פתוח."
+    },
+    "chromeExtension": {
+      "title": "תוסף Chrome",
+      "description": "שתף עם הסטודנטים — תוסף Chrome חינמי עם כלי לימוד."
+    }
+  },
+  "forWhom": {
+    "title": "מה אפשר לעשות כאן",
+    "resources": {
+      "title": "עיון והורדת משאבים",
+      "description": "ויזואליזציות, בנקי שאלות, ספרי לימוד ווידאו — הכל חינמי לשימוש בהוראה.",
+      "benefits": [
+        "הורדת ויזואליזציות למצגות",
+        "נטילת בנקי שאלות לבחינות",
+        "הקצאת ספרי לימוד לסטודנטים",
+        "הטמעת סרטונים באתר"
+      ],
+      "cta": "עיין במשאבים"
+    },
+    "tools": {
+      "title": "שימוש בכלים שלנו",
+      "description": "יצירת שאלות רב־ברירה, כרטיסיות, איורים ועוד בעצמך.",
+      "benefits": [
+        "יצירת מבחנים עם MCQ Maker",
+        "הכנת כרטיסיות להדפסה לכיתה",
+        "בניית איורים למצגות",
+        "הטמעת מחשבונים באתר"
+      ],
+      "cta": "פתח כלים"
+    },
+    "guides": {
+      "title": "קריאת המדריכים שלנו",
+      "description": "מדריכים על טכניקות הוראה, הטמעת משאבים ושימוש בתבניות.",
+      "benefits": [
+        "למידה כיצד להטמיע משאבים באתר",
+        "טיפים לשימוש בתבניות",
+        "קריאה על טכניקות הוראה",
+        "מידע על ייחוס נכון"
+      ],
+      "cta": "קרא מדריכים"
+    }
+  },
+  "timeline": {
+    "title": "המסע שלנו",
+    "subtitle": "מפורום סטודנטים למשאב חינוך בקוד פתוח עולמי",
+    "milestones": {
+      "2019": {
+        "year": "2019",
+        "title": "EnterMedSchool נולד",
+        "description": "ארי חורש יוצר את EnterMedSchool כפורום לסטודנטי בחינת IMAT לעזור זה לזה ללמוד ולשתף משאבים."
+      },
+      "2020": {
+        "year": "2020",
+        "title": "תוכן חינמי מתחיל",
+        "description": "ארי מתחיל לפרסם תוכן חינוכי חינמי, משתף פעולה עם חומרי OpenStax לספק משאבי לימוד בקוד פתוח באיכות גבוהה."
+      },
+      "2021": {
+        "year": "2021",
+        "title": "קורס IMAT המוביל בעולם",
+        "description": "השקת קורסי IMAT בתשלום, הופך לקורס המוביל בעולם לסטודנטים בינלאומיים. ההכנסות מממנות יצירת משאבים חינמיים לכולם."
+      },
+      "2025": {
+        "year": "2025",
+        "title": "הדור החדש",
+        "description": "הרחבה לסטודנטים לרפואה, חיבור עם פרופסורים ורופאים בעולם לאימות ויצירת תוכן. פרסום הכל בחינם."
+      },
+      "2026": {
+        "year": "2026",
+        "title": "קוד פתוח רשמי",
+        "description": "השקת EnterMedSchool.org, תוסף Anki, תוסף Chrome וגל משאבי קוד פתוח. המטרה תמיד הייתה לממן את הפרויקט הזה — וסוף־סוף עשינו זאת."
+      }
+    }
+  },
+  "mission": {
+    "title": "המשימה שלנו",
+    "quote": "אנחנו מאמינים שהמשאבים והכלים שמחנכים צריכים כדי ללמד טוב צריכים להיות חינמיים ובקוד פתוח.",
+    "description": "EnterMedSchool.org הוא ארכיון משאבים למחנכים רפואיים. הכל כאן חינמי להורדה, הטמעה באתר ושיתוף עם הסטודנטים. רק לא לשכוח לייחס.",
+    "relationship": "EnterMedSchool.com מממן את הפרויקט הזה באמצעות קורסים ושירותים בתשלום. הכל כאן ב־.org חינמי, בקוד פתוח ותמיד יהיה. הורד, הטמע והשתמש בכל מה שתמצא לכיתה.",
+    "badges": {
+      "nonCommercial": "לא מסחרי",
+      "attribution": "נדרש ייחוס",
+      "freeForever": "חינמי לנצח"
+    }
+  },
+  "impact": {
+    "title": "ההשגה שלנו",
+    "resources": "משאבים חינמיים",
+    "countries": "מדינות שמושגות",
+    "tools": "כלי קוד פתוח",
+    "educators": "מחנכים שמשתמשים בזה"
+  },
+  "cta": {
+    "title": "הכל כאן חינמי. רק תן קרדיט.",
+    "subtitle": "הורד משאבים למצגות, הטמע כלים באתר, או שתף ישירות עם הסטודנטים. כל מה שאנחנו מבקשים הוא שתעניק ייחוס.",
+    "browseResources": "עיין במשאבים",
+    "getAttributionBadge": "קבל תג ייחוס",
+    "viewOnGitHub": "צפה ב-GitHub",
+    "share": "שתף עם עמית"
+  },
+  "about": {
+    "title": "אודות EnterMedSchool",
+    "metaDescription": "גלה את EnterMedSchool — פלטפורמה חינמית בקוד פתוח שמספקת כלי חינוך רפואי, שיעורים ויזואליים ומשאבי הוראה למחנכים בעולם. ללא כוונות רווח מאז 2019.",
+    "hero": {
+      "titlePre": "הסיפור",
+      "titleHighlight": "שלנו",
+      "annotation": "מפרויקט אחד למחנכים רבים!"
+    },
+    "story": {
+      "title": "הסיפור שלנו",
+      "content": "EnterMedSchool נוצר ב־2019 על ידי ארי חורש כפורום פשוט שבו סטודנטי בחינת IMAT יכלו לעזור זה לזה. מה שהתחיל כפרויקט קהילתי צמח לפלטפורמת ההכנה ל־IMAT המובילה בעולם, וכיום, לארכיון משאבי קוד פתוח למחנכים רפואיים בעולם."
+    },
+    "orgMission": {
+      "title": "למה .org?",
+      "content": "המטרה של EnterMedSchool.com תמיד הייתה לממן את הפרויקט הזה. הקורסים והשירותים בתשלום באתר הראשי שלנו מאפשרים לנו ליצור ולשמור משאבי קוד פתוח חינמיים למחנכים רפואיים בעולם. EnterMedSchool.org הוא המקום שבו המשימה הזו חיה — ארכיון חינמי של כלים, ויזואליזציות, ספרי לימוד ומדריכים שאפשר להוריד, להטמיע ולשתף עם הסטודנטים."
+    },
+    "values": {
+      "title": "מה אנחנו מאמינים בו",
+      "openSource": "קוד פתוח קודם",
+      "openSourceDesc": "כל המשאבים שלנו חינמיים להורדה, הטמעה ושיתוף לשימוש חינוכי לא־מסחרי.",
+      "teaching": "בנוי למחנכים",
+      "teachingDesc": "כל משאב מתוכנן לשימוש בהרצאות, באתר או בשיתוף עם הסטודנטים.",
+      "worldwide": "גישה עולמית",
+      "worldwideDesc": "מחנכים רפואיים בכל מקום ראויים לגישה למשאבי הוראה איכותיים.",
+      "collaboration": "שיתוף פעולה",
+      "collaborationDesc": "אנחנו עובדים עם פרופסורים ורופאים בעולם לאימות ויצירת תוכן."
+    }
+  },
+  "resources": {
+    "title": "משאבים",
+    "metaDescription": "משאבי חינוך רפואי חינמיים ובקוד פתוח למחנכים. הורדה, הטמעה ושיתוף — ויזואליזציות, בנקי שאלות, ספרי לימוד, סרטונים ועוד.",
+    "hero": {
+      "titlePre": "משאבים",
+      "titleHighlight": "חינמיים",
+      "titlePost": "לכולם",
+      "annotation": "כל מה שצריך!",
+      "subtitle": "כלים, מחשבונים, חומרי לימוד, שיעורים ויזואליים, אימון קליני ועוד — הכל חינמי ובקוד פתוח."
+    },
+    "searchPlaceholder": "חפש משאבים...",
+    "attributionReminder": "כל המשאבים חינמיים לשימוש חינוכי לא־מסחרי. נדרש ייחוס.",
+    "shareWithStudents": "שתף עם סטודנטים",
+    "addToSlides": "הוסף למצגות",
+    "embedOnWebsite": "הטמע באתר",
+    "downloadForLecture": "הורד להרצאה",
+    "hub": {
+      "pageTitle": "משאבים חינמיים למחנכים",
+      "metaDescription": "משאבי חינוך רפואי חינמיים ובקוד פתוח למחנכים. הורדה, הטמעה ושיתוף — ויזואליזציות, בנקי שאלות, ספרי לימוד, סרטונים ועוד.",
+      "tools": "כלים אינטראקטיביים",
+      "toolsDesc": "יצירת שאלות רב־ברירה, כרטיסיות, איורים ועוד. הטמעת תוצאות באתר או שיתוף עם הסטודנטים.",
+      "calculators": "מחשבונים רפואיים",
+      "calculatorsDesc": "מחשבונים רפואיים ואלגוריתמים — הטמעה באתר או שימוש בהרצאות.",
+      "pdfs": "ספרי לימוד וחומרים",
+      "pdfsDesc": "ספרי לימוד וגיליונות עזר להורדה. הקצאה לסטודנטים או הדפסה כחומרים.",
+      "visuals": "משאבים ויזואליים",
+      "visualsDesc": "דיאגרמות אנטומיה, איורים קליניים וויזואליזציות בשכבות. לקחת למצגות או להטמיע באתר.",
+      "clinicalSemiotics": "סמיאטיקה קלינית",
+      "clinicalSemioticsDesc": "סרטוני בדיקה קלינית אינטראקטיביים. הטמעה באתר או שיתוף עם הסטודנטים.",
+      "questions": "בנקי שאלות",
+      "questionsDesc": "בנקי שאלות לבחינות. הורדה, התאמה ושיתוף עם הסטודנטים.",
+      "videos": "משאבי וידאו",
+      "videosDesc": "הסברי וידאו על נושאים רפואיים. הטמעה באתר או שימוש בהרצאות.",
+      "explore": "חקור"
+    },
+    "categories": {
+      "all": "הכל",
+      "questions": "שאלות",
+      "videos": "וידאו",
+      "pdfs": "PDF",
+      "visuals": "ויזואליזציות"
+    },
+    "downloadBtn": "הורדה",
+    "viewSourceBtn": "צפה במקור",
+    "previewBtn": "תצוגה מקדימה",
+    "card": {
+      "download": "הורדה",
+      "source": "מקור",
+      "preview": "תצוגה מקדימה"
+    },
+    "lessonCard": {
+      "hideAssets": "הסתר נכסים",
+      "viewAssets": "הצג {count} נכסים",
+      "downloadAllAssets": "הורד את כל הנכסים",
+      "buildingZip": "בונה ZIP... {percent}%",
+      "keyFacts": "עובדות מפתח ({count})",
+      "all": "הכל ({count})",
+      "downloadPng": "הורד PNG",
+      "downloadMp3": "הורד MP3",
+      "addToYourWebsite": "הוסף לאתר שלך",
+      "downloadAllSubtext": "תמונות, אודיו, תג ייחוס וקוד הטמעה",
+      "layers": "שכבות",
+      "facts": "עובדות"
+    },
+    "embedConfigurator": {
+      "originalLesson": "שיעור מקורי",
+      "createdBy": "נוצר על ידי",
+      "hexColorPlaceholder": "צבע hex",
+      "embedTitle": "הטמעה: {title}",
+      "servedFromDomain": "מוגש מהדומיין שלך עם ייחוס מובנה",
+      "backgroundColor": "צבע רקע",
+      "accentColor": "צבע הדגשה",
+      "borderRadius": "עיגול פינות",
+      "theme": "ערכת נושא",
+      "light": "☀️ בהיר",
+      "dark": "🌙 כהה",
+      "width": "רוחב",
+      "height": "גובה",
+      "embedCode": "קוד הטמעה",
+      "copyCode": "העתק קוד",
+      "copied": "הועתק!",
+      "worksWith": "עובד עם Notion, WordPress, Squarespace, Wix וכל דף HTML.",
+      "livePreview": "תצוגה מקדימה חיה"
+    },
+    "attributionReminderModal": {
+      "updateTitle": "עדכן את הייחוס שלך",
+      "requiredTitle": "נדרש ייחוס",
+      "updateDesc": "עדכן את שמך ומוסדך. זה יחול על כל ההורדות הבאות.",
+      "requiredDesc": "לפני ההורדה, אנא ספר לנו מי אתה כדי שנוכל ליצור את תג הייחוס שלך. התג ייכלל ב־ZIP ההורדה.",
+      "yourName": "שמך",
+      "namePlaceholder": "פרופ׳ ג׳יין סמית׳",
+      "nameRequired": "שם נדרש לייחוס.",
+      "positionLabel": "תפקיד / מוסד",
+      "positionPlaceholder": "בית ספר לרפואה, אוניברסיטה",
+      "approvalNote": "אתה <strong>חייב</strong> ליצור קשר עם <link>ari@entermedschool.com</link> לאישור שימוש בחומרים אלה למטרות חינוכיות. בלי אישור, הרישיון אינו תקף.",
+      "updateContinue": "עדכן והמשך",
+      "saveContinue": "שמור והמשך הורדה",
+      "fullBadgeGenerator": "מחולל תג מלא"
+    },
+    "attributionBannerComponent": {
+      "ariaMinimize": "מזער",
+      "attributedTo": "מיוחס ל",
+      "edit": "עריכה",
+      "badgeGenerator": "מחולל תג",
+      "downloadsAttributedTo": "הורדותיך ייוחסו ל"
+    },
+    "questions": {
+      "title": "בנקי שאלות",
+      "metaDescription": "בנקי שאלות חינמיים למחנכים רפואיים. הורדה לבחינות, התאמה לתכנית הלימודים ושיתוף עם הסטודנטים.",
+      "hero": {
+        "titlePre": "שאלות",
+        "titleHighlight": "תרגול",
+        "titlePost": "ובחינות",
+        "annotation": "בחן את הידע שלך!",
+        "subtitle": "שאלות בסגנון בחינה וחומרי תרגול לעזור בהכנה להערכות בית ספר לרפואה."
+      },
+      "jsonLd": {
+        "title": "שאלות תרגול ובחינות",
+        "description": "שאלות בסגנון בחינה וחומרי תרגול להערכות בית ספר לרפואה."
+      },
+      "emptyState": {
+        "title": "אין שאלות זמינות כרגע.",
+        "hint": "שאלות תרגול יופיעו כאן כשהן זמינות."
+      }
+    },
+    "videos": {
+      "title": "משאבי וידאו",
+      "metaDescription": "משאבי וידאו חינמיים לחינוך רפואי לפרופסורים וסטודנטים. הורדה להרצאות, הטמעה ב־LMS או שימוש בהקלטות כיתה הפוכה. נדרש ייחוס.",
+      "hero": {
+        "titlePre": "מדריכי",
+        "titleHighlight": "וידאו",
+        "titlePost": "חינוכיים",
+        "annotation": "למד מצפייה!",
+        "subtitle": "הדרכות וידאו, הרצאות והסברים ויזואליים להשלמת הלימודים הרפואיים."
+      },
+      "jsonLd": {
+        "title": "מדריכי וידאו חינוכיים",
+        "description": "הדרכות וידאו, הרצאות והסברים ויזואליים לסטודנטים לרפואה."
+      },
+      "emptyState": {
+        "title": "אין סרטונים זמינים כרגע.",
+        "hint": "מדריכי וידאו יופיעו כאן כשהם זמינים."
+      }
+    },
+    "pdfs": {
+      "title": "ספרי לימוד וחומרים",
+      "metaDescription": "ספרי לימוד וגיליונות עזר חינמיים להורדה לחינוך רפואי. הקצאה לסטודנטים או הדפסה כחומרים."
+    },
+    "visuals": {
+      "title": "משאבים ויזואליים ודיאגרמות",
+      "metaDescription": "דיאגרמות אנטומיה, ויזואליזציות קליניות ואיורים חינוכיים חינמיים. הורדה למצגות או הטמעה באתר.",
+      "hero": {
+        "titlePre": "ויזואליזציות",
+        "titleHighlight": "רפואיות",
+        "titlePost": "ונכסים",
+        "annotation": "100% חינמי למחנכים!",
+        "subtitle": "הורדת PNG בשכבות, קריינות אודיו ונכסים ויזואליים למצגות, חומרים וחומרי הוראה."
+      },
+      "searchPlaceholder": "חפש ויזואליזציות, נושאים, עובדות...",
+      "allCategories": "כל הקטגוריות",
+      "emptyState": {
+        "title": "לא נמצאו ויזואליזציות...",
+        "hint": "נסה לשנות את החיפוש או לנקות את סינון הקטגוריה.",
+        "resetFilters": "איפוס מסננים"
+      },
+      "howToUse": {
+        "title": "איך להשתמש בנכסים האלה",
+        "subtitle": "חמישה צעדים פשוטים מהורדה להצגה",
+        "steps": {
+          "0": {
+            "title": "הורד PNG",
+            "desc": "PNG לשכבה בודדת ל־PowerPoint, Google Slides או Keynote."
+          },
+          "1": {
+            "title": "קריינות אודיו",
+            "desc": "שימוש כקריינות להרצאות או הקלטות כיתה הפוכה."
+          },
+          "2": {
+            "title": "הורד הכל",
+            "desc": "קבל הכל כ־ZIP כולל תג הייחוס האישי שלך."
+          },
+          "3": {
+            "title": "הטמע באתר",
+            "desc": "הוסף צופה שיעורים אינטראקטיבי לאתר עם צבעים מותאמים."
+          },
+          "4": {
+            "title": "ייחוס",
+            "desc": "נדרש לכל שימוש. קבל את התג שלך ויצור קשר לאישור."
+          }
+        }
+      },
+      "attributionBanner": {
+        "title": "נדרש ייחוס",
+        "description": "כל הנכסים חינמיים לשימוש חינוכי לא־מסחרי. נדרש ייחוס לשימוש מקוון ומבודד. צור קשר",
+        "getBadge": "קבל תג",
+        "contactUs": "צור קשר"
+      },
+      "resultsFound": "תוצאה",
+      "resultsFoundPlural": "תוצאות",
+      "found": "נמצאו",
+      "jsonLd": {
+        "title": "ויזואליזציות ונכסים רפואיים",
+        "description": "הורדת PNG בשכבות, קריינות אודיו ונכסים ויזואליים לחינוך רפואי.",
+        "courseTitle": "שיעורים ויזואליים רפואיים",
+        "courseDescription": "שיעורים ויזואליים אינטראקטיביים בשכבות לחינוך רפואי על אנטומיה, פרמקולוגיה ועוד."
+      },
+      "factCategories": {
+        "pathology": "מחלות",
+        "drug": "תרופות",
+        "anatomy": "אנטומיה",
+        "symptom": "תסמינים",
+        "diagnostic": "אבחון",
+        "treatment": "טיפולים",
+        "mnemonic": "עזרי זיכרון"
+      },
+      "detail": {
+        "backToAll": "כל השיעורים הוויזואליים",
+        "keyMedicalFacts": "עובדות רפואיות מפתח",
+        "layersCount": "{count} שכבות",
+        "keyFactsCount": "{count} עובדות מפתח",
+        "downloadableAssets": "נכסים להורדה",
+        "downloadPng": "הורד PNG",
+        "downloadMp3": "הורד MP3",
+        "assetsFreeNotice": "כל הנכסים חינמיים לשימוש חינוכי לא־מסחרי.",
+        "attributionRequired": "נדרש ייחוס",
+        "shareThisLesson": "שתף את השיעור הזה",
+        "embedOnWebsite": "הטמע באתר",
+        "embedDescription": "הוסף את השיעור האינטראקטיבי לאתר, LMS או בלוג עם iframe פשוט.",
+        "moreLessons": "עוד שיעורי {category}",
+        "layers": "שכבות"
+      }
+    }
+  },
+  "tools": {
+    "title": "כלים רפואיים חינמיים — שימוש, הטמעה ושיתוף",
+    "metaDescription": "כלים רפואיים חינמיים בקוד פתוח למחנכים. יצירת שאלות רב־ברירה, כרטיסיות, איורים ועוד. הטמעה באתר או שיתוף עם הסטודנטים.",
+    "hero": {
+      "titlePre": "כלים",
+      "titleHighlight": "אינטראקטיביים",
+      "titlePost": "ללמידה",
+      "annotation": "קוד פתוח וניתן להטמעה!"
+    },
+    "jsonLdTitle": "כלים רפואיים אינטראקטיביים",
+    "subtitle": "כל כלי הוא בקוד פתוח. צור תוכן להוראה, הטמע כלים באתר או שתף אותם עם הסטודנטים. נדרש ייחוס.",
+    "useToolBtn": "פתח כלי",
+    "embedCodeBtn": "הטמע באתר",
+    "viewSourceBtn": "צפה במקור",
+    "shareWithStudents": "שתף עם סטודנטים",
+    "available": "זמין",
+    "vision": "כל כלי הוא בקוד פתוח וניתן להטמעה. הטמע ישירות ב־LMS, באתר או שתף את הקישור עם הסטודנטים.",
+    "visionTitle": "בנוי לכיתה שלך",
+    "backToTools": "חזרה לכלים",
+    "toolNotFound": "כלי לא נמצא",
+    "toolNotFoundDesc": "הכלי שאתה מחפש לא קיים או עדיין לא שוחרר.",
+    "attributionReminder": "נדרש ייחוס בעת שימוש או הטמעת הכלים האלה.",
+    "flashcardMaker": {
+      "backgroundLabels": {
+        "solid-white": "לבן",
+        "solid-cream": "שמנת",
+        "solid-lavender": "לבנדר",
+        "solid-mint": "נענע",
+        "solid-peach": "אפרסק",
+        "solid-lemon": "לימון",
+        "solid-sky": "שמים",
+        "solid-rose": "ורוד"
+      },
+      "title": "מחולל כרטיסיות",
+      "metaTitle": "מחולל כרטיסיות — צור כרטיסיות להדפסה לכיתה | EnterMedSchool",
+      "metaDescription": "צור כרטיסיות להדפסה לכיתה. ייבוא מ־CSV/Anki, התאמת המראה וייצוא PDF מתקפל. חינמי ובקוד פתוח.",
+      "description": "צור כרטיסיות להדפסה לכיתה. ייבוא כרטיסיות CSV/TSV (מ־Anki או מכל מקום), התאמת המראה וייצוא PDF מתקפל להדפסה."
+    },
+    "mcqMaker": {
+      "title": "MCQ Maker",
+      "metaTitle": "MCQ Maker — צור מבחנים ושתף חידונים | EnterMedSchool",
+      "metaDescription": "צור מבחנים, ייבוא מ־CSV/TSV, ייצוא PDF עם מפתחות תשובות, והטמעת חידונים אינטראקטיביים באתר לסטודנטים. חינמי ובקוד פתוח.",
+      "description": "צור מבחנים וחידונים לסטודנטים. ייבוא שאלות, ייצוא PDF יפים עם מפתחות תשובות, והטמעת חידונים אינטראקטיביים באתר.",
+      "export": {
+        "title": "ייצוא",
+        "pdfFormat": "פורמט PDF",
+        "examPaper": "דף בחינה",
+        "examPaperDesc": "שאלות עם בועות תשובה",
+        "answerKey": "מפתח תשובות",
+        "answerKeyDesc": "תשובות נכונות + הסברים",
+        "studyGuide": "מדריך לימוד",
+        "studyGuideDesc": "מקובצים לפי נושא עם תשובות",
+        "subtitle": "כותרת משנה",
+        "examVariants": "גרסאות בחינה",
+        "shuffleQuestions": "ערבב סדר שאלות",
+        "shuffleOptions": "ערבב סדר אפשרויות",
+        "customizeStying": "התאמת עיצוב PDF",
+        "preview": "תצוגה מקדימה",
+        "download": "הורד PDF",
+        "downloadVariants": "הורד גרסאות (ZIP)",
+        "pdfPreview": "תצוגה מקדימה PDF",
+        "generating": "מייצר...",
+        "noQuestions": "אין שאלות לייצוא",
+        "createFirst": "צור או ייבא שאלות קודם.",
+        "pdfSuccess": "PDF יוצא בהצלחה!",
+        "pdfFailed": "יצירת PDF נכשלה. אנא בדוק את ההגדרות ונסה שוב.",
+        "watermark": "סימן מים (אופציונלי)",
+        "watermarkHint": "סימן מים אלכסוני יופיע בכל עמוד",
+        "margins": "שוליים (מ\"מ)"
+      },
+      "ui": {
+        "export": "ייצוא",
+        "noQuestions": "אין שאלות לייצוא",
+        "createFirst": "צור או ייבא שאלות קודם.",
+        "pdf": "PDF",
+        "csvTsv": "CSV/TSV",
+        "project": "פרויקט",
+        "title": "כותרת",
+        "examTitle": "כותרת בחינה",
+        "filterByCategory": "סנן לפי קטגוריה",
+        "allQuestions": "הכל ({count} שאלות)",
+        "subtitle": "כותרת משנה",
+        "subtitlePlaceholder": "למשל אביב 2026 — חלק א׳",
+        "pdfFormat": "פורמט PDF",
+        "examPaper": "דף בחינה",
+        "examPaperDesc": "שאלות עם בועות תשובה",
+        "answerKey": "מפתח תשובות",
+        "answerKeyDesc": "תשובות נכונות + הסברים",
+        "studyGuide": "מדריך לימוד",
+        "studyGuideDesc": "מקובצים לפי נושא עם תשובות",
+        "examVariants": "גרסאות בחינה",
+        "shuffleQuestionOrder": "ערבב סדר שאלות",
+        "shuffleOptionOrder": "ערבב סדר אפשרויות",
+        "downloadsAsZip": "הורדה כ־ZIP עם {count} PDF בחינה + מפתח תשובות",
+        "customizePdfStyling": "התאמת עיצוב PDF",
+        "preview": "תצוגה מקדימה",
+        "generating": "מייצר...",
+        "generatingVariant": "מייצר גרסה {current} מתוך {total}...",
+        "downloadVariants": "הורד {count} גרסאות (ZIP)",
+        "downloadPdf": "הורד PDF ({count} שאלות)",
+        "pdfPreview": "תצוגה מקדימה PDF",
+        "delimiter": "מפריד",
+        "csvComma": "CSV (,)",
+        "tsvTab": "TSV (Tab)",
+        "semi": "נקודה־פסיק (;)",
+        "includeColumns": "כלול עמודות:",
+        "explanations": "הסברים",
+        "categories": "קטגוריות",
+        "difficulty": "קושי",
+        "download": "הורדה",
+        "copied": "הועתק!",
+        "copy": "העתקה",
+        "projectDesc": "שמור או טען את כל בנק השאלות, הבחינות וההגדרות כקובץ פרויקט.",
+        "saveProject": "שמור פרויקט (.mcq.json)",
+        "loadProject": "טען פרויקט",
+        "pdfExportSuccess": "PDF יוצא בהצלחה!",
+        "pdfExportFailed": "יצירת PDF נכשלה. אנא בדוק את ההגדרות ונסה שוב.",
+        "csvExportSuccess": "CSV יוצא בהצלחה!",
+        "csvExportFailed": "ייצוא CSV נכשל. אנא נסה שוב.",
+        "copyFailed": "העתקה ללוח נכשלה.",
+        "projectSaved": "הפרויקט נשמר!",
+        "projectExportFailed": "ייצוא הפרויקט נכשל.",
+        "projectLoaded": "הפרויקט נטען בהצלחה!",
+        "invalidProject": "קובץ פרויקט לא תקין. אנא בדוק את הפורמט.",
+        "readFileFailed": "קריאת הקובץ נכשלה.",
+        "previewFailed": "יצירת תצוגה מקדימה נכשלה. אנא נסה שוב.",
+        "variantsExported": "{count} גרסאות יוצאו בהצלחה!",
+        "embedPanel": "לוח הטמעה",
+        "embedPanelDesc": "צור שאלות קודם, ואז צור חידונים שניתן להטמיע.",
+        "embedQuiz": "הטמעת חידון",
+        "embedHint": "ניתן להטמיע ב־Notion, WordPress, Wix, Squarespace וכל דף HTML.",
+        "quizTitle": "כותרת חידון",
+        "quizTitlePlaceholder": "כותרת חידון",
+        "questionsSource": "מקור שאלות",
+        "allQuestionsCount": "כל השאלות ({count})",
+        "mode": "מצב",
+        "practice": "תרגול",
+        "instantFeedback": "משוב מיידי",
+        "quiz": "חידון",
+        "scoreAtEnd": "ציון בסוף",
+        "theme": "ערכת נושא",
+        "light": "בהיר",
+        "dark": "כהה",
+        "background": "רקע",
+        "accentColor": "צבע הדגשה",
+        "backgroundAria": "רקע: {label}",
+        "accentAria": "הדגשה: {label}",
+        "showProgressBar": "הצג פס התקדמות",
+        "showScore": "הצג ציון",
+        "showExplanations": "הצג הסברים",
+        "animations": "אנימציות",
+        "width": "רוחב",
+        "height": "גובה",
+        "borderRadius": "עיגול פינות:",
+        "embedCode": "קוד הטמעה",
+        "copyCode": "העתק קוד",
+        "questionsEmbedded": "{count} שאלות מוטמעות",
+        "largePayload": "(עומס גדול — שקול להשתמש בפחות שאלות)",
+        "platformInstructions": "הוראות פלטפורמה:",
+        "platformHtml": "הדבק את קוד ההטמעה ישירות ל־HTML",
+        "platformWordPress": "השתמש בבלוק HTML מותאם",
+        "platformNotion": "השתמש בפקודת /embed והדבק את כתובת ה־iframe",
+        "platformWix": "הוסף רכיב HTML iFrame",
+        "platformSquarespace": "השתמש בבלוק קוד",
+        "editQuestion": "ערוך שאלה",
+        "newQuestion": "שאלה חדשה",
+        "viewAll": "הצג הכל ({count})",
+        "questionSaved": "השאלה נשמרה!",
+        "dismissError": "סגור שגיאה",
+        "questionRequired": "שאלה",
+        "questionPlaceholder": "למשל מהי תחנת הכוח של התא?",
+        "questionIllustration": "איור שאלה",
+        "removeImage": "הסר תמונה",
+        "changeImage": "שנה תמונה",
+        "addImage": "הוסף תמונה",
+        "uploadImage": "העלה תמונת שאלה",
+        "answerOptions": "אפשרויות תשובה",
+        "selectCorrect": "בחר את התשובה הנכונה",
+        "markOptionCorrect": "סמן אפשרות {letter} כנכונה",
+        "optionLabel": "אפשרות {letter}",
+        "removeOption": "הסר אפשרות {letter}",
+        "addOption": "הוסף אפשרות ({current}/{max})",
+        "explanation": "הסבר",
+        "optional": "(אופציונלי)",
+        "explanationPlaceholder": "הסבר למה זו התשובה הנכונה...",
+        "category": "קטגוריה",
+        "categoryPlaceholder": "למשל ביולוגיה של התא",
+        "difficultyLabel": "קושי",
+        "easy": "קל",
+        "medium": "בינוני",
+        "hard": "קשה",
+        "advanced": "מתקדם",
+        "points": "נקודות",
+        "tags": "תגיות",
+        "addTagPlaceholder": "הוסף תגית...",
+        "add": "הוסף",
+        "removeTag": "הסר תגית {tag}",
+        "updateAndNew": "עדכן וחדש",
+        "saveAndNew": "שמור וחדש",
+        "save": "שמור",
+        "imageTooLarge": "התמונה גדולה מדי ({size} MB). מקסימום 2 MB.",
+        "templatePresets": "תבניות מוכנות",
+        "classicExam": "בחינה קלאסית",
+        "modernClean": "מודרני ונקי",
+        "universityStyle": "סגנון אוניברסיטה",
+        "medicalBoard": "מועצה רפואית",
+        "colors": "צבעים",
+        "primary": "ראשי",
+        "secondary": "משני",
+        "headerBg": "רקע כותרת",
+        "text": "טקסט",
+        "font": "גופן",
+        "fontSize": "גודל גופן",
+        "paperSize": "גודל נייר",
+        "answerStyle": "סגנון תשובה",
+        "bubbles": "בועות",
+        "letters": "אותיות",
+        "checkboxes": "תיבות סימון",
+        "lines": "שורות",
+        "headerText": "טקסט כותרת",
+        "headerPlaceholder": "למשל אוניברסיטת רפואה — אנטומיה 101",
+        "watermark": "סימן מים (אופציונלי)",
+        "watermarkPlaceholder": "למשל טיוטה, תרגול, דוגמה",
+        "watermarkHint": "סימן מים אלכסוני יופיע בכל עמוד",
+        "pageMargins": "שוליים (מ\"מ)",
+        "showQuestionNumbers": "הצג מספור שאלות",
+        "showPointValues": "הצג ערכי נקודות",
+        "logoOptional": "לוגו (אופציונלי)",
+        "invalidFileType": "סוג קובץ לא תקף. השתמש ב־PNG, JPEG, GIF, WebP או SVG.",
+        "logoTooLarge": "הלוגו גדול מדי ({size} MB). מקסימום 1 MB.",
+        "remove": "הסר",
+        "uploadLogo": "העלה לוגו",
+        "positionLeft": "שמאל",
+        "positionCenter": "מרכז",
+        "positionRight": "ימין",
+        "importQuestions": "ייבוא שאלות",
+        "dropFileAria": "השלח קובץ CSV או TSV כאן, או לחץ לעיון",
+        "dropFileHere": "השלח את קובץ ה־CSV או TSV כאן",
+        "orClickToBrowse": "או לחץ לעיון",
+        "downloadSampleCsv": "הורד CSV לדוגמה",
+        "supportedFormats": "פורמטים נתמכים:",
+        "questionColumn": "עמודת שאלה",
+        "optionColumns": "עמודות אפשרויות",
+        "selectOption": "— בחר —",
+        "addOptionColumn": "+ הוסף עמודת אפשרות",
+        "correctAnswerColumn": "עמודת תשובה נכונה",
+        "noneOption": "— אין —",
+        "foundRowsColumns": "נמצאו {rows} שורות ו־{columns} עמודות. התאם למטה:",
+        "importCount": "ייבוא {count} שאלות",
+        "cancel": "ביטול",
+        "importSuccess": "יובאו בהצלחה {count} שאלות!",
+        "warningsCount": "אזהרות ({count}):",
+        "viewQuestions": "צפה בשאלות",
+        "importMore": "ייבוא נוסף",
+        "fileMinRows": "הקובץ חייב לכלול לפחות שורת כותרת ושורת נתונים אחת.",
+        "parseError": "שגיאת פענוח: {message}",
+        "selectQuestionColumn": "אנא בחר עמודת שאלה תקינה.",
+        "mapOptionColumns": "אנא התאם לפחות 2 עמודות אפשרויות.",
+        "rowSkipped": "שורה {row}: דולגה — פחות מ־2 אפשרויות לא־ריקות.",
+        "rowCorrectDefault": "שורה {row}: לא הצלחנו להתאים תשובה נכונה \"{raw}\" — ברירת מחדל לאפשרות הראשונה.",
+        "noValidQuestions": "לא נמצאו שאלות תקפות. בדוק את מיפוי העמודות.",
+        "moreRows": "...ועוד {count} שורות",
+        "mcqMaker": "MCQ Maker",
+        "mcqMakerDesc": "צור, ייבא וייצא שאלות רב־ברירה ומבחנים",
+        "somethingWentWrong": "משהו השתבש",
+        "mcqErrorDesc": "ה־MCQ Maker נתקל בשגיאה בלתי צפויה. הנתונים נשמרים אוטומטית ואמורים להשתחזר בעת טעינה מחדש.",
+        "reload": "טען מחדש",
+        "questionPreview": "תצוגה מקדימה של שאלה",
+        "closePreview": "סגור תצוגה מקדימה",
+        "dismiss": "סגור",
+        "previewQuestion": "תצוגה מקדימה של שאלה",
+        "questionCount": "{count} שאלה",
+        "questionsCount": "{count} שאלות",
+        "tabCreate": "יצירה",
+        "tabQuestions": "שאלות",
+        "tabImport": "ייבוא",
+        "tabExam": "בחינה",
+        "tabExport": "ייצוא",
+        "tabEmbed": "הטמעה",
+        "noQuestionsYet": "אין עדיין שאלות",
+        "createOrImport": "צור את השאלה הראשונה או ייבא מקובץ CSV/TSV.",
+        "createQuestion": "צור שאלה",
+        "importCsv": "ייבא CSV",
+        "questionsCountLabel": "{count} שאלות",
+        "categoriesCount": "{count} קטגוריות",
+        "easyCount": "{count} קלות",
+        "mediumCount": "{count} בינוניות",
+        "hardCount": "{count} קשות",
+        "searchPlaceholder": "חפש שאלות...",
+        "filter": "סינון",
+        "allCategories": "כל הקטגוריות",
+        "allDifficulties": "כל רמות הקושי",
+        "allTags": "כל התגיות",
+        "sortDate": "מיון: תאריך",
+        "sortQuestion": "מיון: שאלה",
+        "sortCategory": "מיון: קטגוריה",
+        "sortDifficulty": "מיון: קושי",
+        "clear": "נקה",
+        "selectedCount": "{count} נבחרו",
+        "delete": "מחק",
+        "deselect": "בטל בחירה",
+        "deselectAll": "בטל בחירת הכל",
+        "selectAll": "בחר הכל",
+        "emptyQuestion": "(שאלה ריקה)",
+        "editQuestionNum": "ערוך שאלה {num}",
+        "deleteQuestionNum": "מחק שאלה {num}",
+        "noMatching": "אין שאלות תואמות",
+        "clearFilters": "נקה סינונים",
+        "examBuilder": "בנאי בחינות",
+        "examBuilderDesc": "הוסף שאלות קודם, ואז בנה בחינות ממאגר השאלות שלך.",
+        "examTitlePlaceholder": "כותרת בחינה...",
+        "examSettings": "הגדרות בחינה",
+        "timeLimit": "מגבלת זמן (דקות)",
+        "none": "ללא",
+        "randomizeQuestions": "ערבב שאלות",
+        "randomizeOptions": "ערבב אפשרויות",
+        "showFeedback": "הצג משוב",
+        "showExplanationsExam": "הצג הסברים",
+        "allowReview": "אפשר עיון",
+        "showScoreExam": "הצג ציון",
+        "passingScore": "ציון עובר (%)",
+        "sectionTitle": "חלק {num}",
+        "noQuestionsAdded": "טרם נוספו שאלות",
+        "allCategoriesSelect": "כל הקטגוריות",
+        "addAll": "הוסף הכל",
+        "sectionTitlePlaceholder": "כותרת חלק...",
+        "addSection": "הוסף חלק",
+        "createNewExam": "צור בחינה חדשה",
+        "questionsLabel": "שאלות",
+        "pointsLabel": "נקודות",
+        "sectionsLabel": "חלקים",
+        "filterCategoryAria": "סינון קטגוריה עבור {title}",
+        "deleteExam": "מחק בחינה {title}",
+        "questionPreviewTitle": "תצוגה מקדימה של שאלה",
+        "questionPreviewDesc": "צור או בחר שאלה כדי לראות תצוגה מקדימה חיה כאן.",
+        "yourQuestionHere": "השאלה שלך תופיע כאן...",
+        "optionPlaceholder": "אפשרות {letter}...",
+        "deleteConfirmSingle": "למחוק את השאלה הזו? לא ניתן לבטל.",
+        "deleteConfirmBulk": "למחוק {count} שאלות נבחרות? לא ניתן לבטל.",
+        "marginTop": "למעלה",
+        "marginRight": "ימין",
+        "marginBottom": "למטה",
+        "marginLeft": "שמאל",
+        "logoAlt": "לוגו",
+        "backToHome": "חזור לדף הבית",
+        "minTwoOptions": "(מינימום 2)",
+        "formatHint1": "CSV/TSV עם עמודות: question, option_a..d, correct, explanation",
+        "formatHint2": "זיהוי אוטומטי של שמות עמודות והתאמתם",
+        "formatHint3": "התשובה הנכונה יכולה להיות אות (A, B...) או הטקסט המלא",
+        "showingPreview": "מציג {type} מתוך {count} שאלה",
+        "showingPreviewPlural": "מציג {type} מתוך {count} שאלות",
+        "livePreviewUpdates": "התצוגה המקדימה מתעדכנת בזמן אמת",
+        "pts": "נק׳"
+      }
+    },
+    "latexEditor": {
+      "title": "עורך LaTeX",
+      "metaTitle": "עורך LaTeX — LaTeX חינמי אונליין למחנכים | EnterMedSchool",
+      "metaDescription": "כתוב וערוך LaTeX לחומרי הלימוד, מאמרים והדפים שלך. גרור snippets, תבניות רפואיות ותצוגה מקדימה חיה. חינמי וקוד פתוח.",
+      "description": "כתוב וערוך LaTeX לחומרי הלימוד והמאמרים שלך. תצוגה מקדימה חיה, snippets לגרירה ותבניות רפואיות. חלופה חינמית וקוד פתוח ל-Overleaf.",
+      "ui": {
+        "templateGallery": "גלריית תבניות",
+        "templateGallerySubtitle": "בחר תבנית להתחלה מהירה. כל תבנית מותאמת לסטודנטים לרפואה.",
+        "searchTemplatesPlaceholder": "חפש תבניות...",
+        "noTemplatesFound": "לא נמצאו תבניות התואמות לחיפוש.",
+        "backToTemplates": "← חזרה לתבניות",
+        "useThisTemplate": "השתמש בתבנית זו",
+        "preview": "תצוגה מקדימה",
+        "code": "קוד",
+        "templatePreviewTitle": "תצוגה מקדימה של תבנית",
+        "previewUnavailable": "אין תצוגה מקדימה לתבנית זו.",
+        "previewUnavailableHint": "עבור לתצוגת קוד לראות את קוד ה-LaTeX, או לחץ על \"השתמש בתבנית זו\" לטעינה לעורך.",
+        "linesCount": "{count} שורות",
+        "allTemplates": "כל התבניות",
+        "gettingStarted": "התחלה",
+        "notesStudy": "הערות ולימוד",
+        "essaysReports": "מאמרים ודוחות",
+        "research": "מחקר",
+        "thesis": "תזה",
+        "presentations": "מצגות",
+        "cvLetters": "קורות חיים ומכתבים",
+        "snippets": "Snippets",
+        "snippetsHint": "לחץ הוסף כדי להוסיף snippet. הרחב להסברים.",
+        "searchSnippetsPlaceholder": "חפש snippets...",
+        "favorites": "מועדפים",
+        "recent": "אחרונים",
+        "suggested": "מוצעים",
+        "all": "הכל",
+        "noFavoritesYet": "אין עדיין מועדפים. לחץ על הכוכב ב-snippets להוספה.",
+        "noRecentlyUsed": "אין snippets ששימשו לאחרונה.",
+        "noSnippetsFound": "לא נמצאו snippets.",
+        "starTip": "טיפ: סמן כוכב על ה-snippets האהובים עליך לגישה מהירה",
+        "searchCommandsPlaceholder": "חפש פקודות LaTeX ו-snippets...",
+        "noCommandsFound": "לא נמצאו פקודות התואמות ל-\"{query}\"",
+        "insert": "הוסף",
+        "navigate": "ניווט",
+        "commandCount": "{count} פקודה",
+        "commandCountPlural": "{count} פקודות",
+        "compiling": "מקמפל...",
+        "error": "שגיאה",
+        "previewReadyWithNotes": "תצוגה מקדימה מוכנה (עם הערות)",
+        "previewReady": "תצוגה מקדימה מוכנה",
+        "zoomOut": "הקטן",
+        "zoomIn": "הגדל",
+        "resetZoom": "איפוס זום",
+        "latexPreviewAria": "תצוגה מקדימה LaTeX",
+        "advancedLaTeXSimplified": "כמה יכולות LaTeX מתקדמות פושטו לתצוגה החיה. הקוד המקורי שלך יקמפל מושלם ב-Overleaf.",
+        "envNotSupported": "הסביבה \"{name}\" אינה נתמכת בתצוגה החיה. תעבוד ב-Overleaf.",
+        "cmdNotSupported": "הפקודה \\{cmd} אינה נתמכת בתצוגה החיה. תעבוד ב-Overleaf.",
+        "cmdNotSupportedGeneric": "פקודה אינה נתמכת בתצוגה החיה, אך תעבוד כשתקמפל ב-Overleaf.",
+        "missingBrace": "נראה שחסר סוגר { } או [ ]. ודא שלכל סימן פותח יש סוגר סוגר תואם.",
+        "environmentIssue": "לסביבה (\\begin{...}/\\end{...}) יש בעיה. ודא שהן תואמות ומקוננות כראוי.",
+        "compilationError": "שגיאת קומפילציה",
+        "previewLimitation": "מגבלת תצוגה מקדימה",
+        "previewTip": "טיפ: התצוגה החיה תומכת ב-LaTeX בסיסי. חבילות וסביבות מתקדמות יקמפלו נכון בעת ייצוא ל-Overleaf (לחץ ייצוא בסרגל הכלים). הקוד שלך בסדר!",
+        "goToLineTitle": "לחץ לעבור לשורה זו בעורך",
+        "lineLabel": "שורה {line}",
+        "commonFixes": "תיקונים נפוצים",
+        "fixBrace": "ודא שלכל { יש } תואם",
+        "fixBeginEnd": "ודא שלכל \\begin{...} יש \\end{...} תואם",
+        "fixMath": "שים סמלי מתמטיקה בתוך $: $x^2$",
+        "fixEscape": "השתמש בתווי בריחה: \\% לא %, \\& לא &, \\_ לא _",
+        "fixUsepackage": "שים פקודות \\usepackage לפני \\begin{document}",
+        "removeFromFavorites": "הסר ממועדפים",
+        "addToFavorites": "הוסף למועדפים",
+        "clickToInsert": "לחץ להוספה בסמן",
+        "collapse": "כווץ",
+        "showCode": "הצג קוד",
+        "learnMore": "למד עוד",
+        "tourWelcomeTitle": "ברוכים הבאים לעורך LaTeX!",
+        "tourWelcomeDesc": "LaTeX הוא כלי שמשמש מדענים וחוקרים worldwide ליצירת מסמכים מעוצבים — עבודות תזה, מאמרי מחקר, מצגות ועוד. אל דאגה אם מעולם לא השתמשת ב-LaTeX — נדריך אותך שלב אחר שלב!",
+        "tourEditorTitle": "עורך הקוד",
+        "tourEditorDesc": "כאן כותבים קוד LaTeX. אולי נראה כמו תכנות, אבל זה פשוט ממה שנדמה! כל פקודה מתחילה ב-\\) ומספרת ל-LaTeX כיצד לעצב את הטקסט. העורך מדגיש חלקים בצבעים כדי לעזור בקריאה.",
+        "tourPreviewTitle": "תצוגה מקדימה חיה",
+        "tourPreviewDesc": "כשאתה מקליד בעורך, המסמך מוצג בזמן אמת כאן כדי לראות מיד איך הוא נראה. כמו מסמך Word שמתעדכן חיה תוך כדי כתיבה!",
+        "tourToolbarTitle": "סרגל עיצוב",
+        "tourToolbarDesc": "השתמש בכפתורים האלה לעיצוב הטקסט — בדיוק כמו Word! בחר טקסט בעורך קודם, ואז לחץ מודגש, נטוי, או כל כפתור אחר. אפשר גם להוסיף סעיפים, רשימות, טבלאות ומשוואות.",
+        "tourToolbarTask": "נסה ללחוץ על כפתור המודגש למטה!",
+        "tourSnippetsTitle": "Snippets לגרירה",
+        "tourSnippetsDesc": "לא יודע איך לכתוב טבלה, משוואה או רשימה? לוח ה-Snippets מכיל בלוקי קוד LaTeX מוכנים שאפשר ללחוץ ולהוסיף. לכל snippet יש הסבר בשפה פשוטה.",
+        "tourSnippetsTask": "לחץ על כפתור Snippets לפתיחת הלוח!",
+        "tourTemplatesTitle": "גלריית תבניות",
+        "tourTemplatesDesc": "התחל מתבנית! יש לנו תבניות להערות הרצאה, דוחות מעבדה, מאמרי מחקר, פרקי תזה, קורות חיים ועוד — כולן מותאמות לסטודנטים לרפואה. פשוט בחר והתאם.",
+        "tourLearnTitle": "למד תוך כדי",
+        "tourLearnDesc": "פתח את לוח הלמידה לשיעורים שלב-אחר-שלב על יסודות LaTeX. מ'מה זה LaTeX?' ועד עיצוב משוואות וניהול הפניות — הכל מוסבר בשפה פשוטה.",
+        "tourExportTitle": "ייצא את העבודה שלך",
+        "tourExportDesc": "כשסיימת, הורד את קובץ ה-.tex, העתק ללוח, או פתח ישירות ב-Overleaf (מקמפל LaTeX אונליין חינמי) ל-PDF הסופי. העבודה שלך נשמרת אוטומטית גם בדפדפן.",
+        "tourStepOf": "שלב {current} מתוך {total}",
+        "skipTour": "דלג על הסיור",
+        "niceWork": "עבודה יפה! הצלחת.",
+        "back": "חזרה",
+        "getStarted": "בואו נתחיל!",
+        "next": "הבא",
+        "exportDocument": "ייצא מסמך",
+        "exportSubtitle": "הורד את קוד המקור LaTeX או פתח ב-Overleaf.",
+        "downloadTexFile": "הורד קובץ .tex",
+        "downloadTexDesc": "הורד קובץ קוד המקור LaTeX הגולמי. פתח בכל עורך LaTeX.",
+        "downloadZipArchive": "הורד ארכיון .zip",
+        "downloadZipDesc": "כל הקבצים מאוגדים ב-ZIP. העלה ישירות ל-Overleaf.",
+        "copied": "הועתק!",
+        "copyToClipboard": "העתק ללוח",
+        "copyToClipboardDesc": "העתק את קוד המקור LaTeX להדבקה בכל מקום.",
+        "openInOverleaf": "פתח ב-Overleaf",
+        "openInOverleafDesc": "פתח את המסמך שלך ב-Overleaf לקומפילציה ל-PDF.",
+        "downloadedTex": "קובץ .tex הורד!",
+        "downloadFailed": "הורדת הקובץ נכשלה.",
+        "downloadedZip": "קובץ .zip הורד!",
+        "zipFailed": "יצירת קובץ zip נכשלה.",
+        "copiedToClipboard": "הועתק ללוח!",
+        "copyFailed": "ההעתקה ללוח נכשלה.",
+        "openingOverleaf": "נפתח ב-Overleaf...",
+        "overleafFailed": "פתיחה ב-Overleaf נכשלה.",
+        "exportTip": "טיפ: לתוצאת PDF איכותית, פתח את המסמך ב-Overleaf (חינמי). הוא מקמפל LaTeX ל-PDF ברמה מקצועית.",
+        "files": "קבצים",
+        "filesHint": "נהל את קבצי הפרויקט. לחץ על קובץ לעריכה.",
+        "addNewFile": "הוסף קובץ חדש",
+        "createFile": "צור קובץ",
+        "filenamePlaceholder": "filename.tex",
+        "mainBadge": "ראשי",
+        "rename": "שנה שם",
+        "delete": "מחק",
+        "filesInProject": "{count} קובץ",
+        "filesInProjectPlural": "{count} קבצים בפרויקט",
+        "backToHome": "חזרה לדף הבית",
+        "documentTitle": "כותרת מסמך",
+        "learn": "למד",
+        "templates": "תבניות",
+        "export": "ייצוא",
+        "undo": "בטל",
+        "undoShortcut": "בטל (Ctrl+Z)",
+        "redo": "בצע שוב",
+        "redoShortcut": "בצע שוב (Ctrl+Y)",
+        "editorSettings": "הגדרות עורך",
+        "fontSize": "גודל גופן",
+        "wordWrap": "עטיפת שורות",
+        "lineNumbers": "מספור שורות",
+        "autoPreview": "תצוגה מקדימה אוטומטית",
+        "darkMode": "מצב כהה",
+        "keyboardShortcuts": "קיצורי מקלדת",
+        "restartTour": "הפעל סיור מודרך מחדש",
+        "insertTable": "הוסף טבלה",
+        "selectTableSize": "בחר גודל טבלה:",
+        "headerRow": "שורת כותרות",
+        "borders": "מסגרות",
+        "horizontal": "אופקי",
+        "bordersAll": "הכל",
+        "none": "ללא",
+        "captionOptional": "כיתוב (אופציונלי)",
+        "captionPlaceholder": "למשל נתוני מטופלים",
+        "generatedLatex": "LaTeX שנוצר",
+        "equationBuilder": "בונה משוואות",
+        "yourEquation": "המשוואה שלך:",
+        "inlineMath": "טקסט שורה $...$",
+        "displayMath": "משוואה מוצגת $$...$$",
+        "equationPlaceholder": "לחץ על סמלים למטה או הקלד LaTeX...",
+        "mathSymbols": "סמלי מתמטיקה",
+        "medicalEquations": "משוואות רפואיות",
+        "equationBuilderTip": "לחץ על סמל כדי להוסיף למשוואה, או על כפתור + כדי להוסיף ישירות למסמך",
+        "insertDirectly": "הוסף ישירות",
+        "previewLabel": "תצוגה מקדימה:"
+      }
+    },
+    "illustrationMaker": {
+      "title": "יוצר איורים מדעיים",
+      "metaTitle": "יוצר איורים מדעיים — צור איורים לשקפים | EnterMedSchool",
+      "metaDescription": "צור איורים מדעיים לשקפים ולפרסומים. גרור תאים, איברים, מולקולות וציוד מעבדה. ייצוא ל-PNG או JPEG. חינמי וקוד פתוח.",
+      "description": "צור איורים מדעיים לשקפים ולפרסומים. גרור תאים, איברים, מולקולות וציוד מעבדה על קנבס. חלופה חינמית וקוד פתוח ל-BioRender.",
+      "ui": {
+        "canvas": {
+          "loading": "טוען קנבס...",
+          "initError": "אתחול הקנבס נכשל. אנא רענן את הדף.",
+          "dropToAdd": "הנח להוספת נכס",
+          "clickToAdd": "לחץ על הקנבס להוספת {tool} — Esc לביטול"
+        },
+        "templates": {
+          "title": "תבניות",
+          "noTemplatesInCategory": "אין עדיין תבניות בקטגוריה זו",
+          "applyConfirm": "להחיל <bold>{name}</bold>? זה יחליף את הקנבס הנוכחי.",
+          "cancel": "ביטול",
+          "apply": "החל תבנית"
+        },
+        "layers": {
+          "title": "שכבות",
+          "count": "שכבות ({count})",
+          "searchPlaceholder": "חפש שכבות...",
+          "noMatching": "אין שכבות תואמות",
+          "noObjects": "אין אובייקטים על הקנבס",
+          "text": "טקסט",
+          "rectangle": "מלבן",
+          "circle": "עיגול",
+          "line": "קו",
+          "triangle": "משולש",
+          "group": "קבוצה",
+          "image": "תמונה",
+          "path": "מסלול",
+          "object": "אובייקט",
+          "textPreview": "טקסט: \"{preview}\"",
+          "textFallback": "טקסט {index}",
+          "layerLabel": "{type} {index}",
+          "hide": "הסתר",
+          "show": "הצג",
+          "unlock": "בטל נעילה",
+          "lock": "נעל",
+          "delete": "מחק"
+        },
+        "assets": {
+          "title": "נכסים",
+          "searchPlaceholder": "חפש נכסים...",
+          "expandPanel": "הרחב לוח נכסים",
+          "collapsePanel": "כווץ לוח",
+          "recent": "אחרונים",
+          "favorites": "מועדפים",
+          "resultsFor": "{count} תוצאה עבור \"{query}\"",
+          "resultsForPlural": "{count} תוצאות עבור \"{query}\"",
+          "dragOrClick": "גרור או לחץ על \"{name}\" להוספה לקנבס",
+          "addToFavorites": "הוסף למועדפים",
+          "removeFromFavorites": "הסר ממועדפים",
+          "noRecentlyUsed": "אין נכסים ששימשו לאחרונה",
+          "noFavorites": "אין עדיין נכסים מועדפים",
+          "noAssetsFound": "לא נמצאו נכסים",
+          "dragOrClickHint": "גרור לקנבס או לחץ להוספה"
+        },
+        "pageTabs": {
+          "addPage": "הוסף דף",
+          "addPageTitle": "הוסף דף חדש",
+          "deletePageTitle": "מחק דף"
+        },
+        "properties": {
+          "title": "מאפיינים",
+          "expandProperties": "הרחב מאפיינים",
+          "position": "מיקום",
+          "size": "גודל",
+          "rotation": "סיבוב",
+          "opacity": "שקיפות",
+          "colors": "צבעים",
+          "fill": "מילוי",
+          "stroke": "קו מתאר",
+          "strokeWidth": "עובי קו",
+          "lineStyle": "סגנון קו",
+          "text": "טקסט",
+          "font": "גופן",
+          "fontSize": "גודל גופן",
+          "systemDefault": "ברירת מחדל של המערכת",
+          "colorPalette": "פלטת צבעים",
+          "gradientFill": "מילוי גרדיאנט",
+          "solid": "מלא",
+          "dashed": "מקווקו",
+          "dotted": "מנוקד",
+          "dashDot": "קו-נקודה",
+          "longDash": "קו ארוך",
+          "bold": "מודגש",
+          "italic": "נטוי",
+          "underline": "קו תחתון",
+          "alignLeft": "יישור לשמאל",
+          "alignCenter": "יישור למרכז",
+          "alignRight": "יישור לימין",
+          "gradientNone": "ללא",
+          "gradientPurpleBlue": "סגול → כחול",
+          "gradientTealGreen": "טורקיז → ירוק",
+          "gradientCoralPink": "קורל → ורוד",
+          "gradientSunset": "שקיעה",
+          "gradientOcean": "אוקיינוס",
+          "gradientRadialPurple": "סגול רדיאלי",
+          "gradientRadialBlue": "כחול רדיאלי",
+          "paletteDefault": "ברירת מחדל",
+          "paletteNature": "Nature Journal",
+          "paletteCellPress": "Cell Press",
+          "palettePastel": "Pastel Academic",
+          "paletteHighContrast": "High Contrast"
+        },
+        "minimap": {
+          "title": "מינמפה",
+          "showMinimap": "הצג מינמפה"
+        }
+      }
+    },
+    "bmi": {
+      "title": "מחשבון BMI",
+      "metaTitle": "מחשבון BMI — כלי חינמי להטמעה | EnterMedSchool",
+      "metaDescription": "מחשבון BMI חינמי להטמעה באתר או בהרצאות. פרשנות קלינית, סיווג WHO ותוכן חינוכי.",
+      "description": "מחשבון BMI עם פרשנות קלינית וסיווג WHO. הטמע באתר או השתמש בהרצאות.",
+      "labels": {
+        "height": "גובה",
+        "weight": "משקל",
+        "age": "גיל (שנים)",
+        "sex": "מין",
+        "male": "זכר",
+        "female": "נקבה",
+        "metric": "מטרי",
+        "imperial": "אימפריאלי",
+        "cm": "ס\"מ",
+        "kg": "ק\"ג",
+        "ft": "רגל",
+        "in": "אינץ'",
+        "lbs": "ליברות",
+        "calculate": "חשב BMI",
+        "reset": "איפוס",
+        "result": "ה-BMI שלך",
+        "bmiPrime": "BMI Prime",
+        "bmiPrimeDesc": "יחס ה-BMI שלך לגבול העליון של הנורמלי (25). ערכים מתחת ל-1.0 בטווח הבריא.",
+        "ponderalIndex": "מדד פונדרלי",
+        "ponderalIndexDesc": "מדד שמתאים טוב יותר לגובה מאשר BMI. טווח תקין: 11–15 kg/m³.",
+        "whoCategory": "קטגוריית WHO",
+        "riskLevel": "רמת סיכון בריאותי",
+        "waistGuidance": "הנחיות היקף מותניים",
+        "waistGuidanceDesc": "BMI לבדו לא לוכד התפלגות שומן בטני. מדוד היקף מותניים לתמונה מלאה יותר של הסיכון.",
+        "waistMaleRisk": "גברים: סיכון מוגבר מעל 94 ס\"מ — סיכון גבוה מעל 102 ס\"מ",
+        "waistFemaleRisk": "נשים: סיכון מוגבר מעל 80 ס\"מ — סיכון גבוה מעל 88 ס\"מ",
+        "ageContext": "הקשר גיל ומין",
+        "ageContextDesc": "סף BMI מיועד למבוגרים מגיל 20+. הפרשנות עשויה להשתנות לפי גיל, מין, מסת שריר ומוצא.",
+        "ageContextUnder20": "לגילאי מתחת ל-20, BMI מפורש בעזרת תרשימי אחוזונים לפי גיל ומין (CDC או WHO). קטגוריות ה-BMI הסטנדרטיות לעיל עשויות לא לחול.",
+        "healthyRange": "לגובה שלך, משקל בריא (BMI 18.5–25) הוא {min}–{max} {unit}.",
+        "scaleAlt": "סולם צבעי BMI מתת-משקל דרך נורמלי ועד שמנות",
+        "validationHeight": "גובה חייב להיות בין {min} ל-{max} {unit}.",
+        "validationWeight": "משקל חייב להיות בין {min} ל-{max} {unit}.",
+        "validationAge": "גיל חייב להיות בין 2 ל-120 שנים.",
+        "disclaimer": "מחשבון זה לצורכי חינוך בלבד. אינו תחליף לשיפוט רפואי מקצועי. התייעץ תמיד עם איש מקצוע רפואי להחלטות קליניות.",
+        "weightAbove": "אתה {value} {unit} מעל הגבול העליון של הטווח הבריא.",
+        "weightBelow": "אתה {value} {unit} מתחת לגבול התחתון של הטווח הבריא.",
+        "weightWithin": "המשקל שלך בטווח הבריא.",
+        "whoTableTitle": "טבלת סיווג BMI לפי WHO",
+        "whoTableCategory": "קטגוריה",
+        "whoTableRange": "טווח BMI (kg/m²)",
+        "whoTableRisk": "סיכון בריאותי",
+        "emptyStateTitle": "הזן גובה ומשקל",
+        "emptyStateDesc": "התוצאות יופיעו כאן אוטומטית כשתקליד."
+      },
+      "categories": {
+        "severeThinness": "רזון חמור",
+        "moderateThinness": "רזון בינוני",
+        "mildThinness": "רזון קל",
+        "normal": "משקל תקין",
+        "overweight": "עודף משקל (טרום שמנות)",
+        "obeseI": "שמנות — דרגה I",
+        "obeseII": "שמנות — דרגה II",
+        "obeseIII": "שמנות — דרגה III"
+      },
+      "risks": {
+        "veryLow": "נמוך מאוד",
+        "low": "נמוך",
+        "average": "ממוצע",
+        "increased": "מוגבר",
+        "high": "גבוה",
+        "veryHigh": "גבוה מאוד",
+        "extremelyHigh": "קיצוני"
+      },
+      "faq": {
+        "q1": "מהו BMI?",
+        "a1": "מדד מסת גוף (BMI) הוא ערך מספרי המחושב ממשקלו וגובהו של אדם. משמש ככלי סקר לסיווג לקטגוריות משקל כמו תת-משקל, משקל תקין, עודף משקל ושמנות. ארגון הבריאות העולמי (WHO) משתמש ב-BMI כמדד סטנדרטי להערכות בריאות ברמת אוכלוסייה.",
+        "q2": "כיצד מחשבים BMI?",
+        "a2": "BMI מחושב על ידי חלוקת משקל האדם בקילוגרמים בריבוע גובהו במטרים (kg/m²). לדוגמה, אדם שמשקלו 70 ק\"ג וגובהו 1.75 מ' יקבל BMI של 70 / (1.75 × 1.75) = 22.9. ביחידות אימפריאליות: כפל משקל בליברות ב-703 וחלק בריבוע הגובה באינצ'ים.",
+        "q3": "מהו טווח BMI בריא?",
+        "a3": "לפי WHO, BMI בריא למבוגרים הוא בין 18.5 ל-24.9 kg/m². מתחת ל-18.5 מסווג כתת-משקל, 25.0–29.9 כעודף משקל, ו-30.0 ומעלה כשמנות. הספים מיועדים למבוגרים מגיל 20 ומעלה; ילדים ומתבגרים משתמשים בתרשימי אחוזונים לפי גיל ומין.",
+        "q4": "מהן מגבלות ה-BMI?",
+        "a4": "BMI לא מבדיל בין מסת שריר, צפיפות עצם ומסת שומן. ספורטאים או אנשים שריריים עשויים לקבל BMI גבוה למרות אחוז שומן נמוך. BMI גם לא לוקח בחשבון התפלגות שומן — שומן בטני קשור לסיכון בריאותי גבוה יותר. מוצא, גיל ומין משפיעים אף הם על הקשר בין BMI לסיכון בריאותי.",
+        "q5": "מהו BMI Prime?",
+        "a5": "BMI Prime הוא היחס בין ה-BMI של האדם לגבול העליון של הטווח הבריא (BMI 25). BMI Prime של 1.0 משמעותך אתה בגבול העליון של משקל תקין. ערכים מתחת ל-1.0 מצביעים על כך שאתה בתוך או מתחת לטווח הבריא, מעל 1.0 מצביע על עודף משקל או שמנות."
+      },
+      "education": {
+        "aboutTitle": "מהו מדד מסת גוף (BMI)?",
+        "aboutBody": "מדד מסת גוף (BMI) הוא אחד המדדים הנפוצים ביותר בבריאות הציבור וברפואה קלינית. פותח על ידי המתמטיקאי הבלגי אדולף קוטלה בשנות ה-1830. ארגון הבריאות העולמי (WHO), ה-CDC ושירותי בריאות לאומיים משתמשים ב-BMI לסקירת קטגוריות משקל שעלולות להוביל לבעיות בריאות.",
+        "formulaTitle": "כיצד מחשבים BMI?",
+        "formulaBody": "נוסחת BMI מחלקת את מסת הגוף (בקילוגרמים) בריבוע הגובה (במטרים). התוצאה היא מספר יחיד ביחידות kg/m².",
+        "formulaExample": "לדוגמה, אדם שמשקלו 70 ק\"ג וגובהו 1.75 מ' יש לו BMI של 70 / (1.75 × 1.75) = 22.9 kg/m², שנמצא בקטגוריית משקל תקין. ביחידות אימפריאליות: משקל (ליברות) × 703 / גובה (אינץ')².",
+        "limitationsTitle": "מגבלות BMI",
+        "limitationsBody": "למרות ש-BMI הוא מדד נוח לסקירה, יש לו מגבלות מתועדות:",
+        "limitation1": "BMI לא מבדיל בין מסת שריר רזה, צפיפות עצם ומסת שומן. ספורטאים ואנשים שריריים עשויים להיסווג כבעלי עודף משקל למרות אחוז שומן נמוך.",
+        "limitation2": "BMI לא לוקח בחשבון התפלגות שומן. שומן ויסצרלי (בטני) קשור למחלות לב וכלי דם וסכרת סוג 2, אך BMI לא יכול למדוד איפה מאוחסן השומן.",
+        "limitation3": "סף BMI הסטנדרטי פותח בעיקר מנתונים על אוכלוסיות אירופיות. מחקרים מראים שסיכונים בריאותיים עשויים להשתנות בין קבוצות אתניות.",
+        "limitation4": "BMI מיועד למבוגרים מגיל 20 ומעלה. לילדים ומתבגרים משתמשים בתרשימי אחוזונים לפי גיל ומין.",
+        "faqTitle": "שאלות נפוצות"
+      }
+    },
+    "embed": {
+      "poweredBy": "באמצעות",
+      "freeOpenSource": "חינמי וקוד פתוח",
+      "viewFullTool": "השתמש בכלי המלא ב",
+      "embedTitle": "הטמע כלי זה",
+      "embedDescription": "הוסף כלי זה לאתר, עמוד Notion או LMS. ייחוס כלול אוטומטית עם קישורים חזרה ל-EnterMedSchool.",
+      "tabWebsite": "אתר / HTML",
+      "tabNotion": "Notion",
+      "tabLMS": "LMS",
+      "tabSlides": "מצגות",
+      "copyIframe": "העתק קוד iframe",
+      "copied": "הועתק!",
+      "iframeInstructions": "הדבק קוד זה בכל דף HTML, בלוג או בונה אתרים.",
+      "notionInstructions": "הדבק כתובת זו בעמוד Notion ובחר \"Create embed\":",
+      "notionCopyUrl": "העתק כתובת הטמעה",
+      "lmsInstructions": "הדבק את קוד ה-iframe בהמשך לעורך ה-HTML של ה-LMS שלך (Moodle, Canvas, Blackboard וכו').",
+      "slidesInstructions": "הטמעות חיות לא נתמכות ברוב כלי המצגות. במקום, שתף את הקישור עם הכיתה או הוסף את קוד ה-QR לשקפים כדי שהתלמידים יפתחו את הכלי בנייד.",
+      "slidesDownloadQR": "הורד קוד QR",
+      "slidesCopyLink": "העתק קישור",
+      "previewTitle": "תצוגה מקדימה של ההטמעה",
+      "previewLoading": "טוען תצוגה מקדימה...",
+      "embedCodeLabel": "קוד הטמעה",
+      "embedCompatibility": "עובד עם Notion, WordPress, Squarespace, Wix וכל דף HTML.",
+      "embedCode": {
+        "createdBy": "נוצר על ידי",
+        "originalTool": "הכלי המקורי"
+      },
+      "customizer": {
+        "title": "התאמת מראה",
+        "subtitle": "כוונן את מראה ההטמעה להתאמה לאתר שלך",
+        "reset": "איפוס לברירת מחדל",
+        "colorsSection": "צבעים",
+        "bgColor": "רקע",
+        "accentColor": "צבע דגש",
+        "textColor": "טקסט",
+        "mutedColor": "טקסט מעומעם",
+        "typographySection": "טיפוגרפיה",
+        "fontFamily": "משפחת גופן",
+        "fontSize": "גודל גופן",
+        "layoutSection": "פריסה",
+        "borderRadius": "עיגול פינות",
+        "borderStyle": "סגנון מסגרת",
+        "borderChunky": "גס",
+        "borderThin": "דק",
+        "borderNone": "ללא",
+        "cardShadow": "צל כרטיס",
+        "darkMode": "מצב כהה",
+        "compactMode": "מצב קומפקטי",
+        "compactModeDesc": "הצג רק מחשבון ותוצאה עיקרית",
+        "sectionsSection": "הצג / הסתר חלקים",
+        "showBmiPrime": "BMI Prime",
+        "showPonderalIndex": "מדד פונדרלי",
+        "showWaistGuidance": "הנחיות היקף מותניים",
+        "showAgeContext": "הקשר גיל",
+        "showDisclaimer": "כתב ויתור",
+        "attributionSection": "סרגל ייחוס",
+        "attributionFull": "מלא (לוגו + QR + קישורים)",
+        "attributionCompact": "קומפקטי (לוגו + קישור בלבד)",
+        "on": "פעיל",
+        "off": "כבוי",
+        "px": "px"
+      }
+    }
+  },
+  "calculators": {
+    "title": "מחשבונים ואלגוריתמים רפואיים",
+    "metaDescription": "מחשבונים רפואיים חינמיים וקוד פתוח למחנכים. הטמע באתר או השתמש בהרצאות.",
+    "hero": {
+      "titlePre": "מחשבונים",
+      "titleHighlight": "רפואיים",
+      "titlePost": "ואלגוריתמים",
+      "annotation": "חינמי וניתן להטמעה!"
+    },
+    "subtitle": "מחשבונים ואלגוריתמים קליניים חינמיים. הטמע באתר, השתמש בהרצאות או שתף עם התלמידים. ייחוס נדרש.",
+    "backToCalculators": "חזרה למחשבונים",
+    "attributionReminder": "ייחוס נדרש בעת שימוש או הטמעת מחשבונים אלה."
+  },
+  "professors": {
+    "templateCategories": {
+      "lectures": "הרצאות",
+      "cases": "מקרים קליניים",
+      "anatomy": "אנטומיה",
+      "pharmacology": "פרמקולוגיה",
+      "general": "כללי"
+    },
+    "title": "מדריכים ותבניות",
+    "metaDescription": "מדריכי הוראה ותבניות חינמיים למחנכים רפואיים: תבניות שקפים, תוכניות שיעור, נכסים ויזואליים והדרכות הטמעה.",
+    "hero": {
+      "titleHighlight": "מדריכים",
+      "titlePost": "ותבניות",
+      "annotation": "בנויים למחנכים!"
+    },
+    "jsonLd": {
+      "title": "מדריכים ותבניות למחנכים",
+      "description": "מדריכי הוראה, תבניות שקפים ונכסים ויזואליים חינמיים למחנכים רפואיים."
+    },
+    "subtitle": "מדריכים, תבניות ונכסים להוראה — כולם חינמיים להורדה ושימוש.",
+    "licenseNote": "כל המשאבים חינמיים לשימוש חינוכי לא מסחרי עם ייחוס. צור קשר ari@entermedschool.com לשאלות.",
+    "searchPlaceholder": "חפש מדריכים, תבניות, נכסים...",
+    "findTitle": "מצא מה שאתה צריך",
+    "findSubtitle": "חפש בכל התבניות, המדריכים והנכסים",
+    "quickStartTitle": "התחל ב-3 שלבים",
+    "quickStartSubtitle": "הכל חינמי ואין צורך בחשבון. פשוט דפדף, הורד והשתמש.",
+    "videoTitle": "סרטוני הדרכה",
+    "videoSubtitle": "מדריכי וידאו שלב אחר שלב שיעזרו לך למקסם כל משאב.",
+    "exploreTitle": "חקור לפי קטגוריה",
+    "exploreSubtitle": "קפוץ ישירות לקטגוריה שאתה צריך",
+    "noResults": "לא נמצאו משאבים",
+    "noResultsHint": "נסה מונח חיפוש אחר או נקה את הסינונים.",
+    "clearFilters": "נקה את כל הסינונים",
+    "allResources": "כל המשאבים",
+    "templates": {
+      "title": "תבניות שקפים וחבילות שיעורים",
+      "metaDescription": "תבניות שקפים וחבילות שיעורים חינמיות למחנכים רפואיים. פורמטים PowerPoint ו-Google Slides. ייחוס נדרש.",
+      "description": "תבניות מצגות מוכנות להרצאות שלך. הורד, התאם וייחס.",
+      "searchPlaceholder": "חפש תבניות...",
+      "allCategories": "הכל",
+      "preview": "תצוגה מקדימה",
+      "download": "הורד להרצאה שלך",
+      "featured": "מומלצות",
+      "slides": "שקפים",
+      "sheets": "גיליונות",
+      "resultsFor": "תוצאות עבור",
+      "noResults": "לא נמצאו תבניות",
+      "noResultsHint": "נסה מונח חיפוש אחר או נקה את הסינונים.",
+      "clearFilters": "נקה את כל הסינונים",
+      "clearSearch": "נקה חיפוש",
+      "close": "סגור",
+      "attributionReminder": "זכור לכלול ייחוס בעת שימוש בתבניות אלו."
+    },
+    "guides": {
+      "title": "מדריכי הוראה",
+      "metaDescription": "מדריכים שלב אחר שלב למחנכים רפואיים: הטמעת כלים אינטראקטיביים, יצירת שיעורים ויזואליים, בניית בחינות ושימוש במשאבי EnterMedSchool בתכנית הלימודים.",
+      "description": "מדריכים על טכניקות הוראה, הטמעת משאבים ומיצוי החומרים שלך.",
+      "aiSlides": "כיצד להשתמש ב-AI לשיפור השקפים",
+      "clinicalCases": "שימוש במקרים קליניים בתכנית הלימודים",
+      "emsResources": "הוספת משאבי EnterMedSchool להוראה שלך"
+    },
+    "assets": {
+      "title": "נכסי הוראה להורדה",
+      "metaDescription": "נכסי הוראה להורדה חינמיים למחנכים רפואיים: לוגואים, דיאגרמות, איורים אנטומיים. ייחוס נדרש.",
+      "description": "דיאגרמות, איורים ונכסים מוכנים להטמעה בהרצאות ובחומרים. ייחוס נדרש.",
+      "attributionReminder": "זכור לכלול ייחוס בעת שימוש בנכסים אלו."
+    },
+    "hub": {
+      "sectionGuides": "מדריכים",
+      "sectionAssets": "נכסים",
+      "searchPlaceholder": "חפש מדריכים ונכסים...",
+      "ariaSearch": "חפש משאבי מחנכים",
+      "ariaClearSearch": "נקה חיפוש",
+      "resultCount": "תוצאה",
+      "resultCountPlural": "תוצאות",
+      "resultsFor": "עבור",
+      "emptyStateGuides": "אין מדריכים התואמים לחיפוש.",
+      "emptyStateAssets": "אין נכסים התואמים לחיפוש.",
+      "readGuide": "קרא מדריך",
+      "download": "הורד",
+      "freeForEducators": "חינמי למחנכים",
+      "badgeNew": "חדש",
+      "getAttributionBadge": "קבל תג ייחוס",
+      "exploreTools": "חקור כלים",
+      "guides": {
+        "aiSlides": {
+          "title": "כיצד להשתמש ב-AI לשיפור השקפים",
+          "desc": "מדריך שלב אחר שלב לשימוש בכלי AI ליצירת מצגות רפואיות ותוכן הרצאות טובים יותר."
+        },
+        "clinicalCases": {
+          "title": "שימוש במקרים קליניים בתכנית הלימודים",
+          "desc": "שיטות עבודה מומלצות לשילוב case studies קליניים בקורסים רפואיים למעורבות למידה עמוקה יותר."
+        },
+        "emsResources": {
+          "title": "הוספת משאבי EnterMedSchool להוראה שלך",
+          "desc": "כיצד להטמיע, לשתף ולשלב את כלי EnterMedSchool ומשאביו ב-LMS ובהרצאות שלך."
+        },
+        "mcqMaker": {
+          "title": "צור ושתף בחינות MCQ",
+          "desc": "בנה שאלות רבות ברירה, צור בחינות PDF עם מפתחות תשובות, והטמע חידונים אינטראקטיביים ישירות באתר שלך."
+        }
+      },
+      "assets": {
+        "logoPack": {
+          "title": "חבילת לוגו EnterMedSchool",
+          "desc": "לוגואים רשמיים בפורמטים SVG, PNG לשימוש בשקפים ובחומרים.",
+          "type": "לוגואים"
+        },
+        "anatomyDiagrams": {
+          "title": "מקבץ דיאגרמות אנטומיה",
+          "desc": "אוסף דיאגרמות אנטומיה מתויגות להטמעה במצגות.",
+          "type": "דיאגרמות"
+        },
+        "clinicalIcons": {
+          "title": "אוסף אייקונים קליניים",
+          "desc": "אייקונים רפואיים וקליניים לשימוש בחומרים החינוכיים ובמצגות שלך.",
+          "type": "אייקונים"
+        }
+      }
+    },
+    "videos": {
+      "title": "סרטוני הדרכה ואיך לעשות",
+      "metaDescription": "סרטוני הדרכה חינמיים למחנכים רפואיים על שימוש במשאבי הוראה והטמעת כלים חינוכיים.",
+      "description": "מדריכי וידאו שלב אחר שלב שיעזרו לך למקסם כל משאב."
+    }
+  },
+  "events": {
+    "title": "אירועים וקהילה",
+    "metaDescription": "הצטרף לאירועי קהילת EnterMedSchool לפגישות סטודנטים לרפואה. מנגלים, מבצעי מרצ'נדייז, נטוורקינג ומשאבי ארגוני סטודנטים — כולם חינמיים.",
+    "hero": {
+      "titlePre": "הקהילה",
+      "titleHighlight": "שלנו",
+      "titlePost": "אירועים",
+      "annotation": "הצטרף אלינו!"
+    },
+    "jsonLd": {
+      "collectionTitle": "אירועי קהילה",
+      "collectionDescription": "אירועי קהילת EnterMedSchool ומפגשים.",
+      "paviaEvent": {
+        "name": "מפגש מנגל פאביה",
+        "description": "מפגש מנגל קהילתי בפאביה לסטודנטים לרפואה.",
+        "location": "פאביה, איטליה"
+      }
+    },
+    "contactUs": "צור קשר",
+    "subtitle": "בונים קהילות בית ספר לרפואה בריאות ברחבי העולם.",
+    "pastEvents": {
+      "title": "אירועים בעבר",
+      "pavia": {
+        "title": "מנגל סטודנטים — אוניברסיטת פאביה",
+        "description": "מחברים סטודנטים לרפואה סביב אוכל ושיחה. בונים קשרים שנמשכים מעבר לכיתה."
+      },
+      "merch": {
+        "title": "מרצ'נדייז חינמי לסטודנטים לרפואה",
+        "description": "מרצ'נדייז מעוצב מותאם לבניית גאוות קהילה ולהרגשת שייכות."
+      }
+    },
+    "whatWeOffer": {
+      "title": "איך אנחנו עוזרים",
+      "orgs": "ייעוץ לארגוני סטודנטים",
+      "orgsDesc": "עזרה בהקמה ובניהול ארגוני סטודנטים באוניברסיטה שלך.",
+      "merch": "עיצוב והדפסת מרצ'נדייז",
+      "merchDesc": "ייעוץ חינמי לעיצוב והדפסת מרצ'נדייז מותאם לקבוצת הסטודנטים שלך.",
+      "resources": "ארגון משאבי לימוד",
+      "resourcesDesc": "למד כיצד להקים Google Drives משותפים, לתאם שיתוף משאבים ולבנות קבוצות לימוד.",
+      "networking": "אירועי נטוורקינג",
+      "networkingDesc": "רעיונות ותמיכה לארגון אירועים שמחברים סטודנטים."
+    },
+    "philosophy": {
+      "title": "שיתוף פעולה על פני תחרות",
+      "content": "בית ספר לרפואה לפעמים דוחף לתחרות עם העמיתים. אנחנו מאמינים שהרופאים הטובים נבנים דרך שיתוף פעולה. מעודדים סטודנטים לעזור זה לזה, לשתף משאבים ולבנות קהילות בריאות."
+    },
+    "contactCta": "רוצה עזרה בארגון אירועים או בניית קהילה באוניברסיטה שלך? צור קשר!"
+  },
+  "license": {
+    "title": "רישיון וייחוס",
+    "metaDescription": "למד על רישיון EnterMedSchool.org למשאבי חינוך חינמיים וצור תג ייחוס.",
+    "hero": {
+      "titlePre": "רישיון",
+      "titleHighlight": "וייחוס",
+      "annotation": "חינמי למחנכים!",
+      "subtitle": "למד כיצד לייחס כראוי חומרי EnterMedSchool וצור את התג שלך."
+    },
+    "jsonLd": {
+      "title": "רישיון וייחוס",
+      "description": "תנאי רישיון ודרישות ייחוס למשאבי חינוך EnterMedSchool."
+    },
+    "licenseType": {
+      "badge": "חינמי לחינוך",
+      "title": "שימוש חינוכי לא מסחרי",
+      "description": "כל משאבי EnterMedSchool.org מורשים לשימוש חינוכי חינמי עם ייחוס מתאים. ללא דמי מנוי — פשוט תן קרדיט."
+    },
+    "info": {
+      "title": "הרישיון שלנו",
+      "description": "כל המשאבים ב-EnterMedSchool.org חינמיים לשימוש חינוכי לא מסחרי עם ייחוס מתאים.",
+      "canDo": {
+        "title": "מה אתה יכול לעשות",
+        "items": [
+          "הורד משאבים להרצאות ולשקפים שלך",
+          "הטמע כלים ואיורים באתר שלך",
+          "שתף חומרים עם התלמידים שלך",
+          "ערוך תוכן לכיתות שלך",
+          "הדפס לחומרי חינוך"
+        ],
+        "icons": [
+          "GraduationCap",
+          "Globe",
+          "Users",
+          "Pencil",
+          "Printer"
+        ]
+      },
+      "cannotDo": {
+        "title": "מה אתה לא יכול לעשות",
+        "items": [
+          "למכור או למסחר במשאבים שלנו",
+          "שימוש מסחרי ללא רשות",
+          "הסרת ייחוס מהחומרים",
+          "להציג את עבודתנו כשלך"
+        ],
+        "icons": [
+          "DollarSign",
+          "Building",
+          "EyeOff",
+          "UserX"
+        ]
+      },
+      "contact": "שאלות על רישוי? צור קשר"
+    },
+    "quickStart": {
+      "title": "התחל ב-3 שלבים",
+      "subtitle": "הוספת ייחוס מהירה וקלה. כך:",
+      "steps": [
+        {
+          "number": "1",
+          "title": "מלא את הפרטים שלך",
+          "description": "הזן שם ומוסד למטה. נשמר כדי שלא תצטרך לעשות זאת שוב."
+        },
+        {
+          "number": "2",
+          "title": "הורד את התג שלך",
+          "description": "התאם את המראה והורד תג PNG, או העתק את קוד ה-HTML להטמעה."
+        },
+        {
+          "number": "3",
+          "title": "הוסף לחומרים שלך",
+          "description": "שים את התג בשקפים, PDF או באתר בכל מקום שמשתמש במשאבים שלנו."
+        }
+      ]
+    },
+    "generator": {
+      "title": "מחולל תג ייחוס",
+      "description": "צור תג ייחוס דק להוספה בשקפים, PDF וחומרים. הפרטים שלך נשמרים בדפדפן.",
+      "nameLabel": "השם שלך",
+      "namePlaceholder": "פרופ׳ מריה רוסי",
+      "positionLabel": "תפקיד / מוסד (אופציונלי)",
+      "positionPlaceholder": "מחלקה לרפואה, אוניברסיטת פאביה",
+      "previewTitle": "תצוגה מקדימה חיה",
+      "downloadBtn": "הורד PNG",
+      "embedCodeLabel": "קוד הטמעה",
+      "embedCodeDescription": "הדבק HTML זה באתר, בלוג או בפלטפורמה שתומכת ב-HTML. מכיל קישורי dofollow ל-EnterMedSchool.",
+      "copyEmbedBtn": "העתק קוד הטמעה",
+      "copiedMsg": "הועתק!",
+      "embedTitle": "כיצד להשתמש בתג שלך",
+      "detailsSection": "הפרטים שלך",
+      "styleSection": "סגנון תג",
+      "colorsSection": "צבעים ורקע",
+      "optionsSection": "אפשרויות",
+      "shapeLabel": "צורה",
+      "shapes": {
+        "horizontal": "באנר",
+        "square": "ריבוע",
+        "compact": "קומפקטי",
+        "vertical": "אנכי"
+      },
+      "sizeLabel": "גודל",
+      "sizes": {
+        "small": "קטן",
+        "medium": "בינוני",
+        "large": "גדול"
+      },
+      "colorThemeLabel": "ערכת צבעים",
+      "themes": {
+        "purple": "סגול",
+        "teal": "טורקיז",
+        "green": "ירוק",
+        "coral": "קורל",
+        "navy": "כחול כהה",
+        "custom": "מותאם אישית"
+      },
+      "bgStyleLabel": "רקע",
+      "bgStyles": {
+        "white": "לבן",
+        "gradient": "גרדיאנט",
+        "dark": "כהה",
+        "transparent": "שקוף"
+      },
+      "showQR": "הצג קוד QR",
+      "showFinePrint": "הצג טקסט רישיון",
+      "showPosition": "הצג תפקיד"
+    },
+    "whereToBadge": {
+      "title": "היכן להוסיף את התג",
+      "subtitle": "כלול ייחוס בכל מקום שמשתמש במשאבי EnterMedSchool.",
+      "items": [
+        {
+          "title": "מצגות ושקפים",
+          "description": "הוסף את התג לשקף הפתיחה או לסיום. עובד מצוין ב-PowerPoint, Google Slides ו-Keynote.",
+          "icon": "Presentation"
+        },
+        {
+          "title": "PDF ומסמכים",
+          "description": "שים את התג בבוטום או בדף הקרדיטים של חומרי הלימוד, סיכומים או מדריכי לימוד.",
+          "icon": "FileText"
+        },
+        {
+          "title": "אתרים ובלוגים",
+          "description": "השתמש בקוד ההטמעה HTML להוספת קישור ייחוס נקי בכל מקום שמפרסם את התוכן שלנו באונליין.",
+          "icon": "Globe"
+        },
+        {
+          "title": "חומרים מודפסים",
+          "description": "כלול את תמונת התג בחומרים מודפסים, פוסטרים או כל חומר חינוכי פיזי.",
+          "icon": "Printer"
+        }
+      ]
+    },
+    "faq": {
+      "title": "שאלות נפוצות",
+      "items": [
+        {
+          "question": "האם אפשר להשתמש במשאבים באוניברסיטה שלי?",
+          "answer": "כן! כל המשאבים חינמיים לשימוש חינוכי באוניברסיטאות, בתי ספר לרפואה ומוסדות חינוך לא מסחריים. פשוט כלול את תג הייחוס."
+        },
+        {
+          "question": "האם צריך לשלם?",
+          "answer": "לא. כל המשאבים חינמיים לחלוטין לשימוש חינוכי לא מסחרי. אין עמלות, מנויים או עלויות חבויות."
+        },
+        {
+          "question": "מה נחשב שימוש מסחרי?",
+          "answer": "שימוש מסחרי כולל מכירת המשאבים שלנו, הכללתם בקורסים או בחומרים בתשלום, או שימוש ליצירת רווח. אם לא בטוח, צור קשר ari@entermedschool.com."
+        },
+        {
+          "question": "האם אפשר לשנות את המשאבים לכיתות שלי?",
+          "answer": "בהחלט. אפשר להתאים, לתרגם ולשנות משאבים לצרכי ההוראה. שמור את תג הייחוס גלוי ואל תסיר את המותג שלנו."
+        },
+        {
+          "question": "האם נדרשת אישור לפני שימוש?",
+          "answer": "כן, יש ליצור קשר עם ari@entermedschool.com לאישור. זה עוזר לנו לעקוב אחרי שימוש ולוודא ייחוס מתאים. אישור לרוב ניתן במהירות לשימוש חינוכי."
+        },
+        {
+          "question": "מה אם רוצים להשתמש במשאבים מסחרית?",
+          "answer": "צור קשר ari@entermedschool.com לדון ברישיון מסחרי. אנו בודקים בקשות מסחריות על בסיס מקרה-למקרה."
+        }
+      ]
+    },
+    "contactCta": {
+      "title": "צריך אישור או יש שאלות?",
+      "description": "לפני שימוש במשאבים שלנו, אנא צור קשר לאישור. לרוב נגיב תוך 24–48 שעות ונשמח לעזור למחנכים.",
+      "buttonText": "צור קשר לאישור",
+      "email": "ari@entermedschool.com"
+    }
+  },
+  "privacy": {
+    "title": "מדיניות פרטיות",
+    "metaDescription": "קרא את מדיניות הפרטיות של EnterMedSchool.org. למד כיצד אנו מטפלים בעוגיות, אנליטיקה והגנה על הנתונים. ללא מעקב, ללא פרסומות, שקיפות מלאה.",
+    "hero": {
+      "titleHighlight": "פרטיות",
+      "titlePost": "מדיניות",
+      "annotation": "הנתונים שלך נשארים שלך!",
+      "subtitle": "אנחנו מכבדים את הפרטיות שלך. כך אנו מטפלים במידע באתר שלנו."
+    },
+    "jsonLd": {
+      "name": "מדיניות פרטיות",
+      "description": "מדיניות פרטיות EnterMedSchool.org - כיצד אנו מטפלים במידע באתר."
+    },
+    "lastUpdated": "עדכון אחרון:",
+    "lastUpdatedDate": "פברואר 2026",
+    "overview": {
+      "title": "סקירה",
+      "content": "EnterMedSchool.org (\"אנחנו\", \"אותנו\", \"שלנו\") מחויבים להגנה על הפרטיות שלך. מדיניות זו מסבירה כיצד אנו מטפלים במידע בביקורך באתר."
+    },
+    "informationWeCollect": {
+      "title": "מידע שאנו אוספים",
+      "intro": "EnterMedSchool.org הוא אתר סטטי ציבורי. איננו דורשים רישום, התחברות או מידע אישי לשימוש במשאבים.",
+      "weDoNotCollect": "אנחנו לא אוספים:",
+      "items": {
+        "personalInfo": "מידע מזהה אישי",
+        "email": "כתובות אימייל (אלא אם פנית אלינו ישירות)",
+        "payment": "מידע תשלום",
+        "userContent": "תוכן שנוצר על ידי משתמש"
+      }
+    },
+    "cookies": {
+      "title": "עוגיות",
+      "intro": "אנו משתמשים בסט מינימלי של עוגיות:",
+      "items": {
+        "essential": {
+          "label": "עוגיות הכרחיות:",
+          "description": "עוגייה אחת לאחסון העדפות הסכמתך לעוגיות. נחוצה לתפקוד האתר."
+        },
+        "analytics": {
+          "label": "עוגיות אנליטיקה (אופציונלי):",
+          "description": "בהסכמתך, אנו משתמשים ב-Plausible Analytics, שירות אנליטיקה ידידותי לפרטיות שלא משתמש בעוגיות למעקב. Plausible לא אוסף נתונים אישיים ועמיד ב-GDPR."
+        }
+      },
+      "managePreferences": "ניתן לנהל את העדפות העוגיות בכל עת דרך \"הגדרות עוגיות\" בבוטום."
+    },
+    "analytics": {
+      "title": "אנליטיקה",
+      "content": "בהסכמתך, אנו משתמשים ב-Plausible Analytics להבנת דפוסי שימוש מצטברים. Plausible ממוקד פרטיות ולא עוקב אחרי יחידים, לא משתמש בעוגיות לזיהוי ולא אוסף נתונים אישיים. כל הנתונים מצטברים ואנונימיים."
+    },
+    "thirdPartyLinks": {
+      "title": "קישורים לצד שלישי",
+      "content": "האתר עשוי להכיל קישורים ל-entermedschool.com ולאתרים חיצוניים. איננו אחראים לפרקטיקות הפרטיות של אתרים אחרים. אנו ממליצים לקרוא את מדיניות הפרטיות שלהם."
+    },
+    "childrensPrivacy": {
+      "title": "פרטיות ילדים",
+      "content": "האתר מיועד לשימוש חינוכי של מחנכים רפואיים. איננו אוספים מידע מילדים מתחת לגיל 13."
+    },
+    "changes": {
+      "title": "שינויים במדיניות",
+      "content": "ייתכן שנעדכן מדיניות זו מעת לעת. שינויים יפורסמו בדף זה עם תאריך עדכון."
+    },
+    "contact": {
+      "title": "צור קשר",
+      "contentBefore": "אם יש שאלות על מדיניות פרטיות זו, צור קשר ב-",
+      "contentAfter": ".",
+      "email": "ari@entermedschool.com"
+    },
+    "dataController": {
+      "title": "אחראי נתונים",
+      "contentBefore": "EnterMedSchool.org הוא פרויקט של EnterMedSchool. למידע נוסף בקר ב-",
+      "contentAfter": ".",
+      "linkText": "entermedschool.com",
+      "linkUrl": "https://entermedschool.com"
+    }
+  },
+  "search": {
+    "title": "חיפוש",
+    "placeholder": "חפש משאבים, כלים, מדריכים...",
+    "noResults": "לא נמצאו תוצאות",
+    "noResultsSuggestion": "נסה לחפש 'אנטומיה', 'כרטיסיות' או 'תבניות'",
+    "browseAll": "דפדף בכל המשאבים",
+    "hint": "לחץ Ctrl+K לחיפוש",
+    "hintMac": "לחץ ⌘K לחיפוש",
+    "quickLinks": "קישורים מהירים",
+    "keyNav": "ניווט",
+    "keyOpen": "פתיחה",
+    "keyClose": "סגירה",
+    "resultCount": "תוצאות",
+    "ariaSearch": "חיפוש",
+    "ariaClose": "סגור חיפוש",
+    "escKey": "ESC",
+    "quickLinkResources": "משאבים",
+    "quickLinkResourcesDesc": "דפדף בכל המשאבים",
+    "quickLinkPracticeQuestions": "שאלות תרגול",
+    "quickLinkPracticeQuestionsDesc": "מקרים קליניים ו-MCQ",
+    "quickLinkVideoLessons": "שיעורי וידאו",
+    "quickLinkVideoLessonsDesc": "הסברים ויזואליים",
+    "quickLinkMedicalVisuals": "איורים רפואיים",
+    "quickLinkMedicalVisualsDesc": "דיאגרמות ואיורים",
+    "quickLinkForProfessors": "למחנכים",
+    "quickLinkForProfessorsDesc": "משאבי הוראה",
+    "quickLinkTools": "כלים",
+    "quickLinkToolsDesc": "מחשבונים ועוד",
+    "categories": {
+      "page": "דפים",
+      "resource": "משאבים",
+      "tool": "כלים",
+      "guide": "מדריכים",
+      "visual": "וויזואליים"
+    }
+  },
+  "breadcrumbs": {
+    "home": "דף הבית",
+    "resources": "משאבים",
+    "questions": "שאלות",
+    "videos": "סרטונים",
+    "pdfs": "PDF",
+    "visuals": "איורים",
+    "tools": "כלים",
+    "guides": "מדריכים",
+    "templates": "תבניות",
+    "teachingGuides": "מדריכי הוראה",
+    "assets": "נכסים",
+    "events": "אירועים",
+    "about": "אודות",
+    "license": "רישיון",
+    "privacy": "פרטיות"
+  },
+  "footer": {
+    "copyright": "© {year} EnterMedSchool.org. כל הזכויות שמורות.",
+    "cookieSettings": "הגדרות עוגיות",
+    "partOf": "פרויקט של",
+    "description": "הזרוע הלא-מסחרית והקוד הפתוח של EnterMedSchool — משאבי חינוך רפואי חינמיים למחנכים להורדה, הטמעה ושיתוף עם התלמידים.",
+    "badges": {
+      "freeForever": "חינמי לתמיד",
+      "openSource": "קוד פתוח",
+      "nonCommercial": "לא מסחרי",
+      "attributionRequired": "ייחוס נדרש"
+    },
+    "relationship": {
+      "title": "איך זה עובד:",
+      "description": "EnterMedSchool.com מממן את הפרויקט דרך הקורסים והשירותים בתשלום שלו. כל מה שנמצא כאן ב-.org חינמי, קוד פתוח ותמיד יהיה. הורד, הטמע והשתמש — פשוט זכור לייחס."
+    },
+    "links": {
+      "questions": "בנקי שאלות",
+      "videos": "נכסי וידאו",
+      "pdfs": "ספרי לימוד וחומרים",
+      "visuals": "נכסים ויזואליים",
+      "clinicalSemiotics": "סמיוטיקה קלינית",
+      "explore": "חקור",
+      "legal": "משפטי ומידע"
+    }
+  },
+  "notFound": {
+    "title": "הדף לא נמצא",
+    "description": "הדף שאתה מחפש לא קיים או הועבר.",
+    "backHome": "חזרה לדף הבית"
+  },
+  "error": {
+    "oops": "אופס!",
+    "title": "משהו השתבש",
+    "description": "אירעה שגיאה בלתי צפויה. אנא נסה שוב — אם הבעיה ממשיכה, צור קשר.",
+    "tryAgain": "נסה שוב"
+  },
+  "embed": {
+    "onboarding": {
+      "listenLearn": "האזן ולמד",
+      "listenLearnDesc": "לחץ על השמעה לשמיעת הקריינות לכל שכבה",
+      "navigateLayers": "ניווט בשכבות",
+      "navigateLayersDesc": "השתמש בחצים או לחץ על הנקודות לחקירה",
+      "readAlong": "קרא יחד",
+      "readAlongDesc": "עקוב אחרי טקסט הקריינות בזמן ההאזנה",
+      "buildThePicture": "בנה את התמונה",
+      "buildThePictureDesc": "כל שכבה מוסיפה מושגים חדשים לסצנה",
+      "gotIt": "הבנתי, בואו נתחיל!",
+      "orClickAnywhere": "או לחץ בכל מקום / לחץ על כל מקש",
+      "title": "שיעור ויזואלי אינטראקטיבי",
+      "description": "כל שכבה חושפת מושג רפואי חדש עם קריינות. בנה את התמונה המלאה שלב אחר שלב."
+    },
+    "viewer": {
+      "hideNarration": "הסתר קריינות",
+      "showNarration": "הצג קריינות",
+      "loading": "טוען...",
+      "pressPlayToStart": "לחץ השמעה להתחלה",
+      "listenToNarration": "האזן לקריינות לכל שכבה",
+      "interactiveVisual": "וויזואלי אינטראקטיבי",
+      "layersCount": "{count} שכבות",
+      "layerOf": "שכבה {current} מתוך {total}"
+    },
+    "subtitles": {
+      "collapse": "כווץ",
+      "readAlong": "קרא יחד"
+    },
+    "errors": {
+      "lessonNotFound": "שיעור לא נמצא",
+      "lessonNotFoundDescription": "שיעור הוויזואלי \"{lessonId}\" אינו קיים."
+    },
+    "mcqErrors": {
+      "noQuizData": "לא נמצאו נתוני חידון. כתובת ההטמעה עשויה להיות לא מלאה.",
+      "noValidQuestions": "אין שאלות תקינות בנתוני החידון.",
+      "decodeFailed": "פענוח נתוני החידון נכשל. כתובת ההטמעה עשויה להיות פגומה.",
+      "couldNotLoadQuiz": "לא ניתן לטעון את החידון"
+    },
+    "clinicalSemiotics": {
+      "examNotAvailable": "בחינה לא זמינה",
+      "couldNotLoadExam": "לא ניתן לטעון את שרשרת הבחינה \"{examType}\"."
+    },
+    "mcqQuiz": {
+      "passed": "עבר!",
+      "notPassed": "לא עבר",
+      "results": "תוצאות",
+      "reviewAnswers": "סקור תשובות",
+      "restart": "התחל מחדש",
+      "practiceComplete": "תרגול הושלם",
+      "review": "סקירה",
+      "scoreLabel": "ציון",
+      "correct": "תקין",
+      "yourAnswer": "התשובה שלך",
+      "explanation": "הסבר:",
+      "previous": "הקודם",
+      "next": "הבא",
+      "submit": "שלח",
+      "questionAlt": "שאלה",
+      "pointsOutOf": "{correct} מתוך {total} נקודות",
+      "toPass": "({passingScore}% לעבור)",
+      "poweredBy": "באמצעות"
+    }
+  },
+  "clinicalSemiotics": {
+    "title": "סטודיו סמיוטיקה קלינית",
+    "description": "סרטוני בדיקה קלינית אינטראקטיביים עם פרוצדורות רפואיות אמיתיות, כתוביות דו-לשוניות וביקורות ידע. הטמע באתר או שתף עם התלמידים.",
+    "seo": {
+      "title": "סטודיו סמיוטיקה קלינית | EnterMedSchool.org",
+      "description": "סרטוני בדיקה קלינית אינטראקטיביים חינמיים וקוד פתוח. הטמע באתר או שתף עם התלמידים. בדיקות BP ידני, לב וחזה."
+    },
+    "intro": {
+      "eyebrow": "EnterMedSchool מציג",
+      "headline": "סטודיו סמיוטיקה קלינית",
+      "tagline": "סרטוני בדיקה קלינית אינטראקטיביים — הטמע או שתף עם התלמידים",
+      "actionLabel": "גישה לסטודיו"
+    },
+    "exams": {
+      "manualBp": "בדיקת לחץ דם ידנית",
+      "manualBpDesc": "מדידת לחץ דם ידנית עם שפה רפואית איטלקית. הטמע או שתף עם התלמידים.",
+      "cardiac": "בדיקת לב",
+      "cardiacDesc": "כישורי האזנה לבבית ובדיקת לב עם סיור וידאו אינטראקטיבי.",
+      "thoracic": "עקרונות בדיקת חזה",
+      "thoracicDesc": "תהליך בדיקה, מישוש והאזנה מקצה לקצה."
+    },
+    "ui": {
+      "downloadAssets": "הורד נכסים",
+      "embed": "הטמע באתר שלך",
+      "shareWithStudents": "שתף עם התלמידים",
+      "copyCode": "העתק קוד",
+      "copied": "הועתק!",
+      "startExam": "התחל בחינה",
+      "resume": "המשך",
+      "startOver": "התחל מחדש",
+      "completed": "הושלם",
+      "loading": "טוען...",
+      "retry": "נסה שוב",
+      "continue": "המשך",
+      "exitExam": "צא מהבחינה"
+    },
+    "embed": {
+      "title": "הטמעת סמיוטיקה קלינית",
+      "subtitle": "הוסף בדיקה אינטראקטיבית זו לאתר או ל-LMS שלך",
+      "embedShareTitle": "הטמעה ושיתוף: {examTitle}",
+      "embedShareSubtitle": "הטמע באתר, או העתק קישור ישיר לשקפים ול-LMS",
+      "embedCodeTab": "קוד הטמעה",
+      "shareLinkTab": "קישור שיתוף",
+      "backgroundColor": "צבע רקע",
+      "accentColor": "צבע דגש",
+      "borderRadius": "עיגול פינות",
+      "theme": "ערכת נושא",
+      "light": "בהיר",
+      "dark": "כהה",
+      "width": "רוחב",
+      "height": "גובה",
+      "bgColor": "צבע רקע",
+      "preview": "תצוגה מקדימה",
+      "copyIframe": "העתק קוד Iframe",
+      "attribution": "ייחוס נדרש בהטמעה",
+      "colorPresets": {
+        "white": "לבן",
+        "lightGray": "אפור בהיר",
+        "cream": "קרם",
+        "dark": "כהה",
+        "slate": "צפחה",
+        "purple": "סגול",
+        "green": "ירוק",
+        "teal": "טורקיז",
+        "coral": "קורל",
+        "blue": "כחול",
+        "navy": "כחול כהה"
+      },
+      "hexColorPlaceholder": "צבע hex",
+      "pickColor": "בחר צבע",
+      "copyCode": "העתק קוד",
+      "copied": "הועתק!",
+      "copy": "העתק",
+      "embedCodeLabel": "קוד הטמעה",
+      "worksWith": "עובד עם Notion, WordPress, Squarespace, Wix וכל דף HTML.",
+      "directLink": "קישור ישיר",
+      "copyUrlInstructions": "העתק כתובת זו להדבקה בשקפים, שיתוף בצ'אט או הוספה ל-LMS. התלמידים יגיעו לדף בחירת הבחינות.",
+      "howToUse": "כיצד להשתמש",
+      "inSlides": "בשקפים",
+      "inSlidesDesc": "הדבק את הקישור בשקף. התלמידים לוחצים לפתיחה.",
+      "inLms": "ב-LMS",
+      "inLmsDesc": "הוסף כמשאב חיצוני או קישור.",
+      "onWebsite": "באתר",
+      "onWebsiteDesc": "עבור ללשונית קוד ההטמעה לקטע iframe.",
+      "livePreview": "תצוגה מקדימה חיה",
+      "previewLoading": "טוען תצוגה מקדימה...",
+      "closeAria": "סגור קונפיגוראטור הטמעה",
+      "closeButtonAria": "סגור"
+    },
+    "attribution": {
+      "reminder": "אנא הוסף את פרטי הייחוס שלך לפני הורדת נכסים."
+    },
+    "examSelection": {
+      "libraryTitle": "ספריית",
+      "libraryHighlight": "בדיקות קליניות",
+      "subtitle": "תצוגה מקדימה, הטמעה או שיתוף כל בחינה עם התלמידים.",
+      "searchPlaceholder": "חפש בחינות…",
+      "featured": "מומלצות",
+      "embedShare": "הטמע ושתף",
+      "preview": "תצוגה מקדימה",
+      "assets": "נכסים",
+      "getCode": "קבל קוד",
+      "noExamsFound": "לא נמצאו בחינות",
+      "noExamsHint": "נסה מונח חיפוש או קטגוריה אחרת.",
+      "categories": {
+        "all": "כל הבחינות",
+        "cardiac": "לב",
+        "thoracic": "חזה",
+        "vitalSigns": "סימנים חיוניים",
+        "vital-signs": "סימנים חיוניים"
+      },
+      "exams": {
+        "cardiac": {
+          "label": "בדיקת לב",
+          "description": "שלוט בכישורי האזנה לבבית ובדיקת לב עם סיור וידאו אינטראקטיבי."
+        },
+        "thoracic": {
+          "label": "עקרונות בדיקת חזה",
+          "description": "עקוב אחרי תהליך בדיקה, מישוש והאזנה מקצה לקצה."
+        },
+        "manual-bp": {
+          "label": "בדיקת לחץ דם ידנית",
+          "description": "תרגל מדידת לחץ דם ידנית מדויקת עם שפה רפואית איטלקית."
+        }
+      },
+      "difficulty": {
+        "beginner": "מתחיל",
+        "intermediate": "בינוני",
+        "advanced": "מתקדם"
+      }
+    },
+    "player": {
+      "noSegments": "אין קטעים זמינים.",
+      "loading": "טוען…",
+      "errorTitle": "טעינת הסרטון נכשלה",
+      "errorDescription": "אנא בדוק את החיבור ונסה שוב.",
+      "retry": "נסה שוב",
+      "dismiss": "סגור",
+      "continue": "המשך",
+      "preview": "תצוגה מקדימה",
+      "overlay": {
+        "tip": "טיפ",
+        "question": "שאלה",
+        "warning": "אזהרה",
+        "info": "מידע"
+      },
+      "aria": {
+        "play": "השמעה",
+        "pause": "השהה",
+        "restartSegment": "התחל קטע מחדש",
+        "mute": "השתק",
+        "unmute": "הפעל קול"
+      },
+      "completedCount": "{completed} / {total} הושלמו"
+    }
+  },
+  "pdfViewer": {
+    "catalog": {
+      "title": "ספרי לימוד וחומרי ייחוס",
+      "metaDescription": "ספרי לימוד רפואיים חינמיים וקוד פתוח למחנכים. הקצה לתלמידים, הדפס כחומרים או הטמע ב-LMS.",
+      "hero": {
+        "titlePre": "ספרי לימוד",
+        "titleHighlight": "אינטראקטיביים",
+        "titlePost": "ומדריכי לימוד",
+        "annotation": "קרא באונליין או הורד!"
+      },
+      "jsonLd": {
+        "title": "ספרי לימוד ומדריכי לימוד אינטראקטיביים",
+        "description": "ספרי לימוד רפואיים חינמיים וקוד פתוח עם כלי קריאה אינטראקטיביים, הסתרת טקסט והורדות פרקים."
+      },
+      "subtitle": "הקצה לתלמידים, הדפס כחומרים או הטמע קישורי פרקים ב-LMS. כולם חינמיים וקוד פתוח.",
+      "searchPlaceholder": "חפש ספרי לימוד...",
+      "noResults": "לא נמצאו ספרי לימוד",
+      "noResultsHint": "נסה להתאים את החיפוש או הסינונים.",
+      "clearFilters": "נקה סינונים",
+      "allSubjects": "הכל"
+    },
+    "reader": {
+      "tableOfContents": "תוכן עניינים",
+      "complete": "הושלם",
+      "chapters": "פרקים",
+      "chapter": "פרק",
+      "completePercent": "{percent}% הושלם",
+      "chaptersCount": "{completed}/{total} פרקים",
+      "chPrefix": "פרק",
+      "ariaCloseToc": "סגור תוכן עניינים",
+      "pages": "עמודים",
+      "minRead": "דק' קריאה",
+      "previous": "הקודם",
+      "next": "הבא",
+      "backToOverview": "סקירת ספר",
+      "backTo": "חזרה ל",
+      "congratulations": "מזל טוב!",
+      "finishedBook": "סיימת את הספר"
+    },
+    "toolbar": {
+      "highlightMode": "מצב הדגשה (H)",
+      "notes": "הערות (N)",
+      "settings": "הגדרות",
+      "download": "הורד (D)",
+      "sidebar": "תוכן עניינים (S)",
+      "hideSidebar": "הסתר סרגל צד (S)",
+      "search": "חפש בספר (/)",
+      "print": "הדפס פרק (P)",
+      "readingSettings": "הגדרות קריאה",
+      "fontSize": "גודל גופן",
+      "theme": "ערכת נושא",
+      "highlightColor": "צבע הדגשה",
+      "annotations": "הערות",
+      "exportAnnotations": "ייצא הערות",
+      "importAnnotations": "ייבא הערות",
+      "keyboardShortcuts": "קיצורי מקלדת",
+      "highlight": "הדגשה",
+      "prevChapter": "פרק קודם",
+      "nextChapter": "פרק הבא",
+      "closeSettings": "סגור הגדרות",
+      "showSidebar": "הצג סרגל צד (S)",
+      "toc": "תוכן",
+      "fontSizeSmall": "קטן",
+      "fontSizeMedium": "בינוני",
+      "fontSizeLarge": "גדול",
+      "fontSizeXl": "גדול מאוד",
+      "themeLight": "בהיר",
+      "themeSepia": "סיה",
+      "themeDark": "כהה",
+      "highlightYellow": "צהוב",
+      "highlightGreen": "ירוק",
+      "highlightBlue": "כחול",
+      "highlightPink": "ורוד",
+      "highlightOrange": "כתום",
+      "shortcutH": "הדגשה",
+      "shortcutN": "הערות",
+      "shortcutS": "סרגל צד",
+      "shortcutD": "הורד",
+      "shortcutSearch": "חיפוש",
+      "shortcutP": "הדפסה",
+      "shortcutPrev": "פרק קודם",
+      "shortcutNext": "פרק הבא",
+      "ariaCloseSettings": "סגור הגדרות",
+      "ariaReadingSettings": "הגדרות קריאה"
+    },
+    "search": {
+      "ariaLabel": "חפש בספר",
+      "placeholder": "חפש בספר זה...",
+      "minChars": "הקלד לפחות 2 תווים לחיפוש",
+      "noResults": "לא נמצאו תוצאות עבור",
+      "results": "תוצאה",
+      "resultsPlural": "תוצאות",
+      "found": "נמצאו",
+      "esc": "ESC",
+      "chPrefix": "פרק"
+    },
+    "notes": {
+      "title": "הערות",
+      "closePanel": "סגור הערות",
+      "addPlaceholder": "הוסף הערה לפרק זה...",
+      "ctrlEnter": "Ctrl+Enter לשמירה",
+      "noNotes": "אין עדיין הערות...",
+      "addFirst": "הוסף את ההערה הראשונה למעלה",
+      "edit": "ערוך",
+      "delete": "מחק",
+      "cancel": "ביטול",
+      "save": "שמור",
+      "chapterPrefix": "פרק"
+    },
+    "download": {
+      "title": "הורד משאבים",
+      "fullBook": "ספר מלא",
+      "chapterPdf": "PDF פרק",
+      "downloadChapterOnly": "הורד פרק זה בלבד",
+      "completePdf": "PDF מלא",
+      "individualChapters": "פרקים נפרדים",
+      "attributionRequired": "ייחוס נדרש",
+      "attributionNote": "אנא כלול ייחוס מתאים בעת שימוש בחומרים אלו בהוראה.",
+      "error": "שגיאת הורדה",
+      "fileNotAvailable": "הקובץ לא זמין. ייתכן שה-PDF עדיין לא הועלה.",
+      "fileNotAvailableWithStatus": "הקובץ לא זמין ({status}). ייתכן שה-PDF עדיין לא הועלה.",
+      "completePdfDesc": "PDF מלא ({pages} עמודים)",
+      "ariaCloseDownloadPanel": "סגור לוח הורדות",
+      "close": "סגור"
+    },
+    "educator": {
+      "title": "השתמש בזה בקורס שלך",
+      "subtitle": "ספר הלימוד הזה חינמי לשימוש חינוכי לא מסחרי. כך להשתמש בו בהוראה.",
+      "assignReading": "הקצה לקריאה",
+      "assignReadingDesc": "קשר ישיר לפרקים ספציפיים לתלמידים. לכל פרק כתובת משלו.",
+      "printDistribute": "הדפס והפץ",
+      "printDistributeDesc": "הורד את ה-PDF המלא או פרקים בודדים. הדפס לחומרים או הוסף ל-LMS.",
+      "embedLMS": "הטמע ב-LMS",
+      "embedLMSDesc": "קשר כתובות פרקים ב-Moodle, Canvas או Blackboard.",
+      "requestMods": "בקש שינויים",
+      "requestModsDesc": "צריך גרסה מותאמת? צור קשר לדון בהתאמות לתכנית הלימודים הספציפית שלך.",
+      "contactCta": "צור קשר כדי להתחיל",
+      "viewLicense": "צפה ברישיון המלא"
+    },
+    "attribution": {
+      "title": "כיצד לייחס את העבודה הזו",
+      "subtitle": "העתק אחד מקטעי הייחוס למטה בעת שימוש בחומר זה.",
+      "plainText": "טקסט רגיל",
+      "html": "HTML (עם קישורי dofollow)",
+      "copy": "העתק",
+      "copied": "הועתק!",
+      "fullLicense": "פרטי רישיון מלאים",
+      "badgeGenerator": "מחולל תג"
+    },
+    "overview": {
+      "startReading": "תצוגה מקדימה של תוכן",
+      "assignToStudents": "הקצה לתלמידים",
+      "downloadPdf": "הורד PDF",
+      "chaptersTitle": "פרקים",
+      "chaptersDescription": "לחץ על כל פרק להתחלת קריאה באונליין עם כלים אינטראקטיביים.",
+      "moreTopics": "+{count} נוספים",
+      "sectionsCount": "{count} חלקים",
+      "freeOpenSource": "חינמי וקוד פתוח"
+    },
+    "card": {
+      "free": "חינמי",
+      "percentRead": "{percent}% נקרא",
+      "chapters": "פרקים",
+      "pages": "עמודים",
+      "min": "דק'"
+    }
+  },
+  "common": {
+    "switchLanguage": "החלף שפה",
+    "learnMore": "למד עוד",
+    "viewAll": "הצג הכל",
+    "linkCopied": "קישור הועתק!",
+    "skipToContent": "דלג לתוכן",
+    "download": "הורד",
+    "openSource": "קוד פתוח",
+    "free": "חינמי",
+    "contactEmail": "ari@entermedschool.com",
+    "attributionRequired": "ייחוס נדרש",
+    "licenseNote": "כל הכלים חינמיים וקוד פתוח לשימוש חינוכי.",
+    "attributionRequiredLink": "צפה בפרטי רישיון וייחוס",
+    "shareWithStudents": "שתף עם התלמידים",
+    "embedOnWebsite": "הטמע באתר שלך",
+    "addToSlides": "הוסף לשקפים שלך",
+    "attribution": {
+      "createdBy": "נוצר על ידי",
+      "lesson": "שיעור",
+      "licensedTo": "מורשה ל",
+      "defaultName": "השם שלך",
+      "defaultNameProfessor": "פרופ׳ השם שלך",
+      "resourceBy": "משאב מאת",
+      "freeForNonCommercial": "חינמי לשימוש חינוכי לא מסחרי",
+      "freeForNonCommercialShort": "חינמי לא מסחרי",
+      "educationalUse": "שימוש חינוכי",
+      "howToAttributeHeader": "ייחוס נדרש - EnterMedSchool.org",
+      "badgeRequired": "עליך להוסיף את תג הייחוס (attribution-badge.png) לכל שקף, דף או אתר שמשתמשים בנכסים אלו.",
+      "embedCodeNote": "לשימוש באונליין: הדבק את קוד ההטמעה מ-embed-code.html באתר לצד הנכסים.",
+      "approvalRequired": "חשוב: עליך ליצור קשר עם ari@entermedschool.com לאישור שימוש בחומרים אלו לצורכי חינוך. ללא אישור, הרישיון לא תקף.",
+      "linksNote": "קישורים (חייבים להיכלל כ-dofollow):",
+      "licenseNote": "רישיון: חינמי לשימוש חינוכי לא מסחרי עם ייחוס."
+    }
+  },
+  "toolCode": {
+    "heroTitle": "{toolName} — קוד HTML חינמי",
+    "heroSubtitle": "העתק את קוד ההטמעה למטה כדי להוסיף כלי זה לאתר, בלוג או ב-LMS. חינמי, קוד פתוח ועובד בכל מקום.",
+    "getCodeBtn": "קבל קוד",
+    "copyCode": "העתק קוד",
+    "copied": "הועתק!",
+    "codeBlockLabel": "קוד הטמעה HTML",
+    "step1Title": "העתק את הקוד",
+    "step1Desc": "לחץ על \"העתק קוד\" למעלה להעתקת קטע ה-HTML ללוח.",
+    "step2Title": "הדבק באתר שלך",
+    "step2Desc": "פתח את עורך האתר, עמוד Notion, WordPress או LMS. הדבק את הקוד היכן שרוצה שהכלי יופיע.",
+    "step3Title": "זהו!",
+    "step3Desc": "הכלי ייטען אוטומטית. המבקרים יכולים להשתמש בו מיד — ללא הגדרה.",
+    "previewTitle": "תצוגה מקדימה חיה",
+    "previewDesc": "כך זה ייראה באתר שלך:",
+    "previewLoading": "טוען תצוגה מקדימה...",
+    "attributionTitle": "חינמי וקוד פתוח — ייחוס נדרש",
+    "attributionDesc": "קוד ההטמעה חינמי לחלוטין. קישורי הייחוס הקטנים בתחתית הכלי חייבים להישאר — כך שומרים את הפרויקט חינמי לכולם.",
+    "videoTitle": "כיצד להטמיע — סרטון הדרכה",
+    "videoComingSoon": "סרטון הדרכה בקרוב! נסביר את התהליך שלב אחר שלב.",
+    "githubTitle": "צפה בקוד המקור ב-GitHub",
+    "githubDesc": "רוצה לראות איך הכלי בנוי? חקור את קוד המקור המלא, הצע שיפורים או תרום.",
+    "githubBtn": "צפה ב-GitHub",
+    "customizeTitle": "רוצה להתאים צבעים וגופנים?",
+    "customizeDesc": "השתמש בקונפיגוראטור ההטמעה המתקדם שלנו להתאמת הכלי לעיצוב האתר שלך.",
+    "customizeBtn": "פתח קונפיגוראטור הטמעה",
+    "moreToolsTitle": "כלים ניתנים להטמעה נוספים",
+    "moreToolsDesc": "כל הכלים שלנו חינמיים וניתנים להטמעה. הוסף כל אחד מהם לאתר.",
+    "moreToolsBtn": "קבל קוד",
+    "moreContentTitle": "תוכן ניתן להטמעה נוסף",
+    "moreContentDesc": "כל המשאבים שלנו חינמיים וניתנים להטמעה. הוסף כל אחד מהם לאתר.",
+    "backToVisuals": "חזרה לשיעורים ויזואליים",
+    "backToClinicalSemiotics": "חזרה לסמיוטיקה קלינית",
+    "metaTitleTemplate": "קוד {toolName} HTML חינמי — העתק והטמע",
+    "metaDescTemplate": "קבל קוד {toolName} HTML חינמי וניתן להטמעה לאתר. העתק, הדבק וסיימת. קוד פתוח, עובד בכל אתר, WordPress, Notion או LMS.",
+    "faq": {
+      "title": "שאלות נפוצות",
+      "q1": "האם {toolName} חינמי להטמעה?",
+      "a1": "כן, חינמי לחלוטין. אפשר להטמיע בכל אתר, בלוג, ב-LMS או בעמוד Notion ללא עלות. רק מבקשים להשאיר את קישורי הייחוס הקטנים בתחתית.",
+      "q2": "איך מוסיפים את {toolName} לאתר?",
+      "a2": "העתק את קוד ה-HTML מלמעלה והדבק בעורך ה-HTML של האתר. עובד ב-WordPress, Wix, Squarespace, Google Sites, Notion, Moodle, Canvas ובכל פלטפורמה שתומכת בהטמעות HTML.",
+      "q3": "אפשר להתאים איך {toolName} נראה?",
+      "a3": "כן! יש לנו קונפיגוראטור מתקדם לשינוי צבעים, גופנים ועוד. לחץ על \"פתח קונפיגוראטור הטמעה\" למעלה.",
+      "q4": "צריך להשאיר את קישורי הייחוס?",
+      "a4": "כן. קישורי הייחוס נדרשים ברישיון הקוד הפתוח שלנו. הם עוזרים לשמור את הכלי חינמי לכולם. הסרתם לא מותרת.",
+      "q5": "זה עובד במכשירים ניידים?",
+      "a5": "כן. הכלי המוטמע רספונסיבי ועובד בכל גדלי מסך — מחשב נייח, טאבלט ונייד."
+    }
+  },
+  "data": {
+    "resources": {
+      "anatomyUpperLimb": {
+        "title": "אנטומיה גפה עליונה – שאלות MCQ לתרגול",
+        "description": "50 שאלות רבות ברירה בסגנון בחינה: מקלעת הזרוע, מפרק הכתף, תאים של האמה ועצבוב היד.",
+        "badge": "אנטומיה"
+      },
+      "physiologyCardio": {
+        "title": "פיזיולוגיה קרדיווסקולרית – בחינת סימולציה",
+        "description": "40 שאלות על תפוקת לב, ויסות לחץ דם, פרשנות ECG ומחזור הלב. כולל הסברים מפורטים.",
+        "badge": "פיזיולוגיה"
+      },
+      "biochemMetabolism": {
+        "title": "ביוכימיה – מטבוליזם ואנזימים",
+        "description": "35 שאלות על גליקוליזה, מעגל TCA, זרחון חמצוני וקינטיקת אנזימים. מצוין לריויזיה של שנה א׳.",
+        "badge": "ביוכימיה"
+      },
+      "pharmaAutonomic": {
+        "title": "פרמקולוגיה – מערכת עצבים אוטונומית",
+        "description": "30 שאלות תרחיש קליני על תרופות כולינרגיות ואדרנרגיות, תת-סוגי קולטנים ותופעות לוואי נפוצות.",
+        "badge": "פרמקולוגיה"
+      },
+      "histoTissues": {
+        "title": "היסטולוגיה – סוגי רקמות וזיהוי",
+        "description": "25 שאלות מבוססות תמונה עם מיקרוגרפים. זהה רקמות אפיתל, חיבור, שריר ועצב תחת המיקרוסקופ.",
+        "badge": "היסטולוגיה"
+      },
+      "neuroCranialNerves": {
+        "title": "נוירואנטומיה – חידון עצבי גולגולת",
+        "description": "20 שאלות ממוקדות על מוצא עצבי הגולגולת, נתיבים ופגיעות קליניות. מושלם להכנת OSCE.",
+        "badge": "נוירואנטומיה"
+      }
+    },
+    "illustrationAssets": {
+      "categories": {
+        "cells": "תאים",
+        "organelles": "אברונים",
+        "molecules": "מולקולות",
+        "organs": "איברים",
+        "equipment": "ציוד מעבדה",
+        "arrows": "חצים",
+        "symbols": "סמלים",
+        "micro": "מיקרואורגניזמים"
+      },
+      "assets": {
+        "animalCell": "תא בעל חיים",
+        "plantCell": "תא צמח",
+        "bacteria": "חיידק",
+        "redBloodCell": "תא דם אדום",
+        "whiteBloodCell": "תא דם לבן",
+        "neuron": "נוירון",
+        "epithelialCell": "תא אפיתל",
+        "stemCell": "תא גזע",
+        "nucleus": "גרעין",
+        "mitochondria": "מיטוכונדריה",
+        "roughEr": "רטיקולום אנדופלזמטי מחוספס",
+        "smoothEr": "רטיקולום אנדופלזמטי חלק",
+        "golgiApparatus": "מנגנון גולג'י",
+        "ribosome": "ריבוזום",
+        "lysosome": "ליזוזום",
+        "cellMembrane": "קרום תא",
+        "dnaHelix": "סליל DNA",
+        "rnaStrand": "גדיל RNA",
+        "protein": "חלבון",
+        "antibody": "נוגדן",
+        "receptor": "קולטן",
+        "enzyme": "אנזים",
+        "atp": "ATP",
+        "glucose": "גלוקוז",
+        "heart": "לב",
+        "brain": "מוח",
+        "lungs": "ריאות",
+        "liver": "כבד",
+        "kidney": "כליה",
+        "stomach": "קיבה",
+        "eyeOrgan": "עין",
+        "bone": "עצם",
+        "microscope": "מיקרוסקופ",
+        "testTube": "מבחנה",
+        "beaker": "כוס מעבדה",
+        "pipette": "פיפטה",
+        "petriDish": "צלחת פטרי",
+        "syringe": "מזרק",
+        "flask": "מבחנה עגולה",
+        "centrifuge": "צנטריפוגה",
+        "arrowRight": "חץ ימינה",
+        "arrowLeft": "חץ שמאלה",
+        "arrowBidirectional": "חץ דו-כיווני",
+        "arrowCurved": "חץ מעוגל",
+        "arrowInhibition": "חץ עיכוב",
+        "arrowActivation": "חץ הפעלה",
+        "symbolPlus": "סימן פלוס",
+        "symbolMinus": "סימן מינוס",
+        "symbolCheck": "סימון V",
+        "symbolX": "סימן X",
+        "symbolStar": "כוכב",
+        "symbolLabel": "תיבת תווית",
+        "virus": "וירוס",
+        "bacteriophage": "בקטריופאג'",
+        "yeast": "שמר",
+        "amoeba": "אמבה"
+      }
+    }
+  }
+}

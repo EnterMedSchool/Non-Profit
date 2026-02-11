@@ -1,4 +1,6 @@
 export interface TimelineMilestone {
+  /** i18n key under "timeline.milestones", e.g. "2019" → timeline.milestones.2019.title */
+  i18nKey: string;
   year: string;
   title: string;
   description: string;
@@ -7,6 +9,7 @@ export interface TimelineMilestone {
 
 export const milestones: TimelineMilestone[] = [
   {
+    i18nKey: "2019",
     year: "2019",
     title: "EnterMedSchool is Born",
     description:
@@ -14,6 +17,7 @@ export const milestones: TimelineMilestone[] = [
     color: "purple",
   },
   {
+    i18nKey: "2020",
     year: "2020",
     title: "Free Content Begins",
     description:
@@ -21,6 +25,7 @@ export const milestones: TimelineMilestone[] = [
     color: "teal",
   },
   {
+    i18nKey: "2021",
     year: "2021",
     title: "World's Leading IMAT Course",
     description:
@@ -28,6 +33,7 @@ export const milestones: TimelineMilestone[] = [
     color: "yellow",
   },
   {
+    i18nKey: "2025",
     year: "2025",
     title: "The New Generation",
     description:
@@ -35,6 +41,7 @@ export const milestones: TimelineMilestone[] = [
     color: "coral",
   },
   {
+    i18nKey: "2026",
     year: "2026",
     title: "Open Source Goes Official",
     description:

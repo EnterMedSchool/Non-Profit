@@ -169,7 +169,7 @@ function FlashcardMakerInner() {
           role="tabpanel"
           aria-label="Import cards"
           className={`
-            w-full lg:w-72 xl:w-80 shrink-0 border-r-2 border-ink-light/10 bg-white overflow-y-auto p-4
+            w-full lg:w-72 xl:w-80 shrink-0 border-e-2 border-ink-light/10 bg-white overflow-y-auto p-4
             ${activePanel === "import" ? "block" : "hidden lg:block"}
           `}
         >
@@ -196,7 +196,7 @@ function FlashcardMakerInner() {
           role="tabpanel"
           aria-label="Customize and export"
           className={`
-            w-full lg:w-72 xl:w-80 shrink-0 border-l-2 border-ink-light/10 bg-white overflow-y-auto p-4
+            w-full lg:w-72 xl:w-80 shrink-0 border-s-2 border-ink-light/10 bg-white overflow-y-auto p-4
             ${activePanel === "customize" || activePanel === "export" ? "block" : "hidden lg:block"}
           `}
         >

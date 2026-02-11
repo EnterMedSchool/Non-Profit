@@ -139,7 +139,7 @@ export default function ContextMenu() {
       }`}
     >
       <Icon className="h-3.5 w-3.5 shrink-0" />
-      <span className="flex-1 text-left">{label}</span>
+      <span className="flex-1 text-start">{label}</span>
       {shortcut && (
         <kbd className="text-[10px] text-ink-light">{shortcut}</kbd>
       )}

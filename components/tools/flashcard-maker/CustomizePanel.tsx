@@ -78,7 +78,7 @@ export default function CustomizePanel() {
   );
 
   return (
-    <div className="flex flex-col gap-5 h-full overflow-y-auto pr-1">
+    <div className="flex flex-col gap-5 h-full overflow-y-auto pe-1">
       <div className="flex items-center justify-between">
         <h2 className="font-display text-lg font-bold text-ink-dark">
           {t("customize")}

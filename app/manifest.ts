@@ -6,7 +6,7 @@ export default function manifest(): MetadataRoute.Manifest {
     name: "EnterMedSchool.org — Open-Source Medical Education",
     short_name: "EnterMedSchool.org",
     id: "/",
-    start_url: `/${routing.defaultLocale}`,
+    start_url: "/",
     scope: "/",
     display: "standalone",
     background_color: "#F8FAFF",

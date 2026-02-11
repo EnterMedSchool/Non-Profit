@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import { FileText, Plus, Trash2, FolderOpen, X, Edit2, Check } from "lucide-react";
 
 export default function FileManager() {
   const t = useTranslations("tools.latexEditor.ui");
+  const locale = useLocale();
   const {
     documents,
     activeDocumentId,
@@ -45,7 +46,7 @@ export default function FileManager() {
     addDocument({
       id,
       name,
-      content: `% ${name}\n% Created ${new Date().toLocaleDateString()}\n\n`,
+      content: `% ${name}\n% Created ${new Date().toLocaleDateString(locale)}\n\n`,
       isMain: false,
     });
     setActiveDocumentId(id);
@@ -123,7 +124,7 @@ export default function FileManager() {
         {documents.map((doc) => (
           <div
             key={doc.id}
-            className={`group flex items-center gap-2 px-3 py-2 rounded-lg text-left transition-colors ${
+            className={`group flex items-center gap-2 px-3 py-2 rounded-lg text-start transition-colors ${
               activeDocumentId === doc.id
                 ? "bg-showcase-purple/10 text-showcase-purple"
                 : "text-ink-muted hover:bg-pastel-cream"
@@ -146,11 +147,11 @@ export default function FileManager() {
             ) : (
               <button
                 onClick={() => setActiveDocumentId(doc.id)}
-                className="flex-1 text-left text-xs font-medium truncate"
+                className="flex-1 text-start text-xs font-medium truncate"
               >
                 {doc.name}
                 {doc.isMain && (
-                  <span className="ml-2 px-1 py-0.5 bg-showcase-purple/10 text-showcase-purple text-[9px] font-bold rounded">
+                  <span className="ms-2 px-1 py-0.5 bg-showcase-purple/10 text-showcase-purple text-[9px] font-bold rounded">
                     {t("mainBadge")}
                   </span>
                 )}

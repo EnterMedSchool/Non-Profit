@@ -176,7 +176,7 @@ export default function VisualsPage() {
             <div className="mt-10 flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               {/* Search input with glow */}
               <div className="relative flex-1 max-w-lg">
-                <Search className={`absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 transition-all duration-200 ${searchFocused ? "text-showcase-purple scale-110" : "text-ink-light"}`} />
+                <Search className={`absolute start-4 top-1/2 h-5 w-5 -translate-y-1/2 transition-all duration-200 ${searchFocused ? "text-showcase-purple scale-110" : "text-ink-light"}`} />
                 <input
                   type="text"
                   value={searchQuery}
@@ -185,7 +185,7 @@ export default function VisualsPage() {
                   onBlur={() => setSearchFocused(false)}
                   aria-label="Search visuals"
                   placeholder={t("visuals.searchPlaceholder")}
-                  className={`w-full rounded-2xl border-3 bg-white py-3 pl-12 pr-4 text-sm shadow-md outline-none transition-all duration-300 ${
+                  className={`w-full rounded-2xl border-3 bg-white py-3 ps-12 pe-4 text-sm shadow-md outline-none transition-all duration-300 ${
                     searchFocused
                       ? "border-showcase-purple shadow-[0_0_20px_rgba(108,92,231,0.2)]"
                       : "border-showcase-navy/15 hover:border-showcase-navy/30"
@@ -298,7 +298,7 @@ export default function VisualsPage() {
                         } shadow-md`}>
                           <Icon className="h-6 w-6 text-white" />
                         </div>
-                        <span className="absolute top-2 right-3 font-display text-3xl font-extrabold text-showcase-navy/5">
+                        <span className="absolute top-2 end-3 font-display text-3xl font-extrabold text-showcase-navy/5">
                           {i + 1}
                         </span>
                         <h4 className="mt-3 font-display text-sm font-bold text-ink-dark">

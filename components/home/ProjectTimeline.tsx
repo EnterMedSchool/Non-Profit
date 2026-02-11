@@ -72,11 +72,11 @@ export default function ProjectTimeline() {
         {/* Timeline */}
         <div className="relative mt-10" ref={containerRef}>
           {/* Static background line */}
-          <div className="absolute left-6 top-0 bottom-0 w-0.5 bg-showcase-navy/10 sm:left-1/2 sm:-translate-x-0.5" />
+          <div className="absolute start-6 top-0 bottom-0 w-0.5 bg-showcase-navy/10 sm:left-1/2 sm:-translate-x-0.5" />
 
           {/* Animated drawing line */}
           <m.div
-            className="absolute left-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-showcase-purple via-showcase-teal to-showcase-green origin-top sm:left-1/2 sm:-translate-x-0.5"
+            className="absolute start-6 top-0 bottom-0 w-0.5 bg-gradient-to-b from-showcase-purple via-showcase-teal to-showcase-green origin-top sm:left-1/2 sm:-translate-x-0.5"
             style={{ scaleY: lineScaleY }}
           />
 
@@ -92,7 +92,7 @@ export default function ProjectTimeline() {
               >
                 <div className={`flex items-start gap-6 sm:gap-0 ${i % 2 === 0 ? "sm:flex-row" : "sm:flex-row-reverse"}`}>
                   {/* Content card */}
-                  <div className={`flex-1 pl-14 sm:pl-0 ${i % 2 === 0 ? "sm:pr-12 sm:text-right" : "sm:pl-12"}`}>
+                  <div className={`flex-1 ps-14 sm:ps-0 ${i % 2 === 0 ? "sm:pe-12 sm:text-end" : "sm:ps-12"}`}>
                     <div
                       className={`rounded-2xl border-3 ${borderColors[milestone.color]} bg-white p-5 ${shadowColors[milestone.color]} transition-all duration-300 hover:-translate-y-1`}
                     >
@@ -115,7 +115,7 @@ export default function ProjectTimeline() {
                   </div>
 
                   {/* Dot with pulse ring */}
-                  <div className="absolute left-6 sm:left-1/2 -translate-x-1/2 flex flex-col items-center">
+                  <div className="absolute start-6 sm:left-1/2 -translate-x-1/2 flex flex-col items-center">
                     <div className="relative">
                       <div className={`h-4 w-4 rounded-full border-3 border-white ${dotColors[milestone.color]} z-10 relative`} />
                       <div className={`absolute inset-0 rounded-full ${dotColors[milestone.color]} animate-pulse-ring`} />

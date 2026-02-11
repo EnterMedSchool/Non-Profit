@@ -340,3 +340,9 @@
     flex: 1 1 auto;
   }
 }
+
+/* ===== RTL Overrides ===== */
+[dir="rtl"] #ems-klaro .klaro .cookie-notice,
+[dir="rtl"] #ems-klaro .klaro .cookie-modal .cm-modal {
+  box-shadow: -4px 4px 0 #1e3a5f;
+}

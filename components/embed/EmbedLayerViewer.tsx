@@ -375,9 +375,9 @@ export default function EmbedLayerViewer({
                   className="flex items-center justify-center w-10 h-10 rounded-full"
                   style={{ backgroundColor: accentHex }}
                 >
-                  <Play className="h-5 w-5 text-white ml-0.5" />
+                  <Play className="h-5 w-5 text-white ms-0.5" />
                 </div>
-                <div className="text-left">
+                <div className="text-start">
                   <p
                     className="text-sm font-semibold"
                     style={{ color: textColor }}
@@ -503,7 +503,7 @@ export default function EmbedLayerViewer({
             ) : isPlaying ? (
               <Pause className="h-4 w-4" />
             ) : (
-              <Play className="h-4 w-4 ml-0.5" />
+              <Play className="h-4 w-4 ms-0.5" />
             )}
           </m.button>
 

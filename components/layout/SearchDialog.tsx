@@ -161,6 +161,13 @@ function highlightMatch(text: string, query: string): React.ReactNode {
 
 /* ─── Component ────────────────────────────────────────────────────────── */
 
+type ResolvedSearchItem = {
+  title: string;
+  description: string;
+  href: string;
+  category: SearchItem["category"];
+};
+
 export default function SearchDialog() {
   const t = useTranslations("search");
   const locale = useLocale();
@@ -176,21 +183,15 @@ export default function SearchDialog() {
   );
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<
-    Array<{ title: string; description: string; href: string; category: SearchItem["category"] }>
-  >([]);
+  const [results, setResults] = useState<ResolvedSearchItem[]>([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
-  const fuseRef = useRef<
-    Fuse<{ title: string; description: string; href: string; category: SearchItem["category"] }> | null
-  >(null);
+  const fuseRef = useRef<Fuse<ResolvedSearchItem> | null>(null);
 
   /* Resolve item to title/description (translate keys or use plain text) */
   const resolveItem = useCallback(
-    (
-      item: SearchItem
-    ): { title: string; description: string; href: string; category: SearchItem["category"] } => {
+    (item: SearchItem): ResolvedSearchItem => {
       const href = item.href;
       const category = item.category;
       if ("titleKey" in item && "descriptionKey" in item) {
@@ -227,7 +228,7 @@ export default function SearchDialog() {
   /* ── Grouped results ────────────────────────────────────────────────── */
 
   const grouped = useMemo(() => {
-    const groups: { category: SearchItem["category"]; items: SearchItem[] }[] =
+    const groups: { category: SearchItem["category"]; items: ResolvedSearchItem[] }[] =
       [];
     for (const cat of categoryOrder) {
       const items = results.filter((r) => r.category === cat);
@@ -422,7 +423,7 @@ export default function SearchDialog() {
                   aria-label={t("ariaClose")}
                   className="flex h-8 items-center gap-1 rounded-lg border-2 border-ink-light/20 px-2 text-xs font-bold text-ink-muted transition-colors hover:border-ink-light/40 hover:bg-pastel-lavender/50"
                 >
-                  <span className="hidden sm:inline">ESC</span>
+                  <span className="hidden sm:inline">{t("escKey")}</span>
                   <X className="h-3.5 w-3.5" />
                 </button>
               </div>
@@ -468,10 +469,10 @@ export default function SearchDialog() {
                                     data-result-index={idx}
                                     onClick={() => navigateTo(item.href)}
                                     onMouseEnter={() => setActiveIndex(idx)}
-                                    className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-left transition-all duration-150 ${
+                                    className={`group flex w-full items-center gap-3 rounded-xl px-3 py-2.5 text-start transition-all duration-150 ${
                                       isActive
-                                        ? `${config.bg}/60 border-l-3 ${config.border}`
-                                        : "border-l-3 border-transparent hover:bg-pastel-cream/60"
+                                        ? `${config.bg}/60 border-s-3 ${config.border}`
+                                        : "border-s-3 border-transparent hover:bg-pastel-cream/60"
                                     }`}
                                   >
                                     {/* Icon */}
@@ -556,7 +557,7 @@ export default function SearchDialog() {
                           <button
                             key={link.href}
                             onClick={() => navigateTo(link.href)}
-                            className="group flex flex-col items-start gap-2 rounded-xl border-2 border-transparent p-3 text-left transition-all duration-150 hover:border-ink-light/15 hover:bg-pastel-cream/50 hover:shadow-sm"
+                            className="group flex flex-col items-start gap-2 rounded-xl border-2 border-transparent p-3 text-start transition-all duration-150 hover:border-ink-light/15 hover:bg-pastel-cream/50 hover:shadow-sm"
                           >
                             <div
                               className={`flex h-9 w-9 items-center justify-center rounded-lg ${link.bg} transition-transform duration-150 group-hover:scale-110`}
@@ -600,11 +601,11 @@ export default function SearchDialog() {
                 </div>
                 <div className="flex items-center gap-1.5 text-[11px] text-ink-muted">
                   <kbd className="flex h-5 items-center justify-center rounded border border-ink-light/25 bg-white px-1.5 text-[10px] font-bold shadow-sm">
-                    esc
+                    {t("escKey")}
                   </kbd>
                   <span>{t("keyClose")}</span>
                 </div>
-                <div className="ml-auto hidden items-center gap-1 text-[11px] text-ink-light sm:flex">
+                <div className="ms-auto hidden items-center gap-1 text-[11px] text-ink-light sm:flex">
                   <span>
                     {results.length > 0
                       ? `${results.length} ${t("resultCount")}`

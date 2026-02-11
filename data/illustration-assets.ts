@@ -8,6 +8,8 @@
 
 export interface IllustrationAsset {
   id: string;
+  /** i18n key under "data.illustrationAssets.assets", e.g. "animalCell" → data.illustrationAssets.assets.animalCell */
+  i18nKey: string;
   language: string;
   name: string;
   category: string;
@@ -22,6 +24,8 @@ export interface IllustrationAsset {
 
 export interface AssetCategory {
   id: string;
+  /** i18n key under "data.illustrationAssets.categories", e.g. "cells" → data.illustrationAssets.categories.cells */
+  i18nKey: string;
   /** Display label */
   name: string;
   /** Lucide icon name */
@@ -33,14 +37,14 @@ export interface AssetCategory {
 /* ── Categories ─────────────────────────────────────────────────── */
 
 export const assetCategories: AssetCategory[] = [
-  { id: "cells",      name: "Cells",          icon: "Circle",       color: "teal" },
-  { id: "organelles", name: "Organelles",     icon: "Shapes",       color: "purple" },
-  { id: "molecules",  name: "Molecules",      icon: "Atom",         color: "coral" },
-  { id: "organs",     name: "Organs",         icon: "HeartPulse",   color: "pink" },
-  { id: "equipment",  name: "Lab Equipment",  icon: "FlaskConical", color: "blue" },
-  { id: "arrows",     name: "Arrows",         icon: "ArrowRight",   color: "navy" },
-  { id: "symbols",    name: "Symbols",        icon: "Star",         color: "yellow" },
-  { id: "micro",      name: "Microorganisms", icon: "Bug",          color: "green" },
+  { id: "cells",      i18nKey: "cells",      name: "Cells",          icon: "Circle",       color: "teal" },
+  { id: "organelles", i18nKey: "organelles", name: "Organelles",     icon: "Shapes",       color: "purple" },
+  { id: "molecules",  i18nKey: "molecules",  name: "Molecules",      icon: "Atom",         color: "coral" },
+  { id: "organs",     i18nKey: "organs",     name: "Organs",         icon: "HeartPulse",   color: "pink" },
+  { id: "equipment",  i18nKey: "equipment",  name: "Lab Equipment",  icon: "FlaskConical", color: "blue" },
+  { id: "arrows",     i18nKey: "arrows",     name: "Arrows",         icon: "ArrowRight",   color: "navy" },
+  { id: "symbols",    i18nKey: "symbols",    name: "Symbols",        icon: "Star",         color: "yellow" },
+  { id: "micro",      i18nKey: "micro",      name: "Microorganisms", icon: "Bug",          color: "green" },
 ];
 
 /* ── Assets ─────────────────────────────────────────────────────── */
@@ -49,76 +53,76 @@ const BASE = "/assets/illustrations";
 
 export const illustrationAssets: IllustrationAsset[] = [
   // ── Cells ────────────────────────────────────────────────────
-  { id: "animal-cell",       language: "en",       name: "Animal Cell",       category: "cells", tags: ["eukaryote", "animal", "cell"],              path: `${BASE}/cells/animal-cell.svg`,       width: 200, height: 200 },
-  { id: "plant-cell",        language: "en",       name: "Plant Cell",        category: "cells", tags: ["eukaryote", "plant", "cell", "vacuole"],    path: `${BASE}/cells/plant-cell.svg`,        width: 200, height: 200 },
-  { id: "bacteria",          language: "en",       name: "Bacteria",          category: "cells", tags: ["prokaryote", "bacteria", "rod"],            path: `${BASE}/cells/bacteria.svg`,          width: 200, height: 200 },
-  { id: "red-blood-cell",    language: "en",       name: "Red Blood Cell",    category: "cells", tags: ["erythrocyte", "rbc", "blood"],              path: `${BASE}/cells/red-blood-cell.svg`,    width: 200, height: 200 },
-  { id: "white-blood-cell",  language: "en",       name: "White Blood Cell",  category: "cells", tags: ["leukocyte", "wbc", "immune"],               path: `${BASE}/cells/white-blood-cell.svg`,  width: 200, height: 200 },
-  { id: "neuron",            language: "en",       name: "Neuron",            category: "cells", tags: ["nerve", "neuron", "axon", "dendrite"],      path: `${BASE}/cells/neuron.svg`,            width: 200, height: 200 },
-  { id: "epithelial-cell",   language: "en",       name: "Epithelial Cell",   category: "cells", tags: ["epithelial", "tissue", "hexagonal"],        path: `${BASE}/cells/epithelial-cell.svg`,   width: 200, height: 200 },
-  { id: "stem-cell",         language: "en",       name: "Stem Cell",         category: "cells", tags: ["stem", "pluripotent", "undifferentiated"],  path: `${BASE}/cells/stem-cell.svg`,         width: 200, height: 200 },
+  { id: "animal-cell",       i18nKey: "animalCell",      language: "en", name: "Animal Cell",       category: "cells", tags: ["eukaryote", "animal", "cell"],              path: `${BASE}/cells/animal-cell.svg`,       width: 200, height: 200 },
+  { id: "plant-cell",        i18nKey: "plantCell",       language: "en", name: "Plant Cell",        category: "cells", tags: ["eukaryote", "plant", "cell", "vacuole"],    path: `${BASE}/cells/plant-cell.svg`,        width: 200, height: 200 },
+  { id: "bacteria",          i18nKey: "bacteria",        language: "en", name: "Bacteria",          category: "cells", tags: ["prokaryote", "bacteria", "rod"],            path: `${BASE}/cells/bacteria.svg`,          width: 200, height: 200 },
+  { id: "red-blood-cell",    i18nKey: "redBloodCell",    language: "en", name: "Red Blood Cell",    category: "cells", tags: ["erythrocyte", "rbc", "blood"],              path: `${BASE}/cells/red-blood-cell.svg`,    width: 200, height: 200 },
+  { id: "white-blood-cell",  i18nKey: "whiteBloodCell",  language: "en", name: "White Blood Cell",  category: "cells", tags: ["leukocyte", "wbc", "immune"],               path: `${BASE}/cells/white-blood-cell.svg`,  width: 200, height: 200 },
+  { id: "neuron",            i18nKey: "neuron",          language: "en", name: "Neuron",            category: "cells", tags: ["nerve", "neuron", "axon", "dendrite"],      path: `${BASE}/cells/neuron.svg`,            width: 200, height: 200 },
+  { id: "epithelial-cell",   i18nKey: "epithelialCell",  language: "en", name: "Epithelial Cell",   category: "cells", tags: ["epithelial", "tissue", "hexagonal"],        path: `${BASE}/cells/epithelial-cell.svg`,   width: 200, height: 200 },
+  { id: "stem-cell",         i18nKey: "stemCell",        language: "en", name: "Stem Cell",         category: "cells", tags: ["stem", "pluripotent", "undifferentiated"],  path: `${BASE}/cells/stem-cell.svg`,         width: 200, height: 200 },
 
   // ── Organelles ───────────────────────────────────────────────
-  { id: "nucleus",           language: "en",       name: "Nucleus",           category: "organelles", tags: ["nucleus", "dna", "chromatin"],               path: `${BASE}/organelles/nucleus.svg`,          width: 200, height: 200 },
-  { id: "mitochondria",      language: "en",       name: "Mitochondria",      category: "organelles", tags: ["mitochondria", "energy", "atp", "cristae"],  path: `${BASE}/organelles/mitochondria.svg`,     width: 200, height: 200 },
-  { id: "rough-er",          language: "en",       name: "Rough ER",          category: "organelles", tags: ["endoplasmic", "reticulum", "rough", "rer"],  path: `${BASE}/organelles/rough-er.svg`,         width: 200, height: 200 },
-  { id: "smooth-er",         language: "en",       name: "Smooth ER",         category: "organelles", tags: ["endoplasmic", "reticulum", "smooth", "ser"], path: `${BASE}/organelles/smooth-er.svg`,        width: 200, height: 200 },
-  { id: "golgi-apparatus",   language: "en",       name: "Golgi Apparatus",   category: "organelles", tags: ["golgi", "vesicle", "secretion"],             path: `${BASE}/organelles/golgi-apparatus.svg`,  width: 200, height: 200 },
-  { id: "ribosome",          language: "en",       name: "Ribosome",          category: "organelles", tags: ["ribosome", "protein", "translation"],         path: `${BASE}/organelles/ribosome.svg`,         width: 200, height: 200 },
-  { id: "lysosome",          language: "en",       name: "Lysosome",          category: "organelles", tags: ["lysosome", "enzyme", "digestion"],            path: `${BASE}/organelles/lysosome.svg`,         width: 200, height: 200 },
-  { id: "cell-membrane",     language: "en",       name: "Cell Membrane",     category: "organelles", tags: ["membrane", "phospholipid", "bilayer"],        path: `${BASE}/organelles/cell-membrane.svg`,    width: 200, height: 200 },
+  { id: "nucleus",           i18nKey: "nucleus",         language: "en", name: "Nucleus",           category: "organelles", tags: ["nucleus", "dna", "chromatin"],               path: `${BASE}/organelles/nucleus.svg`,          width: 200, height: 200 },
+  { id: "mitochondria",      i18nKey: "mitochondria",    language: "en", name: "Mitochondria",      category: "organelles", tags: ["mitochondria", "energy", "atp", "cristae"],  path: `${BASE}/organelles/mitochondria.svg`,     width: 200, height: 200 },
+  { id: "rough-er",          i18nKey: "roughEr",         language: "en", name: "Rough ER",          category: "organelles", tags: ["endoplasmic", "reticulum", "rough", "rer"],  path: `${BASE}/organelles/rough-er.svg`,         width: 200, height: 200 },
+  { id: "smooth-er",         i18nKey: "smoothEr",        language: "en", name: "Smooth ER",         category: "organelles", tags: ["endoplasmic", "reticulum", "smooth", "ser"], path: `${BASE}/organelles/smooth-er.svg`,        width: 200, height: 200 },
+  { id: "golgi-apparatus",   i18nKey: "golgiApparatus",  language: "en", name: "Golgi Apparatus",   category: "organelles", tags: ["golgi", "vesicle", "secretion"],             path: `${BASE}/organelles/golgi-apparatus.svg`,  width: 200, height: 200 },
+  { id: "ribosome",          i18nKey: "ribosome",        language: "en", name: "Ribosome",          category: "organelles", tags: ["ribosome", "protein", "translation"],         path: `${BASE}/organelles/ribosome.svg`,         width: 200, height: 200 },
+  { id: "lysosome",          i18nKey: "lysosome",        language: "en", name: "Lysosome",          category: "organelles", tags: ["lysosome", "enzyme", "digestion"],            path: `${BASE}/organelles/lysosome.svg`,         width: 200, height: 200 },
+  { id: "cell-membrane",     i18nKey: "cellMembrane",    language: "en", name: "Cell Membrane",     category: "organelles", tags: ["membrane", "phospholipid", "bilayer"],        path: `${BASE}/organelles/cell-membrane.svg`,    width: 200, height: 200 },
 
   // ── Molecules ────────────────────────────────────────────────
-  { id: "dna-helix",         language: "en",       name: "DNA Helix",         category: "molecules", tags: ["dna", "helix", "double", "nucleic"],        path: `${BASE}/molecules/dna-helix.svg`,     width: 200, height: 200 },
-  { id: "rna-strand",        language: "en",       name: "RNA Strand",        category: "molecules", tags: ["rna", "strand", "mrna", "nucleic"],        path: `${BASE}/molecules/rna-strand.svg`,    width: 200, height: 200 },
-  { id: "protein",           language: "en",       name: "Protein",           category: "molecules", tags: ["protein", "folding", "polypeptide"],       path: `${BASE}/molecules/protein.svg`,       width: 200, height: 200 },
-  { id: "antibody",          language: "en",       name: "Antibody",          category: "molecules", tags: ["antibody", "immunoglobulin", "ig", "y"],   path: `${BASE}/molecules/antibody.svg`,      width: 200, height: 200 },
-  { id: "receptor",          language: "en",       name: "Receptor",          category: "molecules", tags: ["receptor", "membrane", "signal"],          path: `${BASE}/molecules/receptor.svg`,      width: 200, height: 200 },
-  { id: "enzyme",            language: "en",       name: "Enzyme",            category: "molecules", tags: ["enzyme", "catalysis", "active site"],      path: `${BASE}/molecules/enzyme.svg`,        width: 200, height: 200 },
-  { id: "atp",               name: "ATP",               category: "molecules", tags: ["atp", "energy", "adenosine"],              path: `${BASE}/molecules/atp.svg`,           width: 200, height: 200 },
-  { id: "glucose",           name: "Glucose",           category: "molecules", tags: ["glucose", "sugar", "hexose", "ring"],      path: `${BASE}/molecules/glucose.svg`,       width: 200, height: 200 },
+  { id: "dna-helix",         i18nKey: "dnaHelix",    language: "en", name: "DNA Helix",         category: "molecules", tags: ["dna", "helix", "double", "nucleic"],        path: `${BASE}/molecules/dna-helix.svg`,     width: 200, height: 200 },
+  { id: "rna-strand",        i18nKey: "rnaStrand",   language: "en", name: "RNA Strand",        category: "molecules", tags: ["rna", "strand", "mrna", "nucleic"],        path: `${BASE}/molecules/rna-strand.svg`,    width: 200, height: 200 },
+  { id: "protein",           i18nKey: "protein",     language: "en", name: "Protein",           category: "molecules", tags: ["protein", "folding", "polypeptide"],       path: `${BASE}/molecules/protein.svg`,       width: 200, height: 200 },
+  { id: "antibody",          i18nKey: "antibody",    language: "en", name: "Antibody",          category: "molecules", tags: ["antibody", "immunoglobulin", "ig", "y"],   path: `${BASE}/molecules/antibody.svg`,      width: 200, height: 200 },
+  { id: "receptor",          i18nKey: "receptor",    language: "en", name: "Receptor",          category: "molecules", tags: ["receptor", "membrane", "signal"],          path: `${BASE}/molecules/receptor.svg`,      width: 200, height: 200 },
+  { id: "enzyme",            i18nKey: "enzyme",      language: "en", name: "Enzyme",            category: "molecules", tags: ["enzyme", "catalysis", "active site"],      path: `${BASE}/molecules/enzyme.svg`,        width: 200, height: 200 },
+  { id: "atp",               i18nKey: "atp",         language: "en", name: "ATP",               category: "molecules", tags: ["atp", "energy", "adenosine"],              path: `${BASE}/molecules/atp.svg`,           width: 200, height: 200 },
+  { id: "glucose",           i18nKey: "glucose",     language: "en", name: "Glucose",           category: "molecules", tags: ["glucose", "sugar", "hexose", "ring"],      path: `${BASE}/molecules/glucose.svg`,       width: 200, height: 200 },
 
   // ── Organs ───────────────────────────────────────────────────
-  { id: "heart",             language: "en",       name: "Heart",             category: "organs", tags: ["heart", "cardiac", "cardiovascular"],       path: `${BASE}/organs/heart.svg`,        width: 200, height: 200 },
-  { id: "brain",             language: "en",       name: "Brain",             category: "organs", tags: ["brain", "cerebral", "nervous"],             path: `${BASE}/organs/brain.svg`,        width: 200, height: 200 },
-  { id: "lungs",             language: "en",       name: "Lungs",             category: "organs", tags: ["lungs", "pulmonary", "respiratory"],        path: `${BASE}/organs/lungs.svg`,        width: 200, height: 200 },
-  { id: "liver",             language: "en",       name: "Liver",             category: "organs", tags: ["liver", "hepatic", "hepato"],               path: `${BASE}/organs/liver.svg`,        width: 200, height: 200 },
-  { id: "kidney",            name: "Kidney",            category: "organs", tags: ["kidney", "renal", "nephron"],               path: `${BASE}/organs/kidney.svg`,       width: 200, height: 200 },
-  { id: "stomach",           name: "Stomach",           category: "organs", tags: ["stomach", "gastric", "digestive"],          path: `${BASE}/organs/stomach.svg`,      width: 200, height: 200 },
-  { id: "eye-organ",         name: "Eye",               category: "organs", tags: ["eye", "ocular", "vision", "retina"],        path: `${BASE}/organs/eye-organ.svg`,    width: 200, height: 200 },
-  { id: "bone",              language: "en",       name: "Bone",              category: "organs", tags: ["bone", "skeletal", "osseous"],               path: `${BASE}/organs/bone.svg`,         width: 200, height: 200 },
+  { id: "heart",             i18nKey: "heart",     language: "en", name: "Heart",             category: "organs", tags: ["heart", "cardiac", "cardiovascular"],       path: `${BASE}/organs/heart.svg`,        width: 200, height: 200 },
+  { id: "brain",             i18nKey: "brain",     language: "en", name: "Brain",             category: "organs", tags: ["brain", "cerebral", "nervous"],             path: `${BASE}/organs/brain.svg`,        width: 200, height: 200 },
+  { id: "lungs",             i18nKey: "lungs",     language: "en", name: "Lungs",             category: "organs", tags: ["lungs", "pulmonary", "respiratory"],        path: `${BASE}/organs/lungs.svg`,        width: 200, height: 200 },
+  { id: "liver",             i18nKey: "liver",     language: "en", name: "Liver",             category: "organs", tags: ["liver", "hepatic", "hepato"],               path: `${BASE}/organs/liver.svg`,        width: 200, height: 200 },
+  { id: "kidney",            i18nKey: "kidney",    language: "en", name: "Kidney",            category: "organs", tags: ["kidney", "renal", "nephron"],               path: `${BASE}/organs/kidney.svg`,       width: 200, height: 200 },
+  { id: "stomach",           i18nKey: "stomach",   language: "en", name: "Stomach",           category: "organs", tags: ["stomach", "gastric", "digestive"],          path: `${BASE}/organs/stomach.svg`,      width: 200, height: 200 },
+  { id: "eye-organ",         i18nKey: "eyeOrgan",  language: "en", name: "Eye",               category: "organs", tags: ["eye", "ocular", "vision", "retina"],        path: `${BASE}/organs/eye-organ.svg`,    width: 200, height: 200 },
+  { id: "bone",              i18nKey: "bone",      language: "en", name: "Bone",              category: "organs", tags: ["bone", "skeletal", "osseous"],               path: `${BASE}/organs/bone.svg`,         width: 200, height: 200 },
 
   // ── Lab Equipment ────────────────────────────────────────────
-  { id: "microscope",        language: "en",       name: "Microscope",        category: "equipment", tags: ["microscope", "optics", "magnify"],          path: `${BASE}/equipment/microscope.svg`,    width: 200, height: 200 },
-  { id: "test-tube",         language: "en",       name: "Test Tube",         category: "equipment", tags: ["test tube", "tube", "sample"],              path: `${BASE}/equipment/test-tube.svg`,     width: 200, height: 200 },
-  { id: "beaker",            language: "en",       name: "Beaker",            category: "equipment", tags: ["beaker", "glass", "liquid"],                path: `${BASE}/equipment/beaker.svg`,        width: 200, height: 200 },
-  { id: "pipette",           language: "en",       name: "Pipette",           category: "equipment", tags: ["pipette", "transfer", "liquid"],            path: `${BASE}/equipment/pipette.svg`,       width: 200, height: 200 },
-  { id: "petri-dish",        language: "en",       name: "Petri Dish",        category: "equipment", tags: ["petri", "dish", "culture", "colony"],       path: `${BASE}/equipment/petri-dish.svg`,    width: 200, height: 200 },
-  { id: "syringe",           language: "en",       name: "Syringe",           category: "equipment", tags: ["syringe", "injection", "needle"],           path: `${BASE}/equipment/syringe.svg`,       width: 200, height: 200 },
-  { id: "flask",             language: "en",       name: "Erlenmeyer Flask",  category: "equipment", tags: ["flask", "erlenmeyer", "chemistry"],         path: `${BASE}/equipment/flask.svg`,         width: 200, height: 200 },
-  { id: "centrifuge",        language: "en",       name: "Centrifuge",        category: "equipment", tags: ["centrifuge", "spin", "separate"],           path: `${BASE}/equipment/centrifuge.svg`,    width: 200, height: 200 },
+  { id: "microscope",        i18nKey: "microscope",   language: "en", name: "Microscope",        category: "equipment", tags: ["microscope", "optics", "magnify"],          path: `${BASE}/equipment/microscope.svg`,    width: 200, height: 200 },
+  { id: "test-tube",         i18nKey: "testTube",     language: "en", name: "Test Tube",         category: "equipment", tags: ["test tube", "tube", "sample"],              path: `${BASE}/equipment/test-tube.svg`,     width: 200, height: 200 },
+  { id: "beaker",            i18nKey: "beaker",       language: "en", name: "Beaker",            category: "equipment", tags: ["beaker", "glass", "liquid"],                path: `${BASE}/equipment/beaker.svg`,        width: 200, height: 200 },
+  { id: "pipette",           i18nKey: "pipette",      language: "en", name: "Pipette",           category: "equipment", tags: ["pipette", "transfer", "liquid"],            path: `${BASE}/equipment/pipette.svg`,       width: 200, height: 200 },
+  { id: "petri-dish",        i18nKey: "petriDish",    language: "en", name: "Petri Dish",        category: "equipment", tags: ["petri", "dish", "culture", "colony"],       path: `${BASE}/equipment/petri-dish.svg`,    width: 200, height: 200 },
+  { id: "syringe",           i18nKey: "syringe",      language: "en", name: "Syringe",           category: "equipment", tags: ["syringe", "injection", "needle"],           path: `${BASE}/equipment/syringe.svg`,       width: 200, height: 200 },
+  { id: "flask",             i18nKey: "flask",        language: "en", name: "Erlenmeyer Flask",  category: "equipment", tags: ["flask", "erlenmeyer", "chemistry"],         path: `${BASE}/equipment/flask.svg`,         width: 200, height: 200 },
+  { id: "centrifuge",        i18nKey: "centrifuge",   language: "en", name: "Centrifuge",        category: "equipment", tags: ["centrifuge", "spin", "separate"],           path: `${BASE}/equipment/centrifuge.svg`,    width: 200, height: 200 },
 
   // ── Arrows ───────────────────────────────────────────────────
-  { id: "arrow-right",       language: "en",       name: "Right Arrow",           category: "arrows", tags: ["arrow", "right", "forward"],         path: `${BASE}/arrows/arrow-right.svg`,        width: 200, height: 200 },
-  { id: "arrow-left",        name: "Left Arrow",            category: "arrows", tags: ["arrow", "left", "back"],             path: `${BASE}/arrows/arrow-left.svg`,         width: 200, height: 200 },
-  { id: "arrow-bidirectional",name: "Bidirectional Arrow",  category: "arrows", tags: ["arrow", "bidirectional", "exchange"],path: `${BASE}/arrows/arrow-bidirectional.svg`,width: 200, height: 200 },
-  { id: "arrow-curved",      name: "Curved Arrow",          category: "arrows", tags: ["arrow", "curved", "arc"],            path: `${BASE}/arrows/arrow-curved.svg`,       width: 200, height: 200 },
-  { id: "arrow-inhibition",  name: "Inhibition Arrow",      category: "arrows", tags: ["inhibition", "block", "stop"],       path: `${BASE}/arrows/arrow-inhibition.svg`,   width: 200, height: 200 },
-  { id: "arrow-activation",  name: "Activation Arrow",      category: "arrows", tags: ["activation", "promote", "positive"], path: `${BASE}/arrows/arrow-activation.svg`,   width: 200, height: 200 },
+  { id: "arrow-right",        i18nKey: "arrowRight",          language: "en", name: "Right Arrow",          category: "arrows", tags: ["arrow", "right", "forward"],          path: `${BASE}/arrows/arrow-right.svg`,         width: 200, height: 200 },
+  { id: "arrow-left",         i18nKey: "arrowLeft",           language: "en", name: "Left Arrow",           category: "arrows", tags: ["arrow", "left", "back"],              path: `${BASE}/arrows/arrow-left.svg`,          width: 200, height: 200 },
+  { id: "arrow-bidirectional",i18nKey: "arrowBidirectional",  language: "en", name: "Bidirectional Arrow",  category: "arrows", tags: ["arrow", "bidirectional", "exchange"], path: `${BASE}/arrows/arrow-bidirectional.svg`, width: 200, height: 200 },
+  { id: "arrow-curved",       i18nKey: "arrowCurved",         language: "en", name: "Curved Arrow",         category: "arrows", tags: ["arrow", "curved", "arc"],             path: `${BASE}/arrows/arrow-curved.svg`,        width: 200, height: 200 },
+  { id: "arrow-inhibition",   i18nKey: "arrowInhibition",     language: "en", name: "Inhibition Arrow",     category: "arrows", tags: ["inhibition", "block", "stop"],        path: `${BASE}/arrows/arrow-inhibition.svg`,    width: 200, height: 200 },
+  { id: "arrow-activation",   i18nKey: "arrowActivation",     language: "en", name: "Activation Arrow",     category: "arrows", tags: ["activation", "promote", "positive"],  path: `${BASE}/arrows/arrow-activation.svg`,    width: 200, height: 200 },
 
   // ── Symbols ──────────────────────────────────────────────────
-  { id: "symbol-plus",       language: "en",       name: "Plus Sign",       category: "symbols", tags: ["plus", "add", "positive"],         path: `${BASE}/symbols/symbol-plus.svg`,   width: 200, height: 200 },
-  { id: "symbol-minus",      language: "en",       name: "Minus Sign",      category: "symbols", tags: ["minus", "subtract", "negative"],   path: `${BASE}/symbols/symbol-minus.svg`,  width: 200, height: 200 },
-  { id: "symbol-check",      language: "en",       name: "Checkmark",       category: "symbols", tags: ["check", "correct", "yes"],         path: `${BASE}/symbols/symbol-check.svg`,  width: 200, height: 200 },
-  { id: "symbol-x",          language: "en",       name: "X Mark",          category: "symbols", tags: ["x", "wrong", "no", "cross"],       path: `${BASE}/symbols/symbol-x.svg`,      width: 200, height: 200 },
-  { id: "symbol-star",       language: "en",       name: "Star",            category: "symbols", tags: ["star", "important", "highlight"],   path: `${BASE}/symbols/symbol-star.svg`,   width: 200, height: 200 },
-  { id: "symbol-label",      language: "en",       name: "Label Box",       category: "symbols", tags: ["label", "box", "text", "tag"],     path: `${BASE}/symbols/symbol-label.svg`,  width: 200, height: 200 },
+  { id: "symbol-plus",       i18nKey: "symbolPlus",    language: "en", name: "Plus Sign",       category: "symbols", tags: ["plus", "add", "positive"],         path: `${BASE}/symbols/symbol-plus.svg`,   width: 200, height: 200 },
+  { id: "symbol-minus",      i18nKey: "symbolMinus",   language: "en", name: "Minus Sign",      category: "symbols", tags: ["minus", "subtract", "negative"],   path: `${BASE}/symbols/symbol-minus.svg`,  width: 200, height: 200 },
+  { id: "symbol-check",      i18nKey: "symbolCheck",   language: "en", name: "Checkmark",       category: "symbols", tags: ["check", "correct", "yes"],         path: `${BASE}/symbols/symbol-check.svg`,  width: 200, height: 200 },
+  { id: "symbol-x",          i18nKey: "symbolX",       language: "en", name: "X Mark",          category: "symbols", tags: ["x", "wrong", "no", "cross"],       path: `${BASE}/symbols/symbol-x.svg`,      width: 200, height: 200 },
+  { id: "symbol-star",       i18nKey: "symbolStar",    language: "en", name: "Star",            category: "symbols", tags: ["star", "important", "highlight"],   path: `${BASE}/symbols/symbol-star.svg`,   width: 200, height: 200 },
+  { id: "symbol-label",      i18nKey: "symbolLabel",   language: "en", name: "Label Box",       category: "symbols", tags: ["label", "box", "text", "tag"],     path: `${BASE}/symbols/symbol-label.svg`,  width: 200, height: 200 },
 
   // ── Microorganisms ───────────────────────────────────────────
-  { id: "virus",             name: "Virus",            category: "micro", tags: ["virus", "pathogen", "capsid"],                path: `${BASE}/micro/virus.svg`,          width: 200, height: 200 },
-  { id: "bacteriophage",     name: "Bacteriophage",    category: "micro", tags: ["phage", "bacteriophage", "virus", "bacteria"],path: `${BASE}/micro/bacteriophage.svg`,  width: 200, height: 200 },
-  { id: "yeast",             name: "Yeast Cell",       category: "micro", tags: ["yeast", "fungi", "budding"],                  path: `${BASE}/micro/yeast.svg`,          width: 200, height: 200 },
-  { id: "amoeba",            name: "Amoeba",           category: "micro", tags: ["amoeba", "protozoa", "pseudopod"],            path: `${BASE}/micro/amoeba.svg`,         width: 200, height: 200 },
+  { id: "virus",             i18nKey: "virus",          language: "en", name: "Virus",            category: "micro", tags: ["virus", "pathogen", "capsid"],                 path: `${BASE}/micro/virus.svg`,          width: 200, height: 200 },
+  { id: "bacteriophage",     i18nKey: "bacteriophage",  language: "en", name: "Bacteriophage",    category: "micro", tags: ["phage", "bacteriophage", "virus", "bacteria"], path: `${BASE}/micro/bacteriophage.svg`,  width: 200, height: 200 },
+  { id: "yeast",             i18nKey: "yeast",          language: "en", name: "Yeast Cell",       category: "micro", tags: ["yeast", "fungi", "budding"],                   path: `${BASE}/micro/yeast.svg`,          width: 200, height: 200 },
+  { id: "amoeba",            i18nKey: "amoeba",         language: "en", name: "Amoeba",           category: "micro", tags: ["amoeba", "protozoa", "pseudopod"],             path: `${BASE}/micro/amoeba.svg`,         width: 200, height: 200 },
 ];
 
 /* ── Helpers ────────────────────────────────────────────────────── */

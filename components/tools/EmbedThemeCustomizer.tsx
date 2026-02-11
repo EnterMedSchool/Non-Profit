@@ -85,7 +85,7 @@ function Toggle({
         </span>
         <span
           className={`pointer-events-none inline-block h-4 w-4 rounded-full bg-white shadow-sm transition-transform mt-0.5 ${
-            checked ? "translate-x-5 ml-0" : "translate-x-0.5"
+            checked ? "translate-x-5 ms-0" : "translate-x-0.5"
           }`}
         />
       </button>
@@ -153,7 +153,7 @@ export default function EmbedThemeCustomizer({
       <button
         type="button"
         onClick={() => setExpanded((e) => !e)}
-        className="flex w-full items-center justify-between gap-3 p-4 text-left hover:bg-pastel-cream/50 transition-colors"
+        className="flex w-full items-center justify-between gap-3 p-4 text-start hover:bg-pastel-cream/50 transition-colors"
       >
         <div className="flex items-center gap-2.5">
           <Palette className="h-4 w-4 text-showcase-purple" />

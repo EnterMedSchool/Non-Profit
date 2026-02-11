@@ -261,3 +261,16 @@
     display: none;
   }
 }
+
+/* ===== RTL Overrides ===== */
+[dir="rtl"] .latex-editor .cm-gutters {
+  border-right: none;
+  border-left: 2px solid #e2e8f0;
+}
+
+[dir="rtl"] .latex-editor .cm-cursor {
+  border-left-color: transparent;
+  border-left-width: 0;
+  border-right-color: #7c3aed;
+  border-right-width: 2px;
+}

@@ -138,7 +138,7 @@ export default function CommandPalette() {
                   insertAtCursor(cmd.code);
                   setIsCommandPaletteOpen(false);
                 }}
-                className={`flex items-center gap-3 w-full px-4 py-2.5 text-left transition-colors ${
+                className={`flex items-center gap-3 w-full px-4 py-2.5 text-start transition-colors ${
                   i === selectedIndex
                     ? "bg-showcase-purple/10"
                     : "hover:bg-pastel-cream/50"

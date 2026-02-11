@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { m, AnimatePresence } from "framer-motion";
@@ -12,12 +13,15 @@ import {
   X,
 } from "lucide-react";
 import { usePDFViewer } from "./PDFViewerContext";
+import { isRTLLocale, rtlX } from "@/lib/i18n";
 
 export default function TableOfContents() {
+  const t = useTranslations("pdfViewer.reader");
   const { book, currentChapter, readingProgress, sidebarOpen, setSidebarOpen } =
     usePDFViewer();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
+  const isRTL = isRTLLocale(locale);
   const [expandedChapters, setExpandedChapters] = useState<Set<string>>(
     new Set([currentChapter.slug]),
   );
@@ -54,18 +58,18 @@ export default function TableOfContents() {
       <AnimatePresence>
         {sidebarOpen && (
           <m.aside
-            initial={{ x: -320, opacity: 0 }}
+            initial={{ x: rtlX(-320, isRTL), opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: -320, opacity: 0 }}
+            exit={{ x: rtlX(-320, isRTL), opacity: 0 }}
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
-            className="fixed left-0 top-0 z-50 flex h-full w-80 flex-col border-r-3 border-showcase-navy/10 bg-white shadow-lg lg:sticky lg:top-20 lg:z-10 lg:h-[calc(100vh-5rem)] lg:shadow-none"
+            className="fixed start-0 top-0 z-50 flex h-full w-80 flex-col border-e-3 border-showcase-navy/10 bg-white shadow-lg lg:sticky lg:top-20 lg:z-10 lg:h-[calc(100vh-5rem)] lg:shadow-none"
           >
             {/* Header */}
             <div className="flex items-center justify-between border-b-2 border-showcase-navy/10 px-4 py-3">
               <div className="flex items-center gap-2">
                 <BookOpen className="h-4 w-4 text-showcase-purple" />
                 <span className="font-display text-sm font-bold text-ink-dark">
-                  Table of Contents
+                  {t("tableOfContents")}
                 </span>
               </div>
               <button
@@ -160,7 +164,7 @@ export default function TableOfContents() {
                             animate={{ height: "auto", opacity: 1 }}
                             exit={{ height: 0, opacity: 0 }}
                             transition={{ duration: 0.2 }}
-                            className="ml-7 overflow-hidden border-l-2 border-gray-100 pl-3"
+                            className="ms-7 overflow-hidden border-s-2 border-gray-100 ps-3"
                           >
                             {chapter.sections.map((section) => (
                               <li key={section.id}>
@@ -173,7 +177,7 @@ export default function TableOfContents() {
                                   }`}
                                   onClick={() => setSidebarOpen(false)}
                                 >
-                                  <span className="mr-1.5 font-mono text-[10px] text-ink-light">
+                                  <span className="me-1.5 font-mono text-[10px] text-ink-light">
                                     {section.number}
                                   </span>
                                   {section.title}

@@ -317,7 +317,7 @@ export default function QuestionEditor() {
   const tagsId = "mcq-tags-input";
 
   return (
-    <div className="flex flex-col gap-4 h-full overflow-y-auto pr-1">
+    <div className="flex flex-col gap-4 h-full overflow-y-auto pe-1">
       {/* Header */}
       <div className="flex items-center justify-between">
         <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
@@ -351,7 +351,7 @@ export default function QuestionEditor() {
           {imageError}
           <button
             onClick={() => setImageError(null)}
-            className="ml-auto text-red-400 hover:text-red-600"
+            className="ms-auto text-red-400 hover:text-red-600"
             aria-label={t("dismissError")}
           >
             <X className="h-3.5 w-3.5" />
@@ -389,8 +389,8 @@ export default function QuestionEditor() {
           />
           <button
             onClick={() => updateDraft({ imageUrl: undefined })}
-            className="absolute top-2 right-2 flex h-7 w-7 items-center justify-center rounded-lg bg-white/90 border border-ink-light/30 text-ink-muted hover:text-red-500 transition-colors"
-            aria-label="Remove image"
+            className="absolute top-2 end-2 flex h-7 w-7 items-center justify-center rounded-lg bg-white/90 border border-ink-light/30 text-ink-muted hover:text-red-500 transition-colors"
+            aria-label={t("removeImage")}
           >
             <X className="h-4 w-4" />
           </button>
@@ -411,7 +411,7 @@ export default function QuestionEditor() {
           accept="image/*"
           className="hidden"
           onChange={handleImageUpload}
-          aria-label="Upload question image"
+          aria-label={t("uploadImage")}
         />
       </div>
 
@@ -434,7 +434,7 @@ export default function QuestionEditor() {
                     ? "border-showcase-teal bg-showcase-teal text-white shadow-chunky-sm scale-105"
                     : "border-ink-light/30 bg-white text-ink-muted hover:border-showcase-teal/50"
                 }`}
-                aria-label={`Mark option ${OPTION_LETTERS[idx]} as correct`}
+                aria-label={t("markOptionCorrect", { letter: OPTION_LETTERS[idx] })}
                 aria-pressed={opt.id === draft.correctOptionId}
               >
                 {opt.id === draft.correctOptionId ? (
@@ -473,7 +473,7 @@ export default function QuestionEditor() {
                 <button
                   onClick={() => removeOption(opt.id)}
                   className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-ink-light hover:text-red-500 hover:bg-red-50 transition-colors"
-                  aria-label={`Remove option ${OPTION_LETTERS[idx]}`}
+                  aria-label={t("removeOption", { letter: OPTION_LETTERS[idx] })}
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -561,7 +561,7 @@ export default function QuestionEditor() {
                     setCategoryInput(cat);
                     setShowCategorySuggestions(false);
                   }}
-                  className="block w-full px-3 py-2 text-left text-sm text-ink-dark hover:bg-pastel-lavender/30 transition-colors"
+                  className="block w-full px-3 py-2 text-start text-sm text-ink-dark hover:bg-pastel-lavender/30 transition-colors"
                 >
                   {cat}
                 </button>
@@ -573,7 +573,7 @@ export default function QuestionEditor() {
         {/* Difficulty */}
         <div>
           <label id={difficultyId} className="block text-xs font-bold text-ink-dark mb-1">
-            Difficulty
+            {t("difficultyLabel")}
           </label>
           <div className="flex gap-1.5" role="group" aria-labelledby={difficultyId}>
             {DIFFICULTY_VALUES.map((d) => (
@@ -616,7 +616,7 @@ export default function QuestionEditor() {
         ) : (
           <ChevronDown className="h-4 w-4" />
         )}
-        Advanced
+        {t("advanced")}
       </button>
 
       {showAdvanced && (
@@ -643,7 +643,7 @@ export default function QuestionEditor() {
           {/* Tags */}
           <div>
             <label htmlFor={tagsId} className="block text-xs font-bold text-ink-dark mb-1">
-              <Tag className="inline h-3 w-3 mr-1" />
+              <Tag className="inline h-3 w-3 me-1" />
               {t("tags")}
             </label>
             <div className="flex flex-wrap gap-1.5 mb-2">

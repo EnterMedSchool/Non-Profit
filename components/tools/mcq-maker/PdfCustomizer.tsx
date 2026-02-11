@@ -136,7 +136,7 @@ export default function PdfCustomizer() {
       {/* Template presets */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          <Palette className="inline h-3.5 w-3.5 mr-1" />
+          <Palette className="inline h-3.5 w-3.5 me-1" />
           {t("templatePresets")}
         </label>
         <div className="grid grid-cols-2 gap-1.5">
@@ -146,7 +146,7 @@ export default function PdfCustomizer() {
               onClick={() =>
                 setPdfTheme({ ...DEFAULT_PDF_THEME, ...preset.theme })
               }
-              className="rounded-lg border-2 border-ink-light/20 bg-white px-2.5 py-2 text-xs font-bold text-ink-dark hover:border-showcase-purple/50 hover:bg-showcase-purple/5 transition-all text-left"
+              className="rounded-lg border-2 border-ink-light/20 bg-white px-2.5 py-2 text-xs font-bold text-ink-dark hover:border-showcase-purple/50 hover:bg-showcase-purple/5 transition-all text-start"
             >
               <div className="flex items-center gap-1.5 mb-1">
                 <div
@@ -158,7 +158,7 @@ export default function PdfCustomizer() {
                   style={{ backgroundColor: preset.theme.secondaryColor }}
                 />
               </div>
-              {preset.label}
+              {t(preset.labelKey)}
             </button>
           ))}
         </div>
@@ -190,7 +190,7 @@ export default function PdfCustomizer() {
               }
               className="h-7 w-7 rounded border cursor-pointer"
             />
-            <span className="text-xs text-ink-muted">Secondary</span>
+            <span className="text-xs text-ink-muted">{t("secondary")}</span>
           </label>
           <label className="flex items-center gap-2">
             <input
@@ -212,7 +212,7 @@ export default function PdfCustomizer() {
               }
               className="h-7 w-7 rounded border cursor-pointer"
             />
-            <span className="text-xs text-ink-muted">Text</span>
+            <span className="text-xs text-ink-muted">{t("text")}</span>
           </label>
         </div>
       </div>
@@ -231,7 +231,7 @@ export default function PdfCustomizer() {
                   fontFamily: e.target.value as MCQPdfTheme["fontFamily"],
                 })
               }
-              className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pr-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
+              className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pe-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
               <option value="helvetica">Helvetica</option>
               <option value="times">Times</option>
@@ -260,8 +260,8 @@ export default function PdfCustomizer() {
       {/* Paper size */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          <FileText className="inline h-3.5 w-3.5 mr-1" />
-          Paper Size
+          <FileText className="inline h-3.5 w-3.5 me-1" />
+          {t("paperSize")}
         </label>
         <div className="flex gap-2">
           {(["a4", "letter"] as const).map((size) => (
@@ -283,14 +283,14 @@ export default function PdfCustomizer() {
       {/* Page Margins */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          <Ruler className="inline h-3.5 w-3.5 mr-1" />
+          <Ruler className="inline h-3.5 w-3.5 me-1" />
           {t("pageMargins")}
         </label>
         <div className="grid grid-cols-2 gap-2">
           {(["top", "right", "bottom", "left"] as const).map((side) => (
             <div key={side} className="flex items-center gap-2">
-              <span className="text-[10px] font-semibold text-ink-muted capitalize w-10">
-                {side}
+              <span className="text-[10px] font-semibold text-ink-muted w-10">
+                {t(side === "top" ? "marginTop" : side === "right" ? "marginRight" : side === "bottom" ? "marginBottom" : "marginLeft")}
               </span>
               <input
                 type="number"
@@ -315,7 +315,7 @@ export default function PdfCustomizer() {
       {/* Answer style */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Answer Style
+          {t("answerStyle")}
         </label>
         <div className="grid grid-cols-2 gap-1.5">
           {ANSWER_STYLES.map((style) => {
@@ -349,7 +349,7 @@ export default function PdfCustomizer() {
           onChange={(e) =>
             updatePdfTheme({ headerTemplate: e.target.value })
           }
-          placeholder="e.g. Medical University — Anatomy 101"
+          placeholder={t("headerPlaceholder")}
           className="w-full rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 text-xs text-ink-dark focus:border-showcase-purple focus:outline-none"
         />
       </div>
@@ -357,8 +357,8 @@ export default function PdfCustomizer() {
       {/* Watermark */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          <Stamp className="inline h-3.5 w-3.5 mr-1" />
-          Watermark (optional)
+          <Stamp className="inline h-3.5 w-3.5 me-1" />
+          {t("watermark")}
         </label>
         <input
           type="text"
@@ -366,12 +366,12 @@ export default function PdfCustomizer() {
           onChange={(e) =>
             updatePdfTheme({ watermarkText: e.target.value })
           }
-          placeholder="e.g. DRAFT, PRACTICE, SAMPLE"
+          placeholder={t("watermarkPlaceholder")}
           className="w-full rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 text-xs text-ink-dark focus:border-showcase-purple focus:outline-none"
         />
         {pdfTheme.watermarkText && (
           <p className="mt-1 text-[10px] text-ink-light">
-            Diagonal watermark will appear on every page
+            {t("watermarkHint")}
           </p>
         )}
       </div>
@@ -405,7 +405,7 @@ export default function PdfCustomizer() {
       {/* Logo */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          <ImageIcon className="inline h-3.5 w-3.5 mr-1" />
+          <ImageIcon className="inline h-3.5 w-3.5 me-1" />
           {t("logoOptional")}
         </label>
         {logoError && (
@@ -415,7 +415,7 @@ export default function PdfCustomizer() {
           <div className="flex items-center gap-3">
             <img
               src={pdfTheme.logoDataUrl}
-              alt="Logo"
+              alt={t("logoAlt")}
               className="h-8 w-8 rounded border object-contain"
             />
             {/* Logo position selector */}
@@ -441,7 +441,7 @@ export default function PdfCustomizer() {
               className="text-xs font-bold text-red-500 hover:underline flex items-center gap-1"
             >
               <X className="h-3 w-3" />
-              Remove
+              {t("remove")}
             </button>
           </div>
         ) : (

@@ -21,10 +21,10 @@ export default function MissionStatement() {
           <div className="relative rounded-3xl p-[3px] bg-gradient-to-br from-showcase-purple via-showcase-teal to-showcase-green shadow-chunky-lg">
             <div className="rounded-[calc(1.5rem-3px)] bg-white p-8 sm:p-12 md:p-16 text-center relative overflow-hidden pattern-dots">
               {/* Decorative giant quote marks */}
-              <span className="absolute top-4 left-6 font-display text-[120px] leading-none text-showcase-purple/[0.12] select-none pointer-events-none sm:text-[160px] sm:top-2 sm:left-10" aria-hidden="true">
+              <span className="absolute top-4 start-6 font-display text-[120px] leading-none text-showcase-purple/[0.12] select-none pointer-events-none sm:text-[160px] sm:top-2 sm:start-10" aria-hidden="true">
                 &ldquo;
               </span>
-              <span className="absolute bottom-0 right-6 font-display text-[120px] leading-none text-showcase-purple/[0.12] select-none pointer-events-none sm:text-[160px] sm:right-10" aria-hidden="true">
+              <span className="absolute bottom-0 end-6 font-display text-[120px] leading-none text-showcase-purple/[0.12] select-none pointer-events-none sm:text-[160px] sm:end-10" aria-hidden="true">
                 &rdquo;
               </span>
 

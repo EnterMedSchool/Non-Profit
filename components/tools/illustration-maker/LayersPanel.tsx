@@ -17,34 +17,39 @@ import { useTranslations } from "next-intl";
 import { useIllustration } from "./IllustrationContext";
 import type { FabricObject } from "fabric";
 
-function getObjectLabel(obj: FabricObject, index: number): string {
+function getObjectLabel(
+  obj: FabricObject,
+  index: number,
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  t: (...args: any[]) => string,
+): string {
   // Check for custom name first
   if ((obj as any).customName) return (obj as any).customName;
 
   const type = obj.type || "object";
+  const typeKeys: Record<string, string> = {
+    rect: "rectangle",
+    circle: "circle",
+    line: "line",
+    triangle: "triangle",
+    group: "group",
+    image: "image",
+    path: "path",
+  };
+
   switch (type) {
     case "textbox":
     case "text":
     case "i-text": {
       const text = (obj as any).text as string;
-      return text ? `Text: "${text.slice(0, 16)}${text.length > 16 ? "..." : ""}"` : `Text ${index + 1}`;
+      return text
+        ? t("textPreview", { preview: `${text.slice(0, 16)}${text.length > 16 ? "..." : ""}` })
+        : t("textFallback", { index: index + 1 });
     }
-    case "rect":
-      return `Rectangle ${index + 1}`;
-    case "circle":
-      return `Circle ${index + 1}`;
-    case "line":
-      return `Line ${index + 1}`;
-    case "triangle":
-      return `Triangle ${index + 1}`;
-    case "group":
-      return `Group ${index + 1}`;
-    case "image":
-      return `Image ${index + 1}`;
-    case "path":
-      return `Path ${index + 1}`;
-    default:
-      return `${type} ${index + 1}`;
+    default: {
+      const key = typeKeys[type];
+      return t("layerLabel", { type: key ? t(key) : type, index: index + 1 });
+    }
   }
 }
 
@@ -167,7 +172,7 @@ export default function LayersPanel() {
       {/* Header */}
       <button
         onClick={() => setExpanded(!expanded)}
-        className="flex w-full items-center gap-2 px-3 py-2 text-left hover:bg-pastel-lavender/30"
+        className="flex w-full items-center gap-2 px-3 py-2 text-start hover:bg-pastel-lavender/30"
       >
         {expanded ? (
           <ChevronDown className="h-3 w-3 text-ink-light" />
@@ -186,13 +191,13 @@ export default function LayersPanel() {
           {objects.length > 3 && (
             <div className="px-2 pb-1">
               <div className="relative">
-                <Search className="absolute left-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light" />
+                <Search className="absolute start-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light" />
                 <input
                   type="text"
-                  placeholder="Search layers..."
+                  placeholder={t("searchPlaceholder")}
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="w-full rounded-lg border border-showcase-navy/10 bg-pastel-cream/20 py-1 pl-7 pr-2 text-[10px] text-ink-dark placeholder:text-ink-light focus:border-showcase-purple/40 focus:outline-none"
+                  className="w-full rounded-lg border border-showcase-navy/10 bg-pastel-cream/20 py-1 ps-7 pe-2 text-[10px] text-ink-dark placeholder:text-ink-light focus:border-showcase-purple/40 focus:outline-none"
                 />
               </div>
             </div>
@@ -201,7 +206,7 @@ export default function LayersPanel() {
           <div className="max-h-48 overflow-y-auto px-1 pb-2">
             {filteredObjects.length === 0 ? (
               <p className="px-3 py-3 text-center text-[10px] text-ink-light">
-                {searchQuery ? "No matching layers" : "No objects on canvas"}
+                {searchQuery ? t("noMatching") : t("noObjects")}
               </p>
             ) : (
               filteredObjects.map((obj, i) => {
@@ -256,7 +261,7 @@ export default function LayersPanel() {
                           selected ? "font-bold text-showcase-purple" : "text-ink-muted"
                         } ${!isVisible ? "line-through opacity-50" : ""}`}
                       >
-                        {getObjectLabel(obj, idx)}
+                        {getObjectLabel(obj, idx, t)}
                       </span>
                     )}
 

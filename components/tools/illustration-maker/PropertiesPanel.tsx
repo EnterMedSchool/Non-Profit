@@ -54,11 +54,11 @@ function loadGoogleFont(fontFamily: string) {
 /* ── Stroke dash presets ──────────────────────────────────────── */
 
 const DASH_PRESETS = [
-  { label: "Solid", value: [] as number[] },
-  { label: "Dashed", value: [10, 5] },
-  { label: "Dotted", value: [2, 4] },
-  { label: "Dash-Dot", value: [10, 5, 2, 5] },
-  { label: "Long Dash", value: [20, 8] },
+  { key: "solid", value: [] as number[] },
+  { key: "dashed", value: [10, 5] },
+  { key: "dotted", value: [2, 4] },
+  { key: "dashDot", value: [10, 5, 2, 5] },
+  { key: "longDash", value: [20, 8] },
 ];
 
 /* ── Color palettes ──────────────────────────────────────────── */
@@ -247,7 +247,7 @@ export default function PropertiesPanel() {
 
   if (!obj || !props) {
     return (
-      <div className="hidden w-10 flex-col items-center border-l-3 border-showcase-navy/10 bg-white py-3 lg:flex">
+      <div className="hidden w-10 flex-col items-center border-s-3 border-showcase-navy/10 bg-white py-3 lg:flex">
         <span className="text-[10px] text-ink-light [writing-mode:vertical-rl] rotate-180">{t("title")}</span>
       </div>
     );
@@ -255,7 +255,7 @@ export default function PropertiesPanel() {
 
   if (collapsed) {
     return (
-      <div className="flex w-10 flex-col items-center border-l-3 border-showcase-navy/10 bg-white py-2">
+      <div className="flex w-10 flex-col items-center border-s-3 border-showcase-navy/10 bg-white py-2">
         <button
           onClick={() => setCollapsed(false)}
           className="rounded-lg p-1.5 text-ink-muted transition-colors hover:bg-pastel-lavender hover:text-showcase-purple"
@@ -281,7 +281,7 @@ export default function PropertiesPanel() {
   };
 
   return (
-    <div className="hidden w-56 flex-col border-l-3 border-showcase-navy/10 bg-white lg:flex xl:w-64">
+    <div className="hidden w-56 flex-col border-s-3 border-showcase-navy/10 bg-white lg:flex xl:w-64">
       {/* Header */}
       <div className="flex items-center justify-between border-b-2 border-showcase-navy/5 px-3 py-2">
         <h3 className="font-display text-sm font-bold text-ink-dark">{t("title")}</h3>
@@ -336,7 +336,7 @@ export default function PropertiesPanel() {
               />
             </div>
             <div>
-              <label className="mb-1 block text-[10px] font-bold text-ink-light uppercase">Opacity</label>
+              <label className="mb-1 block text-[10px] font-bold text-ink-light uppercase">{t("opacity")}</label>
               <input
                 type="range"
                 min={0}
@@ -414,7 +414,7 @@ export default function PropertiesPanel() {
             <div className="flex flex-wrap gap-1">
               {DASH_PRESETS.map((preset, i) => (
                 <button
-                  key={preset.labelKey}
+                  key={preset.key}
                   onClick={() => updateProp("strokeDashArray", preset.value)}
                   className={`rounded-lg border-2 px-2 py-1 text-[10px] font-bold transition-all ${
                     activeDash === i
@@ -422,7 +422,7 @@ export default function PropertiesPanel() {
                       : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                   }`}
                 >
-                  {t(preset.labelKey)}
+                  {t(preset.key)}
                 </button>
               ))}
             </div>
@@ -434,7 +434,7 @@ export default function PropertiesPanel() {
           <div className="border-b border-showcase-navy/5 px-3 py-3">
             <div className="mb-2 flex items-center gap-1.5">
               <Type className="h-3 w-3 text-showcase-blue" />
-              <span className="text-[10px] font-bold text-ink-muted">Text</span>
+              <span className="text-[10px] font-bold text-ink-muted">{t("text")}</span>
             </div>
 
             {/* Font family */}
@@ -513,7 +513,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-purple bg-showcase-purple/10 text-showcase-purple"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Italic"
+                title={t("italic")}
               >
                 <Italic className="h-3.5 w-3.5" />
               </button>
@@ -600,14 +600,14 @@ export default function PropertiesPanel() {
 /* ── Gradient Section sub-component ────────────────────────────── */
 
 const GRADIENT_PRESETS = [
-  { label: "None", type: "none" as const, colors: [] },
-  { label: "Purple → Blue", type: "linear" as const, colors: ["#6C5CE7", "#54A0FF"] },
-  { label: "Teal → Green", type: "linear" as const, colors: ["#00D9C0", "#00B894"] },
-  { label: "Coral → Pink", type: "linear" as const, colors: ["#FF6B6B", "#FF85A2"] },
-  { label: "Sunset", type: "linear" as const, colors: ["#FFD93D", "#FF6B6B"] },
-  { label: "Ocean", type: "linear" as const, colors: ["#0984e3", "#00cec9"] },
-  { label: "Radial Purple", type: "radial" as const, colors: ["#6C5CE7", "#a29bfe"] },
-  { label: "Radial Blue", type: "radial" as const, colors: ["#0984e3", "#74b9ff"] },
+  { key: "gradientNone", type: "none" as const, colors: [] },
+  { key: "gradientPurpleBlue", type: "linear" as const, colors: ["#6C5CE7", "#54A0FF"] },
+  { key: "gradientTealGreen", type: "linear" as const, colors: ["#00D9C0", "#00B894"] },
+  { key: "gradientCoralPink", type: "linear" as const, colors: ["#FF6B6B", "#FF85A2"] },
+  { key: "gradientSunset", type: "linear" as const, colors: ["#FFD93D", "#FF6B6B"] },
+  { key: "gradientOcean", type: "linear" as const, colors: ["#0984e3", "#00cec9"] },
+  { key: "gradientRadialPurple", type: "radial" as const, colors: ["#6C5CE7", "#a29bfe"] },
+  { key: "gradientRadialBlue", type: "radial" as const, colors: ["#0984e3", "#74b9ff"] },
 ];
 
 function GradientSection({
@@ -619,6 +619,7 @@ function GradientSection({
   canvas: any;
   pushHistory: () => void;
 }) {
+  const t = useTranslations("tools.illustrationMaker.ui.properties");
   const [expanded, setExpanded] = useState(false);
 
   const applyGradient = async (preset: typeof GRADIENT_PRESETS[0]) => {
@@ -663,21 +664,21 @@ function GradientSection({
           }}
         />
         <span className="text-[10px] font-bold text-ink-muted">{t("gradientFill")}</span>
-        <ChevronDown className={`ml-auto h-3 w-3 text-ink-light transition-transform ${expanded ? "rotate-180" : ""}`} />
+        <ChevronDown className={`ms-auto h-3 w-3 text-ink-light transition-transform ${expanded ? "rotate-180" : ""}`} />
       </button>
 
       {expanded && (
         <div className="flex flex-wrap gap-1">
           {GRADIENT_PRESETS.map((preset) => (
             <button
-              key={preset.label}
+              key={preset.key}
               onClick={() => applyGradient(preset)}
               className="rounded-lg border-2 border-showcase-navy/10 px-2 py-1 text-[10px] font-bold text-ink-muted transition-all hover:border-showcase-purple/30 hover:bg-pastel-lavender/50"
-              title={preset.label}
+              title={t(preset.key)}
             >
               {preset.type !== "none" && (
                 <span
-                  className="mr-1 inline-block h-3 w-3 rounded-sm align-middle"
+                  className="me-1 inline-block h-3 w-3 rounded-sm align-middle"
                   style={{
                     background: preset.type === "linear"
                       ? `linear-gradient(135deg, ${preset.colors[0]}, ${preset.colors[1]})`
@@ -685,7 +686,7 @@ function GradientSection({
                   }}
                 />
               )}
-              {preset.label}
+              {t(preset.key)}
             </button>
           ))}
         </div>

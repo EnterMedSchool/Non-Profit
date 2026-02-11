@@ -217,7 +217,7 @@ function BentoCard({
             </div>
 
             {/* Arrow indicator */}
-            <div className="absolute top-5 right-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <div className="absolute top-5 end-5 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
               <ArrowUpRight className="h-5 w-5 text-white/60" />
             </div>
           </div>

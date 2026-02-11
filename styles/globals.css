@@ -57,6 +57,15 @@
   }
 }
 
+/* ===== RTL Font Overrides ===== */
+[dir="rtl"] body {
+  font-family: var(--font-heebo), "Heebo", system-ui, sans-serif;
+}
+[dir="rtl"] h1, [dir="rtl"] h2, [dir="rtl"] h3,
+[dir="rtl"] h4, [dir="rtl"] h5, [dir="rtl"] h6 {
+  font-family: var(--font-heebo), "Heebo", system-ui, sans-serif;
+}
+
 /* ===== Component Layer ===== */
 @layer components {
   /* Hand-drawn underline */
@@ -425,4 +434,22 @@
   .text-gradient-rainbow {
     animation: none !important;
   }
+}
+
+/* ===== RTL Overrides ===== */
+[dir="rtl"] .hand-underline::after {
+  transform: scaleX(-1);
+}
+
+[dir="rtl"] .chapter-content ul,
+[dir="rtl"] .chapter-content ol {
+  padding-right: 1.5rem;
+  padding-left: 0;
+}
+
+/* Flip chunky box shadows for RTL */
+[dir="rtl"] {
+  --shadow-chunky: -4px 4px 0 var(--showcase-navy);
+  --shadow-chunky-sm: -3px 3px 0 var(--showcase-navy);
+  --shadow-chunky-lg: -6px 6px 0 var(--showcase-navy);
 }
