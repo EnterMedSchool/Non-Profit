@@ -125,7 +125,7 @@ export default function Minimap() {
       {!visible && (
         <button
           onClick={() => setVisible(true)}
-          className="absolute bottom-12 right-3 rounded-lg border-2 border-showcase-navy/10 bg-white/90 p-1.5 text-ink-muted backdrop-blur-sm transition-all hover:border-showcase-purple/30 hover:text-showcase-purple"
+          className="absolute bottom-12 end-3 rounded-lg border-2 border-showcase-navy/10 bg-white/90 p-1.5 text-ink-muted backdrop-blur-sm transition-all hover:border-showcase-purple/30 hover:text-showcase-purple"
           title={t("showMinimap")}
         >
           <Map className="h-4 w-4" />
@@ -134,7 +134,7 @@ export default function Minimap() {
 
       {/* Minimap panel */}
       {visible && (
-        <div className="absolute bottom-12 right-3 rounded-xl border-2 border-showcase-navy/10 bg-white/95 shadow-chunky backdrop-blur-sm">
+        <div className="absolute bottom-12 end-3 rounded-xl border-2 border-showcase-navy/10 bg-white/95 shadow-chunky backdrop-blur-sm">
           <div className="flex items-center justify-between px-2 py-1">
             <span className="text-[10px] font-bold text-ink-light">{t("title")}</span>
             <button

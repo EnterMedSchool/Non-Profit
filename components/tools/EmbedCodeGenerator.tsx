@@ -5,6 +5,7 @@ import { m, AnimatePresence } from "framer-motion";
 import { Copy, Check, Download, Link as LinkIcon, Monitor, StickyNote, GraduationCap, Presentation, Lock, Loader2 } from "lucide-react";
 import { useTranslations } from "next-intl";
 import { generateQRCodeDataURL } from "@/lib/qrcode";
+import { downloadHtmlFile } from "@/lib/download-html";
 import EmbedThemeCustomizer from "./EmbedThemeCustomizer";
 import {
   type EmbedTheme,
@@ -61,6 +62,7 @@ export default function EmbedCodeGenerator({
   const t = useTranslations("tools.embed");
   const [activeTab, setActiveTab] = useState<Tab>("website");
   const [copied, setCopied] = useState<string | null>(null);
+  const [downloaded, setDownloaded] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [theme, setTheme] = useState<EmbedTheme>({ ...DEFAULT_THEME });
   const [iframeLoaded, setIframeLoaded] = useState(false);
@@ -116,6 +118,12 @@ export default function EmbedCodeGenerator({
     setTimeout(() => setShowCelebration(false), 1200);
   }, []);
 
+  const handleDownloadHtml = useCallback(() => {
+    downloadHtmlFile(iframeCode, `entermedschool-${toolId}-embed.html`);
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2500);
+  }, [iframeCode, toolId]);
+
   const downloadQRCode = async () => {
     const dataUrl = await generateQRCodeDataURL({
       url: fullUrl,
@@ -143,7 +151,20 @@ export default function EmbedCodeGenerator({
     <div className="relative">
       <div className="flex items-center justify-between mb-2">
         <span className="text-xs font-bold text-ink-dark">{t("embedCodeLabel")}</span>
-        <div className="relative">
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            onClick={handleDownloadHtml}
+            className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+              downloaded
+                ? "bg-showcase-green text-white shadow-sm scale-105"
+                : "bg-showcase-purple/10 text-showcase-purple hover:bg-showcase-purple/20 hover:shadow-sm"
+            }`}
+          >
+            {downloaded ? <Check className="h-3.5 w-3.5" /> : <Download className="h-3.5 w-3.5" />}
+            {downloaded ? t("downloaded") : t("downloadHtml")}
+          </button>
+          <div className="relative">
           <button
             type="button"
             onClick={() => copyToClipboard(iframeCode, copyId)}
@@ -179,6 +200,7 @@ export default function EmbedCodeGenerator({
               </>
             )}
           </AnimatePresence>
+        </div>
         </div>
       </div>
       {/* Dark code block with syntax-highlighted tokens */}

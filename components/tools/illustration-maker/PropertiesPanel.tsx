@@ -453,7 +453,7 @@ export default function PropertiesPanel() {
               {showFontMenu && (
                 <>
                   <div className="fixed inset-0 z-40" onClick={() => setShowFontMenu(false)} />
-                  <div className="absolute left-0 right-0 top-full z-50 mt-1 max-h-48 overflow-y-auto rounded-xl border-3 border-showcase-navy/10 bg-white p-1 shadow-chunky">
+                  <div className="absolute inset-x-0 top-full z-50 mt-1 max-h-48 overflow-y-auto rounded-xl border-3 border-showcase-navy/10 bg-white p-1 shadow-chunky">
                     {FONT_FAMILIES.map((font) => {
                       // Preload fonts for preview
                       loadGoogleFont(font.value);
@@ -655,7 +655,7 @@ function GradientSection({
     <div className="border-b border-showcase-navy/5 px-3 py-3">
       <button
         onClick={() => setExpanded(!expanded)}
-        className="mb-2 flex w-full items-center gap-1.5 text-left"
+        className="mb-2 flex w-full items-center gap-1.5 text-start"
       >
         <div
           className="h-3 w-3 rounded-sm"

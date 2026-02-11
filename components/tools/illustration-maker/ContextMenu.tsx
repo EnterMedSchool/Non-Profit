@@ -19,6 +19,7 @@ import {
   Image,
 } from "lucide-react";
 import { useIllustration } from "./IllustrationContext";
+import { useTranslations } from "next-intl";
 
 interface ContextMenuPosition {
   x: number;
@@ -26,6 +27,7 @@ interface ContextMenuPosition {
 }
 
 export default function ContextMenu() {
+  const t = useTranslations("tools.illustrationMaker.ui.contextMenu");
   const {
     canvas,
     selectedObjects,
@@ -167,25 +169,25 @@ export default function ContextMenu() {
         className="w-52 rounded-xl border-3 border-showcase-navy/10 bg-white p-1.5 shadow-chunky"
         onClick={(e) => e.stopPropagation()}
       >
-        <MenuItem icon={Scissors} label="Cut" shortcut="Ctrl+X" onClick={() => { copySelected(); deleteSelected(); }} disabled={!hasSelection} />
-        <MenuItem icon={Copy} label="Copy" shortcut="Ctrl+C" onClick={copySelected} disabled={!hasSelection} />
-        <MenuItem icon={Clipboard} label="Paste" shortcut="Ctrl+V" onClick={pasteClipboard} />
-        <MenuItem icon={Image} label="Duplicate" shortcut="Ctrl+D" onClick={duplicateSelected} disabled={!hasSelection} />
+        <MenuItem icon={Scissors} label={t("cut")} shortcut="Ctrl+X" onClick={() => { copySelected(); deleteSelected(); }} disabled={!hasSelection} />
+        <MenuItem icon={Copy} label={t("copy")} shortcut="Ctrl+C" onClick={copySelected} disabled={!hasSelection} />
+        <MenuItem icon={Clipboard} label={t("paste")} shortcut="Ctrl+V" onClick={pasteClipboard} />
+        <MenuItem icon={Image} label={t("duplicate")} shortcut="Ctrl+D" onClick={duplicateSelected} disabled={!hasSelection} />
 
         <Separator />
 
-        <MenuItem icon={ChevronsUp} label="Bring to Front" onClick={bringToFront} disabled={!hasSelection} />
-        <MenuItem icon={ArrowUp} label="Bring Forward" onClick={bringForward} disabled={!hasSelection} />
-        <MenuItem icon={ArrowDown} label="Send Backward" onClick={sendBackward} disabled={!hasSelection} />
-        <MenuItem icon={ChevronsDown} label="Send to Back" onClick={sendToBack} disabled={!hasSelection} />
+        <MenuItem icon={ChevronsUp} label={t("bringToFront")} onClick={bringToFront} disabled={!hasSelection} />
+        <MenuItem icon={ArrowUp} label={t("bringForward")} onClick={bringForward} disabled={!hasSelection} />
+        <MenuItem icon={ArrowDown} label={t("sendBackward")} onClick={sendBackward} disabled={!hasSelection} />
+        <MenuItem icon={ChevronsDown} label={t("sendToBack")} onClick={sendToBack} disabled={!hasSelection} />
 
         <Separator />
 
-        <MenuItem icon={Group} label="Group" shortcut="Ctrl+G" onClick={groupSelected} disabled={!isMultiSelect} />
-        <MenuItem icon={Ungroup} label="Ungroup" shortcut="Ctrl+Shift+G" onClick={ungroupSelected} disabled={!isGroup} />
+        <MenuItem icon={Group} label={t("group")} shortcut="Ctrl+G" onClick={groupSelected} disabled={!isMultiSelect} />
+        <MenuItem icon={Ungroup} label={t("ungroup")} shortcut="Ctrl+Shift+G" onClick={ungroupSelected} disabled={!isGroup} />
         <MenuItem
           icon={isLocked ? Lock : Unlock}
-          label={isLocked ? "Unlock" : "Lock"}
+          label={isLocked ? t("unlock") : t("lock")}
           onClick={lockSelected}
           disabled={!hasSelection}
         />
@@ -194,18 +196,18 @@ export default function ContextMenu() {
           <>
             <Separator />
             <div className="px-3 py-1">
-              <span className="text-[10px] font-bold text-ink-light">Quick Align</span>
+              <span className="text-[10px] font-bold text-ink-light">{t("quickAlign")}</span>
             </div>
             <div className="flex items-center gap-0.5 px-2 pb-1">
-              <QuickAlignButton icon={AlignHorizontalJustifyCenter} title="Align Centers Horizontally" />
-              <QuickAlignButton icon={AlignVerticalJustifyCenter} title="Align Centers Vertically" />
+              <QuickAlignButton icon={AlignHorizontalJustifyCenter} title={t("alignCentersHorizontally")} />
+              <QuickAlignButton icon={AlignVerticalJustifyCenter} title={t("alignCentersVertically")} />
             </div>
           </>
         )}
 
         <Separator />
 
-        <MenuItem icon={Trash2} label="Delete" shortcut="Del" onClick={deleteSelected} disabled={!hasSelection} danger />
+        <MenuItem icon={Trash2} label={t("delete")} shortcut="Del" onClick={deleteSelected} disabled={!hasSelection} danger />
       </div>
     </>
   );

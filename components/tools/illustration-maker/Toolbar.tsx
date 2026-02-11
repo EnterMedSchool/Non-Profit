@@ -54,25 +54,27 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 import { useIllustration, CANVAS_PRESETS, type ActiveTool } from "./IllustrationContext";
+import { useTranslations } from "next-intl";
 import dynamic from "next/dynamic";
 
 const TemplatesPanel = dynamic(() => import("./TemplatesPanel"), { ssr: false });
 const ExportDialog = dynamic(() => import("./ExportDialog"), { ssr: false });
 
-const TOOL_ITEMS: { id: ActiveTool; icon: React.ComponentType<{ className?: string }>; label: string; separator?: boolean }[] = [
-  { id: "select",    icon: MousePointer2, label: "Select (V)" },
-  { id: "text",      icon: Type,          label: "Text (T)" },
-  { id: "rect",      icon: Square,        label: "Rectangle (R)" },
-  { id: "circle",    icon: CircleIcon,    label: "Circle (C)" },
-  { id: "line",      icon: Minus,         label: "Line (L)" },
-  { id: "arrow",     icon: ArrowRight,    label: "Arrow (A)" },
-  { id: "freehand",  icon: Pencil,        label: "Freehand (F)" },
-  { id: "connector", icon: Spline,        label: "Connector" },
-  { id: "label",     icon: Tag,           label: "Label (K)" },
-  { id: "marker",    icon: Hash,          label: "Marker (M)" },
+const TOOL_ITEMS: { id: ActiveTool; icon: React.ComponentType<{ className?: string }>; labelKey: string }[] = [
+  { id: "select",    icon: MousePointer2, labelKey: "selectTool" },
+  { id: "text",      icon: Type,          labelKey: "textTool" },
+  { id: "rect",      icon: Square,        labelKey: "rectangleTool" },
+  { id: "circle",    icon: CircleIcon,    labelKey: "circleTool" },
+  { id: "line",      icon: Minus,         labelKey: "lineTool" },
+  { id: "arrow",     icon: ArrowRight,    labelKey: "arrowTool" },
+  { id: "freehand",  icon: Pencil,        labelKey: "freehandTool" },
+  { id: "connector", icon: Spline,        labelKey: "connectorTool" },
+  { id: "label",     icon: Tag,           labelKey: "labelTool" },
+  { id: "marker",    icon: Hash,          labelKey: "markerTool" },
 ];
 
 export default function Toolbar() {
+  const t = useTranslations("tools.illustrationMaker.ui.toolbar");
   const {
     activeTool,
     setActiveTool,
@@ -223,7 +225,7 @@ export default function Toolbar() {
               key={tool.id}
               active={activeTool === tool.id}
               onClick={() => setActiveTool(tool.id)}
-              title={tool.label}
+              title={t(tool.labelKey)}
             >
               <Icon className="h-4 w-4" />
             </Btn>
@@ -233,45 +235,45 @@ export default function Toolbar() {
         <Divider />
 
         {/* ── Selection actions ───────────────────────────────── */}
-        <Btn onClick={copySelected} disabled={!hasSelection} title="Copy (Ctrl+C)">
+        <Btn onClick={copySelected} disabled={!hasSelection} title={t("copy")}>
           <Copy className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={pasteClipboard} title="Paste (Ctrl+V)">
+        <Btn onClick={pasteClipboard} title={t("paste")}>
           <Clipboard className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={duplicateSelected} disabled={!hasSelection} title="Duplicate (Ctrl+D)">
+        <Btn onClick={duplicateSelected} disabled={!hasSelection} title={t("duplicate")}>
           <Image className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={deleteSelected} disabled={!hasSelection} title="Delete (Del)">
+        <Btn onClick={deleteSelected} disabled={!hasSelection} title={t("delete")}>
           <Trash2 className="h-3.5 w-3.5" />
         </Btn>
 
         <Divider />
 
         {/* ── Layer ordering ──────────────────────────────────── */}
-        <Btn onClick={bringToFront} disabled={!hasSelection} title="Bring to Front">
+        <Btn onClick={bringToFront} disabled={!hasSelection} title={t("bringToFront")}>
           <ChevronsUp className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={bringForward} disabled={!hasSelection} title="Bring Forward">
+        <Btn onClick={bringForward} disabled={!hasSelection} title={t("bringForward")}>
           <ArrowUp className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={sendBackward} disabled={!hasSelection} title="Send Backward">
+        <Btn onClick={sendBackward} disabled={!hasSelection} title={t("sendBackward")}>
           <ArrowDown className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={sendToBack} disabled={!hasSelection} title="Send to Back">
+        <Btn onClick={sendToBack} disabled={!hasSelection} title={t("sendToBack")}>
           <ChevronsDown className="h-3.5 w-3.5" />
         </Btn>
 
         <Divider />
 
         {/* ── Group / Lock ────────────────────────────────────── */}
-        <Btn onClick={groupSelected} disabled={!isMultiSelect} title="Group (Ctrl+G)">
+        <Btn onClick={groupSelected} disabled={!isMultiSelect} title={t("group")}>
           <Group className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={ungroupSelected} disabled={!isGroup} title="Ungroup (Ctrl+Shift+G)">
+        <Btn onClick={ungroupSelected} disabled={!isGroup} title={t("ungroup")}>
           <Ungroup className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={lockSelected} disabled={!hasSelection} title="Lock/Unlock">
+        <Btn onClick={lockSelected} disabled={!hasSelection} title={t("lockUnlock")}>
           {isLocked ? <Lock className="h-3.5 w-3.5" /> : <Unlock className="h-3.5 w-3.5" />}
         </Btn>
 
@@ -280,45 +282,45 @@ export default function Toolbar() {
           <>
             <Divider />
             <div className="relative">
-              <Btn onClick={() => setShowAlignMenu(!showAlignMenu)} title="Align & Distribute">
+              <Btn onClick={() => setShowAlignMenu(!showAlignMenu)} title={t("alignDistribute")}>
                 <AlignCenterVertical className="h-3.5 w-3.5 me-0.5" />
                 <ChevronDown className="h-3 w-3" />
               </Btn>
               {showAlignMenu && (
                 <div className="absolute top-full start-0 z-50 mt-1 w-48 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
-                  <p className="px-3 py-1 text-[10px] font-bold text-ink-light">Align</p>
+                  <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("alignSection")}</p>
                   <div className="flex gap-0.5 px-2 pb-1">
                     {([
-                      { dir: "left" as const, icon: AlignStartVertical, label: "Align Left" },
-                      { dir: "center" as const, icon: AlignCenterVertical, label: "Align Center" },
-                      { dir: "right" as const, icon: AlignEndVertical, label: "Align Right" },
-                      { dir: "top" as const, icon: AlignStartHorizontal, label: "Align Top" },
-                      { dir: "middle" as const, icon: AlignCenterHorizontal, label: "Align Middle" },
-                      { dir: "bottom" as const, icon: AlignEndHorizontal, label: "Align Bottom" },
-                    ]).map(({ dir, icon: Icon, label }) => (
+                      { dir: "left" as const, icon: AlignStartVertical, labelKey: "alignLeft" as const },
+                      { dir: "center" as const, icon: AlignCenterVertical, labelKey: "alignCenter" as const },
+                      { dir: "right" as const, icon: AlignEndVertical, labelKey: "alignRight" as const },
+                      { dir: "top" as const, icon: AlignStartHorizontal, labelKey: "alignTop" as const },
+                      { dir: "middle" as const, icon: AlignCenterHorizontal, labelKey: "alignMiddle" as const },
+                      { dir: "bottom" as const, icon: AlignEndHorizontal, labelKey: "alignBottom" as const },
+                    ]).map(({ dir, icon: Icon, labelKey }) => (
                       <button
                         key={dir}
                         onClick={() => { alignObjects(dir); setShowAlignMenu(false); }}
                         className="rounded-lg border-2 border-transparent p-1.5 text-ink-muted transition-colors hover:border-showcase-navy/10 hover:bg-pastel-lavender/50 hover:text-ink-dark"
-                        title={label}
+                        title={t(labelKey)}
                       >
                         <Icon className="h-3.5 w-3.5" />
                       </button>
                     ))}
                   </div>
-                  <p className="px-3 py-1 text-[10px] font-bold text-ink-light">Distribute</p>
+                  <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("distributeSection")}</p>
                   <div className="flex gap-0.5 px-2 pb-1">
                     <button
                       onClick={() => { distributeObjects("horizontal"); setShowAlignMenu(false); }}
                       className="rounded-lg border-2 border-transparent p-1.5 text-ink-muted transition-colors hover:border-showcase-navy/10 hover:bg-pastel-lavender/50 hover:text-ink-dark"
-                      title="Distribute Horizontally"
+                      title={t("distributeHorizontally")}
                     >
                       <AlignHorizontalSpaceAround className="h-3.5 w-3.5" />
                     </button>
                     <button
                       onClick={() => { distributeObjects("vertical"); setShowAlignMenu(false); }}
                       className="rounded-lg border-2 border-transparent p-1.5 text-ink-muted transition-colors hover:border-showcase-navy/10 hover:bg-pastel-lavender/50 hover:text-ink-dark"
-                      title="Distribute Vertically"
+                      title={t("distributeVertically")}
                     >
                       <AlignVerticalSpaceAround className="h-3.5 w-3.5" />
                     </button>
@@ -332,50 +334,50 @@ export default function Toolbar() {
         <Divider />
 
         {/* ── Undo / Redo ─────────────────────────────────────── */}
-        <Btn onClick={undo} disabled={!canUndo} title="Undo (Ctrl+Z)">
+        <Btn onClick={undo} disabled={!canUndo} title={t("undo")}>
           <Undo2 className="h-4 w-4" />
         </Btn>
-        <Btn onClick={redo} disabled={!canRedo} title="Redo (Ctrl+Shift+Z)">
+        <Btn onClick={redo} disabled={!canRedo} title={t("redo")}>
           <Redo2 className="h-4 w-4" />
         </Btn>
 
         <Divider />
 
         {/* ── Zoom ────────────────────────────────────────────── */}
-        <Btn onClick={() => setZoom(zoom * 1.2)} title="Zoom In (+)">
+        <Btn onClick={() => setZoom(zoom * 1.2)} title={t("zoomIn")}>
           <ZoomIn className="h-4 w-4" />
         </Btn>
-        <Btn onClick={() => setZoom(zoom / 1.2)} title="Zoom Out (-)">
+        <Btn onClick={() => setZoom(zoom / 1.2)} title={t("zoomOut")}>
           <ZoomOut className="h-4 w-4" />
         </Btn>
-        <Btn onClick={handleFitToScreen} title="Fit to Screen">
+        <Btn onClick={handleFitToScreen} title={t("fitToScreen")}>
           <Maximize className="h-4 w-4" />
         </Btn>
 
         {/* ── Grid / Snap / Rulers ──────────────────────────────── */}
-        <Btn onClick={toggleGrid} active={showGrid} title="Toggle Grid (G)">
+        <Btn onClick={toggleGrid} active={showGrid} title={t("toggleGrid")}>
           <Grid3X3 className="h-4 w-4" />
         </Btn>
-        <Btn onClick={toggleSnapping} active={showSnapping} title="Toggle Snapping">
+        <Btn onClick={toggleSnapping} active={showSnapping} title={t("toggleSnapping")}>
           <Magnet className="h-4 w-4" />
         </Btn>
-        <Btn onClick={toggleRulers} active={showRulers} title="Toggle Rulers">
+        <Btn onClick={toggleRulers} active={showRulers} title={t("toggleRulers")}>
           <Ruler className="h-4 w-4" />
         </Btn>
 
         <Divider />
 
         {/* ── Upload image & Scale bar ─────────────────────── */}
-        <Btn onClick={() => imageInputRef.current?.click()} title="Upload Image">
+        <Btn onClick={() => imageInputRef.current?.click()} title={t("uploadImage")}>
           <ImagePlus className="h-3.5 w-3.5" />
         </Btn>
-        <Btn onClick={addScaleBarToCanvas} title="Add Scale Bar">
+        <Btn onClick={addScaleBarToCanvas} title={t("addScaleBar")}>
           <ScalingIcon className="h-3.5 w-3.5" />
         </Btn>
 
         {/* ── Canvas size ─────────────────────────────────────── */}
         <div className="relative">
-          <Btn onClick={() => setShowCanvasMenu(!showCanvasMenu)} title="Canvas Size">
+          <Btn onClick={() => setShowCanvasMenu(!showCanvasMenu)} title={t("canvasSize")}>
             <span className="text-[10px]">
               {canvasSize.width}x{canvasSize.height}
             </span>
@@ -417,7 +419,7 @@ export default function Toolbar() {
                     onClick={() => setBackgroundColor("#ffffff")}
                     className="text-[10px] text-showcase-purple hover:underline"
                   >
-                    Reset
+                    {t("reset")}
                   </button>
                 </div>
               </div>
@@ -429,75 +431,75 @@ export default function Toolbar() {
 
         {/* ── File operations ─────────────────────────────────── */}
         <div className="relative">
-          <Btn onClick={() => setShowFileMenu(!showFileMenu)} title="File">
+          <Btn onClick={() => setShowFileMenu(!showFileMenu)} title={t("file")}>
             <Save className="h-3.5 w-3.5 me-1" />
-            <span className="text-[10px]">File</span>
+            <span className="text-[10px]">{t("file")}</span>
             <ChevronDown className="ms-0.5 h-3 w-3" />
           </Btn>
           {showFileMenu && (
-            <div className="absolute top-full right-0 z-50 mt-1 w-56 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
+            <div className="absolute top-full end-0 z-50 mt-1 w-56 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky">
               <button
                 onClick={() => { setShowTemplates(true); setShowFileMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-showcase-purple font-bold transition-colors hover:bg-pastel-lavender/50"
               >
-                <LayoutTemplate className="h-3.5 w-3.5" /> New from Template
+                <LayoutTemplate className="h-3.5 w-3.5" /> {t("newFromTemplate")}
               </button>
               <div className="my-1 border-t border-showcase-navy/5" />
               <button
                 onClick={() => { saveToLocalStorage(); setShowFileMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
               >
-                <Save className="h-3.5 w-3.5" /> Save to Browser
+                <Save className="h-3.5 w-3.5" /> {t("saveToBrowser")}
               </button>
               <button
                 onClick={() => { exportProject(); setShowFileMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
               >
-                <FileDown className="h-3.5 w-3.5" /> Download Project (.json)
+                <FileDown className="h-3.5 w-3.5" /> {t("downloadProject")}
               </button>
               <button
                 onClick={() => { fileInputRef.current?.click(); setShowFileMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
               >
-                <Upload className="h-3.5 w-3.5" /> Open Project (.json)
+                <Upload className="h-3.5 w-3.5" /> {t("openProject")}
               </button>
               <div className="my-1 border-t border-showcase-navy/5" />
               <button
                 onClick={() => {
-                  if (confirm("Clear the entire canvas? This cannot be undone.")) {
+                  if (confirm(t("clearCanvasConfirm"))) {
                     clearCanvas();
                   }
                   setShowFileMenu(false);
                 }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs text-showcase-coral transition-colors hover:bg-showcase-coral/10"
               >
-                <Trash2 className="h-3.5 w-3.5" /> Clear Canvas
+                <Trash2 className="h-3.5 w-3.5" /> {t("clearCanvas")}
               </button>
             </div>
           )}
         </div>
 
         {/* ── Export ───────────────────────────────────────────── */}
-        <Btn onClick={() => setShowExportDialog(true)} title="Export (Full Dialog)">
+        <Btn onClick={() => setShowExportDialog(true)} title={t("exportFullDialog")}>
           <Download className="h-3.5 w-3.5 me-1" />
-          <span className="text-[10px]">Export</span>
+          <span className="text-[10px]">{t("export")}</span>
         </Btn>
 
         <div className="relative">
-          <Btn onClick={() => setShowExportMenu(!showExportMenu)} title="Quick Export Options">
+          <Btn onClick={() => setShowExportMenu(!showExportMenu)} title={t("quickExportOptions")}>
             <ChevronDown className="h-3 w-3" />
           </Btn>
           {showExportMenu && (
-            <div className="absolute top-full right-0 z-50 mt-1 w-60 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky max-h-96 overflow-y-auto">
+            <div className="absolute top-full end-0 z-50 mt-1 w-60 rounded-xl border-3 border-showcase-navy/10 bg-white p-2 shadow-chunky max-h-96 overflow-y-auto">
               {/* PNG */}
-              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">PNG</p>
+              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("pngLabel")}</p>
               {[1, 2, 3, 4].map((m) => (
                 <button
                   key={`png-${m}`}
                   onClick={() => { exportImage("png", m, false); setShowExportMenu(false); }}
                   className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
                 >
-                  <span>PNG {m}x</span>
+                  <span>{t("pngMultiplier", { m })}</span>
                   <span className="text-[10px] text-ink-light">
                     {canvasSize.width * m} x {canvasSize.height * m}
                   </span>
@@ -507,20 +509,20 @@ export default function Toolbar() {
                 onClick={() => { exportImage("png", 2, true); setShowExportMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs text-showcase-purple transition-colors hover:bg-pastel-lavender/50"
               >
-                <FileImage className="h-3.5 w-3.5" /> PNG 2x (Transparent)
+                <FileImage className="h-3.5 w-3.5" /> {t("pngTransparent")}
               </button>
 
               <div className="my-1 border-t border-showcase-navy/5" />
 
               {/* JPEG */}
-              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">JPEG</p>
+              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("jpegLabel")}</p>
               {[1, 2].map((m) => (
                 <button
                   key={`jpeg-${m}`}
                   onClick={() => { exportImage("jpeg", m, false); setShowExportMenu(false); }}
                   className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
                 >
-                  <span>JPEG {m}x</span>
+                  <span>{t("jpegMultiplier", { m })}</span>
                   <span className="text-[10px] text-ink-light">
                     {canvasSize.width * m} x {canvasSize.height * m}
                   </span>
@@ -530,27 +532,27 @@ export default function Toolbar() {
               <div className="my-1 border-t border-showcase-navy/5" />
 
               {/* SVG */}
-              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">Vector</p>
+              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("vectorLabel")}</p>
               <button
                 onClick={() => { exportSVG(); setShowExportMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
               >
-                <FileType2 className="h-3.5 w-3.5" /> SVG (Scalable)
+                <FileType2 className="h-3.5 w-3.5" /> {t("svgScalable")}
               </button>
 
               <div className="my-1 border-t border-showcase-navy/5" />
 
               {/* PDF */}
-              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">PDF</p>
+              <p className="px-3 py-1 text-[10px] font-bold text-ink-light">{t("pdfLabel")}</p>
               {[150, 300, 600].map((dpi) => (
                 <button
                   key={`pdf-${dpi}`}
                   onClick={() => { exportPDF(dpi); setShowExportMenu(false); }}
                   className="flex w-full items-center justify-between rounded-lg px-3 py-1.5 text-xs text-ink-muted transition-colors hover:bg-pastel-lavender/50"
                 >
-                  <span>PDF ({dpi} DPI)</span>
+                  <span>{t("pdfDpi", { dpi })}</span>
                   <span className="text-[10px] text-ink-light">
-                    {dpi === 150 ? "Web" : dpi === 300 ? "Print" : "High-Res"}
+                    {dpi === 150 ? t("dpiWeb") : dpi === 300 ? t("dpiPrint") : t("dpiHighRes")}
                   </span>
                 </button>
               ))}
@@ -562,14 +564,14 @@ export default function Toolbar() {
                 onClick={() => { copyImageToClipboard(2); setShowExportMenu(false); }}
                 className="flex w-full items-center gap-2 rounded-lg px-3 py-1.5 text-xs text-showcase-purple transition-colors hover:bg-pastel-lavender/50"
               >
-                <ClipboardCopy className="h-3.5 w-3.5" /> Copy to Clipboard (2x)
+                <ClipboardCopy className="h-3.5 w-3.5" /> {t("copyToClipboard")}
               </button>
             </div>
           )}
         </div>
 
         {/* Keyboard shortcuts */}
-        <Btn onClick={() => setShowShortcuts(!showShortcuts)} title="Keyboard Shortcuts">
+        <Btn onClick={() => setShowShortcuts(!showShortcuts)} title={t("keyboardShortcuts")}>
           <Keyboard className="h-3.5 w-3.5" />
         </Btn>
 
@@ -619,40 +621,40 @@ export default function Toolbar() {
         <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30 backdrop-blur-sm" onClick={() => setShowShortcuts(false)}>
           <div className="w-full max-w-md rounded-2xl border-3 border-showcase-navy bg-white p-6 shadow-chunky-lg" onClick={(e) => e.stopPropagation()}>
             <div className="flex items-center justify-between mb-4">
-              <h3 className="font-display text-lg font-bold text-ink-dark">Keyboard Shortcuts</h3>
+              <h3 className="font-display text-lg font-bold text-ink-dark">{t("keyboardShortcuts")}</h3>
               <button onClick={() => setShowShortcuts(false)} className="rounded-lg p-1 hover:bg-pastel-lavender">
                 <span className="text-ink-muted">&times;</span>
               </button>
             </div>
             <div className="grid grid-cols-2 gap-x-6 gap-y-1 text-xs">
-              {[
-                ["V", "Select tool"],
-                ["T", "Text tool"],
-                ["R", "Rectangle tool"],
-                ["C", "Circle tool"],
-                ["L", "Line tool"],
-                ["A", "Arrow tool"],
-                ["F", "Freehand tool"],
-                ["K", "Label tool"],
-                ["M", "Marker tool"],
-                ["G", "Toggle grid"],
-                ["Delete", "Delete selected"],
-                ["Ctrl+Z", "Undo"],
-                ["Ctrl+Shift+Z", "Redo"],
-                ["Ctrl+C", "Copy"],
-                ["Ctrl+V", "Paste / Paste image"],
-                ["Ctrl+D", "Duplicate"],
-                ["Ctrl+A", "Select all"],
-                ["Ctrl+G", "Group"],
-                ["Ctrl+Shift+G", "Ungroup"],
-                ["Ctrl+S", "Save to browser"],
-                ["Space + Drag", "Pan canvas"],
-                ["Scroll", "Zoom in/out"],
-                ["Escape", "Deselect / Cancel"],
-                ["+", "Zoom in"],
-                ["-", "Zoom out"],
-                ["Right-click", "Context menu"],
-              ].map(([key, action]) => (
+              {([
+                ["V", t("shortcutSelect")],
+                ["T", t("shortcutText")],
+                ["R", t("shortcutRectangle")],
+                ["C", t("shortcutCircle")],
+                ["L", t("shortcutLine")],
+                ["A", t("shortcutArrow")],
+                ["F", t("shortcutFreehand")],
+                ["K", t("shortcutLabel")],
+                ["M", t("shortcutMarker")],
+                ["G", t("shortcutGrid")],
+                ["Delete", t("shortcutDelete")],
+                ["Ctrl+Z", t("shortcutUndo")],
+                ["Ctrl+Shift+Z", t("shortcutRedo")],
+                ["Ctrl+C", t("shortcutCopy")],
+                ["Ctrl+V", t("shortcutPaste")],
+                ["Ctrl+D", t("shortcutDuplicate")],
+                ["Ctrl+A", t("shortcutSelectAll")],
+                ["Ctrl+G", t("shortcutGroup")],
+                ["Ctrl+Shift+G", t("shortcutUngroup")],
+                ["Ctrl+S", t("shortcutSave")],
+                ["Space + Drag", t("shortcutPan")],
+                ["Scroll", t("shortcutZoom")],
+                ["Escape", t("shortcutDeselect")],
+                ["+", t("shortcutZoomIn")],
+                ["-", t("shortcutZoomOut")],
+                ["Right-click", t("shortcutContextMenu")],
+              ] as const).map(([key, action]) => (
                 <div key={key} className="flex items-center justify-between py-1">
                   <span className="text-ink-muted">{action}</span>
                   <kbd className="rounded border border-showcase-navy/10 bg-pastel-cream/50 px-1.5 py-0.5 text-[10px] font-bold text-ink-dark">

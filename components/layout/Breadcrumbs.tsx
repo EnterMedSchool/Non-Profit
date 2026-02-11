@@ -108,7 +108,7 @@ export default function Breadcrumbs() {
 
       {/* Visual breadcrumbs */}
       <nav
-        aria-label="Breadcrumbs"
+        aria-label={t("ariaLabel")}
         className="mx-auto max-w-7xl px-4 py-3 sm:px-6 lg:px-8"
       >
         <ol className="flex flex-wrap items-center gap-1 text-sm">

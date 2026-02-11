@@ -3,7 +3,8 @@
 import { useState, useMemo, useCallback } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
-import { X, Copy, Check, Monitor, Info, Lock } from "lucide-react";
+import { X, Copy, Check, Monitor, Info, Lock, Download } from "lucide-react";
+import { downloadHtmlFile } from "@/lib/download-html";
 import type { VisualLesson } from "@/data/visuals";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -69,6 +70,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
   const [width, setWidth] = useState("100%");
   const [height, setHeight] = useState("500");
   const [copied, setCopied] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
 
   const siteUrl = typeof window !== "undefined" ? window.location.origin : BASE_URL;
@@ -103,6 +105,12 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
     setShowCelebration(true);
     setTimeout(() => setCopied(false), 2500);
     setTimeout(() => setShowCelebration(false), 1200);
+  }, [iframeCode]);
+
+  const handleDownload = useCallback(() => {
+    downloadHtmlFile(iframeCode, "entermedschool-embed.html");
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2500);
   }, [iframeCode]);
 
   return (
@@ -295,7 +303,19 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                 <div className="mt-6">
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-xs font-bold text-ink-dark">Embed Code</label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={handleDownload}
+                        className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                          downloaded
+                            ? "bg-showcase-green text-white shadow-sm scale-105"
+                            : "bg-showcase-purple/10 text-showcase-purple hover:bg-showcase-purple/20 hover:shadow-sm"
+                        }`}
+                      >
+                        {downloaded ? <Check className="h-3.5 w-3.5" /> : <Download className="h-3.5 w-3.5" />}
+                        {downloaded ? t("downloaded") : t("downloadHtml")}
+                      </button>
+                      <div className="relative">
                       <button
                         onClick={handleCopy}
                         className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
@@ -335,6 +355,7 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
                           </>
                         )}
                       </AnimatePresence>
+                    </div>
                     </div>
                   </div>
                   {/* Dark code block with colored tokens */}

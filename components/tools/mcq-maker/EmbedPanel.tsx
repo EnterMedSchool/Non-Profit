@@ -12,7 +12,9 @@ import {
   HelpCircle,
   ChevronDown,
   Info,
+  Download,
 } from "lucide-react";
+import { downloadHtmlFile } from "@/lib/download-html";
 import { m, AnimatePresence } from "framer-motion";
 import { useMCQ } from "./MCQContext";
 import type { MCQEmbedTheme } from "./types";
@@ -72,6 +74,7 @@ export default function EmbedPanel() {
   const [width, setWidth] = useState("100%");
   const [height, setHeight] = useState("600");
   const [copied, setCopied] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const celebrationRef = useRef<ReturnType<typeof setTimeout>>(undefined);
   const copiedRef = useRef<ReturnType<typeof setTimeout>>(undefined);
@@ -166,6 +169,12 @@ export default function EmbedPanel() {
     celebrationRef.current = setTimeout(() => setShowCelebration(false), 1200);
   }, [iframeCode]);
 
+  const handleDownload = useCallback(() => {
+    downloadHtmlFile(iframeCode, "mcq-embed.html");
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2500);
+  }, [iframeCode]);
+
   const updateTheme = useCallback(
     (patch: Partial<MCQEmbedTheme>) => {
       setEmbedTheme((prev) => ({ ...prev, ...patch }));
@@ -240,7 +249,7 @@ export default function EmbedPanel() {
                 </option>
               ))}
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+            <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
         </div>
       )}
@@ -470,7 +479,23 @@ export default function EmbedPanel() {
             <label className="text-xs font-bold text-ink-dark">
               {t("embedCode")}
             </label>
-            <div className="relative">
+            <div className="flex items-center gap-2">
+              <button
+                onClick={handleDownload}
+                className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                  downloaded
+                    ? "bg-showcase-green text-white shadow-sm scale-105"
+                    : "bg-showcase-purple/10 text-showcase-purple hover:bg-showcase-purple/20 hover:shadow-sm"
+                }`}
+              >
+                {downloaded ? (
+                  <Check className="h-3.5 w-3.5" />
+                ) : (
+                  <Download className="h-3.5 w-3.5" />
+                )}
+                {downloaded ? t("downloaded") : t("downloadHtml")}
+              </button>
+              <div className="relative">
               <button
                 onClick={handleCopy}
                 className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
@@ -519,6 +544,7 @@ export default function EmbedPanel() {
                   </>
                 )}
               </AnimatePresence>
+            </div>
             </div>
           </div>
 

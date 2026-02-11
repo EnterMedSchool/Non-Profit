@@ -3,7 +3,8 @@
 import { useState, useMemo, useCallback, useEffect } from "react";
 import { useLocale, useTranslations } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
-import { X, Copy, Check, Code, Link2 } from "lucide-react";
+import { X, Copy, Check, Code, Link2, Download } from "lucide-react";
+import { downloadHtmlFile } from "@/lib/download-html";
 import { EXAM_COPY } from "./examChains";
 
 /* ── Constants ── */
@@ -178,6 +179,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
   const [width, setWidth] = useState("100%");
   const [height, setHeight] = useState("600");
   const [copied, setCopied] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [activeTab, setActiveTab] = useState<Tab>("embed");
   const [previewLoading, setPreviewLoading] = useState(true);
@@ -270,6 +272,12 @@ export default function ClinicalSemioticsEmbedConfigurator({
   const handleCopyLink = useCallback(() => {
     copyToClipboard(shareUrl);
   }, [shareUrl, copyToClipboard]);
+
+  const handleDownloadEmbed = useCallback(() => {
+    downloadHtmlFile(iframeCode, "clinical-semiotics-embed.html");
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2500);
+  }, [iframeCode]);
 
   return (
     <AnimatePresence>
@@ -440,7 +448,23 @@ export default function ClinicalSemioticsEmbedConfigurator({
                     <label className="text-xs font-bold text-ink-dark">
                       {t("embedCodeLabel")}
                     </label>
-                    <div className="relative">
+                    <div className="flex items-center gap-2">
+                      <button
+                        onClick={handleDownloadEmbed}
+                        className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
+                          downloaded
+                            ? "bg-showcase-green text-white shadow-sm scale-105"
+                            : "bg-showcase-purple/10 text-showcase-purple hover:bg-showcase-purple/20 hover:shadow-sm"
+                        }`}
+                      >
+                        {downloaded ? (
+                          <Check className="h-3.5 w-3.5" />
+                        ) : (
+                          <Download className="h-3.5 w-3.5" />
+                        )}
+                        {downloaded ? t("downloaded") : t("downloadHtml")}
+                      </button>
+                      <div className="relative">
                       <button
                         onClick={handleCopyEmbed}
                         className={`inline-flex items-center gap-1.5 rounded-xl px-3 py-1.5 text-xs font-bold transition-all ${
@@ -478,6 +502,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                           </>
                         )}
                       </AnimatePresence>
+                    </div>
                     </div>
                   </div>
                   <div className="overflow-x-auto rounded-xl border-2 border-showcase-navy bg-showcase-navy p-4 font-mono text-[11px] leading-relaxed whitespace-pre-wrap">

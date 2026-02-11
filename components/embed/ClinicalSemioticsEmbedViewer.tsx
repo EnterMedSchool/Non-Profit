@@ -603,7 +603,7 @@ export default function ClinicalSemioticsEmbedViewer({
 
           {/* Segment dots */}
           <div
-            className={`flex items-center gap-1 flex-shrink-0 ${isCompact ? "ml-auto" : ""}`}
+            className={`flex items-center gap-1 flex-shrink-0 ${isCompact ? "ms-auto" : ""}`}
           >
             {segments.map((seg, i) => {
               const isCurrent = i === currentIndex;

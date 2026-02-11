@@ -545,7 +545,7 @@ export default function MCQQuizViewer({
         {title && (
           <h2 className="text-sm font-bold truncate">{title}</h2>
         )}
-        <div className="flex items-center gap-3 ml-auto">
+        <div className="flex items-center gap-3 ms-auto">
           {timerDisplay && (
             <span
               className="rounded-lg px-2 py-1 text-xs font-bold font-mono"

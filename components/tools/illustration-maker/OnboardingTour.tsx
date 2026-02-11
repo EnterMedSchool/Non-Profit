@@ -12,56 +12,58 @@ import {
   X,
   Sparkles,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 const STORAGE_KEY = "ems-illustration-tour-completed";
 
 interface TourStep {
-  title: string;
-  description: string;
+  titleKey: string;
+  descKey: string;
   icon: React.ComponentType<{ className?: string }>;
   position: "left" | "center" | "right";
 }
 
 const TOUR_STEPS: TourStep[] = [
   {
-    title: "Asset Library",
-    description: "Browse scientific illustrations by category. Drag assets onto the canvas or click to add them. Star your favorites for quick access.",
+    titleKey: "step1Title",
+    descKey: "step1Desc",
     icon: GripHorizontal,
     position: "left",
   },
   {
-    title: "Drawing Tools",
-    description: "Use the toolbar to select tools: shapes, text, freehand drawing, labels, and numbered markers. Each tool has a keyboard shortcut.",
+    titleKey: "step2Title",
+    descKey: "step2Desc",
     icon: MousePointer2,
     position: "center",
   },
   {
-    title: "Properties Panel",
-    description: "Select any object to edit its position, size, colors, fonts, and line styles. Choose from curated academic color palettes.",
+    titleKey: "step3Title",
+    descKey: "step3Desc",
     icon: Palette,
     position: "right",
   },
   {
-    title: "Layers Panel",
-    description: "Manage object ordering, visibility, and locking. Double-click to rename layers. Drag to reorder.",
+    titleKey: "step4Title",
+    descKey: "step4Desc",
     icon: Layers,
     position: "right",
   },
   {
-    title: "Export Options",
-    description: "Export as PNG, JPEG, SVG, or PDF. Copy directly to clipboard for pasting into presentations. SVG export gives you publication-quality scalable figures.",
+    titleKey: "step5Title",
+    descKey: "step5Desc",
     icon: Download,
     position: "center",
   },
   {
-    title: "Keyboard Shortcuts",
-    description: "Press ? to see all shortcuts. Use V for select, T for text, R for rectangle, Space+drag to pan, scroll to zoom. Right-click for context menu.",
+    titleKey: "step6Title",
+    descKey: "step6Desc",
     icon: Keyboard,
     position: "center",
   },
 ];
 
 export default function OnboardingTour() {
+  const t = useTranslations("tools.illustrationMaker.ui.tour");
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
 
@@ -111,7 +113,7 @@ export default function OnboardingTour() {
           <div className="flex items-center gap-2">
             <Sparkles className="h-5 w-5 text-showcase-purple" />
             <span className="text-xs font-bold text-showcase-purple">
-              Welcome Tour ({currentStep + 1}/{TOUR_STEPS.length})
+              {t("welcomeTitle", { current: currentStep + 1, total: TOUR_STEPS.length })}
             </span>
           </div>
           <button onClick={handleClose} className="rounded-lg p-1 hover:bg-pastel-lavender">
@@ -125,10 +127,10 @@ export default function OnboardingTour() {
             <Icon className="h-6 w-6 text-showcase-purple" />
           </div>
           <h3 className="font-display text-lg font-bold text-ink-dark mb-2">
-            {step.title}
+            {t(step.titleKey)}
           </h3>
           <p className="text-sm text-ink-muted leading-relaxed">
-            {step.description}
+            {t(step.descKey)}
           </p>
         </div>
 
@@ -155,7 +157,7 @@ export default function OnboardingTour() {
             onClick={handleClose}
             className="text-xs text-ink-light hover:text-ink-muted"
           >
-            Skip tour
+            {t("skipTour")}
           </button>
           <div className="flex gap-2">
             {currentStep > 0 && (
@@ -163,15 +165,15 @@ export default function OnboardingTour() {
                 onClick={handleBack}
                 className="rounded-lg border-2 border-showcase-navy/10 px-4 py-2 text-xs font-bold text-ink-muted hover:bg-pastel-lavender/50"
               >
-                Back
+                {t("back")}
               </button>
             )}
             <button
               onClick={handleNext}
               className="flex items-center gap-1 rounded-lg border-2 border-showcase-purple bg-showcase-purple px-4 py-2 text-xs font-bold text-white transition-all hover:bg-showcase-purple/90"
             >
-              {isLast ? "Get Started" : "Next"}
-              {!isLast && <ArrowRight className="h-3 w-3" />}
+              {isLast ? t("getStarted") : t("next")}
+              {!isLast && <ArrowRight className="h-3 w-3 rtl:-scale-x-100" />}
             </button>
           </div>
         </div>

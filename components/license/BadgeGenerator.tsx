@@ -33,6 +33,7 @@ import {
   type BadgeBgStyle,
   type BadgePreferences,
 } from "@/lib/attribution";
+import { downloadHtmlFile } from "@/lib/download-html";
 
 /* ── Collapsible section ── */
 function Section({
@@ -107,6 +108,7 @@ export default function BadgeGenerator() {
   const [prefs, setPrefs] = useState<BadgePreferences>(DEFAULT_BADGE_PREFS);
   const [assetsReady, setAssetsReady] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
 
   // Load saved attribution from localStorage
   useEffect(() => {
@@ -208,6 +210,12 @@ export default function BadgeGenerator() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     }
+  };
+
+  const downloadEmbedCode = () => {
+    downloadHtmlFile(embedCode, "entermedschool-badge.html");
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2000);
   };
 
   const updatePref = <K extends keyof BadgePreferences>(key: K, val: BadgePreferences[K]) => {
@@ -449,6 +457,15 @@ export default function BadgeGenerator() {
           >
             {copied ? <Check className="h-4 w-4" /> : <Copy className="h-4 w-4" />}
             {copied ? t("copiedMsg") : t("copyEmbedBtn")}
+          </ChunkyButton>
+
+          <ChunkyButton
+            onClick={downloadEmbedCode}
+            variant={downloaded ? "teal" : "ghost"}
+            size="md"
+          >
+            {downloaded ? <Check className="h-4 w-4" /> : <Download className="h-4 w-4" />}
+            {downloaded ? t("downloadedMsg") : t("downloadHtmlBtn")}
           </ChunkyButton>
         </div>
 

@@ -117,7 +117,7 @@ function EditorShell() {
             className="absolute inset-0 bg-black/40"
             onClick={() => setActivePanel(null)}
           />
-          <div className="absolute bottom-0 left-0 right-0 bg-white rounded-t-2xl border-t-2 border-ink-dark/10 max-h-[70vh] flex flex-col overflow-hidden animate-slide-up">
+          <div className="absolute bottom-0 start-0 end-0 bg-white rounded-t-2xl border-t-2 border-ink-dark/10 max-h-[70vh] flex flex-col overflow-hidden animate-slide-up">
             <div className="flex justify-center pt-2 pb-1">
               <div className="w-10 h-1 bg-ink-dark/20 rounded-full" />
             </div>

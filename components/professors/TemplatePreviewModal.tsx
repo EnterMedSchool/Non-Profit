@@ -93,7 +93,7 @@ export default function TemplatePreviewModal({
             <button
               type="button"
               onClick={onClose}
-              className="absolute right-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-xl border-2 border-showcase-navy/15 bg-white/90 text-ink-muted shadow-sm backdrop-blur-sm transition-all hover:bg-showcase-purple hover:text-white hover:shadow-md"
+              className="absolute end-3 top-3 z-20 flex h-9 w-9 items-center justify-center rounded-xl border-2 border-showcase-navy/15 bg-white/90 text-ink-muted shadow-sm backdrop-blur-sm transition-all hover:bg-showcase-purple hover:text-white hover:shadow-md"
               aria-label={t("close")}
             >
               <X className="h-4 w-4" />

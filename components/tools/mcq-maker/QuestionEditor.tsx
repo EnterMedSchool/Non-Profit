@@ -419,7 +419,7 @@ export default function QuestionEditor() {
       <div>
         <label className="block text-sm font-bold text-ink-dark mb-1.5" id="mcq-options-label">
           {t("answerOptions")} <span className="text-red-400">*</span>
-          <span className="ml-2 text-xs font-normal text-ink-muted">
+          <span className="ms-2 text-xs font-normal text-ink-muted">
             {t("selectCorrect")}
           </span>
         </label>

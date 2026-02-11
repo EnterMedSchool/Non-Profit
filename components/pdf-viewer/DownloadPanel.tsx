@@ -147,7 +147,7 @@ export default function DownloadPanel() {
                 {currentChapter.pdfUrl && (
                   <DownloadItem
                     icon={FileText}
-                    title={`Ch. ${currentChapter.number}: ${currentChapter.title}`}
+                    title={`${t("chPrefix")} ${currentChapter.number}: ${currentChapter.title}`}
                     description={t("downloadChapterOnly")}
                     badge={t("chapterPdf")}
                     badgeColor="bg-showcase-teal/10 text-showcase-teal"

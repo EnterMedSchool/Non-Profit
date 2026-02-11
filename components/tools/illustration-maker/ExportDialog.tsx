@@ -11,17 +11,19 @@ import {
   Check,
 } from "lucide-react";
 import { useIllustration } from "./IllustrationContext";
+import { useTranslations } from "next-intl";
 
 type ExportFormat = "png" | "jpeg" | "svg" | "pdf";
 
-const FORMAT_TABS: { id: ExportFormat; label: string; icon: React.ComponentType<{ className?: string }> }[] = [
-  { id: "png", label: "PNG", icon: FileImage },
-  { id: "jpeg", label: "JPEG", icon: FileImage },
-  { id: "svg", label: "SVG", icon: FileType2 },
-  { id: "pdf", label: "PDF", icon: FileText },
+const FORMAT_TABS: { id: ExportFormat; labelKey: string; icon: React.ComponentType<{ className?: string }> }[] = [
+  { id: "png", labelKey: "PNG", icon: FileImage },
+  { id: "jpeg", labelKey: "JPEG", icon: FileImage },
+  { id: "svg", labelKey: "SVG", icon: FileType2 },
+  { id: "pdf", labelKey: "PDF", icon: FileText },
 ];
 
 export default function ExportDialog({ onClose }: { onClose: () => void }) {
+  const t = useTranslations("tools.illustrationMaker.ui.exportDialog");
   const {
     canvasSize,
     exportImage,
@@ -75,7 +77,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between border-b-2 border-showcase-navy/10 px-6 py-4">
           <div className="flex items-center gap-2">
             <Download className="h-5 w-5 text-showcase-purple" />
-            <h2 className="font-display text-lg font-bold text-ink-dark">Export</h2>
+            <h2 className="font-display text-lg font-bold text-ink-dark">{t("title")}</h2>
           </div>
           <button onClick={onClose} className="rounded-lg p-1 hover:bg-pastel-lavender">
             <X className="h-5 w-5 text-ink-muted" />
@@ -98,7 +100,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
                   }`}
                 >
                   <Icon className="h-3.5 w-3.5" />
-                  {tab.label}
+                  {tab.labelKey}
                 </button>
               );
             })}
@@ -106,7 +108,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
 
           {/* Filename */}
           <div className="mb-4">
-            <label className="mb-1 block text-xs font-bold text-ink-muted">Filename</label>
+            <label className="mb-1 block text-xs font-bold text-ink-muted">{t("filename")}</label>
             <div className="flex items-center gap-1">
               <input
                 type="text"
@@ -122,7 +124,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
           {(format === "png" || format === "jpeg") && (
             <div className="mb-4 space-y-3">
               <div>
-                <label className="mb-1 block text-xs font-bold text-ink-muted">Resolution</label>
+                <label className="mb-1 block text-xs font-bold text-ink-muted">{t("resolution")}</label>
                 <div className="flex gap-1">
                   {[1, 2, 3, 4].map((m) => (
                     <button
@@ -139,7 +141,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
                   ))}
                 </div>
                 <p className="mt-1 text-[10px] text-ink-light">
-                  Output: {outputWidth} x {outputHeight} px
+                  {t("outputInfo", { width: outputWidth, height: outputHeight })}
                 </p>
               </div>
 
@@ -151,14 +153,14 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
                     onChange={(e) => setTransparent(e.target.checked)}
                     className="rounded border-showcase-navy/20 accent-showcase-purple"
                   />
-                  <span className="text-xs text-ink-muted">Transparent background</span>
+                  <span className="text-xs text-ink-muted">{t("transparentBackground")}</span>
                 </label>
               )}
 
               {format === "jpeg" && (
                 <div>
                   <label className="mb-1 block text-xs font-bold text-ink-muted">
-                    Quality: {quality}%
+                    {t("qualityPercent", { value: quality })}
                   </label>
                   <input
                     type="range"
@@ -175,13 +177,13 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
 
           {format === "pdf" && (
             <div className="mb-4">
-              <label className="mb-1 block text-xs font-bold text-ink-muted">DPI (Resolution)</label>
+              <label className="mb-1 block text-xs font-bold text-ink-muted">{t("dpiResolution")}</label>
               <div className="flex gap-1">
                 {[
-                  { dpi: 150, label: "Web (150)" },
-                  { dpi: 300, label: "Print (300)" },
-                  { dpi: 600, label: "High-Res (600)" },
-                ].map(({ dpi, label }) => (
+                  { dpi: 150, labelKey: "dpiWeb" as const },
+                  { dpi: 300, labelKey: "dpiPrint" as const },
+                  { dpi: 600, labelKey: "dpiHighRes" as const },
+                ].map(({ dpi, labelKey }) => (
                   <button
                     key={dpi}
                     onClick={() => setPdfDpi(dpi)}
@@ -191,7 +193,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
                         : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                     }`}
                   >
-                    {label}
+                    {t(labelKey)}
                   </button>
                 ))}
               </div>
@@ -200,10 +202,9 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
 
           {format === "svg" && (
             <div className="mb-4 rounded-lg border-2 border-showcase-teal/20 bg-showcase-teal/5 p-3">
-              <p className="text-xs text-showcase-teal font-bold">Scalable Vector Graphics</p>
+              <p className="text-xs text-showcase-teal font-bold">{t("svgTitle")}</p>
               <p className="mt-1 text-[11px] text-ink-muted">
-                SVG files are resolution-independent and perfect for publications.
-                They can be opened in Illustrator, Inkscape, or any web browser.
+                {t("svgDescription")}
               </p>
             </div>
           )}
@@ -211,7 +212,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
           {/* Canvas info */}
           <div className="mb-5 rounded-lg border border-showcase-navy/5 bg-pastel-cream/20 px-3 py-2">
             <p className="text-[10px] text-ink-light">
-              Canvas: {canvasSize.width} x {canvasSize.height} px
+              {t("canvasInfo", { width: canvasSize.width, height: canvasSize.height })}
             </p>
           </div>
 
@@ -223,7 +224,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
                 className="flex items-center gap-1.5 rounded-lg border-2 border-showcase-navy/10 px-4 py-2.5 text-xs font-bold text-ink-muted transition-all hover:bg-pastel-lavender/50"
               >
                 {copied ? <Check className="h-3.5 w-3.5 text-showcase-green" /> : <ClipboardCopy className="h-3.5 w-3.5" />}
-                {copied ? "Copied!" : "Copy to Clipboard"}
+                {copied ? t("copied") : t("copyToClipboard")}
               </button>
             )}
             <button
@@ -231,7 +232,7 @@ export default function ExportDialog({ onClose }: { onClose: () => void }) {
               className="flex flex-1 items-center justify-center gap-1.5 rounded-lg border-2 border-showcase-purple bg-showcase-purple px-4 py-2.5 text-sm font-bold text-white transition-all hover:bg-showcase-purple/90"
             >
               <Download className="h-4 w-4" />
-              Export {format.toUpperCase()}
+              {t("exportFormat", { format: format.toUpperCase() })}
             </button>
           </div>
         </div>

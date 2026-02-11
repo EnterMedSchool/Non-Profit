@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import { usePathname } from "next/navigation";
-import { Shield, Copy, Check, ExternalLink } from "lucide-react";
+import { Shield, Copy, Check, ExternalLink, Download } from "lucide-react";
+import { downloadHtmlFile } from "@/lib/download-html";
 import type { PDFBook } from "@/data/pdf-books";
 
 interface AttributionGuideProps {
@@ -80,22 +81,44 @@ export default function AttributionGuide({ book }: AttributionGuideProps) {
             <pre className="overflow-x-auto rounded-xl border-2 border-showcase-navy/10 bg-white p-3 text-xs text-ink-muted leading-relaxed">
               {attributionHtml}
             </pre>
-            <button
-              onClick={() => handleCopy(attributionHtml, "html")}
-              className="absolute end-2 top-2 flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted opacity-0 transition-opacity group-hover:opacity-100 hover:bg-gray-200"
-            >
-              {copied === "html" ? (
-                <>
-                  <Check className="h-3 w-3 text-showcase-green" />
-                  Copied
-                </>
-              ) : (
-                <>
-                  <Copy className="h-3 w-3" />
-                  Copy
-                </>
-              )}
-            </button>
+            <div className="absolute end-2 top-2 flex items-center gap-1 opacity-0 transition-opacity group-hover:opacity-100">
+              <button
+                onClick={() => {
+                  downloadHtmlFile(attributionHtml, "attribution.html");
+                  setCopied("html-dl");
+                  setTimeout(() => setCopied(null), 2000);
+                }}
+                className="flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted hover:bg-gray-200"
+              >
+                {copied === "html-dl" ? (
+                  <>
+                    <Check className="h-3 w-3 text-showcase-green" />
+                    Downloaded
+                  </>
+                ) : (
+                  <>
+                    <Download className="h-3 w-3" />
+                    Download
+                  </>
+                )}
+              </button>
+              <button
+                onClick={() => handleCopy(attributionHtml, "html")}
+                className="flex h-7 items-center gap-1 rounded-lg bg-gray-100 px-2 text-xs font-semibold text-ink-muted hover:bg-gray-200"
+              >
+                {copied === "html" ? (
+                  <>
+                    <Check className="h-3 w-3 text-showcase-green" />
+                    Copied
+                  </>
+                ) : (
+                  <>
+                    <Copy className="h-3 w-3" />
+                    Copy
+                  </>
+                )}
+              </button>
+            </div>
           </div>
         </div>
       </div>

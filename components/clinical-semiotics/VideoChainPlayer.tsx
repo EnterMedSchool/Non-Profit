@@ -770,7 +770,7 @@ const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProp
 
       {/* ---- Teaser badge ---- */}
       {isTeaser && (
-        <div className="absolute top-3 left-3 z-10 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-300">
+        <div className="absolute top-3 start-3 z-10 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-300">
           {t("preview")}
         </div>
       )}

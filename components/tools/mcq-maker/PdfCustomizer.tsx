@@ -237,7 +237,7 @@ export default function PdfCustomizer() {
               <option value="times">Times</option>
               <option value="courier">Courier</option>
             </select>
-            <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
+            <ChevronDown className="absolute end-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
         </div>
         <div>

@@ -32,7 +32,7 @@ interface ToastContainerProps {
 
 export default function ToastContainer({ toasts, onDismiss }: ToastContainerProps) {
   return (
-    <div className="fixed bottom-4 right-4 z-[200] flex flex-col-reverse gap-2 max-w-sm">
+    <div className="fixed bottom-4 end-4 z-[200] flex flex-col-reverse gap-2 max-w-sm">
       <AnimatePresence mode="popLayout">
         {toasts.map((toast) => {
           const Icon = ICONS[toast.type];

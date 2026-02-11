@@ -397,7 +397,7 @@ export default function EmbedLayerViewer({
         <button
           onClick={prevLayer}
           disabled={isFirst}
-          className="absolute left-2 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110 disabled:opacity-20 disabled:hover:scale-100"
+          className="absolute start-2 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110 disabled:opacity-20 disabled:hover:scale-100"
           style={{
             backgroundColor: isDark
               ? "rgba(255,255,255,0.12)"
@@ -410,7 +410,7 @@ export default function EmbedLayerViewer({
         <button
           onClick={nextLayer}
           disabled={isLast}
-          className="absolute right-2 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110 disabled:opacity-20 disabled:hover:scale-100"
+          className="absolute end-2 top-1/2 -translate-y-1/2 z-30 flex h-10 w-10 items-center justify-center rounded-full transition-all hover:scale-110 disabled:opacity-20 disabled:hover:scale-100"
           style={{
             backgroundColor: isDark
               ? "rgba(255,255,255,0.12)"

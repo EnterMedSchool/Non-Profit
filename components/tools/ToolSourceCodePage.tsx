@@ -16,7 +16,9 @@ import {
   HelpCircle,
   ExternalLink,
   Loader2,
+  Download,
 } from "lucide-react";
+import { downloadHtmlFile } from "@/lib/download-html";
 import Link from "next/link";
 import { useTranslations } from "next-intl";
 /* ── Types ─────────────────────────────────────────────────────────── */
@@ -97,6 +99,7 @@ export default function ToolSourceCodePage({
   const t = useTranslations("toolCode");
 
   const [copied, setCopied] = useState(false);
+  const [downloaded, setDownloaded] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
   const [iframeLoaded, setIframeLoaded] = useState(false);
 
@@ -122,6 +125,12 @@ export default function ToolSourceCodePage({
     setShowCelebration(true);
     setTimeout(() => setCopied(false), 2500);
     setTimeout(() => setShowCelebration(false), 1200);
+  }, [iframeCode]);
+
+  const handleDownloadHtml = useCallback(() => {
+    downloadHtmlFile(iframeCode, "entermedschool-embed.html");
+    setDownloaded(true);
+    setTimeout(() => setDownloaded(false), 2500);
   }, [iframeCode]);
 
   // Preview uses current origin for dev support
@@ -162,7 +171,24 @@ export default function ToolSourceCodePage({
               {t("codeBlockLabel")}
             </span>
           </div>
-          <div className="relative">
+          <div className="flex items-center gap-2">
+            <button
+              type="button"
+              onClick={handleDownloadHtml}
+              className={`inline-flex items-center gap-2 rounded-xl px-5 py-2.5 text-sm font-display font-bold transition-all ${
+                downloaded
+                  ? "bg-showcase-green text-white shadow-sm scale-105"
+                  : "bg-white text-showcase-purple hover:bg-showcase-purple/10 shadow-chunky-sm hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none border-3 border-showcase-navy"
+              }`}
+            >
+              {downloaded ? (
+                <Check className="h-4 w-4" />
+              ) : (
+                <Download className="h-4 w-4" />
+              )}
+              {downloaded ? t("downloaded") : t("downloadHtml")}
+            </button>
+            <div className="relative">
             <button
               type="button"
               onClick={copyToClipboard}
@@ -202,6 +228,7 @@ export default function ToolSourceCodePage({
                 </>
               )}
             </AnimatePresence>
+          </div>
           </div>
         </div>
 
@@ -259,7 +286,7 @@ export default function ToolSourceCodePage({
               {step.desc}
             </p>
             {i < 2 && (
-              <ArrowRight className="absolute -right-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block" />
+              <ArrowRight className="absolute -end-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block rtl:-scale-x-100" />
             )}
           </div>
         ))}
