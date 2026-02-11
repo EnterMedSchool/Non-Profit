@@ -2,12 +2,14 @@
 
 import { useEffect, useRef, useState, useCallback } from "react";
 import { Map, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useIllustration } from "./IllustrationContext";
 
 const MINIMAP_WIDTH = 180;
 const MINIMAP_HEIGHT = 120;
 
 export default function Minimap() {
+  const t = useTranslations("tools.illustrationMaker.ui.minimap");
   const { canvas, canvasSize, zoom } = useIllustration();
   const miniCanvasRef = useRef<HTMLCanvasElement>(null);
   const [visible, setVisible] = useState(false);
@@ -124,7 +126,7 @@ export default function Minimap() {
         <button
           onClick={() => setVisible(true)}
           className="absolute bottom-12 right-3 rounded-lg border-2 border-showcase-navy/10 bg-white/90 p-1.5 text-ink-muted backdrop-blur-sm transition-all hover:border-showcase-purple/30 hover:text-showcase-purple"
-          title="Show Minimap"
+          title={t("showMinimap")}
         >
           <Map className="h-4 w-4" />
         </button>
@@ -134,7 +136,7 @@ export default function Minimap() {
       {visible && (
         <div className="absolute bottom-12 right-3 rounded-xl border-2 border-showcase-navy/10 bg-white/95 shadow-chunky backdrop-blur-sm">
           <div className="flex items-center justify-between px-2 py-1">
-            <span className="text-[10px] font-bold text-ink-light">Minimap</span>
+            <span className="text-[10px] font-bold text-ink-light">{t("title")}</span>
             <button
               onClick={() => setVisible(false)}
               className="rounded p-0.5 text-ink-light hover:text-ink-dark"

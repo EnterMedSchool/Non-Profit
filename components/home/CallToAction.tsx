@@ -168,7 +168,7 @@ export default function CallToAction() {
                   {t("getAttributionBadge")}
                 </ChunkyButton>
                 <ChunkyButton
-                  href="https://github.com"
+                  href="https://github.com/enterMedSchool/Non-Profit"
                   external
                   variant="ghost"
                   size="lg"

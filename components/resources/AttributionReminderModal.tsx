@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
 import { Shield, X, ExternalLink, Pencil } from "lucide-react";
 import { saveAttribution } from "@/lib/attribution";
@@ -25,6 +26,8 @@ export default function AttributionReminderModal({
   initialPosition = "",
   editMode = false,
 }: AttributionReminderModalProps) {
+  const locale = useLocale();
+  const t = useTranslations("resources.attributionReminderModal");
   const [name, setName] = useState(initialName);
   const [position, setPosition] = useState(initialPosition);
   const [error, setError] = useState(false);
@@ -79,7 +82,7 @@ export default function AttributionReminderModal({
                   <Shield className="h-5 w-5 text-showcase-teal" />
                 )}
                 <h3 className="font-display text-lg font-bold text-ink-dark">
-                  {editMode ? "Update Your Attribution" : "Attribution Required"}
+                  {editMode ? t("updateTitle") : t("requiredTitle")}
                 </h3>
               </div>
               <button
@@ -101,7 +104,7 @@ export default function AttributionReminderModal({
               <div className="mt-5 space-y-4">
                 <div>
                   <label className="block text-sm font-bold text-ink-dark mb-1.5">
-                    Your Name <span className="text-red-400">*</span>
+                    {t("yourName")} <span className="text-red-400">*</span>
                   </label>
                   <input
                     type="text"
@@ -110,7 +113,7 @@ export default function AttributionReminderModal({
                       setName(e.target.value);
                       setError(false);
                     }}
-                    placeholder="Prof. Jane Smith"
+                    placeholder={t("namePlaceholder")}
                     className={`w-full rounded-xl border-3 ${
                       error
                         ? "border-red-300 focus:border-red-400"
@@ -119,19 +122,19 @@ export default function AttributionReminderModal({
                   />
                   {error && (
                     <p className="mt-1 text-xs text-red-400">
-                      Name is required for attribution.
+                      {t("nameRequired")}
                     </p>
                   )}
                 </div>
                 <div>
                   <label className="block text-sm font-bold text-ink-dark mb-1.5">
-                    Position / Institution
+                    {t("positionLabel")}
                   </label>
                   <input
                     type="text"
                     value={position}
                     onChange={(e) => setPosition(e.target.value)}
-                    placeholder="Medical School, University"
+                    placeholder={t("positionPlaceholder")}
                     className="w-full rounded-xl border-3 border-showcase-navy/20 bg-white px-4 py-2.5 text-sm outline-none transition-colors focus:border-showcase-purple"
                   />
                 </div>
@@ -139,15 +142,17 @@ export default function AttributionReminderModal({
 
               <div className="mt-5 rounded-xl border-2 border-dashed border-showcase-teal/30 bg-showcase-teal/5 p-3">
                 <p className="text-xs text-ink-muted leading-relaxed">
-                  You <strong>must</strong> contact{" "}
-                  <a
-                    href="mailto:ari@entermedschool.com"
-                    className="font-semibold text-showcase-teal hover:underline"
-                  >
-                    ari@entermedschool.com
-                  </a>{" "}
-                  for approval to use these materials for educational purposes.
-                  Without approval, the license is not valid.
+                  {t.rich("approvalNote", {
+                    strong: (chunks) => <strong>{chunks}</strong>,
+                    link: (chunks) => (
+                      <a
+                        href="mailto:ari@entermedschool.com"
+                        className="font-semibold text-showcase-teal hover:underline"
+                      >
+                        {chunks}
+                      </a>
+                    ),
+                  })}
                 </p>
               </div>
 
@@ -156,13 +161,13 @@ export default function AttributionReminderModal({
                   onClick={handleSave}
                   className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-green px-5 py-2.5 text-sm font-bold text-white shadow-chunky-sm transition-all hover:shadow-chunky hover:-translate-y-0.5"
                 >
-                  {editMode ? "Update & Continue" : "Save & Continue Download"}
+                  {editMode ? t("updateContinue") : t("saveContinue")}
                 </button>
                 <a
-                  href="/en/license"
+                  href={`/${locale}/license`}
                   className="inline-flex items-center gap-1.5 text-sm font-semibold text-showcase-purple hover:underline"
                 >
-                  Full Badge Generator
+                  {t("fullBadgeGenerator")}
                   <ExternalLink className="h-3.5 w-3.5" />
                 </a>
               </div>

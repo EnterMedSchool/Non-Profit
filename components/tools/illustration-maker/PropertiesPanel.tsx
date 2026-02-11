@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import {
   X,
   ChevronLeft,
@@ -127,6 +128,7 @@ interface ObjectProperties {
 }
 
 export default function PropertiesPanel() {
+  const t = useTranslations("tools.illustrationMaker.ui.properties");
   const { canvas, selectedObjects, pushHistory } = useIllustration();
   const [props, setProps] = useState<ObjectProperties | null>(null);
   const [collapsed, setCollapsed] = useState(false);
@@ -246,7 +248,7 @@ export default function PropertiesPanel() {
   if (!obj || !props) {
     return (
       <div className="hidden w-10 flex-col items-center border-l-3 border-showcase-navy/10 bg-white py-3 lg:flex">
-        <span className="text-[10px] text-ink-light [writing-mode:vertical-rl] rotate-180">Properties</span>
+        <span className="text-[10px] text-ink-light [writing-mode:vertical-rl] rotate-180">{t("title")}</span>
       </div>
     );
   }
@@ -257,7 +259,7 @@ export default function PropertiesPanel() {
         <button
           onClick={() => setCollapsed(false)}
           className="rounded-lg p-1.5 text-ink-muted transition-colors hover:bg-pastel-lavender hover:text-showcase-purple"
-          title="Expand properties"
+          title={t("expandProperties")}
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -270,11 +272,19 @@ export default function PropertiesPanel() {
     (p) => JSON.stringify(p.value) === JSON.stringify(props.strokeDashArray)
   );
 
+  const paletteLabelKeys: Record<number, string> = {
+    0: "paletteDefault",
+    1: "paletteNature",
+    2: "paletteCellPress",
+    3: "palettePastel",
+    4: "paletteHighContrast",
+  };
+
   return (
     <div className="hidden w-56 flex-col border-l-3 border-showcase-navy/10 bg-white lg:flex xl:w-64">
       {/* Header */}
       <div className="flex items-center justify-between border-b-2 border-showcase-navy/5 px-3 py-2">
-        <h3 className="font-display text-sm font-bold text-ink-dark">Properties</h3>
+        <h3 className="font-display text-sm font-bold text-ink-dark">{t("title")}</h3>
         <button
           onClick={() => setCollapsed(true)}
           className="rounded-lg p-1 text-ink-muted transition-colors hover:bg-pastel-lavender hover:text-showcase-purple"
@@ -288,7 +298,7 @@ export default function PropertiesPanel() {
         <div className="border-b border-showcase-navy/5 px-3 py-3">
           <div className="mb-2 flex items-center gap-1.5">
             <Move className="h-3 w-3 text-showcase-purple" />
-            <span className="text-[10px] font-bold text-ink-muted">Position</span>
+            <span className="text-[10px] font-bold text-ink-muted">{t("position")}</span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <NumInput label="X" value={props.left} onChange={(v) => updateProp("left", v)} />
@@ -300,7 +310,7 @@ export default function PropertiesPanel() {
         <div className="border-b border-showcase-navy/5 px-3 py-3">
           <div className="mb-2 flex items-center gap-1.5">
             <Maximize2 className="h-3 w-3 text-showcase-teal" />
-            <span className="text-[10px] font-bold text-ink-muted">Size</span>
+            <span className="text-[10px] font-bold text-ink-muted">{t("size")}</span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <NumInput label="W" value={props.width} onChange={(v) => updateProp("width", v)} min={1} />
@@ -314,7 +324,7 @@ export default function PropertiesPanel() {
             <div>
               <div className="mb-1 flex items-center gap-1">
                 <RotateCw className="h-3 w-3 text-showcase-coral" />
-                <span className="text-[10px] font-bold text-ink-light uppercase">Rotation</span>
+                <span className="text-[10px] font-bold text-ink-light uppercase">{t("rotation")}</span>
               </div>
               <input
                 type="number"
@@ -344,11 +354,11 @@ export default function PropertiesPanel() {
         <div className="border-b border-showcase-navy/5 px-3 py-3">
           <div className="mb-2 flex items-center gap-1.5">
             <Palette className="h-3 w-3 text-showcase-yellow" />
-            <span className="text-[10px] font-bold text-ink-muted">Colors</span>
+            <span className="text-[10px] font-bold text-ink-muted">{t("colors")}</span>
           </div>
           <div className="grid grid-cols-2 gap-2">
             <div>
-              <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">Fill</label>
+              <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">{t("fill")}</label>
               <div className="flex items-center gap-1.5">
                 <input
                   type="color"
@@ -366,7 +376,7 @@ export default function PropertiesPanel() {
             </div>
             {hasStroke && (
               <div>
-                <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">Stroke</label>
+                <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">{t("stroke")}</label>
                 <div className="flex items-center gap-1.5">
                   <input
                     type="color"
@@ -381,7 +391,7 @@ export default function PropertiesPanel() {
                     min={0}
                     max={50}
                     className="w-12 rounded-lg border-2 border-showcase-navy/10 bg-pastel-cream/20 px-2 py-0.5 text-[10px] text-ink-dark focus:border-showcase-purple/40 focus:outline-none"
-                    title="Stroke width"
+                    title={t("strokeWidth")}
                   />
                 </div>
               </div>
@@ -399,12 +409,12 @@ export default function PropertiesPanel() {
           <div className="border-b border-showcase-navy/5 px-3 py-3">
             <div className="mb-2 flex items-center gap-1.5">
               <Minus className="h-3 w-3 text-showcase-navy" />
-              <span className="text-[10px] font-bold text-ink-muted">Line Style</span>
+              <span className="text-[10px] font-bold text-ink-muted">{t("lineStyle")}</span>
             </div>
             <div className="flex flex-wrap gap-1">
               {DASH_PRESETS.map((preset, i) => (
                 <button
-                  key={preset.label}
+                  key={preset.labelKey}
                   onClick={() => updateProp("strokeDashArray", preset.value)}
                   className={`rounded-lg border-2 px-2 py-1 text-[10px] font-bold transition-all ${
                     activeDash === i
@@ -412,7 +422,7 @@ export default function PropertiesPanel() {
                       : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                   }`}
                 >
-                  {preset.label}
+                  {t(preset.labelKey)}
                 </button>
               ))}
             </div>
@@ -429,14 +439,14 @@ export default function PropertiesPanel() {
 
             {/* Font family */}
             <div className="mb-2 relative">
-              <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">Font</label>
+              <label className="mb-0.5 block text-[10px] font-bold text-ink-light uppercase">{t("font")}</label>
               <button
                 onClick={() => setShowFontMenu(!showFontMenu)}
                 className="flex w-full items-center justify-between rounded-lg border-2 border-showcase-navy/10 bg-pastel-cream/20 px-2 py-1 text-xs text-ink-dark"
                 style={{ fontFamily: props.fontFamily }}
               >
                 <span className="truncate">
-                  {FONT_FAMILIES.find((f) => f.value === props.fontFamily)?.label || "System Default"}
+                  {FONT_FAMILIES.find((f) => f.value === props.fontFamily)?.label || t("systemDefault")}
                 </span>
                 <ChevronDown className="h-3 w-3 shrink-0 text-ink-light" />
               </button>
@@ -472,7 +482,7 @@ export default function PropertiesPanel() {
 
             {/* Font size */}
             <NumInput
-              label="Font Size"
+              label={t("fontSize")}
               value={props.fontSize || 24}
               onChange={(v) => updateProp("fontSize", v)}
               min={8}
@@ -490,7 +500,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-purple bg-showcase-purple/10 text-showcase-purple"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Bold"
+                title={t("bold")}
               >
                 <Bold className="h-3.5 w-3.5" />
               </button>
@@ -514,7 +524,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-purple bg-showcase-purple/10 text-showcase-purple"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Underline"
+                title={t("underline")}
               >
                 <Underline className="h-3.5 w-3.5" />
               </button>
@@ -526,7 +536,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-teal bg-showcase-teal/10 text-showcase-teal"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Align Left"
+                title={t("alignLeft")}
               >
                 <AlignLeft className="h-3.5 w-3.5" />
               </button>
@@ -537,7 +547,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-teal bg-showcase-teal/10 text-showcase-teal"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Align Center"
+                title={t("alignCenter")}
               >
                 <AlignCenter className="h-3.5 w-3.5" />
               </button>
@@ -548,7 +558,7 @@ export default function PropertiesPanel() {
                     ? "border-showcase-teal bg-showcase-teal/10 text-showcase-teal"
                     : "border-showcase-navy/10 text-ink-muted hover:bg-pastel-lavender/50"
                 }`}
-                title="Align Right"
+                title={t("alignRight")}
               >
                 <AlignRight className="h-3.5 w-3.5" />
               </button>
@@ -559,14 +569,14 @@ export default function PropertiesPanel() {
         {/* ── Color Palettes ─────────────────────────────────── */}
         <div className="px-3 py-3">
           <div className="mb-2 flex items-center justify-between">
-            <span className="text-[10px] font-bold text-ink-light uppercase">Color Palette</span>
+            <span className="text-[10px] font-bold text-ink-light uppercase">{t("colorPalette")}</span>
             <select
               value={activePalette}
               onChange={(e) => setActivePalette(Number(e.target.value))}
               className="rounded border border-showcase-navy/10 bg-pastel-cream/20 px-1 py-0.5 text-[10px] text-ink-muted focus:outline-none"
             >
               {COLOR_PALETTES.map((p, i) => (
-                <option key={p.name} value={i}>{p.name}</option>
+                <option key={p.name} value={i}>{t(paletteLabelKeys[i] ?? "paletteDefault")}</option>
               ))}
             </select>
           </div>
@@ -652,7 +662,7 @@ function GradientSection({
             background: "linear-gradient(135deg, #6C5CE7, #54A0FF)",
           }}
         />
-        <span className="text-[10px] font-bold text-ink-muted">Gradient Fill</span>
+        <span className="text-[10px] font-bold text-ink-muted">{t("gradientFill")}</span>
         <ChevronDown className={`ml-auto h-3 w-3 text-ink-light transition-transform ${expanded ? "rotate-180" : ""}`} />
       </button>
 

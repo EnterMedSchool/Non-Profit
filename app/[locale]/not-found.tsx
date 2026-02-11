@@ -1,7 +1,11 @@
+"use client";
+
 import { Home } from "lucide-react";
+import { useLocale } from "next-intl";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 
 export default function NotFound() {
+  const locale = useLocale();
   return (
     <main className="relative z-10 flex min-h-[60vh] flex-col items-center justify-center px-4 text-center">
       <div className="rounded-3xl border-3 border-showcase-navy bg-white p-10 shadow-chunky-lg sm:p-16">
@@ -13,7 +17,7 @@ export default function NotFound() {
           The page you&apos;re looking for doesn&apos;t exist or has been moved.
         </p>
         <div className="mt-8">
-          <ChunkyButton href="/en" variant="primary" size="lg">
+          <ChunkyButton href={`/${locale}`} variant="primary" size="lg">
             <Home className="h-5 w-5" />
             Go Home
           </ChunkyButton>

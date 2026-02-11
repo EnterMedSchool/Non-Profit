@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { BookOpen, Sparkles, FileText } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import BookCatalog from "@/components/pdf-viewer/BookCatalog";
@@ -42,6 +42,7 @@ export async function generateMetadata({
 
 export default function PdfsPage() {
   const t = useTranslations("pdfViewer.catalog");
+  const locale = useLocale();
   const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -53,9 +54,10 @@ export default function PdfsPage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             getCollectionPageJsonLd(
-              "Interactive Textbooks & Study Guides",
-              "Free, open-source medical textbooks with interactive reading tools, highlighting, and chapter downloads.",
-              `${BASE_URL}/en/resources/pdfs`,
+              t("jsonLd.title"),
+              t("jsonLd.description"),
+              `${BASE_URL}/${locale}/resources/pdfs`,
+              locale,
             ),
           ),
         }}
@@ -65,7 +67,7 @@ export default function PdfsPage() {
           key={book.id}
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify(getBookJsonLd(book, "en")),
+            __html: JSON.stringify(getBookJsonLd(book, locale)),
           }}
         />
       ))}
@@ -73,11 +75,11 @@ export default function PdfsPage() {
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
         {/* Hero */}
         <PageHero
-          titlePre="Interactive"
-          titleHighlight="Textbooks"
-          titlePost="& Study Guides"
+          titlePre={t("hero.titlePre")}
+          titleHighlight={t("hero.titleHighlight")}
+          titlePost={t("hero.titlePost")}
           gradient="from-showcase-purple via-showcase-teal to-showcase-green"
-          annotation="read online or download!"
+          annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
           subtitle={t("subtitle")}
           floatingIcons={

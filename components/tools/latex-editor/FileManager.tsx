@@ -1,10 +1,12 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import { FileText, Plus, Trash2, FolderOpen, X, Edit2, Check } from "lucide-react";
 
 export default function FileManager() {
+  const t = useTranslations("tools.latexEditor.ui");
   const {
     documents,
     activeDocumentId,
@@ -58,13 +60,13 @@ export default function FileManager() {
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-2">
             <FolderOpen size={15} className="text-showcase-purple" />
-            <h3 className="text-sm font-bold text-ink-dark">Files</h3>
+            <h3 className="text-sm font-bold text-ink-dark">{t("files")}</h3>
           </div>
           <div className="flex items-center gap-1">
             <button
               onClick={() => setShowNewFileInput(true)}
               className="p-1 rounded-md text-ink-muted hover:text-ink-dark hover:bg-pastel-cream transition-colors"
-              title="Add new file"
+              title={t("addNewFile")}
             >
               <Plus size={14} />
             </button>
@@ -77,7 +79,7 @@ export default function FileManager() {
           </div>
         </div>
         <p className="text-[10px] text-ink-muted mt-1">
-          Manage your project files. Click a file to edit it.
+          {t("filesHint")}
         </p>
       </div>
 
@@ -93,13 +95,13 @@ export default function FileManager() {
                 if (e.key === "Enter") handleAddFile();
                 if (e.key === "Escape") setShowNewFileInput(false);
               }}
-              placeholder="filename.tex"
+              placeholder={t("filenamePlaceholder")}
               className="flex-1 px-2 py-1 rounded-md border border-ink-dark/10 text-xs focus:outline-none focus:border-showcase-purple/40"
             />
             <button
               onClick={handleAddFile}
               className="p-1 rounded-md text-green-600 hover:bg-green-50 transition-colors"
-              title="Create file"
+              title={t("createFile")}
             >
               <Check size={14} />
             </button>
@@ -149,7 +151,7 @@ export default function FileManager() {
                 {doc.name}
                 {doc.isMain && (
                   <span className="ml-2 px-1 py-0.5 bg-showcase-purple/10 text-showcase-purple text-[9px] font-bold rounded">
-                    MAIN
+                    {t("mainBadge")}
                   </span>
                 )}
               </button>
@@ -160,7 +162,7 @@ export default function FileManager() {
               <button
                 onClick={() => handleStartRename(doc.id, doc.name)}
                 className="p-1 rounded text-ink-light hover:text-ink-muted transition-colors"
-                title="Rename"
+                title={t("rename")}
               >
                 <Edit2 size={11} />
               </button>
@@ -168,7 +170,7 @@ export default function FileManager() {
                 <button
                   onClick={() => removeDocument(doc.id)}
                   className="p-1 rounded text-ink-light hover:text-red-500 transition-colors"
-                  title="Delete"
+                  title={t("delete")}
                 >
                   <Trash2 size={11} />
                 </button>
@@ -181,7 +183,9 @@ export default function FileManager() {
       {/* Footer info */}
       <div className="px-4 py-2 border-t border-ink-dark/5 bg-pastel-cream/30">
         <p className="text-[10px] text-ink-muted text-center">
-          {documents.length} file{documents.length !== 1 ? "s" : ""} in project
+          {documents.length === 1
+            ? t("filesInProject", { count: documents.length })
+            : t("filesInProjectPlural", { count: documents.length })}
         </p>
       </div>
     </div>

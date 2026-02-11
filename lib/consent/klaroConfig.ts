@@ -1,6 +1,23 @@
 import type { KlaroConfig } from "klaro";
+import enMessages from "@/i18n/messages/en.json";
 
 export const CONSENT_STORAGE_KEY = "ems-org-consent";
+
+const consent = (enMessages as { consent?: Record<string, unknown> }).consent as {
+  acceptAll: string;
+  acceptSelected: string;
+  decline: string;
+  ok: string;
+  save: string;
+  poweredBy: string;
+  consentNotice: { title: string; changeDescription: string; description: string; learnMore: string };
+  consentModal: { title: string; description: string };
+  purposes: { essential: string; analytics: string };
+  essential: { title: string; description: string };
+  analytics: { title: string; description: string };
+  privacyPolicy: { name: string; text: string };
+  services: { essential: string; analytics: string };
+};
 
 const analyticsCookieNames: Array<string | RegExp> = [
   "_ga",
@@ -74,52 +91,27 @@ export const klaroConfig: KlaroConfig = {
   acceptAll: true,
   hideDeclineAll: false,
   groupByPurpose: true,
-  privacyPolicy: "/en/privacy",
+  privacyPolicy: "/privacy",
   translations: {
     en: {
-      acceptAll: "Enable everything",
-      acceptSelected: "Save selection",
-      decline: "Keep essentials only",
-      ok: "Enable analytics",
-      save: "Save selection",
-      poweredBy: "Consent manager by Klaro",
-      consentNotice: {
-        title: "Control your privacy",
-        changeDescription:
-          "We tweaked our cookie settings; please review your choices.",
-        description:
-          "We rely on essential cookies to keep EnterMedSchool.org working. Optional analytics help us understand how our resources are used so we can keep improving.",
-        learnMore: "Review preferences",
-      },
-      consentModal: {
-        title: "Personalize your privacy settings",
-        description:
-          "Choose the services you'd like to enable. You can revisit these settings any time via the footer link or by clearing your cookies.",
-      },
-      purposes: {
-        essential: "Strictly necessary",
-        analytics: "Analytics",
-      },
-      essential: {
-        title: "Essential cookies",
-        description:
-          "Required for the website to function properly. These stay on to keep EnterMedSchool.org working.",
-      },
-      analytics: {
-        title: "Performance & insights",
-        description:
-          "Enable privacy-friendly Plausible analytics so we can see aggregate usage patterns and keep improving our free resources.",
-      },
-      privacyPolicy: {
-        name: "privacy notice",
-        text: "Read the details in our {privacyPolicy}.",
-      },
+      acceptAll: consent.acceptAll,
+      acceptSelected: consent.acceptSelected,
+      decline: consent.decline,
+      ok: consent.ok,
+      save: consent.save,
+      poweredBy: consent.poweredBy,
+      consentNotice: consent.consentNotice,
+      consentModal: consent.consentModal,
+      purposes: consent.purposes,
+      essential: consent.essential,
+      analytics: consent.analytics,
+      privacyPolicy: consent.privacyPolicy,
     },
   },
   services: [
     {
       name: "essential",
-      title: "Essential cookies",
+      title: consent.services.essential,
       purposes: ["essential"],
       required: true,
       default: true,
@@ -128,7 +120,7 @@ export const klaroConfig: KlaroConfig = {
     },
     {
       name: "analytics",
-      title: "Usage analytics",
+      title: consent.services.analytics,
       default: false,
       purposes: ["analytics"],
       cookies: analyticsCookieNames,

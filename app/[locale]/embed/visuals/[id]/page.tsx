@@ -4,6 +4,7 @@ import { Suspense } from "react";
 import { useParams, useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import dynamic from "next/dynamic";
+import { useTranslations } from "next-intl";
 import { visualLessons } from "@/data/visuals";
 
 const EmbedLayerViewer = dynamic(
@@ -21,6 +22,7 @@ const EmbedLayerViewer = dynamic(
 function EmbedContent() {
   const params = useParams();
   const searchParams = useSearchParams();
+  const t = useTranslations("embed.errors");
 
   const lessonId = params.id as string;
 
@@ -46,9 +48,9 @@ function EmbedContent() {
         }}
       >
         <div className="text-center">
-          <p className="text-lg font-bold">Lesson not found</p>
+          <p className="text-lg font-bold">{t("lessonNotFound")}</p>
           <p className="mt-1 text-sm opacity-60">
-            The visual lesson &ldquo;{lessonId}&rdquo; does not exist.
+            {t("lessonNotFoundDescription", { lessonId })}
           </p>
         </div>
       </div>

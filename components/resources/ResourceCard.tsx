@@ -1,8 +1,12 @@
+"use client";
+
 import { Download, Code, Eye } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { Resource } from "@/data/resources";
 import StickerBadge from "@/components/shared/StickerBadge";
 
 export default function ResourceCard({ resource }: { resource: Resource }) {
+  const t = useTranslations("resources.card");
   const categoryIcons: Record<string, string> = {
     questions: "HelpCircle",
     videos: "Video",
@@ -31,17 +35,17 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
       <div className="mt-4 flex flex-wrap gap-2">
         {resource.downloadUrl && (
           <a href={resource.downloadUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-teal bg-showcase-teal/10 px-3 py-1.5 text-xs font-bold text-showcase-teal transition-colors hover:bg-showcase-teal hover:text-white focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
-            <Download className="h-3.5 w-3.5" /> Download
+            <Download className="h-3.5 w-3.5" /> {t("download")}
           </a>
         )}
         {resource.sourceUrl && (
           <a href={resource.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-purple bg-showcase-purple/10 px-3 py-1.5 text-xs font-bold text-showcase-purple transition-colors hover:bg-showcase-purple hover:text-white focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
-            <Code className="h-3.5 w-3.5" /> Source
+            <Code className="h-3.5 w-3.5" /> {t("source")}
           </a>
         )}
         {resource.previewUrl && (
           <a href={resource.previewUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-navy/20 px-3 py-1.5 text-xs font-bold text-ink-muted transition-colors hover:border-showcase-navy hover:text-ink-dark focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
-            <Eye className="h-3.5 w-3.5" /> Preview
+            <Eye className="h-3.5 w-3.5" /> {t("preview")}
           </a>
         )}
       </div>

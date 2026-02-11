@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Users, Shirt, FolderOpen, PartyPopper, Heart, Mail, Sparkles } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function EventsPage() {
   const t = useTranslations("events");
+  const locale = useLocale();
 
   const offerings = [
     { key: "orgs", icon: Users, color: "purple" },
@@ -43,18 +44,18 @@ export default function EventsPage() {
   return (
     <main className="relative z-10 py-12 sm:py-20">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Community Events", "EnterMedSchool community events and meetups.", `${BASE_URL}/en/events`)) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getEventJsonLd({ name: "Pavia BBQ Meetup", description: "Community BBQ meetup in Pavia for medical students.", location: "Pavia, Italy" })) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd(t("jsonLd.collectionTitle"), t("jsonLd.collectionDescription"), `${BASE_URL}/${locale}/events`, locale)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getEventJsonLd({ name: t("jsonLd.paviaEvent.name"), description: t("jsonLd.paviaEvent.description"), location: t("jsonLd.paviaEvent.location"), locale })) }} />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 
         {/* ── Hero Section ── */}
         <PageHero
-          titlePre="Our"
-          titleHighlight="Community"
-          titlePost="Events"
+          titlePre={t("hero.titlePre")}
+          titleHighlight={t("hero.titleHighlight")}
+          titlePost={t("hero.titlePost")}
           gradient="from-showcase-teal via-showcase-green to-showcase-purple"
-          annotation="join us!"
+          annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
           subtitle={t("subtitle")}
           floatingIcons={<>
@@ -137,7 +138,7 @@ export default function EventsPage() {
           <p className="text-ink-muted mb-4">{t("contactCta")}</p>
           <ChunkyButton href="mailto:ari@entermedschool.com" variant="primary" external>
             <Mail className="h-4 w-4" />
-            Contact Us
+            {t("contactUs")}
           </ChunkyButton>
         </AnimatedSection>
       </div>

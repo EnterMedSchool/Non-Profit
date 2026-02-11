@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { getTranslations } from "next-intl/server";
 import {
   pdfBooks,
   getBookBySlug,
@@ -59,6 +60,7 @@ export default async function ChapterReaderPage({
   params: Promise<{ locale: string; slug: string; chapter: string }>;
 }) {
   const { locale, slug, chapter: chapterSlug } = await params;
+  const t = await getTranslations("pdfViewer.reader");
   const book = getBookBySlug(slug);
   if (!book) notFound();
   const chapter = getChapterBySlug(book, chapterSlug);
@@ -78,7 +80,7 @@ export default async function ChapterReaderPage({
       <noscript>
         <article className="mx-auto max-w-3xl px-4 py-12">
           <h1>
-            Chapter {chapter.number}: {chapter.title} — {book.title}
+            {t("chapter")} {chapter.number}: {chapter.title} — {book.title}
           </h1>
           <p>{chapter.description}</p>
           {chapter.sections.map((section) => (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Plus,
   Trash2,
@@ -28,6 +29,7 @@ function makeId() {
 
 // ── Component ────────────────────────────────────────────────────────
 export default function ExamBuilder() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const {
     questions,
     exams,
@@ -61,7 +63,7 @@ export default function ExamBuilder() {
       sections: [
         {
           id: makeId(),
-          title: "Section 1",
+          title: t("sectionTitle", { num: 1 }),
           questionIds: [],
         },
       ],
@@ -190,16 +192,16 @@ export default function ExamBuilder() {
           <ClipboardList className="h-8 w-8 text-showcase-purple/30" />
         </div>
         <p className="font-display text-lg font-bold text-ink-dark">
-          Exam Builder
+          {t("examBuilder")}
         </p>
         <p className="mt-1 text-sm text-ink-muted max-w-xs">
-          Add questions first, then build exams from your question bank.
+          {t("examBuilderDesc")}
         </p>
         <button
           onClick={() => setActivePanel("editor")}
           className="mt-4 inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-4 py-2 font-display text-sm font-bold text-white shadow-chunky-sm hover:-translate-y-0.5 hover:shadow-chunky transition-all"
         >
-          Create Questions
+          {t("createQuestion")}
         </button>
       </div>
     );
@@ -209,7 +211,7 @@ export default function ExamBuilder() {
     <div className="flex flex-col gap-4 h-full overflow-y-auto pr-1">
       <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
         <ClipboardList className="h-5 w-5 text-showcase-purple" />
-        Exam Builder
+        {t("examBuilder")}
       </h2>
 
       {/* Exam list / selector */}
@@ -240,7 +242,7 @@ export default function ExamBuilder() {
                     (sum, s) => sum + s.questionIds.length,
                     0,
                   )}{" "}
-                  questions
+                  {t("questionsLabel")}
                 </p>
               </div>
               <button
@@ -249,7 +251,7 @@ export default function ExamBuilder() {
                   removeExam(exam.id);
                 }}
                 className="text-ink-light hover:text-red-500 transition-colors"
-                aria-label={`Delete exam ${exam.title}`}
+                aria-label={t("deleteExam", { title: exam.title })}
               >
                 <Trash2 className="h-3.5 w-3.5" />
               </button>
@@ -265,7 +267,7 @@ export default function ExamBuilder() {
             type="text"
             value={newTitle}
             onChange={(e) => setNewTitle(e.target.value)}
-            placeholder="Exam title..."
+            placeholder={t("examTitlePlaceholder")}
             onKeyDown={(e) => e.key === "Enter" && handleCreateExam()}
             className="flex-1 rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10"
             autoFocus
@@ -284,7 +286,7 @@ export default function ExamBuilder() {
           className="inline-flex items-center justify-center gap-2 rounded-xl border-2 border-dashed border-showcase-purple/30 bg-showcase-purple/5 px-3 py-2.5 text-xs font-bold text-showcase-purple hover:bg-showcase-purple/10 transition-all"
         >
           <Plus className="h-3.5 w-3.5" />
-          Create New Exam
+          {t("createNewExam")}
         </button>
       )}
 
@@ -295,10 +297,10 @@ export default function ExamBuilder() {
           {examStats && (
             <div className="flex items-center gap-3 rounded-xl border-2 border-ink-light/15 bg-pastel-cream/30 px-3 py-2 text-xs text-ink-muted">
               <span className="font-bold text-ink-dark">
-                {examStats.totalQuestions} questions
+                {t("questionsCountLabel", { count: examStats.totalQuestions })}
               </span>
-              <span>{examStats.totalPoints} points</span>
-              <span>{examStats.sections} sections</span>
+              <span>{examStats.totalPoints} {t("pointsLabel")}</span>
+              <span>{examStats.sections} {t("sectionsLabel")}</span>
             </div>
           )}
 
@@ -308,7 +310,7 @@ export default function ExamBuilder() {
             className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-dark hover:text-showcase-purple transition-colors"
           >
             <Settings className="h-3.5 w-3.5" />
-            Exam Settings
+            {t("examSettings")}
             {showSettings ? (
               <ChevronUp className="h-3.5 w-3.5" />
             ) : (
@@ -322,7 +324,7 @@ export default function ExamBuilder() {
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-1.5 text-xs font-bold text-ink-dark">
                   <Clock className="h-3.5 w-3.5" />
-                  Time Limit (min)
+                  {t("timeLimit")}
                 </label>
                 <input
                   type="number"
@@ -334,7 +336,7 @@ export default function ExamBuilder() {
                       timeLimit: isNaN(val) || val <= 0 ? undefined : val,
                     });
                   }}
-                  placeholder="None"
+                  placeholder={t("none")}
                   className="w-20 rounded-lg border-2 border-ink-light/20 bg-white px-2 py-1 text-xs text-center focus:border-showcase-purple focus:outline-none"
                 />
               </div>
@@ -343,32 +345,32 @@ export default function ExamBuilder() {
               {[
                 {
                   key: "randomizeQuestions" as const,
-                  label: "Randomize questions",
+                  label: t("randomizeQuestions"),
                   icon: Shuffle,
                 },
                 {
                   key: "randomizeOptions" as const,
-                  label: "Randomize options",
+                  label: t("randomizeOptions"),
                   icon: Shuffle,
                 },
                 {
                   key: "showFeedback" as const,
-                  label: "Show feedback",
+                  label: t("showFeedback"),
                   icon: Check,
                 },
                 {
                   key: "showExplanations" as const,
-                  label: "Show explanations",
+                  label: t("showExplanationsExam"),
                   icon: BookOpen,
                 },
                 {
                   key: "allowReview" as const,
-                  label: "Allow review",
+                  label: t("allowReview"),
                   icon: Edit3,
                 },
                 {
                   key: "showScore" as const,
-                  label: "Show score",
+                  label: t("showScoreExam"),
                   icon: Target,
                 },
               ].map((toggle) => {
@@ -396,7 +398,7 @@ export default function ExamBuilder() {
               <div className="flex items-center justify-between">
                 <label className="flex items-center gap-1.5 text-xs font-bold text-ink-dark">
                   <Target className="h-3.5 w-3.5" />
-                  Passing Score (%)
+                  {t("passingScore")}
                 </label>
                 <input
                   type="number"
@@ -409,7 +411,7 @@ export default function ExamBuilder() {
                       passingScore: isNaN(val) ? undefined : val,
                     });
                   }}
-                  placeholder="None"
+                  placeholder={t("none")}
                   className="w-20 rounded-lg border-2 border-ink-light/20 bg-white px-2 py-1 text-xs text-center focus:border-showcase-purple focus:outline-none"
                 />
               </div>
@@ -450,7 +452,7 @@ export default function ExamBuilder() {
                   <div className="p-2">
                     {sectionQuestions.length === 0 ? (
                       <p className="text-[10px] text-ink-muted text-center py-2">
-                        No questions added yet
+                        {t("noQuestionsAdded")}
                       </p>
                     ) : (
                       <div className="flex flex-col gap-1">
@@ -496,9 +498,9 @@ export default function ExamBuilder() {
                             }))
                           }
                           className="w-full appearance-none rounded-lg border border-ink-light/20 bg-white px-2 py-1 pr-6 text-[10px] text-ink-dark focus:outline-none"
-                          aria-label={`Filter category for ${section.title}`}
+                          aria-label={t("filterCategoryAria", { title: section.title })}
                         >
-                          <option value="">All categories</option>
+                          <option value="">{t("allCategoriesSelect")}</option>
                           {allCategories.map((c) => (
                             <option key={c} value={c}>
                               {c}
@@ -511,7 +513,7 @@ export default function ExamBuilder() {
                         onClick={() => addBulkToSection(section.id)}
                         className="rounded-lg bg-showcase-purple/10 px-2 py-1 text-[10px] font-bold text-showcase-purple hover:bg-showcase-purple/20 transition-colors"
                       >
-                        Add All
+                        {t("addAll")}
                       </button>
                     </div>
 
@@ -546,7 +548,7 @@ export default function ExamBuilder() {
                   type="text"
                   value={newSectionTitle}
                   onChange={(e) => setNewSectionTitle(e.target.value)}
-                  placeholder="Section title..."
+                  placeholder={t("sectionTitlePlaceholder")}
                   onKeyDown={(e) => e.key === "Enter" && addSection()}
                   className="flex-1 rounded-lg border-2 border-ink-light/30 bg-white px-3 py-1.5 text-xs text-ink-dark focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10"
                   autoFocus
@@ -565,7 +567,7 @@ export default function ExamBuilder() {
                 className="text-xs font-bold text-showcase-purple hover:underline flex items-center gap-1"
               >
                 <Plus className="h-3 w-3" />
-                Add Section
+                {t("addSection")}
               </button>
             )}
           </div>

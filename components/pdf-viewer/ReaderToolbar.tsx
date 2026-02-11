@@ -24,30 +24,36 @@ import { usePDFViewer } from "./PDFViewerContext";
 import BookSearch from "./BookSearch";
 import type { HighlightColor } from "@/hooks/useAnnotations";
 import {
-  fontSizeLabels,
   type FontSize,
   type ReaderTheme,
 } from "@/hooks/useReaderPreferences";
 import { useKeyboardShortcuts } from "@/hooks/useKeyboardShortcuts";
 
-const HIGHLIGHT_COLORS: { color: HighlightColor; bg: string; label: string }[] =
+const HIGHLIGHT_COLORS: { color: HighlightColor; bg: string; labelKey: string }[] =
   [
-    { color: "yellow", bg: "bg-yellow-300", label: "Yellow" },
-    { color: "green", bg: "bg-emerald-300", label: "Green" },
-    { color: "blue", bg: "bg-blue-300", label: "Blue" },
-    { color: "pink", bg: "bg-pink-300", label: "Pink" },
-    { color: "orange", bg: "bg-orange-300", label: "Orange" },
+    { color: "yellow", bg: "bg-yellow-300", labelKey: "highlightYellow" },
+    { color: "green", bg: "bg-emerald-300", labelKey: "highlightGreen" },
+    { color: "blue", bg: "bg-blue-300", labelKey: "highlightBlue" },
+    { color: "pink", bg: "bg-pink-300", labelKey: "highlightPink" },
+    { color: "orange", bg: "bg-orange-300", labelKey: "highlightOrange" },
   ];
 
 const FONT_SIZES: FontSize[] = ["small", "medium", "large", "xl"];
+const FONT_SIZE_KEYS: Record<FontSize, string> = {
+  small: "fontSizeSmall",
+  medium: "fontSizeMedium",
+  large: "fontSizeLarge",
+  xl: "fontSizeXl",
+};
 
-const THEMES: { id: ReaderTheme; label: string; icon: typeof Sun }[] = [
-  { id: "light", label: "Light", icon: Sun },
-  { id: "sepia", label: "Sepia", icon: BookOpen },
-  { id: "dark", label: "Dark", icon: Moon },
+const THEMES: { id: ReaderTheme; labelKey: string; icon: typeof Sun }[] = [
+  { id: "light", labelKey: "themeLight", icon: Sun },
+  { id: "sepia", labelKey: "themeSepia", icon: BookOpen },
+  { id: "dark", labelKey: "themeDark", icon: Moon },
 ];
 
 export default function ReaderToolbar() {
+  const t = useTranslations("pdfViewer.toolbar");
   const {
     highlightMode,
     setHighlightMode,
@@ -157,7 +163,7 @@ export default function ReaderToolbar() {
           {/* Sidebar toggle */}
           <ToolbarButton
             icon={sidebarOpen ? PanelLeftClose : PanelLeft}
-            label={sidebarOpen ? "Hide sidebar (S)" : "Show sidebar (S)"}
+            label={sidebarOpen ? t("hideSidebar") : t("showSidebar")}
             onClick={toggleSidebar}
             active={sidebarOpen}
           />
@@ -167,7 +173,7 @@ export default function ReaderToolbar() {
           {/* Search */}
           <ToolbarButton
             icon={Search}
-            label="Search in book (/)"
+            label={t("search")}
             onClick={() => setSearchOpen(true)}
           />
 
@@ -199,7 +205,7 @@ export default function ReaderToolbar() {
                         : "border-transparent hover:scale-105"
                     }`}
                     title={color}
-                    aria-label={`Highlight color: ${color}`}
+                    aria-label={t(`highlight${color.charAt(0).toUpperCase() + color.slice(1)}`)}
                   />
                 ))}
               </m.div>
@@ -221,7 +227,7 @@ export default function ReaderToolbar() {
           <div className="relative">
             <ToolbarButton
               icon={FileUp}
-              label="Annotations"
+              label={t("annotations")}
               onClick={() => setShowAnnotationMenu(!showAnnotationMenu)}
               active={showAnnotationMenu}
             />
@@ -238,14 +244,14 @@ export default function ReaderToolbar() {
                     className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-ink-dark hover:bg-gray-50"
                   >
                     <FileDown className="h-3.5 w-3.5" />
-                    Export annotations
+                    {t("exportAnnotations")}
                   </button>
                   <button
                     onClick={handleImportAnnotations}
                     className="flex w-full items-center gap-2 rounded-lg px-3 py-2 text-xs font-semibold text-ink-dark hover:bg-gray-50"
                   >
                     <FileUp className="h-3.5 w-3.5" />
-                    Import annotations
+                    {t("importAnnotations")}
                   </button>
                 </m.div>
               )}
@@ -255,7 +261,7 @@ export default function ReaderToolbar() {
           {/* Settings */}
           <ToolbarButton
             icon={Settings}
-            label="Settings"
+            label={t("settings")}
             onClick={() => setSettingsOpen(!settingsOpen)}
             active={settingsOpen}
           />
@@ -263,14 +269,14 @@ export default function ReaderToolbar() {
           {/* Print */}
           <ToolbarButton
             icon={Printer}
-            label="Print chapter (P)"
+            label={t("print")}
             onClick={() => window.print()}
           />
 
           {/* Download */}
           <ToolbarButton
             icon={Download}
-            label="Download (D)"
+            label={t("download")}
             onClick={() => setDownloadPanelOpen(true)}
           />
         </div>
@@ -281,38 +287,38 @@ export default function ReaderToolbar() {
         <div className="mx-auto flex max-w-lg items-center justify-around">
           <MobileToolbarButton
             icon={sidebarOpen ? PanelLeftClose : PanelLeft}
-            label="TOC"
+            label={t("toc")}
             onClick={toggleSidebar}
             active={sidebarOpen}
           />
           <MobileToolbarButton
             icon={Search}
-            label="Search"
+            label={t("search")}
             onClick={() => setSearchOpen(true)}
           />
           <MobileToolbarButton
             icon={Highlighter}
-            label="Highlight"
+            label={t("highlight")}
             onClick={() => setHighlightMode(!highlightMode)}
             active={highlightMode}
             activeColor="text-yellow-600"
           />
           <MobileToolbarButton
             icon={StickyNote}
-            label="Notes"
+            label={t("notes")}
             onClick={toggleNotesPanel}
             active={notesPanelOpen}
             activeColor="text-showcase-teal"
           />
           <MobileToolbarButton
             icon={Settings}
-            label="Settings"
+            label={t("settings")}
             onClick={() => setSettingsOpen(!settingsOpen)}
             active={settingsOpen}
           />
           <MobileToolbarButton
             icon={Download}
-            label="Download"
+            label={t("download")}
             onClick={() => setDownloadPanelOpen(true)}
           />
         </div>
@@ -336,7 +342,7 @@ export default function ReaderToolbar() {
               exit={{ opacity: 0, scale: 0.95, y: 10 }}
               role="dialog"
               aria-modal="true"
-              aria-label="Reading Settings"
+              aria-label={t("ariaReadingSettings")}
               className="fixed bottom-16 right-4 z-[71] w-72 rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky lg:bottom-auto lg:right-20 lg:top-1/2 lg:-translate-y-1/2"
             >
               <div className="flex items-center justify-between mb-4">
@@ -346,7 +352,7 @@ export default function ReaderToolbar() {
                 <button
                   onClick={() => setSettingsOpen(false)}
                   className="flex h-6 w-6 items-center justify-center rounded-lg text-ink-muted hover:bg-gray-100"
-                  aria-label="Close settings"
+                  aria-label={t("ariaCloseSettings")}
                 >
                   <X className="h-3.5 w-3.5" />
                 </button>
@@ -369,7 +375,7 @@ export default function ReaderToolbar() {
                           : "bg-gray-50 text-ink-muted hover:bg-gray-100"
                       }`}
                     >
-                      {fontSizeLabels[size]}
+                      {t(FONT_SIZE_KEYS[size])}
                     </button>
                   ))}
                 </div>
@@ -379,10 +385,10 @@ export default function ReaderToolbar() {
               <div>
                 <label className="mb-2 flex items-center gap-1.5 text-xs font-bold text-ink-muted">
                   <Sun className="h-3.5 w-3.5" />
-                  Theme
+                  {t("theme")}
                 </label>
                 <div className="flex gap-1">
-                  {THEMES.map(({ id, label }) => (
+                  {THEMES.map(({ id, labelKey }) => (
                     <button
                       key={id}
                       onClick={() => setTheme(id)}
@@ -392,7 +398,7 @@ export default function ReaderToolbar() {
                           : "bg-gray-50 text-ink-muted hover:bg-gray-100"
                       }`}
                     >
-                      {label}
+                      {t(labelKey)}
                     </button>
                   ))}
                 </div>
@@ -402,10 +408,10 @@ export default function ReaderToolbar() {
               <div className="mt-4 lg:hidden">
                 <label className="mb-2 flex items-center gap-1.5 text-xs font-bold text-ink-muted">
                   <Highlighter className="h-3.5 w-3.5" />
-                  Highlight Color
+                  {t("highlightColor")}
                 </label>
                 <div className="flex gap-2">
-                  {HIGHLIGHT_COLORS.map(({ color, bg, label }) => (
+                  {HIGHLIGHT_COLORS.map(({ color, bg, labelKey }) => (
                     <button
                       key={color}
                       onClick={() => setActiveHighlightColor(color)}
@@ -414,8 +420,8 @@ export default function ReaderToolbar() {
                           ? "scale-110 border-showcase-navy"
                           : "border-transparent hover:scale-105"
                       }`}
-                      title={label}
-                      aria-label={`Highlight color: ${label}`}
+                      title={t(labelKey)}
+                      aria-label={t(labelKey)}
                     />
                   ))}
                 </div>
@@ -424,17 +430,17 @@ export default function ReaderToolbar() {
               {/* Keyboard shortcuts hint */}
               <div className="mt-4 rounded-lg bg-gray-50 p-2.5">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-ink-light mb-1.5">
-                  Keyboard Shortcuts
+                  {t("keyboardShortcuts")}
                 </p>
                 <div className="grid grid-cols-2 gap-1 text-[10px] text-ink-muted">
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">H</kbd> Highlight</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">N</kbd> Notes</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">S</kbd> Sidebar</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">D</kbd> Download</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">/</kbd> Search</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">P</kbd> Print</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">&larr;</kbd> Prev chapter</span>
-                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">&rarr;</kbd> Next chapter</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">H</kbd> {t("shortcutH")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">N</kbd> {t("shortcutN")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">S</kbd> {t("shortcutS")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">D</kbd> {t("shortcutD")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">/</kbd> {t("shortcutSearch")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">P</kbd> {t("shortcutP")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">&larr;</kbd> {t("shortcutPrev")}</span>
+                  <span><kbd className="rounded bg-gray-200 px-1 font-mono">&rarr;</kbd> {t("shortcutNext")}</span>
                 </div>
               </div>
             </m.div>
@@ -455,6 +461,7 @@ export default function ReaderToolbar() {
 // ─── Search Dialog wrapper ───────────────────────────────────────────────────
 
 function SearchDialog({ onClose }: { onClose: () => void }) {
+  const t = useTranslations("pdfViewer.search");
   const { book } = usePDFViewer();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
@@ -537,7 +544,7 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
             type="text"
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search in this book..."
+            placeholder={t("placeholder")}
             className="flex-1 bg-transparent text-sm text-ink-dark outline-none placeholder:text-ink-light"
             onKeyDown={(e) => e.key === "Escape" && onClose()}
           />
@@ -555,17 +562,17 @@ function SearchDialog({ onClose }: { onClose: () => void }) {
           {query.length < 2 ? (
             <div className="px-4 py-8 text-center">
               <BookOpen className="mx-auto h-8 w-8 text-ink-light/40" />
-              <p className="mt-2 text-sm text-ink-muted">Type at least 2 characters to search</p>
+              <p className="mt-2 text-sm text-ink-muted">{t("minChars")}</p>
             </div>
           ) : results.length === 0 ? (
             <div className="px-4 py-8 text-center">
-              <p className="text-sm text-ink-muted">No results for &ldquo;{query}&rdquo;</p>
+              <p className="text-sm text-ink-muted">{t("noResults")} &ldquo;{query}&rdquo;</p>
             </div>
           ) : (
             <div className="divide-y divide-gray-100">
               <div className="px-4 py-2">
                 <p className="text-[10px] font-bold uppercase tracking-wider text-ink-light">
-                  {results.length} result{results.length !== 1 ? "s" : ""}
+                  {results.length} {results.length === 1 ? t("results") : t("resultsPlural")}
                 </p>
               </div>
               {results.map((r, i) => (

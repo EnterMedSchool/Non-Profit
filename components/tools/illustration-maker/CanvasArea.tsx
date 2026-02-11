@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useCallback, useState } from "react";
 import { Loader2 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useIllustration } from "./IllustrationContext";
 import Minimap from "./Minimap";
 
@@ -16,6 +17,7 @@ import Minimap from "./Minimap";
  * - Drop zone for assets from the AssetPanel (via Fabric.js events)
  */
 export default function CanvasArea() {
+  const t = useTranslations("tools.illustrationMaker.ui.canvas");
   const {
     setCanvas,
     canvas,
@@ -698,7 +700,7 @@ export default function CanvasArea() {
       {canvasLoading && (
         <div className="absolute inset-0 z-30 flex flex-col items-center justify-center gap-3 bg-white/80 backdrop-blur-sm">
           <Loader2 className="h-8 w-8 animate-spin text-showcase-purple" />
-          <p className="text-sm font-bold text-ink-muted">Loading canvas...</p>
+          <p className="text-sm font-bold text-ink-muted">{t("loading")}</p>
         </div>
       )}
 
@@ -734,7 +736,7 @@ export default function CanvasArea() {
       {/* Active tool indicator */}
       {activeTool !== "select" && (
         <div className="absolute top-3 left-1/2 -translate-x-1/2 rounded-full border-2 border-showcase-purple/30 bg-showcase-purple/10 px-4 py-1.5 text-xs font-bold text-showcase-purple backdrop-blur-sm">
-          Click on canvas to add {activeTool} — Press Escape to cancel
+          {t("clickToAdd", { tool: activeTool })}
         </div>
       )}
     </div>

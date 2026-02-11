@@ -1,11 +1,12 @@
 import type { MetadataRoute } from "next";
+import { routing } from "@/i18n/routing";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
     name: "EnterMedSchool.org — Open-Source Medical Education",
     short_name: "EnterMedSchool.org",
     id: "/",
-    start_url: "/en",
+    start_url: `/${routing.defaultLocale}`,
     scope: "/",
     display: "standalone",
     background_color: "#F8FAFF",
@@ -31,7 +32,7 @@ export default function manifest(): MetadataRoute.Manifest {
       },
     ],
     categories: ["education", "medical"],
-    lang: "en",
+    lang: routing.defaultLocale,
     orientation: "portrait",
   };
 }

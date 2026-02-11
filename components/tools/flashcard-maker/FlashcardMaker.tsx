@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, type ReactNode, type ErrorInfo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Upload,
   Palette,
@@ -26,8 +27,12 @@ interface ErrorBoundaryState {
   error: Error | null;
 }
 
-class FlashcardErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundaryState> {
-  constructor(props: ErrorBoundaryProps) {
+interface FlashcardErrorBoundaryProps extends ErrorBoundaryProps {
+  t?: (key: string) => string;
+}
+
+class FlashcardErrorBoundary extends Component<FlashcardErrorBoundaryProps, ErrorBoundaryState> {
+  constructor(props: FlashcardErrorBoundaryProps) {
     super(props);
     this.state = { hasError: false, error: null };
   }
@@ -42,6 +47,7 @@ class FlashcardErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundary
 
   render() {
     if (this.state.hasError) {
+      const t = this.props.t;
       return (
         <div className="flex h-dvh flex-col items-center justify-center gap-6 bg-gradient-to-br from-pastel-cream/40 via-white to-pastel-lavender/30 p-8 text-center">
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl border-3 border-red-200 bg-red-50">
@@ -49,11 +55,10 @@ class FlashcardErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundary
           </div>
           <div>
             <h2 className="font-display text-xl font-bold text-ink-dark">
-              Something went wrong
+              {t ? t("somethingWentWrong") : "Something went wrong"}
             </h2>
             <p className="mt-2 text-sm text-ink-muted max-w-md">
-              The Flashcard Maker encountered an unexpected error. Your data
-              may have been saved automatically.
+              {t ? t("flashcardErrorDesc") : "The Flashcard Maker encountered an unexpected error. Your data may have been saved automatically."}
             </p>
           </div>
           <div className="flex gap-3">
@@ -62,14 +67,14 @@ class FlashcardErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundary
               className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-5 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
             >
               <RotateCcw className="h-4 w-4" />
-              Try Again
+              {t ? t("tryAgain") : "Try Again"}
             </button>
             <Link
               href="/en/tools"
               className="inline-flex items-center gap-2 rounded-xl border-2 border-ink-light/30 px-5 py-2.5 font-display font-bold text-ink-dark hover:border-ink-light/50 transition-colors"
             >
               <ArrowLeft className="h-4 w-4" />
-              Back to Tools
+              {t ? t("backToTools") : "Back to Tools"}
             </Link>
           </div>
         </div>
@@ -82,13 +87,14 @@ class FlashcardErrorBoundary extends Component<ErrorBoundaryProps, ErrorBoundary
 
 // ── Tab config ───────────────────────────────────────────────────────
 const TABS = [
-  { id: "import" as const, label: "Import", icon: Upload },
-  { id: "customize" as const, label: "Customize", icon: Palette },
-  { id: "export" as const, label: "Export", icon: FileDown },
+  { id: "import" as const, key: "tabImport", icon: Upload },
+  { id: "customize" as const, key: "tabCustomize", icon: Palette },
+  { id: "export" as const, key: "tabExport", icon: FileDown },
 ];
 
 // ── Inner layout (needs context) ─────────────────────────────────────
 function FlashcardMakerInner() {
+  const t = useTranslations("tools.flashcardMaker.ui");
   const { activePanel, setActivePanel, cards } = useFlashcards();
 
   return (
@@ -110,10 +116,10 @@ function FlashcardMakerInner() {
             </div>
             <div>
               <h1 className="font-display text-lg font-bold text-ink-dark leading-tight">
-                Flashcard Maker
+                {t("flashcardMaker")}
               </h1>
               <p className="text-[11px] text-ink-muted leading-tight hidden sm:block">
-                Import, customize, and print physical flashcards
+                {t("flashcardMakerDesc")}
               </p>
             </div>
           </div>
@@ -121,7 +127,7 @@ function FlashcardMakerInner() {
 
         {cards.length > 0 && (
           <span className="rounded-lg bg-pastel-mint px-2.5 py-1 text-xs font-bold text-showcase-teal border border-showcase-teal/20">
-            {cards.length} card{cards.length !== 1 ? "s" : ""}
+            {cards.length === 1 ? t("cardCount", { count: 1 }) : t("cardCountPlural", { count: cards.length })}
           </span>
         )}
       </header>
@@ -149,7 +155,7 @@ function FlashcardMakerInner() {
               }`}
             >
               <Icon className="h-4 w-4" />
-              {tab.label}
+              {t(tab.key)}
             </button>
           );
         })}
@@ -216,12 +222,19 @@ function FlashcardMakerInner() {
 }
 
 // ── Root export (wraps in provider + error boundary) ────────────────
+function FlashcardMakerWithTranslations() {
+  const t = useTranslations("tools.flashcardMaker.ui");
+  return (
+    <FlashcardErrorBoundary t={t}>
+      <FlashcardMakerInner />
+    </FlashcardErrorBoundary>
+  );
+}
+
 export default function FlashcardMaker() {
   return (
-    <FlashcardErrorBoundary>
-      <FlashcardProvider>
-        <FlashcardMakerInner />
-      </FlashcardProvider>
-    </FlashcardErrorBoundary>
+    <FlashcardProvider>
+      <FlashcardMakerWithTranslations />
+    </FlashcardProvider>
   );
 }

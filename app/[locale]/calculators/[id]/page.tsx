@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle, Shield } from "lucide-react";
+import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle, Shield, FileCode } from "lucide-react";
 import Link from "next/link";
 import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
@@ -69,6 +69,7 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
   const { locale, id } = await params;
   const t = await getTranslations({ locale, namespace: "tools" });
   const ct = await getTranslations({ locale, namespace: "calculators" });
+  const tc = await getTranslations({ locale, namespace: "toolCode" });
   const tool = getToolById(id);
 
   if (!tool || tool.category !== "calculator") {
@@ -96,7 +97,7 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
         { question: t("bmi.faq.q5"), answer: t("bmi.faq.a5") },
       ]
     : [];
-  const faqJsonLd = hasFaq ? getFAQPageJsonLd(faqItems) : null;
+  const faqJsonLd = hasFaq ? getFAQPageJsonLd(faqItems, locale) : null;
 
   const hasEducationalContent = id === "bmi-calc";
 
@@ -151,10 +152,17 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           </div>
         </AnimatedSection>
 
-        {/* Source code link */}
-        {tool.sourceUrl && (
-          <AnimatedSection delay={0.15} animation="fadeUp">
-            <div className="mt-6 text-center">
+        {/* Source code + Get the Code links */}
+        <AnimatedSection delay={0.15} animation="fadeUp">
+          <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
+            <Link
+              href={`/${locale}/calculators/${id}/embed-code`}
+              className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-5 py-2.5 font-display text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none"
+            >
+              <FileCode className="h-4 w-4" />
+              {tc("getCodeBtn")}
+            </Link>
+            {tool.sourceUrl && (
               <a
                 href={tool.sourceUrl}
                 target="_blank"
@@ -165,9 +173,9 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
                 {t("viewSourceBtn")}
                 <ExternalLink className="h-3.5 w-3.5" />
               </a>
-            </div>
-          </AnimatedSection>
-        )}
+            )}
+          </div>
+        </AnimatedSection>
 
         {/* Educational content section (BMI-specific) */}
         {hasEducationalContent && (

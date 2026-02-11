@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { forwardRef, useCallback, useEffect, useImperativeHandle, useMemo, useRef, useState } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import type Hls from "hls.js";
 import {
@@ -8,6 +8,7 @@ import {
   RotateCcw, AlertTriangle,
   Check, X, Lightbulb, HelpCircle, FileText,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------------ */
@@ -66,6 +67,16 @@ export interface ExamChain {
   segments: VideoSegment[];
 }
 
+/** Imperative handle exposed when using variant="embed" */
+export interface VideoChainPlayerHandle {
+  currentIndex: number;
+  segmentCount: number;
+  completedSegments: string[];
+  isPlaying: boolean;
+  goToSegment: (index: number) => void;
+  togglePlay: () => void;
+}
+
 export interface VideoChainPlayerProps {
   /** The exam chain to play */
   examChain: ExamChain;
@@ -75,10 +86,14 @@ export interface VideoChainPlayerProps {
   onChainComplete?: () => void;
   /** Already-completed segment ids (for progress restoration) */
   completedSegments?: string[];
-  /** Variant: "default" is the full player, "teaser" is a compact preview */
-  variant?: "default" | "teaser";
+  /** Variant: "default" is the full player, "teaser" is a compact preview, "embed" hides bottom chrome */
+  variant?: "default" | "teaser" | "embed";
   /** Additional class names for the root container */
   className?: string;
+  /** Called when player state changes (for embed wrapper to sync its controls) */
+  onStateChange?: (state: { currentIndex: number; completedCount: number; isPlaying: boolean }) => void;
+  /** Mutable ref to receive imperative actions (works with next/dynamic unlike forwardRef) */
+  actionsRef?: React.MutableRefObject<VideoChainPlayerHandle | null>;
 }
 
 /* ------------------------------------------------------------------ */
@@ -143,14 +158,17 @@ function formatTime(seconds: number): string {
 /* ------------------------------------------------------------------ */
 /*  Main component                                                     */
 /* ------------------------------------------------------------------ */
-export default function VideoChainPlayer({
+const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProps>(function VideoChainPlayer({
   examChain,
   onSegmentComplete,
   onChainComplete,
   completedSegments = [],
   variant = "default",
   className,
-}: VideoChainPlayerProps) {
+  onStateChange,
+  actionsRef,
+}, ref) {
+  const t = useTranslations("clinicalSemiotics.player");
   const { segments, examLabel } = examChain;
 
   /* ---- refs ---- */
@@ -178,6 +196,7 @@ export default function VideoChainPlayer({
 
   const currentSegment = segments[currentIndex] ?? null;
   const isTeaser = variant === "teaser" || currentSegment?.teaser;
+  const isEmbed = variant === "embed";
   const isLastSegment = currentIndex === segments.length - 1;
 
   /* ---- sync external completed set ---- */
@@ -438,6 +457,29 @@ export default function VideoChainPlayer({
     [segments.length],
   );
 
+  /* ---- expose imperative handle for embed wrapper ---- */
+  const handleValue = useMemo<VideoChainPlayerHandle>(() => ({
+    get currentIndex() { return currentIndex; },
+    get segmentCount() { return segments.length; },
+    get completedSegments() { return [...completedSet]; },
+    get isPlaying() { return isPlaying; },
+    goToSegment,
+    togglePlay,
+  }), [currentIndex, segments.length, completedSet, isPlaying, goToSegment, togglePlay]);
+
+  useImperativeHandle(ref, () => handleValue, [handleValue]);
+
+  // Also assign to the mutable actionsRef prop (works reliably with next/dynamic)
+  useEffect(() => {
+    if (actionsRef) actionsRef.current = handleValue;
+    return () => { if (actionsRef) actionsRef.current = null; };
+  }, [actionsRef, handleValue]);
+
+  /* ---- notify embed wrapper of state changes ---- */
+  useEffect(() => {
+    onStateChange?.({ currentIndex, completedCount: completedSet.size, isPlaying });
+  }, [currentIndex, completedSet.size, isPlaying, onStateChange]);
+
   /* ================================================================ */
   /*  Controls auto-hide                                               */
   /* ================================================================ */
@@ -530,7 +572,7 @@ export default function VideoChainPlayer({
           className,
         )}
       >
-        <p className="text-sm text-gray-500">No segments available.</p>
+        <p className="text-sm text-gray-500">{t("noSegments")}</p>
       </div>
     );
   }
@@ -539,7 +581,8 @@ export default function VideoChainPlayer({
     <div
       ref={containerRef}
       className={cn(
-        "relative overflow-hidden rounded-2xl border border-gray-200 bg-black",
+        "relative overflow-hidden bg-black",
+        !isEmbed && "rounded-2xl border border-gray-200",
         variant === "teaser" && "max-w-md",
         className,
       )}
@@ -574,7 +617,7 @@ export default function VideoChainPlayer({
           >
             <div className="flex flex-col items-center gap-3">
               <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-indigo-500" />
-              <p className="text-sm font-medium text-gray-600">Loading…</p>
+              <p className="text-sm font-medium text-gray-600">{t("loading")}</p>
             </div>
           </m.div>
         )}
@@ -593,10 +636,10 @@ export default function VideoChainPlayer({
             <div className="flex flex-col items-center gap-3 text-center px-6">
               <AlertTriangle className="w-8 h-8 text-red-500" />
               <p className="text-sm font-semibold text-gray-800">
-                Failed to load video
+                {t("errorTitle")}
               </p>
               <p className="text-xs text-gray-500">
-                Please check your connection and try again.
+                {t("errorDescription")}
               </p>
               <button
                 onClick={() => {
@@ -605,7 +648,7 @@ export default function VideoChainPlayer({
                 className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600 transition-colors hover:bg-indigo-100"
               >
                 <RotateCcw className="w-3.5 h-3.5" />
-                Retry
+                {t("retry")}
               </button>
             </div>
           </m.div>
@@ -638,20 +681,14 @@ export default function VideoChainPlayer({
                   {overlayIcon}
                   <h3 className="text-sm font-bold text-gray-900">
                     {activeOverlay.title ??
-                      (activeOverlay.kind === "tip"
-                        ? "Tip"
-                        : activeOverlay.kind === "question"
-                          ? "Question"
-                          : activeOverlay.kind === "warning"
-                            ? "Warning"
-                            : "Info")}
+                      t(`overlay.${activeOverlay.kind}`)}
                   </h3>
                 </div>
                 {activeOverlay.kind !== "question" && (
                   <button
                     onClick={handleDismissOverlay}
                     className="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
-                    aria-label="Dismiss"
+                    aria-label={t("dismiss")}
                   >
                     <X className="w-4 h-4" />
                   </button>
@@ -719,7 +756,7 @@ export default function VideoChainPlayer({
                         onClick={handleDismissOverlay}
                         className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-indigo-600"
                       >
-                        Continue
+                        {t("continue")}
                         <Play className="w-3.5 h-3.5" />
                       </button>
                     </m.div>
@@ -734,7 +771,7 @@ export default function VideoChainPlayer({
       {/* ---- Teaser badge ---- */}
       {isTeaser && (
         <div className="absolute top-3 left-3 z-10 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-300">
-          Preview
+          {t("preview")}
         </div>
       )}
 
@@ -786,7 +823,7 @@ export default function VideoChainPlayer({
                   <button
                     onClick={togglePlay}
                     className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25"
-                    aria-label={isPlaying ? "Pause" : "Play"}
+                    aria-label={isPlaying ? t("aria.pause") : t("aria.play")}
                   >
                     {isPlaying ? (
                       <Pause className="w-4 h-4" />
@@ -799,7 +836,7 @@ export default function VideoChainPlayer({
                   <button
                     onClick={restartSegment}
                     className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
-                    aria-label="Restart segment"
+                    aria-label={t("aria.restartSegment")}
                   >
                     <RotateCcw className="w-4 h-4" />
                   </button>
@@ -808,7 +845,7 @@ export default function VideoChainPlayer({
                   <button
                     onClick={toggleMute}
                     className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
-                    aria-label={isMuted ? "Unmute" : "Mute"}
+                    aria-label={isMuted ? t("aria.unmute") : t("aria.mute")}
                   >
                     {isMuted ? (
                       <VolumeX className="w-4 h-4" />
@@ -842,7 +879,7 @@ export default function VideoChainPlayer({
             transition={{ type: "spring", damping: 20, stiffness: 300 }}
             onClick={togglePlay}
             className="absolute inset-0 z-5 flex items-center justify-center"
-            aria-label="Play"
+            aria-label={t("aria.play")}
           >
             <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform hover:scale-110 active:scale-95">
               <Play className="w-7 h-7 text-gray-800 ml-1" />
@@ -851,7 +888,7 @@ export default function VideoChainPlayer({
         )}
       </AnimatePresence>
 
-      {/* ---- Segment list (below video for default variant) ---- */}
+      {/* ---- Segment list (below video for default variant, hidden in embed) ---- */}
       {variant === "default" && segments.length > 1 && (
         <div className="border-t border-gray-200 bg-white">
           {/* Progress bar */}
@@ -892,7 +929,10 @@ export default function VideoChainPlayer({
           <div className="flex items-center justify-between border-t border-gray-100 px-3 py-2">
             <p className="text-xs font-semibold text-gray-600">{examLabel}</p>
             <p className="text-[11px] text-gray-400">
-              {completedSet.size} / {segments.length} completed
+              {t("completedCount", {
+                completed: completedSet.size,
+                total: segments.length,
+              })}
             </p>
           </div>
         </div>
@@ -900,4 +940,6 @@ export default function VideoChainPlayer({
 
     </div>
   );
-}
+});
+
+export default VideoChainPlayer;

@@ -2,7 +2,9 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { m } from "framer-motion";
-import { Search, Star, Code, Download } from "lucide-react";
+import { Search, Star, Code, FileCode, Download } from "lucide-react";
+import { useTranslations, useLocale } from "next-intl";
+import Link from "next/link";
 import { cn } from "@/lib/cn";
 
 /* ------------------------------------------------------------------ */
@@ -113,11 +115,15 @@ function ExamCard({
   onSelect,
   onOpenEmbed,
   onDownload,
+  locale,
+  t,
 }: {
   exam: Exam;
   onSelect: (examType: ExamType) => void;
   onOpenEmbed?: (examType: ExamType) => void;
   onDownload?: (examType: ExamType) => void;
+  locale: string;
+  t: (key: string) => string;
 }) {
   const diffStyle = DIFFICULTY_STYLE[exam.difficulty] ?? DIFFICULTY_STYLE.beginner;
 
@@ -145,7 +151,7 @@ function ExamCard({
         {exam.featured && (
           <span className="cs-badge-sticker cs-badge-yellow flex items-center gap-1">
             <Star className="w-3 h-3" />
-            Featured
+            {t("featured")}
           </span>
         )}
         <span
@@ -188,7 +194,7 @@ function ExamCard({
             onClick={() => onOpenEmbed(exam.type)}
           >
             <Code className="w-3.5 h-3.5" />
-            Embed &amp; Share
+            {t("embedShare")}
           </button>
         )}
 
@@ -196,7 +202,7 @@ function ExamCard({
           className="cs-btn cs-btn-ghost cs-btn-sm"
           onClick={() => onSelect(exam.type)}
         >
-          Preview
+          {t("preview")}
         </button>
 
         {onDownload && (
@@ -205,9 +211,17 @@ function ExamCard({
             onClick={() => onDownload(exam.type)}
           >
             <Download className="w-3.5 h-3.5" />
-            Assets
+            {t("assets")}
           </button>
         )}
+
+        <Link
+          href={`/${locale}/clinical-semiotics/${exam.type}/embed-code`}
+          className="cs-btn cs-btn-ghost cs-btn-sm flex items-center gap-1"
+        >
+          <FileCode className="w-3.5 h-3.5" />
+          {t("getCode")}
+        </Link>
       </div>
     </m.div>
   );
@@ -224,8 +238,24 @@ export default function ExamSelection({
   onOpenEmbed,
   onDownload,
 }: ExamSelectionProps) {
+  const t = useTranslations("clinicalSemiotics.examSelection");
+  const locale = useLocale();
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState<ExamCategory>("all");
+
+  /* ---- Build exams with translations ---- */
+  const exams: Exam[] = useMemo(() => {
+    return EXAMS.map((s) => ({
+      ...s,
+      label: t(`exams.${s.type}.label`),
+      description: t(`exams.${s.type}.description`),
+    }));
+  }, [t]);
+
+  const categories = useMemo(
+    () => CATEGORIES.map((c) => ({ key: c.key, label: t(`categories.${c.key}`) })),
+    [t],
+  );
 
   /* ---- Reset search when category changes ---- */
   useEffect(() => {
@@ -234,7 +264,7 @@ export default function ExamSelection({
 
   /* ---- Filter exams ---- */
   const filteredExams = useMemo(() => {
-    let list = EXAMS;
+    let list = exams;
 
     // Category filter
     if (activeCategory !== "all") {
@@ -262,7 +292,7 @@ export default function ExamSelection({
       if (a.featured !== b.featured) return a.featured ? -1 : 1;
       return a.label.localeCompare(b.label);
     });
-  }, [search, activeCategory, unlockedExams]);
+  }, [search, activeCategory, unlockedExams, exams]);
 
   return (
     <div className={cn("cs-intro-bg min-h-screen", className)}>
@@ -275,14 +305,14 @@ export default function ExamSelection({
             className="mb-8 text-center"
           >
             <h2 className="cs-font-display text-3xl md:text-4xl font-extrabold mb-2">
-              Clinical Exam{" "}
-              <span className="cs-underline-hand">Library</span>
+              {t("libraryTitle")}{" "}
+              <span className="cs-underline-hand">{t("libraryHighlight")}</span>
             </h2>
             <p
               className="text-base md:text-lg"
               style={{ color: "var(--cs-text-muted)" }}
             >
-              Preview, embed, or share any exam with your students.
+              {t("subtitle")}
             </p>
           </m.div>
         )}
@@ -300,7 +330,7 @@ export default function ExamSelection({
             </span>
             <input
               type="text"
-              placeholder="Search exams…"
+              placeholder={t("searchPlaceholder")}
               value={search}
               onChange={(e) => setSearch(e.target.value)}
               className="cs-input cs-input-with-icon"
@@ -315,7 +345,7 @@ export default function ExamSelection({
           transition={{ delay: 0.15 }}
           className="mb-8 flex items-center gap-2 overflow-x-auto pb-2 scrollbar-none"
         >
-          {CATEGORIES.map((cat) => (
+          {categories.map((cat) => (
             <button
               key={cat.key}
               onClick={() => setActiveCategory(cat.key)}
@@ -339,6 +369,8 @@ export default function ExamSelection({
                 onSelect={onSelect}
                 onOpenEmbed={onOpenEmbed}
                 onDownload={onDownload}
+                locale={locale}
+                t={t}
               />
             ))}
           </div>
@@ -352,10 +384,10 @@ export default function ExamSelection({
               className="cs-font-display text-lg font-bold mb-1"
               style={{ color: "var(--cs-text-dark)" }}
             >
-              No exams found
+              {t("noExamsFound")}
             </p>
             <p className="text-sm" style={{ color: "var(--cs-text-muted)" }}>
-              Try a different search term or category.
+              {t("noExamsHint")}
             </p>
           </m.div>
         )}

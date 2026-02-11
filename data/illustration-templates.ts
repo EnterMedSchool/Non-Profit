@@ -7,6 +7,7 @@
 
 export interface IllustrationTemplate {
   id: string;
+  language: string;
   name: string;
   category: string;
   description: string;
@@ -34,6 +35,7 @@ export const templateCategories: TemplateCategory[] = [
 export const illustrationTemplates: IllustrationTemplate[] = [
   {
     id: "cell-signaling-pathway",
+    language: "en",
     name: "Cell Signaling Pathway",
     category: "cell-biology",
     description: "A basic cell signaling cascade with receptor, kinase chain, and nuclear response",
@@ -56,6 +58,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "cell-diagram",
+    language: "en",
     name: "Basic Cell Diagram",
     category: "cell-biology",
     description: "A template for labeling cell organelles and structures",
@@ -72,6 +75,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "lab-protocol",
+    language: "en",
     name: "Lab Protocol Flow",
     category: "lab",
     description: "Step-by-step lab protocol with numbered steps",
@@ -96,6 +100,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "comparison-diagram",
+    language: "en",
     name: "Comparison Diagram",
     category: "cell-biology",
     description: "Side-by-side comparison layout for two concepts",
@@ -113,6 +118,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "graphical-abstract-1",
+    language: "en",
     name: "Graphical Abstract",
     category: "graphical-abstract",
     description: "Publication-ready graphical abstract layout",
@@ -132,6 +138,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "flowchart-basic",
+    language: "en",
     name: "Basic Flowchart",
     category: "flowchart",
     description: "A simple decision flowchart with yes/no branches",
@@ -152,6 +159,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "anatomy-labels",
+    language: "en",
     name: "Anatomy Label Template",
     category: "anatomy",
     description: "Template for labeling anatomical structures with leader lines",
@@ -168,6 +176,7 @@ export const illustrationTemplates: IllustrationTemplate[] = [
   },
   {
     id: "molecular-pathway",
+    language: "en",
     name: "Molecular Pathway",
     category: "molecular",
     description: "Linear molecular pathway with reaction steps",

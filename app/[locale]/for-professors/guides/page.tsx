@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Sparkles, Stethoscope, BookOpen, Lightbulb } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -30,6 +30,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function GuidesPage() {
   const t = useTranslations("professors.guides");
+  const locale = useLocale();
 
   const guides = [
     { key: "aiSlides", icon: Sparkles, color: "purple" as const },
@@ -42,7 +43,7 @@ export default function GuidesPage() {
   return (
     <main className="relative z-10 py-12 sm:py-20">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Teaching Guides & Best Practices", "Teaching guides and best practices for medical education professors.", `${BASE_URL}/en/for-professors/guides`)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Teaching Guides & Best Practices", "Teaching guides and best practices for medical education professors.", `${BASE_URL}/${locale}/for-professors/guides`, locale)) }} />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 

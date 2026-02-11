@@ -1,3 +1,5 @@
+"use client";
+
 import {
   GraduationCap,
   BookOpen,
@@ -6,6 +8,7 @@ import {
   Mail,
   ExternalLink,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import type { PDFBook } from "@/data/pdf-books";
 
 interface EducatorCTAProps {
@@ -14,6 +17,7 @@ interface EducatorCTAProps {
 }
 
 export default function EducatorCTA({ book, locale = "en" }: EducatorCTAProps) {
+  const t = useTranslations("pdfViewer.educator");
   return (
     <section className="rounded-2xl border-3 border-showcase-purple/20 bg-gradient-to-br from-pastel-lavender/50 via-white to-pastel-cream/30 p-6 sm:p-8">
       <div className="flex items-start gap-3 sm:items-center">
@@ -22,11 +26,10 @@ export default function EducatorCTA({ book, locale = "en" }: EducatorCTAProps) {
         </div>
         <div>
           <h3 className="font-display text-lg font-bold text-ink-dark sm:text-xl">
-            Use This in Your Course
+            {t("title")}
           </h3>
           <p className="mt-1 text-sm text-ink-muted leading-relaxed">
-            This textbook is free for non-commercial educational use. Here&apos;s
-            how to incorporate it into your teaching.
+            {t("subtitle")}
           </p>
         </div>
       </div>
@@ -34,23 +37,23 @@ export default function EducatorCTA({ book, locale = "en" }: EducatorCTAProps) {
       <div className="mt-6 grid gap-4 sm:grid-cols-2">
         <FeatureItem
           icon={BookOpen}
-          title="Assign as Reading"
-          description="Link directly to specific chapters for your students. Each chapter has its own URL."
+          title={t("assignReading")}
+          description={t("assignReadingDesc")}
         />
         <FeatureItem
           icon={Download}
-          title="Print & Distribute"
-          description="Download the full PDF or individual chapters. Print for handouts or add to your LMS."
+          title={t("printDistribute")}
+          description={t("printDistributeDesc")}
         />
         <FeatureItem
           icon={Code}
-          title="Embed in Your LMS"
-          description="Link chapter URLs in Moodle, Canvas, or Blackboard. Students can highlight and take notes."
+          title={t("embedLMS")}
+          description={t("embedLMSDesc")}
         />
         <FeatureItem
           icon={Mail}
-          title="Request Modifications"
-          description="Need a custom version? Contact us to discuss adaptations for your specific curriculum."
+          title={t("requestMods")}
+          description={t("requestModsDesc")}
         />
       </div>
 
@@ -60,13 +63,13 @@ export default function EducatorCTA({ book, locale = "en" }: EducatorCTAProps) {
           className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-5 py-2.5 text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
         >
           <Mail className="h-4 w-4" />
-          Contact Us to Get Started
+          {t("contactCta")}
         </a>
         <a
           href={`/${locale}/license`}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-showcase-purple hover:underline"
         >
-          View Full License
+          {t("viewLicense")}
           <ExternalLink className="h-3.5 w-3.5" />
         </a>
       </div>

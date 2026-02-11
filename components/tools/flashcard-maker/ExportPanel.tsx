@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   Download,
   FileText,
@@ -21,6 +22,7 @@ import ToastContainer from "@/components/shared/ToastContainer";
 
 // ── Component ────────────────────────────────────────────────────────
 export default function ExportPanel() {
+  const t = useTranslations("tools.flashcardMaker.ui");
   const { cards, theme, exportSettings, updateExportSettings } =
     useFlashcards();
   const [generating, setGenerating] = useState(false);
@@ -46,14 +48,14 @@ export default function ExportPanel() {
       const doc = await generateFlashcardPdf(cards, theme, exportSettings);
       const filename = exportSettings.filename?.trim() || "flashcards";
       doc.save(`${filename}.pdf`);
-      success("Flashcard PDF exported successfully!");
+      success(t("pdfExportSuccess"));
     } catch (err) {
       console.error("PDF generation failed:", err);
-      showError("PDF generation failed. Please check your settings and try again.");
+      showError(t("pdfExportFailed"));
     } finally {
       setGenerating(false);
     }
-  }, [cards, theme, exportSettings, success, showError]);
+  }, [cards, theme, exportSettings, success, showError, t]);
 
   const handlePreview = useCallback(async () => {
     if (cards.length === 0) return;
@@ -70,30 +72,30 @@ export default function ExportPanel() {
       setPreviewUrl(url);
     } catch (err) {
       console.error("PDF preview failed:", err);
-      showError("Failed to generate preview. Please try again.");
+      showError(t("previewFailed"));
     } finally {
       setIsPreviewLoading(false);
     }
-  }, [cards, theme, exportSettings, previewUrl, showError]);
+  }, [cards, theme, exportSettings, previewUrl, showError, t]);
 
   return (
     <div className="flex flex-col gap-5 h-full">
       <h2 className="font-display text-lg font-bold text-ink-dark">
-        Export PDF
+        {t("exportPdf")}
       </h2>
 
       {cards.length === 0 ? (
         <div className="flex flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-ink-light/30 bg-pastel-cream/30 p-6 text-center">
           <FileText className="h-8 w-8 text-ink-muted/40" />
           <p className="text-sm text-ink-muted">
-            Import cards first to enable PDF export
+            {t("importFirst")}
           </p>
         </div>
       ) : (
         <>
           {/* ── Filename ─────────────────────────────────────────── */}
           <section className="flex flex-col gap-2">
-            <span className="text-sm font-bold text-ink-dark">Filename</span>
+            <span className="text-sm font-bold text-ink-dark">{t("filename")}</span>
             <div className="flex items-center gap-1">
               <input
                 type="text"
@@ -101,7 +103,7 @@ export default function ExportPanel() {
                 onChange={(e) =>
                   updateExportSettings({ filename: e.target.value })
                 }
-                placeholder="flashcards"
+                placeholder={t("filenamePlaceholder")}
                 className="flex-1 rounded-xl border-2 border-ink-light/20 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
               />
               <span className="text-sm text-ink-muted">.pdf</span>
@@ -112,7 +114,7 @@ export default function ExportPanel() {
           <section className="flex flex-col gap-2">
             <span className="text-sm font-bold text-ink-dark flex items-center gap-2">
               <Type className="h-4 w-4 text-showcase-purple" />
-              Page Title (optional)
+              {t("pageTitle")}
             </span>
             <input
               type="text"
@@ -120,7 +122,7 @@ export default function ExportPanel() {
               onChange={(e) =>
                 updateExportSettings({ pageTitle: e.target.value })
               }
-              placeholder="e.g. Biology Chapter 5 Flashcards"
+              placeholder={t("pageTitlePlaceholder")}
               className="rounded-xl border-2 border-ink-light/20 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
             />
           </section>
@@ -129,9 +131,9 @@ export default function ExportPanel() {
           <section className="flex flex-col gap-2">
             <span className="text-sm font-bold text-ink-dark flex items-center gap-2">
               <Printer className="h-4 w-4 text-showcase-purple" />
-              Print Layout
+              {t("printLayout")}
             </span>
-            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Print layout mode">
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label={t("printLayoutAria")}>
               <button
                 onClick={() =>
                   updateExportSettings({ layoutMode: "fold" })
@@ -146,10 +148,10 @@ export default function ExportPanel() {
               >
                 <FoldVertical className="h-5 w-5 text-showcase-teal" />
                 <span className="text-xs font-bold text-ink-dark">
-                  Fold in Half
+                  {t("foldInHalf")}
                 </span>
                 <span className="text-[10px] text-ink-muted">
-                  Single-sided print
+                  {t("singleSided")}
                 </span>
               </button>
               <button
@@ -166,10 +168,10 @@ export default function ExportPanel() {
               >
                 <Printer className="h-5 w-5 text-showcase-teal" />
                 <span className="text-xs font-bold text-ink-dark">
-                  Double-Sided
+                  {t("doubleSided")}
                 </span>
                 <span className="text-[10px] text-ink-muted">
-                  Duplex printing
+                  {t("duplexPrint")}
                 </span>
               </button>
             </div>
@@ -177,8 +179,8 @@ export default function ExportPanel() {
 
           {/* ── Paper size ───────────────────────────────────────── */}
           <section className="flex flex-col gap-2">
-            <span className="text-sm font-bold text-ink-dark">Paper Size</span>
-            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label="Paper size">
+            <span className="text-sm font-bold text-ink-dark">{t("paperSize")}</span>
+            <div className="grid grid-cols-2 gap-2" role="radiogroup" aria-label={t("paperSizeAria")}>
               {(["a4", "letter"] as const).map((size) => (
                 <button
                   key={size}
@@ -191,7 +193,7 @@ export default function ExportPanel() {
                       : "border-ink-light/20 bg-white hover:border-showcase-teal/40"
                   }`}
                 >
-                  {size === "a4" ? "A4" : "Letter"}
+                  {size === "a4" ? t("a4") : t("letter")}
                 </button>
               ))}
             </div>
@@ -200,9 +202,9 @@ export default function ExportPanel() {
           {/* ── Cards per page ───────────────────────────────────── */}
           <section className="flex flex-col gap-2">
             <span className="text-sm font-bold text-ink-dark">
-              Cards per page
+              {t("cardsPerPage")}
             </span>
-            <div className="grid grid-cols-4 gap-2" role="radiogroup" aria-label="Cards per page">
+            <div className="grid grid-cols-4 gap-2" role="radiogroup" aria-label={t("cardsPerPageAria")}>
               {([2, 4, 6, 8] as const).map((n) => (
                 <button
                   key={n}
@@ -225,7 +227,7 @@ export default function ExportPanel() {
           <section className="flex flex-col gap-2">
             <span className="text-sm font-bold text-ink-dark flex items-center gap-2">
               <Scissors className="h-4 w-4 text-showcase-coral" />
-              Options
+              {t("options")}
             </span>
             <label className="flex items-center gap-3 cursor-pointer">
               <input
@@ -236,7 +238,7 @@ export default function ExportPanel() {
                 }
                 className="h-4 w-4 rounded accent-showcase-teal"
               />
-              <span className="text-sm text-ink-dark">Cut lines</span>
+              <span className="text-sm text-ink-dark">{t("cutLines")}</span>
             </label>
             {exportSettings.layoutMode === "fold" && (
               <label className="flex items-center gap-3 cursor-pointer">
@@ -250,7 +252,7 @@ export default function ExportPanel() {
                   }
                   className="h-4 w-4 rounded accent-showcase-teal"
                 />
-                <span className="text-sm text-ink-dark">Fold lines</span>
+                <span className="text-sm text-ink-dark">{t("foldLines")}</span>
               </label>
             )}
             <label className="flex items-center gap-3 cursor-pointer">
@@ -264,9 +266,9 @@ export default function ExportPanel() {
                 }
                 className="h-4 w-4 rounded accent-showcase-teal"
               />
-              <span className="text-sm text-ink-dark flex items-center gap-1.5">
+                <span className="text-sm text-ink-dark flex items-center gap-1.5">
                 <Hash className="h-3.5 w-3.5" />
-                Card numbers
+                {t("cardNumbers")}
               </span>
             </label>
           </section>
@@ -274,18 +276,21 @@ export default function ExportPanel() {
           {/* ── Summary ──────────────────────────────────────────── */}
           <div className="rounded-xl border-2 border-ink-light/20 bg-pastel-cream/30 px-3 py-2 text-xs text-ink-muted">
             <p>
-              <strong>{cards.length}</strong> card
-              {cards.length !== 1 ? "s" : ""} →{" "}
               <strong>
-                {Math.ceil(cards.length / exportSettings.cardsPerPage) *
-                  (exportSettings.layoutMode === "duplex" ? 2 : 1)}
-              </strong>{" "}
-              page
-              {Math.ceil(cards.length / exportSettings.cardsPerPage) *
-                (exportSettings.layoutMode === "duplex" ? 2 : 1) !== 1
-                ? "s"
-                : ""}
-              {exportSettings.layoutMode === "duplex" && " (fronts + backs)"}
+                {cards.length === 1
+                  ? t("cardsToPages", { cards: 1 })
+                  : t("cardsToPagesPlural", { cards: cards.length })}
+              </strong>
+              {" → "}
+              <strong>
+                {(() => {
+                  const pageCount = Math.ceil(cards.length / exportSettings.cardsPerPage) * (exportSettings.layoutMode === "duplex" ? 2 : 1);
+                  return pageCount === 1
+                    ? t("pagesCount", { pages: 1 })
+                    : t("pagesCountPlural", { pages: pageCount });
+                })()}
+              </strong>
+              {exportSettings.layoutMode === "duplex" && ` ${t("frontsAndBacks")}`}
             </p>
           </div>
 
@@ -301,7 +306,7 @@ export default function ExportPanel() {
               ) : (
                 <Eye className="h-5 w-5" />
               )}
-              Preview
+              {t("preview")}
             </button>
 
             <button
@@ -313,12 +318,12 @@ export default function ExportPanel() {
               {generating ? (
                 <>
                   <Loader2 className="h-5 w-5 animate-spin" />
-                  Generating...
+                  {t("generating")}
                 </>
               ) : (
                 <>
                   <Download className="h-5 w-5" />
-                  Download PDF
+                  {t("downloadPdf")}
                 </>
               )}
             </button>
@@ -328,7 +333,7 @@ export default function ExportPanel() {
           {previewUrl && (
             <div className="rounded-xl border-2 border-ink-light/20 overflow-hidden">
               <div className="flex items-center justify-between bg-gray-50 px-3 py-2 border-b border-ink-light/10">
-                <span className="text-xs font-bold text-ink-muted">PDF Preview</span>
+                <span className="text-xs font-bold text-ink-muted">{t("pdfPreview")}</span>
                 <button
                   onClick={() => {
                     URL.revokeObjectURL(previewUrl);

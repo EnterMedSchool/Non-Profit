@@ -1,6 +1,7 @@
 "use client";
 
 import { useRef, useCallback, useState } from "react";
+import { useTranslations } from "next-intl";
 import {
   Palette,
   Type,
@@ -20,9 +21,9 @@ import { DEFAULT_PDF_THEME } from "./types";
 import { MAX_LOGO_SIZE_BYTES } from "./constants";
 
 // ── Presets ──────────────────────────────────────────────────────────
-const PRESETS: { label: string; theme: Partial<MCQPdfTheme> }[] = [
+const PRESETS: { labelKey: "classicExam" | "modernClean" | "universityStyle" | "medicalBoard"; theme: Partial<MCQPdfTheme> }[] = [
   {
-    label: "Classic Exam",
+    labelKey: "classicExam",
     theme: {
       primaryColor: "#1a1a2e",
       secondaryColor: "#6C5CE7",
@@ -34,7 +35,7 @@ const PRESETS: { label: string; theme: Partial<MCQPdfTheme> }[] = [
     },
   },
   {
-    label: "Modern Clean",
+    labelKey: "modernClean",
     theme: {
       primaryColor: "#6C5CE7",
       secondaryColor: "#00D9C0",
@@ -46,7 +47,7 @@ const PRESETS: { label: string; theme: Partial<MCQPdfTheme> }[] = [
     },
   },
   {
-    label: "University Style",
+    labelKey: "universityStyle",
     theme: {
       primaryColor: "#003366",
       secondaryColor: "#CC0000",
@@ -58,7 +59,7 @@ const PRESETS: { label: string; theme: Partial<MCQPdfTheme> }[] = [
     },
   },
   {
-    label: "Medical Board",
+    labelKey: "medicalBoard",
     theme: {
       primaryColor: "#2E86AB",
       secondaryColor: "#A23B72",
@@ -73,13 +74,13 @@ const PRESETS: { label: string; theme: Partial<MCQPdfTheme> }[] = [
 
 const ANSWER_STYLES: {
   value: MCQPdfTheme["answerStyle"];
-  label: string;
+  labelKey: "bubbles" | "letters" | "checkboxes" | "lines";
   icon: typeof Circle;
 }[] = [
-  { value: "bubbles", label: "Bubbles", icon: Circle },
-  { value: "letters", label: "Letters", icon: Type },
-  { value: "checkboxes", label: "Checkboxes", icon: SquareCheck },
-  { value: "lines", label: "Lines", icon: AlignLeft },
+  { value: "bubbles", labelKey: "bubbles", icon: Circle },
+  { value: "letters", labelKey: "letters", icon: Type },
+  { value: "checkboxes", labelKey: "checkboxes", icon: SquareCheck },
+  { value: "lines", labelKey: "lines", icon: AlignLeft },
 ];
 
 // ── Component ────────────────────────────────────────────────────────
@@ -92,6 +93,7 @@ const ALLOWED_LOGO_TYPES = [
 ];
 
 export default function PdfCustomizer() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const { pdfTheme, updatePdfTheme, setPdfTheme } = useMCQ();
   const logoInputRef = useRef<HTMLInputElement>(null);
   const [logoError, setLogoError] = useState<string | null>(null);
@@ -103,14 +105,14 @@ export default function PdfCustomizer() {
       setLogoError(null);
 
       if (!ALLOWED_LOGO_TYPES.includes(file.type)) {
-        setLogoError("Invalid file type. Use PNG, JPEG, GIF, WebP, or SVG.");
+        setLogoError(t("invalidFileType"));
         e.target.value = "";
         return;
       }
 
       if (file.size > MAX_LOGO_SIZE_BYTES) {
         setLogoError(
-          `Logo too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Max size is 1 MB.`,
+          t("logoTooLarge", { size: (file.size / 1024 / 1024).toFixed(1) }),
         );
         e.target.value = "";
         return;
@@ -126,7 +128,7 @@ export default function PdfCustomizer() {
       reader.readAsDataURL(file);
       e.target.value = "";
     },
-    [updatePdfTheme],
+    [updatePdfTheme, t],
   );
 
   return (
@@ -135,12 +137,12 @@ export default function PdfCustomizer() {
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
           <Palette className="inline h-3.5 w-3.5 mr-1" />
-          Template Presets
+          {t("templatePresets")}
         </label>
         <div className="grid grid-cols-2 gap-1.5">
           {PRESETS.map((preset) => (
             <button
-              key={preset.label}
+              key={preset.labelKey}
               onClick={() =>
                 setPdfTheme({ ...DEFAULT_PDF_THEME, ...preset.theme })
               }
@@ -165,7 +167,7 @@ export default function PdfCustomizer() {
       {/* Colors */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Colors
+          {t("colors")}
         </label>
         <div className="grid grid-cols-2 gap-2">
           <label className="flex items-center gap-2">
@@ -177,7 +179,7 @@ export default function PdfCustomizer() {
               }
               className="h-7 w-7 rounded border cursor-pointer"
             />
-            <span className="text-xs text-ink-muted">Primary</span>
+            <span className="text-xs text-ink-muted">{t("primary")}</span>
           </label>
           <label className="flex items-center gap-2">
             <input
@@ -199,7 +201,7 @@ export default function PdfCustomizer() {
               }
               className="h-7 w-7 rounded border cursor-pointer"
             />
-            <span className="text-xs text-ink-muted">Header BG</span>
+            <span className="text-xs text-ink-muted">{t("headerBg")}</span>
           </label>
           <label className="flex items-center gap-2">
             <input
@@ -219,7 +221,7 @@ export default function PdfCustomizer() {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-xs font-bold text-ink-dark mb-1">
-            Font
+            {t("font")}
           </label>
           <div className="relative">
             <select
@@ -240,7 +242,7 @@ export default function PdfCustomizer() {
         </div>
         <div>
           <label className="block text-xs font-bold text-ink-dark mb-1">
-            Font Size
+            {t("fontSize")}
           </label>
           <input
             type="number"
@@ -282,7 +284,7 @@ export default function PdfCustomizer() {
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
           <Ruler className="inline h-3.5 w-3.5 mr-1" />
-          Page Margins (mm)
+          {t("pageMargins")}
         </label>
         <div className="grid grid-cols-2 gap-2">
           {(["top", "right", "bottom", "left"] as const).map((side) => (
@@ -329,7 +331,7 @@ export default function PdfCustomizer() {
                 }`}
               >
                 <Icon className="h-3.5 w-3.5" />
-                {style.label}
+                {t(style.labelKey)}
               </button>
             );
           })}
@@ -339,7 +341,7 @@ export default function PdfCustomizer() {
       {/* Header/Footer */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          Header Text
+          {t("headerText")}
         </label>
         <input
           type="text"
@@ -385,7 +387,7 @@ export default function PdfCustomizer() {
             }
             className="rounded accent-showcase-purple"
           />
-          <span className="font-bold">Show question numbers</span>
+          <span className="font-bold">{t("showQuestionNumbers")}</span>
         </label>
         <label className="flex items-center gap-2 text-xs text-ink-dark">
           <input
@@ -396,7 +398,7 @@ export default function PdfCustomizer() {
             }
             className="rounded accent-showcase-purple"
           />
-          <span className="font-bold">Show point values</span>
+          <span className="font-bold">{t("showPointValues")}</span>
         </label>
       </div>
 
@@ -404,7 +406,7 @@ export default function PdfCustomizer() {
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
           <ImageIcon className="inline h-3.5 w-3.5 mr-1" />
-          Logo (optional)
+          {t("logoOptional")}
         </label>
         {logoError && (
           <p className="text-xs text-red-600 mb-1">{logoError}</p>
@@ -428,7 +430,7 @@ export default function PdfCustomizer() {
                       : "bg-gray-100 text-ink-muted hover:bg-gray-200"
                   }`}
                 >
-                  {pos}
+                  {t(pos === "left" ? "positionLeft" : pos === "center" ? "positionCenter" : "positionRight")}
                 </button>
               ))}
             </div>
@@ -447,7 +449,7 @@ export default function PdfCustomizer() {
             onClick={() => logoInputRef.current?.click()}
             className="text-xs font-bold text-showcase-purple hover:underline"
           >
-            Upload logo
+            {t("uploadLogo")}
           </button>
         )}
         <input

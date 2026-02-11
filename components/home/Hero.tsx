@@ -287,7 +287,7 @@ export default function Hero() {
           />
           <Image
             src="/logo.png"
-            alt="Leo, the EnterMedSchool mascot"
+            alt={t("mascotAlt")}
             width={130}
             height={130}
             priority

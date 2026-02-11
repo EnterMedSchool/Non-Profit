@@ -16,6 +16,7 @@ export const tools: Tool[] = [
     id: "illustration-maker",
     i18nKey: "illustrationMaker",
     category: "creator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/illustration-maker",
     icon: "Paintbrush",
     embedHeight: 900,
     seoKeywords: [
@@ -33,6 +34,7 @@ export const tools: Tool[] = [
     id: "bmi-calc",
     i18nKey: "bmi",
     category: "calculator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/calculators",
     icon: "Calculator",
     embedHeight: 700,
     seoKeywords: [
@@ -58,6 +60,7 @@ export const tools: Tool[] = [
     id: "flashcard-maker",
     i18nKey: "flashcardMaker",
     category: "creator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/flashcard-maker",
     icon: "CreditCard",
     seoKeywords: [
       "flashcard maker",
@@ -75,6 +78,7 @@ export const tools: Tool[] = [
     id: "latex-editor",
     i18nKey: "latexEditor",
     category: "creator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/latex-editor",
     icon: "FileText",
     embedHeight: 900,
     seoKeywords: [
@@ -94,6 +98,7 @@ export const tools: Tool[] = [
     id: "mcq-maker",
     i18nKey: "mcqMaker",
     category: "creator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/mcq-maker",
     icon: "HelpCircle",
     embedHeight: 700,
     seoKeywords: [

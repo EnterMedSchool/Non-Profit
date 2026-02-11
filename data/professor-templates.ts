@@ -20,6 +20,7 @@ export type TemplateFormat = "pptx" | "xlsx";
 
 export interface ProfessorTemplate {
   id: string;
+  language: string;
   title: string;
   description: string;
   category: TemplateCategory;

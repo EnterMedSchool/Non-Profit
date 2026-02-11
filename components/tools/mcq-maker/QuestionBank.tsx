@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Search,
   Filter,
@@ -33,6 +34,7 @@ const DIFFICULTY_STYLES = {
 
 // ── Component ────────────────────────────────────────────────────────
 export default function QuestionBank() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const {
     questions,
     removeQuestion,
@@ -158,7 +160,7 @@ export default function QuestionBank() {
 
   const handleDelete = useCallback(
     (id: string) => {
-      if (!window.confirm("Delete this question? This cannot be undone."))
+      if (!window.confirm(t("deleteConfirmSingle")))
         return;
       removeQuestion(id);
       setSelectedIds((prev) => {
@@ -214,23 +216,23 @@ export default function QuestionBank() {
           <HelpCircle className="h-10 w-10 text-showcase-purple/40 animate-float-gentle" />
         </div>
         <p className="font-display text-lg font-bold text-ink-dark">
-          No questions yet
+          {t("noQuestionsYet")}
         </p>
         <p className="mt-1 text-sm text-ink-muted max-w-xs">
-          Create your first question or import from a CSV/TSV file.
+          {t("createOrImport")}
         </p>
         <div className="flex gap-2 mt-4">
           <button
             onClick={() => setActivePanel("editor")}
             className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-4 py-2 font-display text-sm font-bold text-white shadow-chunky-sm hover:-translate-y-0.5 hover:shadow-chunky transition-all"
           >
-            Create Question
+            {t("createQuestion")}
           </button>
           <button
             onClick={() => setActivePanel("import")}
             className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-4 py-2 font-display text-sm font-bold text-white shadow-chunky-sm hover:-translate-y-0.5 hover:shadow-chunky transition-all"
           >
-            Import CSV
+            {t("importCsv")}
           </button>
         </div>
       </div>
@@ -243,13 +245,13 @@ export default function QuestionBank() {
       <div className="flex items-center gap-3 rounded-xl border-2 border-ink-light/15 bg-pastel-cream/30 px-3 py-2">
         <BarChart3 className="h-4 w-4 text-ink-muted shrink-0" />
         <div className="flex flex-wrap gap-x-3 gap-y-1 text-xs text-ink-muted">
-          <span className="font-bold text-ink-dark">{stats.total} questions</span>
-          <span className="text-showcase-purple">{stats.categories} categories</span>
-          {stats.easy > 0 && <span className="text-green-600">{stats.easy} easy</span>}
+          <span className="font-bold text-ink-dark">{t("questionsCountLabel", { count: stats.total })}</span>
+          <span className="text-showcase-purple">{t("categoriesCount", { count: stats.categories })}</span>
+          {stats.easy > 0 && <span className="text-green-600">{t("easyCount", { count: stats.easy })}</span>}
           {stats.medium > 0 && (
-            <span className="text-yellow-600">{stats.medium} medium</span>
+            <span className="text-yellow-600">{t("mediumCount", { count: stats.medium })}</span>
           )}
-          {stats.hard > 0 && <span className="text-red-600">{stats.hard} hard</span>}
+          {stats.hard > 0 && <span className="text-red-600">{t("hardCount", { count: stats.hard })}</span>}
         </div>
       </div>
 
@@ -261,7 +263,7 @@ export default function QuestionBank() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search questions..."
+            placeholder={t("searchPlaceholder")}
             className="w-full rounded-xl border-2 border-ink-light/30 bg-white pl-9 pr-3 py-2 text-sm text-ink-dark placeholder:text-ink-light/50 focus:border-showcase-purple focus:outline-none transition-all"
           />
         </div>
@@ -274,7 +276,7 @@ export default function QuestionBank() {
           }`}
         >
           <Filter className="h-3.5 w-3.5" />
-          Filter
+          {t("filter")}
           {activeFilterCount > 0 && (
             <span className="flex h-4 w-4 items-center justify-center rounded-full bg-showcase-purple text-[10px] text-white">
               {activeFilterCount}
@@ -302,7 +304,7 @@ export default function QuestionBank() {
               }
               className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
-              <option value="">All Categories</option>
+              <option value="">{t("allCategories")}</option>
               {allCategories.map((c) => (
                 <option key={c} value={c}>
                   {c}
@@ -321,10 +323,10 @@ export default function QuestionBank() {
               }
               className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
-              <option value="">All Difficulties</option>
-              <option value="easy">Easy</option>
-              <option value="medium">Medium</option>
-              <option value="hard">Hard</option>
+              <option value="">{t("allDifficulties")}</option>
+              <option value="easy">{t("easy")}</option>
+              <option value="medium">{t("medium")}</option>
+              <option value="hard">{t("hard")}</option>
             </select>
             <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
@@ -337,7 +339,7 @@ export default function QuestionBank() {
                 onChange={(e) => setTagFilter(e.target.value || null)}
                 className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
               >
-                <option value="">All Tags</option>
+                <option value="">{t("allTags")}</option>
                 {allTags.map((t) => (
                   <option key={t} value={t}>
                     {t}
@@ -355,10 +357,10 @@ export default function QuestionBank() {
               onChange={(e) => setSortField(e.target.value as SortField)}
               className="appearance-none rounded-lg border-2 border-ink-light/20 bg-white pl-3 pr-7 py-1.5 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
-              <option value="date">Sort: Date</option>
-              <option value="question">Sort: Question</option>
-              <option value="category">Sort: Category</option>
-              <option value="difficulty">Sort: Difficulty</option>
+              <option value="date">{t("sortDate")}</option>
+              <option value="question">{t("sortQuestion")}</option>
+              <option value="category">{t("sortCategory")}</option>
+              <option value="difficulty">{t("sortDifficulty")}</option>
             </select>
             <ChevronDown className="absolute right-2 top-1/2 h-3 w-3 -translate-y-1/2 text-ink-light pointer-events-none" />
           </div>
@@ -369,7 +371,7 @@ export default function QuestionBank() {
               className="inline-flex items-center gap-1 text-xs font-bold text-red-500 hover:underline"
             >
               <X className="h-3 w-3" />
-              Clear
+              {t("clear")}
             </button>
           )}
         </div>
@@ -379,20 +381,20 @@ export default function QuestionBank() {
       {selectedIds.size > 0 && (
         <div className="flex items-center gap-3 rounded-xl border-2 border-showcase-purple/30 bg-showcase-purple/5 px-3 py-2">
           <span className="text-xs font-bold text-showcase-purple">
-            {selectedIds.size} selected
+            {t("selectedCount", { count: selectedIds.size })}
           </span>
           <button
             onClick={deleteSelected}
             className="inline-flex items-center gap-1 rounded-lg bg-red-100 px-2.5 py-1 text-xs font-bold text-red-600 hover:bg-red-200 transition-colors"
           >
             <Trash2 className="h-3 w-3" />
-            Delete
+            {t("delete")}
           </button>
           <button
             onClick={() => setSelectedIds(new Set())}
             className="text-xs font-bold text-ink-muted hover:underline ml-auto"
           >
-            Deselect
+            {t("deselect")}
           </button>
         </div>
       )}
@@ -411,8 +413,8 @@ export default function QuestionBank() {
               <Square className="h-3.5 w-3.5" />
             )}
             {selectedIds.size === filtered.length
-              ? "Deselect all"
-              : "Select all"}
+              ? t("deselectAll")
+              : t("selectAll")}
           </button>
         )}
 
@@ -454,7 +456,7 @@ export default function QuestionBank() {
               <div className="flex-1 min-w-0">
                 <p className="text-sm font-bold text-ink-dark truncate">
                   <span className="text-ink-muted mr-1.5">{i + 1}.</span>
-                  {q.question || "(empty question)"}
+                  {q.question || t("emptyQuestion")}
                 </p>
                 <div className="mt-1 flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-muted">
                   {correctOpt && (
@@ -489,7 +491,7 @@ export default function QuestionBank() {
                     handleEdit(q);
                   }}
                   className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted hover:text-showcase-purple hover:bg-showcase-purple/10 transition-colors"
-                  aria-label={`Edit question ${i + 1}`}
+                  aria-label={t("editQuestionNum", { num: i + 1 })}
                 >
                   <Edit3 className="h-3.5 w-3.5" />
                 </button>
@@ -499,7 +501,7 @@ export default function QuestionBank() {
                     handleDelete(q.id);
                   }}
                   className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted hover:text-red-500 hover:bg-red-50 transition-colors"
-                  aria-label={`Delete question ${i + 1}`}
+                  aria-label={t("deleteQuestionNum", { num: i + 1 })}
                 >
                   <Trash2 className="h-3.5 w-3.5" />
                 </button>
@@ -512,13 +514,13 @@ export default function QuestionBank() {
           <div className="flex flex-col items-center py-8 text-center">
             <Search className="h-8 w-8 text-ink-light/40 mb-2" />
             <p className="text-sm font-bold text-ink-muted">
-              No matching questions
+              {t("noMatching")}
             </p>
             <button
               onClick={clearFilters}
               className="mt-2 text-xs font-bold text-showcase-purple hover:underline"
             >
-              Clear filters
+              {t("clearFilters")}
             </button>
           </div>
         )}

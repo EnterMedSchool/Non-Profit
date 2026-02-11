@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   Plus,
   Trash2,
@@ -50,14 +51,11 @@ function createEmptyQuestion(): MCQQuestion {
   };
 }
 
-const DIFFICULTY_OPTIONS = [
-  { value: "easy", label: "Easy", color: "bg-green-100 text-green-700 border-green-300" },
-  { value: "medium", label: "Medium", color: "bg-yellow-100 text-yellow-700 border-yellow-300" },
-  { value: "hard", label: "Hard", color: "bg-red-100 text-red-700 border-red-300" },
-] as const;
+const DIFFICULTY_VALUES = ["easy", "medium", "hard"] as const;
 
 // ── Component ────────────────────────────────────────────────────────
 export default function QuestionEditor() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const {
     editingQuestion,
     setEditingQuestion,
@@ -230,7 +228,7 @@ export default function QuestionEditor() {
 
       if (file.size > MAX_IMAGE_SIZE_BYTES) {
         setImageError(
-          `Image too large (${(file.size / 1024 / 1024).toFixed(1)} MB). Max size is 2 MB.`,
+          t("imageTooLarge", { size: (file.size / 1024 / 1024).toFixed(1) }),
         );
         e.target.value = "";
         return;
@@ -243,7 +241,7 @@ export default function QuestionEditor() {
       reader.readAsDataURL(file);
       e.target.value = "";
     },
-    [updateDraft],
+    [updateDraft, t],
   );
 
   // ── Save ───────────────────────────────────────────────────────────
@@ -324,14 +322,14 @@ export default function QuestionEditor() {
       <div className="flex items-center justify-between">
         <h2 className="font-display text-lg font-bold text-ink-dark flex items-center gap-2">
           <HelpCircle className="h-5 w-5 text-showcase-purple" />
-          {editingQuestion ? "Edit Question" : "New Question"}
+          {editingQuestion ? t("editQuestion") : t("newQuestion")}
         </h2>
         {questions.length > 0 && (
           <button
             onClick={() => setActivePanel("bank")}
             className="text-xs font-bold text-showcase-purple hover:underline"
           >
-            View All ({questions.length})
+            {t("viewAll", { count: questions.length })}
           </button>
         )}
       </div>
@@ -343,7 +341,7 @@ export default function QuestionEditor() {
           role="status"
         >
           <Check className="h-4 w-4" />
-          Question saved!
+          {t("questionSaved")}
         </div>
       )}
 
@@ -354,7 +352,7 @@ export default function QuestionEditor() {
           <button
             onClick={() => setImageError(null)}
             className="ml-auto text-red-400 hover:text-red-600"
-            aria-label="Dismiss error"
+            aria-label={t("dismissError")}
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -367,14 +365,14 @@ export default function QuestionEditor() {
           htmlFor={questionId}
           className="block text-sm font-bold text-ink-dark mb-1.5"
         >
-          Question <span className="text-red-400">*</span>
+          {t("questionRequired")} <span className="text-red-400">*</span>
         </label>
         <textarea
           id={questionId}
           ref={questionInputRef}
           value={draft.question}
           onChange={(e) => updateDraft({ question: e.target.value })}
-          placeholder="e.g. What is the powerhouse of the cell?"
+          placeholder={t("questionPlaceholder")}
           rows={3}
           aria-required="true"
           className="w-full rounded-xl border-2 border-ink-light/30 bg-white px-4 py-3 text-sm text-ink-dark placeholder:text-ink-light/50 focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10 transition-all resize-none"
@@ -386,7 +384,7 @@ export default function QuestionEditor() {
         <div className="relative rounded-xl border-2 border-ink-light/20 overflow-hidden">
           <img
             src={draft.imageUrl}
-            alt="Question illustration"
+            alt={t("questionIllustration")}
             className="w-full max-h-40 object-contain bg-pastel-cream/30"
           />
           <button
@@ -405,7 +403,7 @@ export default function QuestionEditor() {
           className="inline-flex items-center gap-1.5 text-xs font-bold text-ink-muted hover:text-showcase-purple transition-colors"
         >
           <ImageIcon className="h-3.5 w-3.5" />
-          {draft.imageUrl ? "Change image" : "Add image"}
+          {draft.imageUrl ? t("changeImage") : t("addImage")}
         </button>
         <input
           ref={fileInputRef}
@@ -420,9 +418,9 @@ export default function QuestionEditor() {
       {/* Answer Options */}
       <div>
         <label className="block text-sm font-bold text-ink-dark mb-1.5" id="mcq-options-label">
-          Answer Options <span className="text-red-400">*</span>
+          {t("answerOptions")} <span className="text-red-400">*</span>
           <span className="ml-2 text-xs font-normal text-ink-muted">
-            Select the correct answer
+            {t("selectCorrect")}
           </span>
         </label>
         <div className="flex flex-col gap-2" role="group" aria-labelledby="mcq-options-label">
@@ -451,8 +449,8 @@ export default function QuestionEditor() {
                 type="text"
                 value={opt.text}
                 onChange={(e) => updateOption(opt.id, e.target.value)}
-                placeholder={`Option ${OPTION_LETTERS[idx]}`}
-                aria-label={`Option ${OPTION_LETTERS[idx]} text`}
+                placeholder={t("optionLabel", { letter: OPTION_LETTERS[idx] })}
+                aria-label={t("optionLabel", { letter: OPTION_LETTERS[idx] })}
                 onKeyDown={(e) => {
                   if (
                     e.key === "Enter" &&
@@ -490,7 +488,7 @@ export default function QuestionEditor() {
             className="mt-2 inline-flex items-center gap-1.5 text-xs font-bold text-showcase-purple hover:underline"
           >
             <Plus className="h-3.5 w-3.5" />
-            Add option ({draft.options.length}/{MAX_OPTIONS})
+            {t("addOption", { current: draft.options.length, max: MAX_OPTIONS })}
           </button>
         )}
       </div>
@@ -507,16 +505,16 @@ export default function QuestionEditor() {
           ) : (
             <ChevronDown className="h-4 w-4" />
           )}
-          Explanation
-          <span className="text-xs font-normal text-ink-muted">(optional)</span>
+          {t("explanation")}
+          <span className="text-xs font-normal text-ink-muted">{t("optional")}</span>
         </button>
         {showExplanation && (
           <textarea
             value={draft.explanation ?? ""}
             onChange={(e) => updateDraft({ explanation: e.target.value })}
-            placeholder="Explain why this is the correct answer..."
+            placeholder={t("explanationPlaceholder")}
             rows={3}
-            aria-label="Explanation"
+            aria-label={t("explanation")}
             className="mt-2 w-full rounded-xl border-2 border-ink-light/30 bg-white px-4 py-3 text-sm text-ink-dark placeholder:text-ink-light/50 focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10 transition-all resize-none"
           />
         )}
@@ -527,7 +525,7 @@ export default function QuestionEditor() {
         {/* Category */}
         <div className="relative">
           <label htmlFor={categoryId} className="block text-xs font-bold text-ink-dark mb-1">
-            Category
+            {t("category")}
           </label>
           <input
             id={categoryId}
@@ -541,7 +539,7 @@ export default function QuestionEditor() {
             onBlur={() =>
               setTimeout(() => setShowCategorySuggestions(false), 150)
             }
-            placeholder="e.g. Cell Biology"
+            placeholder={t("categoryPlaceholder")}
             role="combobox"
             aria-expanded={showCategorySuggestions && filteredCategories.length > 0}
             aria-autocomplete="list"
@@ -578,23 +576,29 @@ export default function QuestionEditor() {
             Difficulty
           </label>
           <div className="flex gap-1.5" role="group" aria-labelledby={difficultyId}>
-            {DIFFICULTY_OPTIONS.map((d) => (
+            {DIFFICULTY_VALUES.map((d) => (
               <button
-                key={d.value}
+                key={d}
                 onClick={() =>
                   updateDraft({
                     difficulty:
-                      draft.difficulty === d.value ? undefined : d.value,
+                      draft.difficulty === d ? undefined : d,
                   })
                 }
-                aria-pressed={draft.difficulty === d.value}
+                aria-pressed={draft.difficulty === d}
                 className={`flex-1 rounded-lg border px-2 py-1.5 text-xs font-bold transition-all ${
-                  draft.difficulty === d.value
-                    ? `${d.color} border-current scale-105`
+                  draft.difficulty === d
+                    ? `${
+                        d === "easy"
+                          ? "bg-green-100 text-green-700 border-green-300"
+                          : d === "medium"
+                            ? "bg-yellow-100 text-yellow-700 border-yellow-300"
+                            : "bg-red-100 text-red-700 border-red-300"
+                      } border-current scale-105`
                     : "border-ink-light/20 bg-white text-ink-muted hover:bg-gray-50"
                 }`}
               >
-                {d.label}
+                {t(d)}
               </button>
             ))}
           </div>
@@ -620,7 +624,7 @@ export default function QuestionEditor() {
           {/* Points */}
           <div>
             <label htmlFor={pointsId} className="block text-xs font-bold text-ink-dark mb-1">
-              Points
+              {t("points")}
             </label>
             <input
               id={pointsId}
@@ -640,7 +644,7 @@ export default function QuestionEditor() {
           <div>
             <label htmlFor={tagsId} className="block text-xs font-bold text-ink-dark mb-1">
               <Tag className="inline h-3 w-3 mr-1" />
-              Tags
+              {t("tags")}
             </label>
             <div className="flex flex-wrap gap-1.5 mb-2">
               {(draft.tags ?? []).map((tag) => (
@@ -652,7 +656,7 @@ export default function QuestionEditor() {
                   <button
                     onClick={() => removeTag(tag)}
                     className="hover:text-red-500 transition-colors"
-                    aria-label={`Remove tag ${tag}`}
+                    aria-label={t("removeTag", { tag })}
                   >
                     <X className="h-3 w-3" />
                   </button>
@@ -671,14 +675,14 @@ export default function QuestionEditor() {
                     addTag();
                   }
                 }}
-                placeholder="Add a tag..."
+                placeholder={t("addTagPlaceholder")}
                 className="flex-1 rounded-lg border-2 border-ink-light/30 bg-white px-3 py-1.5 text-xs text-ink-dark focus:border-showcase-purple focus:outline-none focus:ring-2 focus:ring-showcase-purple/10 transition-all"
               />
               <button
                 onClick={addTag}
                 className="rounded-lg border-2 border-ink-light/30 bg-white px-3 py-1.5 text-xs font-bold text-ink-muted hover:border-showcase-purple hover:text-showcase-purple transition-all"
               >
-                Add
+                {t("add")}
               </button>
             </div>
           </div>
@@ -697,7 +701,7 @@ export default function QuestionEditor() {
           }`}
         >
           <Sparkles className="h-4 w-4" />
-          {editingQuestion ? "Update & New" : "Save & New"}
+          {editingQuestion ? t("updateAndNew") : t("saveAndNew")}
         </button>
         <button
           onClick={handleSaveAndView}
@@ -709,7 +713,7 @@ export default function QuestionEditor() {
           }`}
         >
           <Check className="h-4 w-4" />
-          Save
+          {t("save")}
         </button>
       </div>
     </div>

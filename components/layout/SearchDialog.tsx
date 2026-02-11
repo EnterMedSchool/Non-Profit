@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useCallback, useRef, useMemo } from "react";
 import { useRouter } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Search,
   X,
@@ -20,7 +20,11 @@ import {
 } from "lucide-react";
 import { AnimatePresence, m } from "framer-motion";
 import Fuse from "fuse.js";
-import { getSearchItems, type SearchItem } from "@/lib/search/searchIndex";
+import {
+  getSearchItems,
+  type SearchItem,
+  type SearchItemWithKeys,
+} from "@/lib/search/searchIndex";
 
 /* ─── Category config ──────────────────────────────────────────────────── */
 
@@ -79,58 +83,58 @@ const categoryOrder: SearchItem["category"][] = [
   "visual",
 ];
 
-/* ─── Quick Links ──────────────────────────────────────────────────────── */
+/* ─── Quick Links (locale-prefixed at runtime) ───────────────────────────── */
 
-const quickLinks = [
+const quickLinkConfig = [
   {
-    title: "Resources",
-    description: "Browse all resources",
-    href: "/en/resources",
+    titleKey: "quickLinkResources",
+    descKey: "quickLinkResourcesDesc",
+    path: "/resources",
     icon: BookOpen,
     color: "text-showcase-teal",
     bg: "bg-pastel-mint",
   },
   {
-    title: "Practice Questions",
-    description: "Clinical cases & MCQs",
-    href: "/en/resources/questions",
+    titleKey: "quickLinkPracticeQuestions",
+    descKey: "quickLinkPracticeQuestionsDesc",
+    path: "/resources/questions",
     icon: FileText,
     color: "text-showcase-purple",
     bg: "bg-pastel-lavender",
   },
   {
-    title: "Video Lessons",
-    description: "Visual explanations",
-    href: "/en/resources/videos",
+    titleKey: "quickLinkVideoLessons",
+    descKey: "quickLinkVideoLessonsDesc",
+    path: "/resources/videos",
     icon: Eye,
     color: "text-showcase-pink",
     bg: "bg-pastel-peach",
   },
   {
-    title: "Medical Visuals",
-    description: "Diagrams & illustrations",
-    href: "/en/resources/visuals",
+    titleKey: "quickLinkMedicalVisuals",
+    descKey: "quickLinkMedicalVisualsDesc",
+    path: "/resources/visuals",
     icon: Sparkles,
     color: "text-showcase-blue",
     bg: "bg-pastel-sky",
   },
   {
-    title: "For Professors",
-    description: "Teaching resources",
-    href: "/en/for-professors",
+    titleKey: "quickLinkForProfessors",
+    descKey: "quickLinkForProfessorsDesc",
+    path: "/for-professors",
     icon: GraduationCap,
     color: "text-showcase-orange",
     bg: "bg-pastel-lemon",
   },
   {
-    title: "Tools",
-    description: "Calculators & more",
-    href: "/en/tools",
+    titleKey: "quickLinkTools",
+    descKey: "quickLinkToolsDesc",
+    path: "/tools",
     icon: Wrench,
     color: "text-showcase-coral",
     bg: "bg-pastel-peach",
   },
-];
+] as const;
 
 /* ─── Highlight helper ─────────────────────────────────────────────────── */
 
@@ -159,26 +163,66 @@ function highlightMatch(text: string, query: string): React.ReactNode {
 
 export default function SearchDialog() {
   const t = useTranslations("search");
+  const locale = useLocale();
   const router = useRouter();
+
+  const quickLinks = useMemo(
+    () =>
+      quickLinkConfig.map((link) => ({
+        ...link,
+        href: `/${locale}${link.path}`,
+      })),
+    [locale]
+  );
   const [open, setOpen] = useState(false);
   const [query, setQuery] = useState("");
-  const [results, setResults] = useState<SearchItem[]>([]);
+  const [results, setResults] = useState<
+    Array<{ title: string; description: string; href: string; category: SearchItem["category"] }>
+  >([]);
   const [activeIndex, setActiveIndex] = useState(-1);
   const inputRef = useRef<HTMLInputElement>(null);
   const resultsRef = useRef<HTMLDivElement>(null);
-  const fuseRef = useRef<Fuse<SearchItem> | null>(null);
+  const fuseRef = useRef<
+    Fuse<{ title: string; description: string; href: string; category: SearchItem["category"] }> | null
+  >(null);
+
+  /* Resolve item to title/description (translate keys or use plain text) */
+  const resolveItem = useCallback(
+    (
+      item: SearchItem
+    ): { title: string; description: string; href: string; category: SearchItem["category"] } => {
+      const href = item.href;
+      const category = item.category;
+      if ("titleKey" in item && "descriptionKey" in item) {
+        return {
+          title: t((item as SearchItemWithKeys).titleKey),
+          description: t((item as SearchItemWithKeys).descriptionKey),
+          href,
+          category,
+        };
+      }
+      return {
+        title: (item as { title: string; description: string }).title,
+        description: (item as { title: string; description: string }).description,
+        href,
+        category,
+      };
+    },
+    [t]
+  );
 
   /* Lazy-init Fuse with full search items (including visuals) on first open */
   useEffect(() => {
     if (!open || fuseRef.current) return;
     getSearchItems().then((items) => {
-      fuseRef.current = new Fuse(items, {
+      const resolved = items.map(resolveItem);
+      fuseRef.current = new Fuse(resolved, {
         keys: ["title", "description", "category"],
         threshold: 0.3,
         includeScore: true,
       });
     });
-  }, [open]);
+  }, [open, resolveItem]);
 
   /* ── Grouped results ────────────────────────────────────────────────── */
 
@@ -214,14 +258,26 @@ export default function SearchDialog() {
     setActiveIndex(-1);
   }, []);
 
+  /* Invalidate Fuse index when locale changes so next open uses fresh translations */
+  useEffect(() => {
+    fuseRef.current = null;
+  }, [locale]);
+
   /* ── Navigate to result ─────────────────────────────────────────────── */
 
   const navigateTo = useCallback(
     (href: string) => {
       handleClose();
-      router.push(href);
+      // href may be: (a) already localized e.g. /en/resources from quickLinks,
+      // or (b) locale-free e.g. /resources from search results
+      const alreadyLocalized = href.match(/^\/[a-z]{2}(\/|$)/);
+      const isRootRoute =
+        href.startsWith("/mcq") || href.startsWith("/editor") || href.startsWith("/flashcards") || href.startsWith("/create");
+      const localizedHref =
+        alreadyLocalized || isRootRoute ? href : `/${locale}${href}`;
+      router.push(localizedHref);
     },
-    [handleClose, router]
+    [handleClose, router, locale]
   );
 
   /* ── Keyboard shortcut: Cmd+K / Ctrl+K ──────────────────────────────── */
@@ -356,14 +412,14 @@ export default function SearchDialog() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t("placeholder")}
-                  aria-label="Search"
+                  aria-label={t("ariaSearch")}
                   className="flex-1 bg-transparent font-display text-lg font-medium outline-none placeholder:text-ink-light/70"
                   autoComplete="off"
                   spellCheck={false}
                 />
                 <button
                   onClick={handleClose}
-                  aria-label="Close search"
+                  aria-label={t("ariaClose")}
                   className="flex h-8 items-center gap-1 rounded-lg border-2 border-ink-light/20 px-2 text-xs font-bold text-ink-muted transition-colors hover:border-ink-light/40 hover:bg-pastel-lavender/50"
                 >
                   <span className="hidden sm:inline">ESC</span>
@@ -474,7 +530,7 @@ export default function SearchDialog() {
                       {t("noResultsSuggestion")}
                     </p>
                     <button
-                      onClick={() => navigateTo("/en/resources")}
+                      onClick={() => navigateTo(`/${locale}/resources`)}
                       className="mt-4 inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender px-4 py-2 text-sm font-bold text-showcase-purple transition-all hover:border-showcase-purple/40 hover:shadow-sm"
                     >
                       {t("browseAll")}
@@ -511,10 +567,10 @@ export default function SearchDialog() {
                             </div>
                             <div>
                               <span className="font-display text-sm font-bold text-ink-dark">
-                                {link.title}
+                                {t(link.titleKey)}
                               </span>
                               <p className="mt-0.5 text-[11px] leading-tight text-ink-muted">
-                                {link.description}
+                                {t(link.descKey)}
                               </p>
                             </div>
                           </button>

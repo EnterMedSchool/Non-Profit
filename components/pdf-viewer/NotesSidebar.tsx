@@ -71,7 +71,7 @@ export default function NotesSidebar() {
             transition={{ type: "spring", damping: 25, stiffness: 200 }}
             role="dialog"
             aria-modal="true"
-            aria-label="Chapter Notes"
+            aria-label={t("title")}
             className="fixed right-0 top-0 z-[61] flex h-full w-full max-w-md flex-col border-l-3 border-showcase-navy/10 bg-white shadow-lg"
           >
             {/* Header */}
@@ -79,7 +79,7 @@ export default function NotesSidebar() {
               <div className="flex items-center gap-2">
                 <StickyNote className="h-5 w-5 text-showcase-teal" />
                 <h3 className="font-display text-lg font-bold text-ink-dark">
-                  Notes
+                  {t("title")}
                 </h3>
                 <span className="rounded-full bg-showcase-teal/10 px-2 py-0.5 text-xs font-bold text-showcase-teal">
                   {chapterNotes.length}
@@ -88,7 +88,7 @@ export default function NotesSidebar() {
               <button
                 onClick={() => setNotesPanelOpen(false)}
                 className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors hover:bg-gray-100"
-                aria-label="Close notes panel"
+                aria-label={t("closePanel")}
               >
                 <X className="h-4 w-4" />
               </button>
@@ -100,7 +100,7 @@ export default function NotesSidebar() {
                 <textarea
                   value={newNoteContent}
                   onChange={(e) => setNewNoteContent(e.target.value)}
-                  placeholder="Add a note for this chapter..."
+                  placeholder={t("addPlaceholder")}
                   className="flex-1 resize-none rounded-xl border-3 border-showcase-navy/15 bg-gray-50 px-3 py-2 text-sm outline-none transition-colors placeholder:text-ink-light focus:border-showcase-teal focus:bg-white"
                   rows={2}
                   onKeyDown={(e) => {
@@ -118,7 +118,7 @@ export default function NotesSidebar() {
                 </button>
               </div>
               <p className="mt-1 text-[10px] text-ink-light">
-                Ctrl+Enter to save
+                {t("ctrlEnter")}
               </p>
             </div>
 
@@ -130,10 +130,10 @@ export default function NotesSidebar() {
                     <MessageSquare className="h-8 w-8 text-showcase-teal/40" />
                   </div>
                   <p className="mt-4 font-handwritten text-xl text-ink-muted">
-                    No notes yet...
+                    {t("noNotes")}
                   </p>
                   <p className="mt-1 text-xs text-ink-light">
-                    Add your first note above
+                    {t("addFirst")}
                   </p>
                 </div>
               ) : (
@@ -157,13 +157,13 @@ export default function NotesSidebar() {
                               onClick={() => setEditingNoteId(null)}
                               className="rounded-lg px-3 py-1 text-xs font-semibold text-ink-muted hover:bg-gray-100"
                             >
-                              Cancel
+                              {t("cancel")}
                             </button>
                             <button
                               onClick={handleSaveEdit}
                               className="flex items-center gap-1 rounded-lg bg-showcase-teal px-3 py-1 text-xs font-semibold text-white"
                             >
-                              <Check className="h-3 w-3" /> Save
+                              <Check className="h-3 w-3" /> {t("save")}
                             </button>
                           </div>
                         </div>
@@ -182,16 +182,16 @@ export default function NotesSidebar() {
                                   handleStartEdit(note.id, note.content)
                                 }
                                 className="flex h-6 w-6 items-center justify-center rounded text-ink-light hover:bg-gray-200 hover:text-ink-dark"
-                                title="Edit"
-                                aria-label="Edit note"
+                                title={t("edit")}
+                                aria-label={t("edit")}
                               >
                                 <Edit3 className="h-3 w-3" />
                               </button>
                               <button
                                 onClick={() => annotations.removeNote(note.id)}
                                 className="flex h-6 w-6 items-center justify-center rounded text-ink-light hover:bg-red-50 hover:text-red-500"
-                                title="Delete"
-                                aria-label="Delete note"
+                                title={t("delete")}
+                                aria-label={t("delete")}
                               >
                                 <Trash2 className="h-3 w-3" />
                               </button>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { useState, useRef, useMemo, useEffect } from "react";
 import {
   Search,
@@ -46,15 +46,16 @@ const categoryPillColors: Record<string, { active: string; inactive: string }> =
 };
 
 const STEPS = [
-  { icon: ImageIcon, title: "Download PNGs", desc: "Individual layer PNGs for PowerPoint, Google Slides, or Keynote.", color: "showcase-green" },
-  { icon: Volume2, title: "Audio Narrations", desc: "Use as voiceover for lectures or flipped classroom recordings.", color: "showcase-purple" },
-  { icon: Package, title: "Download All", desc: "Get everything as a ZIP including your personalized attribution badge.", color: "showcase-teal" },
-  { icon: Code, title: "Embed on Site", desc: "Add an interactive lesson viewer to your website with custom colors.", color: "showcase-blue" },
-  { icon: Shield, title: "Attribution", desc: "Required for all use. Get your badge and contact us for approval.", color: "showcase-coral", emphasis: true },
+  { icon: ImageIcon, key: "0", color: "showcase-green" },
+  { icon: Volume2, key: "1", color: "showcase-purple" },
+  { icon: Package, key: "2", color: "showcase-teal" },
+  { icon: Code, key: "3", color: "showcase-blue" },
+  { icon: Shield, key: "4", color: "showcase-coral", emphasis: true },
 ];
 
 export default function VisualsPage() {
   const t = useTranslations("resources");
+  const locale = useLocale();
   const [activeCategory, setActiveCategory] = useState("all");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
@@ -106,20 +107,20 @@ export default function VisualsPage() {
     <>
       <main className="relative z-10 py-12 sm:py-20">
         {/* JSON-LD structured data */}
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Medical Visuals & Assets", "Download layered PNGs, audio narrations, and visual assets for medical education.", `${BASE_URL}/en/resources/visuals`)) }} />
-        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCourseJsonLd("Medical Visual Lessons", "Interactive layered visual lessons for medical education covering anatomy, pharmacology, and more.", `${BASE_URL}/en/resources/visuals`, "en")) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd(t("visuals.jsonLd.title"), t("visuals.jsonLd.description"), `${BASE_URL}/${locale}/resources/visuals`, locale)) }} />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCourseJsonLd(t("visuals.jsonLd.courseTitle"), t("visuals.jsonLd.courseDescription"), `${BASE_URL}/${locale}/resources/visuals`, locale)) }} />
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* ── Hero Section ── */}
           <PageHero
-            titlePre="Medical"
-            titleHighlight="Visuals"
-            titlePost="& Assets"
+            titlePre={t("visuals.hero.titlePre")}
+            titleHighlight={t("visuals.hero.titleHighlight")}
+            titlePost={t("visuals.hero.titlePost")}
             gradient="from-showcase-purple via-showcase-teal to-showcase-green"
-            annotation="100% free for educators!"
+            annotation={t("visuals.hero.annotation")}
             annotationColor="text-showcase-teal"
-            subtitle="Download layered PNGs, audio narrations, and visual assets for your slides, handouts, and teaching materials."
+            subtitle={t("visuals.hero.subtitle")}
             floatingIcons={<>
               <Pill className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
               <Heart className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-coral/15 animate-float-playful" style={{ animationDelay: "1s" }} />
@@ -144,20 +145,19 @@ export default function VisualsPage() {
                 </div>
                 <div className="flex-1">
                   <h3 className="font-display text-base font-bold text-ink-dark sm:text-lg">
-                    Attribution Required
+                    {t("visuals.attributionBanner.title")}
                   </h3>
                   <p className="mt-1 text-sm text-ink-muted leading-relaxed">
-                    All assets are free for non-commercial educational use.
-                    Attribution is <strong>required</strong> for both online and offline use. Contact{" "}
+                    {t("visuals.attributionBanner.description")}{" "}
                     <a href="mailto:ari@entermedschool.com" className="font-semibold text-showcase-teal hover:underline">
                       ari@entermedschool.com
                     </a>{" "}
                     for approval.
                   </p>
                   <div className="mt-3 flex flex-wrap gap-2">
-                    <a href="/en/license" className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-teal/30 bg-showcase-teal/10 px-3 py-1 text-xs font-bold text-showcase-teal transition-all hover:bg-showcase-teal/20 hover:shadow-sm">
+                    <a href={`/${locale}/license`} className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-teal/30 bg-showcase-teal/10 px-3 py-1 text-xs font-bold text-showcase-teal transition-all hover:bg-showcase-teal/20 hover:shadow-sm">
                       <ExternalLink className="h-3 w-3" />
-                      Get Badge
+                      {t("visuals.attributionBanner.getBadge")}
                     </a>
                     <a href="https://entermedschool.com" rel="dofollow" className="inline-flex items-center gap-1 rounded-full border-2 border-showcase-purple/20 bg-showcase-purple/5 px-3 py-1 text-xs font-bold text-showcase-purple transition-all hover:bg-showcase-purple/15">
                       entermedschool.com
@@ -184,7 +184,7 @@ export default function VisualsPage() {
                   onFocus={() => setSearchFocused(true)}
                   onBlur={() => setSearchFocused(false)}
                   aria-label="Search visuals"
-                  placeholder="Search visuals, topics, facts..."
+                  placeholder={t("visuals.searchPlaceholder")}
                   className={`w-full rounded-2xl border-3 bg-white py-3 pl-12 pr-4 text-sm shadow-md outline-none transition-all duration-300 ${
                     searchFocused
                       ? "border-showcase-purple shadow-[0_0_20px_rgba(108,92,231,0.2)]"
@@ -204,7 +204,7 @@ export default function VisualsPage() {
                           activeCategory === cat ? pillColors.active : pillColors.inactive
                         }`}
                       >
-                        {cat === "all" ? "All Categories" : cat}
+                        {cat === "all" ? t("visuals.allCategories") : cat}
                       </button>
                     </AnimatedSection>
                   );
@@ -221,7 +221,7 @@ export default function VisualsPage() {
               className="mt-3 text-sm text-ink-muted"
             >
               <span className="font-bold text-showcase-purple">{filteredLessons.length}</span>{" "}
-              {filteredLessons.length === 1 ? "result" : "results"} found
+              {filteredLessons.length === 1 ? t("visuals.resultsFound") : t("visuals.resultsFoundPlural")} {t("visuals.found")}
               {debouncedSearchQuery.trim() && (
                 <span> for &ldquo;<span className="font-semibold">{debouncedSearchQuery}</span>&rdquo;</span>
               )}
@@ -251,10 +251,10 @@ export default function VisualsPage() {
                   <div className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full bg-showcase-coral/20 animate-pulse" />
                 </div>
                 <p className="mt-6 font-handwritten text-2xl text-ink-muted">
-                  No visuals found...
+                  {t("visuals.emptyState.title")}
                 </p>
                 <p className="mt-2 text-sm text-ink-light max-w-sm">
-                  Try adjusting your search or clearing the category filter.
+                  {t("visuals.emptyState.hint")}
                 </p>
                 <button
                   onClick={() => {
@@ -263,7 +263,7 @@ export default function VisualsPage() {
                   }}
                   className="mt-4 rounded-full border-2 border-showcase-purple/30 bg-showcase-purple/5 px-5 py-2 text-sm font-bold text-showcase-purple transition-all hover:bg-showcase-purple/10"
                 >
-                  Reset Filters
+                  {t("visuals.emptyState.resetFilters")}
                 </button>
               </div>
             </AnimatedSection>
@@ -274,15 +274,15 @@ export default function VisualsPage() {
             <div className="mt-16">
               <div className="text-center mb-8">
                 <h2 className="font-display text-2xl font-bold text-ink-dark sm:text-3xl">
-                  How to Use These Assets
+                  {t("visuals.howToUse.title")}
                 </h2>
-                <p className="mt-2 text-sm text-ink-muted">Five simple steps from download to presentation</p>
+                <p className="mt-2 text-sm text-ink-muted">{t("visuals.howToUse.subtitle")}</p>
               </div>
               <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-5 items-stretch">
                 {STEPS.map((step, i) => {
                   const Icon = step.icon;
                   return (
-                    <AnimatedSection key={step.title} delay={0.35 + i * 0.08} animation="popIn" spring className="h-full">
+                    <AnimatedSection key={step.key} delay={0.35 + i * 0.08} animation="popIn" spring className="h-full">
                       <div className={`relative h-full flex flex-col items-center rounded-2xl border-3 p-5 text-center transition-all hover:-translate-y-1 hover:shadow-chunky ${
                         step.emphasis
                           ? "border-showcase-coral bg-showcase-coral/5 hover:shadow-chunky-coral"
@@ -302,18 +302,18 @@ export default function VisualsPage() {
                           {i + 1}
                         </span>
                         <h4 className="mt-3 font-display text-sm font-bold text-ink-dark">
-                          {step.title}
+                          {t(`visuals.howToUse.steps.${step.key}.title`)}
                         </h4>
                         <p className="mt-1 flex-1 text-xs text-ink-muted leading-relaxed">
-                          {step.desc}
+                          {t(`visuals.howToUse.steps.${step.key}.desc`)}
                         </p>
                         {step.emphasis && (
                           <div className="mt-3 flex justify-center gap-2">
-                            <a href="/en/license" className="text-[10px] font-bold text-showcase-coral underline hover:no-underline">
-                              Get Badge
+                            <a href={`/${locale}/license`} className="text-[10px] font-bold text-showcase-coral underline hover:no-underline">
+                              {t("visuals.attributionBanner.getBadge")}
                             </a>
                             <a href="mailto:ari@entermedschool.com" className="text-[10px] font-bold text-showcase-coral hover:underline">
-                              Contact Us
+                              {t("visuals.attributionBanner.contactUs")}
                             </a>
                           </div>
                         )}

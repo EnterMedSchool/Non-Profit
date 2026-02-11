@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import type { LaTeXSnippet, Difficulty } from "./types";
 import { GripVertical, ChevronDown, ChevronUp, BookOpen, Star } from "lucide-react";
 
@@ -25,6 +26,7 @@ export default function SnippetCard({
   isFavorite = false,
   onToggleFavorite,
 }: SnippetCardProps) {
+  const t = useTranslations("tools.latexEditor.ui");
   const [expanded, setExpanded] = useState(false);
 
   const handleDragStart = (e: React.DragEvent) => {
@@ -57,7 +59,7 @@ export default function SnippetCard({
                 ? "text-amber-400 hover:text-amber-500"
                 : "text-ink-dark/10 hover:text-amber-300"
             }`}
-            title={isFavorite ? "Remove from favorites" : "Add to favorites"}
+            title={isFavorite ? t("removeFromFavorites") : t("addToFavorites")}
           >
             <Star size={12} fill={isFavorite ? "currentColor" : "none"} />
           </button>
@@ -80,14 +82,14 @@ export default function SnippetCard({
         <button
           onClick={() => onInsert(snippet.code)}
           className="px-2 py-1 rounded-md bg-showcase-purple/10 text-showcase-purple text-[10px] font-bold hover:bg-showcase-purple/20 transition-colors flex-shrink-0"
-          title="Click to insert at cursor"
+          title={t("clickToInsert")}
         >
-          Insert
+          {t("insert")}
         </button>
         <button
           onClick={() => setExpanded(!expanded)}
           className="p-1 rounded-md text-ink-light hover:text-ink-muted hover:bg-pastel-cream transition-colors flex-shrink-0"
-          title={expanded ? "Collapse" : "Show code"}
+          title={expanded ? t("collapse") : t("showCode")}
         >
           {expanded ? <ChevronUp size={12} /> : <ChevronDown size={12} />}
         </button>
@@ -111,7 +113,7 @@ export default function SnippetCard({
               className="flex items-center gap-1 mt-1.5 text-[10px] font-semibold text-showcase-purple hover:underline"
             >
               <BookOpen size={10} />
-              Learn more
+              {t("learnMore")}
             </button>
           </div>
         </div>

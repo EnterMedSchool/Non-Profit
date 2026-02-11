@@ -12,6 +12,7 @@ import {
   Layers,
   MessageSquareText,
 } from "lucide-react";
+import { useLocale, useTranslations } from "next-intl";
 import { useAudioPlayer } from "@/hooks/useAudioPlayer";
 import EmbedAttribution from "@/components/embed/EmbedAttribution";
 import EmbedSubtitleOverlay from "@/components/embed/EmbedSubtitleOverlay";
@@ -40,6 +41,8 @@ export default function EmbedLayerViewer({
   radius,
   theme,
 }: EmbedLayerViewerProps) {
+  const locale = useLocale();
+  const t = useTranslations("embed.viewer");
   const [currentIndex, setCurrentIndex] = useState(0);
   const [revealedLayers, setRevealedLayers] = useState<Set<number>>(
     new Set([0])
@@ -181,7 +184,7 @@ export default function EmbedLayerViewer({
       ? (currentIndex / (lesson.layers.length - 1)) * 100
       : 100;
 
-  const lessonUrl = `${BASE_URL}/en/resources/visuals`;
+  const lessonUrl = `${BASE_URL}/${locale}/resources/visuals`;
 
   return (
     <div
@@ -221,7 +224,7 @@ export default function EmbedLayerViewer({
               className="text-[10px] uppercase tracking-wider"
               style={{ color: mutedColor }}
             >
-              Interactive Visual
+              {t("interactiveVisual")}
             </span>
           </div>
           <p
@@ -239,7 +242,7 @@ export default function EmbedLayerViewer({
             border: `1px solid ${borderCol}`,
           }}
         >
-          {lesson.layers.length} layers
+          {t("layersCount", { count: lesson.layers.length })}
         </div>
       </div>
 
@@ -327,7 +330,7 @@ export default function EmbedLayerViewer({
                   className="text-xs font-medium"
                   style={{ color: mutedColor }}
                 >
-                  Loading...
+                  {t("loading")}
                 </span>
               </div>
             </m.div>
@@ -379,10 +382,10 @@ export default function EmbedLayerViewer({
                     className="text-sm font-semibold"
                     style={{ color: textColor }}
                   >
-                    Press play to start
+                    {t("pressPlayToStart")}
                   </p>
                   <p className="text-[10px]" style={{ color: mutedColor }}>
-                    Listen to the narration for each layer
+                    {t("listenToNarration")}
                   </p>
                 </div>
               </m.button>
@@ -516,7 +519,10 @@ export default function EmbedLayerViewer({
               className="text-[10px] truncate leading-tight"
               style={{ color: mutedColor }}
             >
-              Layer {currentIndex + 1} of {lesson.layers.length}
+              {t("layerOf", {
+                current: currentIndex + 1,
+                total: lesson.layers.length,
+              })}
             </p>
           </div>
 
@@ -537,7 +543,7 @@ export default function EmbedLayerViewer({
                   showSubtitles ? `${accentHex}40` : borderCol
                 }`,
               }}
-              title={showSubtitles ? "Hide narration" : "Show narration"}
+              title={showSubtitles ? t("hideNarration") : t("showNarration")}
             >
               <MessageSquareText className="h-3.5 w-3.5" />
             </button>

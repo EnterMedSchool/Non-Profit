@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { Shield, Pencil, ExternalLink, ChevronDown } from "lucide-react";
 import { m, AnimatePresence } from "framer-motion";
 import { loadAttribution, hasValidAttribution } from "@/lib/attribution";
@@ -17,6 +18,8 @@ interface AttributionBannerProps {
  * Only renders when the user already has valid attribution stored.
  */
 export default function AttributionBanner({ onUpdated }: AttributionBannerProps) {
+  const locale = useLocale();
+  const t = useTranslations("resources.attributionBannerComponent");
   const [details, setDetails] = useState<{ name: string; position: string } | null>(null);
   const [collapsed, setCollapsed] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
@@ -80,7 +83,7 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
           >
             <Shield className="h-3.5 w-3.5 text-showcase-teal" />
             <span>
-              Attributed to <strong className="text-ink-dark">{details.name}</strong>
+              {t("attributedTo")} <strong className="text-ink-dark">{details.name}</strong>
             </span>
             <ChevronDown className="h-3 w-3 text-ink-light" />
           </m.button>
@@ -97,7 +100,7 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
               <Shield className="mt-0.5 h-4 w-4 flex-shrink-0 text-showcase-teal" />
               <div className="min-w-0">
                 <p className="text-xs leading-relaxed text-ink-muted">
-                  Your downloads will be attributed to{" "}
+                  {t("downloadsAttributedTo")}{" "}
                   <strong className="text-ink-dark">{details.name}</strong>
                   {details.position && (
                     <span className="text-ink-light"> ({details.position})</span>
@@ -112,19 +115,19 @@ export default function AttributionBanner({ onUpdated }: AttributionBannerProps)
                 className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-teal/30 bg-white px-2.5 py-1 text-xs font-bold text-showcase-teal transition-all hover:bg-showcase-teal hover:text-white"
               >
                 <Pencil className="h-3 w-3" />
-                Edit
+                {t("edit")}
               </button>
               <a
-                href="/en/license#generator"
+                href={`/${locale}/license#generator`}
                 className="inline-flex items-center gap-1 text-xs font-semibold text-showcase-purple hover:underline"
               >
-                Badge Generator
+                {t("badgeGenerator")}
                 <ExternalLink className="h-3 w-3" />
               </a>
               <button
                 onClick={handleCollapse}
                 className="ml-1 text-ink-light hover:text-ink-muted transition-colors"
-                aria-label="Minimize"
+                aria-label={t("ariaMinimize")}
               >
                 <svg className="h-3.5 w-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
                   <path strokeLinecap="round" d="M5 12h14" />

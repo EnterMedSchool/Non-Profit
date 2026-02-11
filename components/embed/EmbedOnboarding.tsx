@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
 import { Play, ChevronRight, MessageSquareText, Layers } from "lucide-react";
 
@@ -22,6 +23,7 @@ export default function EmbedOnboarding({
   accentColor,
   onDismiss,
 }: EmbedOnboardingProps) {
+  const t = useTranslations("embed.onboarding");
   const isDark = theme === "dark";
   const accentHex = `#${accentColor}`;
 
@@ -51,26 +53,10 @@ export default function EmbedOnboarding({
   const borderColor = isDark ? "rgba(255,255,255,0.1)" : "rgba(26,26,46,0.08)";
 
   const hints = [
-    {
-      icon: Play,
-      title: "Listen & Learn",
-      desc: "Press play to hear the narration for each layer",
-    },
-    {
-      icon: ChevronRight,
-      title: "Navigate Layers",
-      desc: "Use arrows or click the dots to explore",
-    },
-    {
-      icon: MessageSquareText,
-      title: "Read Along",
-      desc: "Follow the narration text as you listen",
-    },
-    {
-      icon: Layers,
-      title: "Build the Picture",
-      desc: "Each layer adds new concepts to the scene",
-    },
+    { icon: Play, title: t("listenLearn"), desc: t("listenLearnDesc") },
+    { icon: ChevronRight, title: t("navigateLayers"), desc: t("navigateLayersDesc") },
+    { icon: MessageSquareText, title: t("readAlong"), desc: t("readAlongDesc") },
+    { icon: Layers, title: t("buildThePicture"), desc: t("buildThePictureDesc") },
   ];
 
   return (
@@ -170,13 +156,13 @@ export default function EmbedOnboarding({
                 background: `linear-gradient(135deg, ${accentHex}, ${accentHex}cc)`,
               }}
             >
-              Got it, let&apos;s start!
+              {t("gotIt")}
             </button>
             <p
               className="mt-2 text-center text-[10px]"
               style={{ color: mutedColor }}
             >
-              or click anywhere / press any key
+              {t("orClickAnywhere")}
             </p>
           </div>
         </m.div>

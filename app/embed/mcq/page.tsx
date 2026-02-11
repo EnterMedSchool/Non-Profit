@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import dynamic from "next/dynamic";
+import { NextIntlClientProvider, useTranslations } from "next-intl";
 import type { MCQQuestion, MCQEmbedTheme } from "@/components/tools/mcq-maker/types";
 
 const MCQQuizViewer = dynamic(
@@ -15,6 +16,22 @@ const MCQQuizViewer = dynamic(
     ),
   }
 );
+
+type McqErrorKey = "noQuizData" | "noValidQuestions" | "decodeFailed";
+
+function MCQEmbedError({ errorKey }: { errorKey: McqErrorKey }) {
+  const t = useTranslations("embed.mcqErrors");
+  return (
+    <div className="flex min-h-screen items-center justify-center p-8 text-center">
+      <div>
+        <p className="text-lg font-bold text-gray-800 mb-2">
+          {t("couldNotLoadQuiz")}
+        </p>
+        <p className="text-sm text-gray-500">{t(errorKey)}</p>
+      </div>
+    </div>
+  );
+}
 
 /**
  * Embed route for the MCQ quiz viewer.
@@ -46,13 +63,18 @@ interface EmbedPayload {
 
 export default function MCQEmbedPage() {
   const [payload, setPayload] = useState<EmbedPayload | null>(null);
-  const [error, setError] = useState<string | null>(null);
+  const [errorKey, setErrorKey] = useState<McqErrorKey | null>(null);
+  const [messages, setMessages] = useState<Record<string, unknown> | null>(null);
+
+  useEffect(() => {
+    import("@/i18n/messages/en.json").then((mod) => setMessages(mod.default));
+  }, []);
 
   useEffect(() => {
     try {
       const hash = window.location.hash.slice(1); // Remove leading #
       if (!hash) {
-        setError("No quiz data found. The embed URL may be incomplete.");
+        setErrorKey("noQuizData");
         return;
       }
 
@@ -60,26 +82,29 @@ export default function MCQEmbedPage() {
       const data = JSON.parse(json) as EmbedPayload;
 
       if (!Array.isArray(data.questions) || data.questions.length === 0) {
-        setError("No valid questions in the quiz data.");
+        setErrorKey("noValidQuestions");
         return;
       }
 
       setPayload(data);
     } catch {
-      setError("Failed to decode quiz data. The embed URL may be corrupted.");
+      setErrorKey("decodeFailed");
     }
   }, []);
 
-  if (error) {
+  if (!messages) {
     return (
-      <div className="flex min-h-screen items-center justify-center p-8 text-center">
-        <div>
-          <p className="text-lg font-bold text-gray-800 mb-2">
-            Could not load quiz
-          </p>
-          <p className="text-sm text-gray-500">{error}</p>
-        </div>
+      <div className="flex min-h-screen items-center justify-center">
+        <div className="h-8 w-8 animate-spin rounded-full border-4 border-gray-200 border-t-purple-500" />
       </div>
+    );
+  }
+
+  if (errorKey) {
+    return (
+      <NextIntlClientProvider locale="en" messages={messages}>
+        <MCQEmbedError errorKey={errorKey} />
+      </NextIntlClientProvider>
     );
   }
 
@@ -92,16 +117,18 @@ export default function MCQEmbedPage() {
   }
 
   return (
-    <div className="min-h-screen flex items-stretch">
-      <div className="flex-1">
-        <MCQQuizViewer
-          questions={payload.questions}
-          theme={payload.theme}
-          title={payload.title}
-          timeLimit={payload.timeLimit}
-          passingScore={payload.passingScore}
-        />
+    <NextIntlClientProvider locale="en" messages={messages}>
+      <div className="min-h-screen flex items-stretch">
+        <div className="flex-1">
+          <MCQQuizViewer
+            questions={payload.questions}
+            theme={payload.theme}
+            title={payload.title}
+            timeLimit={payload.timeLimit}
+            passingScore={payload.passingScore}
+          />
+        </div>
       </div>
-    </div>
+    </NextIntlClientProvider>
   );
 }

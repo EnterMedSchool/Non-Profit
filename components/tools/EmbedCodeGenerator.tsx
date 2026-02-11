@@ -91,8 +91,10 @@ export default function EmbedCodeGenerator({
 
   // Wrap iframe in a div with dofollow attribution links for SEO backlinks
   const iframeCode = useMemo(() => {
-    return `<!-- ${toolTitle} — EnterMedSchool -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="100%" height="${embedHeight}"\n    style="border:none;border-radius:12px;overflow:hidden;"\n    title="${toolTitle} — EnterMedSchool"\n    loading="lazy"\n    allow="clipboard-write"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    Created by <a href="${COM_URL}" rel="dofollow" style="color:#6C5CE7;font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="${BASE_URL}" rel="dofollow" style="color:#6C5CE7;font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${fullUrl}" rel="dofollow" style="color:#6C5CE7;text-decoration:none;">Original Tool</a>\n  </p>\n</div>`;
-  }, [embedUrl, embedHeight, toolTitle, fullUrl]);
+    const createdBy = t("embedCode.createdBy");
+    const originalTool = t("embedCode.originalTool");
+    return `<!-- ${toolTitle} — EnterMedSchool -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="100%" height="${embedHeight}"\n    style="border:none;border-radius:12px;overflow:hidden;"\n    title="${toolTitle} — EnterMedSchool"\n    loading="lazy"\n    allow="clipboard-write"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    ${createdBy} <a href="${COM_URL}" rel="dofollow" style="color:#6C5CE7;font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="${BASE_URL}" rel="dofollow" style="color:#6C5CE7;font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${fullUrl}" rel="dofollow" style="color:#6C5CE7;text-decoration:none;">${originalTool}</a>\n  </p>\n</div>`;
+  }, [embedUrl, embedHeight, toolTitle, fullUrl, t]);
 
   // Tokenize for syntax highlighting
   const tokens = useMemo(() => tokenize(iframeCode), [iframeCode]);

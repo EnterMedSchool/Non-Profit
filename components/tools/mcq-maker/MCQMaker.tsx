@@ -1,6 +1,7 @@
 "use client";
 
 import { Component, useState, useCallback, useRef, type ReactNode } from "react";
+import { useTranslations } from "next-intl";
 import {
   PenLine,
   List,
@@ -25,14 +26,14 @@ import ExportPanel from "./ExportPanel";
 import EmbedPanel from "./EmbedPanel";
 import type { MCQPanel } from "./types";
 
-// ── Tab config ───────────────────────────────────────────────────────
-const TABS: { id: MCQPanel; label: string; icon: typeof PenLine }[] = [
-  { id: "editor", label: "Create", icon: PenLine },
-  { id: "bank", label: "Questions", icon: List },
-  { id: "import", label: "Import", icon: Upload },
-  { id: "exam", label: "Exam", icon: ClipboardList },
-  { id: "export", label: "Export", icon: FileDown },
-  { id: "embed", label: "Embed", icon: Code2 },
+// ── Tab config (labels filled in MCQMakerInner) ─────────────────────
+const TAB_IDS = [
+  { id: "editor" as const, key: "tabCreate", icon: PenLine },
+  { id: "bank" as const, key: "tabQuestions", icon: List },
+  { id: "import" as const, key: "tabImport", icon: Upload },
+  { id: "exam" as const, key: "tabExam", icon: ClipboardList },
+  { id: "export" as const, key: "tabExport", icon: FileDown },
+  { id: "embed" as const, key: "tabEmbed", icon: Code2 },
 ];
 
 // ── Error Boundary ──────────────────────────────────────────────────
@@ -116,6 +117,7 @@ function MobilePreviewSheet({
 
 // ── Inner layout (needs context) ─────────────────────────────────────
 function MCQMakerInner() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const { activePanel, setActivePanel, questions, storageWarning, clearStorageWarning } =
     useMCQ();
   const [mobilePreview, setMobilePreview] = useState(false);
@@ -130,20 +132,20 @@ function MCQMakerInner() {
       let nextIdx = idx;
       if (e.key === "ArrowRight" || e.key === "ArrowDown") {
         e.preventDefault();
-        nextIdx = (idx + 1) % TABS.length;
+        nextIdx = (idx + 1) % TAB_IDS.length;
       } else if (e.key === "ArrowLeft" || e.key === "ArrowUp") {
         e.preventDefault();
-        nextIdx = (idx - 1 + TABS.length) % TABS.length;
+        nextIdx = (idx - 1 + TAB_IDS.length) % TAB_IDS.length;
       } else if (e.key === "Home") {
         e.preventDefault();
         nextIdx = 0;
       } else if (e.key === "End") {
         e.preventDefault();
-        nextIdx = TABS.length - 1;
+        nextIdx = TAB_IDS.length - 1;
       } else {
         return;
       }
-      setActivePanel(TABS[nextIdx].id);
+        setActivePanel(TAB_IDS[nextIdx]!.id);
       // Focus the new tab button
       const tabList = tabListRef.current;
       if (tabList) {
@@ -166,9 +168,9 @@ function MCQMakerInner() {
           <button
             onClick={clearStorageWarning}
             className="font-bold hover:underline"
-            aria-label="Dismiss warning"
+            aria-label={t("dismiss")}
           >
-            Dismiss
+            {t("dismiss")}
           </button>
         </div>
       )}
@@ -189,10 +191,10 @@ function MCQMakerInner() {
             </div>
             <div>
               <h1 className="font-display text-lg font-bold text-ink-dark leading-tight">
-                MCQ Maker
+                {t("mcqMaker")}
               </h1>
               <p className="text-[11px] text-ink-muted leading-tight hidden sm:block">
-                Create, import, and export multiple choice questions & exams
+                {t("mcqMakerDesc")}
               </p>
             </div>
           </div>
@@ -204,7 +206,7 @@ function MCQMakerInner() {
             <button
               onClick={() => setMobilePreview(true)}
               className="lg:hidden flex h-8 w-8 items-center justify-center rounded-lg border-2 border-ink-light/20 bg-white text-ink-muted hover:border-showcase-purple hover:text-showcase-purple transition-colors"
-              aria-label="Preview question"
+              aria-label={t("previewQuestion")}
             >
               <Eye className="h-4 w-4" />
             </button>
@@ -215,7 +217,7 @@ function MCQMakerInner() {
               className="rounded-lg bg-pastel-lavender px-2.5 py-1 text-xs font-bold text-showcase-purple border border-showcase-purple/20"
               aria-live="polite"
             >
-              {questions.length} question{questions.length !== 1 ? "s" : ""}
+              {questions.length === 1 ? t("questionCount", { count: 1 }) : t("questionsCount", { count: questions.length })}
             </span>
           )}
         </div>
@@ -227,7 +229,7 @@ function MCQMakerInner() {
         role="tablist"
         aria-label="MCQ Maker tools"
       >
-        {TABS.map((tab, idx) => {
+        {TAB_IDS.map((tab, idx) => {
           const Icon = tab.icon;
           const isActive = activePanel === tab.id;
           return (
@@ -247,7 +249,7 @@ function MCQMakerInner() {
               }`}
             >
               <Icon className="h-4 w-4" />
-              {tab.label}
+              {t(tab.key)}
             </button>
           );
         })}
@@ -263,7 +265,7 @@ function MCQMakerInner() {
           aria-label="MCQ Maker tools"
           aria-orientation="vertical"
         >
-          {TABS.map((tab, idx) => {
+          {TAB_IDS.map((tab, idx) => {
             const Icon = tab.icon;
             const isActive = activePanel === tab.id;
             return (
@@ -321,18 +323,26 @@ function MCQMakerInner() {
       <MobilePreviewSheet
         open={mobilePreview}
         onClose={() => setMobilePreview(false)}
+        t={t}
       />
     </div>
   );
 }
 
 // ── Root export ──────────────────────────────────────────────────────
+function MCQMakerWithTranslations() {
+  const t = useTranslations("tools.mcqMaker.ui");
+  return (
+    <MCQErrorBoundary t={t}>
+      <MCQMakerInner />
+    </MCQErrorBoundary>
+  );
+}
+
 export default function MCQMaker() {
   return (
     <MCQProvider>
-      <MCQErrorBoundary>
-        <MCQMakerInner />
-      </MCQErrorBoundary>
+      <MCQMakerWithTranslations />
     </MCQProvider>
   );
 }

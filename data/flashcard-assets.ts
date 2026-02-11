@@ -10,6 +10,7 @@
 
 export interface FlashcardAsset {
   id: string;
+  language: string;
   label: string;
   /** Path relative to /public */
   src: string;

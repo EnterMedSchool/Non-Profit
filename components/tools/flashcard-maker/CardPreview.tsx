@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { m } from "framer-motion";
 import { ChevronLeft, ChevronRight, RotateCcw, Pencil, Check, X } from "lucide-react";
 import { useFlashcards } from "./FlashcardContext";
@@ -8,6 +9,7 @@ import { solidBackgrounds, getBackgroundById } from "@/data/flashcard-assets";
 
 // ── Component ────────────────────────────────────────────────────────
 export default function CardPreview() {
+  const t = useTranslations("tools.flashcardMaker.ui");
   const { cards, selectedCardIndex, setSelectedCardIndex, updateCard, theme } =
     useFlashcards();
   const [flipped, setFlipped] = useState(false);
@@ -120,9 +122,9 @@ export default function CardPreview() {
           </span>
         </div>
         <div>
-          <p className="font-display font-bold text-ink-dark">No cards yet</p>
+          <p className="font-display font-bold text-ink-dark">{t("noCardsYet")}</p>
           <p className="mt-1 text-sm text-ink-muted">
-            Import a CSV or TSV file to get started
+            {t("importToStart")}
           </p>
         </div>
       </div>
@@ -134,13 +136,13 @@ export default function CardPreview() {
     return (
       <div className="flex flex-col items-center justify-center h-full gap-4 px-4">
         <p className="text-sm font-bold text-ink-muted">
-          Editing card {safeIndex + 1} of {cards.length}
+          {t("editingCard", { current: safeIndex + 1, total: cards.length })}
         </p>
 
         <div className="w-full max-w-md flex flex-col gap-3">
           <label className="flex flex-col gap-1">
             <span className="text-xs font-bold text-ink-dark uppercase tracking-wide">
-              Front
+              {t("front")}
             </span>
             <textarea
               value={editFront}
@@ -148,19 +150,19 @@ export default function CardPreview() {
               rows={3}
               className="rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none resize-none"
               autoFocus
-              placeholder="Enter the question or term..."
+              placeholder={t("frontPlaceholder")}
             />
           </label>
           <label className="flex flex-col gap-1">
             <span className="text-xs font-bold text-ink-dark uppercase tracking-wide">
-              Back
+              {t("back")}
             </span>
             <textarea
               value={editBack}
               onChange={(e) => setEditBack(e.target.value)}
               rows={3}
               className="rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none resize-none"
-              placeholder="Enter the answer or definition..."
+              placeholder={t("backPlaceholder")}
             />
           </label>
           <div className="flex items-center justify-end gap-2">
@@ -169,14 +171,14 @@ export default function CardPreview() {
               className="inline-flex items-center gap-1 rounded-xl border-2 border-ink-light/30 px-3 py-2 text-sm font-bold text-ink-muted hover:border-ink-light/50 transition-all"
             >
               <X className="h-3.5 w-3.5" />
-              Cancel
+              {t("cancel")}
             </button>
             <button
               onClick={saveEdit}
               className="inline-flex items-center gap-1 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-4 py-2 text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
             >
               <Check className="h-3.5 w-3.5" />
-              Save
+              {t("save")}
             </button>
           </div>
         </div>
@@ -192,7 +194,7 @@ export default function CardPreview() {
     >
       {/* Card count */}
       <p className="text-sm font-bold text-ink-muted" aria-live="polite">
-        Card {safeIndex + 1} of {cards.length}
+        {t("cardOf", { current: safeIndex + 1, total: cards.length })}
       </p>
 
       {/* Flip card container */}
@@ -213,7 +215,7 @@ export default function CardPreview() {
         }}
         role="button"
         tabIndex={0}
-        aria-label={`Flashcard. ${flipped ? "Showing back" : "Showing front"}. Press space to flip.`}
+        aria-label={t("flashcardAria", { side: flipped ? t("showingBack") : t("showingFront") })}
       >
         {/* Edit button overlay */}
         <button
@@ -222,8 +224,8 @@ export default function CardPreview() {
             startEdit();
           }}
           className="absolute top-2 right-2 z-10 flex h-7 w-7 items-center justify-center rounded-lg bg-white/80 border border-ink-light/20 text-ink-muted opacity-0 group-hover:opacity-100 transition-opacity hover:bg-white hover:text-showcase-purple"
-          aria-label="Edit card"
-          title="Edit card"
+          aria-label={t("editCard")}
+          title={t("editCard")}
         >
           <Pencil className="h-3.5 w-3.5" />
         </button>
@@ -248,11 +250,11 @@ export default function CardPreview() {
             }}
           >
             <span className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
-              Front
+              {t("front")}
             </span>
             <p className="text-center leading-relaxed break-words max-w-full overflow-y-auto max-h-full">
               {card.front || (
-                <span className="text-ink-muted/50 italic">No content</span>
+                <span className="text-ink-muted/50 italic">{t("noContent")}</span>
               )}
             </p>
           </div>
@@ -268,11 +270,11 @@ export default function CardPreview() {
             }}
           >
             <span className="absolute top-2 left-3 text-[10px] font-bold text-ink-muted/40 uppercase tracking-wide">
-              Back
+              {t("back")}
             </span>
             <p className="text-center leading-relaxed break-words max-w-full overflow-y-auto max-h-full">
               {card.back || (
-                <span className="text-ink-muted/50 italic">No content</span>
+                <span className="text-ink-muted/50 italic">{t("noContent")}</span>
               )}
             </p>
           </div>
@@ -282,7 +284,7 @@ export default function CardPreview() {
       {/* Flip hint */}
       <p className="text-xs text-ink-muted flex items-center gap-1">
         <RotateCcw className="h-3 w-3" />
-        Click or press Space to flip
+        {t("clickToFlip")}
       </p>
 
       {/* Navigation */}
@@ -293,14 +295,14 @@ export default function CardPreview() {
             setSelectedCardIndex(Math.max(0, safeIndex - 1));
           }}
           disabled={safeIndex === 0}
-          aria-label="Previous card"
+          aria-label={t("previousCard")}
           className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink-light/30 bg-white transition-all hover:border-showcase-teal disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronLeft className="h-4 w-4 text-ink-dark" />
         </button>
 
         {/* Page dots -- smart pagination around active card */}
-        <div className="flex items-center gap-1" role="navigation" aria-label="Card navigation">
+        <div className="flex items-center gap-1" role="navigation" aria-label={t("cardNavigation")}>
           {(() => {
             const total = cards.length;
             const maxDots = 9;
@@ -312,7 +314,7 @@ export default function CardPreview() {
                     setFlipped(false);
                     setSelectedCardIndex(i);
                   }}
-                  aria-label={`Go to card ${i + 1}`}
+                  aria-label={t("goToCard", { num: i + 1 })}
                   aria-current={i === safeIndex ? "true" : undefined}
                   className={`h-6 w-6 flex items-center justify-center rounded-full transition-all ${
                     i === safeIndex
@@ -360,7 +362,7 @@ export default function CardPreview() {
                     setFlipped(false);
                     setSelectedCardIndex(i);
                   }}
-                  aria-label={`Go to card ${i + 1}`}
+                  aria-label={t("goToCard", { num: i + 1 })}
                   aria-current={i === safeIndex ? "true" : undefined}
                   className="h-6 w-6 flex items-center justify-center rounded-full"
                 >
@@ -384,7 +386,7 @@ export default function CardPreview() {
             setSelectedCardIndex(Math.min(cards.length - 1, safeIndex + 1));
           }}
           disabled={safeIndex === cards.length - 1}
-          aria-label="Next card"
+          aria-label={t("nextCard")}
           className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink-light/30 bg-white transition-all hover:border-showcase-teal disabled:opacity-30 disabled:cursor-not-allowed"
         >
           <ChevronRight className="h-4 w-4 text-ink-dark" />
@@ -393,7 +395,7 @@ export default function CardPreview() {
 
       {/* Keyboard hint */}
       <p className="text-[10px] text-ink-muted/50 hidden lg:block">
-        Use arrow keys to navigate
+        {t("arrowKeysHint")}
       </p>
     </div>
   );

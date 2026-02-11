@@ -6,6 +6,7 @@ export const latexSnippets: LaTeXSnippet[] = [
      ────────────────────────────────────────────────────────── */
   {
     id: "documentclass",
+    language: "en",
     title: "Document Class",
     category: "Document Structure",
     icon: "FileText",
@@ -20,6 +21,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "usepackage",
+    language: "en",
     title: "Use Package",
     category: "Document Structure",
     icon: "Package",
@@ -34,6 +36,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "common-packages",
+    language: "en",
     title: "Common Packages Bundle",
     category: "Document Structure",
     icon: "Layers",
@@ -54,6 +57,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "begin-document",
+    language: "en",
     title: "Document Body",
     category: "Document Structure",
     icon: "FileText",
@@ -72,6 +76,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "title-page",
+    language: "en",
     title: "Title & Author",
     category: "Document Structure",
     icon: "User",
@@ -91,6 +96,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "section",
+    language: "en",
     title: "Section",
     category: "Document Structure",
     icon: "Heading1",
@@ -105,6 +111,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "subsection",
+    language: "en",
     title: "Subsection",
     category: "Document Structure",
     icon: "Heading2",
@@ -119,6 +126,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "toc",
+    language: "en",
     title: "Table of Contents",
     category: "Document Structure",
     icon: "List",
@@ -138,6 +146,7 @@ export const latexSnippets: LaTeXSnippet[] = [
      ────────────────────────────────────────────────────────── */
   {
     id: "bold",
+    language: "en",
     title: "Bold Text",
     category: "Text Formatting",
     icon: "Bold",
@@ -152,6 +161,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "italic",
+    language: "en",
     title: "Italic Text",
     category: "Text Formatting",
     icon: "Italic",
@@ -166,6 +176,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "underline",
+    language: "en",
     title: "Underlined Text",
     category: "Text Formatting",
     icon: "Underline",
@@ -180,6 +191,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "emph",
+    language: "en",
     title: "Emphasis",
     category: "Text Formatting",
     icon: "Type",
@@ -198,6 +210,7 @@ export const latexSnippets: LaTeXSnippet[] = [
      ────────────────────────────────────────────────────────── */
   {
     id: "itemize",
+    language: "en",
     title: "Bullet List",
     category: "Lists",
     icon: "List",
@@ -216,6 +229,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "enumerate",
+    language: "en",
     title: "Numbered List",
     category: "Lists",
     icon: "ListOrdered",
@@ -234,6 +248,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "description-list",
+    language: "en",
     title: "Description List",
     category: "Lists",
     icon: "AlignLeft",
@@ -256,6 +271,7 @@ export const latexSnippets: LaTeXSnippet[] = [
      ────────────────────────────────────────────────────────── */
   {
     id: "inline-math",
+    language: "en",
     title: "Inline Math",
     category: "Math",
     icon: "Sigma",
@@ -270,6 +286,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "display-math",
+    language: "en",
     title: "Display Equation",
     category: "Math",
     icon: "Sigma",
@@ -284,6 +301,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "fraction",
+    language: "en",
     title: "Fraction",
     category: "Math",
     icon: "Divide",
@@ -298,6 +316,7 @@ export const latexSnippets: LaTeXSnippet[] = [
   },
   {
     id: "greek-letters",
+    language: "en",
     title: "Greek Letters",
     category: "Math",
     icon: "Languages",
@@ -315,6 +334,7 @@ $\\theta$ $\\lambda$ $\\mu$ $\\sigma$ $\\omega$
   },
   {
     id: "align",
+    language: "en",
     title: "Aligned Equations",
     category: "Math",
     icon: "AlignCenter",
@@ -333,6 +353,7 @@ $\\theta$ $\\lambda$ $\\mu$ $\\sigma$ $\\omega$
   },
   {
     id: "matrix",
+    language: "en",
     title: "Matrix",
     category: "Math",
     icon: "Grid3x3",
@@ -350,6 +371,7 @@ $\\theta$ $\\lambda$ $\\mu$ $\\sigma$ $\\omega$
   },
   {
     id: "sum-integral",
+    language: "en",
     title: "Sums & Integrals",
     category: "Math",
     icon: "Sigma",
@@ -375,6 +397,7 @@ $\\prod_{i=1}^{n} x_i$`,
      ────────────────────────────────────────────────────────── */
   {
     id: "basic-table",
+    language: "en",
     title: "Basic Table",
     category: "Tables",
     icon: "Table",
@@ -402,6 +425,7 @@ $\\prod_{i=1}^{n} x_i$`,
   },
   {
     id: "professional-table",
+    language: "en",
     title: "Professional Table",
     category: "Tables",
     icon: "Table",
@@ -433,6 +457,7 @@ $\\prod_{i=1}^{n} x_i$`,
      ────────────────────────────────────────────────────────── */
   {
     id: "figure",
+    language: "en",
     title: "Figure",
     category: "Figures",
     icon: "Image",
@@ -456,6 +481,7 @@ $\\prod_{i=1}^{n} x_i$`,
      ────────────────────────────────────────────────────────── */
   {
     id: "citation",
+    language: "en",
     title: "Citation & Footnote",
     category: "References",
     icon: "Quote",
@@ -477,6 +503,7 @@ As shown in Figure~\\ref{fig:myfig} and Table~\\ref{tab:mytable}.
   },
   {
     id: "bibliography",
+    language: "en",
     title: "Bibliography",
     category: "References",
     icon: "BookOpen",
@@ -499,6 +526,7 @@ As shown in Figure~\\ref{fig:myfig} and Table~\\ref{tab:mytable}.
      ────────────────────────────────────────────────────────── */
   {
     id: "soap-note",
+    language: "en",
     title: "SOAP Note",
     category: "Medical",
     icon: "Stethoscope",
@@ -533,6 +561,7 @@ Patient reports [chief complaint], duration [X days/weeks], associated with [sym
   },
   {
     id: "differential-dx",
+    language: "en",
     title: "Differential Diagnosis List",
     category: "Medical",
     icon: "ListChecks",
@@ -553,6 +582,7 @@ Patient reports [chief complaint], duration [X days/weeks], associated with [sym
   },
   {
     id: "patient-table",
+    language: "en",
     title: "Patient Data Table",
     category: "Medical",
     icon: "Table",
@@ -583,6 +613,7 @@ Patient reports [chief complaint], duration [X days/weeks], associated with [sym
   },
   {
     id: "lab-results",
+    language: "en",
     title: "Lab Results Table",
     category: "Medical",
     icon: "FlaskConical",
@@ -614,6 +645,7 @@ Patient reports [chief complaint], duration [X days/weeks], associated with [sym
   },
   {
     id: "drug-table",
+    language: "en",
     title: "Drug Dosage Table",
     category: "Medical",
     icon: "Pill",
@@ -642,6 +674,7 @@ Patient reports [chief complaint], duration [X days/weeks], associated with [sym
   },
   {
     id: "medical-symbols",
+    language: "en",
     title: "Medical Symbols",
     category: "Medical",
     icon: "Heart",
@@ -673,6 +706,7 @@ $\\%$ (percent), $\\degree$C (degrees)`,
      ────────────────────────────────────────────────────────── */
   {
     id: "page-setup",
+    language: "en",
     title: "Page Setup",
     category: "Layout",
     icon: "Layout",
@@ -692,6 +726,7 @@ $\\%$ (percent), $\\degree$C (degrees)`,
   },
   {
     id: "two-columns",
+    language: "en",
     title: "Two Columns",
     category: "Layout",
     icon: "Columns",
@@ -713,6 +748,7 @@ $\\%$ (percent), $\\degree$C (degrees)`,
   },
   {
     id: "line-spacing",
+    language: "en",
     title: "Line Spacing",
     category: "Layout",
     icon: "AlignJustify",
@@ -732,6 +768,7 @@ $\\%$ (percent), $\\degree$C (degrees)`,
   },
   {
     id: "abstract-env",
+    language: "en",
     title: "Abstract",
     category: "Layout",
     icon: "FileText",
@@ -748,6 +785,7 @@ Your abstract text goes here. Summarize your work in 150--250 words, covering th
   },
   {
     id: "blockquote",
+    language: "en",
     title: "Block Quote",
     category: "Layout",
     icon: "Quote",

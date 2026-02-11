@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { X, Check, Beaker } from "lucide-react";
 
 /* ── Symbol categories ────────────────────────────────────── */
@@ -202,6 +203,7 @@ interface EquationBuilderProps {
 }
 
 export default function EquationBuilder({ onInsert, onClose }: EquationBuilderProps) {
+  const t = useTranslations("tools.latexEditor.ui");
   const [activeCategory, setActiveCategory] = useState(SYMBOL_CATEGORIES[0].name);
   const [activeTab, setActiveTab] = useState<"symbols" | "medical">("symbols");
   const [equation, setEquation] = useState("");
@@ -241,7 +243,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
         <div className="flex items-center justify-between px-5 py-3 border-b border-ink-dark/5 flex-shrink-0">
           <div className="flex items-center gap-2">
             <span className="text-xl">∫</span>
-            <h2 className="text-base font-bold text-ink-dark">Equation Builder</h2>
+            <h2 className="text-base font-bold text-ink-dark">{t("equationBuilder")}</h2>
           </div>
           <button
             onClick={onClose}
@@ -254,7 +256,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
         {/* Equation workspace */}
         <div className="px-5 pt-4 pb-3 border-b border-ink-dark/5 flex-shrink-0">
           <div className="flex items-center gap-2 mb-2">
-            <label className="text-xs font-semibold text-ink-dark">Your equation:</label>
+            <label className="text-xs font-semibold text-ink-dark">{t("yourEquation")}</label>
             <div className="flex items-center gap-1 ml-auto">
               <button
                 onClick={() => setWrapMode("inline")}
@@ -264,7 +266,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
                     : "text-ink-muted hover:bg-pastel-cream"
                 }`}
               >
-                Inline $...$
+                {t("inlineMath")}
               </button>
               <button
                 onClick={() => setWrapMode("display")}
@@ -274,7 +276,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
                     : "text-ink-muted hover:bg-pastel-cream"
                 }`}
               >
-                Display $$...$$
+                {t("displayMath")}
               </button>
             </div>
           </div>
@@ -296,7 +298,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
           </div>
           {equation.trim() && (
             <p className="mt-1.5 text-[10px] text-ink-muted font-mono">
-              Preview: {wrapMode === "display" ? `$$ ${equation.trim()} $$` : `$${equation.trim()}$`}
+              {t("previewLabel")} {wrapMode === "display" ? `$$ ${equation.trim()} $$` : `$${equation.trim()}$`}
             </p>
           )}
         </div>
@@ -311,7 +313,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
                 : "text-ink-muted"
             }`}
           >
-            Math Symbols
+            {t("mathSymbols")}
           </button>
           <button
             onClick={() => setActiveTab("medical")}
@@ -322,7 +324,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
             }`}
           >
             <Beaker size={12} />
-            Medical Equations
+            {t("medicalEquations")}
           </button>
         </div>
 
@@ -370,7 +372,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
                             onClose();
                           }}
                           className="absolute -top-1 -right-1 hidden group-hover:flex w-4 h-4 items-center justify-center rounded-full bg-showcase-purple text-white text-[8px]"
-                          title="Insert directly"
+                          title={t("insertDirectly")}
                         >
                           +
                         </button>
@@ -405,7 +407,7 @@ export default function EquationBuilder({ onInsert, onClose }: EquationBuilderPr
         {/* Footer tip */}
         <div className="px-5 py-2 border-t border-ink-dark/5 bg-pastel-cream/30 flex-shrink-0">
           <p className="text-[10px] text-ink-muted text-center">
-            Click a symbol to add it to your equation, or click the + button to insert it directly into your document
+            {t("equationBuilderTip")}
           </p>
         </div>
       </div>

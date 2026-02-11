@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import {
   X,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 
 export default function ExportPanel() {
+  const t = useTranslations("tools.latexEditor.ui");
   const { setIsExportPanelOpen, documents, documentTitle } = useLaTeXEditor();
   const [copiedTex, setCopiedTex] = useState(false);
   const [exportStatus, setExportStatus] = useState<string | null>(null);
@@ -94,9 +96,9 @@ Created: ${new Date().toLocaleDateString()}
       const encoded = encodeURIComponent(mainDoc.content);
       const url = `https://www.overleaf.com/docs?snip_uri=data:text/x-tex;charset=utf-8,${encoded}`;
       window.open(url, "_blank");
-      setExportStatus("Opening in Overleaf...");
+      setExportStatus(t("openingOverleaf"));
     } catch {
-      setExportStatus("Failed to open in Overleaf.");
+      setExportStatus(t("overleafFailed"));
     }
   };
 
@@ -106,9 +108,9 @@ Created: ${new Date().toLocaleDateString()}
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-ink-dark/5">
           <div>
-            <h2 className="text-lg font-bold text-ink-dark">Export Document</h2>
+            <h2 className="text-lg font-bold text-ink-dark">{t("exportDocument")}</h2>
             <p className="text-xs text-ink-muted mt-0.5">
-              Download your LaTeX source or open it in Overleaf.
+              {t("exportSubtitle")}
             </p>
           </div>
           <button
@@ -123,32 +125,32 @@ Created: ${new Date().toLocaleDateString()}
         <div className="p-6 space-y-3">
           <ExportOption
             icon={FileText}
-            title="Download .tex File"
-            description="Download the raw LaTeX source file. Open it in any LaTeX editor."
+            title={t("downloadTexFile")}
+            description={t("downloadTexDesc")}
             onClick={downloadTex}
             color="purple"
           />
 
           <ExportOption
             icon={FolderArchive}
-            title="Download .zip Archive"
-            description="All files bundled into a ZIP. Upload directly to Overleaf."
+            title={t("downloadZipArchive")}
+            description={t("downloadZipDesc")}
             onClick={downloadZip}
             color="teal"
           />
 
           <ExportOption
             icon={copiedTex ? Check : Copy}
-            title={copiedTex ? "Copied!" : "Copy to Clipboard"}
-            description="Copy the LaTeX source code to paste anywhere."
+            title={copiedTex ? t("copied") : t("copyToClipboard")}
+            description={t("copyToClipboardDesc")}
             onClick={copyToClipboard}
             color="green"
           />
 
           <ExportOption
             icon={ExternalLink}
-            title="Open in Overleaf"
-            description="Open your document in Overleaf to compile it into a PDF."
+            title={t("openInOverleaf")}
+            description={t("openInOverleafDesc")}
             onClick={openInOverleaf}
             color="blue"
             highlight
@@ -170,16 +172,7 @@ Created: ${new Date().toLocaleDateString()}
           <div className="flex items-start gap-2 px-3 py-2 rounded-lg bg-pastel-lavender/30 border border-purple-100">
             <AlertCircle size={14} className="text-showcase-purple mt-0.5 flex-shrink-0" />
             <p className="text-[11px] text-ink-muted leading-relaxed">
-              <strong>Tip:</strong> For the best PDF output, open your document in{" "}
-              <a
-                href="https://overleaf.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-showcase-purple font-semibold hover:underline"
-              >
-                Overleaf
-              </a>{" "}
-              (free). It compiles LaTeX to professional-quality PDFs.
+              {t("exportTip")}
             </p>
           </div>
         </div>

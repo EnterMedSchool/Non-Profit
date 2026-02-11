@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   FileDown,
   FileText,
@@ -132,7 +133,7 @@ export default function ExportPanel() {
       setPreviewUrl(url);
     } catch (err) {
       console.error("PDF preview failed:", err);
-      showError("Failed to generate preview. Please try again.");
+      showError(t("previewFailed"));
     } finally {
       setIsPreviewLoading(false);
     }
@@ -144,6 +145,7 @@ export default function ExportPanel() {
     examSubtitle,
     previewUrl,
     showError,
+    t,
   ]);
 
   // ── PDF export ─────────────────────────────────────────────────────
@@ -164,7 +166,7 @@ export default function ExportPanel() {
           shuffleOpt,
           pdfTheme.watermarkText,
           (current, total) => {
-            setVariantProgress(`Generating variant ${current} of ${total}...`);
+            setVariantProgress(t("generatingVariant", { current, total }));
           },
         );
         const url = URL.createObjectURL(blob);
@@ -173,7 +175,7 @@ export default function ExportPanel() {
         a.download = `${examTitle} - ${variantCount} Variants.zip`;
         a.click();
         URL.revokeObjectURL(url);
-        success(`${variantCount} variants exported successfully!`);
+        success(t("variantsExported", { count: variantCount }));
       } else {
         // Single PDF
         let doc;
@@ -204,11 +206,11 @@ export default function ExportPanel() {
             break;
         }
         doc.save(`${examTitle} - ${pdfFormat}.pdf`);
-        success("PDF exported successfully!");
+        success(t("pdfExportSuccess"));
       }
     } catch (err) {
       console.error("PDF generation failed:", err);
-      showError("PDF generation failed. Please check your settings and try again.");
+      showError(t("pdfExportFailed"));
     } finally {
       setIsGenerating(false);
       setVariantProgress("");
@@ -224,6 +226,7 @@ export default function ExportPanel() {
     shuffleOpt,
     success,
     showError,
+    t,
   ]);
 
   // ── CSV export ─────────────────────────────────────────────────────
@@ -238,10 +241,10 @@ export default function ExportPanel() {
       });
       const ext = csvDelimiter === "\t" ? "tsv" : "csv";
       downloadCSV(csv, `${examTitle}.${ext}`, csvDelimiter);
-      success("CSV exported successfully!");
+      success(t("csvExportSuccess"));
     } catch (err) {
       console.error("CSV export failed:", err);
-      showError("CSV export failed. Please try again.");
+      showError(t("csvExportFailed"));
     }
   }, [
     filteredQuestions,
@@ -252,6 +255,7 @@ export default function ExportPanel() {
     examTitle,
     success,
     showError,
+    t,
   ]);
 
   const handleCsvCopy = useCallback(async () => {
@@ -267,7 +271,7 @@ export default function ExportPanel() {
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
-      showError("Failed to copy to clipboard.");
+      showError(t("copyFailed"));
     }
   }, [
     filteredQuestions,
@@ -289,9 +293,9 @@ export default function ExportPanel() {
       a.download = `${examTitle || "mcq-project"}.mcq.json`;
       a.click();
       URL.revokeObjectURL(url);
-      success("Project saved!");
+      success(t("projectSaved"));
     } catch (err) {
-      showError("Failed to export project.");
+      showError(t("projectExportFailed"));
     }
   }, [exportProject, examTitle, success, showError]);
 
@@ -306,13 +310,13 @@ export default function ExportPanel() {
       reader.onload = () => {
         const ok = importProject(reader.result as string);
         if (ok) {
-          success("Project loaded successfully!");
+          success(t("projectLoaded"));
         } else {
-          showError("Invalid project file. Please check the format.");
+          showError(t("invalidProject"));
         }
       };
       reader.onerror = () => {
-        showError("Failed to read file.");
+        showError(t("readFileFailed"));
       };
       reader.readAsText(file);
     };
@@ -347,9 +351,9 @@ export default function ExportPanel() {
       <div className="flex gap-1 rounded-xl bg-gray-100 p-1">
         {(
           [
-            { id: "pdf", label: "PDF", icon: FileText },
-            { id: "csv", label: "CSV/TSV", icon: Table2 },
-            { id: "project", label: "Project", icon: Archive },
+            { id: "pdf", label: t("pdf"), icon: FileText },
+            { id: "csv", label: t("csvTsv"), icon: Table2 },
+            { id: "project", label: t("project"), icon: Archive },
           ] as const
         ).map((tab) => {
           const Icon = tab.icon;
@@ -375,13 +379,13 @@ export default function ExportPanel() {
         <>
           <div>
             <label className="block text-xs font-bold text-ink-dark mb-1">
-              Title
+              {t("title")}
             </label>
             <input
               type="text"
               value={examTitle}
               onChange={(e) => setExamTitle(e.target.value)}
-              placeholder="Exam title"
+              placeholder={t("examTitle")}
               className="w-full rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 text-sm text-ink-dark focus:border-showcase-purple focus:outline-none"
             />
           </div>
@@ -389,7 +393,7 @@ export default function ExportPanel() {
           {allCategories.length > 0 && (
             <div>
               <label className="block text-xs font-bold text-ink-dark mb-1">
-                Filter by category
+                {t("filterByCategory")}
               </label>
               <div className="relative">
                 <select
@@ -397,7 +401,7 @@ export default function ExportPanel() {
                   onChange={(e) => setCategoryFilter(e.target.value)}
                   className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pr-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
                 >
-                  <option value="">All ({questions.length} questions)</option>
+                  <option value="">{t("allQuestions", { count: questions.length })}</option>
                   {allCategories.map((c) => (
                     <option key={c} value={c}>
                       {c} (
@@ -422,13 +426,13 @@ export default function ExportPanel() {
           {/* Subtitle */}
           <div>
             <label className="block text-xs font-bold text-ink-dark mb-1">
-              Subtitle
+              {t("subtitle")}
             </label>
             <input
               type="text"
               value={examSubtitle}
               onChange={(e) => setExamSubtitle(e.target.value)}
-              placeholder="e.g. Spring 2026 — Section A"
+              placeholder={t("subtitlePlaceholder")}
               className="w-full rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 text-xs text-ink-dark focus:border-showcase-purple focus:outline-none"
             />
           </div>
@@ -519,7 +523,7 @@ export default function ExportPanel() {
                     onChange={(e) => setShuffleQ(e.target.checked)}
                     className="accent-showcase-purple"
                   />
-                  Shuffle question order
+                  {t("shuffleQuestionOrder")}
                 </label>
                 <label className="flex items-center gap-2 text-xs text-ink-dark">
                   <input
@@ -528,10 +532,10 @@ export default function ExportPanel() {
                     onChange={(e) => setShuffleOpt(e.target.checked)}
                     className="accent-showcase-purple"
                   />
-                  Shuffle option order
+                  {t("shuffleOptionOrder")}
                 </label>
                 <p className="text-[10px] text-ink-muted">
-                  Downloads as ZIP with {variantCount} exam + answer key PDFs
+                  {t("downloadsAsZip", { count: variantCount })}
                 </p>
               </div>
             )}
@@ -547,7 +551,7 @@ export default function ExportPanel() {
             ) : (
               <ChevronDown className="h-3.5 w-3.5" />
             )}
-            Customize PDF Styling
+            {t("customizePdfStyling")}
           </button>
 
           {showCustomizer && (
@@ -568,7 +572,7 @@ export default function ExportPanel() {
               ) : (
                 <Eye className="h-4 w-4" />
               )}
-              Preview
+              {t("preview")}
             </button>
 
             <button
@@ -586,10 +590,10 @@ export default function ExportPanel() {
                 <Download className="h-4 w-4" />
               )}
               {isGenerating
-                ? variantProgress || "Generating..."
+                ? variantProgress || t("generating")
                 : variantCount > 1
-                  ? `Download ${variantCount} Variants (ZIP)`
-                  : `Download PDF (${filteredQuestions.length} questions)`}
+                  ? t("downloadVariants", { count: variantCount })
+                  : t("downloadPdf", { count: filteredQuestions.length })}
             </button>
           </div>
 
@@ -597,7 +601,7 @@ export default function ExportPanel() {
           {previewUrl && (
             <div className="rounded-xl border-2 border-ink-light/20 overflow-hidden">
               <div className="flex items-center justify-between bg-gray-50 px-3 py-2 border-b border-ink-light/10">
-                <span className="text-xs font-bold text-ink-muted">PDF Preview</span>
+                <span className="text-xs font-bold text-ink-muted">{t("pdfPreview")}</span>
                 <button
                   onClick={() => {
                     URL.revokeObjectURL(previewUrl);
@@ -625,14 +629,14 @@ export default function ExportPanel() {
           {/* Delimiter */}
           <div>
             <label className="block text-xs font-bold text-ink-dark mb-1">
-              Delimiter
+              {t("delimiter")}
             </label>
             <div className="flex gap-2">
               {(
                 [
-                  { value: ",", label: "CSV (,)" },
-                  { value: "\t", label: "TSV (Tab)" },
-                  { value: ";", label: "Semi (;)" },
+                  { value: ",", label: t("csvComma") },
+                  { value: "\t", label: t("tsvTab") },
+                  { value: ";", label: t("semi") },
                 ] as const
               ).map((d) => (
                 <button
@@ -717,8 +721,7 @@ export default function ExportPanel() {
       {activeTab === "project" && (
         <div className="flex flex-col gap-3">
           <p className="text-xs text-ink-muted">
-            Save or load your entire question bank, exams, and settings as
-            a project file.
+            {t("projectDesc")}
           </p>
 
           <button
@@ -726,7 +729,7 @@ export default function ExportPanel() {
             className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-4 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
           >
             <Save className="h-4 w-4" />
-            Save Project (.mcq.json)
+            {t("saveProject")}
           </button>
 
           <button
@@ -734,7 +737,7 @@ export default function ExportPanel() {
             className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-ink-light/30 bg-white px-4 py-2.5 font-display font-bold text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
           >
             <FolderOpen className="h-4 w-4" />
-            Load Project
+            {t("loadProject")}
           </button>
         </div>
       )}

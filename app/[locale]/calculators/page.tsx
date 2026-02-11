@@ -32,6 +32,7 @@ export default async function CalculatorsPage({ params }: CalculatorsPageProps) 
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "calculators" });
   const tt = await getTranslations({ locale, namespace: "tools" });
+  const tc = await getTranslations({ locale, namespace: "common" });
   const calculators = getCalculatorTools();
 
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -44,18 +45,18 @@ export default async function CalculatorsPage({ params }: CalculatorsPageProps) 
   return (
     <main className="relative z-10 py-12 sm:py-20">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Medical Calculators & Algorithms", t("metaDescription"), `${BASE_URL}/${locale}/calculators`)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd(t("title"), t("metaDescription"), `${BASE_URL}/${locale}/calculators`, locale)) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getItemListJsonLd(calcListItems)) }} />
 
       <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
         {/* Hero Section */}
         <PageHero
-          titlePre="Medical"
-          titleHighlight="Calculators"
-          titlePost="& Algorithms"
+          titlePre={t("hero.titlePre")}
+          titleHighlight={t("hero.titleHighlight")}
+          titlePost={t("hero.titlePost")}
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
-          annotation="free & embeddable!"
+          annotation={t("hero.annotation")}
           annotationColor="text-showcase-purple"
           subtitle={t("subtitle")}
           floatingIcons={<>
@@ -68,7 +69,7 @@ export default async function CalculatorsPage({ params }: CalculatorsPageProps) 
         {/* ── Attribution Reminder ── */}
         <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
-          <span>All resources are free for non-commercial educational use. <Link href="/en/license" className="font-semibold text-showcase-purple hover:underline">Attribution required</Link>.</span>
+          <span>{tc("licenseNote")} <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">{tc("attributionRequiredLink")}</Link>.</span>
         </div>
 
         <div className="mt-12 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
-import { getTranslations } from "next-intl/server";
 import Link from "next/link";
+import { getTranslations } from "next-intl/server";
 import {
   BookOpen,
   Clock,
@@ -62,6 +62,8 @@ export default async function BookOverviewPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
+  const t = await getTranslations("pdfViewer.overview");
+  const tReader = await getTranslations("pdfViewer.reader");
   const book = getBookBySlug(slug);
   if (!book) notFound();
 
@@ -86,10 +88,10 @@ export default async function BookOverviewPage({
         <AnimatedSection animation="fadeUp" delay={0.2}>
           <section className="mt-16">
             <h2 className="font-display text-2xl font-extrabold text-ink-dark sm:text-3xl">
-              Chapters
+              {t("chaptersTitle")}
             </h2>
             <p className="mt-2 text-sm text-ink-muted">
-              Click any chapter to start reading online with interactive tools.
+              {t("chaptersDescription")}
             </p>
 
             <div className="mt-6 space-y-3">
@@ -129,7 +131,7 @@ export default async function BookOverviewPage({
                         ))}
                         {chapter.keyTopics.length > 4 && (
                           <span className="rounded-full bg-gray-100 px-2 py-0.5 text-[10px] font-semibold text-ink-light">
-                            +{chapter.keyTopics.length - 4} more
+                            {t("moreTopics", { count: chapter.keyTopics.length - 4 })}
                           </span>
                         )}
                       </div>
@@ -138,11 +140,11 @@ export default async function BookOverviewPage({
                       <div className="mt-2 flex items-center gap-3 text-xs text-ink-light">
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" />
-                          {chapter.estimatedReadTime} min read
+                          {chapter.estimatedReadTime} {tReader("minRead")}
                         </span>
                         <span className="flex items-center gap-1">
                           <BookOpen className="h-3 w-3" />
-                          {chapter.sections.length} sections
+                          {t("sectionsCount", { count: chapter.sections.length })}
                         </span>
                       </div>
                     </div>

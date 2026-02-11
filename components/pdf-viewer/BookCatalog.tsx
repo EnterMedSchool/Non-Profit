@@ -1,12 +1,14 @@
 "use client";
 
 import { useState, useMemo, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { Search, SlidersHorizontal, BookOpen, X } from "lucide-react";
 import BookCard from "./BookCard";
 import type { PDFBook } from "@/data/pdf-books";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 
 export default function BookCatalog() {
+  const t = useTranslations("pdfViewer.catalog");
   const [searchQuery, setSearchQuery] = useState("");
   const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
   const [selectedSubject, setSelectedSubject] = useState<string | null>(null);
@@ -53,7 +55,7 @@ export default function BookCatalog() {
             type="text"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search textbooks..."
+            placeholder={t("searchPlaceholder")}
             className="w-full rounded-xl border-3 border-showcase-navy/15 bg-white py-2.5 pl-10 pr-4 text-sm outline-none transition-colors placeholder:text-ink-light focus:border-showcase-purple"
           />
           {searchQuery && (
@@ -76,7 +78,7 @@ export default function BookCatalog() {
                 : "border-showcase-navy/15 text-ink-muted hover:border-showcase-purple/30 hover:text-showcase-purple"
             }`}
           >
-            All
+            {t("allSubjects")}
           </button>
           {subjects.map((subject) => (
             <button
@@ -114,10 +116,10 @@ export default function BookCatalog() {
               <BookOpen className="h-10 w-10 text-showcase-purple/40 animate-float-gentle" />
             </div>
             <p className="mt-5 font-handwritten text-2xl text-ink-muted">
-              No textbooks found...
+              {t("noResults")}...
             </p>
             <p className="mt-2 text-sm text-ink-light">
-              Try adjusting your search or filters.
+              {t("noResultsHint")}
             </p>
             <button
               onClick={() => {
@@ -126,7 +128,7 @@ export default function BookCatalog() {
               }}
               className="mt-4 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-4 py-2 text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
             >
-              Clear Filters
+              {t("clearFilters")}
             </button>
           </div>
         </AnimatedSection>

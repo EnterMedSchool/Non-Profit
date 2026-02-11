@@ -26,6 +26,7 @@ import {
   type VisualLesson,
   type FactCategory,
 } from "@/data/visuals";
+import { useTranslations } from "next-intl";
 import {
   loadAttribution,
   hasValidAttribution,
@@ -69,6 +70,7 @@ const factPillColors: Record<string, { active: string; inactive: string }> = {
 };
 
 export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
+  const t = useTranslations("resources.lessonCard");
   const [expanded, setExpanded] = useState(false);
   const [showFacts, setShowFacts] = useState(false);
   const [factFilter, setFactFilter] = useState<FactCategory | "all">("all");
@@ -226,14 +228,14 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
               {/* Metadata pills */}
               <div className="mt-3 flex flex-wrap items-center gap-2">
                 <span className="inline-flex items-center gap-1 rounded-full bg-pastel-lavender/60 px-2.5 py-1 text-xs font-semibold text-showcase-purple">
-                  <Layers className="h-3.5 w-3.5" /> {lesson.layers.length} layers
+                  <Layers className="h-3.5 w-3.5" /> {lesson.layers.length} {t("layers")}
                 </span>
                 <span className="inline-flex items-center gap-1 rounded-full bg-pastel-mint/60 px-2.5 py-1 text-xs font-semibold text-showcase-teal">
                   <Clock className="h-3.5 w-3.5" /> {lesson.duration}
                 </span>
                 {lesson.keyFacts.length > 0 && (
                   <span className="inline-flex items-center gap-1 rounded-full bg-pastel-peach/60 px-2.5 py-1 text-xs font-semibold text-showcase-coral">
-                    <Eye className="h-3.5 w-3.5" /> {lesson.keyFacts.length} facts
+                    <Eye className="h-3.5 w-3.5" /> {lesson.keyFacts.length} {t("facts")}
                   </span>
                 )}
               </div>
@@ -245,7 +247,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                   className={`inline-flex items-center gap-1.5 rounded-xl border-3 ${colors.border} ${colors.bg} px-4 py-2 text-xs font-bold ${colors.text} shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]`}
                 >
                   {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
-                  {expanded ? "Hide Assets" : `View ${lesson.layers.length} Assets`}
+                  {expanded ? t("hideAssets") : t("viewAssets", { count: lesson.layers.length })}
                 </button>
                 {onOpenEmbed && (
                   <button
@@ -253,7 +255,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                     className="inline-flex items-center gap-1.5 rounded-xl border-3 border-transparent bg-gradient-to-r from-showcase-purple to-showcase-teal px-4 py-2 text-xs font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97] group/embed"
                   >
                     <Code className="h-3.5 w-3.5 transition-transform group-hover/embed:rotate-12" />
-                    Add to Your Website
+                    {t("addToYourWebsite")}
                   </button>
                 )}
               </div>
@@ -300,12 +302,12 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                           <Package className="h-5 w-5 transition-transform group-hover/dl:animate-bounce" />
                         )}
                         <span className="text-base">
-                          {downloading ? `Building ZIP... ${downloadProgress}%` : "Download All Assets"}
+                          {downloading ? t("buildingZip", { percent: downloadProgress }) : t("downloadAllAssets")}
                         </span>
                       </div>
                       {!downloading && (
                         <p className="mt-1 text-xs text-white/70 font-normal">
-                          Images, audio, attribution badge & embed code
+                          {t("downloadAllSubtext")}
                         </p>
                       )}
                     </button>
@@ -349,7 +351,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                             href={layer.imagePath}
                             download
                             className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-green/20 bg-showcase-green/5 px-2.5 py-1.5 text-xs font-bold text-showcase-green hover:bg-showcase-green hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
-                            title="Download PNG"
+                            title={t("downloadPng")}
                           >
                             <ImageIcon className="h-3.5 w-3.5" />
                             <span className="hidden sm:inline">PNG</span>
@@ -358,7 +360,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                             href={layer.audioPath}
                             download
                             className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-purple/20 bg-showcase-purple/5 px-2.5 py-1.5 text-xs font-bold text-showcase-purple hover:bg-showcase-purple hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
-                            title="Download MP3"
+                            title={t("downloadMp3")}
                           >
                             <Volume2 className="h-3.5 w-3.5" />
                             <span className="hidden sm:inline">MP3</span>

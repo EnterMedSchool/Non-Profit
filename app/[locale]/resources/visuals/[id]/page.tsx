@@ -1,6 +1,7 @@
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
 import {
   ArrowLeft,
   Layers,
@@ -8,6 +9,7 @@ import {
   Eye,
   Download,
   Code,
+  FileCode,
   Shield,
   Sparkles,
   BookOpen,
@@ -113,6 +115,7 @@ const gradientMap: Record<string, { from: string; to: string }> = {
 
 export default async function VisualLessonDetailPage({ params }: VisualDetailPageProps) {
   const { locale, id } = await params;
+  const t = await getTranslations("resources.visuals.detail");
   const lesson = getVisualLessonById(id);
   if (!lesson) notFound();
 
@@ -157,7 +160,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
             className="mb-6 inline-flex items-center gap-1.5 text-sm font-bold text-showcase-purple hover:underline"
           >
             <ArrowLeft className="h-4 w-4" />
-            All Visual Lessons
+            {t("backToAll")}
           </Link>
         </AnimatedSection>
 
@@ -197,13 +200,13 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
               {lesson.category}
             </StickerBadge>
             <span className="inline-flex items-center gap-1 rounded-full bg-pastel-lavender/60 px-3 py-1 text-xs font-semibold text-showcase-purple">
-              <Layers className="h-3.5 w-3.5" /> {lesson.layers.length} layers
+              <Layers className="h-3.5 w-3.5" /> {t("layersCount", { count: lesson.layers.length })}
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-pastel-mint/60 px-3 py-1 text-xs font-semibold text-showcase-teal">
               <Clock className="h-3.5 w-3.5" /> {lesson.duration}
             </span>
             <span className="inline-flex items-center gap-1 rounded-full bg-pastel-peach/60 px-3 py-1 text-xs font-semibold text-showcase-coral">
-              <Eye className="h-3.5 w-3.5" /> {lesson.keyFacts.length} key facts
+              <Eye className="h-3.5 w-3.5" /> {t("keyFactsCount", { count: lesson.keyFacts.length })}
             </span>
           </div>
         </AnimatedSection>
@@ -282,7 +285,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
                 <Download className="h-5 w-5 text-showcase-teal" />
               </div>
               <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Downloadable Assets
+                {t("downloadableAssets")}
               </h2>
             </div>
 
@@ -309,7 +312,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
                       href={layer.imagePath}
                       download
                       className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-green/20 bg-showcase-green/5 px-2.5 py-1.5 text-xs font-bold text-showcase-green hover:bg-showcase-green hover:text-white transition-all"
-                      title="Download PNG"
+                      title={t("downloadPng")}
                     >
                       <ImageIcon className="h-3.5 w-3.5" />
                       <span className="hidden sm:inline">PNG</span>
@@ -318,7 +321,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
                       href={layer.audioPath}
                       download
                       className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-purple/20 bg-showcase-purple/5 px-2.5 py-1.5 text-xs font-bold text-showcase-purple hover:bg-showcase-purple hover:text-white transition-all"
-                      title="Download MP3"
+                      title={t("downloadMp3")}
                     >
                       <Volume2 className="h-3.5 w-3.5" />
                       <span className="hidden sm:inline">MP3</span>
@@ -349,18 +352,18 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
           <div className="mt-12 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <ShareLinkButton
               url={`${BASE_URL}/${locale}/resources/visuals/${id}`}
-              label="Share this lesson"
+              label={t("shareThisLesson")}
             />
           </div>
           <div className="mt-4 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
             <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
             <span>
-              All assets are free for non-commercial educational use.{" "}
+              {t("assetsFreeNotice")}{" "}
               <Link
                 href={`/${locale}/license`}
                 className="font-semibold text-showcase-purple hover:underline"
               >
-                Attribution required
+                {t("attributionRequired")}
               </Link>
               .
             </span>
@@ -385,6 +388,15 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
             <div className="rounded-xl border-3 border-showcase-navy/10 bg-gray-50 p-4 font-mono text-xs text-ink-muted overflow-x-auto">
               {`<iframe src="${BASE_URL}/embed/visuals/${lesson.embedId}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`}
             </div>
+            <div className="mt-4">
+              <Link
+                href={`/${locale}/resources/visuals/${lesson.id}/embed-code`}
+                className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-5 py-2.5 font-display text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none"
+              >
+                <FileCode className="h-4 w-4" />
+                Get the Code
+              </Link>
+            </div>
           </section>
         </AnimatedSection>
 
@@ -393,7 +405,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
           <AnimatedSection delay={0.35} animation="fadeUp">
             <section className="mt-16">
               <h2 className="font-display text-2xl font-bold text-ink-dark mb-6">
-                More {lesson.category} Lessons
+                {t("moreLessons", { category: lesson.category })}
               </h2>
               <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
                 {relatedLessons.map((related) => (
@@ -420,8 +432,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
                       </p>
                       <div className="mt-2 flex items-center gap-2 text-xs text-ink-light">
                         <span className="flex items-center gap-1">
-                          <Layers className="h-3 w-3" /> {related.layers.length}{" "}
-                          layers
+                          <Layers className="h-3 w-3" /> {t("layersCount", { count: related.layers.length })}
                         </span>
                         <span className="flex items-center gap-1">
                           <Clock className="h-3 w-3" /> {related.duration}

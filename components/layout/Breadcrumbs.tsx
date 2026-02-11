@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { ChevronRight, Home } from "lucide-react";
 import { useMemo } from "react";
 import { visualLessons } from "@/data/visuals";
@@ -30,6 +30,7 @@ const segmentKeyMap: Record<string, string> = {
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const t = useTranslations("breadcrumbs");
+  const locale = useLocale();
   const tTools = useTranslations("tools");
 
   // Build a slug → human-readable label map from data files
@@ -68,7 +69,7 @@ export default function Breadcrumbs() {
 
   // Build breadcrumb items
   const items = segments.map((segment, index) => {
-    const href = `/en/${segments.slice(0, index + 1).join("/")}`;
+    const href = `/${locale}/${segments.slice(0, index + 1).join("/")}`;
     const key = segmentKeyMap[segment];
     const fallback = segment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
     const label = key ? t(key) : (slugLabels.get(segment) ?? fallback);
@@ -84,7 +85,7 @@ export default function Breadcrumbs() {
         "@type": "ListItem",
         position: 1,
         name: t("home"),
-        item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/en`,
+        item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/${locale}`,
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
@@ -113,7 +114,7 @@ export default function Breadcrumbs() {
         <ol className="flex flex-wrap items-center gap-1 text-sm">
           <li>
             <Link
-              href="/en"
+              href={`/${locale}`}
               className="flex items-center gap-1 text-ink-muted transition-colors hover:text-showcase-purple"
             >
               <Home className="h-3.5 w-3.5" />

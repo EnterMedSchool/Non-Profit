@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useMemo, useRef, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import { Search, X, BookOpen, ChevronRight } from "lucide-react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
@@ -167,7 +168,7 @@ export default function BookSearch() {
                 <div className="divide-y divide-gray-100">
                   <div className="px-4 py-2">
                     <p className="text-[10px] font-bold uppercase tracking-wider text-ink-light">
-                      {results.length} result{results.length !== 1 ? "s" : ""} found
+                      {results.length} {results.length === 1 ? t("results") : t("resultsPlural")} {t("found")}
                     </p>
                   </div>
                   {results.map((result, i) => (

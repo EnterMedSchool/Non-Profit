@@ -3,7 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { X, ExternalLink, Search, ChevronDown } from "lucide-react";
 import { AnimatePresence, m } from "framer-motion";
 import type { NavItem, NavItemWithChildren } from "./Navbar";
@@ -64,6 +64,7 @@ export default function MobileMenu({
   navItems,
 }: MobileMenuProps) {
   const t = useTranslations("nav");
+  const locale = useLocale();
   const closeRef = useRef<HTMLButtonElement>(null);
   const [expanded, setExpanded] = useState<string | null>(null);
 
@@ -131,7 +132,7 @@ export default function MobileMenu({
             className="flex items-center justify-between px-5 py-4"
           >
             <Link
-              href="/en"
+              href={`/${locale}`}
               onClick={onClose}
               className="font-display text-lg font-bold text-ink-dark inline-flex items-center gap-2"
             >
@@ -172,7 +173,7 @@ export default function MobileMenu({
               exit="exit"
             >
               <Link
-                href="/en"
+                href={`/${locale}`}
                 onClick={onClose}
                 className="block py-2 font-display text-3xl font-bold text-ink-dark transition-colors hover:text-showcase-purple sm:text-4xl"
               >
@@ -229,7 +230,7 @@ export default function MobileMenu({
                                   return (
                                     <Link
                                       key={child.href}
-                                      href={`/en${child.href}`}
+                                      href={`/${locale}${child.href}`}
                                       onClick={onClose}
                                       className="group flex items-center gap-3 rounded-xl py-2.5 px-2 transition-colors hover:bg-white/50"
                                     >
@@ -248,7 +249,7 @@ export default function MobileMenu({
 
                               {/* View all link */}
                               <Link
-                                href={`/en${item.href}`}
+                                href={`/${locale}${item.href}`}
                                 onClick={onClose}
                                 className="mt-1 inline-flex items-center gap-1 px-2 text-sm font-bold text-showcase-purple transition-colors hover:text-showcase-purple/70"
                               >
@@ -264,7 +265,7 @@ export default function MobileMenu({
                   ) : (
                     /* Simple link */
                     <Link
-                      href={`/en${item.href}`}
+                      href={`/${locale}${item.href}`}
                       onClick={onClose}
                       className="block py-2 font-display text-3xl font-bold text-ink-dark transition-colors hover:text-showcase-purple sm:text-4xl"
                     >

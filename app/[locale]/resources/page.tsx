@@ -102,6 +102,7 @@ const sectionPaths = [
 
 export default function ResourcesPage() {
   const t = useTranslations("resources");
+  const tc = useTranslations("common");
   const locale = useLocale();
 
   const sections = sectionPaths.map((s) => ({
@@ -115,13 +116,13 @@ export default function ResourcesPage() {
 
         {/* ── Hero Section ── */}
         <PageHero
-          titlePre="Free"
-          titleHighlight="Resources"
-          titlePost="for Everyone"
+          titlePre={t("hero.titlePre")}
+          titleHighlight={t("hero.titleHighlight")}
+          titlePost={t("hero.titlePost")}
           gradient="from-showcase-green via-showcase-teal to-showcase-purple"
-          annotation="everything you need!"
+          annotation={t("hero.annotation")}
           annotationColor="text-showcase-green"
-          subtitle="Tools, calculators, study materials, visual lessons, clinical training, and more — all free and open-source."
+          subtitle={t("hero.subtitle")}
           floatingIcons={<>
             <BookOpen className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
             <FileText className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-yellow/15 animate-float-playful" style={{ animationDelay: "1s" }} />
@@ -133,7 +134,7 @@ export default function ResourcesPage() {
         {/* ── Attribution Reminder ── */}
         <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
-          <span>All resources are free for non-commercial educational use. <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">Attribution required</Link>.</span>
+          <span>{tc("licenseNote")} <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">{tc("attributionRequiredLink")}</Link>.</span>
         </div>
 
         {/* ── Section Cards ── */}

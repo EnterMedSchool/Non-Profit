@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { TOUR_STORAGE_KEY } from "./types";
 import {
   FileText,
@@ -20,93 +21,40 @@ import {
 /* ── Tour step definitions ────────────────────────────────── */
 
 interface TourStep {
-  title: string;
-  description: string;
+  titleKey: string;
+  descKey: string;
   icon: React.ComponentType<{ size?: number; className?: string }>;
-  /** CSS selector for the element to spotlight */
   targetSelector?: string;
-  /** Where to position the tooltip relative to the target */
   position?: "bottom" | "top" | "left" | "right" | "center";
-  /** Optional interactive task */
   task?: {
-    instruction: string;
-    /** CSS selector for the element the user should click */
+    instructionKey: string;
     clickTarget?: string;
   };
 }
 
 const TOUR_STEPS: TourStep[] = [
+  { titleKey: "tourWelcomeTitle", descKey: "tourWelcomeDesc", icon: Sparkles, position: "center" },
+  { titleKey: "tourEditorTitle", descKey: "tourEditorDesc", icon: FileText, targetSelector: "[data-tour='editor-panel']", position: "right" },
+  { titleKey: "tourPreviewTitle", descKey: "tourPreviewDesc", icon: Eye, targetSelector: "[data-tour='preview-panel']", position: "left" },
   {
-    title: "Welcome to the LaTeX Editor!",
-    description:
-      "LaTeX is a tool used by scientists and researchers worldwide to create beautifully formatted documents — thesis papers, research articles, presentations, and more. Don't worry if you've never used LaTeX — we'll guide you step by step!",
-    icon: Sparkles,
-    position: "center",
-  },
-  {
-    title: "The Code Editor",
-    description:
-      "This is where you write LaTeX code. It may look like programming, but it's simpler than you think! Each command starts with a backslash (\\) and tells LaTeX how to format your text. The editor highlights different parts in colors to help you read the code.",
-    icon: FileText,
-    targetSelector: "[data-tour='editor-panel']",
-    position: "right",
-  },
-  {
-    title: "Live Preview",
-    description:
-      "As you type in the editor, your document is rendered in real-time here so you can immediately see how it looks. It's like having a Word document update live while you write the code!",
-    icon: Eye,
-    targetSelector: "[data-tour='preview-panel']",
-    position: "left",
-  },
-  {
-    title: "Formatting Toolbar",
-    description:
-      "Use these buttons to format your text — just like Word! Select text in the editor first, then click Bold, Italic, or any other button. You can also insert sections, lists, tables, and equations.",
+    titleKey: "tourToolbarTitle",
+    descKey: "tourToolbarDesc",
     icon: MousePointerClick,
     targetSelector: "[data-tour='format-toolbar']",
     position: "bottom",
-    task: {
-      instruction: "Try clicking the Bold button below!",
-      clickTarget: "[data-tour='btn-bold']",
-    },
+    task: { instructionKey: "tourToolbarTask", clickTarget: "[data-tour='btn-bold']" },
   },
   {
-    title: "Drag & Drop Snippets",
-    description:
-      "Don't know how to write a table, equation, or list? The Snippets panel has ready-made LaTeX code blocks you can click to insert. Each snippet comes with a plain-English explanation.",
+    titleKey: "tourSnippetsTitle",
+    descKey: "tourSnippetsDesc",
     icon: Puzzle,
     targetSelector: "[data-tour='btn-snippets']",
     position: "bottom",
-    task: {
-      instruction: "Click the Snippets button to open the panel!",
-      clickTarget: "[data-tour='btn-snippets']",
-    },
+    task: { instructionKey: "tourSnippetsTask", clickTarget: "[data-tour='btn-snippets']" },
   },
-  {
-    title: "Template Gallery",
-    description:
-      "Start from a template! We have templates for lecture notes, lab reports, research papers, thesis chapters, CVs, and more — all designed for medical students. Just pick one and customize it.",
-    icon: BookOpen,
-    targetSelector: "[data-tour='btn-templates']",
-    position: "bottom",
-  },
-  {
-    title: "Learn as You Go",
-    description:
-      "Open the Learn panel for step-by-step lessons on LaTeX basics. From 'What is LaTeX?' to formatting equations and managing references — everything is explained in plain English.",
-    icon: GraduationCap,
-    targetSelector: "[data-tour='btn-learn']",
-    position: "bottom",
-  },
-  {
-    title: "Export Your Work",
-    description:
-      "When you're done, download your .tex file, copy it to clipboard, or open it directly in Overleaf (a free online LaTeX compiler) for the final PDF. Your work is also automatically saved in your browser.",
-    icon: Download,
-    targetSelector: "[data-tour='btn-export']",
-    position: "bottom",
-  },
+  { titleKey: "tourTemplatesTitle", descKey: "tourTemplatesDesc", icon: BookOpen, targetSelector: "[data-tour='btn-templates']", position: "bottom" },
+  { titleKey: "tourLearnTitle", descKey: "tourLearnDesc", icon: GraduationCap, targetSelector: "[data-tour='btn-learn']", position: "bottom" },
+  { titleKey: "tourExportTitle", descKey: "tourExportDesc", icon: Download, targetSelector: "[data-tour='btn-export']", position: "bottom" },
 ];
 
 /* ── Spotlight overlay ────────────────────────────────────── */
@@ -159,6 +107,7 @@ function SpotlightOverlay({ rect }: { rect: DOMRect | null }) {
 /* ── Main tour component ──────────────────────────────────── */
 
 export default function OnboardingTour() {
+  const t = useTranslations("tools.latexEditor.ui");
   const [isOpen, setIsOpen] = useState(false);
   const [currentStep, setCurrentStep] = useState(0);
   const [targetRect, setTargetRect] = useState<DOMRect | null>(null);
@@ -255,6 +204,9 @@ export default function OnboardingTour() {
 
   const step = TOUR_STEPS[currentStep];
   const Icon = step.icon;
+  const stepTitle = t(step.titleKey);
+  const stepDesc = t(step.descKey);
+  const taskInstruction = step.task ? t(step.task.instructionKey) : null;
   const isLast = currentStep === TOUR_STEPS.length - 1;
   const isCenter = step.position === "center" || !step.targetSelector;
 
@@ -342,24 +294,24 @@ export default function OnboardingTour() {
               </div>
               <div>
                 <p className="text-[10px] font-bold text-showcase-purple uppercase tracking-wider">
-                  Step {currentStep + 1} of {TOUR_STEPS.length}
+                  {t("tourStepOf", { current: currentStep + 1, total: TOUR_STEPS.length })}
                 </p>
                 <h2 className="text-base font-bold text-ink-dark mt-0.5">
-                  {step.title}
+                  {stepTitle}
                 </h2>
               </div>
             </div>
             <button
               onClick={handleClose}
               className="p-1.5 rounded-lg text-ink-light hover:text-ink-muted hover:bg-pastel-cream transition-colors"
-              title="Skip tour"
+              title={t("skipTour")}
             >
               <X size={16} />
             </button>
           </div>
 
           <p className="text-sm text-ink-muted leading-relaxed mb-4">
-            {step.description}
+            {stepDesc}
           </p>
 
           {/* Interactive task */}
@@ -374,12 +326,12 @@ export default function OnboardingTour() {
               {taskCompleted ? (
                 <>
                   <Check size={14} className="text-green-500" />
-                  <span>Nice work! You did it.</span>
+                  <span>{t("niceWork")}</span>
                 </>
               ) : (
                 <>
                   <MousePointerClick size={14} className="text-amber-500 animate-bounce" />
-                  <span>{step.task.instruction}</span>
+                  <span>{taskInstruction!}</span>
                 </>
               )}
             </div>
@@ -408,7 +360,7 @@ export default function OnboardingTour() {
               onClick={handleClose}
               className="text-xs text-ink-muted hover:text-ink-dark transition-colors"
             >
-              Skip tour
+              {t("skipTour")}
             </button>
             <div className="flex items-center gap-2">
               {currentStep > 0 && (
@@ -417,14 +369,14 @@ export default function OnboardingTour() {
                   className="flex items-center gap-1 px-3 py-2 rounded-xl text-xs font-semibold text-ink-muted hover:bg-pastel-cream transition-colors"
                 >
                   <ArrowLeft size={12} />
-                  Back
+                  {t("back")}
                 </button>
               )}
               <button
                 onClick={handleNext}
                 className="flex items-center gap-1.5 px-5 py-2 rounded-xl bg-showcase-purple text-white text-xs font-bold hover:opacity-90 transition-opacity"
               >
-                {isLast ? "Get Started!" : "Next"}
+                {isLast ? t("getStarted") : t("next")}
                 {!isLast && <ArrowRight size={14} />}
               </button>
             </div>

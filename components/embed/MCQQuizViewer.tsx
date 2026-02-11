@@ -2,6 +2,7 @@
 
 import { useState, useCallback, useEffect, useMemo, useRef } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import type { MCQQuestion, MCQEmbedTheme } from "@/components/tools/mcq-maker/types";
 import { DEFAULT_EMBED_THEME } from "@/components/tools/mcq-maker/types";
 
@@ -72,6 +73,7 @@ export default function MCQQuizViewer({
   timeLimit,
   passingScore,
 }: MCQQuizViewerProps) {
+  const t = useTranslations("embed.mcqQuiz");
   const theme: MCQEmbedTheme = { ...DEFAULT_EMBED_THEME, ...themeProp };
   const isPractice = theme.mode === "practice";
 
@@ -361,12 +363,12 @@ export default function MCQQuizViewer({
                         <span className="flex-1">{opt.text}</span>
                         {isCorrectOpt && (
                           <span className="text-green-500 text-[10px] font-bold">
-                            correct
+                            {t("correct")}
                           </span>
                         )}
                         {isSelected && !isCorrectOpt && (
                           <span className="text-red-500 text-[10px] font-bold">
-                            your answer
+                            {t("yourAnswer")}
                           </span>
                         )}
                       </div>
@@ -407,7 +409,7 @@ export default function MCQQuizViewer({
         {currentQ.imageUrl && (
           <img
             src={currentQ.imageUrl}
-            alt="Question"
+            alt={t("questionAlt")}
             className="w-full max-h-36 object-contain rounded-xl mb-3"
           />
         )}
@@ -489,7 +491,7 @@ export default function MCQQuizViewer({
             }}
           >
             <span className="font-bold" style={{ color: accentColor }}>
-              Explanation:{" "}
+              {t("explanation")}{" "}
             </span>
             {currentQ.explanation}
           </div>
@@ -507,7 +509,7 @@ export default function MCQQuizViewer({
             border: "2px solid",
           }}
         >
-          Previous
+          {t("previous")}
         </button>
 
         {currentIndex < totalQ - 1 ? (
@@ -517,7 +519,7 @@ export default function MCQQuizViewer({
             className="rounded-xl px-4 py-2 text-sm font-bold text-white transition-all disabled:opacity-30"
             style={{ backgroundColor: accentColor }}
           >
-            Next
+            {t("next")}
           </button>
         ) : !isPractice ? (
           <button
@@ -526,7 +528,7 @@ export default function MCQQuizViewer({
             className="rounded-xl px-4 py-2 text-sm font-bold text-white transition-all disabled:opacity-30"
             style={{ backgroundColor: accentColor }}
           >
-            Submit
+            {t("submit")}
           </button>
         ) : null}
       </div>
@@ -599,7 +601,7 @@ export default function MCQQuizViewer({
       {/* Attribution */}
       <div className="mt-3 pt-2 border-t text-center" style={{ borderColor: isDark ? "#334155" : "#e5e7eb" }}>
         <p className="text-[10px] opacity-40">
-          Powered by{" "}
+          {t("poweredBy")}{" "}
           <a
             href="https://entermedschool.org"
             target="_blank"

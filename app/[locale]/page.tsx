@@ -25,12 +25,13 @@ const CallToAction = dynamic(() => import("@/components/home/CallToAction"), {
   loading: () => <SectionSkeleton />,
 });
 
-export default function HomePage() {
+export default async function HomePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
   return (
     <main className="relative overflow-x-hidden">
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationJsonLd()) }} />
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteJsonLd()) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteJsonLd(locale)) }} />
 
       {/* Animated blob background -- continuous across all sections */}
       <BlobBackground />

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   Search,
   Circle,
@@ -89,6 +90,7 @@ function saveFavoriteIds(ids: string[]) {
 }
 
 export default function AssetPanel() {
+  const t = useTranslations("tools.illustrationMaker.ui.assets");
   const [activeCategory, setActiveCategory] = useState("cells");
   const [searchQuery, setSearchQuery] = useState("");
   const [collapsed, setCollapsed] = useState(false);
@@ -161,7 +163,7 @@ export default function AssetPanel() {
         <button
           onClick={() => setCollapsed(false)}
           className="rounded-lg p-1.5 text-ink-muted transition-colors hover:bg-pastel-lavender hover:text-showcase-purple"
-          title="Expand asset panel"
+          title={t("expandPanel")}
         >
           <ChevronRight className="h-4 w-4" />
         </button>
@@ -171,8 +173,8 @@ export default function AssetPanel() {
 
   // Extra virtual categories
   const extraCategories = [
-    ...(recentIds.length > 0 ? [{ id: "__recent", name: "Recent", icon: "Clock", color: "navy" }] : []),
-    ...(favoriteIds.length > 0 ? [{ id: "__favorites", name: "Favorites", icon: "Heart", color: "coral" }] : []),
+    ...(recentIds.length > 0 ? [{ id: "__recent", name: t("recent"), icon: "Clock", color: "navy" }] : []),
+    ...(favoriteIds.length > 0 ? [{ id: "__favorites", name: t("favorites"), icon: "Heart", color: "coral" }] : []),
   ];
 
   const allCategories = [...extraCategories, ...assetCategories];
@@ -186,11 +188,11 @@ export default function AssetPanel() {
     <div className="flex w-64 flex-col border-r-3 border-showcase-navy/10 bg-white lg:w-72">
       {/* Header */}
       <div className="flex items-center justify-between border-b-2 border-showcase-navy/5 px-3 py-2">
-        <h3 className="font-display text-sm font-bold text-ink-dark">Assets</h3>
+        <h3 className="font-display text-sm font-bold text-ink-dark">{t("title")}</h3>
         <button
           onClick={() => setCollapsed(true)}
           className="rounded-lg p-1 text-ink-muted transition-colors hover:bg-pastel-lavender hover:text-showcase-purple"
-          title="Collapse panel"
+          title={t("collapsePanel")}
         >
           <ChevronLeft className="h-4 w-4" />
         </button>
@@ -202,7 +204,7 @@ export default function AssetPanel() {
           <Search className="absolute left-2.5 top-1/2 h-3.5 w-3.5 -translate-y-1/2 text-ink-light" />
           <input
             type="text"
-            placeholder="Search assets..."
+            placeholder={t("searchPlaceholder")}
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="w-full rounded-lg border-2 border-showcase-navy/10 bg-pastel-cream/30 py-1.5 pl-8 pr-8 text-xs text-ink-dark placeholder:text-ink-light focus:border-showcase-purple/40 focus:outline-none focus:ring-1 focus:ring-showcase-purple/20"
@@ -247,7 +249,7 @@ export default function AssetPanel() {
       <div className="flex-1 overflow-y-auto px-3 pb-3">
         {searchQuery && (
           <p className="mb-2 text-[10px] font-bold text-ink-muted">
-            {assets.length} result{assets.length !== 1 ? "s" : ""} for &ldquo;{searchQuery}&rdquo;
+            {assets.length === 1 ? t("resultsFor", { count: 1, query: searchQuery }) : t("resultsForPlural", { count: assets.length, query: searchQuery })}
           </p>
         )}
         <div className="grid grid-cols-2 gap-2">
@@ -257,7 +259,7 @@ export default function AssetPanel() {
               <div
                 key={asset.id}
                 className="group relative cursor-grab rounded-xl border-2 border-showcase-navy/8 bg-white p-1.5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-showcase-purple/30 hover:shadow-md active:cursor-grabbing active:scale-95"
-                title={`Drag or click "${asset.name}" to add to canvas`}
+                title={t("dragOrClick", { name: asset.name })}
               >
                 {/* Favorite toggle */}
                 <button
@@ -270,7 +272,7 @@ export default function AssetPanel() {
                       ? "text-showcase-coral opacity-100"
                       : "text-ink-light opacity-0 hover:text-showcase-coral group-hover:opacity-60"
                   }`}
-                  title={isFav ? "Remove from favorites" : "Add to favorites"}
+                  title={isFav ? t("removeFromFavorites") : t("addToFavorites")}
                 >
                   <Heart className={`h-3.5 w-3.5 ${isFav ? "fill-showcase-coral" : ""}`} />
                 </button>
@@ -305,10 +307,10 @@ export default function AssetPanel() {
           <div className="mt-8 text-center">
             <p className="text-xs text-ink-light">
               {activeCategory === "__recent"
-                ? "No recently used assets"
+                ? t("noRecentlyUsed")
                 : activeCategory === "__favorites"
-                  ? "No favorite assets yet"
-                  : "No assets found"}
+                  ? t("noFavorites")
+                  : t("noAssetsFound")}
             </p>
           </div>
         )}
@@ -317,7 +319,7 @@ export default function AssetPanel() {
       {/* Footer hint */}
       <div className="border-t-2 border-showcase-navy/5 px-3 py-2">
         <p className="text-[10px] text-ink-light text-center">
-          Drag onto canvas or click to add
+          {t("dragOrClickHint")}
         </p>
       </div>
     </div>

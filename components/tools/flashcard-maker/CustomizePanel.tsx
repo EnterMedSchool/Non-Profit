@@ -1,6 +1,7 @@
 "use client";
 
 import { useCallback } from "react";
+import { useTranslations } from "next-intl";
 import {
   Palette,
   Type,
@@ -36,6 +37,7 @@ const POSITION_OPTIONS: DecorationPlacement["position"][] = [
 
 // ── Component ────────────────────────────────────────────────────────
 export default function CustomizePanel() {
+  const t = useTranslations("tools.flashcardMaker.ui");
   const { theme, setTheme, updateTheme } = useFlashcards();
 
   const resetTheme = useCallback(() => {
@@ -79,15 +81,15 @@ export default function CustomizePanel() {
     <div className="flex flex-col gap-5 h-full overflow-y-auto pr-1">
       <div className="flex items-center justify-between">
         <h2 className="font-display text-lg font-bold text-ink-dark">
-          Customize
+          {t("customize")}
         </h2>
         <button
           onClick={resetTheme}
           className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted hover:text-showcase-purple"
-          title="Reset to defaults"
+          title={t("resetToDefaults")}
         >
           <RotateCcw className="h-3 w-3" />
-          Reset
+          {t("reset")}
         </button>
       </div>
 
@@ -95,7 +97,7 @@ export default function CustomizePanel() {
       <section className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-sm font-bold text-ink-dark">
           <Palette className="h-4 w-4 text-showcase-purple" />
-          Background
+          {t("background")}
         </div>
 
         {/* Solid colors */}
@@ -107,11 +109,11 @@ export default function CustomizePanel() {
                 ? "border-showcase-teal shadow-chunky-sm scale-105"
                 : "border-ink-light/20 hover:border-showcase-teal/40"
             } bg-white`}
-            aria-label="No background"
+            aria-label={t("noBackground")}
             aria-pressed={theme.backgroundId === null}
             title="None"
           >
-            <span className="text-xs text-ink-muted">None</span>
+            <span className="text-xs text-ink-muted">{t("none")}</span>
           </button>
           {solidBackgrounds.map((bg) => (
             <button
@@ -123,7 +125,7 @@ export default function CustomizePanel() {
                   : "border-ink-light/20 hover:border-showcase-teal/40"
               }`}
               style={{ backgroundColor: bg.color }}
-              aria-label={`Set background to ${bg.label}`}
+              aria-label={t("setBackground", { label: bg.label })}
               aria-pressed={theme.backgroundId === bg.id}
               title={bg.label}
             />
@@ -156,12 +158,12 @@ export default function CustomizePanel() {
       <section className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-sm font-bold text-ink-dark">
           <Type className="h-4 w-4 text-showcase-teal" />
-          Typography
+          {t("typography")}
         </div>
 
         {/* Font family */}
         <label className="flex flex-col gap-1">
-          <span className="text-xs text-ink-muted">Font</span>
+          <span className="text-xs text-ink-muted">{t("font")}</span>
           <select
             value={theme.fontFamily}
             onChange={(e) => updateTheme({ fontFamily: e.target.value })}
@@ -179,7 +181,7 @@ export default function CustomizePanel() {
         {/* Font sizes */}
         <div className="grid grid-cols-2 gap-2">
           <label className="flex flex-col gap-1">
-            <span className="text-xs text-ink-muted">Front size</span>
+            <span className="text-xs text-ink-muted">{t("frontSize")}</span>
             <input
               type="range"
               min={10}
@@ -196,7 +198,7 @@ export default function CustomizePanel() {
             </span>
           </label>
           <label className="flex flex-col gap-1">
-            <span className="text-xs text-ink-muted">Back size</span>
+            <span className="text-xs text-ink-muted">{t("backSize")}</span>
             <input
               type="range"
               min={10}
@@ -216,12 +218,12 @@ export default function CustomizePanel() {
 
         {/* Text color */}
         <label className="flex items-center gap-2">
-          <span className="text-xs text-ink-muted">Text color</span>
+          <span className="text-xs text-ink-muted">{t("textColor")}</span>
           <input
             type="color"
             value={theme.textColor}
             onChange={(e) => updateTheme({ textColor: e.target.value })}
-            aria-label="Text color picker"
+            aria-label={t("textColorPicker")}
             className="h-8 w-8 cursor-pointer rounded-lg border-2 border-ink-light/20"
           />
           <span className="text-xs font-mono text-ink-muted">
@@ -234,12 +236,12 @@ export default function CustomizePanel() {
       <section className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-sm font-bold text-ink-dark">
           <Frame className="h-4 w-4 text-showcase-coral" />
-          Border
+          {t("border")}
         </div>
 
         <div className="grid grid-cols-2 gap-2">
           <label className="flex flex-col gap-1">
-            <span className="text-xs text-ink-muted">Style</span>
+            <span className="text-xs text-ink-muted">{t("style")}</span>
             <select
               value={theme.borderStyle}
               onChange={(e) =>
@@ -257,7 +259,7 @@ export default function CustomizePanel() {
           </label>
 
           <label className="flex flex-col gap-1">
-            <span className="text-xs text-ink-muted">Width</span>
+            <span className="text-xs text-ink-muted">{t("width")}</span>
             <input
               type="range"
               min={0}
@@ -276,12 +278,12 @@ export default function CustomizePanel() {
         </div>
 
         <label className="flex items-center gap-2">
-          <span className="text-xs text-ink-muted">Border color</span>
+          <span className="text-xs text-ink-muted">{t("borderColor")}</span>
           <input
             type="color"
             value={theme.borderColor}
             onChange={(e) => updateTheme({ borderColor: e.target.value })}
-            aria-label="Border color picker"
+            aria-label={t("borderColorPicker")}
             className="h-8 w-8 cursor-pointer rounded-lg border-2 border-ink-light/20"
           />
           <span className="text-xs font-mono text-ink-muted">
@@ -294,12 +296,12 @@ export default function CustomizePanel() {
       <section className="flex flex-col gap-2">
         <div className="flex items-center gap-2 text-sm font-bold text-ink-dark">
           <Sticker className="h-4 w-4 text-showcase-yellow" />
-          Decorations
+          {t("decorations")}
         </div>
 
         {decorations.length === 0 && theme.decorations.length === 0 && (
           <p className="text-xs text-ink-muted rounded-xl border-2 border-dashed border-ink-light/20 p-3 text-center">
-            No decorations available.
+            {t("noDecorations")}
           </p>
         )}
 
@@ -311,7 +313,7 @@ export default function CustomizePanel() {
                 key={deco.id}
                 onClick={() => addDecoration(deco.id)}
                 className="flex h-12 items-center justify-center rounded-lg border-2 border-ink-light/20 bg-white transition-all hover:border-showcase-yellow/50 hover:scale-105"
-                title={`Add ${deco.label}`}
+                title={t("addDecoration", { label: deco.label })}
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
@@ -353,7 +355,7 @@ export default function CustomizePanel() {
                 <button
                   onClick={() => removeDecoration(i)}
                   className="text-red-400 hover:text-red-600 text-xs font-bold"
-                  aria-label={`Remove decoration ${getDecorationById(deco.assetId)?.label ?? deco.assetId}`}
+                  aria-label={t("removeDecoration", { label: getDecorationById(deco.assetId)?.label ?? deco.assetId })}
                 >
                   x
                 </button>

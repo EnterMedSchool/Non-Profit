@@ -36,6 +36,7 @@ export type Difficulty = "beginner" | "intermediate" | "advanced";
 
 export interface LaTeXTemplate {
   id: string;
+  language: string;
   title: string;
   description: string;
   category: TemplateCategory;
@@ -52,6 +53,7 @@ export interface LaTeXTemplate {
 
 export interface LaTeXSnippet {
   id: string;
+  language: string;
   title: string;
   category: string;
   icon: string;

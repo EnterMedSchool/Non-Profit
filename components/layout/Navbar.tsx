@@ -4,7 +4,7 @@ import { useState, useEffect, useRef, useCallback } from "react";
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { m, useScroll, useTransform, AnimatePresence } from "framer-motion";
 import {
   Search,
@@ -166,6 +166,7 @@ function MegaMenuPanel({
   onClose: () => void;
 }) {
   const t = useTranslations("nav");
+  const locale = useLocale();
   const cols = item.children.length >= 4 ? "sm:grid-cols-2" : "sm:grid-cols-1";
 
   return (
@@ -188,7 +189,7 @@ function MegaMenuPanel({
             return (
               <Link
                 key={child.href}
-                href={`/en${child.href}`}
+                href={`/${locale}${child.href}`}
                 onClick={onClose}
                 className="group flex items-start gap-3.5 rounded-xl px-3 py-3 transition-all hover:bg-pastel-lavender/60"
               >
@@ -213,7 +214,7 @@ function MegaMenuPanel({
         {/* View all footer */}
         <div className="border-t border-showcase-purple/10 bg-pastel-lavender/20 px-4 py-2.5">
           <Link
-            href={`/en${item.href}`}
+            href={`/${locale}${item.href}`}
             onClick={onClose}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-showcase-purple transition-colors hover:text-showcase-purple/70"
           >
@@ -230,6 +231,7 @@ function MegaMenuPanel({
 
 export default function Navbar() {
   const t = useTranslations("nav");
+  const locale = useLocale();
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -301,7 +303,7 @@ export default function Navbar() {
         <div className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
           {/* Logo */}
           <Link
-            href="/en"
+            href={`/${locale}`}
             className="flex items-center gap-2.5 font-display text-lg font-bold text-ink-dark group"
           >
             <Image
@@ -351,7 +353,7 @@ export default function Navbar() {
                   onMouseLeave={hasMega ? handleMegaLeave : undefined}
                 >
                   <Link
-                    href={`/en${item.href}`}
+                    href={`/${locale}${item.href}`}
                     className={`relative z-10 flex items-center gap-1 rounded-full px-3.5 py-1.5 text-sm font-semibold transition-colors duration-200 ${
                       isActive
                         ? "text-showcase-purple"

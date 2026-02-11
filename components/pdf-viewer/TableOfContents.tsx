@@ -71,7 +71,7 @@ export default function TableOfContents() {
               <button
                 onClick={() => setSidebarOpen(false)}
                 className="flex h-7 w-7 items-center justify-center rounded-lg text-ink-muted transition-colors hover:bg-gray-100 lg:hidden"
-                aria-label="Close table of contents"
+                aria-label={t("ariaCloseToc")}
               >
                 <X className="h-4 w-4" />
               </button>
@@ -80,14 +80,14 @@ export default function TableOfContents() {
             {/* Progress bar */}
             <div className="px-4 py-2">
               <div className="flex items-center justify-between text-xs text-ink-muted">
-                <span>{overallProgress}% complete</span>
+                <span>{t("completePercent", { percent: overallProgress })}</span>
                 <span>
-                  {
-                    Object.values(readingProgress.progress.chapters).filter(
+                  {t("chaptersCount", {
+                    completed: Object.values(readingProgress.progress.chapters).filter(
                       (c) => c.completed,
-                    ).length
-                  }
-                  /{book.chapters.length} chapters
+                    ).length,
+                    total: book.chapters.length,
+                  })}
                 </span>
               </div>
               <div className="mt-1 h-1.5 overflow-hidden rounded-full bg-gray-100">
@@ -138,7 +138,7 @@ export default function TableOfContents() {
                         >
                           <div className="flex items-center gap-2">
                             <span className="text-xs font-bold text-ink-light">
-                              Ch. {chapter.number}
+                              {t("chPrefix")} {chapter.number}
                             </span>
                             {isComplete && (
                               <CheckCircle2 className="h-3.5 w-3.5 text-showcase-green" />
@@ -195,7 +195,7 @@ export default function TableOfContents() {
                 {book.subject}
               </p>
               <p className="mt-0.5 text-xs text-ink-muted">
-                v{book.version} &middot; {book.totalPages} pages
+                v{book.version} &middot; {book.totalPages} {t("pages")}
               </p>
             </div>
           </m.aside>

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useEffect } from "react";
+import { useLocale, useTranslations } from "next-intl";
 import { m, AnimatePresence } from "framer-motion";
 import { X, Copy, Check, Code, Link2 } from "lucide-react";
 import { EXAM_COPY } from "./examChains";
@@ -9,22 +10,22 @@ import { EXAM_COPY } from "./examChains";
 const SITE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
-const COLOR_PRESETS = [
-  { label: "White", value: "ffffff" },
-  { label: "Light Gray", value: "f5f5f5" },
-  { label: "Cream", value: "faf8f5" },
-  { label: "Dark", value: "1a1a2e" },
-  { label: "Slate", value: "1e293b" },
-];
+const COLOR_PRESET_KEYS = [
+  { key: "white", value: "ffffff" },
+  { key: "lightGray", value: "f5f5f5" },
+  { key: "cream", value: "faf8f5" },
+  { key: "dark", value: "1a1a2e" },
+  { key: "slate", value: "1e293b" },
+] as const;
 
-const ACCENT_PRESETS = [
-  { label: "Purple", value: "6C5CE7" },
-  { label: "Green", value: "00b894" },
-  { label: "Teal", value: "00cec9" },
-  { label: "Coral", value: "ff7675" },
-  { label: "Blue", value: "0984e3" },
-  { label: "Navy", value: "1a1a2e" },
-];
+const ACCENT_PRESET_KEYS = [
+  { key: "purple", value: "6C5CE7" },
+  { key: "green", value: "00b894" },
+  { key: "teal", value: "00cec9" },
+  { key: "coral", value: "ff7675" },
+  { key: "blue", value: "0984e3" },
+  { key: "navy", value: "1a1a2e" },
+] as const;
 
 const CELEBRATION_COLORS = [
   "#6C5CE7", "#00D9C0", "#FFD93D", "#FF85A2",
@@ -82,11 +83,15 @@ function ColorField({
   value,
   onChange,
   presets,
+  hexPlaceholder,
+  pickColorTitle,
 }: {
   label: string;
   value: string;
   onChange: (v: string) => void;
   presets: { label: string; value: string }[];
+  hexPlaceholder: string;
+  pickColorTitle: string;
 }) {
   return (
     <div>
@@ -134,12 +139,12 @@ function ColorField({
               ? "border-showcase-navy/15 focus:border-showcase-purple focus:ring-1 focus:ring-showcase-purple/20"
               : "border-red-300 focus:border-red-400"
           }`}
-          placeholder="hex color"
+          placeholder={hexPlaceholder}
           maxLength={6}
         />
         <label
           className="relative h-[30px] w-[30px] rounded-lg border-2 border-showcase-navy/15 overflow-hidden cursor-pointer flex-shrink-0"
-          title="Pick color"
+          title={pickColorTitle}
         >
           <input
             type="color"
@@ -164,6 +169,8 @@ export default function ClinicalSemioticsEmbedConfigurator({
   examType,
   onClose,
 }: ClinicalSemioticsEmbedConfiguratorProps) {
+  const locale = useLocale();
+  const t = useTranslations("clinicalSemiotics.embed");
   const [bg, setBg] = useState("ffffff");
   const [accent, setAccent] = useState("6C5CE7");
   const [radius, setRadius] = useState(12);
@@ -186,27 +193,44 @@ export default function ClinicalSemioticsEmbedConfigurator({
   const examCopy = EXAM_COPY[examType];
   const examTitle = examCopy?.title ?? examType;
 
+  const colorPresets = useMemo(
+    () =>
+      COLOR_PRESET_KEYS.map((p) => ({
+        label: t(`colorPresets.${p.key}`),
+        value: p.value,
+      })),
+    [t]
+  );
+  const accentPresets = useMemo(
+    () =>
+      ACCENT_PRESET_KEYS.map((p) => ({
+        label: t(`colorPresets.${p.key}`),
+        value: p.value,
+      })),
+    [t]
+  );
+
   // Embed URL for generated code (always uses production domain)
   const embedUrl = useMemo(
     () =>
-      `${SITE_URL}/en/embed/clinical-semiotics/${examType}?bg=${bg}&accent=${accent}&radius=${radius}&theme=${theme}`,
-    [examType, bg, accent, radius, theme],
+      `${SITE_URL}/${locale}/embed/clinical-semiotics/${examType}?bg=${bg}&accent=${accent}&radius=${radius}&theme=${theme}`,
+    [locale, examType, bg, accent, radius, theme],
   );
 
   // Preview URL uses current origin so it works in dev
   const previewUrl = useMemo(
     () =>
-      `${origin}/en/embed/clinical-semiotics/${examType}?bg=${bg}&accent=${accent}&radius=${radius}&theme=${theme}`,
-    [origin, examType, bg, accent, radius, theme],
+      `${origin}/${locale}/embed/clinical-semiotics/${examType}?bg=${bg}&accent=${accent}&radius=${radius}&theme=${theme}`,
+    [origin, locale, examType, bg, accent, radius, theme],
   );
 
   // Direct share link (to the main page, not the embed)
   const shareUrl = useMemo(
-    () => `${SITE_URL}/en/clinical-semiotics`,
-    [],
+    () => `${SITE_URL}/${locale}/clinical-semiotics`,
+    [locale],
   );
 
-  const lessonPageUrl = `${SITE_URL}/en/clinical-semiotics`;
+  const lessonPageUrl = `${SITE_URL}/${locale}/clinical-semiotics`;
 
   const iframeCode = useMemo(() => {
     const accentHex = `#${accent}`;
@@ -258,7 +282,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
         onClick={onClose}
         role="button"
         tabIndex={0}
-        aria-label="Close embed configurator"
+        aria-label={t("closeAria")}
         onKeyDown={(e) => {
           if (e.key === "Escape") onClose();
         }}
@@ -280,17 +304,17 @@ export default function ClinicalSemioticsEmbedConfigurator({
             </div>
             <div className="min-w-0">
               <h3 className="font-display text-base sm:text-lg font-bold text-ink-dark truncate">
-                Embed &amp; Share: {examTitle}
+                {t("embedShareTitle", { examTitle })}
               </h3>
               <p className="text-[11px] text-ink-light hidden sm:block">
-                Embed on your site, or copy a direct link for slides and LMS
+                {t("embedShareSubtitle")}
               </p>
             </div>
           </div>
           <button
             onClick={onClose}
             className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-showcase-navy/10 text-ink-muted hover:bg-gray-100 transition-colors flex-shrink-0"
-            aria-label="Close"
+            aria-label={t("closeButtonAria")}
           >
             <X className="h-4 w-4" />
           </button>
@@ -311,7 +335,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                 }`}
               >
                 <Code className="h-3.5 w-3.5" />
-                Embed Code
+                {t("embedCodeTab")}
               </button>
               <button
                 onClick={() => setActiveTab("link")}
@@ -322,7 +346,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                 }`}
               >
                 <Link2 className="h-3.5 w-3.5" />
-                Share Link
+                {t("shareLinkTab")}
               </button>
             </div>
 
@@ -330,22 +354,26 @@ export default function ClinicalSemioticsEmbedConfigurator({
               /* ── Embed tab ── */
               <div className="space-y-5">
                 <ColorField
-                  label="Background Color"
+                  label={t("backgroundColor")}
                   value={bg}
                   onChange={setBg}
-                  presets={COLOR_PRESETS}
+                  presets={colorPresets}
+                  hexPlaceholder={t("hexColorPlaceholder")}
+                  pickColorTitle={t("pickColor")}
                 />
                 <ColorField
-                  label="Accent Color"
+                  label={t("accentColor")}
                   value={accent}
                   onChange={setAccent}
-                  presets={ACCENT_PRESETS}
+                  presets={accentPresets}
+                  hexPlaceholder={t("hexColorPlaceholder")}
+                  pickColorTitle={t("pickColor")}
                 />
 
                 {/* Border radius */}
                 <div>
                   <label className="block text-xs font-bold text-ink-dark mb-2">
-                    Border Radius:{" "}
+                    {t("borderRadius")}:{" "}
                     <span className="text-showcase-purple">{radius}px</span>
                   </label>
                   <input
@@ -361,20 +389,20 @@ export default function ClinicalSemioticsEmbedConfigurator({
                 {/* Theme */}
                 <div>
                   <label className="block text-xs font-bold text-ink-dark mb-2">
-                    Theme
+                    {t("theme")}
                   </label>
                   <div className="flex gap-2">
-                    {(["light", "dark"] as const).map((t) => (
+                    {(["light", "dark"] as const).map((themeKey) => (
                       <button
-                        key={t}
-                        onClick={() => setTheme(t)}
+                        key={themeKey}
+                        onClick={() => setTheme(themeKey)}
                         className={`flex-1 rounded-xl border-2 px-3 py-2 text-xs font-bold transition-all ${
-                          theme === t
+                          theme === themeKey
                             ? "border-showcase-navy bg-showcase-navy text-white shadow-chunky-sm"
                             : "border-showcase-navy/15 bg-white text-ink-muted hover:bg-gray-50"
                         }`}
                       >
-                        {t === "light" ? "Light" : "Dark"}
+                        {themeKey === "light" ? t("light") : t("dark")}
                       </button>
                     ))}
                   </div>
@@ -384,7 +412,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                 <div className="grid grid-cols-2 gap-3">
                   <div>
                     <label className="block text-xs font-bold text-ink-dark mb-1">
-                      Width
+                      {t("width")}
                     </label>
                     <input
                       type="text"
@@ -395,7 +423,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                   </div>
                   <div>
                     <label className="block text-xs font-bold text-ink-dark mb-1">
-                      Height
+                      {t("height")}
                     </label>
                     <input
                       type="text"
@@ -410,7 +438,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                 <div>
                   <div className="flex items-center justify-between mb-2">
                     <label className="text-xs font-bold text-ink-dark">
-                      Embed Code
+                      {t("embedCodeLabel")}
                     </label>
                     <div className="relative">
                       <button
@@ -463,8 +491,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                     ))}
                   </div>
                   <p className="mt-2 text-[10px] text-ink-light">
-                    Works with Notion, WordPress, Squarespace, Wix, and any HTML
-                    page.
+                    {t("worksWith")}
                   </p>
                 </div>
               </div>
@@ -473,12 +500,10 @@ export default function ClinicalSemioticsEmbedConfigurator({
               <div className="space-y-5">
                 <div>
                   <label className="block text-xs font-bold text-ink-dark mb-2">
-                    Direct Link
+                    {t("directLink")}
                   </label>
                   <p className="text-[11px] text-ink-muted mb-3">
-                    Copy this URL to paste into slides, share in a group chat, or
-                    add to your LMS. Students will land on the exam selection
-                    page.
+                    {t("copyUrlInstructions")}
                   </p>
                   <div className="flex gap-2">
                     <div className="flex-1 rounded-lg border-2 border-showcase-navy/15 bg-gray-50 px-3 py-2 text-xs font-mono text-ink-muted truncate">
@@ -497,35 +522,32 @@ export default function ClinicalSemioticsEmbedConfigurator({
                       ) : (
                         <Copy className="h-3.5 w-3.5" />
                       )}
-                      {copied ? "Copied!" : "Copy"}
+                      {copied ? t("copied") : t("copy")}
                     </button>
                   </div>
                 </div>
 
                 <div className="rounded-xl border-2 border-showcase-navy/10 bg-showcase-purple/5 p-4">
                   <h4 className="text-xs font-bold text-ink-dark mb-2">
-                    How to use
+                    {t("howToUse")}
                   </h4>
                   <ul className="space-y-2 text-[11px] text-ink-muted">
                     <li className="flex gap-2">
                       <span className="font-bold text-showcase-purple">1.</span>
                       <span>
-                        <strong>In slides:</strong> Paste the link on a slide.
-                        Students click to open.
+                        <strong>{t("inSlides")}:</strong> {t("inSlidesDesc")}
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-bold text-showcase-purple">2.</span>
                       <span>
-                        <strong>In LMS:</strong> Add as an external resource or
-                        hyperlink.
+                        <strong>{t("inLms")}:</strong> {t("inLmsDesc")}
                       </span>
                     </li>
                     <li className="flex gap-2">
                       <span className="font-bold text-showcase-purple">3.</span>
                       <span>
-                        <strong>On a website:</strong> Switch to the Embed Code
-                        tab for an iframe snippet.
+                        <strong>{t("onWebsite")}:</strong> {t("onWebsiteDesc")}
                       </span>
                     </li>
                   </ul>
@@ -537,7 +559,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
           {/* Right: Live Preview with browser chrome */}
           <div className="flex-1 hidden lg:flex flex-col overflow-hidden bg-gray-100 p-6">
             <p className="mb-3 text-xs font-bold text-ink-light uppercase tracking-wider text-center">
-              Live Preview
+              {t("livePreview")}
             </p>
             <div className="mx-auto w-full max-w-2xl flex-1 flex flex-col rounded-xl border-2 border-gray-300 bg-white shadow-lg overflow-hidden">
               {/* Title bar */}
@@ -561,7 +583,7 @@ export default function ClinicalSemioticsEmbedConfigurator({
                     <div className="flex flex-col items-center gap-2">
                       <div className="h-6 w-6 animate-spin rounded-full border-2 border-gray-200 border-t-purple-500" />
                       <p className="text-[11px] text-ink-muted">
-                        Loading preview...
+                        {t("previewLoading")}
                       </p>
                     </div>
                   </div>

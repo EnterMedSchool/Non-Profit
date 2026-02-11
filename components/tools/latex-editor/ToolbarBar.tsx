@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import RichTooltip from "./RichTooltip";
 import {
@@ -44,195 +45,96 @@ import {
 
 interface FormatAction {
   icon: React.ComponentType<{ size?: number; className?: string }>;
-  label: string;
-  tooltip: string;
-  /** If wrapPrefix/wrapSuffix are set, wraps selection. Otherwise inserts snippet. */
+  labelKey: string;
+  tooltipKey: string;
   snippet: string;
   wrapPrefix?: string;
   wrapSuffix?: string;
   fallbackBody?: string;
-  /** Where to place cursor relative to insert position. Negative = from end. */
   cursorOffset?: number;
-  /** Rich tooltip data */
   richTooltip?: {
-    title: string;
-    description: string;
+    titleKey: string;
+    descKey: string;
     preview?: string;
     shortcut?: string;
     code?: string;
   };
 }
 
-const FORMAT_GROUPS: { label: string; actions: FormatAction[] }[] = [
+const FORMAT_GROUPS: { labelKey: string; actions: FormatAction[] }[] = [
   {
-    label: "Text",
+    labelKey: "formatGroupText",
     actions: [
       {
         icon: Bold,
-        label: "Bold",
-        tooltip: "Bold — select text first, or inserts placeholder",
+        labelKey: "formatBold",
+        tooltipKey: "formatBoldTooltip",
         snippet: "\\textbf{text}",
         wrapPrefix: "\\textbf{",
         wrapSuffix: "}",
         fallbackBody: "text",
-        richTooltip: {
-          title: "Bold Text",
-          description: "Makes selected text bold. Select text first, then click, or use the shortcut.",
-          preview: "<b>Bold text</b>",
-          shortcut: "Ctrl+B",
-          code: "\\textbf{your text}",
-        },
+        richTooltip: { titleKey: "formatBoldRichTitle", descKey: "formatBoldRichDesc", preview: "<b>Bold text</b>", shortcut: "Ctrl+B", code: "\\textbf{your text}" },
       },
       {
         icon: Italic,
-        label: "Italic",
-        tooltip: "Italic — select text first, or inserts placeholder",
+        labelKey: "formatItalic",
+        tooltipKey: "formatItalicTooltip",
         snippet: "\\textit{text}",
         wrapPrefix: "\\textit{",
         wrapSuffix: "}",
         fallbackBody: "text",
-        richTooltip: {
-          title: "Italic Text",
-          description: "Makes selected text italic. Great for emphasis, species names, or foreign words.",
-          preview: "<i>Italic text</i>",
-          shortcut: "Ctrl+I",
-          code: "\\textit{your text}",
-        },
+        richTooltip: { titleKey: "formatItalicRichTitle", descKey: "formatItalicRichDesc", preview: "<i>Italic text</i>", shortcut: "Ctrl+I", code: "\\textit{your text}" },
       },
       {
         icon: Underline,
-        label: "Underline",
-        tooltip: "Underline — select text first, or inserts placeholder",
+        labelKey: "formatUnderline",
+        tooltipKey: "formatUnderlineTooltip",
         snippet: "\\underline{text}",
         wrapPrefix: "\\underline{",
         wrapSuffix: "}",
         fallbackBody: "text",
-        richTooltip: {
-          title: "Underlined Text",
-          description: "Underlines the selected text.",
-          preview: "<u>Underlined text</u>",
-          shortcut: "Ctrl+U",
-          code: "\\underline{your text}",
-        },
+        richTooltip: { titleKey: "formatUnderlineRichTitle", descKey: "formatUnderlineRichDesc", preview: "<u>Underlined text</u>", shortcut: "Ctrl+U", code: "\\underline{your text}" },
       },
     ],
   },
   {
-    label: "Sections",
+    labelKey: "formatGroupSections",
     actions: [
       {
         icon: Heading1,
-        label: "Section",
-        tooltip: "Main section heading",
+        labelKey: "formatSection",
+        tooltipKey: "formatSectionTooltip",
         snippet: "\\section{Section Title}\n",
         wrapPrefix: "\\section{",
         wrapSuffix: "}\n",
         fallbackBody: "Section Title",
-        richTooltip: {
-          title: "Section Heading",
-          description: "Creates a numbered main section heading. LaTeX auto-numbers these for you.",
-          preview: "<b style='font-size:1.2em'>1 Introduction</b>",
-          code: "\\section{Your Title}",
-        },
+        richTooltip: { titleKey: "formatSectionRichTitle", descKey: "formatSectionRichDesc", preview: "<b style='font-size:1.2em'>1 Introduction</b>", code: "\\section{Your Title}" },
       },
-      {
-        icon: Heading2,
-        label: "Subsection",
-        tooltip: "Subsection heading",
-        snippet: "\\subsection{Subsection Title}\n",
-        wrapPrefix: "\\subsection{",
-        wrapSuffix: "}\n",
-        fallbackBody: "Subsection Title",
-      },
-      {
-        icon: Heading3,
-        label: "Subsubsection",
-        tooltip: "Sub-subsection heading",
-        snippet: "\\subsubsection{Title}\n",
-        wrapPrefix: "\\subsubsection{",
-        wrapSuffix: "}\n",
-        fallbackBody: "Title",
-      },
+      { icon: Heading2, labelKey: "formatSubsection", tooltipKey: "formatSubsectionTooltip", snippet: "\\subsection{Subsection Title}\n", wrapPrefix: "\\subsection{", wrapSuffix: "}\n", fallbackBody: "Subsection Title" },
+      { icon: Heading3, labelKey: "formatSubsubsection", tooltipKey: "formatSubsubsectionTooltip", snippet: "\\subsubsection{Title}\n", wrapPrefix: "\\subsubsection{", wrapSuffix: "}\n", fallbackBody: "Title" },
     ],
   },
   {
-    label: "Lists",
+    labelKey: "formatGroupLists",
     actions: [
-      {
-        icon: List,
-        label: "Bullet List",
-        tooltip: "Bullet point list",
-        snippet:
-          "\\begin{itemize}\n  \\item First item\n  \\item Second item\n  \\item Third item\n\\end{itemize}\n",
-      },
-      {
-        icon: ListOrdered,
-        label: "Numbered List",
-        tooltip: "Numbered list",
-        snippet:
-          "\\begin{enumerate}\n  \\item First item\n  \\item Second item\n  \\item Third item\n\\end{enumerate}\n",
-      },
+      { icon: List, labelKey: "formatBulletList", tooltipKey: "formatBulletListTooltip", snippet: "\\begin{itemize}\n  \\item First item\n  \\item Second item\n  \\item Third item\n\\end{itemize}\n" },
+      { icon: ListOrdered, labelKey: "formatNumberedList", tooltipKey: "formatNumberedListTooltip", snippet: "\\begin{enumerate}\n  \\item First item\n  \\item Second item\n  \\item Third item\n\\end{enumerate}\n" },
     ],
   },
   {
-    label: "Math",
+    labelKey: "formatGroupMath",
     actions: [
-      {
-        icon: Sigma,
-        label: "Inline Math",
-        tooltip: "Inline equation — wraps selection in $...$",
-        snippet: "$x = $",
-        wrapPrefix: "$",
-        wrapSuffix: "$",
-        fallbackBody: "x = ",
-      },
-      {
-        icon: () => (
-          <span className="text-[10px] font-bold leading-none">∫</span>
-        ),
-        label: "Display Math",
-        tooltip: "Centered equation block",
-        snippet:
-          "\\begin{equation}\n  E = mc^2\n\\end{equation}\n",
-      },
+      { icon: Sigma, labelKey: "formatInlineMath", tooltipKey: "formatInlineMathTooltip", snippet: "$x = $", wrapPrefix: "$", wrapSuffix: "$", fallbackBody: "x = " },
+      { icon: () => <span className="text-[10px] font-bold leading-none">∫</span>, labelKey: "formatDisplayMath", tooltipKey: "formatDisplayMathTooltip", snippet: "\\begin{equation}\n  E = mc^2\n\\end{equation}\n" },
     ],
   },
   {
-    label: "Objects",
+    labelKey: "formatGroupObjects",
     actions: [
-      {
-        icon: Table,
-        label: "Table",
-        tooltip: "Insert a table",
-        snippet:
-          "\\begin{table}[h]\n  \\centering\n  \\begin{tabular}{|l|c|r|}\n    \\hline\n    \\textbf{Header 1} & \\textbf{Header 2} & \\textbf{Header 3} \\\\\n    \\hline\n    Cell 1 & Cell 2 & Cell 3 \\\\\n    Cell 4 & Cell 5 & Cell 6 \\\\\n    \\hline\n  \\end{tabular}\n  \\caption{Table caption}\n  \\label{tab:mytable}\n\\end{table}\n",
-      },
-      {
-        icon: Image,
-        label: "Figure",
-        tooltip: "Insert a figure placeholder",
-        snippet:
-          "\\begin{figure}[h]\n  \\centering\n  % \\includegraphics[width=0.8\\textwidth]{filename}\n  \\caption{Figure caption}\n  \\label{fig:myfigure}\n\\end{figure}\n",
-      },
-      {
-        icon: Quote,
-        label: "Quote",
-        tooltip: "Block quote — wraps selection",
-        snippet:
-          "\\begin{quote}\n  Your quoted text here.\n\\end{quote}\n",
-        wrapPrefix: "\\begin{quote}\n  ",
-        wrapSuffix: "\n\\end{quote}\n",
-        fallbackBody: "Your quoted text here.",
-      },
-      {
-        icon: Link,
-        label: "Hyperlink",
-        tooltip: "Clickable link (requires hyperref)",
-        snippet: "\\href{https://example.com}{Link Text}",
-        wrapPrefix: "\\href{https://example.com}{",
-        wrapSuffix: "}",
-        fallbackBody: "Link Text",
-      },
+      { icon: Table, labelKey: "formatTable", tooltipKey: "formatTableTooltip", snippet: "\\begin{table}[h]\n  \\centering\n  \\begin{tabular}{|l|c|r|}\n    \\hline\n    \\textbf{Header 1} & \\textbf{Header 2} & \\textbf{Header 3} \\\\\n    \\hline\n    Cell 1 & Cell 2 & Cell 3 \\\\\n    Cell 4 & Cell 5 & Cell 6 \\\\\n    \\hline\n  \\end{tabular}\n  \\caption{Table caption}\n  \\label{tab:mytable}\n\\end{table}\n" },
+      { icon: Image, labelKey: "formatFigure", tooltipKey: "formatFigureTooltip", snippet: "\\begin{figure}[h]\n  \\centering\n  % \\includegraphics[width=0.8\\textwidth]{filename}\n  \\caption{Figure caption}\n  \\label{fig:myfigure}\n\\end{figure}\n" },
+      { icon: Quote, labelKey: "formatQuote", tooltipKey: "formatQuoteTooltip", snippet: "\\begin{quote}\n  Your quoted text here.\n\\end{quote}\n", wrapPrefix: "\\begin{quote}\n  ", wrapSuffix: "\n\\end{quote}\n", fallbackBody: "Your quoted text here." },
+      { icon: Link, labelKey: "formatHyperlink", tooltipKey: "formatHyperlinkTooltip", snippet: "\\href{https://example.com}{Link Text}", wrapPrefix: "\\href{https://example.com}{", wrapSuffix: "}", fallbackBody: "Link Text" },
     ],
   },
 ];
@@ -240,6 +142,7 @@ const FORMAT_GROUPS: { label: string; actions: FormatAction[] }[] = [
 /* ── Toolbar component ───────────────────────────────────── */
 
 export default function ToolbarBar() {
+  const t = useTranslations("tools.latexEditor.ui");
   const {
     documentTitle,
     setDocumentTitle,
@@ -285,7 +188,7 @@ export default function ToolbarBar() {
         <a
           href="/"
           className="p-1.5 rounded-lg hover:bg-pastel-cream transition-colors text-ink-muted flex-shrink-0"
-          title="Back to home"
+          title={t("backToHome")}
         >
           <ArrowLeft size={18} />
         </a>
@@ -295,7 +198,7 @@ export default function ToolbarBar() {
             value={documentTitle}
             onChange={(e) => setDocumentTitle(e.target.value)}
             className="text-sm font-semibold bg-transparent border-none outline-none focus:ring-2 focus:ring-showcase-purple/30 rounded px-1 py-0.5 min-w-0 w-48"
-            title="Document title"
+            title={t("documentTitle")}
           />
         </div>
 
@@ -305,7 +208,7 @@ export default function ToolbarBar() {
         <div className="flex items-center gap-1">
           <ToolbarButton
             icon={Puzzle}
-            label="Snippets"
+            label={t("snippets")}
             active={activePanel === "snippets"}
             onClick={() => togglePanel("snippets")}
             dataTour="btn-snippets"
@@ -319,7 +222,7 @@ export default function ToolbarBar() {
           />
           <ToolbarButton
             icon={FolderOpen}
-            label="Files"
+            label={t("files")}
             active={activePanel === "files"}
             onClick={() => togglePanel("files")}
           />
@@ -332,7 +235,7 @@ export default function ToolbarBar() {
           />
           <ToolbarButton
             icon={Download}
-            label="Export"
+            label={t("export")}
             onClick={() => setIsExportPanelOpen(true)}
             dataTour="btn-export"
           />
@@ -384,24 +287,25 @@ export default function ToolbarBar() {
           className="flex items-center gap-1 px-2 py-1 rounded-md text-ink-muted hover:bg-pastel-cream hover:text-ink-dark transition-colors flex-shrink-0"
         >
           <Redo2 size={14} />
-          <span className="text-[11px] font-medium hidden xl:inline">Redo</span>
+          <span className="text-[11px] font-medium hidden xl:inline">{t("redo")}</span>
         </button>
         <div className="w-px h-5 bg-ink-dark/8 mx-1 flex-shrink-0" />
 
         {FORMAT_GROUPS.map((group, gi) => (
-          <div key={group.label} className="flex items-center gap-0.5">
+          <div key={group.labelKey} className="flex items-center gap-0.5">
             {gi > 0 && (
               <div className="w-px h-5 bg-ink-dark/8 mx-1 flex-shrink-0" />
             )}
             {group.actions.map((action) => {
+              const label = t(action.labelKey);
               const btn = (
                 <button
-                  key={action.label}
-                  data-tour={action.label === "Bold" ? "btn-bold" : undefined}
+                  key={action.labelKey}
+                  data-tour={action.labelKey === "formatBold" ? "btn-bold" : undefined}
                   onClick={() => {
-                    if (action.label === "Table") {
+                    if (action.labelKey === "formatTable") {
                       setIsTableBuilderOpen(true);
-                    } else if (action.label === "Display Math") {
+                    } else if (action.labelKey === "formatDisplayMath") {
                       setIsEquationBuilderOpen(true);
                     } else if (action.wrapPrefix && action.wrapSuffix) {
                       wrapSelection(action.wrapPrefix, action.wrapSuffix, action.fallbackBody);
@@ -409,18 +313,27 @@ export default function ToolbarBar() {
                       insertAtCursor(action.snippet);
                     }
                   }}
-                  title={action.richTooltip ? undefined : action.tooltip}
+                  title={action.richTooltip ? undefined : t(action.tooltipKey)}
                   className="flex items-center gap-1 px-2 py-1 rounded-md text-ink-muted hover:bg-pastel-cream hover:text-ink-dark transition-colors flex-shrink-0"
                 >
                   <action.icon size={14} />
                   <span className="text-[11px] font-medium hidden xl:inline">
-                    {action.label}
+                    {label}
                   </span>
                 </button>
               );
 
               return action.richTooltip ? (
-                <RichTooltip key={action.label} content={action.richTooltip}>
+                <RichTooltip
+                  key={action.labelKey}
+                  content={{
+                    title: t(action.richTooltip.titleKey),
+                    description: t(action.richTooltip.descKey),
+                    preview: action.richTooltip.preview,
+                    shortcut: action.richTooltip.shortcut,
+                    code: action.richTooltip.code,
+                  }}
+                >
                   {btn}
                 </RichTooltip>
               ) : (
@@ -475,6 +388,7 @@ function SettingsDropdown({
   updateSettings: (patch: Partial<import("./types").EditorSettings>) => void;
   onOpenShortcuts: () => void;
 }) {
+  const t = useTranslations("tools.latexEditor.ui");
   const restartTour = () => {
     try {
       localStorage.removeItem("ems-latex-tour-completed");
@@ -518,7 +432,7 @@ function SettingsDropdown({
 
       {/* Word wrap */}
       <SettingsToggle
-        label="Word Wrap"
+        label={t("wordWrap")}
         icon={WrapText}
         value={settings.wordWrap}
         onChange={(v) => updateSettings({ wordWrap: v })}
@@ -526,7 +440,7 @@ function SettingsDropdown({
 
       {/* Line numbers */}
       <SettingsToggle
-        label="Line Numbers"
+        label={t("lineNumbers")}
         icon={Hash}
         value={settings.showLineNumbers}
         onChange={(v) => updateSettings({ showLineNumbers: v })}
@@ -534,7 +448,7 @@ function SettingsDropdown({
 
       {/* Auto preview */}
       <SettingsToggle
-        label="Auto Preview"
+        label={t("autoPreview")}
         icon={settings.autoPreview ? Eye : EyeOff}
         value={settings.autoPreview}
         onChange={(v) => updateSettings({ autoPreview: v })}

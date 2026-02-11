@@ -2,6 +2,7 @@
 
 import { useState, memo } from "react";
 import { m, AnimatePresence } from "framer-motion";
+import { useTranslations } from "next-intl";
 import {
   X,
   Download,
@@ -18,6 +19,7 @@ import AttributionBanner from "@/components/resources/AttributionBanner";
 import { hasValidAttribution } from "@/lib/attribution";
 
 export default function DownloadPanel() {
+  const t = useTranslations("pdfViewer.download");
   const { downloadPanelOpen, setDownloadPanelOpen, book, currentChapter } =
     usePDFViewer();
   const [showAttribution, setShowAttribution] = useState(false);
@@ -42,7 +44,7 @@ export default function DownloadPanel() {
       // Check if the file exists with a HEAD request
       const response = await fetch(url, { method: "HEAD" });
       if (!response.ok) {
-        setDownloadError(`File not available (${response.status}). The PDF may not be uploaded yet.`);
+        setDownloadError(t("fileNotAvailableWithStatus", { status: String(response.status) }));
         setIsChecking(null);
         return;
       }
@@ -91,7 +93,7 @@ export default function DownloadPanel() {
               transition={{ duration: 0.2, ease: [0.4, 0, 0.2, 1] }}
               role="dialog"
               aria-modal="true"
-              aria-label="Download Resources"
+              aria-label={t("title")}
               className="fixed left-1/2 top-[10vh] z-[81] w-[92vw] max-w-lg -translate-x-1/2 overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-lg"
             >
               {/* Header */}
@@ -99,13 +101,13 @@ export default function DownloadPanel() {
                 <div className="flex items-center gap-2">
                   <Download className="h-5 w-5 text-showcase-teal" />
                   <h3 className="font-display text-lg font-bold text-ink-dark">
-                    Download Resources
+                    {t("title")}
                   </h3>
                 </div>
                 <button
                   onClick={() => setDownloadPanelOpen(false)}
                   className="flex h-8 w-8 items-center justify-center rounded-lg text-ink-muted transition-colors hover:bg-gray-100"
-                  aria-label="Close download panel"
+                  aria-label={t("ariaCloseDownloadPanel")}
                 >
                   <X className="h-4 w-4" />
                 </button>
@@ -118,7 +120,7 @@ export default function DownloadPanel() {
                   <div className="flex items-start gap-2.5 rounded-xl border-2 border-red-300 bg-red-50 p-3">
                     <AlertCircle className="h-4 w-4 shrink-0 text-red-500 mt-0.5" />
                     <div>
-                      <p className="text-xs font-semibold text-red-800">Download Error</p>
+                      <p className="text-xs font-semibold text-red-800">{t("error")}</p>
                       <p className="mt-0.5 text-xs text-red-600">{downloadError}</p>
                     </div>
                     <button
@@ -133,9 +135,9 @@ export default function DownloadPanel() {
                 {/* Full book PDF */}
                 <DownloadItem
                   icon={BookOpen}
-                  title={`Full Book — ${book.title}`}
-                  description={`Complete PDF (${book.totalPages} pages)`}
-                  badge="Full PDF"
+                  title={`${t("fullBook")} — ${book.title}`}
+                  description={t("completePdfDesc", { pages: book.totalPages })}
+                  badge={t("completePdf")}
                   badgeColor="bg-showcase-purple/10 text-showcase-purple"
                   onClick={() => handleDownload(book.pdfUrl)}
                   isLoading={isChecking === book.pdfUrl}
@@ -146,8 +148,8 @@ export default function DownloadPanel() {
                   <DownloadItem
                     icon={FileText}
                     title={`Ch. ${currentChapter.number}: ${currentChapter.title}`}
-                    description="Download this chapter only"
-                    badge="Chapter PDF"
+                    description={t("downloadChapterOnly")}
+                    badge={t("chapterPdf")}
                     badgeColor="bg-showcase-teal/10 text-showcase-teal"
                     onClick={() => handleDownload(currentChapter.pdfUrl!)}
                     isLoading={isChecking === currentChapter.pdfUrl}
@@ -159,7 +161,7 @@ export default function DownloadPanel() {
                   <div className="flex items-center gap-2 mb-2">
                     <Package className="h-4 w-4 text-showcase-orange" />
                     <span className="text-sm font-bold text-ink-dark">
-                      Individual Chapters
+                      {t("individualChapters")}
                     </span>
                   </div>
                   <div className="space-y-1.5">

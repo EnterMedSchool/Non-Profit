@@ -13,6 +13,7 @@ import {
   Search,
   GripVertical,
 } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useIllustration } from "./IllustrationContext";
 import type { FabricObject } from "fabric";
 
@@ -55,6 +56,7 @@ function getObjectColor(obj: FabricObject): string {
 }
 
 export default function LayersPanel() {
+  const t = useTranslations("tools.illustrationMaker.ui.layers");
   const {
     canvas,
     objects,
@@ -78,7 +80,7 @@ export default function LayersPanel() {
   const filteredObjects = searchQuery
     ? reversedObjects.filter((obj, i) => {
         const idx = objects.length - 1 - i;
-        const label = getObjectLabel(obj, idx);
+        const label = getObjectLabel(obj, idx, t);
         return label.toLowerCase().includes(searchQuery.toLowerCase());
       })
     : reversedObjects;
@@ -118,7 +120,7 @@ export default function LayersPanel() {
   const handleDoubleClick = (obj: FabricObject, displayIndex: number) => {
     const idx = objects.indexOf(obj);
     setEditingIndex(displayIndex);
-    setEditingName((obj as any).customName || getObjectLabel(obj, idx));
+    setEditingName((obj as any).customName || getObjectLabel(obj, idx, t));
     setTimeout(() => editInputRef.current?.select(), 50);
   };
 
@@ -174,7 +176,7 @@ export default function LayersPanel() {
         )}
         <Layers className="h-3.5 w-3.5 text-showcase-purple" />
         <span className="text-xs font-bold text-ink-muted">
-          Layers ({objects.length})
+          {t("count", { count: objects.length })}
         </span>
       </button>
 
@@ -266,7 +268,7 @@ export default function LayersPanel() {
                           handleToggleVisibility(obj);
                         }}
                         className="rounded p-0.5 text-ink-light hover:bg-pastel-cream hover:text-ink-dark"
-                        title={isVisible ? "Hide" : "Show"}
+                        title={isVisible ? t("hide") : t("show")}
                       >
                         {isVisible ? (
                           <Eye className="h-3 w-3" />
@@ -280,7 +282,7 @@ export default function LayersPanel() {
                           handleToggleLock(obj);
                         }}
                         className="rounded p-0.5 text-ink-light hover:bg-pastel-cream hover:text-ink-dark"
-                        title={isLocked ? "Unlock" : "Lock"}
+                        title={isLocked ? t("unlock") : t("lock")}
                       >
                         {isLocked ? (
                           <Lock className="h-3 w-3" />
@@ -294,7 +296,7 @@ export default function LayersPanel() {
                           handleDeleteObject(obj);
                         }}
                         className="rounded p-0.5 text-ink-light hover:bg-showcase-coral/10 hover:text-showcase-coral"
-                        title="Delete"
+                        title={t("delete")}
                       >
                         <Trash2 className="h-3 w-3" />
                       </button>

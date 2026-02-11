@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useRef } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import { Search, CornerDownLeft, X } from "lucide-react";
 
@@ -13,6 +14,7 @@ interface CommandItem {
 }
 
 export default function CommandPalette() {
+  const t = useTranslations("tools.latexEditor.ui");
   const { setIsCommandPaletteOpen, insertAtCursor } = useLaTeXEditor();
   const [query, setQuery] = useState("");
   const [selectedIndex, setSelectedIndex] = useState(0);
@@ -113,7 +115,7 @@ export default function CommandPalette() {
             autoFocus
             value={query}
             onChange={(e) => setQuery(e.target.value)}
-            placeholder="Search LaTeX commands and snippets..."
+            placeholder={t("searchCommandsPlaceholder")}
             className="flex-1 text-sm bg-transparent outline-none text-ink-dark placeholder:text-ink-light"
           />
           <kbd className="hidden sm:inline-flex items-center gap-0.5 px-1.5 py-0.5 rounded bg-pastel-cream text-[10px] text-ink-muted font-mono">
@@ -125,7 +127,7 @@ export default function CommandPalette() {
         <div ref={listRef} className="max-h-72 overflow-auto">
           {filtered.length === 0 ? (
             <div className="py-8 text-center text-sm text-ink-muted">
-              No commands found matching &ldquo;{query}&rdquo;
+              {t("noCommandsFound", { query })}
             </div>
           ) : (
             filtered.map((cmd, i) => (
@@ -158,7 +160,7 @@ export default function CommandPalette() {
                 {i === selectedIndex && (
                   <div className="flex items-center gap-1 text-[10px] text-showcase-purple flex-shrink-0">
                     <CornerDownLeft size={10} />
-                    <span>Insert</span>
+                    <span>{t("insert")}</span>
                   </div>
                 )}
               </button>
@@ -172,15 +174,17 @@ export default function CommandPalette() {
             <span>
               <kbd className="font-mono bg-white px-1 py-0.5 rounded border border-ink-dark/10">↑</kbd>{" "}
               <kbd className="font-mono bg-white px-1 py-0.5 rounded border border-ink-dark/10">↓</kbd>{" "}
-              Navigate
+              {t("navigate")}
             </span>
             <span>
               <kbd className="font-mono bg-white px-1 py-0.5 rounded border border-ink-dark/10">Enter</kbd>{" "}
-              Insert
+              {t("insert")}
             </span>
           </div>
           <span className="text-[10px] text-ink-muted">
-            {filtered.length} command{filtered.length !== 1 ? "s" : ""}
+            {filtered.length === 1
+              ? t("commandCount", { count: filtered.length })
+              : t("commandCountPlural", { count: filtered.length })}
           </span>
         </div>
       </div>

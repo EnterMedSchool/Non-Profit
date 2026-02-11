@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { X, Table, Check } from "lucide-react";
 
 const MAX_ROWS = 10;
@@ -14,6 +15,7 @@ interface TableBuilderProps {
 }
 
 export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
+  const t = useTranslations("tools.latexEditor.ui");
   const [rows, setRows] = useState(3);
   const [cols, setCols] = useState(3);
   const [hoverRow, setHoverRow] = useState(0);
@@ -91,7 +93,7 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
         <div className="flex items-center justify-between px-5 py-3 border-b border-ink-dark/5">
           <div className="flex items-center gap-2">
             <Table size={18} className="text-showcase-purple" />
-            <h2 className="text-base font-bold text-ink-dark">Insert Table</h2>
+            <h2 className="text-base font-bold text-ink-dark">{t("insertTable")}</h2>
           </div>
           <button
             onClick={onClose}
@@ -105,7 +107,7 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
           {/* Grid picker */}
           <div>
             <p className="text-xs font-semibold text-ink-dark mb-2">
-              Select table size: <span className="text-showcase-purple">{hoverRow || rows} &times; {hoverCol || cols}</span>
+              {t("selectTableSize")} <span className="text-showcase-purple">{hoverRow || rows} &times; {hoverCol || cols}</span>
             </p>
             <div className="inline-grid gap-1" style={{ gridTemplateColumns: `repeat(${MAX_COLS}, 1fr)` }}>
               {Array.from({ length: MAX_ROWS }, (_, r) =>
@@ -145,12 +147,12 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
                 onChange={(e) => setHasHeader(e.target.checked)}
                 className="rounded border-ink-dark/20 text-showcase-purple focus:ring-showcase-purple/30"
               />
-              <span>Header row</span>
+              <span>{t("headerRow")}</span>
             </label>
 
             {/* Border style */}
             <div className="flex items-center gap-2 text-xs text-ink-muted">
-              <span>Borders:</span>
+              <span>{t("borders")}:</span>
               {(["horizontal", "all", "none"] as BorderStyle[]).map((style) => (
                 <button
                   key={style}
@@ -161,7 +163,7 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
                       : "bg-pastel-cream hover:bg-pastel-cream/80"
                   }`}
                 >
-                  {style}
+                  {t(style === "horizontal" ? "horizontal" : style === "all" ? "bordersAll" : "none")}
                 </button>
               ))}
             </div>
@@ -170,19 +172,19 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
           {/* Caption */}
           <div>
             <label className="text-xs font-semibold text-ink-dark block mb-1">
-              Caption (optional)
+              {t("captionOptional")}
             </label>
             <input
               value={caption}
               onChange={(e) => setCaption(e.target.value)}
-              placeholder="e.g. Patient demographics"
+              placeholder={t("captionPlaceholder")}
               className="w-full px-3 py-1.5 text-xs rounded-lg border border-ink-dark/10 focus:outline-none focus:border-showcase-purple/40"
             />
           </div>
 
           {/* Preview */}
           <div>
-            <p className="text-xs font-semibold text-ink-dark mb-1">Generated LaTeX</p>
+            <p className="text-xs font-semibold text-ink-dark mb-1">{t("generatedLatex")}</p>
             <pre className="p-3 bg-gray-50 rounded-lg border border-ink-dark/5 text-[11px] font-mono text-ink-muted overflow-x-auto max-h-40 leading-relaxed">
               {preview}
             </pre>
@@ -197,7 +199,7 @@ export default function TableBuilder({ onInsert, onClose }: TableBuilderProps) {
             className="flex items-center justify-center gap-2 w-full py-2.5 rounded-xl bg-showcase-purple text-white text-sm font-bold hover:opacity-90 transition-opacity"
           >
             <Check size={16} />
-            Insert Table
+            {t("insertTable")}
           </button>
         </div>
       </div>

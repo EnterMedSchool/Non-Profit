@@ -1,118 +1,132 @@
-export interface SearchItem {
-  title: string;
-  description: string;
+export interface SearchItemBase {
   href: string;
   category: "page" | "resource" | "tool" | "guide" | "visual";
 }
 
+export interface SearchItemWithKeys extends SearchItemBase {
+  titleKey: string;
+  descriptionKey: string;
+}
+
+export interface SearchItemWithText extends SearchItemBase {
+  title: string;
+  description: string;
+}
+
+/** Resolved item for display/search (has title and description as strings) */
+export type SearchItem = SearchItemBase &
+  (SearchItemWithKeys | SearchItemWithText);
+
 /**
  * Static search items — pages, resources, tools (always available).
+ * Use titleKey/descriptionKey — consumer translates via search.index namespace.
  */
-const staticItems: SearchItem[] = [
+/** Locale-free paths — consumer must prepend /{locale} when navigating */
+const staticItems: (SearchItemWithKeys & SearchItemBase)[] = [
   // Pages
   {
-    title: "Home",
-    description: "Open-source medical education for everyone",
-    href: "/en",
+    titleKey: "index.home",
+    descriptionKey: "index.homeDesc",
+    href: "",
     category: "page",
   },
   {
-    title: "About",
-    description: "Our story, mission, and values",
-    href: "/en/about",
+    titleKey: "index.about",
+    descriptionKey: "index.aboutDesc",
+    href: "/about",
     category: "page",
   },
   {
-    title: "Resources",
-    description: "Browse all free medical education resources",
-    href: "/en/resources",
+    titleKey: "index.resources",
+    descriptionKey: "index.resourcesDesc",
+    href: "/resources",
     category: "page",
   },
   {
-    title: "Practice Questions",
-    description: "Clinical cases and practice questions for deep understanding",
-    href: "/en/resources/questions",
+    titleKey: "index.practiceQuestions",
+    descriptionKey: "index.practiceQuestionsDesc",
+    href: "/resources/questions",
     category: "resource",
   },
   {
-    title: "Video Lessons",
-    description: "Clear video explanations of complex medical topics",
-    href: "/en/resources/videos",
+    titleKey: "index.videoLessons",
+    descriptionKey: "index.videoLessonsDesc",
+    href: "/resources/videos",
     category: "resource",
   },
   {
-    title: "PDFs & Summaries",
-    description: "Downloadable study materials and reference sheets",
-    href: "/en/resources/pdfs",
+    titleKey: "index.pdfsSummaries",
+    descriptionKey: "index.pdfsSummariesDesc",
+    href: "/resources/pdfs",
     category: "resource",
   },
   {
-    title: "Medical Visuals",
-    description: "Anatomy diagrams and clinical illustrations",
-    href: "/en/resources/visuals",
+    titleKey: "index.medicalVisuals",
+    descriptionKey: "index.medicalVisualsDesc",
+    href: "/resources/visuals",
     category: "resource",
   },
   {
-    title: "Medical Tools",
-    description: "Calculators, simulators, and interactive learning tools",
-    href: "/en/tools",
+    titleKey: "index.medicalTools",
+    descriptionKey: "index.medicalToolsDesc",
+    href: "/tools",
     category: "tool",
   },
   {
-    title: "For Professors",
-    description: "Teaching resources, templates, and guides for educators",
-    href: "/en/for-professors",
+    titleKey: "index.forProfessors",
+    descriptionKey: "index.forProfessorsDesc",
+    href: "/for-professors",
     category: "page",
   },
   {
-    title: "Medical Calculators",
-    description: "Free medical calculators and clinical algorithms",
-    href: "/en/calculators",
+    titleKey: "index.medicalCalculators",
+    descriptionKey: "index.medicalCalculatorsDesc",
+    href: "/calculators",
     category: "tool",
   },
   {
-    title: "Teaching Guides",
-    description: "Guides on using AI, clinical cases, and resources in teaching",
-    href: "/en/for-professors/guides",
+    titleKey: "index.teachingGuides",
+    descriptionKey: "index.teachingGuidesDesc",
+    href: "/for-professors/guides",
     category: "guide",
   },
   {
-    title: "Teaching Assets",
-    description: "Downloadable logos, diagrams, and visual assets",
-    href: "/en/for-professors/assets",
+    titleKey: "index.teachingAssets",
+    descriptionKey: "index.teachingAssetsDesc",
+    href: "/for-professors/assets",
     category: "resource",
   },
   {
-    title: "Events & Community",
-    description: "Events, community building, and student organization resources",
-    href: "/en/events",
+    titleKey: "index.eventsCommunity",
+    descriptionKey: "index.eventsCommunityDesc",
+    href: "/events",
     category: "page",
   },
   {
-    title: "License & Attribution",
-    description: "License info and attribution badge generator",
-    href: "/en/license",
+    titleKey: "index.licenseAttribution",
+    descriptionKey: "index.licenseAttributionDesc",
+    href: "/license",
     category: "page",
   },
   {
-    title: "Privacy Policy",
-    description: "How we protect your data",
-    href: "/en/privacy",
+    titleKey: "index.privacyPolicy",
+    descriptionKey: "index.privacyPolicyDesc",
+    href: "/privacy",
     category: "page",
   },
 
-  // ── MCQ Maker ──
+  // ── MCQ Maker (root-level, no locale) ──
   {
-    title: "MCQ Maker",
-    description: "Create, import, and export multiple choice questions & exams. Free quiz maker with PDF export and embeddable quizzes.",
+    titleKey: "index.mcqMaker",
+    descriptionKey: "index.mcqMakerDesc",
     href: "/mcq",
     category: "tool",
   },
 
-  // ── LaTeX Editor ──
+  // ── LaTeX Editor (root-level, no locale) ──
   {
-    title: "LaTeX Editor",
-    description: "Learn and write LaTeX with live preview, drag-and-drop snippets, and medical templates. Free Overleaf alternative for thesis writing and research papers.",
+    titleKey: "index.latexEditor",
+    descriptionKey: "index.latexEditorDesc",
     href: "/editor",
     category: "tool",
   },
@@ -133,7 +147,7 @@ export async function getSearchItems(): Promise<SearchItem[]> {
     ...visualLessons.map((lesson: { title: string; description: string }) => ({
       title: `Visual: ${lesson.title}`,
       description: lesson.description,
-      href: "/en/resources/visuals",
+      href: "/resources/visuals",
       category: "visual" as const,
     })),
   ];

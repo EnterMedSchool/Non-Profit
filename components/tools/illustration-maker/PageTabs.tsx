@@ -2,9 +2,11 @@
 
 import { useState, useRef } from "react";
 import { Plus, X } from "lucide-react";
+import { useTranslations } from "next-intl";
 import { useIllustration } from "./IllustrationContext";
 
 export default function PageTabs() {
+  const t = useTranslations("tools.illustrationMaker.ui.pageTabs");
   const {
     pages,
     activePageIndex,
@@ -37,7 +39,7 @@ export default function PageTabs() {
         <button
           onClick={addPage}
           className="flex items-center gap-1 rounded-md px-2 py-0.5 text-[10px] text-ink-light transition-colors hover:bg-pastel-lavender/50 hover:text-showcase-purple"
-          title="Add new page"
+          title={t("addPageTitle")}
         >
           <Plus className="h-3 w-3" />
           <span>Add Page</span>
@@ -87,7 +89,7 @@ export default function PageTabs() {
                   ? "text-showcase-purple/50 hover:text-showcase-coral"
                   : "text-ink-light opacity-0 group-hover:opacity-100 hover:text-showcase-coral"
               }`}
-              title="Delete page"
+              title={t("deletePageTitle")}
             >
               <X className="h-2.5 w-2.5" />
             </button>
@@ -97,7 +99,7 @@ export default function PageTabs() {
       <button
         onClick={addPage}
         className="flex items-center rounded-md p-0.5 text-ink-light transition-colors hover:bg-pastel-lavender/50 hover:text-showcase-purple"
-        title="Add new page"
+        title={t("addPageTitle")}
       >
         <Plus className="h-3.5 w-3.5" />
       </button>

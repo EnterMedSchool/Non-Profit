@@ -1,10 +1,11 @@
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { getTranslations } from "next-intl/server";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ProjectTimeline from "@/components/home/ProjectTimeline";
 import { Heart, BookOpen, Globe, Users, Sparkles } from "lucide-react";
 import { getAboutPageJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -13,6 +14,13 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   return {
     title: t("title"),
     description: t("metaDescription"),
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/about`,
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}/about`])),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/about`,
+      },
+    },
     openGraph: {
       title: t("title"),
       description: t("metaDescription"),
@@ -25,6 +33,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function AboutPage() {
   const t = useTranslations("about");
+  const locale = useLocale();
 
   const values = [
     { key: "openSource", icon: Heart, color: "bg-showcase-green/10 text-showcase-green border-showcase-green" },
@@ -36,16 +45,16 @@ export default function AboutPage() {
   return (
     <main className="relative z-10">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getAboutPageJsonLd("en")) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getAboutPageJsonLd(locale)) }} />
 
       {/* Story */}
       <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <PageHero
-            titlePre="Our"
-            titleHighlight="Story"
+            titlePre={t("hero.titlePre")}
+            titleHighlight={t("hero.titleHighlight")}
             gradient="from-showcase-purple via-showcase-teal to-showcase-green"
-            annotation="from one project to many educators!"
+            annotation={t("hero.annotation")}
             annotationColor="text-showcase-purple"
             subtitle={t("story.content")}
             floatingIcons={<>

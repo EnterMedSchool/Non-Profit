@@ -3,6 +3,7 @@
 import { useRef, useEffect } from "react";
 import { m, AnimatePresence } from "framer-motion";
 import { ChevronDown, ChevronUp } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface EmbedSubtitleOverlayProps {
   narration: string | undefined;
@@ -31,6 +32,7 @@ export default function EmbedSubtitleOverlay({
   theme,
   accentColor,
 }: EmbedSubtitleOverlayProps) {
+  const t = useTranslations("embed.subtitles");
   const scrollRef = useRef<HTMLDivElement>(null);
   const isDark = theme === "dark";
   const accentHex = `#${accentColor}`;
@@ -95,7 +97,7 @@ export default function EmbedSubtitleOverlay({
               style={{ color: mutedColor }}
             >
               <span className="text-[10px]">
-                {isExpanded ? "Collapse" : "Read along"}
+                {isExpanded ? t("collapse") : t("readAlong")}
               </span>
               {isExpanded ? (
                 <ChevronDown className="h-3.5 w-3.5" />

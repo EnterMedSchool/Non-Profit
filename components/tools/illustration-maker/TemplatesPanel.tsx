@@ -9,6 +9,7 @@ import type {
 import { useIllustration } from "./IllustrationContext";
 
 export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
+  const t = useTranslations("tools.illustrationMaker.ui.templates");
   const {
     canvas,
     setCanvasSize,
@@ -127,7 +128,7 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
         <div className="flex items-center justify-between border-b-2 border-showcase-navy/10 px-6 py-4">
           <div className="flex items-center gap-2">
             <LayoutTemplate className="h-5 w-5 text-showcase-purple" />
-            <h2 className="font-display text-lg font-bold text-ink-dark">Templates</h2>
+            <h2 className="font-display text-lg font-bold text-ink-dark">{t("title")}</h2>
           </div>
           <button onClick={onClose} className="rounded-lg p-1 hover:bg-pastel-lavender">
             <X className="h-5 w-5 text-ink-muted" />
@@ -179,7 +180,7 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
               ))}
               {templates.length === 0 && (
                 <p className="col-span-2 py-8 text-center text-sm text-ink-light">
-                  No templates in this category yet
+                  {t("noTemplatesInCategory")}
                 </p>
               )}
             </div>
@@ -197,13 +198,13 @@ export default function TemplatesPanel({ onClose }: { onClose: () => void }) {
                 onClick={() => setConfirmTemplate(null)}
                 className="rounded-lg border-2 border-showcase-navy/10 px-4 py-1.5 text-xs font-bold text-ink-muted hover:bg-white"
               >
-                Cancel
+                {t("cancel")}
               </button>
               <button
                 onClick={() => applyTemplate(confirmTemplate)}
                 className="rounded-lg border-2 border-showcase-purple bg-showcase-purple px-4 py-1.5 text-xs font-bold text-white hover:bg-showcase-purple/90"
               >
-                Apply Template
+                {t("apply")}
               </button>
             </div>
           </div>

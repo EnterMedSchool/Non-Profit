@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, useEffect, type DragEvent } from "react";
+import { useTranslations } from "next-intl";
 import {
   Upload,
   FileText,
@@ -34,6 +35,7 @@ const WARN_FILE_SIZE_MB = 5;
 
 // ── Component ────────────────────────────────────────────────────────
 export default function ImportPanel() {
+  const t = useTranslations("tools.flashcardMaker.ui");
   const {
     cards,
     addCards,
@@ -77,7 +79,7 @@ export default function ImportPanel() {
       const fileSizeMB = file.size / (1024 * 1024);
       if (fileSizeMB > MAX_FILE_SIZE_MB) {
         setError(
-          `File is too large (${fileSizeMB.toFixed(1)}MB). Maximum size is ${MAX_FILE_SIZE_MB}MB.`,
+          t("fileTooLarge", { size: fileSizeMB.toFixed(1), max: MAX_FILE_SIZE_MB }),
         );
         return;
       }
@@ -96,9 +98,7 @@ export default function ImportPanel() {
             setParsing(false);
             const data = results.data as string[][];
             if (data.length < 2) {
-              setError(
-                "File must have at least a header row and one data row.",
-              );
+              setError(t("fileMinRows"));
               return;
             }
             const headers = data[0].map((h) => h?.trim() ?? "");
@@ -127,12 +127,12 @@ export default function ImportPanel() {
           },
           error(err) {
             setParsing(false);
-            setError(`Parse error: ${err.message}`);
+            setError(t("parseError", { message: err.message }));
           },
         });
       } catch {
         setParsing(false);
-        setError("Failed to load file parser. Please try again.");
+        setError(t("loadParserFailed"));
       }
     },
     [],
@@ -187,7 +187,7 @@ export default function ImportPanel() {
       : -1;
 
     if (frontIdx < 0 || backIdx < 0) {
-      setError("Please select valid columns for Front and Back.");
+      setError(t("selectColumns"));
       return;
     }
 
@@ -230,7 +230,7 @@ export default function ImportPanel() {
   return (
     <div className="flex flex-col gap-4 h-full">
       <h2 className="font-display text-lg font-bold text-ink-dark">
-        Import Cards
+        {t("importCards")}
       </h2>
 
       {error && (
@@ -240,7 +240,7 @@ export default function ImportPanel() {
           <button
             onClick={() => setError(null)}
             className="shrink-0 text-red-400 hover:text-red-600"
-            aria-label="Dismiss error"
+            aria-label={t("dismissError")}
           >
             <X className="h-3.5 w-3.5" />
           </button>
@@ -254,7 +254,7 @@ export default function ImportPanel() {
             <div className="flex flex-col items-center justify-center gap-3 rounded-2xl border-3 border-dashed border-showcase-teal/30 bg-showcase-teal/5 p-8 text-center">
               <Loader2 className="h-8 w-8 text-showcase-teal animate-spin" />
               <p className="text-sm font-bold text-ink-dark">
-                Parsing file...
+                {t("parsingFile")}
               </p>
             </div>
           ) : (
@@ -271,7 +271,7 @@ export default function ImportPanel() {
               }}
               role="button"
               tabIndex={0}
-              aria-label="Upload CSV or TSV file"
+              aria-label={t("uploadAria")}
               className={`
                 flex cursor-pointer flex-col items-center justify-center gap-3 rounded-2xl border-3 border-dashed p-8 text-center transition-all
                 ${
@@ -286,10 +286,10 @@ export default function ImportPanel() {
               </div>
               <div>
                 <p className="font-display font-bold text-ink-dark">
-                  Drop your CSV or TSV file here
+                  {t("dropFileHere")}
                 </p>
                 <p className="mt-1 text-sm text-ink-muted">
-                  or click to browse — supports Anki exports
+                  {t("orClickBrowse")}
                 </p>
               </div>
             </div>
@@ -310,7 +310,7 @@ export default function ImportPanel() {
               className="inline-flex items-center gap-2 text-sm font-bold text-showcase-purple hover:underline"
             >
               <Download className="h-4 w-4" />
-              Download sample CSV
+              {t("downloadSample")}
             </button>
             <span className="text-ink-light/40">|</span>
             <button
@@ -318,7 +318,7 @@ export default function ImportPanel() {
               className="inline-flex items-center gap-2 text-sm font-bold text-showcase-teal hover:underline"
             >
               <Plus className="h-4 w-4" />
-              Add card manually
+              {t("addCardManually")}
             </button>
           </div>
         </>
@@ -328,14 +328,13 @@ export default function ImportPanel() {
       {step === "mapping" && (
         <div className="flex flex-col gap-4">
           <p className="text-sm text-ink-muted">
-            We found <strong>{parsedRows.length}</strong> rows and{" "}
-            <strong>{parsedHeaders.length}</strong> columns. Map them below:
+            {t("foundRowsColumns", { rows: parsedRows.length, columns: parsedHeaders.length })}
           </p>
 
           {/* Front column */}
           <label className="flex flex-col gap-1">
             <span className="text-sm font-bold text-ink-dark">
-              Front (question)
+              {t("frontQuestion")}
             </span>
             <select
               value={pendingMapping.front}
@@ -355,7 +354,7 @@ export default function ImportPanel() {
           {/* Back column */}
           <label className="flex flex-col gap-1">
             <span className="text-sm font-bold text-ink-dark">
-              Back (answer)
+              {t("backAnswer")}
             </span>
             <select
               value={pendingMapping.back}
@@ -375,8 +374,8 @@ export default function ImportPanel() {
           {/* Media column (optional) */}
           <label className="flex flex-col gap-1">
             <span className="text-sm font-bold text-ink-dark">
-              Media column{" "}
-              <span className="font-normal text-ink-muted">(optional)</span>
+              {t("mediaColumn")}{" "}
+              <span className="font-normal text-ink-muted">{t("mediaOptional")}</span>
             </span>
             <select
               value={pendingMapping.media ?? ""}
@@ -388,7 +387,7 @@ export default function ImportPanel() {
               }
               className="rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
             >
-              <option value="">-- None --</option>
+              <option value="">{t("noneOption")}</option>
               {parsedHeaders.map((h) => (
                 <option key={h} value={h}>
                   {h}
@@ -429,7 +428,7 @@ export default function ImportPanel() {
             </table>
             {parsedRows.length > 5 && (
               <p className="px-2 py-1 text-xs text-ink-muted text-center bg-pastel-cream/30">
-                ...and {parsedRows.length - 5} more rows
+                {t("moreRows", { count: parsedRows.length - 5 })}
               </p>
             )}
           </div>
@@ -439,7 +438,7 @@ export default function ImportPanel() {
             className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-4 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
           >
             <Check className="h-4 w-4" />
-            Import {parsedRows.length} Cards
+            {t("importCount", { count: parsedRows.length })}
           </button>
         </div>
       )}
@@ -449,7 +448,7 @@ export default function ImportPanel() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center justify-between">
             <p className="text-sm font-bold text-ink-dark">
-              {cards.length} card{cards.length !== 1 ? "s" : ""} loaded
+              {cards.length === 1 ? t("cardsLoaded", { count: 1 }) : t("cardsLoadedPlural", { count: cards.length })}
             </p>
             <div className="flex gap-2">
               <button
@@ -462,7 +461,7 @@ export default function ImportPanel() {
                 title="Replace all cards with a new file"
               >
                 <FileText className="h-3 w-3" />
-                Replace file
+                {t("replaceFile")}
               </button>
               <button
                 onClick={() => {
@@ -472,7 +471,7 @@ export default function ImportPanel() {
                 className="inline-flex items-center gap-1 text-xs font-bold text-red-500 hover:underline"
               >
                 <Trash2 className="h-3 w-3" />
-                Clear all
+                {t("clearAll")}
               </button>
             </div>
           </div>
@@ -508,7 +507,7 @@ export default function ImportPanel() {
                     {i + 1}
                   </span>
                   <span className="truncate text-ink-dark">
-                    {card.front || "(empty)"}
+                    {card.front || t("empty")}
                   </span>
                 </button>
                 <button
@@ -517,7 +516,7 @@ export default function ImportPanel() {
                     removeCard(card.id);
                   }}
                   className="shrink-0 flex h-6 w-6 items-center justify-center rounded-lg text-ink-muted/40 hover:text-red-500 hover:bg-red-50 transition-colors"
-                  aria-label={`Delete card ${i + 1}`}
+                  aria-label={t("deleteCard", { num: i + 1 })}
                   title="Delete card"
                 >
                   <X className="h-3.5 w-3.5" />
@@ -531,12 +530,12 @@ export default function ImportPanel() {
       {/* Show idle state when cards were cleared */}
       {step === "done" && cards.length === 0 && (
         <div className="flex flex-col items-center gap-3 text-center py-4">
-          <p className="text-sm text-ink-muted">All cards cleared.</p>
+          <p className="text-sm text-ink-muted">{t("allCleared")}</p>
           <button
             onClick={() => setStep("idle")}
             className="text-sm font-bold text-showcase-teal hover:underline"
           >
-            Import new cards
+            {t("importNew")}
           </button>
         </div>
       )}

@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Presentation, FileText, Sparkles, Layers } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import TemplateGallery from "@/components/professors/TemplateGallery";
@@ -28,6 +28,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
 
 export default function TemplatesPage() {
   const t = useTranslations("professors.templates");
+  const locale = useLocale();
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
   return (
@@ -40,7 +41,8 @@ export default function TemplatesPage() {
             getCollectionPageJsonLd(
               "Slide Templates & Layouts",
               "Professional slide templates designed for medical lectures and presentations. Download PowerPoint and Excel files for free.",
-              `${BASE_URL}/en/for-professors/templates`,
+              `${BASE_URL}/${locale}/for-professors/templates`,
+              locale,
             ),
           ),
         }}

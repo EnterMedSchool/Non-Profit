@@ -28,6 +28,7 @@ export interface VisualLayer {
 
 export interface VisualLesson {
   id: string;
+  language: string;
   embedId: string;
   title: string;
   category: string;
@@ -72,6 +73,7 @@ const defaultCreator = { name: "Ari Horesh", url: "https://entermedschool.com" }
 export const visualLessons: VisualLesson[] = [
   {
     id: "achalasia",
+    language: "en",
     embedId: "achalasia",
     title: "Achalasia",
     category: "GI",
@@ -107,6 +109,7 @@ export const visualLessons: VisualLesson[] = [
   },
   {
     id: "medication-induced-esophagitis",
+    language: "en",
     embedId: "medication-induced-esophagitis",
     title: "Medication-Induced Esophagitis",
     category: "GI",
@@ -140,6 +143,7 @@ export const visualLessons: VisualLesson[] = [
   },
   {
     id: "comparing-ibds",
+    language: "en",
     embedId: "comparing-ibds",
     title: "Comparing IBDs",
     category: "GI",
@@ -175,6 +179,7 @@ export const visualLessons: VisualLesson[] = [
   },
   {
     id: "vancomycin",
+    language: "en",
     embedId: "vancomycin",
     title: "Vancomycin",
     category: "Pharmacology",
@@ -206,6 +211,7 @@ export const visualLessons: VisualLesson[] = [
   },
   {
     id: "anemia-overview",
+    language: "en",
     embedId: "anemia-overview",
     title: "Anemia Overview",
     category: "Hematology",

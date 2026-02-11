@@ -37,7 +37,7 @@ export function getOrganizationJsonLd() {
     },
     sameAs: [
       "https://entermedschool.com",
-      "https://github.com/entermedschool",
+      "https://github.com/enterMedSchool/Non-Profit",
     ],
   };
 }
@@ -45,19 +45,20 @@ export function getOrganizationJsonLd() {
 /**
  * JSON-LD WebSite schema with SearchAction
  */
-export function getWebSiteJsonLd() {
+export function getWebSiteJsonLd(locale: string) {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "EnterMedSchool.org",
     url: BASE_URL,
+    inLanguage: locale,
     description:
       "Free, open-source medical education resources for educators worldwide.",
     potentialAction: {
       "@type": "SearchAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: `${BASE_URL}/en/resources?q={search_term_string}`,
+        urlTemplate: `${BASE_URL}/${locale}/resources?q={search_term_string}`,
       },
       "query-input": "required name=search_term_string",
     },
@@ -133,6 +134,7 @@ export function getWebPageJsonLd(
   title: string,
   description: string,
   url: string,
+  locale: string,
 ) {
   return {
     "@context": "https://schema.org",
@@ -140,6 +142,7 @@ export function getWebPageJsonLd(
     name: title,
     description,
     url,
+    inLanguage: locale,
     isPartOf: { "@type": "WebSite", name: "EnterMedSchool.org", url: BASE_URL },
     provider: ORGANIZATION_REF,
   };
@@ -154,6 +157,7 @@ export function getAboutPageJsonLd(locale: string) {
     "@type": "AboutPage",
     name: "About EnterMedSchool",
     url: `${BASE_URL}/${locale}/about`,
+    inLanguage: locale,
     description:
       "Learn about EnterMedSchool's mission to provide free, open-source medical education resources worldwide.",
     mainEntity: {
@@ -171,7 +175,7 @@ export function getAboutPageJsonLd(locale: string) {
         "Free, open-source medical education resources, tools, and guides for educators worldwide.",
       sameAs: [
         "https://entermedschool.com",
-        "https://github.com/entermedschool",
+        "https://github.com/enterMedSchool/Non-Profit",
       ],
     },
   };
@@ -184,6 +188,7 @@ export function getCollectionPageJsonLd(
   title: string,
   description: string,
   url: string,
+  locale: string,
 ) {
   return {
     "@context": "https://schema.org",
@@ -191,6 +196,7 @@ export function getCollectionPageJsonLd(
     name: title,
     description,
     url,
+    inLanguage: locale,
     isPartOf: { "@type": "WebSite", name: "EnterMedSchool.org", url: BASE_URL },
     provider: ORGANIZATION_REF,
   };
@@ -244,12 +250,15 @@ export function getEventJsonLd(event: {
   description: string;
   location?: string;
   startDate?: string;
+  locale?: string;
 }) {
+  const { locale, ...eventData } = event;
   return {
     "@context": "https://schema.org",
     "@type": "Event",
     name: event.name,
     description: event.description,
+    ...(locale && { inLanguage: locale }),
     organizer: ORGANIZATION_REF,
     eventAttendanceMode: "https://schema.org/OfflineEventAttendanceMode",
     ...(event.location && {
@@ -484,14 +493,45 @@ export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
 }
 
 /**
+ * SoftwareSourceCode schema for embed-code pages.
+ * Helps Google understand the page offers embeddable source code
+ * and links to the full repository.
+ */
+export function getSoftwareSourceCodeJsonLd(opts: {
+  codePageUrl: string;
+  title: string;
+  description: string;
+  locale: string;
+  sourceUrl?: string;
+  keywords?: string[];
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareSourceCode",
+    name: `${opts.title} — Embeddable HTML Code`,
+    description: opts.description,
+    url: opts.codePageUrl,
+    codeRepository: opts.sourceUrl || `https://github.com/enterMedSchool/Non-Profit`,
+    programmingLanguage: "HTML",
+    runtimePlatform: "Web Browser",
+    license: `${BASE_URL}/${opts.locale}/license`,
+    isAccessibleForFree: true,
+    provider: ORGANIZATION_REF,
+    ...(opts.keywords && { keywords: opts.keywords.join(", ") }),
+  };
+}
+
+/**
  * FAQPage schema (ready for future use)
  */
 export function getFAQPageJsonLd(
   items: Array<{ question: string; answer: string }>,
+  locale: string,
 ) {
   return {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    inLanguage: locale,
     mainEntity: items.map((item) => ({
       "@type": "Question",
       name: item.question,

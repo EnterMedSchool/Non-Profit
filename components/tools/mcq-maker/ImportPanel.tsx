@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useCallback, useRef, type DragEvent } from "react";
+import { useTranslations } from "next-intl";
 import {
   Upload,
   FileText,
@@ -167,6 +168,7 @@ function resolveCorrectAnswer(
 
 // ── Component ────────────────────────────────────────────────────────
 export default function ImportPanel() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const { addQuestions, questions, setActivePanel } = useMCQ();
 
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -211,7 +213,7 @@ export default function ImportPanel() {
         setError(`Parse error: ${err.message}`);
       },
     });
-  }, []);
+  }, [t]);
 
   // ── Drag & drop ────────────────────────────────────────────────────
   const onDragOver = useCallback((e: DragEvent) => {
@@ -298,7 +300,7 @@ export default function ImportPanel() {
 
       if (!correctId && correctRaw) {
         importWarnings.push(
-          `Row ${rowNum + 2}: Could not match correct answer "${correctRaw}" — defaulting to first option.`,
+          t("rowCorrectDefault", { row: rowNum + 2, raw: correctRaw }),
         );
       }
 
@@ -336,7 +338,7 @@ export default function ImportPanel() {
     }
 
     if (newQuestions.length === 0) {
-      setError("No valid questions found. Check your column mapping.");
+      setError(t("noValidQuestions"));
       return;
     }
 
@@ -344,7 +346,7 @@ export default function ImportPanel() {
     setImportCount(newQuestions.length);
     setWarnings(importWarnings);
     setStep("done");
-  }, [parsedHeaders, parsedRows, mapping, addQuestions]);
+  }, [parsedHeaders, parsedRows, mapping, addQuestions, t]);
 
   // ── Download sample CSV ────────────────────────────────────────────
   const downloadSample = useCallback(() => {
@@ -527,7 +529,7 @@ export default function ImportPanel() {
                     onChange={(e) => updateMappingOption(idx, e.target.value)}
                     className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                   >
-                    <option value="">— Select —</option>
+                    <option value="">{t("selectOption")}</option>
                     {parsedHeaders.map((h) => (
                       <option key={h} value={h}>{h}</option>
                     ))}
@@ -549,7 +551,7 @@ export default function ImportPanel() {
                 onClick={addMappingOption}
                 className="text-xs font-bold text-showcase-purple hover:underline"
               >
-                + Add option column
+                {t("addOptionColumn")}
               </button>
             )}
           </div>
@@ -557,7 +559,7 @@ export default function ImportPanel() {
           {/* Correct answer column */}
           <label className="flex flex-col gap-1">
             <span className="text-sm font-bold text-ink-dark">
-              Correct answer column
+              {t("correctAnswerColumn")}
             </span>
             <div className="relative">
               <select
@@ -567,7 +569,7 @@ export default function ImportPanel() {
                 }
                 className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
               >
-                <option value="">— None —</option>
+                <option value="">{t("noneOption")}</option>
                 {parsedHeaders.map((h) => (
                   <option key={h} value={h}>{h}</option>
                 ))}
@@ -581,7 +583,7 @@ export default function ImportPanel() {
             {/* Explanation */}
             <label className="flex flex-col gap-1">
               <span className="text-xs font-bold text-ink-dark">
-                Explanation <span className="text-ink-muted font-normal">(optional)</span>
+                {t("explanation")} <span className="text-ink-muted font-normal">{t("optional")}</span>
               </span>
               <div className="relative">
                 <select
@@ -594,7 +596,7 @@ export default function ImportPanel() {
                   }
                   className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
-                  <option value="">— None —</option>
+                  <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
@@ -606,7 +608,7 @@ export default function ImportPanel() {
             {/* Category */}
             <label className="flex flex-col gap-1">
               <span className="text-xs font-bold text-ink-dark">
-                Category <span className="text-ink-muted font-normal">(optional)</span>
+                {t("category")} <span className="text-ink-muted font-normal">{t("optional")}</span>
               </span>
               <div className="relative">
                 <select
@@ -619,7 +621,7 @@ export default function ImportPanel() {
                   }
                   className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
-                  <option value="">— None —</option>
+                  <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
@@ -631,7 +633,7 @@ export default function ImportPanel() {
             {/* Difficulty */}
             <label className="flex flex-col gap-1">
               <span className="text-xs font-bold text-ink-dark">
-                Difficulty <span className="text-ink-muted font-normal">(optional)</span>
+                {t("difficultyLabel")} <span className="text-ink-muted font-normal">{t("optional")}</span>
               </span>
               <div className="relative">
                 <select
@@ -644,7 +646,7 @@ export default function ImportPanel() {
                   }
                   className="w-full appearance-none rounded-xl border-2 border-ink-light/30 bg-white px-3 py-2 pr-8 text-sm text-ink-dark focus:border-showcase-teal focus:outline-none"
                 >
-                  <option value="">— None —</option>
+                  <option value="">{t("noneOption")}</option>
                   {parsedHeaders.map((h) => (
                     <option key={h} value={h}>{h}</option>
                   ))}
@@ -690,7 +692,7 @@ export default function ImportPanel() {
             className="inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-teal px-4 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
           >
             <Check className="h-4 w-4" />
-            Import {parsedRows.length} Questions
+            {t("importCount", { count: parsedRows.length })}
           </button>
 
           <button
@@ -702,7 +704,7 @@ export default function ImportPanel() {
             }}
             className="text-xs font-bold text-ink-muted hover:underline text-center"
           >
-            Cancel
+            {t("cancel")}
           </button>
         </div>
       )}
@@ -712,13 +714,13 @@ export default function ImportPanel() {
         <div className="flex flex-col gap-3">
           <div className="flex items-center gap-2 rounded-xl border-2 border-green-300 bg-green-50 px-3 py-2.5 text-sm font-bold text-green-700">
             <Check className="h-4 w-4" />
-            Successfully imported {importCount} questions!
+            {t("importSuccess", { count: importCount })}
           </div>
 
           {warnings.length > 0 && (
             <div className="rounded-xl border-2 border-yellow-300 bg-yellow-50 px-3 py-2">
               <p className="text-xs font-bold text-yellow-700 mb-1">
-                Warnings ({warnings.length}):
+                {t("warningsCount", { count: warnings.length })}:
               </p>
               <ul className="text-xs text-yellow-600 space-y-0.5 max-h-24 overflow-y-auto">
                 {warnings.map((w, i) => (
@@ -733,7 +735,7 @@ export default function ImportPanel() {
               onClick={() => setActivePanel("bank")}
               className="flex-1 inline-flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-4 py-2.5 font-display font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
             >
-              View Questions
+              {t("viewQuestions")}
             </button>
             <button
               onClick={() => {
@@ -746,7 +748,7 @@ export default function ImportPanel() {
               className="inline-flex items-center gap-2 rounded-xl border-3 border-ink-light/30 bg-white px-4 py-2.5 font-display font-bold text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
             >
               <FileText className="h-4 w-4" />
-              Import More
+              {t("importMore")}
             </button>
           </div>
         </div>

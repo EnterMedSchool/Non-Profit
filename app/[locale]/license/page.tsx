@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
 import {
   Check,
   X,
@@ -28,6 +27,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import BadgeGenerator from "@/components/license/BadgeGenerator";
 import FAQAccordion from "@/components/license/FAQAccordion";
 import { getWebPageJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 
 export async function generateMetadata({
   params,
@@ -41,6 +41,13 @@ export async function generateMetadata({
   return {
     title: t("title"),
     description: t("metaDescription"),
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/license`,
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}/license`])),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/license`,
+      },
+    },
     openGraph: {
       title: t("title"),
       description: t("metaDescription"),
@@ -69,8 +76,9 @@ const whereToBadgeIcons: Record<string, typeof FileText> = {
   Printer,
 };
 
-export default function LicensePage() {
-  const t = useTranslations("license");
+export default async function LicensePage({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "license" });
 
   const canDo = t.raw("info.canDo.items") as string[];
   const cannotDo = t.raw("info.cannotDo.items") as string[];
@@ -123,9 +131,10 @@ export default function LicensePage() {
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(
             getWebPageJsonLd(
-              "License & Attribution",
-              "License terms and attribution requirements for EnterMedSchool educational resources.",
-              `${BASE_URL}/en/license`
+              t("jsonLd.title"),
+              t("jsonLd.description"),
+              `${BASE_URL}/${locale}/license`,
+              locale
             )
           ),
         }}
@@ -133,19 +142,19 @@ export default function LicensePage() {
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
-          __html: JSON.stringify(getFAQPageJsonLd(faqItems)),
+          __html: JSON.stringify(getFAQPageJsonLd(faqItems, locale)),
         }}
       />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* ── Hero Section ── */}
         <PageHero
-          titlePre="License &"
-          titleHighlight="Attribution"
+          titlePre={t("hero.titlePre")}
+          titleHighlight={t("hero.titleHighlight")}
           gradient="from-showcase-teal via-showcase-green to-showcase-purple"
-          annotation="free for educators!"
+          annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
-          subtitle="Understand how to properly attribute EnterMedSchool materials and generate your badge."
+          subtitle={t("hero.subtitle")}
           floatingIcons={
             <>
               <Shield

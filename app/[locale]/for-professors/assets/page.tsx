@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { Image, Palette, Sparkles, Download } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -36,12 +36,13 @@ const assets = [
 
 export default function AssetsPage() {
   const t = useTranslations("professors.assets");
+  const locale = useLocale();
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
   return (
     <main className="relative z-10 py-12 sm:py-20">
       {/* JSON-LD structured data */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Visual Assets & Media", "Logos, diagrams, and icons for medical education materials.", `${BASE_URL}/en/for-professors/assets`)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getCollectionPageJsonLd("Visual Assets & Media", "Logos, diagrams, and icons for medical education materials.", `${BASE_URL}/${locale}/for-professors/assets`, locale)) }} />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
 

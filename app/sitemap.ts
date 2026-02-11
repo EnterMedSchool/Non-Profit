@@ -1,11 +1,14 @@
 import type { MetadataRoute } from "next";
 import { tools, getCalculatorTools } from "@/data/tools";
 import { visualLessons } from "@/data/visuals";
+import { EXAM_COPY } from "@/components/clinical-semiotics/examChains";
 import { pdfBooks } from "@/data/pdf-books";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
-const locales = ["en"];
+const locales = routing.locales;
+const defaultLocale = routing.defaultLocale;
 
 const staticPages = [
   "",
@@ -23,6 +26,7 @@ const staticPages = [
   "/events",
   "/license",
   "/privacy",
+  "/clinical-semiotics",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -36,7 +40,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     entries.push({
-      url: `${BASE_URL}/en${page}`,
+      url: `${BASE_URL}/${defaultLocale}${page}`,
       lastModified: new Date(),
       changeFrequency: page === "" ? "weekly" : "monthly",
       priority: page === "" ? 1 : page.includes("/") && page.split("/").length > 2 ? 0.6 : 0.8,
@@ -56,12 +60,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     entries.push({
-      url: `${BASE_URL}/en${prefix}/${tool.id}`,
+      url: `${BASE_URL}/${defaultLocale}${prefix}/${tool.id}`,
       lastModified: new Date(),
       changeFrequency: "weekly",
       priority: 0.9,
       alternates: {
         languages,
+      },
+    });
+  }
+
+  // ── Tool embed-code pages (/calculators/[id]/embed-code, /tools/[id]/embed-code)
+  for (const tool of tools) {
+    const prefix = tool.category === "calculator" ? "/calculators" : "/tools";
+    const codeLangs: Record<string, string> = {};
+    for (const locale of locales) {
+      codeLangs[locale] = `${BASE_URL}/${locale}${prefix}/${tool.id}/embed-code`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${prefix}/${tool.id}/embed-code`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: {
+        languages: codeLangs,
       },
     });
   }
@@ -90,11 +113,43 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     entries.push({
-      url: `${BASE_URL}/en/resources/visuals/${lesson.id}`,
+      url: `${BASE_URL}/${defaultLocale}/resources/visuals/${lesson.id}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.9,
       alternates: { languages },
+    });
+  }
+
+  // ── Visual lesson embed-code pages (/resources/visuals/[id]/embed-code)
+  for (const lesson of visualLessons) {
+    const codeLangs: Record<string, string> = {};
+    for (const locale of locales) {
+      codeLangs[locale] = `${BASE_URL}/${locale}/resources/visuals/${lesson.id}/embed-code`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}/resources/visuals/${lesson.id}/embed-code`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: { languages: codeLangs },
+    });
+  }
+
+  // ── Clinical semiotics embed-code pages (/clinical-semiotics/[examType]/embed-code)
+  for (const examType of Object.keys(EXAM_COPY)) {
+    const codeLangs: Record<string, string> = {};
+    for (const locale of locales) {
+      codeLangs[locale] = `${BASE_URL}/${locale}/clinical-semiotics/${examType}/embed-code`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}/clinical-semiotics/${examType}/embed-code`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: { languages: codeLangs },
     });
   }
 
@@ -106,7 +161,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     }
 
     entries.push({
-      url: `${BASE_URL}/en/resources/pdfs/${book.slug}`,
+      url: `${BASE_URL}/${defaultLocale}/resources/pdfs/${book.slug}`,
       lastModified: new Date(),
       changeFrequency: "monthly",
       priority: 0.8,
@@ -121,7 +176,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       }
 
       entries.push({
-        url: `${BASE_URL}/en/resources/pdfs/${book.slug}/${chapter.slug}`,
+        url: `${BASE_URL}/${defaultLocale}/resources/pdfs/${book.slug}/${chapter.slug}`,
         lastModified: new Date(),
         changeFrequency: "monthly",
         priority: 0.7,

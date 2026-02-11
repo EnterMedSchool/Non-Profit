@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useEffect, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import SnippetCard from "./SnippetCard";
 import type { LaTeXSnippet } from "./types";
@@ -11,6 +12,7 @@ const RECENT_KEY = "ems-latex-snippet-recent";
 const MAX_RECENT = 8;
 
 export default function SnippetDrawer() {
+  const t = useTranslations("tools.latexEditor.ui");
   const { insertAtCursor, setActivePanel, activeDocument } = useLaTeXEditor();
   const [activeCategory, setActiveCategory] = useState<string | "all" | "favorites" | "recent" | "suggested">("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -152,7 +154,7 @@ export default function SnippetDrawer() {
         <div className="flex items-center justify-between mb-2">
           <div className="flex items-center gap-2">
             <Puzzle size={15} className="text-showcase-purple" />
-            <h3 className="text-sm font-bold text-ink-dark">Snippets</h3>
+            <h3 className="text-sm font-bold text-ink-dark">{t("snippets")}</h3>
           </div>
           <button
             onClick={() => setActivePanel(null)}
@@ -162,7 +164,7 @@ export default function SnippetDrawer() {
           </button>
         </div>
         <p className="text-[10px] text-ink-muted mb-2">
-          Click Insert to add a snippet. Expand for explanations.
+          {t("snippetsHint")}
         </p>
 
         {/* Search */}
@@ -171,7 +173,7 @@ export default function SnippetDrawer() {
           <input
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
-            placeholder="Search snippets..."
+            placeholder={t("searchSnippetsPlaceholder")}
             className="w-full pl-7 pr-3 py-1.5 rounded-lg border border-ink-dark/10 text-xs focus:outline-none focus:border-showcase-purple/40"
           />
           {searchQuery && (
@@ -190,14 +192,14 @@ export default function SnippetDrawer() {
         {/* Special categories */}
         <CategoryPill
           icon={<Star size={9} />}
-          label="Favorites"
+          label={t("favorites")}
           active={activeCategory === "favorites"}
           onClick={() => setActiveCategory("favorites")}
           count={favorites.size}
         />
         <CategoryPill
           icon={<Clock size={9} />}
-          label="Recent"
+          label={t("recent")}
           active={activeCategory === "recent"}
           onClick={() => setActiveCategory("recent")}
           count={recentIds.length}
@@ -205,14 +207,14 @@ export default function SnippetDrawer() {
         {suggestedSnippets.length > 0 && (
           <CategoryPill
             icon={<Sparkles size={9} />}
-            label="Suggested"
+            label={t("suggested")}
             active={activeCategory === "suggested"}
             onClick={() => setActiveCategory("suggested")}
           />
         )}
         <div className="w-full h-0" /> {/* Line break */}
         <CategoryPill
-          label="All"
+          label={t("all")}
           active={activeCategory === "all"}
           onClick={() => setActiveCategory("all")}
         />
@@ -232,10 +234,10 @@ export default function SnippetDrawer() {
           <div className="text-center py-8 text-ink-muted">
             <p className="text-xs">
               {activeCategory === "favorites"
-                ? "No favorites yet. Click the star on snippets to add them."
+                ? t("noFavoritesYet")
                 : activeCategory === "recent"
-                ? "No recently used snippets."
-                : "No snippets found."}
+                ? t("noRecentlyUsed")
+                : t("noSnippetsFound")}
             </p>
           </div>
         ) : (
@@ -255,7 +257,7 @@ export default function SnippetDrawer() {
       {/* Footer hint */}
       <div className="px-4 py-2 border-t border-ink-dark/5 bg-pastel-cream/30">
         <p className="text-[10px] text-ink-muted text-center">
-          Tip: Star your favorite snippets for quick access
+          {t("starTip")}
         </p>
       </div>
     </div>

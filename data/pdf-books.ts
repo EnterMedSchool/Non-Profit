@@ -2,6 +2,7 @@
 
 export interface PDFBook {
   id: string;
+  language: string;
   slug: string;
   title: string;
   subtitle?: string;
@@ -68,6 +69,7 @@ export function getAdjacentChapters(
 export const pdfBooks: PDFBook[] = [
   {
     id: "biochem-essentials",
+    language: "en",
     slug: "biochemistry-essentials",
     title: "Biochemistry Essentials",
     subtitle: "A Concise Guide for Medical Students",

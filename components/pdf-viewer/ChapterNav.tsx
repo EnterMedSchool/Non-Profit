@@ -3,10 +3,12 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { usePDFViewer } from "./PDFViewerContext";
 
 export default function ChapterNav() {
+  const t = useTranslations("pdfViewer.reader");
   const { book, currentChapter } = usePDFViewer();
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
@@ -28,7 +30,7 @@ export default function ChapterNav() {
           <ChevronLeft className="h-5 w-5 shrink-0 text-ink-light transition-colors group-hover:text-showcase-purple" />
           <div className="min-w-0 text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
-              Previous
+              {t("previous")}
             </span>
             <p className="mt-0.5 truncate font-display text-sm font-bold text-ink-dark group-hover:text-showcase-purple">
               Ch. {prev.number}: {prev.title}
@@ -43,10 +45,10 @@ export default function ChapterNav() {
           <ChevronLeft className="h-5 w-5 shrink-0 text-ink-light transition-colors group-hover:text-showcase-purple" />
           <div className="min-w-0 text-left">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
-              Back to
+              {t("backTo")}
             </span>
             <p className="mt-0.5 truncate font-display text-sm font-bold text-ink-dark group-hover:text-showcase-purple">
-              Book Overview
+              {t("backToOverview")}
             </p>
           </div>
         </Link>
@@ -59,7 +61,7 @@ export default function ChapterNav() {
         >
           <div className="min-w-0 text-right">
             <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
-              Next
+              {t("next")}
             </span>
             <p className="mt-0.5 truncate font-display text-sm font-bold text-ink-dark group-hover:text-showcase-teal">
               Ch. {next.number}: {next.title}
@@ -71,10 +73,10 @@ export default function ChapterNav() {
         <div className="flex flex-1 items-center justify-end gap-3 rounded-2xl border-3 border-dashed border-showcase-green/30 bg-showcase-green/5 p-4">
           <div className="text-right">
             <span className="text-xs font-bold uppercase tracking-wider text-showcase-green">
-              Congratulations!
+              {t("congratulations")}
             </span>
             <p className="mt-0.5 font-display text-sm font-bold text-ink-dark">
-              You&apos;ve finished the book
+              {t("finishedBook")}
             </p>
           </div>
         </div>

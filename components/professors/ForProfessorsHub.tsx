@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useRef, useCallback } from "react";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   Search,
   X,
@@ -51,6 +51,7 @@ const assets = [
 
 export default function ForProfessorsHub() {
   const t = useTranslations("professors");
+  const locale = useLocale();
 
   const [searchQuery, setSearchQuery] = useState("");
   const searchInputRef = useRef<HTMLInputElement>(null);
@@ -123,7 +124,7 @@ export default function ForProfessorsHub() {
 
           {/* Section jump pills */}
           <div className="mt-4 flex flex-wrap items-center justify-center gap-2">
-            {sectionNav.map((s) => {
+            {sectionNavConfig.map((s) => {
               const Icon = s.icon;
               return (
                 <button
@@ -132,7 +133,7 @@ export default function ForProfessorsHub() {
                   className={`inline-flex items-center gap-2 rounded-xl ${s.color} ${s.text} border-2 border-showcase-navy/20 px-4 py-2 text-sm font-display font-bold transition-all hover:-translate-y-0.5 hover:shadow-lg active:translate-y-0`}
                 >
                   <Icon className="h-4 w-4" />
-                  {s.label}
+                  {th(s.labelKey)}
                 </button>
               );
             })}
@@ -164,14 +165,14 @@ export default function ForProfessorsHub() {
             </AnimatedSection>
 
             {filteredGuides.length === 0 && isSearching ? (
-              <p className="py-8 text-center text-sm text-ink-muted">No guides match your search.</p>
+              <p className="py-8 text-center text-sm text-ink-muted">{th("emptyStateGuides")}</p>
             ) : (
               <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                 {filteredGuides.map((guide, i) => {
                   const Icon = guide.icon;
                   return (
                     <AnimatedSection key={guide.id} delay={i * 0.08} animation="popIn" spring>
-                      <ChunkyCard className="p-5 h-full flex flex-col" href="/en/for-professors/guides">
+                      <ChunkyCard className="p-5 h-full flex flex-col" href={`/${locale}/for-professors/guides`}>
                         <div className="flex items-center gap-2 flex-wrap mb-3">
                           {guide.badge && <StickerBadge color={guide.badgeColor || "purple"} size="sm">{guide.badge}</StickerBadge>}
                         </div>
@@ -226,7 +227,7 @@ export default function ForProfessorsHub() {
                   const Icon = asset.icon;
                   return (
                     <AnimatedSection key={asset.id} delay={i * 0.08} animation="popIn" spring>
-                      <ChunkyCard className="p-5 h-full flex flex-col" href="/en/for-professors/assets">
+                      <ChunkyCard className="p-5 h-full flex flex-col" href={`/${locale}/for-professors/assets`}>
                         <div className="flex items-center gap-2 flex-wrap mb-3">
                           <StickerBadge color="orange" size="sm">{asset.type}</StickerBadge>
                         </div>
@@ -237,7 +238,7 @@ export default function ForProfessorsHub() {
                         <p className="mt-1.5 flex-1 text-sm leading-relaxed text-ink-muted">{asset.desc}</p>
                         <div className="mt-3">
                           <span className="inline-flex items-center gap-1 text-sm font-bold text-showcase-orange">
-                            Download <ArrowRight className="h-3.5 w-3.5" />
+                            {th("download")} <ArrowRight className="h-3.5 w-3.5" />
                           </span>
                         </div>
                       </ChunkyCard>
@@ -266,7 +267,7 @@ export default function ForProfessorsHub() {
                 </div>
               </div>
               <div>
-                <h3 className="font-display text-base font-bold text-ink-dark sm:text-lg">Free for Educators</h3>
+                <h3 className="font-display text-base font-bold text-ink-dark sm:text-lg">{th("freeForEducators")}</h3>
                 <p className="mt-1 text-sm text-ink-muted leading-relaxed">{t("licenseNote")}</p>
               </div>
             </div>
@@ -277,11 +278,11 @@ export default function ForProfessorsHub() {
         <AnimatedSection delay={0.2} animation="fadeUp">
           <div className="mt-10 mb-4 text-center">
             <div className="inline-flex flex-col items-center gap-3 sm:flex-row">
-              <ChunkyButton href="/en/license" variant="green">
+              <ChunkyButton href={`/${locale}/license`} variant="green">
                 Get Your Attribution Badge
                 <ArrowRight className="h-4 w-4" />
               </ChunkyButton>
-              <ChunkyButton href="/en/tools" variant="ghost">
+              <ChunkyButton href={`/${locale}/tools`} variant="ghost">
                 Explore Tools
                 <ExternalLink className="h-4 w-4" />
               </ChunkyButton>

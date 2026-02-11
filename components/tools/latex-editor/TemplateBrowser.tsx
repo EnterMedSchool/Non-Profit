@@ -1,23 +1,36 @@
 "use client";
 
 import React, { useState, useMemo, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import TemplateCard from "./TemplateCard";
 import type { LaTeXTemplate, TemplateCategory } from "./types";
 import { X, Search, Eye, Code2 } from "lucide-react";
 
-const CATEGORIES: { key: TemplateCategory | "all"; label: string }[] = [
-  { key: "all", label: "All Templates" },
-  { key: "getting-started", label: "Getting Started" },
-  { key: "notes", label: "Notes & Study" },
-  { key: "essay", label: "Essays & Reports" },
-  { key: "research", label: "Research" },
-  { key: "thesis", label: "Thesis" },
-  { key: "presentation", label: "Presentations" },
-  { key: "cv", label: "CV & Letters" },
+const CATEGORY_KEYS: (TemplateCategory | "all")[] = [
+  "all",
+  "getting-started",
+  "notes",
+  "essay",
+  "research",
+  "thesis",
+  "presentation",
+  "cv",
 ];
 
+const CATEGORY_TRANSLATION_KEYS: Record<TemplateCategory | "all", string> = {
+  all: "allTemplates",
+  "getting-started": "gettingStarted",
+  notes: "notesStudy",
+  essay: "essaysReports",
+  research: "research",
+  thesis: "thesis",
+  presentation: "presentations",
+  cv: "cvLetters",
+};
+
 export default function TemplateBrowser() {
+  const t = useTranslations("tools.latexEditor.ui");
   const { setIsTemplateBrowserOpen, loadTemplate } = useLaTeXEditor();
   const [activeCategory, setActiveCategory] = useState<TemplateCategory | "all">("all");
   const [searchQuery, setSearchQuery] = useState("");
@@ -61,9 +74,9 @@ export default function TemplateBrowser() {
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b-2 border-ink-dark/5">
           <div>
-            <h2 className="text-lg font-bold text-ink-dark">Template Gallery</h2>
+            <h2 className="text-lg font-bold text-ink-dark">{t("templateGallery")}</h2>
             <p className="text-xs text-ink-muted mt-0.5">
-              Choose a template to get started quickly. Every template is designed for medical students.
+              {t("templateGallerySubtitle")}
             </p>
           </div>
           <button
@@ -82,24 +95,24 @@ export default function TemplateBrowser() {
             <input
               value={searchQuery}
               onChange={(e) => setSearchQuery(e.target.value)}
-              placeholder="Search templates..."
+              placeholder={t("searchTemplatesPlaceholder")}
               className="w-full pl-9 pr-4 py-2 rounded-lg border-2 border-ink-dark/10 text-sm focus:outline-none focus:border-showcase-purple/40"
             />
           </div>
 
           {/* Category tabs */}
           <div className="flex gap-1 overflow-x-auto scrollbar-none">
-            {CATEGORIES.map((cat) => (
+            {CATEGORY_KEYS.map((key) => (
               <button
-                key={cat.key}
-                onClick={() => setActiveCategory(cat.key)}
+                key={key}
+                onClick={() => setActiveCategory(key)}
                 className={`px-3 py-1.5 rounded-full text-xs font-medium whitespace-nowrap transition-colors ${
-                  activeCategory === cat.key
+                  activeCategory === key
                     ? "bg-showcase-purple text-white"
                     : "bg-pastel-cream text-ink-muted hover:text-ink-dark"
                 }`}
               >
-                {cat.label}
+                {t(CATEGORY_TRANSLATION_KEYS[key])}
               </button>
             ))}
           </div>
@@ -120,7 +133,7 @@ export default function TemplateBrowser() {
             <>
               {filtered.length === 0 ? (
                 <div className="text-center py-12 text-ink-muted">
-                  <p className="text-sm">No templates found matching your search.</p>
+                  <p className="text-sm">{t("noTemplatesFound")}</p>
                 </div>
               ) : (
                 <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
@@ -153,6 +166,7 @@ function TemplatePreview({
   onBack: () => void;
   onUse: () => void;
 }) {
+  const t = useTranslations("tools.latexEditor.ui");
   const mainFile = template.files.find((f) => f.isMain) ?? template.files[0];
   const [viewMode, setViewMode] = useState<"code" | "preview">("preview");
   const iframeRef = React.useRef<HTMLIFrameElement>(null);
@@ -234,8 +248,8 @@ function TemplatePreview({
           if (iframeDoc) {
             iframeDoc.open();
             iframeDoc.write(`<html><body style="font-family:system-ui;padding:2rem;color:#666;text-align:center">
-              <p>Preview unavailable for this template.</p>
-              <p style="font-size:12px">Switch to Code view to see the LaTeX source, or click "Use This Template" to load it into the editor.</p>
+              <p>${t("previewUnavailable")}</p>
+              <p style="font-size:12px">${t("previewUnavailableHint")}</p>
             </body></html>`);
             iframeDoc.close();
           }
@@ -254,13 +268,13 @@ function TemplatePreview({
           onClick={onBack}
           className="text-sm text-showcase-purple font-medium hover:underline"
         >
-          &larr; Back to templates
+          {t("backToTemplates")}
         </button>
         <button
           onClick={onUse}
           className="px-4 py-2 rounded-lg bg-showcase-purple text-white text-sm font-semibold hover:opacity-90 transition-opacity"
         >
-          Use This Template
+          {t("useThisTemplate")}
         </button>
       </div>
 
@@ -303,7 +317,7 @@ function TemplatePreview({
             <span>{mainFile.name}</span>
           </div>
           <span className="text-[10px] text-ink-light">
-            {mainFile.content.split("\n").length} lines
+            {t("linesCount", { count: mainFile.content.split("\n").length })}
           </span>
         </div>
         {viewMode === "code" ? (
@@ -315,7 +329,7 @@ function TemplatePreview({
             ref={iframeRef}
             className="w-full border-none bg-white"
             style={{ minHeight: "400px", maxHeight: "50vh" }}
-            title="Template Preview"
+            title={t("templatePreviewTitle")}
             sandbox="allow-same-origin"
             loading="lazy"
           />

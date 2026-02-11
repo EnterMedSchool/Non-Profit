@@ -4,6 +4,7 @@ export const latexTemplates: LaTeXTemplate[] = [
   /* ─── 1. Hello LaTeX (beginner) ─────────────────────────── */
   {
     id: "hello-latex",
+    language: "en",
     title: "Hello LaTeX",
     description:
       "Your very first LaTeX document. Every line is explained with comments so you understand exactly what's happening.",
@@ -96,6 +97,7 @@ Try these exercises:
   /* ─── 2. Lecture Notes (beginner) ───────────────────────── */
   {
     id: "lecture-notes",
+    language: "en",
     title: "Lecture Notes",
     description:
       "Organize your lecture notes with sections, highlighted boxes, and math. Perfect for daily class notes.",
@@ -204,6 +206,7 @@ The Frank-Starling law states that the heart pumps out whatever volume is return
   /* ─── 3. Formula Sheet (beginner) ───────────────────────── */
   {
     id: "formula-sheet",
+    language: "en",
     title: "Formula Sheet",
     description:
       "A compact two-column formula reference sheet. Great for exam prep and quick review.",
@@ -314,6 +317,7 @@ $NNT = \\frac{1}{ARR}$
   /* ─── 4. Study Summary (beginner) ───────────────────────── */
   {
     id: "study-summary",
+    language: "en",
     title: "Study Summary",
     description:
       "A clean study summary template with organized sections, key terms, and important points.",
@@ -398,6 +402,7 @@ The hypothalamic-pituitary-thyroid axis:
   /* ─── 5. University Essay (intermediate) ────────────────── */
   {
     id: "university-essay",
+    language: "en",
     title: "University Essay",
     description:
       "A properly formatted academic essay with title page, abstract, sections, and bibliography.",
@@ -505,6 +510,7 @@ AI has tremendous potential to improve medical diagnosis, but it must be impleme
   /* ─── 6. Lab Report (intermediate) ──────────────────────── */
   {
     id: "lab-report",
+    language: "en",
     title: "Lab Report",
     description:
       "A structured lab report following the IMRAD format. Includes methods, results tables, and discussion.",
@@ -612,6 +618,7 @@ The portable glucometer showed excellent correlation with the laboratory method 
   /* ─── 7. Case Study (intermediate) ──────────────────────── */
   {
     id: "case-study",
+    language: "en",
     title: "Clinical Case Study",
     description:
       "A patient case study template following clinical presentation format with SOAP notes structure.",
@@ -735,6 +742,7 @@ This case illustrates a classic presentation of acute myocardial infarction with
   /* ─── 8. Research Article (advanced) ────────────────────── */
   {
     id: "research-article",
+    language: "en",
     title: "Research Article",
     description:
       "A full scientific research paper following IMRAD structure with abstract, figures, tables, and references.",
@@ -876,6 +884,7 @@ Telemedicine follow-up is a viable and effective alternative to in-person wound 
   /* ─── 9. Literature Review (advanced) ───────────────────── */
   {
     id: "literature-review",
+    language: "en",
     title: "Literature Review",
     description:
       "A structured literature review with proper citation format, thematic organization, and critical analysis.",
@@ -988,6 +997,7 @@ The gut microbiome represents a promising target for both understanding and trea
   /* ─── 10. Thesis Chapter (advanced) ─────────────────────── */
   {
     id: "thesis-chapter",
+    language: "en",
     title: "Thesis Chapter",
     description:
       "A thesis/dissertation chapter template with proper academic structure, cross-references, and appendices.",
@@ -1129,6 +1139,7 @@ Statistical analysis was performed using SPSS version 28.0. Results are presente
   /* ─── 11. Beamer Presentation (intermediate) ────────────── */
   {
     id: "beamer-presentation",
+    language: "en",
     title: "Beamer Presentation",
     description:
       "Create presentation slides using LaTeX Beamer. Perfect for journal clubs, case presentations, and lectures.",
@@ -1289,6 +1300,7 @@ Statistical analysis was performed using SPSS version 28.0. Results are presente
   /* ─── 12. Academic CV (intermediate) ────────────────────── */
   {
     id: "academic-cv",
+    language: "en",
     title: "Academic CV",
     description:
       "A clean academic curriculum vitae template for medical students and researchers.",

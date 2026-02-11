@@ -2,6 +2,7 @@
 
 import { useState, useCallback } from "react";
 import { Share2, Check } from "lucide-react";
+import { useTranslations } from "next-intl";
 
 interface ShareLinkButtonProps {
   url: string;
@@ -9,6 +10,7 @@ interface ShareLinkButtonProps {
 }
 
 export default function ShareLinkButton({ url, label }: ShareLinkButtonProps) {
+  const t = useTranslations("common");
   const [copied, setCopied] = useState(false);
 
   const handleCopy = useCallback(async () => {
@@ -41,7 +43,7 @@ export default function ShareLinkButton({ url, label }: ShareLinkButtonProps) {
       ) : (
         <Share2 className="h-4 w-4" />
       )}
-      {copied ? "Link Copied!" : label}
+      {copied ? t("linkCopied") : label}
     </button>
   );
 }

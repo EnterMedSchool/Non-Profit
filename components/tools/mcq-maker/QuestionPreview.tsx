@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo } from "react";
+import { useTranslations } from "next-intl";
 import {
   Check,
   X,
@@ -19,6 +20,7 @@ const DIFFICULTY_STYLES = {
 };
 
 export default function QuestionPreview() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const { questions, selectedQuestionId, editingQuestion } = useMCQ();
 
   // Show editing question if available, else selected, else last added
@@ -38,10 +40,10 @@ export default function QuestionPreview() {
           <HelpCircle className="h-12 w-12 text-showcase-purple/30 animate-float-gentle" />
         </div>
         <p className="font-display text-lg font-bold text-ink-dark">
-          Question Preview
+          {t("questionPreviewTitle")}
         </p>
         <p className="mt-1 text-sm text-ink-muted max-w-xs">
-          Create or select a question to see a live preview here.
+          {t("questionPreviewDesc")}
         </p>
       </div>
     );
@@ -75,7 +77,7 @@ export default function QuestionPreview() {
             {question.points !== undefined && question.points !== 1 && (
               <span className="inline-flex items-center gap-1 text-xs font-bold text-ink-muted">
                 <Award className="h-3 w-3" />
-                {question.points} pts
+                {question.points} {t("pts")}
               </span>
             )}
           </div>
@@ -98,7 +100,7 @@ export default function QuestionPreview() {
           <p className="font-display text-base font-bold text-ink-dark leading-relaxed">
             {question.question || (
               <span className="text-ink-light italic">
-                Your question will appear here...
+                {t("yourQuestionHere")}
               </span>
             )}
           </p>
@@ -138,7 +140,7 @@ export default function QuestionPreview() {
                   >
                     {hasText
                       ? opt.text
-                      : `Option ${OPTION_LETTERS[idx]}...`}
+                      : t("optionPlaceholder", { letter: OPTION_LETTERS[idx] })}
                   </span>
                 </div>
               );
@@ -150,7 +152,7 @@ export default function QuestionPreview() {
             <div className="mt-4 rounded-xl border-2 border-showcase-blue/20 bg-showcase-blue/5 px-4 py-3">
               <div className="flex items-center gap-1.5 text-xs font-bold text-showcase-blue mb-1">
                 <BookOpen className="h-3.5 w-3.5" />
-                Explanation
+                {t("explanation")}
               </div>
               <p className="text-sm text-ink-dark leading-relaxed">
                 {question.explanation}
@@ -178,8 +180,10 @@ export default function QuestionPreview() {
       {/* Footer info */}
       <p className="mt-3 text-[11px] text-ink-light text-center">
         {questions.length > 0
-          ? `Showing ${selectedQuestionId ? "selected" : "latest"} of ${questions.length} question${questions.length !== 1 ? "s" : ""}`
-          : "Live preview updates as you type"}
+          ? (questions.length === 1
+              ? t("showingPreview", { type: selectedQuestionId ? "selected" : "latest", count: 1 })
+              : t("showingPreviewPlural", { type: selectedQuestionId ? "selected" : "latest", count: questions.length }))
+          : t("livePreviewUpdates")}
       </p>
     </div>
   );

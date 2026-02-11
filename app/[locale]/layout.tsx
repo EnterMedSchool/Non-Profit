@@ -10,6 +10,7 @@ import SearchDialog from "@/components/layout/SearchDialog";
 import DeferredConsent from "@/components/consent/DeferredConsent";
 import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
 import ToastProvider from "@/components/shared/ToastProvider";
+import { routing } from "@/i18n/routing";
 import "@/styles/globals.css";
 
 /* Font weights reduced from 12 → 6 files for faster loading */
@@ -33,6 +34,10 @@ const caveat = Caveat({
   variable: "--font-caveat",
   display: "swap",
 });
+
+export function generateStaticParams() {
+  return routing.locales.map((locale) => ({ locale }));
+}
 
 export async function generateMetadata({
   params,
@@ -74,8 +79,8 @@ export async function generateMetadata({
     alternates: {
       canonical: `/${locale}`,
       languages: {
-        en: "/en",
-        "x-default": "/en",
+        ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
+        "x-default": `/${routing.defaultLocale}`,
       },
     },
   };
@@ -90,6 +95,7 @@ export default async function LocaleLayout({
 }) {
   const { locale } = await params;
   const messages = await getMessages({ locale });
+  const t = await getTranslations({ locale, namespace: "common" });
 
   return (
     <html
@@ -114,7 +120,7 @@ export default async function LocaleLayout({
               href="#main-content"
               className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-xl focus:border-3 focus:border-showcase-navy focus:bg-white focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:text-showcase-purple focus:shadow-chunky"
             >
-              Skip to content
+              {t("skipToContent")}
             </a>
             <Navbar />
             <Breadcrumbs />

@@ -1,6 +1,7 @@
 "use client";
 
 import { memo } from "react";
+import { useTranslations } from "next-intl";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Image from "next/image";
@@ -14,6 +15,7 @@ interface BookCardProps {
 }
 
 function BookCard({ book, progress }: BookCardProps) {
+  const t = useTranslations("pdfViewer.card");
   const pathname = usePathname();
   const locale = pathname.split("/")[1] || "en";
   return (
@@ -33,7 +35,7 @@ function BookCard({ book, progress }: BookCardProps) {
         {/* Free badge */}
         <div className="absolute left-3 top-3">
           <StickerBadge color="green" size="sm">
-            Free
+            {t("free")}
           </StickerBadge>
         </div>
 
@@ -41,8 +43,8 @@ function BookCard({ book, progress }: BookCardProps) {
         {progress !== undefined && progress > 0 && (
           <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-black/60 to-transparent px-3 pb-3 pt-8">
             <div className="flex items-center justify-between text-xs text-white/90">
-              <span className="font-semibold">{progress}% read</span>
-              <span>{Math.round((progress / 100) * book.chapters.length)}/{book.chapters.length} chapters</span>
+              <span className="font-semibold">{t("percentRead", { percent: progress })}</span>
+              <span>{Math.round((progress / 100) * book.chapters.length)}/{book.chapters.length} {t("chapters")}</span>
             </div>
             <div className="mt-1 h-1 overflow-hidden rounded-full bg-white/30">
               <div
@@ -79,15 +81,15 @@ function BookCard({ book, progress }: BookCardProps) {
         <div className="mt-3 flex flex-wrap items-center gap-3 text-[11px] text-ink-light">
           <span className="flex items-center gap-1">
             <BookOpen className="h-3 w-3" />
-            {book.chapters.length} chapters
+            {book.chapters.length} {t("chapters")}
           </span>
           <span className="flex items-center gap-1">
             <FileText className="h-3 w-3" />
-            {book.totalPages} pages
+            {book.totalPages} {t("pages")}
           </span>
           <span className="flex items-center gap-1">
             <Clock className="h-3 w-3" />
-            {book.estimatedReadTime} min
+            {book.estimatedReadTime} {t("min")}
           </span>
           <span className="flex items-center gap-1">
             <Users className="h-3 w-3" />

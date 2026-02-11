@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo, useCallback, useRef, useEffect } from "react";
+import { useTranslations } from "next-intl";
 import {
   Code2,
   Copy,
@@ -64,6 +65,7 @@ const tokenColors: Record<string, string> = {
 
 // ── Component ────────────────────────────────────────────────────────
 export default function EmbedPanel() {
+  const t = useTranslations("tools.mcqMaker.ui");
   const { questions, exams } = useMCQ();
 
   const [embedTheme, setEmbedTheme] = useState<MCQEmbedTheme>(DEFAULT_EMBED_THEME);
@@ -218,7 +220,7 @@ export default function EmbedPanel() {
       {exams.length > 0 && (
         <div>
           <label className="block text-xs font-bold text-ink-dark mb-1">
-            Questions source
+            {t("questionsSource")}
           </label>
           <div className="relative">
             <select
@@ -226,7 +228,7 @@ export default function EmbedPanel() {
               onChange={(e) => setSelectedExamId(e.target.value)}
               className="w-full appearance-none rounded-lg border-2 border-ink-light/20 bg-white px-3 py-1.5 pr-7 text-xs font-bold text-ink-dark focus:border-showcase-purple focus:outline-none"
             >
-              <option value="">All questions ({questions.length})</option>
+              <option value="">{t("allQuestionsCount", { count: questions.length })}</option>
               {exams.map((exam) => (
                 <option key={exam.id} value={exam.id}>
                   {exam.title} (
@@ -246,21 +248,21 @@ export default function EmbedPanel() {
       {/* Mode */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-2">
-          Mode
+          {t("mode")}
         </label>
         <div className="flex gap-2">
           {(
             [
               {
                 id: "practice" as const,
-                label: "Practice",
-                desc: "Instant feedback",
+                label: t("practice"),
+                desc: t("instantFeedback"),
                 icon: BookOpen,
               },
               {
                 id: "quiz" as const,
-                label: "Quiz",
-                desc: "Score at end",
+                label: t("quiz"),
+                desc: t("scoreAtEnd"),
                 icon: ClipboardList,
               },
             ] as const
@@ -372,7 +374,7 @@ export default function EmbedPanel() {
               }`}
               style={{ backgroundColor: p.value }}
               title={p.label}
-              aria-label={`Accent: ${p.label}`}
+              aria-label={t("accentAria", { label: p.label })}
               aria-pressed={embedTheme.accent === p.value}
             >
               {embedTheme.accent === p.value && (
@@ -392,13 +394,13 @@ export default function EmbedPanel() {
       {/* Options toggles */}
       <div className="flex flex-col gap-2">
         {[
-          { key: "showProgress" as const, label: "Show progress bar" },
-          { key: "showScore" as const, label: "Show score" },
+          { key: "showProgress" as const, label: t("showProgressBar") },
+          { key: "showScore" as const, label: t("showScore") },
           {
             key: "showExplanations" as const,
-            label: "Show explanations",
+            label: t("showExplanations"),
           },
-          { key: "animation" as const, label: "Animations" },
+          { key: "animation" as const, label: t("animations") },
         ].map((opt) => (
           <label
             key={opt.key}
@@ -419,7 +421,7 @@ export default function EmbedPanel() {
       <div className="grid grid-cols-2 gap-3">
         <div>
           <label className="block text-xs font-bold text-ink-dark mb-1">
-            Width
+            {t("width")}
           </label>
           <input
             type="text"
@@ -430,7 +432,7 @@ export default function EmbedPanel() {
         </div>
         <div>
           <label className="block text-xs font-bold text-ink-dark mb-1">
-            Height
+            {t("height")}
           </label>
           <input
             type="text"
@@ -444,7 +446,7 @@ export default function EmbedPanel() {
       {/* Border radius */}
       <div>
         <label className="block text-xs font-bold text-ink-dark mb-1">
-          Border Radius:{" "}
+          {t("borderRadius")}{" "}
           <span className="text-showcase-purple">
             {embedTheme.borderRadius}px
           </span>
@@ -466,7 +468,7 @@ export default function EmbedPanel() {
         <div className="mt-2">
           <div className="flex items-center justify-between mb-2">
             <label className="text-xs font-bold text-ink-dark">
-              Embed Code
+              {t("embedCode")}
             </label>
             <div className="relative">
               <button
@@ -482,7 +484,7 @@ export default function EmbedPanel() {
                 ) : (
                   <Copy className="h-3.5 w-3.5" />
                 )}
-                {copied ? "Copied!" : "Copy Code"}
+                {copied ? t("copied") : t("copyCode")}
               </button>
               <AnimatePresence>
                 {showCelebration && (
@@ -532,9 +534,8 @@ export default function EmbedPanel() {
           </div>
 
           <p className="mt-2 text-[10px] text-ink-light">
-            {embedQuestions.length} questions embedded
-            {embedPayload.length > 50000 &&
-              " (large payload — consider using fewer questions)"}
+            {t("questionsEmbedded", { count: embedQuestions.length })}
+            {embedPayload.length > 50000 && ` ${t("largePayload")}`}
           </p>
         </div>
       )}
@@ -542,25 +543,23 @@ export default function EmbedPanel() {
       {/* Platform hints */}
       <div className="rounded-xl border-2 border-ink-light/15 bg-pastel-cream/20 p-3 mt-1">
         <p className="text-xs font-bold text-ink-dark mb-1.5">
-          Platform Instructions:
+          {t("platformInstructions")}
         </p>
         <ul className="text-[10px] text-ink-muted space-y-1">
           <li>
-            <strong>HTML:</strong> Paste the embed code directly into your
-            HTML
+            <strong>HTML:</strong> {t("platformHtml")}
           </li>
           <li>
-            <strong>WordPress:</strong> Use a Custom HTML block
+            <strong>WordPress:</strong> {t("platformWordPress")}
           </li>
           <li>
-            <strong>Notion:</strong> Use the /embed command and paste the
-            iframe URL
+            <strong>Notion:</strong> {t("platformNotion")}
           </li>
           <li>
-            <strong>Wix:</strong> Add an HTML iFrame element
+            <strong>Wix:</strong> {t("platformWix")}
           </li>
           <li>
-            <strong>Squarespace:</strong> Use a Code Block
+            <strong>Squarespace:</strong> {t("platformSquarespace")}
           </li>
         </ul>
       </div>

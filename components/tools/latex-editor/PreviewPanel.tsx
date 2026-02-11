@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState, useCallback } from "react";
+import { useTranslations } from "next-intl";
 import { useLaTeXEditor } from "./LaTeXEditorContext";
 import { ZoomIn, ZoomOut, RotateCcw, AlertTriangle, CheckCircle2, Loader2, Info, Lightbulb, ChevronDown, ChevronRight } from "lucide-react";
 
@@ -206,6 +207,7 @@ function preprocessForPreview(source: string): { processed: string; warnings: st
 /* ── Preview component ───────────────────────────────────── */
 
 export default function PreviewPanel() {
+  const t = useTranslations("tools.latexEditor.ui");
   const {
     activeDocument,
     setPreviewHtml,
@@ -293,7 +295,7 @@ export default function PreviewPanel() {
         // Check if preprocessing had to do heavy lifting
         if (source !== processed && !previewNote) {
           setPreviewNote(
-            "Some advanced LaTeX features were simplified for the live preview. Your original code will compile perfectly in Overleaf."
+            t("advancedLaTeXSimplified")
           );
         }
 
@@ -326,24 +328,21 @@ export default function PreviewPanel() {
           const envMatch = errorMessage.match(/environment:\s*(\w+)/i) ||
             errorMessage.match(/unknown.*?(\w+)/i);
           if (envMatch) {
-            friendlyMessage = `The environment "${envMatch[1]}" isn't supported in the live preview. It will work in Overleaf.`;
+            friendlyMessage = t("envNotSupported", { name: envMatch[1] });
           } else if (cmdMatch) {
-            friendlyMessage = `The command \\${cmdMatch[1]} isn't supported in the live preview. It will work in Overleaf.`;
+            friendlyMessage = t("cmdNotSupported", { cmd: cmdMatch[1] });
           } else {
-            friendlyMessage =
-              "A command isn't supported in the live preview, but it will work when you compile in Overleaf.";
+            friendlyMessage = t("cmdNotSupportedGeneric");
           }
           severity = "warning";
         } else if (
           errorMessage.includes("Missing") ||
           errorMessage.includes("Expected")
         ) {
-          friendlyMessage =
-            "There seems to be a missing brace { } or bracket [ ]. Check that every opening symbol has a matching closing one.";
+          friendlyMessage = t("missingBrace");
           severity = "error";
         } else if (errorMessage.includes("Environment")) {
-          friendlyMessage =
-            "An environment (\\begin{...}/\\end{...}) has an issue. Make sure they match and are properly nested.";
+          friendlyMessage = t("environmentIssue");
           severity = "error";
         }
 
@@ -371,13 +370,10 @@ export default function PreviewPanel() {
   .tip  { margin-top: 1rem; padding: 1rem; background: #f0fdf4; border: 2px solid #bbf7d0; border-radius: 12px; font-size: 0.8rem; color: #166534; }
 </style></head><body>
   <div class="card ${severity === "error" ? "err" : "warn"}">
-    <div class="title">${severity === "error" ? "Compilation Error" : "Preview Limitation"}</div>
+    <div class="title">${severity === "error" ? t("compilationError") : t("previewLimitation")}</div>
     <div class="msg">${friendlyMessage}</div>
   </div>
-  <div class="tip">
-    <strong>Tip:</strong> The live preview supports basic LaTeX. Advanced packages and environments will compile correctly when you export to
-    <strong>Overleaf</strong> (click Export in the toolbar). Your code is fine!
-  </div>
+  <div class="tip">${t("previewTip")}</div>
 </body></html>`);
             iframeDoc.close();
           }
@@ -387,7 +383,7 @@ export default function PreviewPanel() {
         setLastCompileTime(performance.now() - startTime);
       }
     },
-    [setPreviewHtml, setIsPreviewLoading, setCompileErrors, previewNote]
+    [setPreviewHtml, setIsPreviewLoading, setCompileErrors, previewNote, t]
   );
 
   /* ── Debounced auto-compile ────────────────────────────── */
@@ -420,22 +416,22 @@ export default function PreviewPanel() {
           {isPreviewLoading ? (
             <>
               <Loader2 size={12} className="animate-spin text-showcase-purple" />
-              <span>Compiling...</span>
+              <span>{t("compiling")}</span>
             </>
           ) : errorCount > 0 ? (
             <>
               <AlertTriangle size={12} className="text-red-500" />
-              <span className="text-red-600">Error</span>
+              <span className="text-red-600">{t("error")}</span>
             </>
           ) : warningCount > 0 ? (
             <>
               <Info size={12} className="text-amber-500" />
-              <span className="text-amber-600">Preview ready (with notes)</span>
+              <span className="text-amber-600">{t("previewReadyWithNotes")}</span>
             </>
           ) : (
             <>
               <CheckCircle2 size={12} className="text-green-500" />
-              <span className="text-green-600">Preview ready</span>
+              <span className="text-green-600">{t("previewReady")}</span>
             </>
           )}
           {lastCompileTime !== null && !isPreviewLoading && (
@@ -506,15 +502,16 @@ function ErrorPanel({
   errors: import("./types").CompileError[];
   errorCount: number;
 }) {
+  const t = useTranslations("tools.latexEditor.ui");
   const { goToLine } = useLaTeXEditor();
   const [showFixes, setShowFixes] = useState(false);
 
   const COMMON_FIXES = [
-    { tip: "Check every { has a matching }", icon: "{ }" },
-    { tip: "Make sure every \\begin{...} has a matching \\end{...}", icon: "↕" },
-    { tip: "Put math symbols inside $ signs: $x^2$", icon: "$" },
-    { tip: "Escape special characters: use \\% not %, \\& not &, \\_ not _", icon: "%" },
-    { tip: "Put \\usepackage commands before \\begin{document}", icon: "↑" },
+    { tip: t("fixBrace"), icon: "{ }" },
+    { tip: t("fixBeginEnd"), icon: "↕" },
+    { tip: t("fixMath"), icon: "$" },
+    { tip: t("fixEscape"), icon: "%" },
+    { tip: t("fixUsepackage"), icon: "↑" },
   ];
 
   return (
@@ -538,9 +535,9 @@ function ErrorPanel({
               className={`font-medium underline decoration-dotted cursor-pointer hover:opacity-70 transition-opacity ${
                 err.severity === "error" ? "text-red-700" : "text-amber-700"
               }`}
-              title="Click to go to this line in the editor"
+              title={t("goToLineTitle")}
             >
-              Line {err.line}
+              {t("lineLabel", { line: err.line })}
             </button>
             <span className={err.severity === "error" ? "text-red-700" : "text-amber-700"}>: </span>
             <span
@@ -561,7 +558,7 @@ function ErrorPanel({
       >
         {showFixes ? <ChevronDown size={10} /> : <ChevronRight size={10} />}
         <Lightbulb size={10} className="text-amber-500" />
-        Common fixes
+        {t("commonFixes")}
       </button>
       {showFixes && (
         <div className="mt-1.5 space-y-1 pb-1">

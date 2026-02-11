@@ -2,11 +2,12 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 
 export default function Footer() {
   const t = useTranslations("footer");
   const nav = useTranslations("nav");
+  const locale = useLocale();
   const year = new Date().getFullYear();
 
   const openCookieSettings = () => {
@@ -25,7 +26,7 @@ export default function Footer() {
           <div className="flex-1 max-w-lg">
             {/* Logo + name */}
             <Link
-              href="/en"
+              href={`/${locale}`}
               className="font-display text-2xl font-bold text-ink-dark group inline-flex items-center gap-3"
             >
               <Image
@@ -140,33 +141,33 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 <li>
-                  <FooterLink href="/en/tools">{nav("tools")}</FooterLink>
+                  <FooterLink href={`/${locale}/tools`}>{nav("tools")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/calculators">{nav("calculators")}</FooterLink>
+                  <FooterLink href={`/${locale}/calculators`}>{nav("calculators")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/resources/pdfs">
+                  <FooterLink href={`/${locale}/resources/pdfs`}>
                     {t("links.pdfs")}
                   </FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/resources/visuals">
+                  <FooterLink href={`/${locale}/resources/visuals`}>
                     {t("links.visuals")}
                   </FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/clinical-semiotics">
+                  <FooterLink href={`/${locale}/clinical-semiotics`}>
                     {t("links.clinicalSemiotics")}
                   </FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/resources/questions">
+                  <FooterLink href={`/${locale}/resources/questions`}>
                     {t("links.questions")}
                   </FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/resources/videos">
+                  <FooterLink href={`/${locale}/resources/videos`}>
                     {t("links.videos")}
                   </FooterLink>
                 </li>
@@ -180,18 +181,18 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 <li>
-                  <FooterLink href="/en/tools">{nav("tools")}</FooterLink>
+                  <FooterLink href={`/${locale}/tools`}>{nav("tools")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/for-professors">
+                  <FooterLink href={`/${locale}/for-professors`}>
                     {nav("guides")}
                   </FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/events">{nav("events")}</FooterLink>
+                  <FooterLink href={`/${locale}/events`}>{nav("events")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/license">{nav("license")}</FooterLink>
+                  <FooterLink href={`/${locale}/license`}>{nav("license")}</FooterLink>
                 </li>
               </ul>
             </div>
@@ -203,13 +204,13 @@ export default function Footer() {
               </h4>
               <ul className="flex flex-col gap-2.5">
                 <li>
-                  <FooterLink href="/en/about">{nav("about")}</FooterLink>
+                  <FooterLink href={`/${locale}/about`}>{nav("about")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/license">{nav("license")}</FooterLink>
+                  <FooterLink href={`/${locale}/license`}>{nav("license")}</FooterLink>
                 </li>
                 <li>
-                  <FooterLink href="/en/privacy">{nav("privacy")}</FooterLink>
+                  <FooterLink href={`/${locale}/privacy`}>{nav("privacy")}</FooterLink>
                 </li>
                 <li>
                   <button
@@ -242,7 +243,7 @@ export default function Footer() {
           <div className="flex items-center gap-5">
             {/* GitHub link */}
             <a
-              href="https://github.com/Entermedschool"
+              href="https://github.com/enterMedSchool/Non-Profit"
               target="_blank"
               rel="noopener noreferrer"
               className="text-ink-light transition-colors hover:text-ink-dark"
