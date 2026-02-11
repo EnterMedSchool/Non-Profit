@@ -10,7 +10,6 @@ import { AnimatePresence, m } from "framer-motion";
 
 const locales = [
   { code: "en", label: "English", flag: "🇬🇧" },
-  { code: "he", label: "עברית", flag: "🇮🇱" },
 ] as const;
 
 /* ── Shared switch helper ─────────────────────────────────────────────────── */
