@@ -1,6 +1,7 @@
 import type { Tool } from "@/data/tools";
 import type { Resource } from "@/data/resources";
 import type { PDFBook, PDFChapter } from "@/data/pdf-books";
+import type { VisualLesson } from "@/data/visuals";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -395,6 +396,91 @@ export function getChapterJsonLd(
     keywords: chapter.keyTopics.join(", "),
     timeRequired: `PT${chapter.estimatedReadTime}M`,
   };
+}
+
+/**
+ * JSON-LD structured data for an individual visual lesson page.
+ *
+ * Emits three schemas:
+ * 1. MedicalWebPage — signals authoritative medical content to Google
+ * 2. Course — marks it as educational content with layers as parts
+ * 3. LearningResource — educational metadata with key facts
+ */
+export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
+  const lessonUrl = `${BASE_URL}/${locale}/resources/visuals/${lesson.id}`;
+
+  const medicalWebPage = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: lesson.title,
+    description: lesson.description,
+    url: lessonUrl,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+    medicalAudience: {
+      "@type": "MedicalAudience",
+      audienceType: "Clinician",
+    },
+    lastReviewed: new Date().toISOString().split("T")[0],
+    keywords: lesson.tags.join(", "),
+    thumbnailUrl: `${BASE_URL}${lesson.thumbnailPath}`,
+  };
+
+  const course = {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    name: `${lesson.title} — Visual Medical Lesson`,
+    description: lesson.description,
+    url: lessonUrl,
+    provider: ORGANIZATION_REF,
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    educationalLevel: "University",
+    timeRequired: `PT${lesson.duration.replace(/[^0-9]/g, "")}M`,
+    image: `${BASE_URL}${lesson.thumbnailPath}`,
+    hasCourseInstance: {
+      "@type": "CourseInstance",
+      courseMode: "online",
+      courseWorkload: "Self-paced",
+    },
+    hasPart: lesson.layers.map((layer, i) => ({
+      "@type": "CreativeWork",
+      name: layer.name,
+      position: i + 1,
+    })),
+    about: lesson.keyFacts.map((fact) => ({
+      "@type": "DefinedTerm",
+      name: fact.term,
+      description: fact.description,
+    })),
+    keywords: lesson.tags.join(", "),
+  };
+
+  const learningResource = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: lesson.title,
+    description: lesson.description,
+    url: lessonUrl,
+    learningResourceType: "Visual",
+    educationalLevel: "University",
+    isAccessibleForFree: true,
+    inLanguage: locale,
+    provider: ORGANIZATION_REF,
+    author: {
+      "@type": "Person",
+      name: lesson.creator.name,
+      ...(lesson.creator.url && { url: lesson.creator.url }),
+    },
+    thumbnailUrl: `${BASE_URL}${lesson.thumbnailPath}`,
+    keywords: lesson.tags.join(", "),
+  };
+
+  return [medicalWebPage, course, learningResource];
 }
 
 /**

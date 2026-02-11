@@ -140,6 +140,7 @@ export default function MobileMenu({
                 alt="Leo mascot"
                 width={32}
                 height={32}
+                sizes="32px"
                 className="rounded-md"
               />
               EnterMedSchool
@@ -198,10 +199,12 @@ export default function MobileMenu({
                     <div>
                       <button
                         onClick={() => toggleExpand(item.labelKey)}
+                        aria-expanded={isExpanded}
                         className="flex w-full items-center gap-2 py-2 font-display text-3xl font-bold text-ink-dark transition-colors hover:text-showcase-purple sm:text-4xl"
                       >
                         {t(item.labelKey)}
                         <ChevronDown
+                          aria-hidden="true"
                           className={`h-6 w-6 text-ink-light transition-transform duration-300 ${
                             isExpanded ? "rotate-180" : ""
                           }`}

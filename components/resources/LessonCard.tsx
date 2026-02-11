@@ -163,7 +163,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
 
   return (
     <>
-      <div className="group relative flex overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white transition-all duration-300 hover:-translate-y-1 hover:shadow-chunky-lg">
+      <div className="group relative flex overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all duration-300 hover:-translate-y-1 hover:shadow-chunky-lg cursor-pointer focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2">
         {/* ── Category accent stripe ── */}
         <div className={`hidden sm:block w-2 flex-shrink-0 ${accent.stripe}`} />
 
@@ -242,7 +242,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
               <div className="mt-4 flex flex-wrap gap-2">
                 <button
                   onClick={() => setExpanded(!expanded)}
-                  className={`inline-flex items-center gap-1.5 rounded-xl border-3 ${colors.border} ${colors.bg} px-4 py-2 text-xs font-bold ${colors.text} shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky`}
+                  className={`inline-flex items-center gap-1.5 rounded-xl border-3 ${colors.border} ${colors.bg} px-4 py-2 text-xs font-bold ${colors.text} shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]`}
                 >
                   {expanded ? <ChevronUp className="h-3.5 w-3.5" /> : <ChevronDown className="h-3.5 w-3.5" />}
                   {expanded ? "Hide Assets" : `View ${lesson.layers.length} Assets`}
@@ -250,7 +250,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                 {onOpenEmbed && (
                   <button
                     onClick={() => onOpenEmbed(lesson)}
-                    className="inline-flex items-center gap-1.5 rounded-xl border-3 border-transparent bg-gradient-to-r from-showcase-purple to-showcase-teal px-4 py-2 text-xs font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky group/embed"
+                    className="inline-flex items-center gap-1.5 rounded-xl border-3 border-transparent bg-gradient-to-r from-showcase-purple to-showcase-teal px-4 py-2 text-xs font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97] group/embed"
                   >
                     <Code className="h-3.5 w-3.5 transition-transform group-hover/embed:rotate-12" />
                     Add to Your Website
@@ -291,7 +291,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                     <button
                       onClick={handleDownloadAll}
                       disabled={downloading}
-                      className={`group/dl w-full rounded-2xl border-3 border-showcase-navy bg-gradient-to-r ${accent.gradientFrom} ${accent.gradientTo} px-6 py-4 text-center font-bold text-white transition-all ${accent.shadow} hover:-translate-y-0.5 hover:shadow-chunky-lg disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0`}
+                      className={`group/dl w-full rounded-2xl border-3 border-showcase-navy bg-gradient-to-r ${accent.gradientFrom} ${accent.gradientTo} px-6 py-4 text-center font-bold text-white transition-all ${accent.shadow} hover:-translate-y-0.5 hover:shadow-chunky-lg focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97] disabled:opacity-60 disabled:cursor-not-allowed disabled:hover:translate-y-0`}
                     >
                       <div className="flex items-center justify-center gap-3">
                         {downloading ? (
@@ -348,7 +348,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                           <a
                             href={layer.imagePath}
                             download
-                            className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-green/20 bg-showcase-green/5 px-2.5 py-1.5 text-xs font-bold text-showcase-green hover:bg-showcase-green hover:text-white transition-all"
+                            className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-green/20 bg-showcase-green/5 px-2.5 py-1.5 text-xs font-bold text-showcase-green hover:bg-showcase-green hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
                             title="Download PNG"
                           >
                             <ImageIcon className="h-3.5 w-3.5" />
@@ -357,7 +357,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                           <a
                             href={layer.audioPath}
                             download
-                            className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-purple/20 bg-showcase-purple/5 px-2.5 py-1.5 text-xs font-bold text-showcase-purple hover:bg-showcase-purple hover:text-white transition-all"
+                            className="inline-flex items-center gap-1 rounded-lg border-2 border-showcase-purple/20 bg-showcase-purple/5 px-2.5 py-1.5 text-xs font-bold text-showcase-purple hover:bg-showcase-purple hover:text-white transition-all focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
                             title="Download MP3"
                           >
                             <Volume2 className="h-3.5 w-3.5" />
@@ -373,7 +373,7 @@ export default function LessonCard({ lesson, onOpenEmbed }: LessonCardProps) {
                     <div className="mt-6">
                       <button
                         onClick={() => setShowFacts(!showFacts)}
-                        className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy/15 bg-white px-5 py-2.5 text-sm font-bold text-ink-dark transition-all hover:bg-pastel-cream hover:shadow-sm"
+                        className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy/15 bg-white px-5 py-2.5 text-sm font-bold text-ink-dark transition-all hover:bg-pastel-cream hover:shadow-sm focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
                       >
                         <Sparkles className="h-4 w-4 text-showcase-purple" />
                         {showFacts ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}

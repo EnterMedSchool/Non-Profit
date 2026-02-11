@@ -33,6 +33,7 @@ export default function Footer() {
                 alt="Leo mascot"
                 width={36}
                 height={36}
+                sizes="36px"
                 className="rounded-lg transition-transform duration-300 group-hover:rotate-6"
               />
               <span>
@@ -231,6 +232,7 @@ export default function Footer() {
               alt=""
               width={18}
               height={18}
+              sizes="18px"
               className="rounded-sm opacity-60 transition-all duration-300 hover:opacity-100 hover:rotate-12"
               aria-hidden="true"
             />

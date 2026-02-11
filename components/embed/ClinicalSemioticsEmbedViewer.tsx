@@ -17,6 +17,8 @@ const VideoChainPlayer = dynamic(
   },
 );
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+
 interface ClinicalSemioticsEmbedViewerProps {
   examType: string;
   bg: string;
@@ -125,7 +127,7 @@ export default function ClinicalSemioticsEmbedViewer({
       {/* Attribution footer */}
       <EmbedAttribution
         lessonTitle={title}
-        lessonUrl="https://entermedschool.org/en/clinical-semiotics"
+        lessonUrl={`${BASE_URL}/en/clinical-semiotics`}
         theme={theme}
         accentColor={accent}
       />

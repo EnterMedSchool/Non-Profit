@@ -248,3 +248,9 @@ export const visualLessons: VisualLesson[] = [
     ],
   },
 ];
+
+// ─── Helpers ─────────────────────────────────────────────────────────────────
+
+export function getVisualLessonById(id: string): VisualLesson | undefined {
+  return visualLessons.find((l) => l.id === id);
+}

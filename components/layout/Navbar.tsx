@@ -309,6 +309,7 @@ export default function Navbar() {
               alt="Leo mascot"
               width={36}
               height={36}
+              sizes="36px"
               className="rounded-lg transition-transform duration-300 group-hover:rotate-6 group-hover:scale-110"
               priority
             />
@@ -357,10 +358,12 @@ export default function Navbar() {
                         : "text-ink-muted hover:text-ink-dark"
                     }`}
                     onClick={() => setOpenMega(null)}
+                    {...(hasMega ? { "aria-expanded": isMegaOpen, "aria-haspopup": "true" as const } : {})}
                   >
                     {t(item.labelKey)}
                     {hasMega && (
                       <ChevronDown
+                        aria-hidden="true"
                         className={`h-3.5 w-3.5 transition-transform duration-200 ${
                           isMegaOpen ? "rotate-180" : ""
                         }`}
@@ -394,7 +397,7 @@ export default function Navbar() {
             {/* Search button */}
             <button
               onClick={openSearch}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-pastel-lavender hover:text-ink-dark hover:scale-105"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-pastel-lavender hover:text-ink-dark hover:scale-105"
               aria-label={t("search")}
             >
               <Search className="h-4.5 w-4.5" />
@@ -417,7 +420,7 @@ export default function Navbar() {
             {/* Mobile menu button */}
             <button
               onClick={() => setMobileOpen(true)}
-              className="flex h-9 w-9 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-pastel-lavender hover:text-ink-dark lg:hidden"
+              className="flex h-10 w-10 items-center justify-center rounded-full text-ink-muted transition-all hover:bg-pastel-lavender hover:text-ink-dark lg:hidden"
               aria-label={t("menu")}
             >
               <Menu className="h-5 w-5" />

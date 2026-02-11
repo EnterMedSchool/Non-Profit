@@ -33,6 +33,10 @@ export async function generateMetadata({
       "interactive PDF reader",
       "medical school notes",
     ],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/resources/pdfs`,
+      languages: { en: `${BASE_URL}/en/resources/pdfs`, "x-default": `${BASE_URL}/en/resources/pdfs` },
+    },
   };
 }
 

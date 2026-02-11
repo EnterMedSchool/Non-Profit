@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["teaching guides", "medical lecture best practices", "AI slides", "clinical case teaching", "educator resources"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/for-professors/guides`,
+      languages: { en: `${BASE_URL}/en/for-professors/guides`, "x-default": `${BASE_URL}/en/for-professors/guides` },
+    },
   };
 }
 

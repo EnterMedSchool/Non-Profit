@@ -19,6 +19,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["medical lecture templates", "slide templates", "PowerPoint medical", "Google Slides medical", "presentation templates", "medical education downloads"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/for-professors/templates`,
+      languages: { en: `${BASE_URL}/en/for-professors/templates`, "x-default": `${BASE_URL}/en/for-professors/templates` },
+    },
   };
 }
 

@@ -101,7 +101,7 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
   const hasEducationalContent = id === "bmi-calc";
 
   return (
-    <main className="relative z-10 py-8 sm:py-14">
+    <main className="relative z-10 py-12 sm:py-20">
       <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* JSON-LD */}
         {jsonLdItems.map((item, i) => (

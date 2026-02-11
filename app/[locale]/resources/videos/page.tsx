@@ -22,6 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["medical videos", "ECG tutorial", "neuroanatomy", "pharmacology lectures", "free medical education videos"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/resources/videos`,
+      languages: { en: `${BASE_URL}/en/resources/videos`, "x-default": `${BASE_URL}/en/resources/videos` },
+    },
   };
 }
 

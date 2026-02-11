@@ -356,12 +356,14 @@ export default function SearchDialog() {
                   value={query}
                   onChange={(e) => setQuery(e.target.value)}
                   placeholder={t("placeholder")}
+                  aria-label="Search"
                   className="flex-1 bg-transparent font-display text-lg font-medium outline-none placeholder:text-ink-light/70"
                   autoComplete="off"
                   spellCheck={false}
                 />
                 <button
                   onClick={handleClose}
+                  aria-label="Close search"
                   className="flex h-8 items-center gap-1 rounded-lg border-2 border-ink-light/20 px-2 text-xs font-bold text-ink-muted transition-colors hover:border-ink-light/40 hover:bg-pastel-lavender/50"
                 >
                   <span className="hidden sm:inline">ESC</span>

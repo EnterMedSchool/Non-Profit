@@ -19,6 +19,7 @@ import {
 import { m } from "framer-motion";
 import Fuse from "fuse.js";
 import SectionHeading from "@/components/shared/SectionHeading";
+import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import LessonCard from "@/components/resources/LessonCard";
 import EmbedConfigurator from "@/components/resources/EmbedConfigurator";
@@ -111,40 +112,21 @@ export default function VisualsPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
 
           {/* ── Hero Section ── */}
-          <AnimatedSection animation="blurIn">
-            <div className="relative text-center">
-              {/* Floating decorative elements */}
-              <div className="pointer-events-none absolute inset-0 overflow-hidden" aria-hidden="true">
-                <Pill className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-                <Heart className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-coral/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-                <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-                <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-              </div>
-
-              <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">
-                <span className="text-ink-dark">Medical </span>
-                <span className="bg-gradient-to-r from-showcase-purple via-showcase-teal to-showcase-green bg-clip-text text-transparent">
-                  Visuals
-                </span>
-                <span className="text-ink-dark"> & Assets</span>
-              </h1>
-
-              {/* Handwritten annotation */}
-              <div className="relative mx-auto mt-1 inline-block">
-                <span className="font-handwritten text-xl text-showcase-teal sm:text-2xl">
-                  100% free for educators!
-                </span>
-                <svg className="absolute -right-6 -top-3 h-5 w-5 text-showcase-teal/50 rotate-[30deg]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                  <path d="M7 17L17 7M17 7H8M17 7V16" />
-                </svg>
-              </div>
-
-              <p className="mx-auto mt-5 max-w-2xl text-lg leading-relaxed text-ink-muted sm:text-xl">
-                Download layered PNGs, audio narrations, and visual assets for
-                your slides, handouts, and teaching materials.
-              </p>
-            </div>
-          </AnimatedSection>
+          <PageHero
+            titlePre="Medical"
+            titleHighlight="Visuals"
+            titlePost="& Assets"
+            gradient="from-showcase-purple via-showcase-teal to-showcase-green"
+            annotation="100% free for educators!"
+            annotationColor="text-showcase-teal"
+            subtitle="Download layered PNGs, audio narrations, and visual assets for your slides, handouts, and teaching materials."
+            floatingIcons={<>
+              <Pill className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
+              <Heart className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-coral/15 animate-float-playful" style={{ animationDelay: "1s" }} />
+              <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
+              <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
+            </>}
+          />
 
           {/* ── Attribution Banner -- Glassmorphism ── */}
           <AnimatedSection delay={0.15} animation="blurIn">
@@ -201,6 +183,7 @@ export default function VisualsPage() {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onFocus={() => setSearchFocused(true)}
                   onBlur={() => setSearchFocused(false)}
+                  aria-label="Search visuals"
                   placeholder="Search visuals, topics, facts..."
                   className={`w-full rounded-2xl border-3 bg-white py-3 pl-12 pr-4 text-sm shadow-md outline-none transition-all duration-300 ${
                     searchFocused

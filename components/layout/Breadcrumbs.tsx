@@ -4,6 +4,10 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useTranslations } from "next-intl";
 import { ChevronRight, Home } from "lucide-react";
+import { useMemo } from "react";
+import { visualLessons } from "@/data/visuals";
+import { tools } from "@/data/tools";
+import { pdfBooks } from "@/data/pdf-books";
 
 // Map URL segments to translation keys
 const segmentKeyMap: Record<string, string> = {
@@ -26,6 +30,32 @@ const segmentKeyMap: Record<string, string> = {
 export default function Breadcrumbs() {
   const pathname = usePathname();
   const t = useTranslations("breadcrumbs");
+  const tTools = useTranslations("tools");
+
+  // Build a slug → human-readable label map from data files
+  const slugLabels = useMemo(() => {
+    const map = new Map<string, string>();
+
+    // Visual lessons: id → title
+    for (const lesson of visualLessons) {
+      map.set(lesson.id, lesson.title);
+    }
+
+    // Tools: id → translated title (e.g. "bmi-calc" → "BMI Calculator")
+    for (const tool of tools) {
+      map.set(tool.id, tTools(`${tool.i18nKey}.title`));
+    }
+
+    // PDF books & chapters: slug → title
+    for (const book of pdfBooks) {
+      map.set(book.slug, book.title);
+      for (const chapter of book.chapters) {
+        map.set(chapter.slug, chapter.title);
+      }
+    }
+
+    return map;
+  }, [tTools]);
 
   // Remove locale prefix and split
   const segments = pathname
@@ -41,7 +71,7 @@ export default function Breadcrumbs() {
     const href = `/en/${segments.slice(0, index + 1).join("/")}`;
     const key = segmentKeyMap[segment];
     const fallback = segment.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-    const label = key ? t(key) : fallback;
+    const label = key ? t(key) : (slugLabels.get(segment) ?? fallback);
     return { href, label, isLast: index === segments.length - 1 };
   });
 

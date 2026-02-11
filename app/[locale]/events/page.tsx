@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["medical education events", "entermedschool events", "student meetups", "medical community"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/events`,
+      languages: { en: `${BASE_URL}/en/events`, "x-default": `${BASE_URL}/en/events` },
+    },
   };
 }
 
@@ -64,20 +68,20 @@ export default function EventsPage() {
         {/* Past events */}
         <section className="mt-10">
           <AnimatedSection animation="slideLeft">
-            <h3 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("pastEvents.title")}</h3>
+            <h2 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("pastEvents.title")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             <AnimatedSection delay={0.1} animation="popIn" spring>
               <ChunkyCard className="p-6">
                 <span className="text-3xl mb-3 block">🍖</span>
-                <h4 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.pavia.title")}</h4>
+                <h3 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.pavia.title")}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t("pastEvents.pavia.description")}</p>
               </ChunkyCard>
             </AnimatedSection>
             <AnimatedSection delay={0.15} animation="popIn" spring>
               <ChunkyCard className="p-6">
                 <span className="text-3xl mb-3 block">👕</span>
-                <h4 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.merch.title")}</h4>
+                <h3 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.merch.title")}</h3>
                 <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t("pastEvents.merch.description")}</p>
               </ChunkyCard>
             </AnimatedSection>
@@ -87,7 +91,7 @@ export default function EventsPage() {
         {/* What we offer */}
         <section className="mt-10">
           <AnimatedSection animation="slideLeft">
-            <h3 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("whatWeOffer.title")}</h3>
+            <h2 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("whatWeOffer.title")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {offerings.map((item, i) => {
@@ -99,7 +103,7 @@ export default function EventsPage() {
                       <Icon className="h-5 w-5 text-showcase-purple" />
                     </div>
                     <div>
-                      <h4 className="font-display text-sm font-bold text-ink-dark">{t(`whatWeOffer.${item.key}`)}</h4>
+                      <h3 className="font-display text-sm font-bold text-ink-dark">{t(`whatWeOffer.${item.key}`)}</h3>
                       <p className="mt-1 text-sm text-ink-muted">{t(`whatWeOffer.${item.key}Desc`)}</p>
                     </div>
                   </div>
@@ -122,7 +126,7 @@ export default function EventsPage() {
                   <Heart className="h-6 w-6 text-white" />
                 </div>
               </div>
-              <h3 className="font-display text-xl font-bold text-ink-dark">{t("philosophy.title")}</h3>
+              <h2 className="font-display text-xl font-bold text-ink-dark">{t("philosophy.title")}</h2>
               <p className="mt-3 max-w-2xl mx-auto text-sm leading-relaxed text-ink-muted">{t("philosophy.content")}</p>
             </div>
           </div>

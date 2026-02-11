@@ -34,15 +34,6 @@ export async function generateMetadata({
   const chapterUrl = `${BASE_URL}/${locale}/resources/pdfs/${slug}/${chapterSlug}`;
   const { prev, next } = getAdjacentChapters(book, chapterSlug);
 
-  // Build alternate links for prev/next (SEO pagination)
-  const links: Record<string, string> = { canonical: chapterUrl };
-  if (prev) {
-    links.prev = `${BASE_URL}/${locale}/resources/pdfs/${slug}/${prev.slug}`;
-  }
-  if (next) {
-    links.next = `${BASE_URL}/${locale}/resources/pdfs/${slug}/${next.slug}`;
-  }
-
   return {
     title: `${chapter.title} — ${book.title}`,
     description: chapter.description,
@@ -53,7 +44,12 @@ export async function generateMetadata({
       type: "article",
     },
     keywords: chapter.keyTopics,
-    alternates: links,
+    alternates: {
+      canonical: chapterUrl,
+      languages: { en: `${BASE_URL}/en/resources/pdfs/${slug}/${chapterSlug}`, "x-default": `${BASE_URL}/en/resources/pdfs/${slug}/${chapterSlug}` },
+      ...(prev ? { prev: `${BASE_URL}/${locale}/resources/pdfs/${slug}/${prev.slug}` } : {}),
+      ...(next ? { next: `${BASE_URL}/${locale}/resources/pdfs/${slug}/${next.slug}` } : {}),
+    },
   };
 }
 

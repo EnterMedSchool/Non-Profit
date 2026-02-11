@@ -11,7 +11,7 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
   };
 
   return (
-    <div className="flex h-full flex-col rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky transition-all hover:-translate-y-0.5 hover:shadow-chunky-lg">
+    <div className="flex h-full flex-col rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky transition-all hover:-translate-y-1 hover:shadow-chunky-lg cursor-pointer focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2">
       <div className="flex items-start justify-between mb-3">
         <span className="text-xs font-bold uppercase tracking-wider text-ink-light">
           {resource.category}
@@ -30,17 +30,17 @@ export default function ResourceCard({ resource }: { resource: Resource }) {
 
       <div className="mt-4 flex flex-wrap gap-2">
         {resource.downloadUrl && (
-          <a href={resource.downloadUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-teal bg-showcase-teal/10 px-3 py-1.5 text-xs font-bold text-showcase-teal transition-colors hover:bg-showcase-teal hover:text-white">
+          <a href={resource.downloadUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-teal bg-showcase-teal/10 px-3 py-1.5 text-xs font-bold text-showcase-teal transition-colors hover:bg-showcase-teal hover:text-white focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
             <Download className="h-3.5 w-3.5" /> Download
           </a>
         )}
         {resource.sourceUrl && (
-          <a href={resource.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-purple bg-showcase-purple/10 px-3 py-1.5 text-xs font-bold text-showcase-purple transition-colors hover:bg-showcase-purple hover:text-white">
+          <a href={resource.sourceUrl} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-purple bg-showcase-purple/10 px-3 py-1.5 text-xs font-bold text-showcase-purple transition-colors hover:bg-showcase-purple hover:text-white focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
             <Code className="h-3.5 w-3.5" /> Source
           </a>
         )}
         {resource.previewUrl && (
-          <a href={resource.previewUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-navy/20 px-3 py-1.5 text-xs font-bold text-ink-muted transition-colors hover:border-showcase-navy hover:text-ink-dark">
+          <a href={resource.previewUrl} className="inline-flex items-center gap-1.5 rounded-lg border-2 border-showcase-navy/20 px-3 py-1.5 text-xs font-bold text-ink-muted transition-colors hover:border-showcase-navy hover:text-ink-dark focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]">
             <Eye className="h-3.5 w-3.5" /> Preview
           </a>
         )}

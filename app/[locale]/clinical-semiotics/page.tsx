@@ -1,13 +1,27 @@
 import "@/styles/clinical-semiotics.css";
-import type { Metadata } from "next";
 import { Suspense } from "react";
 import ClinicalSemioticsClient from "./ClinicalSemioticsClient";
 
-export const metadata: Metadata = {
-  title: "Clinical Semiotics Studio | EnterMedSchool.org",
-  description:
-    "Master clinical examination skills with interactive video walkthroughs, real-time quizzes, and Italian medical terminology — powered by EnterMedSchool.",
-};
+export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
+  const { locale } = await params;
+  const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+  return {
+    title: "Clinical Semiotics Studio | EnterMedSchool.org",
+    description:
+      "Master clinical examination skills with interactive video walkthroughs, real-time quizzes, and Italian medical terminology — powered by EnterMedSchool.",
+    openGraph: {
+      title: "Clinical Semiotics Studio | EnterMedSchool.org",
+      description:
+        "Master clinical examination skills with interactive video walkthroughs, real-time quizzes, and Italian medical terminology — powered by EnterMedSchool.",
+      url: `${BASE_URL}/${locale}/clinical-semiotics`,
+      type: "website",
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/clinical-semiotics`,
+      languages: { en: `${BASE_URL}/en/clinical-semiotics`, "x-default": `${BASE_URL}/en/clinical-semiotics` },
+    },
+  };
+}
 
 function LoadingSkeleton() {
   return (

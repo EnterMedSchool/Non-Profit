@@ -5,6 +5,8 @@ import { m, AnimatePresence } from "framer-motion";
 import { X, Copy, Check, Monitor, Info, Lock } from "lucide-react";
 import type { VisualLesson } from "@/data/visuals";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+
 interface EmbedConfiguratorProps {
   lesson: VisualLesson | null;
   onClose: () => void;
@@ -66,19 +68,19 @@ export default function EmbedConfigurator({ lesson, onClose }: EmbedConfigurator
   const [copied, setCopied] = useState(false);
   const [showCelebration, setShowCelebration] = useState(false);
 
-  const siteUrl = typeof window !== "undefined" ? window.location.origin : "https://entermedschool.org";
+  const siteUrl = typeof window !== "undefined" ? window.location.origin : BASE_URL;
 
   const embedUrl = useMemo(() => {
     if (!lesson) return "";
     return `${siteUrl}/en/embed/visuals/${lesson.embedId}?bg=${bg}&accent=${accent}&radius=${radius}&theme=${theme}`;
   }, [lesson, siteUrl, bg, accent, radius, theme]);
 
-  const lessonPageUrl = "https://entermedschool.org/en/resources/visuals";
+  const lessonPageUrl = `${BASE_URL}/en/resources/visuals`;
 
   const iframeCode = useMemo(() => {
     if (!lesson) return "";
     const accentHex = `#${accent}`;
-    return `<!-- EnterMedSchool Visual: ${lesson.title} -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="${width}" height="${height}"\n    style="border:none;border-radius:${radius}px;"\n    title="${lesson.title} - EnterMedSchool"\n    allow="autoplay"\n    loading="lazy"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    Created by <a href="https://entermedschool.com" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="https://entermedschool.org" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${lessonPageUrl}" rel="dofollow" style="color:${accentHex};text-decoration:none;">Original Lesson</a>\n  </p>\n</div>`;
+    return `<!-- EnterMedSchool Visual: ${lesson.title} -->\n<div style="max-width:100%;">\n  <iframe\n    src="${embedUrl}"\n    width="${width}" height="${height}"\n    style="border:none;border-radius:${radius}px;"\n    title="${lesson.title} - EnterMedSchool"\n    allow="autoplay"\n    loading="lazy"\n  ></iframe>\n  <p style="margin:8px 0 0;font-size:12px;font-family:sans-serif;color:#666;text-align:center;">\n    Created by <a href="${BASE_URL}" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">Ari Horesh</a>\n    &middot; <a href="${BASE_URL}" rel="dofollow" style="color:${accentHex};font-weight:600;text-decoration:none;">EnterMedSchool.org</a>\n    &middot; <a href="${lessonPageUrl}" rel="dofollow" style="color:${accentHex};text-decoration:none;">Original Lesson</a>\n  </p>\n</div>`;
   }, [lesson, embedUrl, width, height, radius, accent, lessonPageUrl]);
 
   const tokens = useMemo(() => tokenize(iframeCode), [iframeCode]);

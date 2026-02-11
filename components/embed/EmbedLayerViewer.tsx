@@ -20,6 +20,8 @@ import EmbedOnboarding, {
 } from "@/components/embed/EmbedOnboarding";
 import type { VisualLesson } from "@/data/visuals";
 
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+
 interface EmbedLayerViewerProps {
   lesson: VisualLesson;
   bg: string;
@@ -179,7 +181,7 @@ export default function EmbedLayerViewer({
       ? (currentIndex / (lesson.layers.length - 1)) * 100
       : 100;
 
-  const lessonUrl = "https://entermedschool.org/en/resources/visuals";
+  const lessonUrl = `${BASE_URL}/en/resources/visuals`;
 
   return (
     <div

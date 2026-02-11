@@ -27,7 +27,7 @@ import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import BadgeGenerator from "@/components/license/BadgeGenerator";
 import FAQAccordion from "@/components/license/FAQAccordion";
-import { getWebPageJsonLd } from "@/lib/metadata";
+import { getWebPageJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 
 export async function generateMetadata({
   params,
@@ -128,6 +128,12 @@ export default function LicensePage() {
               `${BASE_URL}/en/license`
             )
           ),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(getFAQPageJsonLd(faqItems)),
         }}
       />
 

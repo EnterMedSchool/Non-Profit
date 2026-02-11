@@ -39,7 +39,7 @@ export default function AboutPage() {
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getAboutPageJsonLd("en")) }} />
 
       {/* Story */}
-      <section className="py-10 sm:py-14">
+      <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <PageHero
             titlePre="Our"
@@ -59,7 +59,7 @@ export default function AboutPage() {
       </section>
 
       {/* Why .org -- glassmorphism */}
-      <section className="py-10 sm:py-14">
+      <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection animation="blurIn">
             <div className="group relative overflow-hidden rounded-2xl border-2 border-showcase-purple/30 bg-white/60 backdrop-blur-md p-8 shadow-lg transition-all hover:shadow-xl sm:p-12">
@@ -79,7 +79,7 @@ export default function AboutPage() {
       <ProjectTimeline />
 
       {/* Values */}
-      <section className="py-10 sm:py-14">
+      <section className="py-12 sm:py-20">
         <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
           <AnimatedSection animation="blurIn">
             <div className="text-center">

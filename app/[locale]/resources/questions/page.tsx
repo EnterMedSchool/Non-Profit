@@ -22,6 +22,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["medical practice questions", "clinical cases", "pharmacology MCQs", "anatomy quiz", "medical exam preparation"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/resources/questions`,
+      languages: { en: `${BASE_URL}/en/resources/questions`, "x-default": `${BASE_URL}/en/resources/questions` },
+    },
   };
 }
 

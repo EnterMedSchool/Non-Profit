@@ -89,8 +89,7 @@ export default function CanvasArea() {
           loadFromLocalStorage();
         }, 100);
       })
-      .catch((err) => {
-        console.error("[IllustrationMaker] Canvas init failed:", err);
+      .catch(() => {
         setInitError("Failed to initialize canvas. Please reload the page.");
         setCanvasLoading(false);
       });

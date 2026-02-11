@@ -19,7 +19,7 @@ function BookCard({ book, progress }: BookCardProps) {
   return (
     <Link
       href={`/${locale}/resources/pdfs/${book.slug}`}
-      className="group flex flex-col overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all hover:-translate-y-1 hover:shadow-chunky-lg"
+      className="group flex flex-col overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all hover:-translate-y-1 hover:shadow-chunky-lg cursor-pointer focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2"
     >
       {/* Cover image */}
       <div className="relative aspect-[3/4] w-full overflow-hidden bg-gradient-to-br from-showcase-purple/10 to-showcase-teal/10">

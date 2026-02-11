@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import Image from "next/image";
 import { useTranslations } from "next-intl";
 import { ExternalLink } from "lucide-react";
 import { generateQRCodeDataURL } from "@/lib/qrcode";
@@ -19,7 +20,7 @@ const COM_URL = "https://entermedschool.com";
  * Attribution footer rendered inside every embedded tool iframe.
  *
  * - Cannot be removed by the embedder (it's inside the iframe)
- * - All links are dofollow (rel attribute omitted entirely) for SEO backlink value
+ * - All links are dofollow (no "nofollow") for SEO backlink value; noopener noreferrer added for security
  * - QR code points to the locale-specific tool page on entermedschool.org
  * - Links open in _blank so they escape the iframe
  */
@@ -54,17 +55,19 @@ export default function EmbedAttribution({
     return (
       <div className="mt-auto border-t border-showcase-navy/10 bg-white px-4 py-2">
         <div className="flex items-center justify-center gap-2 flex-wrap">
-          <img
+          <Image
             src={`${BASE_URL}/logo.png`}
             alt="EnterMedSchool"
             width={16}
             height={16}
             className="shrink-0"
+            unoptimized
           />
           <span className="text-[11px] text-ink-muted">{t("poweredBy")}</span>
           <a
             href={COM_URL}
             target="_blank"
+            rel="noopener noreferrer"
             className="text-[11px] font-bold text-showcase-purple hover:underline"
           >
             EnterMedSchool
@@ -73,6 +76,7 @@ export default function EmbedAttribution({
           <a
             href={toolUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className="inline-flex items-center gap-0.5 text-[11px] text-showcase-purple hover:underline"
           >
             {t("viewFullTool")}
@@ -89,13 +93,14 @@ export default function EmbedAttribution({
       <div className="flex items-center gap-3">
         {/* QR Code */}
         {qrSrc && (
-          <a href={toolUrl} target="_blank" className="shrink-0">
-            <img
+          <a href={toolUrl} target="_blank" rel="noopener noreferrer" className="shrink-0">
+            <Image
               src={qrSrc}
               alt={`QR code for ${toolUrl}`}
               width={52}
               height={52}
               className="rounded-md border border-gray-200"
+              unoptimized
             />
           </a>
         )}
@@ -104,18 +109,20 @@ export default function EmbedAttribution({
         <div className="flex-1 min-w-0">
           <div className="flex items-center gap-1.5 flex-wrap">
             {/* Logo */}
-            <img
+            <Image
               src={`${BASE_URL}/logo.png`}
               alt="EnterMedSchool"
               width={20}
               height={20}
               className="shrink-0"
+              unoptimized
             />
             <span className="text-xs text-ink-muted">{t("poweredBy")}</span>
             {/* Dofollow link to .com (main SEO backlink) */}
             <a
               href={COM_URL}
               target="_blank"
+              rel="noopener noreferrer"
               className="text-xs font-bold text-showcase-purple hover:underline"
             >
               EnterMedSchool
@@ -129,6 +136,7 @@ export default function EmbedAttribution({
           <a
             href={toolUrl}
             target="_blank"
+            rel="noopener noreferrer"
             className="mt-0.5 inline-flex items-center gap-1 text-[11px] text-showcase-purple hover:underline"
           >
             {t("viewFullTool")} entermedschool.org

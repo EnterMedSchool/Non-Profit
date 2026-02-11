@@ -37,7 +37,7 @@ export default function TemplateCard({
   const badgeColor = formatBadgeColors[template.format] || "purple";
 
   return (
-    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-lg transition-all duration-300 hover:-translate-y-1.5 hover:shadow-chunky-xl">
+    <div className="group relative flex h-full flex-col overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky transition-all duration-300 hover:-translate-y-1 hover:shadow-chunky-lg cursor-pointer focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2">
       {/* ── Thumbnail area ── */}
       <button
         type="button"
@@ -100,7 +100,7 @@ export default function TemplateCard({
           <button
             type="button"
             onClick={() => onPreview(template)}
-            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-pastel-lavender px-3 py-2 text-xs font-display font-bold text-showcase-purple transition-all hover:-translate-y-0.5 hover:bg-showcase-purple hover:text-white hover:shadow-md"
+            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-pastel-lavender px-3 py-2 text-xs font-display font-bold text-showcase-purple transition-all hover:-translate-y-0.5 hover:bg-showcase-purple hover:text-white hover:shadow-md focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
           >
             <Eye className="h-3.5 w-3.5" />
             {t("preview")}
@@ -109,7 +109,7 @@ export default function TemplateCard({
           <button
             type="button"
             onClick={() => onDownload(template)}
-            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-showcase-green px-3 py-2 text-xs font-display font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-md"
+            className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-navy/15 bg-showcase-green px-3 py-2 text-xs font-display font-bold text-white transition-all hover:-translate-y-0.5 hover:shadow-md focus-visible:ring-2 focus-visible:ring-showcase-purple focus-visible:ring-offset-2 active:scale-[0.97]"
           >
             <Download className="h-3.5 w-3.5" />
             {t("download")}

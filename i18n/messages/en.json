@@ -180,7 +180,7 @@
   },
   "about": {
     "title": "About EnterMedSchool",
-    "metaDescription": "Learn about EnterMedSchool — a free, open-source resource archive for medical educators worldwide.",
+    "metaDescription": "Discover EnterMedSchool — a free, open-source platform providing medical education tools, visual lessons, and teaching resources for educators worldwide. Non-profit since 2019.",
     "story": {
       "title": "Our Story",
       "content": "EnterMedSchool was created in 2019 by Ari Horesh as a simple forum where IMAT exam students could help each other. What started as a community project grew into the world's leading IMAT preparation platform, and now, an open-source resource archive for medical educators worldwide."
@@ -211,6 +211,8 @@
     "embedOnWebsite": "Embed on Your Website",
     "downloadForLecture": "Download for Your Lecture",
     "hub": {
+      "pageTitle": "Free Resources for Educators",
+      "metaDescription": "Free, open-source medical education resources for educators. Download, embed, and share — visuals, question banks, textbooks, videos, and more.",
       "tools": "Interactive Tools",
       "toolsDesc": "Create MCQs, flashcards, illustrations, and more. Embed the results on your website or share with your students.",
       "calculators": "Medical Calculators",
@@ -243,7 +245,7 @@
     },
     "videos": {
       "title": "Video Assets",
-      "metaDescription": "Free video assets for medical educators. Download for your lectures or embed on your website."
+      "metaDescription": "Free medical education video assets for professors and students. Download for lectures, embed on your LMS, or use in flipped classroom recordings. Attribution required."
     },
     "pdfs": {
       "title": "Textbooks & Handouts",
@@ -523,7 +525,7 @@
     },
     "guides": {
       "title": "Teaching Guides",
-      "metaDescription": "Guides for medical educators on using resources, embedding tools, and teaching techniques.",
+      "metaDescription": "Step-by-step guides for medical educators: embed interactive tools, create visual lessons, build exam papers, and use EnterMedSchool resources in your curriculum.",
       "description": "Guides on teaching techniques, embedding resources, and getting the most out of your materials.",
       "aiSlides": "How to Use AI to Enhance Your Slides",
       "clinicalCases": "Using Clinical Cases in Your Curriculum",
@@ -543,7 +545,7 @@
   },
   "events": {
     "title": "Events & Community",
-    "metaDescription": "EnterMedSchool events, community building, and student organization resources.",
+    "metaDescription": "Join EnterMedSchool community events and meetups for medical students. BBQs, merch drops, networking, and student organization resources — all free.",
     "subtitle": "Building healthy medical school communities worldwide.",
     "pastEvents": {
       "title": "Past Events",
@@ -743,7 +745,7 @@
   },
   "privacy": {
     "title": "Privacy Policy",
-    "metaDescription": "EnterMedSchool.org privacy policy. Learn how we protect your data."
+    "metaDescription": "Read EnterMedSchool.org's privacy policy. Learn how we handle cookies, analytics, and protect your data. No tracking, no ads, fully transparent."
   },
   "search": {
     "title": "Search",

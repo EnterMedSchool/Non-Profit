@@ -72,6 +72,7 @@ export default function TemplateGallery() {
   const handleDownload = useCallback(async (template: ProfessorTemplate) => {
     try {
       const response = await fetch(template.downloadPath);
+      if (!response.ok) throw new Error(`Download failed (${response.status})`);
       const blob = await response.blob();
       saveAs(blob, `${template.id}.${template.format}`);
     } catch {

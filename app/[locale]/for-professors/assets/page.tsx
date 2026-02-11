@@ -21,6 +21,10 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
     },
     keywords: ["medical visual assets", "anatomy diagrams", "clinical icons", "medical logos", "educational media"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/for-professors/assets`,
+      languages: { en: `${BASE_URL}/en/for-professors/assets`, "x-default": `${BASE_URL}/en/for-professors/assets` },
+    },
   };
 }
 

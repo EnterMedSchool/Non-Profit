@@ -9,6 +9,7 @@ import PageTransition from "@/components/layout/PageTransition";
 import SearchDialog from "@/components/layout/SearchDialog";
 import DeferredConsent from "@/components/consent/DeferredConsent";
 import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
+import ToastProvider from "@/components/shared/ToastProvider";
 import "@/styles/globals.css";
 
 /* Font weights reduced from 12 → 6 files for faster loading */
@@ -108,15 +109,23 @@ export default async function LocaleLayout({
         }}
       >
         <NextIntlClientProvider messages={messages}>
-          <Navbar />
-          <Breadcrumbs />
-          <PageTransition>
-            {children}
-          </PageTransition>
-          <Footer />
-          <SearchDialog />
-          <DeferredConsent />
-          <ServiceWorkerRegistration />
+          <ToastProvider>
+            <a
+              href="#main-content"
+              className="sr-only focus:not-sr-only focus:absolute focus:z-[9999] focus:top-4 focus:left-4 focus:rounded-xl focus:border-3 focus:border-showcase-navy focus:bg-white focus:px-4 focus:py-2 focus:font-display focus:font-bold focus:text-showcase-purple focus:shadow-chunky"
+            >
+              Skip to content
+            </a>
+            <Navbar />
+            <Breadcrumbs />
+            <PageTransition>
+              {children}
+            </PageTransition>
+            <Footer />
+            <SearchDialog />
+            <DeferredConsent />
+            <ServiceWorkerRegistration />
+          </ToastProvider>
         </NextIntlClientProvider>
       </body>
     </html>

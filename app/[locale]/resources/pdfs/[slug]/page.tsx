@@ -49,6 +49,10 @@ export async function generateMetadata({
       ],
     },
     keywords: book.tags,
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/resources/pdfs/${slug}`,
+      languages: { en: `${BASE_URL}/en/resources/pdfs/${slug}`, "x-default": `${BASE_URL}/en/resources/pdfs/${slug}` },
+    },
   };
 }
 

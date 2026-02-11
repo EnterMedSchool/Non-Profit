@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import {
   BookOpen,
   FileText,
@@ -20,9 +20,9 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 
 /* ── Section card data ────────────────────────────────────────────── */
 
-const sections = [
+const sectionPaths = [
   {
-    href: "/en/tools",
+    path: "/tools",
     titleKey: "hub.tools",
     descKey: "hub.toolsDesc",
     icon: Wrench,
@@ -33,7 +33,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(0,217,192,0.15)]",
   },
   {
-    href: "/en/calculators",
+    path: "/calculators",
     titleKey: "hub.calculators",
     descKey: "hub.calculatorsDesc",
     icon: Calculator,
@@ -44,7 +44,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(108,92,231,0.15)]",
   },
   {
-    href: "/en/resources/pdfs",
+    path: "/resources/pdfs",
     titleKey: "hub.pdfs",
     descKey: "hub.pdfsDesc",
     icon: FileText,
@@ -55,7 +55,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(84,160,255,0.15)]",
   },
   {
-    href: "/en/resources/visuals",
+    path: "/resources/visuals",
     titleKey: "hub.visuals",
     descKey: "hub.visualsDesc",
     icon: ImageIcon,
@@ -66,7 +66,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(16,185,129,0.15)]",
   },
   {
-    href: "/en/clinical-semiotics",
+    path: "/clinical-semiotics",
     titleKey: "hub.clinicalSemiotics",
     descKey: "hub.clinicalSemioticsDesc",
     icon: Stethoscope,
@@ -77,7 +77,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(255,111,97,0.15)]",
   },
   {
-    href: "/en/resources/questions",
+    path: "/resources/questions",
     titleKey: "hub.questions",
     descKey: "hub.questionsDesc",
     icon: HelpCircle,
@@ -88,7 +88,7 @@ const sections = [
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(255,159,67,0.15)]",
   },
   {
-    href: "/en/resources/videos",
+    path: "/resources/videos",
     titleKey: "hub.videos",
     descKey: "hub.videosDesc",
     icon: Video,
@@ -102,6 +102,12 @@ const sections = [
 
 export default function ResourcesPage() {
   const t = useTranslations("resources");
+  const locale = useLocale();
+
+  const sections = sectionPaths.map((s) => ({
+    ...s,
+    href: `/${locale}${s.path}`,
+  }));
 
   return (
     <main className="relative z-10 py-12 sm:py-20">
@@ -127,7 +133,7 @@ export default function ResourcesPage() {
         {/* ── Attribution Reminder ── */}
         <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
-          <span>All resources are free for non-commercial educational use. <Link href="/en/license" className="font-semibold text-showcase-purple hover:underline">Attribution required</Link>.</span>
+          <span>All resources are free for non-commercial educational use. <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">Attribution required</Link>.</span>
         </div>
 
         {/* ── Section Cards ── */}
