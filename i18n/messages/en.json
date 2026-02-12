@@ -61,6 +61,8 @@
     "videos": "Video Assets",
     "pdfs": "Textbooks & Handouts",
     "visuals": "Visual Assets",
+    "clinicalCases": "Clinical Cases",
+    "clinicalCasesDesc": "Interactive clinical scenarios with game mechanics — solve cases and collect disease characters.",
     "clinicalSemiotics": "Clinical Semiotics",
     "clinicalSemioticsDesc": "Interactive clinical exam videos — embed on your site or share with your students.",
     "teachingGuides": "Teaching Guides",
@@ -69,6 +71,8 @@
     "videosDesc": "Video assets for your lectures — download or embed on your website.",
     "pdfsDesc": "Textbooks and reference sheets — assign to your students or print as handouts.",
     "visualsDesc": "Anatomy diagrams and clinical visuals — grab them for your slides.",
+    "mediaAssets": "Media Assets",
+    "mediaAssetsDesc": "Browse and download free medical illustrations — SVGs and PNGs for your slides.",
     "toolsDesc": "Create illustrations, flashcards, MCQs, and more — embed or share the results.",
     "calculatorsDesc": "Medical calculators and algorithms — embed on your website or use in class.",
     "guidesDesc": "Guides on teaching techniques, embedding resources, and using templates.",
@@ -272,6 +276,8 @@
       "pdfsDesc": "Downloadable textbooks and reference sheets. Assign to your students or print as handouts.",
       "visuals": "Visual Assets",
       "visualsDesc": "Anatomy diagrams, clinical illustrations, and layered visuals. Grab them for your slides or embed on your site.",
+      "mediaAssets": "Media Assets",
+      "mediaAssetsDesc": "Browse and download free medical illustrations — SVGs and PNGs ready for your presentations and educational materials.",
       "clinicalSemiotics": "Clinical Semiotics",
       "clinicalSemioticsDesc": "Interactive clinical exam videos. Embed on your website or share with your students.",
       "questions": "Question Banks",
@@ -1431,6 +1437,38 @@
     "subtitle": "Free clinical calculators and algorithms. Embed on your website, use in your lectures, or share with your students. Attribution required.",
     "backToCalculators": "Back to Calculators",
     "attributionReminder": "Attribution required when using or embedding these calculators."
+  },
+  "mediaAssets": {
+    "title": "Media Assets",
+    "metaDescription": "Free, downloadable medical illustrations for educators. Browse SVGs and PNGs of anatomy, cells, molecules, and more — all CC BY 4.0 licensed.",
+    "hero": {
+      "titlePre": "Free",
+      "titleHighlight": "Media Assets",
+      "titlePost": "for Educators",
+      "annotation": "download for your slides!",
+      "subtitle": "Browse and download high-quality medical illustrations. SVGs and PNGs ready for your presentations, lectures, and educational materials — all free with CC BY 4.0 attribution."
+    },
+    "jsonLd": {
+      "title": "Free Medical Media Assets for Educators",
+      "description": "Browse and download free medical illustrations — anatomy diagrams, cell structures, molecules, and more for medical education."
+    },
+    "attributionBanner": {
+      "title": "Free to Use with Attribution",
+      "description": "All media assets are licensed under CC BY 4.0. You are free to use, adapt, and share them in your teaching materials — just include attribution to EnterMedSchool.org.",
+      "viewLicense": "View License"
+    },
+    "searchPlaceholder": "Search media assets...",
+    "searchAriaLabel": "Search media assets",
+    "allCategories": "All",
+    "result": "result",
+    "results": "results",
+    "for": "for",
+    "in": "in",
+    "emptyState": {
+      "title": "No assets found",
+      "hint": "Try a different search term or reset the filters to see all assets.",
+      "resetFilters": "Reset Filters"
+    }
   },
   "professors": {
     "templateCategories": {

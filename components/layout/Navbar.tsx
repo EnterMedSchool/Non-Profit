@@ -15,6 +15,7 @@ import {
   PlayCircle,
   FileText,
   ImageIcon,
+  ImageDown,
   BookOpen,
   Palette,
   Stethoscope,
@@ -67,6 +68,20 @@ const navItems: NavItem[] = [
         descKey: "visualsDesc",
         icon: ImageIcon,
         color: "bg-showcase-green/15 text-showcase-green",
+      },
+      {
+        href: "/resources/media",
+        labelKey: "mediaAssets",
+        descKey: "mediaAssetsDesc",
+        icon: ImageDown,
+        color: "bg-showcase-yellow/15 text-showcase-yellow",
+      },
+      {
+        href: "/resources/clinical-cases",
+        labelKey: "clinicalCases",
+        descKey: "clinicalCasesDesc",
+        icon: Stethoscope,
+        color: "bg-showcase-yellow/15 text-showcase-yellow",
       },
       {
         href: "/clinical-semiotics",

@@ -3,6 +3,7 @@ import { tools, getCalculatorTools } from "@/data/tools";
 import { visualLessons } from "@/data/visuals";
 import { EXAM_COPY } from "@/components/clinical-semiotics/examChains";
 import { pdfBooks } from "@/data/pdf-books";
+import { mediaAssets } from "@/data/media-assets";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -18,6 +19,7 @@ const staticPages = [
   "/resources/videos",
   "/resources/pdfs",
   "/resources/visuals",
+  "/resources/media",
   "/tools",
   "/calculators",
   "/for-professors",
@@ -183,6 +185,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
         alternates: { languages: chLangs },
       });
     }
+  }
+
+  // ── Media asset detail pages (/resources/media/[slug]) ──────────
+  for (const asset of mediaAssets) {
+    const languages: Record<string, string> = {};
+    for (const locale of locales) {
+      languages[locale] = `${BASE_URL}/${locale}/resources/media/${asset.slug}`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}/resources/media/${asset.slug}`,
+      lastModified: new Date(asset.dateModified),
+      changeFrequency: "monthly",
+      priority: 0.9,
+      alternates: { languages },
+    });
   }
 
   // Note: /embed/* routes are intentionally excluded (noindex pages)

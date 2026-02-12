@@ -2,6 +2,7 @@ import type { Tool } from "@/data/tools";
 import type { Resource } from "@/data/resources";
 import type { PDFBook, PDFChapter } from "@/data/pdf-books";
 import type { VisualLesson } from "@/data/visuals";
+import type { MediaAsset } from "@/data/media-assets";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -519,6 +520,76 @@ export function getSoftwareSourceCodeJsonLd(opts: {
     provider: ORGANIZATION_REF,
     ...(opts.keywords && { keywords: opts.keywords.join(", ") }),
   };
+}
+
+/**
+ * JSON-LD structured data for an individual media asset page.
+ *
+ * Emits two schemas:
+ * 1. ImageObject — optimised for Google Images rich results
+ * 2. MedicalWebPage — signals authoritative medical content
+ */
+export function getMediaAssetJsonLd(asset: MediaAsset, locale: string) {
+  const assetUrl = `${BASE_URL}/${locale}/resources/media/${asset.slug}`;
+  const contentUrl = `${BASE_URL}${asset.imagePath}`;
+  const licenseUrl =
+    asset.license === "CC BY 4.0"
+      ? "https://creativecommons.org/licenses/by/4.0/"
+      : `${BASE_URL}/${locale}/license`;
+
+  const imageObject = {
+    "@context": "https://schema.org",
+    "@type": "ImageObject",
+    name: asset.name,
+    description: asset.seoDescription,
+    contentUrl,
+    thumbnailUrl: `${BASE_URL}${asset.thumbnailPath}`,
+    url: assetUrl,
+    width: { "@type": "QuantitativeValue", value: asset.width, unitCode: "E37" },
+    height: { "@type": "QuantitativeValue", value: asset.height, unitCode: "E37" },
+    encodingFormat: asset.format === "svg" ? "image/svg+xml" : "image/png",
+    license: licenseUrl,
+    acquireLicensePage: `${BASE_URL}/${locale}/license`,
+    creditText: asset.attribution,
+    creator: ORGANIZATION_REF,
+    copyrightHolder: ORGANIZATION_REF,
+    datePublished: asset.datePublished,
+    dateModified: asset.dateModified,
+    keywords: asset.seoKeywords.join(", "),
+    isAccessibleForFree: true,
+    inLanguage: locale,
+  };
+
+  const medicalWebPage = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: asset.seoTitle,
+    description: asset.seoDescription,
+    url: assetUrl,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+    medicalAudience: {
+      "@type": "MedicalAudience",
+      audienceType: "Clinician",
+    },
+    lastReviewed: asset.dateModified,
+    keywords: asset.seoKeywords.join(", "),
+    primaryImageOfPage: {
+      "@type": "ImageObject",
+      contentUrl,
+    },
+    mainEntity: {
+      "@type": "ImageObject",
+      contentUrl,
+      name: asset.name,
+    },
+  };
+
+  return [imageObject, medicalWebPage];
 }
 
 /**
