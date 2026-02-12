@@ -6,7 +6,7 @@ import Link from "next/link";
 import { Search, X } from "lucide-react";
 import { useLocale } from "next-intl";
 import type { GlossaryTermSummary, GlossaryTagMap } from "@/types/glossary";
-import { getTagDisplayName } from "@/data/glossary-terms";
+import { getTagDisplayName } from "@/lib/glossary/tag-names";
 
 interface GlossarySearchProps {
   terms: GlossaryTermSummary[];

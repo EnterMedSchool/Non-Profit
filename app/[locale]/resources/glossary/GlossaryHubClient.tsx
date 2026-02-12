@@ -22,7 +22,7 @@ import type {
   GlossaryTagMap,
   GlossaryCategory,
 } from "@/types/glossary";
-import { getTagDisplayName } from "@/data/glossary-terms";
+import { getTagDisplayName } from "@/lib/glossary/tag-names";
 
 interface Props {
   summaries: GlossaryTermSummary[];

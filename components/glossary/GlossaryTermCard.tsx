@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { GlossaryTerm, GlossaryTagMap } from "@/types/glossary";
-import { getTagDisplayName } from "@/data/glossary-terms";
+import { getTagDisplayName } from "@/lib/glossary/tag-names";
 
 interface GlossaryTermCardProps {
   term: GlossaryTerm;

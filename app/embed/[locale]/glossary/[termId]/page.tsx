@@ -3,9 +3,9 @@ import { notFound } from "next/navigation";
 import {
   getTermById,
   glossaryTags,
-  getTagDisplayName,
   getAllTermSlugs,
 } from "@/data/glossary-terms";
+import { getTagDisplayName } from "@/lib/glossary/tag-names";
 import { renderSimpleMarkdown } from "@/lib/glossary/renderTermContent";
 
 interface Props {

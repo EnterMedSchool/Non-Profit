@@ -1,7 +1,8 @@
 import { ImageResponse } from "next/og";
-import { getTermById, glossaryTags, getTagDisplayName } from "@/data/glossary-terms";
+import { getTermById, glossaryTags } from "@/data/glossary-terms";
+import { getTagDisplayName } from "@/lib/glossary/tag-names";
 
-export const runtime = "edge";
+export const runtime = "nodejs";
 export const alt = "Glossary Term";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";

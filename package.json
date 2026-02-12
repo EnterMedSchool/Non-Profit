@@ -3,8 +3,9 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "prebuild": "node scripts/bundle-glossary.mjs",
     "dev": "next dev --turbopack",
-    "build": "next build",
+    "build": "node scripts/bundle-glossary.mjs && next build",
     "start": "next start",
     "lint": "next lint"
   },
@@ -35,7 +36,8 @@
     "papaparse": "^5.5.3",
     "qrcode": "^1.5.4",
     "react": "^19.2.4",
-    "react-dom": "^19.2.4"
+    "react-dom": "^19.2.4",
+    "server-only": "^0.0.1"
   },
   "devDependencies": {
     "@tailwindcss/typography": "^0.5.19",
