@@ -12,14 +12,30 @@ import {
   Palette,
   Download,
   SearchX,
+  Tag,
+  Layers,
+  Package,
+  HelpCircle,
+  ChevronDown,
+  BookOpen,
+  ArrowRight,
 } from "lucide-react";
 import { m } from "framer-motion";
 import Fuse from "fuse.js";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import MediaAssetCard from "@/components/resources/MediaAssetCard";
-import { mediaAssets, mediaAssetCategories, type MediaAsset } from "@/data/media-assets";
-import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
+import {
+  mediaAssets,
+  mediaAssetCategories,
+  mediaAssetCollections,
+  getAllTags,
+  getTagSlug,
+  getTagCounts,
+  getCollectionAssets,
+  type MediaAsset,
+} from "@/data/media-assets";
+import { getCollectionPageJsonLd, getItemListJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 
 /* ── Category pill colours ─────────────────────────────────────── */
 
@@ -323,7 +339,208 @@ export default function MediaAssetsPage() {
             </div>
           </AnimatedSection>
         )}
+
+        {/* ── Browse by Category (crawler-visible internal links) ── */}
+        <AnimatedSection delay={0.3} animation="fadeUp">
+          <div className="mt-20 border-t-2 border-ink-light/10 pt-10">
+            <div className="flex items-center gap-2 mb-4">
+              <Layers className="h-5 w-5 text-showcase-orange" />
+              <h2 className="font-display text-xl font-bold text-ink-dark">
+                {t("browseByCategory")}
+              </h2>
+            </div>
+            <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+              {mediaAssetCategories.map((cat) => (
+                <Link
+                  key={cat.id}
+                  href={`/${locale}/resources/media/category/${cat.id}`}
+                  className="group rounded-xl border-2 border-showcase-navy/10 bg-white p-3 text-center transition-all hover:border-showcase-purple/20 hover:bg-pastel-lavender/30 hover:shadow-sm"
+                >
+                  <span className="font-display text-sm font-bold text-ink-dark group-hover:text-showcase-purple transition-colors">
+                    {cat.name}
+                  </span>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ── Popular Tags (crawler-visible internal links) ── */}
+        <AnimatedSection delay={0.35} animation="fadeUp">
+          <div className="mt-10">
+            <div className="flex items-center gap-2 mb-4">
+              <Tag className="h-5 w-5 text-showcase-purple" />
+              <h2 className="font-display text-xl font-bold text-ink-dark">
+                {t("popularTags")}
+              </h2>
+            </div>
+            <div className="flex flex-wrap gap-2">
+              {getAllTags().map((tag) => (
+                <Link
+                  key={tag}
+                  href={`/${locale}/resources/media/tag/${getTagSlug(tag)}`}
+                  className="rounded-full border border-showcase-purple/20 bg-showcase-purple/5 px-3 py-1 text-xs font-semibold text-showcase-purple transition-all hover:bg-showcase-purple/10 hover:shadow-sm"
+                >
+                  {tag}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ── Curated Collections ── */}
+        {mediaAssetCollections.length > 0 && (
+          <AnimatedSection delay={0.4} animation="fadeUp">
+            <div className="mt-10">
+              <div className="flex items-center justify-between mb-4">
+                <div className="flex items-center gap-2">
+                  <Package className="h-5 w-5 text-showcase-coral" />
+                  <h2 className="font-display text-xl font-bold text-ink-dark">
+                    {t("curatedCollections")}
+                  </h2>
+                </div>
+                <Link
+                  href={`/${locale}/resources/media/collections`}
+                  className="inline-flex items-center gap-1 text-sm font-bold text-showcase-purple transition-all hover:gap-2"
+                >
+                  {t("viewAll")}
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Link>
+              </div>
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+                {mediaAssetCollections.map((col) => {
+                  const colAssets = getCollectionAssets(col);
+                  return (
+                    <Link
+                      key={col.slug}
+                      href={`/${locale}/resources/media/collections/${col.slug}`}
+                      className="group rounded-xl border-2 border-showcase-navy/10 bg-white p-4 transition-all hover:border-showcase-orange/20 hover:bg-showcase-orange/5 hover:shadow-sm"
+                    >
+                      <span className="font-display text-sm font-bold text-ink-dark group-hover:text-showcase-orange transition-colors">
+                        {col.name}
+                      </span>
+                      <p className="mt-1 text-xs text-ink-muted line-clamp-2">
+                        {col.seoDescription}
+                      </p>
+                      <span className="mt-2 inline-block text-[10px] font-bold text-ink-light">
+                        {colAssets.length} {colAssets.length === 1 ? "illustration" : "illustrations"}
+                      </span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </AnimatedSection>
+        )}
+
+        {/* ── How to Cite + Embed links ── */}
+        <AnimatedSection delay={0.45} animation="fadeUp">
+          <div className="mt-10 flex flex-wrap items-center gap-4">
+            <Link
+              href={`/${locale}/resources/media/how-to-cite`}
+              className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-purple/20 bg-showcase-purple/5 px-4 py-1.5 text-xs font-bold text-showcase-purple transition-all hover:bg-showcase-purple/10"
+            >
+              <BookOpen className="h-3.5 w-3.5" />
+              {t("howToCiteLink")}
+            </Link>
+          </div>
+        </AnimatedSection>
+
+        {/* ── FAQ Section ── */}
+        <AnimatedSection delay={0.5} animation="fadeUp">
+          <MediaAssetsFAQ locale={locale} />
+        </AnimatedSection>
       </div>
     </main>
+  );
+}
+
+/* ── FAQ Sub-Component ────────────────────────────────────────────── */
+
+const faqData = [
+  {
+    question: "Are these medical illustrations free to use?",
+    answer:
+      "Yes! All media assets on EnterMedSchool.org are completely free to download and use. They are licensed under Creative Commons Attribution 4.0 International (CC BY 4.0), which means you can use them for any purpose — including commercial use — as long as you provide attribution.",
+  },
+  {
+    question: "What license do the media assets use?",
+    answer:
+      "All illustrations are licensed under CC BY 4.0. This is one of the most permissive Creative Commons licenses. You are free to share (copy and redistribute) and adapt (remix, transform, and build upon) the material for any purpose, even commercially, as long as you give appropriate credit.",
+  },
+  {
+    question: "Can I use these illustrations in my presentations?",
+    answer:
+      "Absolutely! These illustrations are designed specifically for medical education. Use them in your lecture slides, PowerPoint presentations, Google Slides, or any other presentation tool. Just add a small attribution line (e.g., 'Image: EnterMedSchool.org — CC BY 4.0') on the slide or in your slide notes.",
+  },
+  {
+    question: "How do I attribute EnterMedSchool media assets?",
+    answer:
+      "Include the creator name (EnterMedSchool.org), a link to the original illustration page, and mention the CC BY 4.0 license. For detailed examples in APA, MLA, Harvard, and slide formats, visit our 'How to Cite' guide.",
+  },
+  {
+    question: "What formats are available?",
+    answer:
+      "Illustrations are available in SVG (Scalable Vector Graphics) and PNG formats. SVG files are ideal for presentations and web use because they scale to any size without losing quality. PNG files are ready for direct use in documents and slides.",
+  },
+  {
+    question: "Can I modify or adapt these illustrations?",
+    answer:
+      "Yes! The CC BY 4.0 license explicitly allows you to adapt, remix, and build upon these illustrations. You can add labels, change colors, combine multiple images, or modify them in any way. If you share modified versions, note the changes you made and keep the attribution.",
+  },
+];
+
+function MediaAssetsFAQ({ locale }: { locale: string }) {
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const t = useTranslations("mediaAssets");
+
+  const faqJsonLd = getFAQPageJsonLd(faqData, locale);
+
+  return (
+    <div className="mt-16 border-t-2 border-ink-light/10 pt-10">
+      {/* FAQ JSON-LD */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+
+      <div className="flex items-center gap-2 mb-6">
+        <HelpCircle className="h-5 w-5 text-showcase-teal" />
+        <h2 className="font-display text-xl font-bold text-ink-dark">
+          {t("faqTitle")}
+        </h2>
+      </div>
+
+      <div className="space-y-3">
+        {faqData.map((item, i) => (
+          <div
+            key={i}
+            className="rounded-xl border-2 border-ink-light/10 bg-white overflow-hidden transition-all"
+          >
+            <button
+              onClick={() => setOpenIndex(openIndex === i ? null : i)}
+              className="flex w-full items-center justify-between p-4 text-start"
+              aria-expanded={openIndex === i}
+            >
+              <span className="font-display text-sm font-bold text-ink-dark pr-4">
+                {item.question}
+              </span>
+              <ChevronDown
+                className={`h-4 w-4 flex-shrink-0 text-ink-light transition-transform duration-200 ${
+                  openIndex === i ? "rotate-180" : ""
+                }`}
+              />
+            </button>
+            {openIndex === i && (
+              <div className="px-4 pb-4">
+                <p className="text-sm text-ink-muted leading-relaxed">
+                  {item.answer}
+                </p>
+              </div>
+            )}
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

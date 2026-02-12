@@ -13,6 +13,8 @@ import {
   BookOpen,
   Trophy,
   HelpCircle,
+  GraduationCap,
+  Award,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -22,7 +24,27 @@ import {
   characterCategoryColors,
   type DiseaseCharacter,
 } from "@/data/disease-characters";
-import { useCharacterCollection } from "@/hooks/useCharacterCollection";
+import { getCaseById } from "@/data/clinical-cases";
+import { usePlayerProfile } from "@/hooks/usePlayerProfile";
+
+// ─── XP Level System ─────────────────────────────────────────────────────────
+
+function getXpLevel(totalXp: number) {
+  if (totalXp >= 1000) return { level: 5, title: "Resident", nextXp: Infinity, progress: 100 };
+  if (totalXp >= 600) return { level: 4, title: "Senior Clerk", nextXp: 1000, progress: ((totalXp - 600) / 400) * 100 };
+  if (totalXp >= 300) return { level: 3, title: "Junior Clerk", nextXp: 600, progress: ((totalXp - 300) / 300) * 100 };
+  if (totalXp >= 100) return { level: 2, title: "Clinical Student", nextXp: 300, progress: ((totalXp - 100) / 200) * 100 };
+  return { level: 1, title: "Pre-Clinical Student", nextXp: 100, progress: (totalXp / 100) * 100 };
+}
+
+// ─── Score tier badge ────────────────────────────────────────────────────────
+
+function getScoreTierBadge(score: number) {
+  if (score >= 90) return { label: "Platinum", color: "text-showcase-purple", bg: "bg-showcase-purple/10 border-showcase-purple/20" };
+  if (score >= 75) return { label: "Gold", color: "text-amber-600", bg: "bg-showcase-yellow/10 border-showcase-yellow/20" };
+  if (score >= 55) return { label: "Silver", color: "text-gray-600", bg: "bg-gray-100 border-gray-200" };
+  return { label: "Bronze", color: "text-orange-600", bg: "bg-orange-50 border-orange-200" };
+}
 
 // ─── Character Card ─────────────────────────────────────────────────────────
 
@@ -82,14 +104,17 @@ function CharacterCard({
             {character.name}
           </h3>
           <p className="text-[10px] text-ink-muted">{character.subtitle}</p>
-          {caseScore !== undefined && (
-            <div className="mt-2 flex items-center gap-1">
-              <Trophy className="h-3 w-3 text-showcase-yellow" />
-              <span className="text-[10px] font-bold text-showcase-yellow">
-                {caseScore} pts
-              </span>
-            </div>
-          )}
+          {caseScore !== undefined && (() => {
+            const tier = getScoreTierBadge(caseScore);
+            return (
+              <div className={`mt-2 flex items-center gap-1 rounded-full border px-2 py-0.5 ${tier.bg}`}>
+                <Award className={`h-2.5 w-2.5 ${tier.color}`} />
+                <span className={`text-[9px] font-bold ${tier.color}`}>
+                  {tier.label}
+                </span>
+              </div>
+            );
+          })()}
         </>
       ) : (
         <>
@@ -181,35 +206,60 @@ function CharacterDetailModal({
           &ldquo;{character.flavorText}&rdquo;
         </p>
 
-        {/* Items */}
+        {/* Score-Gated Items */}
         <div className="mt-6">
           <h3 className="font-display text-sm font-bold text-ink-dark mb-3">
             Character Items ({character.items.length})
           </h3>
           <div className="space-y-2">
-            {character.items.map((item) => (
-              <div
-                key={item.id}
-                className="flex items-start gap-3 rounded-xl border-2 border-showcase-navy/8 bg-pastel-lavender/20 p-3"
-              >
-                <Sparkles className="h-4 w-4 text-showcase-yellow shrink-0 mt-0.5" />
-                <div className="flex-1 min-w-0">
-                  <p className="text-xs font-bold text-ink-dark">
-                    {item.name}
-                  </p>
-                  <p className="mt-0.5 text-[10px] text-ink-muted leading-relaxed">
-                    {item.medicalFact}
-                  </p>
+            {character.items.map((item, i) => {
+              const threshold = [60, 75, 90][i] ?? 0;
+              const isUnlocked = (caseScore ?? 0) >= threshold;
+              return (
+                <div
+                  key={item.id}
+                  className={`flex items-start gap-3 rounded-xl border-2 p-3 ${
+                    isUnlocked
+                      ? "border-showcase-yellow/20 bg-pastel-lavender/20"
+                      : "border-gray-200 bg-gray-50 opacity-60"
+                  }`}
+                >
+                  {isUnlocked ? (
+                    <Sparkles className="h-4 w-4 text-showcase-yellow shrink-0 mt-0.5" />
+                  ) : (
+                    <Lock className="h-4 w-4 text-gray-400 shrink-0 mt-0.5" />
+                  )}
+                  <div className="flex-1 min-w-0">
+                    {isUnlocked ? (
+                      <>
+                        <p className="text-xs font-bold text-ink-dark">
+                          {item.name}
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-ink-muted leading-relaxed">
+                          {item.medicalFact}
+                        </p>
+                      </>
+                    ) : (
+                      <>
+                        <p className="text-xs font-bold text-gray-400">
+                          Locked
+                        </p>
+                        <p className="mt-0.5 text-[10px] text-gray-400">
+                          Score {threshold}+ to unlock this item
+                        </p>
+                      </>
+                    )}
+                  </div>
                 </div>
-              </div>
-            ))}
+              );
+            })}
           </div>
         </div>
 
         {/* Actions */}
         <div className="mt-6 space-y-2">
           <Link
-            href={`/${locale}/case/${character.caseId}`}
+            href={`/${locale}/case/${getCaseById(character.caseId)?.slug ?? character.caseId}`}
             className="flex items-center justify-center gap-2 rounded-xl border-3 border-showcase-purple bg-showcase-purple px-5 py-2.5 font-display text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky w-full"
           >
             <Stethoscope className="h-4 w-4" />
@@ -234,13 +284,19 @@ function CharacterDetailModal({
 
 export default function CollectionPage() {
   const locale = useLocale();
-  const { characters, isCharacterCaught, getCaughtCharacter, getCollectionStats } =
-    useCharacterCollection();
+  const {
+    characters,
+    isCharacterCaught,
+    getCaughtCharacter,
+    getCollectionStats,
+    totalXp,
+  } = usePlayerProfile();
   const [selectedCharacter, setSelectedCharacter] =
     useState<DiseaseCharacter | null>(null);
   const [filterCategory, setFilterCategory] = useState("all");
 
   const stats = useMemo(() => getCollectionStats(), [getCollectionStats]);
+  const xpLevel = useMemo(() => getXpLevel(totalXp), [totalXp]);
 
   const categories = [
     "all",
@@ -280,7 +336,44 @@ export default function CollectionPage() {
 
         {/* Completion stats */}
         <AnimatedSection delay={0.15} animation="fadeUp">
-          <div className="mt-10">
+          <div className="mt-10 space-y-4">
+            {/* XP Level Card */}
+            <div className="rounded-2xl border-3 border-showcase-blue/15 bg-white p-5">
+              <div className="flex items-center gap-4">
+                <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-showcase-blue/10 shrink-0">
+                  <GraduationCap className="h-6 w-6 text-showcase-blue" />
+                </div>
+                <div className="flex-1 min-w-0">
+                  <div className="flex items-center gap-2 mb-1">
+                    <span className="font-display text-sm font-bold text-ink-dark">
+                      Level {xpLevel.level}
+                    </span>
+                    <span className="rounded-full bg-showcase-blue/10 border border-showcase-blue/20 px-2 py-0.5 text-[10px] font-bold text-showcase-blue">
+                      {xpLevel.title}
+                    </span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <div className="h-2 flex-1 overflow-hidden rounded-full bg-showcase-blue/10">
+                      <m.div
+                        initial={{ width: 0 }}
+                        animate={{ width: `${Math.min(100, xpLevel.progress)}%` }}
+                        transition={{ delay: 0.3, duration: 0.8, ease: "easeOut" }}
+                        className="h-full rounded-full bg-showcase-blue"
+                      />
+                    </div>
+                    <span className="text-[10px] font-bold text-ink-light shrink-0 tabular-nums">
+                      {totalXp} XP
+                    </span>
+                  </div>
+                  {xpLevel.nextXp !== Infinity && (
+                    <p className="text-[9px] text-ink-light mt-0.5">
+                      {xpLevel.nextXp - totalXp} XP to next level
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
             {/* Overall progress bar */}
             <div className="rounded-2xl border-3 border-showcase-navy/10 bg-white p-5">
               <div className="flex items-center justify-between mb-3">

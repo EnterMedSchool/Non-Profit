@@ -8,6 +8,7 @@ import type {
   Clue,
   ActType,
   DecisionOption,
+  ScoringKey,
 } from "@/data/clinical-cases";
 
 // ─── Game State ─────────────────────────────────────────────────────────────
@@ -51,6 +52,8 @@ export interface CaseGameState {
 
   // ── Exam zones ──
   examinedZones: ExamRecord[];
+  /** Persisted findings text from physical exam zones */
+  examFindings: { region: string; label: string; findings: string }[];
 
   // ── Timing ──
   startedAt: number;
@@ -95,6 +98,7 @@ export function createInitialState(caseData: ClinicalCase): CaseGameState {
     rapport: caseData.startingRapport,
     collectedClues: [],
     examinedZones: [],
+    examFindings: [],
     startedAt: Date.now(),
     sceneStartedAt: Date.now(),
     isComplete: false,
@@ -123,8 +127,9 @@ export function advanceToScene(
     (clue) => !state.collectedClues.some((c) => c.id === clue.id)
   );
 
-  // Apply base costs if present
-  const cpCost = nextScene.baseCpCost ?? 0;
+  // Apply base costs if present (clamped to remaining budget)
+  const remaining = state.cpBudget - state.cpSpent;
+  const cpCost = Math.min(nextScene.baseCpCost ?? 0, remaining);
   const rapportEffect = nextScene.baseRapportEffect ?? 0;
 
   return {
@@ -152,10 +157,14 @@ export function makeChoice(
     timestamp: Date.now(),
   };
 
+  // Clamp CP cost to remaining budget to prevent negative spending
+  const remainingCp = state.cpBudget - state.cpSpent;
+  const clampedCpCost = Math.min(option.cpCost, remainingCp);
+
   const withChoice: CaseGameState = {
     ...state,
     choiceHistory: [...state.choiceHistory, record],
-    cpSpent: state.cpSpent + option.cpCost,
+    cpSpent: state.cpSpent + clampedCpCost,
     rapport: clampRapport(state.rapport + option.rapportEffect),
   };
 
@@ -168,7 +177,9 @@ export function examineZone(
   sceneId: string,
   region: string,
   cpCost: number,
-  clues: Clue[]
+  clues: Clue[],
+  /** Zone label and findings text for persistent display in the clue notebook */
+  findingsData?: { label: string; findings: string }
 ): CaseGameState {
   const existingRecord = state.examinedZones.find(
     (ez) => ez.sceneId === sceneId
@@ -177,9 +188,13 @@ export function examineZone(
     (clue) => !state.collectedClues.some((c) => c.id === clue.id)
   );
 
+  // Clamp CP cost to remaining budget
+  const remainingBudget = state.cpBudget - state.cpSpent;
+  const clampedCost = Math.min(cpCost, remainingBudget);
+
   return {
     ...state,
-    cpSpent: state.cpSpent + cpCost,
+    cpSpent: state.cpSpent + clampedCost,
     collectedClues: [...state.collectedClues, ...newClues],
     examinedZones: existingRecord
       ? state.examinedZones.map((ez) =>
@@ -188,6 +203,12 @@ export function examineZone(
             : ez
         )
       : [...state.examinedZones, { sceneId, regions: [region] }],
+    examFindings: findingsData
+      ? [
+          ...state.examFindings,
+          { region, label: findingsData.label, findings: findingsData.findings },
+        ]
+      : state.examFindings,
   };
 }
 
@@ -234,19 +255,28 @@ export function completeDdxCheck(
   return advanceToScene(withSnapshot, nextSceneId, caseData);
 }
 
-/** Calculate the final score at the end of the case */
+/** Calculate the final score at the end of the case.
+ *  Uses the ScoringKey (extracted server-side) for accurate scoring,
+ *  NOT the stripped caseData which has zeroed-out answer key.
+ */
 export function calculateScore(
   state: CaseGameState,
-  caseData: ClinicalCase
+  caseData: ClinicalCase,
+  scoringKey?: ScoringKey
 ): CaseScore {
-  const { answerKey } = caseData;
+  // Use real answer key from scoringKey if available, else fall back to caseData
+  const answerKey = scoringKey?.answerKey ?? caseData.answerKey;
+  const optimalFlags = scoringKey?.optimalFlags ?? {};
 
   // ── CP Efficiency (0–100) ──
-  // Perfect = used exactly optimal CP. Worse as you go over.
-  const cpRatio = answerKey.optimalCpSpent > 0
-    ? answerKey.optimalCpSpent / Math.max(state.cpSpent, answerKey.optimalCpSpent)
-    : 1;
-  const cpEfficiency = Math.round(cpRatio * 100);
+  // Two-sided penalty: penalizes both over- AND under-spending
+  let cpEfficiency: number;
+  if (answerKey.optimalCpSpent > 0) {
+    const deviation = Math.abs(state.cpSpent - answerKey.optimalCpSpent) / answerKey.optimalCpSpent;
+    cpEfficiency = Math.round(Math.max(0, (1 - deviation) * 100));
+  } else {
+    cpEfficiency = 100; // no optimal defined, give full marks
+  }
 
   // ── DDx Accuracy (0–100) ──
   // Compare student DDx snapshots against expert evolution
@@ -269,9 +299,13 @@ export function calculateScore(
     ddxMatchCount > 0 ? Math.round((ddxMatchTotal / ddxMatchCount) * 100) : 50;
 
   // ── Optimal choices ──
-  // Count how many of the student's choices match the optimal path
-  const optimalSceneIds = new Set(answerKey.optimalPath);
+  // Uses optimalFlags from ScoringKey for accurate optimality detection
   const optimalChoices = state.choiceHistory.filter((ch) => {
+    const sceneFlags = optimalFlags[ch.sceneId];
+    if (sceneFlags) {
+      return sceneFlags[ch.optionId] === true;
+    }
+    // Fallback: check caseData options (stripped data has isOptimal=false)
     const scene = caseData.scenes.find((s) => s.id === ch.sceneId);
     if (!scene) return false;
     if (
@@ -349,13 +383,15 @@ export function calculateScore(
 /** Apply score to the game state (called after calculateScore) */
 export function finalizeCase(
   state: CaseGameState,
-  caseData: ClinicalCase
+  caseData: ClinicalCase,
+  scoringKey?: ScoringKey
 ): CaseGameState {
-  const score = calculateScore(state, caseData);
+  const answerKey = scoringKey?.answerKey ?? caseData.answerKey;
+  const score = calculateScore(state, caseData, scoringKey);
   return {
     ...state,
     isComplete: true,
-    finalDiagnosis: caseData.answerKey.diagnosis,
+    finalDiagnosis: answerKey.diagnosis,
     score,
   };
 }

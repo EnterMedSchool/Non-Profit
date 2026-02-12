@@ -9,36 +9,40 @@ interface CpBudgetProps {
 }
 
 export default function CpBudget({ spent, budget }: CpBudgetProps) {
-  const ratio = budget > 0 ? spent / budget : 0;
-  const isOver = spent > budget;
-
-  const color =
-    ratio >= 0.8 || isOver
-      ? "text-red-400"
-      : ratio >= 0.6
-        ? "text-showcase-yellow"
-        : "text-showcase-green";
+  const remaining = budget - spent;
+  const pct = budget > 0 ? (spent / budget) * 100 : 0;
 
   const barColor =
-    ratio >= 0.8 || isOver
-      ? "bg-red-400"
-      : ratio >= 0.6
+    pct <= 50
+      ? "bg-showcase-green"
+      : pct <= 80
         ? "bg-showcase-yellow"
-        : "bg-showcase-green";
+        : "bg-showcase-coral";
+
+  const textColor =
+    pct <= 50
+      ? "text-showcase-green"
+      : pct <= 80
+        ? "text-showcase-yellow"
+        : "text-showcase-coral";
 
   return (
-    <div className="flex items-center gap-2" title={`Clinical Points: ${spent}/${budget} spent`}>
-      <Coins className={`h-3.5 w-3.5 ${color}`} />
+    <div
+      className="flex items-center gap-2"
+      role="status"
+      aria-label={`Clinical Points: ${spent} of ${budget} spent, ${remaining} remaining`}
+    >
+      <Coins className={`h-3.5 w-3.5 ${textColor}`} />
       <div className="flex items-center gap-1.5">
-        <div className="h-1.5 w-16 overflow-hidden rounded-full bg-white/10">
+        <div className="h-1.5 w-14 overflow-hidden rounded-full bg-showcase-navy/10">
           <m.div
             className={`h-full rounded-full ${barColor}`}
             initial={{ width: 0 }}
-            animate={{ width: `${Math.min(ratio * 100, 100)}%` }}
+            animate={{ width: `${pct}%` }}
             transition={{ type: "spring", damping: 20, stiffness: 100 }}
           />
         </div>
-        <span className={`text-[11px] font-bold tabular-nums ${color}`}>
+        <span className={`text-[10px] font-bold ${textColor} tabular-nums`}>
           {spent}/{budget}
         </span>
       </div>

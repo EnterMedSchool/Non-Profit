@@ -8,6 +8,14 @@ import { useMemo } from "react";
 import { visualLessons } from "@/data/visuals";
 import { tools } from "@/data/tools";
 import { pdfBooks } from "@/data/pdf-books";
+import {
+  mediaAssets,
+  mediaAssetCategories,
+  mediaAssetCollections,
+  getAllTags,
+  getTagSlug,
+  getTagFromSlug,
+} from "@/data/media-assets";
 
 // Map URL segments to translation keys
 const segmentKeyMap: Record<string, string> = {
@@ -16,6 +24,12 @@ const segmentKeyMap: Record<string, string> = {
   videos: "videos",
   pdfs: "pdfs",
   visuals: "visuals",
+  media: "media",
+  category: "category",
+  tag: "tag",
+  collections: "collections",
+  "how-to-cite": "howToCite",
+  "embed-code": "embedCode",
   tools: "tools",
   "for-professors": "guides",
   templates: "templates",
@@ -53,6 +67,28 @@ export default function Breadcrumbs() {
       for (const chapter of book.chapters) {
         map.set(chapter.slug, chapter.title);
       }
+    }
+
+    // Media assets: slug → name
+    for (const asset of mediaAssets) {
+      map.set(asset.slug, asset.name);
+    }
+
+    // Media categories: id → name
+    for (const cat of mediaAssetCategories) {
+      map.set(cat.id, cat.name);
+    }
+
+    // Media collections: slug → name
+    for (const col of mediaAssetCollections) {
+      map.set(col.slug, col.name);
+    }
+
+    // Media tag slugs: tag-slug → Tag Label
+    for (const tag of getAllTags()) {
+      const slug = getTagSlug(tag);
+      const label = tag.replace(/\b\w/g, (c) => c.toUpperCase());
+      map.set(slug, label);
     }
 
     return map;

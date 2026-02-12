@@ -35,9 +35,12 @@ function writePrefs(prefs: SoundPrefs): void {
 
 // ─── Hook ───────────────────────────────────────────────────────────────────
 
+const SFX_POOL_SIZE = 4;
+
 export function useCaseSound() {
   const ambientRef = useRef<HTMLAudioElement | null>(null);
-  const sfxRef = useRef<HTMLAudioElement | null>(null);
+  const sfxPoolRef = useRef<HTMLAudioElement[]>([]);
+  const sfxIndexRef = useRef(0);
   const fadeIntervalRef = useRef<ReturnType<typeof setInterval> | null>(null);
   const currentMoodRef = useRef<AmbientMood | null>(null);
 
@@ -49,7 +52,7 @@ export function useCaseSound() {
     setPrefs(readPrefs());
   }, []);
 
-  // Create audio elements once
+  // Create audio elements once (ambient + SFX pool)
   useEffect(() => {
     if (typeof window === "undefined") return;
 
@@ -58,15 +61,21 @@ export function useCaseSound() {
     ambient.volume = 0;
     ambientRef.current = ambient;
 
-    const sfx = new Audio();
-    sfx.volume = prefs.volume;
-    sfxRef.current = sfx;
+    const pool: HTMLAudioElement[] = [];
+    for (let i = 0; i < SFX_POOL_SIZE; i++) {
+      const sfx = new Audio();
+      sfx.volume = prefs.volume;
+      pool.push(sfx);
+    }
+    sfxPoolRef.current = pool;
 
     return () => {
       ambient.pause();
       ambient.src = "";
-      sfx.pause();
-      sfx.src = "";
+      for (const sfx of pool) {
+        sfx.pause();
+        sfx.src = "";
+      }
       if (fadeIntervalRef.current) clearInterval(fadeIntervalRef.current);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -74,8 +83,8 @@ export function useCaseSound() {
 
   // Update SFX volume when prefs change
   useEffect(() => {
-    if (sfxRef.current) {
-      sfxRef.current.volume = prefs.muted ? 0 : prefs.volume;
+    for (const sfx of sfxPoolRef.current) {
+      sfx.volume = prefs.muted ? 0 : prefs.volume;
     }
   }, [prefs]);
 
@@ -146,9 +155,11 @@ export function useCaseSound() {
 
   const playSfx = useCallback(
     (sfxPath: string) => {
-      if (prefs.muted || !sfxRef.current) return;
+      if (prefs.muted || sfxPoolRef.current.length === 0) return;
 
-      const sfx = sfxRef.current;
+      // Rotate through the pool so rapid SFX don't clip each other
+      const sfx = sfxPoolRef.current[sfxIndexRef.current % SFX_POOL_SIZE];
+      sfxIndexRef.current++;
       sfx.src = sfxPath;
       sfx.currentTime = 0;
       sfx.volume = prefs.volume;
@@ -234,9 +245,9 @@ export function useCaseSound() {
       ambientRef.current.pause();
       ambientRef.current.src = "";
     }
-    if (sfxRef.current) {
-      sfxRef.current.pause();
-      sfxRef.current.src = "";
+    for (const sfx of sfxPoolRef.current) {
+      sfx.pause();
+      sfx.src = "";
     }
     if (fadeIntervalRef.current) {
       clearInterval(fadeIntervalRef.current);

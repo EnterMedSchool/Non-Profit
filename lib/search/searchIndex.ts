@@ -1,6 +1,6 @@
 export interface SearchItemBase {
   href: string;
-  category: "page" | "resource" | "tool" | "guide" | "visual";
+  category: "page" | "resource" | "tool" | "guide" | "visual" | "media";
 }
 
 export interface SearchItemWithKeys extends SearchItemBase {
@@ -64,6 +64,12 @@ const staticItems: (SearchItemWithKeys & SearchItemBase)[] = [
     titleKey: "index.medicalVisuals",
     descriptionKey: "index.medicalVisualsDesc",
     href: "/resources/visuals",
+    category: "resource",
+  },
+  {
+    titleKey: "index.mediaAssets",
+    descriptionKey: "index.mediaAssetsDesc",
+    href: "/resources/media",
     category: "resource",
   },
   {
@@ -133,15 +139,19 @@ const staticItems: (SearchItemWithKeys & SearchItemBase)[] = [
 ];
 
 /**
- * Async factory — loads visual lessons data on first call, then caches.
- * This avoids eagerly importing ~25KB of visuals data at module scope.
+ * Async factory — loads visual lessons and media assets on first call, then caches.
+ * This avoids eagerly importing data at module scope.
  */
 let cachedItems: SearchItem[] | null = null;
 
 export async function getSearchItems(): Promise<SearchItem[]> {
   if (cachedItems) return cachedItems;
 
-  const { visualLessons } = await import("@/data/visuals");
+  const [{ visualLessons }, { mediaAssets }] = await Promise.all([
+    import("@/data/visuals"),
+    import("@/data/media-assets"),
+  ]);
+
   cachedItems = [
     ...staticItems,
     ...visualLessons.map((lesson: { title: string; description: string }) => ({
@@ -150,6 +160,14 @@ export async function getSearchItems(): Promise<SearchItem[]> {
       href: "/resources/visuals",
       category: "visual" as const,
     })),
+    ...mediaAssets.map(
+      (asset: { name: string; seoDescription: string; slug: string }) => ({
+        title: asset.name,
+        description: asset.seoDescription,
+        href: `/resources/media/${asset.slug}`,
+        category: "media" as const,
+      }),
+    ),
   ];
   return cachedItems;
 }

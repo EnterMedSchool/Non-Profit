@@ -14,6 +14,10 @@ import {
   Presentation,
   Code,
   Gamepad2,
+  Eye,
+  Share2,
+  MessageSquare,
+  ChevronDown,
 } from "lucide-react";
 import {
   clinicalCases,
@@ -30,6 +34,7 @@ import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
 import ShareLinkButton from "@/components/shared/ShareLinkButton";
+import CaseDetailClient from "./CaseDetailClient";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -86,7 +91,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
   const character = getCharacterByCaseId(id);
   const diff = difficultyConfig[caseData.difficulty];
   const rarity = character ? rarityConfig[character.rarity] : null;
-  const studentUrl = `${BASE_URL}/${locale}/case/${id}`;
+  const studentUrl = `${BASE_URL}/${locale}/case/${caseData.slug}`;
 
   // Group scenes by act for the preview
   const scenesByAct = caseData.scenes.reduce(
@@ -154,354 +159,481 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
           </div>
         </AnimatedSection>
 
-        {/* Student Play Link */}
+        {/* ── Quick-Start Steps ── */}
         <AnimatedSection delay={0.15} animation="fadeUp">
-          <div className="mt-8 rounded-2xl border-3 border-showcase-purple/20 bg-gradient-to-r from-showcase-purple/5 to-showcase-teal/5 p-6 text-center">
-            <Gamepad2 className="mx-auto h-8 w-8 text-showcase-purple/50 mb-3" />
-            <h3 className="font-display text-lg font-bold text-ink-dark">
-              Interactive Student Experience
-            </h3>
-            <p className="mt-1 text-sm text-ink-muted max-w-md mx-auto">
-              Students scan a QR code or visit the link below to play this case
-              interactively. They never see the answers.
-            </p>
-            <div className="mt-4 flex flex-col sm:flex-row items-center justify-center gap-3">
-              <Link
-                href={`/${locale}/case/${id}`}
-                target="_blank"
-                className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-purple bg-showcase-purple px-6 py-2.5 font-display text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
-              >
-                <Gamepad2 className="h-4 w-4" />
-                Preview Student View
-              </Link>
-              <ShareLinkButton url={studentUrl} label="Copy student link" />
+          <div className="mt-10 rounded-2xl border-3 border-showcase-navy/10 bg-white p-6 shadow-chunky-sm">
+            <h2 className="font-display text-lg font-bold text-ink-dark mb-5 text-center">
+              How to Use This Case
+            </h2>
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-3">
+              {/* Step 1 */}
+              <div className="relative flex flex-col items-center text-center rounded-2xl border-2 border-showcase-purple/15 bg-pastel-lavender/20 p-5">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-showcase-purple text-xs font-bold text-white">
+                  1
+                </span>
+                <Eye className="h-7 w-7 text-showcase-purple mb-2 mt-1" />
+                <h3 className="font-display text-sm font-bold text-ink-dark">
+                  Preview it yourself
+                </h3>
+                <p className="mt-1 text-xs text-ink-muted">
+                  Play through the case to see what students will experience
+                </p>
+                <Link
+                  href={`/${locale}/case/${caseData.slug}`}
+                  target="_blank"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-purple/30 bg-showcase-purple/10 px-4 py-2 text-xs font-bold text-showcase-purple transition-all hover:bg-showcase-purple/20"
+                >
+                  <Gamepad2 className="h-3.5 w-3.5" />
+                  Preview
+                </Link>
+              </div>
+
+              {/* Step 2 */}
+              <div className="relative flex flex-col items-center text-center rounded-2xl border-2 border-showcase-teal/15 bg-pastel-mint/20 p-5">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-showcase-teal text-xs font-bold text-white">
+                  2
+                </span>
+                <Share2 className="h-7 w-7 text-showcase-teal mb-2 mt-1" />
+                <h3 className="font-display text-sm font-bold text-ink-dark">
+                  Share with your class
+                </h3>
+                <p className="mt-1 text-xs text-ink-muted">
+                  Copy the link, download a QR code, or embed in your LMS
+                </p>
+                <a
+                  href="#share-section"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-teal/30 bg-showcase-teal/10 px-4 py-2 text-xs font-bold text-showcase-teal transition-all hover:bg-showcase-teal/20"
+                >
+                  <QrCode className="h-3.5 w-3.5" />
+                  Get materials
+                </a>
+              </div>
+
+              {/* Step 3 */}
+              <div className="relative flex flex-col items-center text-center rounded-2xl border-2 border-showcase-yellow/15 bg-pastel-lemon/20 p-5">
+                <span className="absolute -top-3 left-1/2 -translate-x-1/2 flex h-6 w-6 items-center justify-center rounded-full bg-showcase-yellow text-xs font-bold text-white">
+                  3
+                </span>
+                <MessageSquare className="h-7 w-7 text-showcase-yellow mb-2 mt-1" />
+                <h3 className="font-display text-sm font-bold text-ink-dark">
+                  Debrief after
+                </h3>
+                <p className="mt-1 text-xs text-ink-muted">
+                  Use the teaching guide and answer key for class discussion
+                </p>
+                <a
+                  href="#teaching-guide"
+                  className="mt-3 inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-yellow/30 bg-showcase-yellow/10 px-4 py-2 text-xs font-bold text-showcase-yellow transition-all hover:bg-showcase-yellow/20"
+                >
+                  <BookOpen className="h-3.5 w-3.5" />
+                  View guide
+                </a>
+              </div>
             </div>
-            <p className="mt-3 text-[10px] text-ink-light font-mono break-all">
-              {studentUrl}
-            </p>
           </div>
         </AnimatedSection>
 
-        {/* Learning Objectives */}
+        {/* ── Share with Your Class ── */}
         <AnimatedSection delay={0.2} animation="fadeUp">
-          <section className="mt-12">
+          <section id="share-section" className="mt-10 scroll-mt-24">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-teal/20 bg-pastel-mint">
+                <Share2 className="h-5 w-5 text-showcase-teal" />
+              </div>
+              <h2 className="font-display text-2xl font-bold text-ink-dark">
+                Share with Your Class
+              </h2>
+            </div>
+
+            <div className="rounded-2xl border-3 border-showcase-navy/10 bg-white p-6">
+              <div className="flex flex-col sm:flex-row gap-6">
+                {/* QR Code area */}
+                <div className="flex flex-col items-center gap-3 sm:w-48 shrink-0">
+                  <div className="flex h-40 w-40 items-center justify-center rounded-2xl border-3 border-showcase-navy/10 bg-pastel-lavender/20">
+                    <QrCode className="h-16 w-16 text-showcase-purple/20" />
+                  </div>
+                  <CaseDetailClient studentUrl={studentUrl} />
+                </div>
+
+                {/* Actions */}
+                <div className="flex-1 space-y-3">
+                  <div>
+                    <p className="text-xs font-bold text-ink-muted mb-1.5">Student link</p>
+                    <p className="text-xs text-ink-light font-mono break-all rounded-xl bg-gray-50 border-2 border-showcase-navy/8 px-3 py-2.5">
+                      {studentUrl}
+                    </p>
+                  </div>
+
+                  <div className="flex flex-wrap gap-2">
+                    <ShareLinkButton url={studentUrl} label="Copy student link" />
+                    <Link
+                      href={`/${locale}/case/${caseData.slug}`}
+                      target="_blank"
+                      className="inline-flex items-center gap-1.5 rounded-xl border-2 border-showcase-purple/30 bg-showcase-purple/5 px-4 py-2 text-xs font-bold text-showcase-purple transition-all hover:bg-showcase-purple/10"
+                    >
+                      <Gamepad2 className="h-3.5 w-3.5" />
+                      Preview Student View
+                    </Link>
+                  </div>
+
+                  <p className="text-[10px] text-ink-light">
+                    Students never see the answers — the link takes them directly to the interactive experience.
+                  </p>
+
+                  {/* Download options */}
+                  <div className="pt-2 border-t border-showcase-navy/8">
+                    <p className="text-xs font-bold text-ink-muted mb-2">Download materials</p>
+                    <div className="grid grid-cols-2 gap-2">
+                      <DownloadCard
+                        icon={FileText}
+                        title="PDF Flashcard"
+                        desc="Case prompt + answer key"
+                        color="teal"
+                        ready={false}
+                      />
+                      <DownloadCard
+                        icon={Presentation}
+                        title="PowerPoint Slide"
+                        desc="QR code + case prompt"
+                        color="coral"
+                        ready={false}
+                      />
+                      <DownloadCard
+                        icon={Code}
+                        title="Embed Code"
+                        desc="Iframe for your LMS"
+                        color="blue"
+                        ready={false}
+                      />
+                      <DownloadCard
+                        icon={QrCode}
+                        title="QR Code PNG"
+                        desc="Print or add to slides"
+                        color="purple"
+                        ready={false}
+                      />
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* ── About This Case ── */}
+        <AnimatedSection delay={0.22} animation="fadeUp">
+          <section className="mt-10">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-teal/20 bg-pastel-mint">
                 <BookOpen className="h-5 w-5 text-showcase-teal" />
               </div>
               <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Learning Objectives
+                About This Case
               </h2>
             </div>
-            <div className="space-y-2">
-              {caseData.learningObjectives.map((obj, i) => (
-                <div
-                  key={i}
-                  className="flex items-start gap-3 rounded-xl border-2 border-showcase-navy/8 bg-white p-4"
-                >
-                  <span className="flex h-6 w-6 items-center justify-center rounded-full bg-showcase-teal/10 text-xs font-bold text-showcase-teal shrink-0">
-                    {i + 1}
-                  </span>
-                  <p className="text-sm text-ink-muted leading-relaxed">
-                    {obj}
-                  </p>
+
+            <div className="grid grid-cols-1 gap-4 lg:grid-cols-5">
+              {/* Learning Objectives */}
+              <div className="lg:col-span-3 rounded-2xl border-3 border-showcase-navy/10 bg-white p-5">
+                <h3 className="text-sm font-bold text-ink-dark mb-3">Learning Objectives</h3>
+                <div className="space-y-2">
+                  {caseData.learningObjectives.map((obj, i) => (
+                    <div
+                      key={i}
+                      className="flex items-start gap-3"
+                    >
+                      <span className="flex h-5 w-5 items-center justify-center rounded-full bg-showcase-teal/10 text-[10px] font-bold text-showcase-teal shrink-0 mt-0.5">
+                        {i + 1}
+                      </span>
+                      <p className="text-sm text-ink-muted leading-relaxed">
+                        {obj}
+                      </p>
+                    </div>
+                  ))}
                 </div>
-              ))}
+              </div>
+
+              {/* Case Overview card */}
+              <div className="lg:col-span-2 rounded-2xl border-3 border-showcase-navy/10 bg-white p-5">
+                <h3 className="text-sm font-bold text-ink-dark mb-3">Case Overview</h3>
+                <div className="space-y-3 text-sm">
+                  <div>
+                    <p className="text-[10px] font-bold text-ink-light uppercase tracking-wider">Patient</p>
+                    <p className="text-ink-muted">{caseData.patient.age}yo {caseData.patient.sex}, {caseData.patient.name}</p>
+                  </div>
+                  <div>
+                    <p className="text-[10px] font-bold text-ink-light uppercase tracking-wider">Chief Complaint</p>
+                    <p className="text-ink-muted text-xs italic">&ldquo;{caseData.patient.chiefComplaint}&rdquo;</p>
+                  </div>
+                  <div className="flex flex-wrap gap-2 pt-1">
+                    <span className="rounded-full bg-pastel-lavender/50 px-2.5 py-0.5 text-[10px] font-bold text-showcase-purple">
+                      {caseData.scenes.length} scenes
+                    </span>
+                    <span className="rounded-full bg-pastel-mint/50 px-2.5 py-0.5 text-[10px] font-bold text-showcase-teal">
+                      {caseData.startingCp} CP budget
+                    </span>
+                    <span className="rounded-full bg-pastel-peach/50 px-2.5 py-0.5 text-[10px] font-bold text-showcase-coral">
+                      {caseData.ddxPool.length} DDx diseases
+                    </span>
+                  </div>
+                </div>
+
+                {/* Tags */}
+                <div className="mt-4 pt-3 border-t border-showcase-navy/8">
+                  <div className="flex flex-wrap gap-1.5">
+                    {caseData.tags.map((tag) => (
+                      <span
+                        key={tag}
+                        className="rounded-full bg-gray-50 px-2 py-0.5 text-[10px] font-medium text-ink-light"
+                      >
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
         </AnimatedSection>
 
-        {/* Teaching Notes (professor only) */}
-        <AnimatedSection delay={0.22} animation="fadeUp">
-          <section className="mt-10">
+        {/* ── Teaching Guide (collapsible) ── */}
+        <AnimatedSection delay={0.24} animation="fadeUp">
+          <section id="teaching-guide" className="mt-10 scroll-mt-24">
             <div className="flex items-center gap-3 mb-4">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender">
                 <Brain className="h-5 w-5 text-showcase-purple" />
               </div>
               <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Teaching Notes
+                Teaching Guide
               </h2>
             </div>
-            <div className="rounded-xl border-2 border-showcase-purple/10 bg-showcase-purple/5 p-5">
-              <p className="text-sm text-ink-muted leading-relaxed">
-                {caseData.teachingNotes}
-              </p>
-            </div>
-          </section>
-        </AnimatedSection>
 
-        {/* Answer Key */}
-        <AnimatedSection delay={0.24} animation="fadeUp">
-          <section className="mt-10">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-green/20 bg-pastel-mint">
-                <Target className="h-5 w-5 text-showcase-green" />
-              </div>
-              <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Answer Key
-              </h2>
-            </div>
             <div className="space-y-3">
-              <div className="rounded-xl border-2 border-showcase-green/15 bg-white p-4">
-                <p className="text-xs font-bold text-showcase-green mb-1">
-                  Diagnosis
-                </p>
-                <p className="text-sm font-semibold text-ink-dark">
-                  {caseData.answerKey.diagnosis}
-                </p>
-              </div>
-              <div className="rounded-xl border-2 border-showcase-navy/8 bg-white p-4">
-                <p className="text-xs font-bold text-ink-muted mb-2">
-                  Key Findings
-                </p>
-                <div className="space-y-1">
-                  {caseData.answerKey.keyFindings.map((finding, i) => (
-                    <div key={i} className="flex items-start gap-2">
-                      <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-green shrink-0" />
-                      <p className="text-sm text-ink-muted">{finding}</p>
-                    </div>
-                  ))}
+              {/* Teaching Notes -- expanded */}
+              <CollapsibleSection title="Teaching Notes" defaultOpen>
+                <div className="rounded-xl bg-showcase-purple/5 border-2 border-showcase-purple/10 p-4">
+                  <p className="text-sm text-ink-muted leading-relaxed">
+                    {caseData.teachingNotes}
+                  </p>
                 </div>
-              </div>
-              <div className="rounded-xl border-2 border-showcase-navy/8 bg-white p-4">
-                <p className="text-xs font-bold text-ink-muted mb-1">
-                  Optimal Clinical Points
-                </p>
-                <p className="text-sm text-ink-dark">
-                  {caseData.answerKey.optimalCpSpent} CP (budget:{" "}
-                  {caseData.startingCp} CP)
-                </p>
-              </div>
-            </div>
-          </section>
-        </AnimatedSection>
+              </CollapsibleSection>
 
-        {/* Case Flow Preview */}
-        <AnimatedSection delay={0.26} animation="fadeUp">
-          <section className="mt-10">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-coral/20 bg-pastel-peach">
-                <Stethoscope className="h-5 w-5 text-showcase-coral" />
-              </div>
-              <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Case Flow ({caseData.scenes.length} scenes)
-              </h2>
-            </div>
-            <div className="space-y-6">
-              {(["encounter", "investigation", "twist", "resolution"] as const).map(
-                (act) => {
-                  const scenes = scenesByAct[act];
-                  if (!scenes || scenes.length === 0) return null;
-                  const config = actConfig[act];
-
-                  return (
-                    <div key={act}>
-                      <div
-                        className={`mb-3 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r ${config.gradient} px-3 py-1`}
-                      >
-                        <span className="text-xs font-bold text-white">
-                          {config.label}: {config.subtitle}
-                        </span>
-                      </div>
-                      <div className="space-y-1.5 ml-4 border-l-2 border-showcase-navy/10 pl-4">
-                        {scenes.map((scene) => (
-                          <div
-                            key={scene.id}
-                            className="rounded-lg border border-showcase-navy/8 bg-white px-4 py-2.5"
-                          >
-                            <div className="flex items-center gap-2 mb-1">
-                              <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[9px] font-bold text-ink-light uppercase">
-                                {scene.type}
-                              </span>
-                              <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[9px] font-bold text-ink-light">
-                                {scene.interaction.mode}
-                              </span>
-                            </div>
-                            <p className="text-xs text-ink-muted line-clamp-2">
-                              {scene.narration.slice(0, 150)}
-                              {scene.narration.length > 150 ? "..." : ""}
-                            </p>
-                          </div>
-                        ))}
-                      </div>
-                    </div>
-                  );
-                }
-              )}
-            </div>
-          </section>
-        </AnimatedSection>
-
-        {/* Character Preview */}
-        {character && rarity && (
-          <AnimatedSection delay={0.28} animation="fadeUp">
-            <section className="mt-10">
-              <div className="flex items-center gap-3 mb-4">
-                <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-yellow/20 bg-pastel-lemon">
-                  <Sparkles className="h-5 w-5 text-showcase-yellow" />
-                </div>
-                <h2 className="font-display text-2xl font-bold text-ink-dark">
-                  Unlockable Character
-                </h2>
-              </div>
-              <div
-                className={`rounded-2xl border-3 ${rarity.borderColor} bg-white p-6`}
-              >
-                <div className="flex flex-col sm:flex-row items-start gap-5">
-                  {/* Character thumbnail */}
-                  <div className="h-32 w-32 shrink-0 rounded-xl bg-pastel-lavender/30 border-2 border-showcase-navy/5 flex items-center justify-center mx-auto sm:mx-0">
-                    <Sparkles className="h-10 w-10 text-showcase-purple/20" />
+              {/* Answer Key -- collapsed */}
+              <CollapsibleSection title="Answer Key" badge="Spoiler">
+                <div className="space-y-3">
+                  <div className="rounded-xl border-2 border-showcase-green/15 bg-showcase-green/5 p-4">
+                    <p className="text-xs font-bold text-showcase-green mb-1">Diagnosis</p>
+                    <p className="text-sm font-semibold text-ink-dark">{caseData.answerKey.diagnosis}</p>
                   </div>
-                  <div className="flex-1">
-                    <div className="flex items-center gap-2 mb-1">
-                      <h3 className="font-display text-xl font-bold text-ink-dark">
-                        {character.name}
-                      </h3>
-                      <span
-                        className={`rounded-full ${rarity.bgColor} border ${rarity.borderColor} px-2.5 py-0.5 text-[10px] font-bold ${rarity.color}`}
-                      >
-                        {rarity.label}
-                      </span>
-                    </div>
-                    <p className="text-sm text-ink-muted">
-                      {character.subtitle}
-                    </p>
-                    <p className="mt-2 text-xs text-ink-light italic">
-                      &ldquo;{character.flavorText}&rdquo;
-                    </p>
-                    <div className="mt-4 space-y-2">
-                      <p className="text-xs font-bold text-ink-muted">
-                        Character Items ({character.items.length})
-                      </p>
-                      {character.items.map((item) => (
-                        <div
-                          key={item.id}
-                          className="flex items-start gap-2 rounded-lg bg-pastel-lavender/30 px-3 py-2"
-                        >
-                          <Sparkles className="h-3.5 w-3.5 text-showcase-yellow shrink-0 mt-0.5" />
-                          <div>
-                            <p className="text-xs font-bold text-ink-dark">
-                              {item.name}
-                            </p>
-                            <p className="text-[10px] text-ink-muted">
-                              {item.medicalFact}
-                            </p>
-                          </div>
+                  <div className="rounded-xl border-2 border-showcase-navy/8 bg-white p-4">
+                    <p className="text-xs font-bold text-ink-muted mb-2">Key Findings</p>
+                    <div className="space-y-1">
+                      {caseData.answerKey.keyFindings.map((finding, i) => (
+                        <div key={i} className="flex items-start gap-2">
+                          <div className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-green shrink-0" />
+                          <p className="text-sm text-ink-muted">{finding}</p>
                         </div>
                       ))}
                     </div>
                   </div>
+                  <div className="rounded-xl border-2 border-showcase-navy/8 bg-white p-4">
+                    <p className="text-xs font-bold text-ink-muted mb-1">Optimal Clinical Points</p>
+                    <p className="text-sm text-ink-dark">
+                      {caseData.answerKey.optimalCpSpent} CP (budget: {caseData.startingCp} CP)
+                    </p>
+                  </div>
+                </div>
+              </CollapsibleSection>
+
+              {/* Case Flow -- collapsed */}
+              <CollapsibleSection title={`Case Flow (${caseData.scenes.length} scenes)`}>
+                <div className="space-y-5">
+                  {(["encounter", "investigation", "twist", "resolution"] as const).map(
+                    (act) => {
+                      const scenes = scenesByAct[act];
+                      if (!scenes || scenes.length === 0) return null;
+                      const config = actConfig[act];
+
+                      return (
+                        <div key={act}>
+                          <div
+                            className={`mb-2 inline-flex items-center gap-2 rounded-lg bg-gradient-to-r ${config.gradient} px-3 py-1`}
+                          >
+                            <span className="text-xs font-bold text-white">
+                              {config.label}: {config.subtitle}
+                            </span>
+                          </div>
+                          <div className="space-y-1.5 ml-4 border-l-2 border-showcase-navy/10 pl-4">
+                            {scenes.map((scene) => (
+                              <div
+                                key={scene.id}
+                                className="rounded-lg border border-showcase-navy/8 bg-white px-4 py-2.5"
+                              >
+                                <div className="flex items-center gap-2 mb-1">
+                                  <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[9px] font-bold text-ink-light uppercase">
+                                    {scene.type}
+                                  </span>
+                                  <span className="rounded bg-gray-100 px-1.5 py-0.5 text-[9px] font-bold text-ink-light">
+                                    {scene.interaction.mode}
+                                  </span>
+                                </div>
+                                <p className="text-xs text-ink-muted line-clamp-2">
+                                  {scene.narration.slice(0, 150)}
+                                  {scene.narration.length > 150 ? "..." : ""}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      );
+                    }
+                  )}
+                </div>
+              </CollapsibleSection>
+            </div>
+          </section>
+        </AnimatedSection>
+
+        {/* ── Collectible Character (compact) ── */}
+        {character && rarity && (
+          <AnimatedSection delay={0.26} animation="fadeUp">
+            <section className="mt-10">
+              <div className="rounded-2xl border-3 border-showcase-navy/10 bg-white p-5">
+                <div className="flex items-center gap-4">
+                  <div className="h-14 w-14 shrink-0 rounded-xl bg-pastel-lavender/30 border-2 border-showcase-navy/5 flex items-center justify-center">
+                    <Sparkles className="h-6 w-6 text-showcase-purple/20" />
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-[10px] font-bold text-showcase-yellow uppercase tracking-wider">Unlockable Character</p>
+                    <div className="flex items-center gap-2 flex-wrap mt-0.5">
+                      <h3 className="font-display text-base font-bold text-ink-dark">
+                        {character.name}
+                      </h3>
+                      <span
+                        className={`rounded-full ${rarity.bgColor} border ${rarity.borderColor} px-2 py-0.5 text-[9px] font-bold ${rarity.color}`}
+                      >
+                        {rarity.label}
+                      </span>
+                    </div>
+                    <p className="text-xs text-ink-muted">{character.subtitle}</p>
+                  </div>
+                  <p className="text-[10px] text-ink-light shrink-0 hidden sm:block">
+                    {character.items.length} items
+                  </p>
                 </div>
               </div>
             </section>
           </AnimatedSection>
         )}
 
-        {/* Download Panel */}
-        <AnimatedSection delay={0.3} animation="fadeUp">
-          <section className="mt-10">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-blue/20 bg-pastel-sky">
-                <Download className="h-5 w-5 text-showcase-blue" />
-              </div>
-              <h2 className="font-display text-2xl font-bold text-ink-dark">
-                Download for Your Classroom
-              </h2>
-            </div>
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
-              {[
-                {
-                  icon: QrCode,
-                  title: "QR Code",
-                  desc: "PNG image with the QR code linking to the interactive case. Add to slides or print.",
-                  color: "showcase-purple",
-                  action: "Download QR",
-                  ready: false,
-                },
-                {
-                  icon: FileText,
-                  title: "PDF Flashcard",
-                  desc: "Beautiful flashcard with case prompt on front, answer key on back. Print-ready.",
-                  color: "showcase-teal",
-                  action: "Download PDF",
-                  ready: false,
-                },
-                {
-                  icon: Presentation,
-                  title: "PowerPoint Slide",
-                  desc: "Single slide with case prompt, character thumbnail, and QR code. Ready to insert.",
-                  color: "showcase-coral",
-                  action: "Download PPTX",
-                  ready: false,
-                },
-                {
-                  icon: Code,
-                  title: "Embed Code",
-                  desc: "Iframe snippet to embed the interactive case on your LMS or website.",
-                  color: "showcase-blue",
-                  action: "Copy Code",
-                  ready: false,
-                },
-              ].map((item) => {
-                const Icon = item.icon;
-                return (
-                  <div
-                    key={item.title}
-                    className={`rounded-2xl border-3 border-${item.color}/15 bg-white p-5 transition-all hover:shadow-sm`}
-                  >
-                    <div className="flex items-start gap-3">
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-xl bg-${item.color}/10 shrink-0`}
-                      >
-                        <Icon className={`h-5 w-5 text-${item.color}`} />
-                      </div>
-                      <div className="flex-1">
-                        <h4 className="font-display text-sm font-bold text-ink-dark">
-                          {item.title}
-                        </h4>
-                        <p className="mt-1 text-xs text-ink-muted leading-relaxed">
-                          {item.desc}
-                        </p>
-                        <button
-                          disabled={!item.ready}
-                          className={`mt-3 inline-flex items-center gap-1.5 rounded-lg border-2 border-${item.color}/30 bg-${item.color}/5 px-3 py-1.5 text-xs font-bold text-${item.color} transition-all hover:bg-${item.color}/10 disabled:opacity-40 disabled:cursor-not-allowed`}
-                        >
-                          <Download className="h-3 w-3" />
-                          {item.ready ? item.action : "Coming soon"}
-                        </button>
-                      </div>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
-          </section>
-        </AnimatedSection>
-
-        {/* Tags */}
-        <AnimatedSection delay={0.32} animation="fadeUp">
-          <div className="mt-10 flex flex-wrap gap-2">
-            {caseData.tags.map((tag) => (
-              <span
-                key={tag}
-                className="rounded-full border-2 border-showcase-navy/10 bg-white px-3 py-1 text-xs font-semibold text-ink-muted"
-              >
-                {tag}
-              </span>
-            ))}
-          </div>
-        </AnimatedSection>
-
-        {/* Share */}
-        <AnimatedSection delay={0.34} animation="fadeUp">
+        {/* ── Share this page ── */}
+        <AnimatedSection delay={0.28} animation="fadeUp">
           <div className="mt-8">
             <ShareLinkButton
               url={`${BASE_URL}/${locale}/resources/clinical-cases/${id}`}
-              label="Share this case"
+              label="Share this case with colleagues"
             />
           </div>
         </AnimatedSection>
       </div>
     </main>
+  );
+}
+
+// ─── Download Card (static Tailwind classes) ─────────────────────────────────
+
+const downloadColorMap: Record<string, { border: string; bg: string; text: string; iconBg: string }> = {
+  teal: {
+    border: "border-showcase-teal/15",
+    bg: "bg-white",
+    text: "text-showcase-teal",
+    iconBg: "bg-showcase-teal/10",
+  },
+  coral: {
+    border: "border-showcase-coral/15",
+    bg: "bg-white",
+    text: "text-showcase-coral",
+    iconBg: "bg-showcase-coral/10",
+  },
+  blue: {
+    border: "border-showcase-blue/15",
+    bg: "bg-white",
+    text: "text-showcase-blue",
+    iconBg: "bg-showcase-blue/10",
+  },
+  purple: {
+    border: "border-showcase-purple/15",
+    bg: "bg-white",
+    text: "text-showcase-purple",
+    iconBg: "bg-showcase-purple/10",
+  },
+};
+
+function DownloadCard({
+  icon: Icon,
+  title,
+  desc,
+  color,
+  ready,
+}: {
+  icon: typeof FileText;
+  title: string;
+  desc: string;
+  color: string;
+  ready: boolean;
+}) {
+  const colors = downloadColorMap[color] || downloadColorMap.purple;
+
+  return (
+    <div className={`rounded-xl border-2 ${colors.border} ${colors.bg} p-3 transition-all hover:shadow-sm`}>
+      <div className="flex items-start gap-2.5">
+        <div className={`flex h-8 w-8 items-center justify-center rounded-lg ${colors.iconBg} shrink-0`}>
+          <Icon className={`h-4 w-4 ${colors.text}`} />
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-xs font-bold text-ink-dark">{title}</p>
+          <p className="text-[10px] text-ink-light">{desc}</p>
+          {!ready && (
+            <p className="text-[9px] text-ink-light/60 mt-1 italic">Coming soon</p>
+          )}
+        </div>
+      </div>
+    </div>
+  );
+}
+
+// ─── Collapsible Section ─────────────────────────────────────────────────────
+
+function CollapsibleSection({
+  title,
+  badge,
+  defaultOpen = false,
+  children,
+}: {
+  title: string;
+  badge?: string;
+  defaultOpen?: boolean;
+  children: React.ReactNode;
+}) {
+  return (
+    <details
+      open={defaultOpen || undefined}
+      className="group rounded-2xl border-3 border-showcase-navy/10 bg-white overflow-hidden"
+    >
+      <summary className="flex cursor-pointer items-center justify-between px-5 py-4 text-sm font-bold text-ink-dark select-none hover:bg-gray-50 transition-colors [&::-webkit-details-marker]:hidden list-none">
+        <div className="flex items-center gap-2">
+          {title}
+          {badge && (
+            <span className="rounded-full bg-showcase-coral/10 px-2 py-0.5 text-[9px] font-bold text-showcase-coral">
+              {badge}
+            </span>
+          )}
+        </div>
+        <ChevronDown className="h-4 w-4 text-ink-light transition-transform group-open:rotate-180" />
+      </summary>
+      <div className="px-5 pb-5">
+        {children}
+      </div>
+    </details>
   );
 }

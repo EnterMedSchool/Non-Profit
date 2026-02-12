@@ -17,6 +17,7 @@ import {
   CornerDownLeft,
   SearchX,
   Sparkles,
+  ImageDown,
 } from "lucide-react";
 import { AnimatePresence, m } from "framer-motion";
 import Fuse from "fuse.js";
@@ -73,6 +74,13 @@ const categoryConfig: Record<
     border: "border-showcase-pink/20",
     badge: "bg-pastel-peach text-showcase-pink",
   },
+  media: {
+    icon: ImageDown,
+    bg: "bg-pastel-lemon",
+    text: "text-showcase-coral",
+    border: "border-showcase-coral/20",
+    badge: "bg-pastel-lemon text-showcase-coral",
+  },
 };
 
 const categoryOrder: SearchItem["category"][] = [
@@ -81,6 +89,7 @@ const categoryOrder: SearchItem["category"][] = [
   "tool",
   "guide",
   "visual",
+  "media",
 ];
 
 /* ─── Quick Links (locale-prefixed at runtime) ───────────────────────────── */

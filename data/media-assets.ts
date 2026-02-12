@@ -56,17 +56,92 @@ export interface MediaAssetCategory {
   icon: string;
   /** Tailwind showcase color key */
   color: string;
+  /** SEO-optimized page title for the category landing page */
+  seoTitle: string;
+  /** Meta description for the category landing page */
+  seoDescription: string;
+  /** SEO keywords for the category page */
+  seoKeywords: string[];
+}
+
+export interface MediaAssetCollection {
+  /** URL slug for /resources/media/collections/[slug] */
+  slug: string;
+  /** Display name */
+  name: string;
+  /** Optimized <title> tag */
+  seoTitle: string;
+  /** Meta description */
+  seoDescription: string;
+  /** Long-form editorial description */
+  description: string;
+  /** Ordered list of asset IDs in the collection */
+  assetIds: string[];
+  /** SEO keywords */
+  seoKeywords: string[];
+  /** ISO date string */
+  datePublished: string;
+  /** ISO date string */
+  dateModified: string;
 }
 
 /* ── Categories ─────────────────────────────────────────────────── */
 
 export const mediaAssetCategories: MediaAssetCategory[] = [
-  { id: "anatomy",   name: "Anatomy",        icon: "HeartPulse",   color: "coral" },
-  { id: "cells",     name: "Cells",          icon: "Circle",       color: "teal" },
-  { id: "molecules", name: "Molecules",      icon: "Atom",         color: "purple" },
-  { id: "organs",    name: "Organs",         icon: "Brain",        color: "pink" },
-  { id: "equipment", name: "Lab Equipment",  icon: "FlaskConical", color: "blue" },
-  { id: "diagrams",  name: "Diagrams",       icon: "LayoutGrid",   color: "green" },
+  {
+    id: "anatomy",
+    name: "Anatomy",
+    icon: "HeartPulse",
+    color: "coral",
+    seoTitle: "Anatomy Medical Illustrations — Free Downloads for Educators",
+    seoDescription: "Browse and download free anatomy diagrams and illustrations for medical education. High-quality SVGs and PNGs for lectures, slides, and study materials — CC BY 4.0 licensed.",
+    seoKeywords: ["anatomy diagrams", "free anatomy illustrations", "medical anatomy images", "anatomy SVG", "anatomy teaching materials"],
+  },
+  {
+    id: "cells",
+    name: "Cells",
+    icon: "Circle",
+    color: "teal",
+    seoTitle: "Cell Biology Illustrations — Free Downloads for Educators",
+    seoDescription: "Download free cell biology diagrams for your lectures. Organelles, cell structures, and microscopy illustrations in SVG and PNG — all CC BY 4.0 licensed.",
+    seoKeywords: ["cell biology diagrams", "free cell illustrations", "organelle diagrams", "cell structure images", "cell biology teaching materials"],
+  },
+  {
+    id: "molecules",
+    name: "Molecules",
+    icon: "Atom",
+    color: "purple",
+    seoTitle: "Molecular Biology Illustrations — Free Downloads for Educators",
+    seoDescription: "Free molecular biology and biochemistry diagrams for medical education. Download SVGs and PNGs of molecules, pathways, and structures — CC BY 4.0 licensed.",
+    seoKeywords: ["molecular biology diagrams", "free molecule illustrations", "biochemistry images", "molecular structure diagrams", "molecule teaching materials"],
+  },
+  {
+    id: "organs",
+    name: "Organs",
+    icon: "Brain",
+    color: "pink",
+    seoTitle: "Organ System Illustrations — Free Downloads for Educators",
+    seoDescription: "Download free organ system illustrations for medical lectures. Brain, lungs, kidneys, and more in SVG and PNG formats — all CC BY 4.0 licensed.",
+    seoKeywords: ["organ diagrams", "free organ illustrations", "organ system images", "human organ SVG", "organ teaching materials"],
+  },
+  {
+    id: "equipment",
+    name: "Lab Equipment",
+    icon: "FlaskConical",
+    color: "blue",
+    seoTitle: "Lab Equipment Illustrations — Free Downloads for Educators",
+    seoDescription: "Free lab equipment and medical instrument diagrams for education. Download SVGs and PNGs of microscopes, flasks, and clinical tools — CC BY 4.0 licensed.",
+    seoKeywords: ["lab equipment diagrams", "free medical equipment illustrations", "laboratory images", "clinical tools SVG", "lab teaching materials"],
+  },
+  {
+    id: "diagrams",
+    name: "Diagrams",
+    icon: "LayoutGrid",
+    color: "green",
+    seoTitle: "Medical Diagrams & Flowcharts — Free Downloads for Educators",
+    seoDescription: "Download free medical diagrams, flowcharts, and conceptual illustrations for teaching. SVG and PNG formats — all CC BY 4.0 licensed.",
+    seoKeywords: ["medical diagrams", "free medical flowcharts", "conceptual diagrams", "medical education diagrams", "diagram teaching materials"],
+  },
 ];
 
 /* ── Assets ─────────────────────────────────────────────────────── */
@@ -190,6 +265,65 @@ export const mediaAssets: MediaAsset[] = [
   },
 ];
 
+/* ── Collections ────────────────────────────────────────────────── */
+
+export const mediaAssetCollections: MediaAssetCollection[] = [
+  {
+    slug: "cardiovascular-system",
+    name: "Cardiovascular System Illustration Pack",
+    seoTitle: "Cardiovascular System Illustration Pack — Free Medical Images",
+    seoDescription: "A curated collection of free cardiovascular system illustrations for medical education. Download heart anatomy and circulatory diagrams in SVG and PNG formats.",
+    description:
+      "This curated pack brings together all cardiovascular-related illustrations in one place. Perfect for building a complete cardiovascular physiology lecture or study guide. Use these assets together to walk students through heart anatomy, blood flow, and circulatory pathways. Each illustration is designed in a consistent style so they work well side by side on slides or handouts.",
+    assetIds: ["human-heart-anatomy"],
+    seoKeywords: [
+      "cardiovascular illustration pack",
+      "free heart diagrams",
+      "cardiovascular teaching materials",
+      "circulatory system images",
+      "cardiovascular lecture slides",
+    ],
+    datePublished: "2026-02-12",
+    dateModified: "2026-02-12",
+  },
+  {
+    slug: "cell-biology-starter-kit",
+    name: "Cell Biology Starter Kit",
+    seoTitle: "Cell Biology Starter Kit — Free Illustrations for Educators",
+    seoDescription: "A starter collection of free cell biology illustrations for medical education. Download organelle and cell structure diagrams in SVG and PNG — perfect for lectures.",
+    description:
+      "Everything you need to introduce cell biology in your classroom. This collection covers essential organelles and cell types, from mitochondria to neurons. Use these illustrations together for a cohesive cell biology unit, or pick individual assets for specific topics. All assets share a consistent visual style for professional-looking presentations.",
+    assetIds: ["mitochondria-structure", "neuron-cell-diagram"],
+    seoKeywords: [
+      "cell biology illustrations",
+      "free organelle diagrams",
+      "cell biology teaching kit",
+      "cell structure images",
+      "cell biology lecture materials",
+    ],
+    datePublished: "2026-02-12",
+    dateModified: "2026-02-12",
+  },
+  {
+    slug: "neuroscience-essentials",
+    name: "Neuroscience Essentials",
+    seoTitle: "Neuroscience Essentials — Free Illustrations for Medical Education",
+    seoDescription: "A curated pack of free neuroscience illustrations. Download neuron diagrams and nervous system images in SVG and PNG — ideal for neuroscience lectures and study materials.",
+    description:
+      "Essential neuroscience illustrations for introductory neuroanatomy and physiology courses. This collection includes neuron structure diagrams and supporting visuals that help students understand the building blocks of the nervous system. Perfect for building a lecture series on neuroanatomy, synaptic transmission, or clinical neuroscience.",
+    assetIds: ["neuron-cell-diagram"],
+    seoKeywords: [
+      "neuroscience illustrations",
+      "free neuron diagrams",
+      "nervous system teaching materials",
+      "neuroanatomy images",
+      "neuroscience lecture slides",
+    ],
+    datePublished: "2026-02-12",
+    dateModified: "2026-02-12",
+  },
+];
+
 /* ── Helpers ────────────────────────────────────────────────────── */
 
 export function getMediaAssetBySlug(slug: string): MediaAsset | undefined {
@@ -216,4 +350,74 @@ export function searchMediaAssets(query: string): MediaAsset[] {
       a.category.toLowerCase().includes(q) ||
       a.description.toLowerCase().includes(q),
   );
+}
+
+/* ── Tag helpers ────────────────────────────────────────────────── */
+
+/** Convert a tag string to a URL-safe slug */
+export function getTagSlug(tag: string): string {
+  return tag
+    .toLowerCase()
+    .trim()
+    .replace(/\s+/g, "-")
+    .replace(/[^a-z0-9-]/g, "");
+}
+
+/** Reverse lookup: convert a tag slug back to the original tag string */
+export function getTagFromSlug(slug: string): string | undefined {
+  const all = getAllTags();
+  return all.find((tag) => getTagSlug(tag) === slug);
+}
+
+/** Get a deduplicated, sorted array of all tags across all assets */
+export function getAllTags(): string[] {
+  const tagSet = new Set<string>();
+  for (const asset of mediaAssets) {
+    for (const tag of asset.tags) {
+      tagSet.add(tag);
+    }
+  }
+  return Array.from(tagSet).sort((a, b) => a.localeCompare(b));
+}
+
+/** Get all unique tag slugs (for generateStaticParams) */
+export function getAllTagSlugs(): string[] {
+  return getAllTags().map(getTagSlug);
+}
+
+/** Filter assets that contain the given tag (case-insensitive) */
+export function getMediaAssetsByTag(tag: string): MediaAsset[] {
+  const lower = tag.toLowerCase();
+  return mediaAssets.filter((a) =>
+    a.tags.some((t) => t.toLowerCase() === lower),
+  );
+}
+
+/** Get the number of assets for each tag */
+export function getTagCounts(): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const asset of mediaAssets) {
+    for (const tag of asset.tags) {
+      counts.set(tag, (counts.get(tag) || 0) + 1);
+    }
+  }
+  return counts;
+}
+
+/* ── Collection helpers ─────────────────────────────────────────── */
+
+export function getCollectionBySlug(slug: string): MediaAssetCollection | undefined {
+  return mediaAssetCollections.find((c) => c.slug === slug);
+}
+
+export function getCollectionAssets(collection: MediaAssetCollection): MediaAsset[] {
+  return collection.assetIds
+    .map((id) => mediaAssets.find((a) => a.id === id))
+    .filter(Boolean) as MediaAsset[];
+}
+
+/* ── Category helpers ───────────────────────────────────────────── */
+
+export function getCategoryById(categoryId: string): MediaAssetCategory | undefined {
+  return mediaAssetCategories.find((c) => c.id === categoryId);
 }

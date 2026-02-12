@@ -39,7 +39,6 @@ export default function TimedDecision({
       setTimeLeft((prev) => {
         if (prev <= 1) {
           if (intervalRef.current) clearInterval(intervalRef.current);
-          // Time's up
           const defaultOption = options.find((o) => o.id === defaultOptionId);
           if (defaultOption) {
             onTimeout(defaultOption);
@@ -82,28 +81,32 @@ export default function TimedDecision({
       <m.div
         animate={isWarning ? { borderColor: ["rgba(239,68,68,0.3)", "rgba(239,68,68,0.7)", "rgba(239,68,68,0.3)"] } : {}}
         transition={isWarning ? { repeat: Infinity, duration: 0.8 } : {}}
-        className="rounded-xl border-2 border-red-400/30 bg-red-400/5 p-4"
+        className={`rounded-2xl border-3 p-4 ${
+          isWarning
+            ? "border-red-400/40 bg-red-50"
+            : "border-showcase-coral/30 bg-pastel-peach/40"
+        }`}
       >
         <div className="flex items-center gap-3">
-          <AlertTriangle className="h-5 w-5 text-red-400 shrink-0" />
-          <p className="text-sm font-bold text-red-400">{prompt}</p>
+          <AlertTriangle className={`h-5 w-5 shrink-0 ${isWarning ? "text-red-500" : "text-showcase-coral"}`} />
+          <p className={`text-sm font-bold ${isWarning ? "text-red-600" : "text-showcase-coral"}`}>
+            {prompt}
+          </p>
         </div>
       </m.div>
 
       {/* Timer */}
-      <div className="flex justify-center">
+      <div className="flex justify-center" role="timer" aria-label={`${timeLeft} seconds remaining`}>
         <div className="relative">
           <svg width="100" height="100" className="-rotate-90">
-            {/* Background circle */}
             <circle
               cx="50"
               cy="50"
               r={radius}
               fill="none"
-              stroke="rgba(255,255,255,0.1)"
+              stroke="rgba(0,0,0,0.06)"
               strokeWidth="6"
             />
-            {/* Progress circle */}
             <circle
               cx="50"
               cy="50"
@@ -119,10 +122,10 @@ export default function TimedDecision({
           </svg>
           <div className="absolute inset-0 flex items-center justify-center">
             <div className="text-center">
-              <Clock className={`mx-auto h-4 w-4 ${isWarning ? "text-red-400" : "text-white/50"}`} />
+              <Clock className={`mx-auto h-4 w-4 ${isWarning ? "text-red-500" : "text-ink-light"}`} />
               <span
                 className={`block text-lg font-bold tabular-nums ${
-                  isWarning ? "text-red-400" : "text-white/80"
+                  isWarning ? "text-red-500" : "text-ink-dark"
                 }`}
               >
                 {timeLeft}s
@@ -133,7 +136,7 @@ export default function TimedDecision({
       </div>
 
       {/* Options */}
-      <div className="space-y-2">
+      <div className="space-y-2.5">
         {options
           .filter((o) => o.id !== defaultOptionId)
           .map((option, i) => (
@@ -144,30 +147,30 @@ export default function TimedDecision({
               transition={{ delay: 0.2 + i * 0.1 }}
               onClick={() => handleChoice(option)}
               disabled={hasChosen}
-              className={`group w-full rounded-xl border-2 p-4 text-left transition-all ${
+              className={`group w-full rounded-2xl border-3 p-4 text-left transition-all ${
                 isWarning
-                  ? "border-red-400/20 bg-red-400/5 hover:border-red-400/40"
-                  : "border-white/10 bg-white/5 hover:border-showcase-purple/40 hover:bg-showcase-purple/10"
-              } hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed`}
+                  ? "border-red-200 bg-white hover:border-red-400/60 hover:shadow-md"
+                  : "border-showcase-navy/10 bg-white hover:border-showcase-purple/40 hover:shadow-chunky-sm"
+              } hover:-translate-y-0.5 disabled:opacity-50 disabled:cursor-not-allowed active:scale-[0.98]`}
             >
               <div className="flex items-start justify-between gap-3">
                 <div className="flex-1">
-                  <p className="text-sm font-bold text-white">
+                  <p className="text-sm font-bold text-ink-dark">
                     {option.label}
                   </p>
                   {option.description && (
-                    <p className="mt-1 text-xs text-white/50">
+                    <p className="mt-1 text-xs text-ink-muted">
                       {option.description}
                     </p>
                   )}
                 </div>
                 <div className="flex items-center gap-2 shrink-0">
                   {option.cpCost > 0 && (
-                    <span className="rounded-full bg-white/10 px-2 py-0.5 text-[10px] font-bold text-white/60">
+                    <span className="rounded-full bg-showcase-purple/10 px-2 py-0.5 text-[10px] font-bold text-showcase-purple">
                       {option.cpCost} CP
                     </span>
                   )}
-                  <ChevronRight className="h-4 w-4 text-white/30" />
+                  <ChevronRight className="h-4 w-4 text-ink-light group-hover:text-showcase-purple transition-colors" />
                 </div>
               </div>
             </m.button>

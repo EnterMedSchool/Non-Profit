@@ -8,6 +8,7 @@ export default createMiddleware(routing);
 // - Cookie persists user's manual language choice across sessions
 
 export const config = {
-  // Match all pathnames except API routes, static files, and internal Next.js paths
-  matcher: ["/((?!api|_next|_vercel|.*\\..*).*)"],
+  // Match all pathnames except API routes, static files, internal Next.js paths,
+  // and standalone full-screen tool routes (these are non-localized).
+  matcher: ["/((?!api|_next|_vercel|create|flashcards|mcq|editor|.*\\..*).*)"],
 };

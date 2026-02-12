@@ -9,12 +9,14 @@ import {
   Scale,
   FileImage,
   ArrowRight,
+  Code,
 } from "lucide-react";
 import {
   mediaAssets,
   getMediaAssetBySlug,
   getRelatedAssets,
   mediaAssetCategories,
+  getTagSlug,
 } from "@/data/media-assets";
 import { getMediaAssetJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
@@ -156,12 +158,14 @@ export default async function MediaAssetDetailPage({
             {/* Title + badges */}
             <AnimatedSection animation="fadeUp" delay={0.1}>
               <div className="flex flex-wrap items-center gap-2">
-                <StickerBadge
-                  color={categoryBadgeColor[asset.category] ?? "purple"}
-                  size="md"
-                >
-                  {asset.category}
-                </StickerBadge>
+                <Link href={`/${locale}/resources/media/category/${asset.category}`}>
+                  <StickerBadge
+                    color={categoryBadgeColor[asset.category] ?? "purple"}
+                    size="md"
+                  >
+                    {asset.category}
+                  </StickerBadge>
+                </Link>
                 <StickerBadge color="teal" size="sm">
                   {asset.license}
                 </StickerBadge>
@@ -187,12 +191,13 @@ export default async function MediaAssetDetailPage({
                 <Tag className="mt-0.5 h-4 w-4 flex-shrink-0 text-showcase-purple" />
                 <div className="flex flex-wrap gap-2">
                   {asset.tags.map((tag) => (
-                    <span
+                    <Link
                       key={tag}
-                      className="rounded-full border border-showcase-purple/20 bg-showcase-purple/5 px-3 py-1 text-xs font-semibold text-showcase-purple"
+                      href={`/${locale}/resources/media/tag/${getTagSlug(tag)}`}
+                      className="rounded-full border border-showcase-purple/20 bg-showcase-purple/5 px-3 py-1 text-xs font-semibold text-showcase-purple transition-all hover:bg-showcase-purple/10 hover:shadow-sm"
                     >
                       {tag}
-                    </span>
+                    </Link>
                   ))}
                 </div>
               </div>
@@ -257,6 +262,15 @@ export default async function MediaAssetDetailPage({
                   Download Asset
                 </h2>
                 <MediaAssetDownload asset={asset} />
+
+                {/* Embed code link */}
+                <Link
+                  href={`/${locale}/resources/media/${asset.slug}/embed-code`}
+                  className="flex items-center justify-center gap-2 w-full rounded-xl border-2 border-showcase-purple/20 bg-showcase-purple/5 px-4 py-2.5 text-sm font-bold text-showcase-purple transition-all hover:bg-showcase-purple/10 hover:shadow-sm"
+                >
+                  <Code className="h-4 w-4" />
+                  Get Embed Code
+                </Link>
               </div>
             </AnimatedSection>
           </div>

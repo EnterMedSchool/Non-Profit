@@ -12,6 +12,8 @@ import {
   BookOpen,
   SearchX,
   Gamepad2,
+  CheckCircle2,
+  Award,
 } from "lucide-react";
 import { m } from "framer-motion";
 import Fuse from "fuse.js";
@@ -24,6 +26,7 @@ import {
 } from "@/data/clinical-cases";
 import { getCharacterByCaseId } from "@/data/disease-characters";
 import { rarityConfig } from "@/data/disease-characters";
+import { usePlayerProfile } from "@/hooks/usePlayerProfile";
 
 // ─── Category pill colors ───────────────────────────────────────────────────
 
@@ -78,6 +81,15 @@ const difficultyPillColors: Record<string, { active: string; inactive: string }>
   },
 };
 
+// ─── Score Tier ──────────────────────────────────────────────────────────────
+
+function getScoreTierLabel(score: number): { label: string; badgeBg: string; badgeText: string } {
+  if (score >= 90) return { label: "Platinum", badgeBg: "bg-showcase-purple/10 border-showcase-purple/20", badgeText: "text-showcase-purple" };
+  if (score >= 75) return { label: "Gold", badgeBg: "bg-showcase-yellow/10 border-showcase-yellow/20", badgeText: "text-amber-600" };
+  if (score >= 55) return { label: "Silver", badgeBg: "bg-gray-100 border-gray-200", badgeText: "text-gray-600" };
+  return { label: "Bronze", badgeBg: "bg-orange-50 border-orange-200", badgeText: "text-orange-600" };
+}
+
 // ─── Case Card ──────────────────────────────────────────────────────────────
 
 function CaseCard({ caseData }: { caseData: ClinicalCase }) {
@@ -85,12 +97,25 @@ function CaseCard({ caseData }: { caseData: ClinicalCase }) {
   const character = getCharacterByCaseId(caseData.id);
   const diff = difficultyConfig[caseData.difficulty];
   const rarity = character ? rarityConfig[character.rarity] : null;
+  const profile = usePlayerProfile();
+  const completion = profile.getCaseResult(caseData.id);
+  const isCompleted = !!completion;
 
   return (
     <Link
       href={`/${locale}/resources/clinical-cases/${caseData.id}`}
-      className="group flex flex-col sm:flex-row gap-5 rounded-2xl border-3 border-showcase-navy/10 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-chunky cursor-pointer"
+      className={`group relative flex flex-col sm:flex-row gap-5 rounded-2xl border-3 bg-white p-5 transition-all hover:-translate-y-1 hover:shadow-chunky cursor-pointer ${
+        isCompleted ? "border-showcase-green/25" : "border-showcase-navy/10"
+      }`}
     >
+      {/* Completion badge */}
+      {isCompleted && (
+        <div className="absolute -top-2.5 -right-2.5 flex items-center gap-1 rounded-full bg-showcase-green px-2.5 py-1 shadow-chunky-sm z-10">
+          <CheckCircle2 className="h-3.5 w-3.5 text-white" />
+          <span className="text-[10px] font-bold text-white">Completed</span>
+        </div>
+      )}
+
       {/* Character thumbnail placeholder */}
       <div className="relative h-40 w-40 shrink-0 overflow-hidden rounded-xl bg-pastel-lavender/30 border-2 border-showcase-navy/5 flex items-center justify-center mx-auto sm:mx-0">
         <Stethoscope className="h-10 w-10 text-showcase-purple/20" />
@@ -101,6 +126,18 @@ function CaseCard({ caseData }: { caseData: ClinicalCase }) {
             {rarity.label}
           </span>
         )}
+        {/* Best score tier badge */}
+        {completion && (() => {
+          const tier = getScoreTierLabel(completion.score.totalScore);
+          return (
+            <div className={`absolute bottom-2 left-2 flex items-center gap-1 rounded-lg border px-2 py-1 shadow-sm ${tier.badgeBg}`}>
+              <Award className={`h-3 w-3 ${tier.badgeText}`} />
+              <span className={`text-[10px] font-bold tabular-nums ${tier.badgeText}`}>
+                {tier.label} ({completion.score.totalScore})
+              </span>
+            </div>
+          );
+        })()}
       </div>
 
       {/* Content */}

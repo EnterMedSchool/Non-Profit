@@ -13,14 +13,14 @@ export default function RapportMeter({ rapport }: RapportMeterProps) {
       ? "text-showcase-green"
       : rapport >= 30
         ? "text-showcase-yellow"
-        : "text-red-400";
+        : "text-showcase-coral";
 
   const barColor =
     rapport >= 70
       ? "bg-showcase-green"
       : rapport >= 30
         ? "bg-showcase-yellow"
-        : "bg-red-400";
+        : "bg-showcase-coral";
 
   const label =
     rapport >= 70
@@ -32,11 +32,13 @@ export default function RapportMeter({ rapport }: RapportMeterProps) {
   return (
     <div
       className="flex items-center gap-2"
+      role="status"
+      aria-label={`Patient Rapport: ${rapport} out of 100, ${label}`}
       title={`Patient Rapport: ${rapport}/100 — ${label}`}
     >
       <Heart className={`h-3.5 w-3.5 ${color}`} />
       <div className="flex items-center gap-1.5">
-        <div className="h-1.5 w-14 overflow-hidden rounded-full bg-white/10">
+        <div className="h-1.5 w-14 overflow-hidden rounded-full bg-showcase-navy/10">
           <m.div
             className={`h-full rounded-full ${barColor}`}
             initial={{ width: 0 }}

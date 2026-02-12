@@ -195,6 +195,8 @@ export interface CaseScene {
 
 export interface ClinicalCase {
   id: string;
+  /** URL-safe slug used for the student-facing route (non-revealing, no diagnosis name) */
+  slug: string;
   title: string;
   category: string;
   subcategory: string;
@@ -325,6 +327,7 @@ const BETA_THAL_BASE = "/clinical-cases/beta-thalassemia";
 export const clinicalCases: ClinicalCase[] = [
   {
     id: "beta-thalassemia",
+    slug: "the-tired-student",
     title: "The Tired Student",
     category: "Hematology",
     subcategory: "Hemoglobinopathies",
@@ -1657,6 +1660,10 @@ export function getCaseById(id: string): ClinicalCase | undefined {
   return clinicalCases.find((c) => c.id === id);
 }
 
+export function getCaseBySlug(slug: string): ClinicalCase | undefined {
+  return clinicalCases.find((c) => c.slug === slug);
+}
+
 export function getCasesByCategory(category: string): ClinicalCase[] {
   return clinicalCases.filter((c) => c.category === category);
 }
@@ -1671,28 +1678,78 @@ export function getAllCaseCategories(): string[] {
   return [...new Set(clinicalCases.map((c) => c.category))];
 }
 
+// ─── Scoring Key ─────────────────────────────────────────────────────────────
+// Extracted server-side from the full case data, sent alongside stripped data.
+// Used ONLY by the game engine for scoring and by the debrief for educational review.
+// Never rendered raw in the student UI during gameplay.
+
+export interface ScoringKey {
+  answerKey: ClinicalCase["answerKey"];
+  /** sceneId -> optionId -> isOptimal */
+  optimalFlags: Record<string, Record<string, boolean>>;
+  teachingNotes: string;
+  learningObjectives: string[];
+}
+
+/**
+ * Extracts scoring-only data from the full case.
+ * Called server-side, passed as a separate prop to CasePlayer.
+ */
+export function extractScoringKey(caseData: ClinicalCase): ScoringKey {
+  const optimalFlags: Record<string, Record<string, boolean>> = {};
+
+  for (const scene of caseData.scenes) {
+    if (
+      scene.interaction.mode === "choices" ||
+      scene.interaction.mode === "timed-choice"
+    ) {
+      optimalFlags[scene.id] = {};
+      for (const opt of scene.interaction.options) {
+        optimalFlags[scene.id][opt.id] = opt.isOptimal;
+      }
+    }
+  }
+
+  return {
+    answerKey: caseData.answerKey,
+    optimalFlags,
+    teachingNotes: caseData.teachingNotes,
+    learningObjectives: caseData.learningObjectives,
+  };
+}
+
 /**
  * Strips professor-only data from a case for the student-facing player.
  * CRITICAL: Call this in the server component before passing to client.
+ *
+ * Keeps:
+ * - feedback on options (shown AFTER the student commits to a choice)
+ * - after-optimal / after-suboptimal mentor comments (corrective teaching)
+ * - shouldConsiderAdding / shouldConsiderRemoving DDx hints
+ *
+ * Strips:
+ * - isOptimal flags (scoring uses ScoringKey instead)
+ * - expertDdxAtThisPoint (would reveal the answer)
+ * - answerKey, teachingNotes, learningObjectives (in ScoringKey)
  */
 export function stripProfessorData(caseData: ClinicalCase): ClinicalCase {
   return {
     ...caseData,
     teachingNotes: "",
+    learningObjectives: [],
     answerKey: {
       optimalPath: [],
       optimalCpSpent: 0,
-      diagnosis: "", // revealed through the diagnosis-reveal scene interaction
+      diagnosis: "",
       keyFindings: [],
       expertDdxEvolution: [],
     },
     scenes: caseData.scenes.map((scene) => ({
       ...scene,
-      // Remove professor-only mentor comments
-      mentorComments: scene.mentorComments?.filter(
-        (mc) => mc.timing === "before-decision"
-      ),
-      // Remove optimal/suboptimal markers from options
+      // Keep ALL mentor comments (before-decision, after-optimal, after-suboptimal)
+      // After-decision comments are shown after the student commits
+      mentorComments: scene.mentorComments,
+      // Keep feedback text (shown after choice), but strip isOptimal flag
       interaction:
         scene.interaction.mode === "choices" ||
         scene.interaction.mode === "timed-choice"
@@ -1700,12 +1757,12 @@ export function stripProfessorData(caseData: ClinicalCase): ClinicalCase {
               ...scene.interaction,
               options: scene.interaction.options.map((opt) => ({
                 ...opt,
-                isOptimal: false, // hide from student
-                feedback: undefined, // hide from student
+                isOptimal: false, // scoring uses ScoringKey instead
+                // feedback is KEPT — shown after the student commits
               })),
             }
           : scene.interaction,
-      // Remove expert DDx data
+      // Keep shouldConsiderAdding/Removing hints, strip expertDdxAtThisPoint
       ddxUpdate: scene.ddxUpdate
         ? {
             ...scene.ddxUpdate,

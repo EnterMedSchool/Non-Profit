@@ -15,7 +15,7 @@ export default function MentorBubble({
   text,
   teachingPoint,
   delay = 0.5,
-  autoDismissMs = 0, // 0 = don't auto-dismiss
+  autoDismissMs = 0,
 }: MentorBubbleProps) {
   const [visible, setVisible] = useState(true);
 
@@ -34,19 +34,20 @@ export default function MentorBubble({
           animate={{ opacity: 1, y: 0, scale: 1 }}
           exit={{ opacity: 0, y: -10, scale: 0.95 }}
           transition={{ delay, duration: 0.4 }}
-          className="relative mt-6 rounded-2xl border-2 border-showcase-purple/20 bg-gradient-to-br from-showcase-purple/10 to-showcase-purple/5 p-4"
+          className="relative mt-6 rounded-2xl border-3 border-showcase-purple/20 bg-pastel-lavender/40 p-4 shadow-sm"
         >
           {/* Dismiss button */}
           <button
             onClick={() => setVisible(false)}
-            className="absolute top-2 right-2 rounded-lg p-1 text-white/20 hover:text-white/50 hover:bg-white/5 transition-colors"
+            className="absolute top-2 right-2 rounded-lg p-1.5 text-ink-light hover:text-ink-muted hover:bg-white/60 transition-colors"
+            aria-label="Dismiss mentor comment"
           >
-            <X className="h-3 w-3" />
+            <X className="h-3.5 w-3.5" />
           </button>
 
           {/* Mentor header */}
           <div className="flex items-center gap-2 mb-2">
-            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-showcase-purple/20">
+            <div className="flex h-7 w-7 items-center justify-center rounded-full bg-showcase-purple/15">
               <GraduationCap className="h-3.5 w-3.5 text-showcase-purple" />
             </div>
             <span className="text-xs font-bold text-showcase-purple">
@@ -55,13 +56,13 @@ export default function MentorBubble({
           </div>
 
           {/* Comment text */}
-          <p className="text-sm text-white/70 leading-relaxed pr-6">
+          <p className="text-sm text-ink-muted leading-relaxed pr-6">
             {text}
           </p>
 
           {/* Teaching point */}
           {teachingPoint && (
-            <div className="mt-3 flex items-start gap-2 rounded-lg bg-showcase-yellow/10 border border-showcase-yellow/20 px-3 py-2">
+            <div className="mt-3 flex items-start gap-2 rounded-xl bg-showcase-yellow/10 border-2 border-showcase-yellow/20 px-3 py-2.5">
               <Lightbulb className="h-3.5 w-3.5 text-showcase-yellow shrink-0 mt-0.5" />
               <p className="text-xs font-bold text-showcase-yellow/90 leading-relaxed">
                 {teachingPoint}
