@@ -10,6 +10,7 @@ import {
   getAllTags,
   getTagSlug,
 } from "@/data/media-assets";
+import { glossaryTerms, glossaryCategories } from "@/data/glossary-terms";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -37,6 +38,7 @@ const staticPages = [
   "/license",
   "/privacy",
   "/clinical-semiotics",
+  "/resources/glossary",
 ];
 
 export default function sitemap(): MetadataRoute.Sitemap {
@@ -273,6 +275,38 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: { languages: colLangs },
+    });
+  }
+
+  // ── Glossary term pages (/resources/glossary/[termId]) ────────────
+  for (const term of glossaryTerms) {
+    const termLangs: Record<string, string> = {};
+    for (const locale of locales) {
+      termLangs[locale] = `${BASE_URL}/${locale}/resources/glossary/${term.id}`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}/resources/glossary/${term.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.85,
+      alternates: { languages: termLangs },
+    });
+  }
+
+  // ── Glossary category pages (/resources/glossary/category/[id]) ──
+  for (const category of glossaryCategories) {
+    const catLangs: Record<string, string> = {};
+    for (const locale of locales) {
+      catLangs[locale] = `${BASE_URL}/${locale}/resources/glossary/category/${category.id}`;
+    }
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}/resources/glossary/category/${category.id}`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.75,
+      alternates: { languages: catLangs },
     });
   }
 

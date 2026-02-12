@@ -120,6 +120,12 @@ const staticItems: (SearchItemWithKeys & SearchItemBase)[] = [
     href: "/privacy",
     category: "page",
   },
+  {
+    titleKey: "index.medicalGlossary",
+    descriptionKey: "index.medicalGlossaryDesc",
+    href: "/resources/glossary",
+    category: "resource",
+  },
 
   // ── MCQ Maker (root-level, no locale) ──
   {
@@ -147,10 +153,14 @@ let cachedItems: SearchItem[] | null = null;
 export async function getSearchItems(): Promise<SearchItem[]> {
   if (cachedItems) return cachedItems;
 
-  const [{ visualLessons }, { mediaAssets }] = await Promise.all([
-    import("@/data/visuals"),
-    import("@/data/media-assets"),
-  ]);
+  const [{ visualLessons }, { mediaAssets }, { getTermSummaries }] =
+    await Promise.all([
+      import("@/data/visuals"),
+      import("@/data/media-assets"),
+      import("@/data/glossary-terms"),
+    ]);
+
+  const termSummaries = getTermSummaries();
 
   cachedItems = [
     ...staticItems,
@@ -166,6 +176,17 @@ export async function getSearchItems(): Promise<SearchItem[]> {
         description: asset.seoDescription,
         href: `/resources/media/${asset.slug}`,
         category: "media" as const,
+      }),
+    ),
+    ...termSummaries.map(
+      (term: { name: string; definition: string; id: string }) => ({
+        title: term.name,
+        description: term.definition
+          .replace(/\*\*(.*?)\*\*/g, "$1")
+          .replace(/<[^>]+>/g, "")
+          .slice(0, 120),
+        href: `/resources/glossary/${term.id}`,
+        category: "resource" as const,
       }),
     ),
   ];

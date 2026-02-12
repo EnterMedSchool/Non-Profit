@@ -157,6 +157,11 @@ export default function Footer() {
                   </FooterLink>
                 </li>
                 <li>
+                  <FooterLink href={`/${locale}/resources/glossary`}>
+                    {t("links.glossary")}
+                  </FooterLink>
+                </li>
+                <li>
                   <FooterLink href={`/${locale}/clinical-semiotics`}>
                     {t("links.clinicalSemiotics")}
                   </FooterLink>

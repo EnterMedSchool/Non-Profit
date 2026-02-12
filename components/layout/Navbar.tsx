@@ -77,6 +77,13 @@ const navItems: NavItem[] = [
         color: "bg-showcase-yellow/15 text-showcase-yellow",
       },
       {
+        href: "/resources/glossary",
+        labelKey: "glossary",
+        descKey: "glossaryDesc",
+        icon: BookOpen,
+        color: "bg-showcase-purple/15 text-showcase-purple",
+      },
+      {
         href: "/resources/clinical-cases",
         labelKey: "clinicalCases",
         descKey: "clinicalCasesDesc",

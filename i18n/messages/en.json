@@ -73,6 +73,8 @@
     "visualsDesc": "Anatomy diagrams and clinical visuals — grab them for your slides.",
     "mediaAssets": "Media Assets",
     "mediaAssetsDesc": "Browse and download free medical illustrations — SVGs and PNGs for your slides.",
+    "glossary": "Medical Glossary",
+    "glossaryDesc": "458+ medical terms with definitions, mnemonics, clinical cases & treatment guides.",
     "toolsDesc": "Create illustrations, flashcards, MCQs, and more — embed or share the results.",
     "calculatorsDesc": "Medical calculators and algorithms — embed on your website or use in class.",
     "guidesDesc": "Guides on teaching techniques, embedding resources, and using templates.",
@@ -278,6 +280,8 @@
       "visualsDesc": "Anatomy diagrams, clinical illustrations, and layered visuals. Grab them for your slides or embed on your site.",
       "mediaAssets": "Media Assets",
       "mediaAssetsDesc": "Browse and download free medical illustrations — SVGs and PNGs ready for your presentations and educational materials.",
+      "glossary": "Medical Glossary",
+      "glossaryDesc": "458+ medical terms with definitions, mnemonics, clinical cases & treatment guides. Search, share, and embed.",
       "clinicalSemiotics": "Clinical Semiotics",
       "clinicalSemioticsDesc": "Interactive clinical exam videos. Embed on your website or share with your students.",
       "questions": "Question Banks",
@@ -1943,7 +1947,9 @@
     },
     "index": {
       "mediaAssets": "Media Assets",
-      "mediaAssetsDesc": "Free downloadable medical illustrations — SVGs and PNGs for slides and presentations"
+      "mediaAssetsDesc": "Free downloadable medical illustrations — SVGs and PNGs for slides and presentations",
+      "medicalGlossary": "Medical Glossary",
+      "medicalGlossaryDesc": "458+ medical terms with definitions, mnemonics, clinical cases & treatment guides"
     }
   },
   "breadcrumbs": {
@@ -1955,6 +1961,7 @@
     "pdfs": "PDFs",
     "visuals": "Visuals",
     "media": "Media Assets",
+    "glossary": "Medical Glossary",
     "category": "Category",
     "tag": "Tag",
     "collections": "Collections",
@@ -1990,6 +1997,7 @@
       "videos": "Video Assets",
       "pdfs": "Textbooks & Handouts",
       "visuals": "Visual Assets",
+      "glossary": "Medical Glossary",
       "clinicalSemiotics": "Clinical Semiotics",
       "explore": "Explore",
       "legal": "Legal & Info"
@@ -2685,5 +2693,120 @@
     "itemsUnlocked": "{count} of {total} items unlocked",
     "scoreToUnlock": "Score {score}+ to unlock",
     "itemLocked": "Locked"
+  },
+  "glossary": {
+    "title": "Medical Glossary",
+    "metaTitle": "Medical Glossary — {count} Free Medical Terms & Definitions | EnterMedSchool",
+    "metaDescription": "Browse {count} free medical terms with definitions, mnemonics, clinical cases & treatment guides. Organized by {categoryCount}+ specialties. Built for medical students, educators & clinicians.",
+    "hero": {
+      "titlePre": "Medical",
+      "titleHighlight": "Glossary",
+      "annotation": "{count} terms and counting",
+      "subtitle": "Comprehensive medical terminology with definitions, clinical cases, mnemonics, and treatment guides — free for students and educators."
+    },
+    "stats": {
+      "totalTerms": "Medical Terms",
+      "categories": "Specialties",
+      "premedTerms": "Pre-Med Terms",
+      "medicalTerms": "Clinical Terms"
+    },
+    "search": {
+      "placeholder": "Search terms, definitions, or abbreviations...",
+      "noResults": "No terms found for \"{query}\"",
+      "resultsCount": "{count} terms found"
+    },
+    "sections": {
+      "definition": "Definition",
+      "whyItMatters": "Why It Matters",
+      "howYoullSeeIt": "Clinical Presentation",
+      "problemSolving": "Diagnosis & Workup",
+      "differentials": "Differential Diagnosis",
+      "tricks": "Mnemonics & Study Tips",
+      "redFlags": "Red Flags & Emergencies",
+      "algorithm": "Clinical Algorithm",
+      "treatment": "Treatment",
+      "examAppearance": "Exam Scenarios",
+      "cases": "Clinical Cases",
+      "images": "Images & Diagrams",
+      "tips": "Study Tips",
+      "formula": "Formula & Calculator",
+      "labValue": "Reference Range",
+      "clinicalUsage": "Clinical Usage",
+      "pearls": "Clinical Pearls",
+      "clinicalSignificance": "Clinical Significance",
+      "keyConcepts": "Key Concepts",
+      "seeAlso": "Related Conditions",
+      "prerequisites": "Prerequisites",
+      "sources": "References & Sources",
+      "credits": "Credits"
+    },
+    "share": {
+      "title": "Share This Term",
+      "copyLink": "Copy Link",
+      "copied": "Copied!",
+      "copyText": "Copy as Text",
+      "qrCode": "QR Code",
+      "embedCode": "Embed Code",
+      "shareOn": "Share on {platform}",
+      "downloadPdf": "Download PDF"
+    },
+    "nav": {
+      "backToGlossary": "Back to Glossary",
+      "backToCategory": "Back to {category}",
+      "previousTerm": "Previous",
+      "nextTerm": "Next",
+      "allTerms": "All Terms",
+      "browseByCategory": "Browse by Category",
+      "alphabetIndex": "A–Z Index"
+    },
+    "category": {
+      "metaTitle": "{category} Terms — {count} Medical Definitions | EnterMedSchool Glossary",
+      "metaDescription": "Explore {count} {category} terms with free definitions, mnemonics & clinical cases for medical students.",
+      "termCount": "{count} terms",
+      "relatedCategories": "Related Categories",
+      "allTermsIn": "All Terms in {category}"
+    },
+    "term": {
+      "aliases": "Also known as",
+      "abbreviation": "Abbreviation",
+      "level": "Level",
+      "levelPremed": "Pre-Med",
+      "levelMedical": "Medical School",
+      "levelFormula": "Formula",
+      "levelLabValue": "Lab Value",
+      "lastReviewed": "Last reviewed",
+      "revealAnswer": "Reveal Answer",
+      "hideAnswer": "Hide Answer",
+      "revealClues": "Show Clues",
+      "caseScenario": "Case {number}",
+      "distinguishingFeature": "Distinguishing Feature",
+      "condition": "Condition",
+      "studyMode": "Study Mode",
+      "studyModeHint": "Reveal sections one at a time"
+    },
+    "forEducators": {
+      "title": "For Educators",
+      "description": "Share these terms with your students. Embed them in your slides, link them with a QR code, or download as PDF.",
+      "cta": "Learn More"
+    },
+    "faq": {
+      "title": "Frequently Asked Questions",
+      "q1": "What is this glossary?",
+      "a1": "A comprehensive, free medical glossary with {count}+ terms covering 30+ specialties. Each term includes definitions, clinical cases, mnemonics, treatment guides, and more — designed for medical students, educators, and clinicians.",
+      "q2": "Can I use these terms in my teaching?",
+      "a2": "Absolutely! All terms are free for educational use under our Creative Commons license. You can embed terms in your slides, share links with students, or print them as handouts.",
+      "q3": "Can I embed terms in my website or LMS?",
+      "a3": "Yes! Every term has an embeddable version you can add to any website, learning management system, or presentation with a simple iframe code.",
+      "q4": "How often are terms updated?",
+      "a4": "Terms are reviewed and updated regularly by the EnterMedSchool team. Each term shows its last review date.",
+      "q5": "Is the glossary available as an Anki addon or Chrome extension?",
+      "a5": "Yes! The same glossary is available as a free Anki addon that highlights terms in your flashcards, and a Chrome extension that highlights medical terms on any webpage."
+    },
+    "embed": {
+      "title": "Embed: {term}",
+      "poweredBy": "Powered by EnterMedSchool",
+      "viewFull": "View full term"
+    },
+    "randomTerm": "Random Term"
   }
 }

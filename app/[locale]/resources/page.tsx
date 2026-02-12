@@ -3,6 +3,7 @@
 import { useTranslations, useLocale } from "next-intl";
 import {
   BookOpen,
+  BookMarked,
   FileText,
   Video,
   Image as ImageIcon,
@@ -76,6 +77,17 @@ const sectionPaths = [
     accent: "text-showcase-yellow",
     border: "border-showcase-yellow/30",
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(255,217,61,0.15)]",
+  },
+  {
+    path: "/resources/glossary",
+    titleKey: "hub.glossary",
+    descKey: "hub.glossaryDesc",
+    icon: BookMarked,
+    color: "from-showcase-purple to-showcase-pink",
+    iconBg: "bg-showcase-purple",
+    accent: "text-showcase-purple",
+    border: "border-showcase-purple/30",
+    hoverShadow: "hover:shadow-[0_6px_24px_rgba(108,92,231,0.15)]",
   },
   {
     path: "/clinical-semiotics",

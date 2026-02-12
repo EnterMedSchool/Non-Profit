@@ -3,6 +3,7 @@ import type { Resource } from "@/data/resources";
 import type { PDFBook, PDFChapter } from "@/data/pdf-books";
 import type { VisualLesson } from "@/data/visuals";
 import type { MediaAsset } from "@/data/media-assets";
+import type { GlossaryTerm, GlossaryCategory } from "@/types/glossary";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -612,4 +613,384 @@ export function getFAQPageJsonLd(
       },
     })),
   };
+}
+
+/* ================================================================== */
+/*  Glossary SEO schemas                                              */
+/* ================================================================== */
+
+/** Strip markdown bold/underline for plain text meta descriptions */
+function stripMarkdown(text: string): string {
+  return text
+    .replace(/\*\*(.*?)\*\*/g, "$1")
+    .replace(/<u>(.*?)<\/u>/g, "$1")
+    .replace(/<[^>]+>/g, "")
+    .trim();
+}
+
+/** Truncate to max length at a word boundary, adding ellipsis */
+function truncate(text: string, max: number): string {
+  if (text.length <= max) return text;
+  const truncated = text.slice(0, max - 1);
+  const lastSpace = truncated.lastIndexOf(" ");
+  return (lastSpace > max * 0.6 ? truncated.slice(0, lastSpace) : truncated) + "…";
+}
+
+/**
+ * Build an SEO-optimized title tag for a glossary term.
+ * Varies by term type (medical condition, premed, formula, lab-value).
+ */
+export function buildGlossaryTermTitle(term: GlossaryTerm): string {
+  const name = term.names[0];
+  const alias = term.abbr?.[0] || term.aliases?.[0];
+  const parenthetical = alias ? ` (${alias})` : "";
+
+  switch (term.level) {
+    case "formula":
+      return `${name}${parenthetical} Calculator & Formula — Medical Calculator | EnterMedSchool`;
+    case "lab-value":
+      return `${name}${parenthetical} — Normal Range, High & Low Interpretation | EnterMedSchool`;
+    case "premed":
+      return `${name}${parenthetical} — Definition & Key Concepts for Medical Students | EnterMedSchool`;
+    default: {
+      const hasTreatment = !!term.treatment?.length;
+      const hasDifferentials = !!term.differentials?.length;
+      const suffix = hasTreatment
+        ? "Definition, Causes & Treatment"
+        : hasDifferentials
+          ? "Definition, Diagnosis & Differentials"
+          : "Definition & Clinical Overview";
+      return `${name}${parenthetical} — ${suffix} | EnterMedSchool`;
+    }
+  }
+}
+
+/**
+ * Build an SEO-optimized meta description for a glossary term.
+ * 150-160 chars, compelling, opens with search-intent question.
+ */
+export function buildGlossaryTermDescription(term: GlossaryTerm): string {
+  const cleanDef = stripMarkdown(term.definition);
+
+  switch (term.level) {
+    case "formula": {
+      const expr = term.formula?.expression || "";
+      return truncate(
+        `Calculate ${term.names[0]} online. ${expr}. Interactive calculator with interpretation, clinical usage & reference values. Free medical tool.`,
+        160,
+      );
+    }
+    case "lab-value": {
+      const range = term.reference_range;
+      const rangeStr = range ? `${range.low}–${range.high} ${range.unit}` : "";
+      return truncate(
+        `${term.names[0]} normal range: ${rangeStr}. Learn what high & low values mean, common causes & clinical significance. Free lab value reference.`,
+        160,
+      );
+    }
+    case "premed":
+      return truncate(
+        `${term.names[0]}: ${cleanDef} Study tips, exam prep & key concepts explained. Free resource for pre-med & medical students.`,
+        160,
+      );
+    default:
+      return truncate(
+        `What is ${term.names[0]}? ${cleanDef} Learn diagnosis, treatment & mnemonics. Free medical glossary for students & educators.`,
+        160,
+      );
+  }
+}
+
+/**
+ * JSON-LD structured data for a glossary term page.
+ *
+ * Emits up to 5 schemas for maximum rich-result eligibility:
+ * 1. DefinedTerm — glossary term definition
+ * 2. MedicalCondition — medical knowledge panel (condition terms only)
+ * 3. MedicalWebPage — authority & audience signals
+ * 4. BreadcrumbList — breadcrumb rich snippets
+ * 5. FAQPage — auto-generated from term sections
+ */
+export function getGlossaryTermJsonLd(
+  term: GlossaryTerm,
+  locale: string,
+  categoryName: string,
+) {
+  const termUrl = `${BASE_URL}/${locale}/resources/glossary/${term.id}`;
+  const glossaryUrl = `${BASE_URL}/${locale}/resources/glossary`;
+  const categoryUrl = `${BASE_URL}/${locale}/resources/glossary/category/${term.primary_tag}`;
+
+  const schemas: Record<string, unknown>[] = [];
+
+  // 1. DefinedTerm
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "DefinedTerm",
+    name: term.names[0],
+    ...(term.aliases?.length || term.abbr?.length
+      ? {
+          alternateName: [
+            ...(term.aliases || []),
+            ...(term.abbr || []),
+          ],
+        }
+      : {}),
+    description: stripMarkdown(term.definition),
+    termCode: term.id,
+    url: termUrl,
+    inDefinedTermSet: {
+      "@type": "DefinedTermSet",
+      name: "EnterMedSchool Medical Glossary",
+      url: glossaryUrl,
+    },
+  });
+
+  // 2. MedicalCondition (for medical-level terms with clinical content)
+  if (!term.level || term.level === "physiological") {
+    const medicalCondition: Record<string, unknown> = {
+      "@context": "https://schema.org",
+      "@type": "MedicalCondition",
+      name: term.names[0],
+      ...(term.aliases?.length ? { alternateName: term.aliases } : {}),
+      description: stripMarkdown(term.definition),
+      url: termUrl,
+    };
+
+    if (term.how_youll_see_it?.length) {
+      medicalCondition.signOrSymptom = term.how_youll_see_it.slice(0, 3).map((s) => ({
+        "@type": "MedicalSignOrSymptom",
+        name: stripMarkdown(s).slice(0, 100),
+      }));
+    }
+    if (term.treatment?.length) {
+      medicalCondition.possibleTreatment = term.treatment.slice(0, 3).map((t) => ({
+        "@type": "MedicalTherapy",
+        name: stripMarkdown(t).slice(0, 100),
+      }));
+    }
+    if (term.differentials?.length) {
+      medicalCondition.differentialDiagnosis = term.differentials.map((d) => ({
+        "@type": "DDxElement",
+        diagnosis: {
+          "@type": "MedicalCondition",
+          name: d.name || d.id || "Unknown",
+        },
+        distinguishingSign: d.hint,
+      }));
+    }
+    schemas.push(medicalCondition);
+  }
+
+  // 3. MedicalWebPage
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: buildGlossaryTermTitle(term),
+    description: buildGlossaryTermDescription(term),
+    url: termUrl,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+    lastReviewed: new Date().toISOString().split("T")[0],
+    reviewedBy: ORGANIZATION_REF,
+    medicalAudience: [
+      { "@type": "MedicalAudience", audienceType: "Clinician" },
+      { "@type": "MedicalAudience", audienceType: "MedicalStudent" },
+    ],
+    about: { "@type": "DefinedTerm", name: term.names[0] },
+    ...(term.sources?.length
+      ? {
+          citation: term.sources.map((s) => ({
+            "@type": "CreativeWork",
+            name: s.title,
+            url: s.url,
+          })),
+        }
+      : {}),
+    keywords: [
+      term.names[0],
+      ...(term.aliases || []),
+      ...(term.abbr || []),
+      ...(term.tags || []),
+    ].join(", "),
+  });
+
+  // 4. BreadcrumbList
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Resources",
+        item: `${BASE_URL}/${locale}/resources`,
+      },
+      {
+        "@type": "ListItem",
+        position: 3,
+        name: "Medical Glossary",
+        item: glossaryUrl,
+      },
+      {
+        "@type": "ListItem",
+        position: 4,
+        name: categoryName,
+        item: categoryUrl,
+      },
+      { "@type": "ListItem", position: 5, name: term.names[0] },
+    ],
+  });
+
+  // 5. FAQPage — auto-generated from term sections
+  const faqItems: Array<{ question: string; answer: string }> = [];
+  faqItems.push({
+    question: `What is ${term.names[0]}?`,
+    answer: stripMarkdown(term.definition),
+  });
+  if (term.treatment?.length) {
+    faqItems.push({
+      question: `How is ${term.names[0]} treated?`,
+      answer: stripMarkdown(term.treatment.join(" ")),
+    });
+  }
+  if (term.red_flags?.length) {
+    faqItems.push({
+      question: `What are the red flags for ${term.names[0]}?`,
+      answer: stripMarkdown(term.red_flags.join(" ")),
+    });
+  }
+  if (term.algorithm?.length) {
+    faqItems.push({
+      question: `How is ${term.names[0]} diagnosed?`,
+      answer: stripMarkdown(term.algorithm.join(" ")),
+    });
+  }
+  if (term.differentials?.length) {
+    faqItems.push({
+      question: `What are the differential diagnoses for ${term.names[0]}?`,
+      answer: term.differentials
+        .map((d) => `${d.name || d.id}: ${d.hint}`)
+        .join(". "),
+    });
+  }
+
+  if (faqItems.length > 1) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      inLanguage: locale,
+      mainEntity: faqItems.map((item) => ({
+        "@type": "Question",
+        name: item.question,
+        acceptedAnswer: { "@type": "Answer", text: item.answer },
+      })),
+    });
+  }
+
+  return schemas;
+}
+
+/**
+ * JSON-LD for the glossary hub page.
+ * DefinedTermSet + CollectionPage
+ */
+export function getGlossaryHubJsonLd(
+  totalTerms: number,
+  locale: string,
+) {
+  const glossaryUrl = `${BASE_URL}/${locale}/resources/glossary`;
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "DefinedTermSet",
+      name: "EnterMedSchool Medical Glossary",
+      description: `A comprehensive medical glossary with ${totalTerms} terms covering 30+ specialties. Free definitions, mnemonics, clinical cases, and treatment guides.`,
+      url: glossaryUrl,
+      inLanguage: locale,
+      publisher: ORGANIZATION_REF,
+      isAccessibleForFree: true,
+      educationalLevel: "University",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `Medical Glossary — ${totalTerms} Free Medical Terms`,
+      description: `Browse ${totalTerms} free medical terms with definitions, mnemonics, clinical cases & treatment guides.`,
+      url: glossaryUrl,
+      inLanguage: locale,
+      isPartOf: {
+        "@type": "WebSite",
+        name: "EnterMedSchool.org",
+        url: BASE_URL,
+      },
+      provider: ORGANIZATION_REF,
+    },
+  ];
+}
+
+/**
+ * JSON-LD for a glossary category page.
+ * CollectionPage + ItemList + BreadcrumbList
+ */
+export function getGlossaryCategoryJsonLd(
+  category: GlossaryCategory,
+  terms: Array<{ id: string; name: string }>,
+  locale: string,
+) {
+  const categoryUrl = `${BASE_URL}/${locale}/resources/glossary/category/${category.id}`;
+  const glossaryUrl = `${BASE_URL}/${locale}/resources/glossary`;
+
+  return [
+    {
+      "@context": "https://schema.org",
+      "@type": "CollectionPage",
+      name: `${category.name} Medical Terms`,
+      description: `${category.count} ${category.name.toLowerCase()} terms with definitions, clinical cases, and study guides.`,
+      url: categoryUrl,
+      inLanguage: locale,
+      isPartOf: {
+        "@type": "WebSite",
+        name: "EnterMedSchool.org",
+        url: BASE_URL,
+      },
+      provider: ORGANIZATION_REF,
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      numberOfItems: terms.length,
+      itemListElement: terms.map((t, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: t.name,
+        url: `${BASE_URL}/${locale}/resources/glossary/${t.id}`,
+      })),
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      itemListElement: [
+        { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+        {
+          "@type": "ListItem",
+          position: 2,
+          name: "Resources",
+          item: `${BASE_URL}/${locale}/resources`,
+        },
+        {
+          "@type": "ListItem",
+          position: 3,
+          name: "Medical Glossary",
+          item: glossaryUrl,
+        },
+        { "@type": "ListItem", position: 4, name: category.name },
+      ],
+    },
+  ];
 }
