@@ -30,6 +30,7 @@ import {
   rarityConfig,
 } from "@/data/disease-characters";
 import { routing } from "@/i18n/routing";
+import { getClinicalCaseJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
@@ -103,8 +104,20 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
     {} as Record<string, typeof caseData.scenes>
   );
 
+  /* ── JSON-LD structured data ──────────────────────────────────── */
+  const jsonLdSchemas = getClinicalCaseJsonLd(caseData, locale);
+
   return (
     <main id="main-content" className="relative z-10 py-12 sm:py-20">
+      {/* JSON-LD structured data */}
+      {jsonLdSchemas.map((schema, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(schema) }}
+        />
+      ))}
+
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Back link */}
         <AnimatedSection animation="slideLeft">

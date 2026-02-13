@@ -1,5 +1,5 @@
 import type { MetadataRoute } from "next";
-import { tools, getCalculatorTools } from "@/data/tools";
+import { tools } from "@/data/tools";
 import { visualLessons } from "@/data/visuals";
 import { EXAM_COPY } from "@/components/clinical-semiotics/examChains";
 import { pdfBooks } from "@/data/pdf-books";
@@ -11,6 +11,7 @@ import {
   getTagSlug,
 } from "@/data/media-assets";
 import { glossaryTerms, glossaryCategories } from "@/data/glossary-terms";
+import { clinicalCases } from "@/data/clinical-cases";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -18,295 +19,370 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org
 const locales = routing.locales;
 const defaultLocale = routing.defaultLocale;
 
-const staticPages = [
-  "",
-  "/about",
-  "/resources",
-  "/resources/questions",
-  "/resources/videos",
-  "/resources/pdfs",
-  "/resources/visuals",
-  "/resources/media",
-  "/resources/media/collections",
-  "/resources/media/how-to-cite",
-  "/tools",
-  "/calculators",
-  "/for-professors",
-  "/for-professors/guides",
-  "/for-professors/assets",
-  "/events",
-  "/license",
-  "/privacy",
-  "/clinical-semiotics",
-  "/resources/glossary",
-];
+/**
+ * Last-known content update for static / seldom-changing pages.
+ * Avoids `new Date()` which changes on every build and causes Google
+ * to ignore the lastModified signal entirely.
+ */
+const CONTENT_UPDATED = "2025-06-01";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+/* ── Helpers ──────────────────────────────────────────────────────── */
+
+/** Build per-locale alternate URLs + x-default for a localized path */
+function buildAlternates(path: string) {
+  const languages: Record<string, string> = {};
+  for (const locale of locales) {
+    languages[locale] = `${BASE_URL}/${locale}${path}`;
+  }
+  // x-default points to the default locale
+  languages["x-default"] = `${BASE_URL}/${defaultLocale}${path}`;
+  return { languages };
+}
+
+/* ── Sitemap index ───────────────────────────────────────────────── */
+
+/**
+ * Next.js generates a sitemap index at /sitemap.xml that references
+ * /sitemap/0.xml, /sitemap/1.xml, etc. — one for each id returned here.
+ *
+ * Split by content type:
+ *   0 – Static pages, tools, calculators, standalone tools
+ *   1 – Media assets, categories, tags, collections
+ *   2 – Glossary terms & categories
+ *   3 – PDF books & chapters, visual lessons, clinical cases
+ */
+export async function generateSitemaps() {
+  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }];
+}
+
+/* ── Sitemap chunks ──────────────────────────────────────────────── */
+
+export default function sitemap({
+  id,
+}: {
+  id: number;
+}): MetadataRoute.Sitemap {
+  switch (id) {
+    case 0:
+      return buildStaticAndToolsSitemap();
+    case 1:
+      return buildMediaSitemap();
+    case 2:
+      return buildGlossarySitemap();
+    case 3:
+      return buildContentSitemap();
+    default:
+      return [];
+  }
+}
+
+/* ================================================================== */
+/*  Chunk 0 — Static pages + Tools + Calculators                      */
+/* ================================================================== */
+
+function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  // ── Static pages ───────────────────────────────────────────────────
-  for (const page of staticPages) {
-    const languages: Record<string, string> = {};
-    for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}${page}`;
-    }
+  /* ── Static pages ──────────────────────────────────────────────── */
 
+  /** [path, priority, changeFrequency] */
+  const staticPages: [string, number, "weekly" | "monthly"][] = [
+    // Homepage
+    ["", 1.0, "weekly"],
+    // Core hub pages – 0.9
+    ["/resources", 0.9, "weekly"],
+    ["/tools", 0.9, "weekly"],
+    ["/calculators", 0.9, "weekly"],
+    ["/for-professors", 0.9, "monthly"],
+    ["/clinical-semiotics", 0.9, "monthly"],
+    // Section landing pages – 0.8
+    ["/about", 0.8, "monthly"],
+    ["/resources/questions", 0.8, "monthly"],
+    ["/resources/videos", 0.8, "monthly"],
+    ["/resources/pdfs", 0.8, "monthly"],
+    ["/resources/visuals", 0.8, "monthly"],
+    ["/resources/media", 0.8, "monthly"],
+    ["/resources/glossary", 0.8, "monthly"],
+    ["/resources/clinical-cases", 0.8, "monthly"],
+    ["/for-professors/guides", 0.7, "monthly"],
+    ["/for-professors/assets", 0.7, "monthly"],
+    ["/for-professors/templates", 0.7, "monthly"],
+    ["/resources/media/collections", 0.7, "monthly"],
+    ["/events", 0.7, "monthly"],
+    // Utility pages – 0.5
+    ["/resources/media/how-to-cite", 0.5, "monthly"],
+    ["/license", 0.5, "monthly"],
+    ["/privacy", 0.5, "monthly"],
+  ];
+
+  for (const [page, priority, changeFrequency] of staticPages) {
     entries.push({
       url: `${BASE_URL}/${defaultLocale}${page}`,
-      lastModified: new Date(),
-      changeFrequency: page === "" ? "weekly" : "monthly",
-      priority: page === "" ? 1 : page.includes("/") && page.split("/").length > 2 ? 0.6 : 0.8,
-      alternates: {
-        languages,
-      },
+      lastModified: CONTENT_UPDATED,
+      changeFrequency,
+      priority,
+      alternates: buildAlternates(page),
     });
   }
 
-  // ── Tool detail pages ───────────────────────────────────────────────
-  for (const tool of tools) {
-    // Calculator tools live under /calculators/[id], creator tools under /tools/[id]
-    const prefix = tool.category === "calculator" ? "/calculators" : "/tools";
-    const languages: Record<string, string> = {};
-    for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}${prefix}/${tool.id}`;
-    }
+  /* ── Tool detail pages ─────────────────────────────────────────── */
 
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}${prefix}/${tool.id}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
-      priority: 0.9,
-      alternates: {
-        languages,
-      },
-    });
-  }
-
-  // ── Tool embed-code pages (/calculators/[id]/embed-code, /tools/[id]/embed-code)
   for (const tool of tools) {
     const prefix = tool.category === "calculator" ? "/calculators" : "/tools";
-    const codeLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      codeLangs[locale] = `${BASE_URL}/${locale}${prefix}/${tool.id}/embed-code`;
-    }
+    const path = `${prefix}/${tool.id}`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}${prefix}/${tool.id}/embed-code`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: {
-        languages: codeLangs,
-      },
+      alternates: buildAlternates(path),
     });
   }
 
-  // ── Standalone tool routes (no locale prefix) ─────────────────
+  /* ── Tool embed-code pages ─────────────────────────────────────── */
+
+  for (const tool of tools) {
+    const prefix = tool.category === "calculator" ? "/calculators" : "/tools";
+    const path = `${prefix}/${tool.id}/embed-code`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Clinical semiotics embed-code pages ───────────────────────── */
+
+  for (const examType of Object.keys(EXAM_COPY)) {
+    const path = `/clinical-semiotics/${examType}/embed-code`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Standalone tool routes (no locale prefix) ─────────────────── */
+
   const standaloneTools = [
-    { path: "/create", priority: 0.9 },
-    { path: "/mcq", priority: 0.9 },
-    { path: "/flashcards", priority: 0.9 },
-    { path: "/editor", priority: 0.9 },
+    { path: "/create", priority: 0.8 },
+    { path: "/mcq", priority: 0.8 },
+    { path: "/flashcards", priority: 0.8 },
+    { path: "/editor", priority: 0.8 },
   ];
+
   for (const tool of standaloneTools) {
     entries.push({
       url: `${BASE_URL}${tool.path}`,
-      lastModified: new Date(),
-      changeFrequency: "weekly",
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
       priority: tool.priority,
     });
   }
 
-  // ── Visual lesson detail pages ───────────────────────────────────
-  for (const lesson of visualLessons) {
-    const languages: Record<string, string> = {};
-    for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}/resources/visuals/${lesson.id}`;
-    }
+  return entries;
+}
+
+/* ================================================================== */
+/*  Chunk 1 — Media assets, categories, tags, collections             */
+/* ================================================================== */
+
+function buildMediaSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  /* ── Media asset detail pages ──────────────────────────────────── */
+
+  for (const asset of mediaAssets) {
+    const path = `/resources/media/${asset.slug}`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/visuals/${lesson.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.9,
-      alternates: { languages },
-    });
-  }
-
-  // ── Visual lesson embed-code pages (/resources/visuals/[id]/embed-code)
-  for (const lesson of visualLessons) {
-    const codeLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      codeLangs[locale] = `${BASE_URL}/${locale}/resources/visuals/${lesson.id}/embed-code`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/visuals/${lesson.id}/embed-code`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: asset.dateModified,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages: codeLangs },
+      alternates: buildAlternates(path),
     });
   }
 
-  // ── Clinical semiotics embed-code pages (/clinical-semiotics/[examType]/embed-code)
-  for (const examType of Object.keys(EXAM_COPY)) {
-    const codeLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      codeLangs[locale] = `${BASE_URL}/${locale}/clinical-semiotics/${examType}/embed-code`;
-    }
+  /* ── Media asset embed-code pages ──────────────────────────────── */
+
+  for (const asset of mediaAssets) {
+    const path = `/resources/media/${asset.slug}/embed-code`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}/clinical-semiotics/${examType}/embed-code`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: asset.dateModified,
       changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: { languages: codeLangs },
+      priority: 0.5,
+      alternates: buildAlternates(path),
     });
   }
 
-  // ── PDF book overview pages ────────────────────────────────────
+  /* ── Media category pages ──────────────────────────────────────── */
+
+  for (const category of mediaAssetCategories) {
+    const path = `/resources/media/category/${category.id}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Media tag pages ───────────────────────────────────────────── */
+
+  for (const tag of getAllTags()) {
+    const tagSlug = getTagSlug(tag);
+    const path = `/resources/media/tag/${tagSlug}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.3,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Media collection pages ────────────────────────────────────── */
+
+  for (const collection of mediaAssetCollections) {
+    const path = `/resources/media/collections/${collection.slug}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: collection.dateModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  return entries;
+}
+
+/* ================================================================== */
+/*  Chunk 2 — Glossary terms & categories                             */
+/* ================================================================== */
+
+function buildGlossarySitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  /* ── Glossary term pages ───────────────────────────────────────── */
+
+  for (const term of glossaryTerms) {
+    const path = `/resources/glossary/${term.id}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.8,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Glossary category pages ───────────────────────────────────── */
+
+  for (const category of glossaryCategories) {
+    const path = `/resources/glossary/category/${category.id}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  return entries;
+}
+
+/* ================================================================== */
+/*  Chunk 3 — PDF books, visual lessons, clinical cases               */
+/* ================================================================== */
+
+function buildContentSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  /* ── PDF book overview pages ───────────────────────────────────── */
+
   for (const book of pdfBooks) {
-    const languages: Record<string, string> = {};
-    for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}/resources/pdfs/${book.slug}`;
-    }
+    const bookPath = `/resources/pdfs/${book.slug}`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/pdfs/${book.slug}`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/${defaultLocale}${bookPath}`,
+      lastModified: book.lastUpdated,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages },
+      alternates: buildAlternates(bookPath),
     });
 
-    // ── PDF chapter pages ──────────────────────────────────────
+    /* ── PDF chapter pages ─────────────────────────────────────── */
+
     for (const chapter of book.chapters) {
-      const chLangs: Record<string, string> = {};
-      for (const locale of locales) {
-        chLangs[locale] = `${BASE_URL}/${locale}/resources/pdfs/${book.slug}/${chapter.slug}`;
-      }
+      const chapterPath = `/resources/pdfs/${book.slug}/${chapter.slug}`;
 
       entries.push({
-        url: `${BASE_URL}/${defaultLocale}/resources/pdfs/${book.slug}/${chapter.slug}`,
-        lastModified: new Date(),
+        url: `${BASE_URL}/${defaultLocale}${chapterPath}`,
+        lastModified: book.lastUpdated,
         changeFrequency: "monthly",
         priority: 0.7,
-        alternates: { languages: chLangs },
+        alternates: buildAlternates(chapterPath),
       });
     }
   }
 
-  // ── Media asset detail pages (/resources/media/[slug]) ──────────
-  for (const asset of mediaAssets) {
-    const languages: Record<string, string> = {};
-    for (const locale of locales) {
-      languages[locale] = `${BASE_URL}/${locale}/resources/media/${asset.slug}`;
-    }
+  /* ── Visual lesson detail pages ────────────────────────────────── */
+
+  for (const lesson of visualLessons) {
+    const path = `/resources/visuals/${lesson.id}`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/media/${asset.slug}`,
-      lastModified: new Date(asset.dateModified),
-      changeFrequency: "monthly",
-      priority: 0.9,
-      alternates: { languages },
-    });
-  }
-
-  // ── Media asset embed-code pages (/resources/media/[slug]/embed-code) ──
-  for (const asset of mediaAssets) {
-    const codeLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      codeLangs[locale] = `${BASE_URL}/${locale}/resources/media/${asset.slug}/embed-code`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/media/${asset.slug}/embed-code`,
-      lastModified: new Date(asset.dateModified),
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages: codeLangs },
+      alternates: buildAlternates(path),
     });
   }
 
-  // ── Media category pages (/resources/media/category/[id]) ──────────
-  for (const category of mediaAssetCategories) {
-    const catLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      catLangs[locale] = `${BASE_URL}/${locale}/resources/media/category/${category.id}`;
-    }
+  /* ── Visual lesson embed-code pages ────────────────────────────── */
+
+  for (const lesson of visualLessons) {
+    const path = `/resources/visuals/${lesson.id}/embed-code`;
 
     entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/media/category/${category.id}`,
-      lastModified: new Date(),
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.5,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Clinical case detail pages ────────────────────────────────── */
+
+  for (const clinicalCase of clinicalCases) {
+    const path = `/resources/clinical-cases/${clinicalCase.id}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
-      alternates: { languages: catLangs },
-    });
-  }
-
-  // ── Media tag pages (/resources/media/tag/[tag]) ──────────────────
-  for (const tag of getAllTags()) {
-    const tagSlug = getTagSlug(tag);
-    const tagLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      tagLangs[locale] = `${BASE_URL}/${locale}/resources/media/tag/${tagSlug}`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/media/tag/${tagSlug}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.7,
-      alternates: { languages: tagLangs },
-    });
-  }
-
-  // ── Media collection pages (/resources/media/collections/[slug]) ──
-  for (const collection of mediaAssetCollections) {
-    const colLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      colLangs[locale] = `${BASE_URL}/${locale}/resources/media/collections/${collection.slug}`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/media/collections/${collection.slug}`,
-      lastModified: new Date(collection.dateModified),
-      changeFrequency: "monthly",
-      priority: 0.8,
-      alternates: { languages: colLangs },
-    });
-  }
-
-  // ── Glossary term pages (/resources/glossary/[termId]) ────────────
-  for (const term of glossaryTerms) {
-    const termLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      termLangs[locale] = `${BASE_URL}/${locale}/resources/glossary/${term.id}`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/glossary/${term.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.85,
-      alternates: { languages: termLangs },
-    });
-  }
-
-  // ── Glossary category pages (/resources/glossary/category/[id]) ──
-  for (const category of glossaryCategories) {
-    const catLangs: Record<string, string> = {};
-    for (const locale of locales) {
-      catLangs[locale] = `${BASE_URL}/${locale}/resources/glossary/category/${category.id}`;
-    }
-
-    entries.push({
-      url: `${BASE_URL}/${defaultLocale}/resources/glossary/category/${category.id}`,
-      lastModified: new Date(),
-      changeFrequency: "monthly",
-      priority: 0.75,
-      alternates: { languages: catLangs },
+      alternates: buildAlternates(path),
     });
   }
 

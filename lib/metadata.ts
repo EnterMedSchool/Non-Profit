@@ -4,6 +4,7 @@ import type { PDFBook, PDFChapter } from "@/data/pdf-books";
 import type { VisualLesson } from "@/data/visuals";
 import type { MediaAsset } from "@/data/media-assets";
 import type { GlossaryTerm, GlossaryCategory } from "@/types/glossary";
+import type { ClinicalCase } from "@/data/clinical-cases";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -27,7 +28,7 @@ export function getOrganizationJsonLd() {
     description:
       "Free, open-source medical education resources, tools, and guides for educators worldwide.",
     foundingDate: "2019",
-    nonprofitStatus: "NonprofitType",
+    nonprofitStatus: "Nonprofit501c3",
     founder: {
       "@type": "Person",
       name: "Ari Horesh",
@@ -168,7 +169,7 @@ export function getAboutPageJsonLd(locale: string) {
       url: BASE_URL,
       logo: `${BASE_URL}/logo.png`,
       foundingDate: "2019",
-      nonprofitStatus: "NonprofitType",
+      nonprofitStatus: "Nonprofit501c3",
       founder: {
         "@type": "Person",
         name: "Ari Horesh",
@@ -613,6 +614,67 @@ export function getFAQPageJsonLd(
       },
     })),
   };
+}
+
+/* ================================================================== */
+/*  Clinical Case SEO schemas                                         */
+/* ================================================================== */
+
+/**
+ * JSON-LD structured data for an individual clinical case page.
+ *
+ * Emits two schemas:
+ * 1. MedicalWebPage — signals authoritative medical content
+ * 2. LearningResource — educational content with objectives & metadata
+ */
+export function getClinicalCaseJsonLd(
+  clinicalCase: ClinicalCase,
+  locale: string,
+) {
+  const caseUrl = `${BASE_URL}/${locale}/resources/clinical-cases/${clinicalCase.id}`;
+
+  const medicalWebPage = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: `${clinicalCase.title} — Clinical Case`,
+    description: `${clinicalCase.difficulty} ${clinicalCase.category} clinical case: ${clinicalCase.patient.briefHistory}`,
+    url: caseUrl,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+    medicalAudience: [
+      { "@type": "MedicalAudience", audienceType: "Clinician" },
+      { "@type": "MedicalAudience", audienceType: "MedicalStudent" },
+    ],
+    about: {
+      "@type": "MedicalCondition",
+      name: clinicalCase.answerKey.diagnosis,
+    },
+    keywords: clinicalCase.tags.join(", "),
+  };
+
+  const learningResource = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: clinicalCase.title,
+    description: `Interactive ${clinicalCase.difficulty} clinical case in ${clinicalCase.category}. ${clinicalCase.patient.briefHistory}`,
+    url: caseUrl,
+    learningResourceType: "Case Study",
+    educationalLevel: "University",
+    isAccessibleForFree: true,
+    inLanguage: locale,
+    provider: ORGANIZATION_REF,
+    timeRequired: `PT${clinicalCase.estimatedMinutes}M`,
+    teaches: clinicalCase.learningObjectives.join("; "),
+    typicalAgeRange: "18-",
+    interactivityType: "active",
+    keywords: clinicalCase.tags.join(", "),
+  };
+
+  return [medicalWebPage, learningResource];
 }
 
 /* ================================================================== */

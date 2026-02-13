@@ -1,6 +1,8 @@
 import { mediaAssets } from "@/data/media-assets";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+const defaultLocale = routing.defaultLocale;
 
 /**
  * Image Sitemap — helps Google Images discover and index all media assets
@@ -10,12 +12,12 @@ const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org
  */
 export async function GET() {
   const entries = mediaAssets.map((asset) => {
-    const pageUrl = `${BASE_URL}/en/resources/media/${asset.slug}`;
+    const pageUrl = `${BASE_URL}/${defaultLocale}/resources/media/${asset.slug}`;
     const imageUrl = `${BASE_URL}${asset.imagePath}`;
     const licenseUrl =
       asset.license === "CC BY 4.0"
         ? "https://creativecommons.org/licenses/by/4.0/"
-        : `${BASE_URL}/en/license`;
+        : `${BASE_URL}/${defaultLocale}/license`;
 
     return `  <url>
     <loc>${escapeXml(pageUrl)}</loc>
