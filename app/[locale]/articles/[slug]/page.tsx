@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import dynamic from "next/dynamic";
 import { ArrowLeft, ArrowRight } from "lucide-react";
 import { blogPosts, getBlogPostBySlug, getAllBlogSlugs } from "@/data/blog-posts";
 import { routing } from "@/i18n/routing";
@@ -11,20 +10,7 @@ import ArticleHero from "@/components/articles/ArticleHero";
 import ArticleBody from "@/components/articles/ArticleBody";
 import AuthorCard from "@/components/articles/AuthorCard";
 import ArticlesCTA from "@/components/articles/ArticlesCTA";
-
-/* ── Client components: dynamically imported for code-splitting ──── */
-const ReadingProgressBar = dynamic(
-  () => import("@/components/pdf-viewer/ReadingProgressBar"),
-  { ssr: false },
-);
-const TableOfContents = dynamic(
-  () => import("@/components/articles/TableOfContents"),
-  { ssr: false },
-);
-const ShareBar = dynamic(
-  () => import("@/components/articles/ShareBar"),
-  { ssr: false },
-);
+import { ReadingProgressBar, TableOfContents, ShareBar } from "./ArticleClientComponents";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
