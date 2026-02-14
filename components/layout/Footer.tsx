@@ -197,6 +197,9 @@ export default function Footer() {
                   <FooterLink href={`/${locale}/events`}>{nav("events")}</FooterLink>
                 </li>
                 <li>
+                  <FooterLink href={`/${locale}/blog`}>{nav("blog")}</FooterLink>
+                </li>
+                <li>
                   <FooterLink href={`/${locale}/license`}>{nav("license")}</FooterLink>
                 </li>
               </ul>

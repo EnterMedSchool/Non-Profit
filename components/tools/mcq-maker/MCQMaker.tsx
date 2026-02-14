@@ -62,9 +62,9 @@ class MCQErrorBoundary extends Component<
           <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-red-50 mb-4">
             <AlertTriangle className="h-8 w-8 text-red-400" />
           </div>
-          <h1 className="font-display text-xl font-bold text-ink-dark mb-2">
+          <h2 className="font-display text-xl font-bold text-ink-dark mb-2">
             Something went wrong
-          </h1>
+          </h2>
           <p className="text-sm text-ink-muted max-w-md mb-4">
             The MCQ Maker encountered an unexpected error. Your data is
             auto-saved and should be recovered on reload.

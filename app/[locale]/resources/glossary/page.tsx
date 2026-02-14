@@ -8,6 +8,7 @@ import {
   getTermSummaries,
 } from "@/data/glossary-terms";
 import { getGlossaryHubJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 import GlossaryHubClient from "./GlossaryHubClient";
 
 interface Props {
@@ -27,6 +28,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     }),
     alternates: {
       canonical: `${BASE_URL}/${locale}/resources/glossary`,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/resources/glossary`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/resources/glossary`,
+      },
     },
     openGraph: {
       title: `Medical Glossary — ${glossaryStats.totalTerms} Free Medical Terms | EnterMedSchool`,

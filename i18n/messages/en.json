@@ -50,6 +50,7 @@
     "guides": "Guides",
     "events": "Events",
     "about": "About",
+    "blog": "Blog",
     "license": "License",
     "privacy": "Privacy",
     "visitCom": "Visit entermedschool.com",
@@ -199,6 +200,7 @@
   },
   "mission": {
     "title": "Our Mission",
+    "sectionTitle": "Our Mission",
     "quote": "We believe the resources and tools educators need to teach well should be free and open source.",
     "description": "EnterMedSchool.org is a resource archive for medical educators. Everything here is free to download, embed on your website, and share with your students. Just remember to attribute.",
     "relationship": "EnterMedSchool.com funds this project through paid courses and services. Everything here on .org is free, open-source, and always will be. Download, embed, and use anything you find for your classroom.",
@@ -1974,6 +1976,7 @@
     "assets": "Assets",
     "events": "Events",
     "about": "About",
+    "blog": "Blog",
     "license": "License",
     "privacy": "Privacy"
   },

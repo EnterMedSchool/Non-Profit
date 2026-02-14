@@ -41,6 +41,14 @@ export function getOrganizationJsonLd() {
     sameAs: [
       "https://entermedschool.com",
       "https://github.com/enterMedSchool/Non-Profit",
+      "https://x.com/entermedschool",
+    ],
+    knowsAbout: [
+      "Medical Education",
+      "Clinical Medicine",
+      "Anatomy",
+      "Pathology",
+      "Pharmacology",
     ],
   };
 }
@@ -99,7 +107,7 @@ export function getToolJsonLd(
       "@type": "MedicalAudience",
       audienceType: "Clinician",
     },
-    lastReviewed: new Date().toISOString().split("T")[0],
+    lastReviewed: "2025-06-01",
     ...(tool.seoKeywords && { keywords: tool.seoKeywords.join(", ") }),
   };
 
@@ -437,7 +445,7 @@ export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
       "@type": "MedicalAudience",
       audienceType: "Clinician",
     },
-    lastReviewed: new Date().toISOString().split("T")[0],
+    lastReviewed: "2025-06-01",
     keywords: lesson.tags.join(", "),
     thumbnailUrl: `${BASE_URL}${lesson.thumbnailPath}`,
   };
@@ -856,7 +864,7 @@ export function getGlossaryTermJsonLd(
       name: "EnterMedSchool.org",
       url: BASE_URL,
     },
-    lastReviewed: new Date().toISOString().split("T")[0],
+    lastReviewed: "2025-06-01",
     reviewedBy: ORGANIZATION_REF,
     medicalAudience: [
       { "@type": "MedicalAudience", audienceType: "Clinician" },
@@ -1055,4 +1063,160 @@ export function getGlossaryCategoryJsonLd(
       ],
     },
   ];
+}
+
+/* ================================================================== */
+/*  SEO Enhancement Schemas                                            */
+/* ================================================================== */
+
+/**
+ * SiteNavigationElement — tells Google about the site's main navigation
+ * structure, helping trigger sitelinks in search results.
+ */
+export function getSiteNavigationJsonLd(locale: string) {
+  const nav = [
+    { name: "Resources", url: `${BASE_URL}/${locale}/resources` },
+    { name: "Medical Glossary", url: `${BASE_URL}/${locale}/resources/glossary` },
+    { name: "Visual Lessons", url: `${BASE_URL}/${locale}/resources/visuals` },
+    { name: "PDF Textbooks", url: `${BASE_URL}/${locale}/resources/pdfs` },
+    { name: "Media Library", url: `${BASE_URL}/${locale}/resources/media` },
+    { name: "Tools", url: `${BASE_URL}/${locale}/tools` },
+    { name: "Calculators", url: `${BASE_URL}/${locale}/calculators` },
+    { name: "For Professors", url: `${BASE_URL}/${locale}/for-professors` },
+    { name: "Clinical Cases", url: `${BASE_URL}/${locale}/resources/clinical-cases` },
+    { name: "About", url: `${BASE_URL}/${locale}/about` },
+  ];
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "SiteNavigationElement",
+    name: "Main Navigation",
+    url: BASE_URL,
+    hasPart: nav.map((item) => ({
+      "@type": "WebPage",
+      name: item.name,
+      url: item.url,
+    })),
+  };
+}
+
+/**
+ * HowTo schema for tool pages — targets featured snippets for
+ * "how to create medical flashcards" etc.
+ */
+export function getHowToJsonLd(
+  tool: Tool,
+  title: string,
+  description: string,
+  locale: string,
+  steps: { name: string; text: string }[],
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: title,
+    description,
+    url: `${BASE_URL}/${locale}/tools/${tool.id}`,
+    totalTime: "PT5M",
+    tool: {
+      "@type": "HowToTool",
+      name: "Web browser",
+    },
+    supply: [],
+    step: steps.map((s, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: s.name,
+      text: s.text,
+      url: `${BASE_URL}/${locale}/tools/${tool.id}#step-${i + 1}`,
+    })),
+    provider: ORGANIZATION_REF,
+  };
+}
+
+/**
+ * Add speakable property to glossary term JSON-LD — helps voice assistants
+ * surface term definitions in voice search results.
+ */
+export function getGlossarySpeakableJsonLd(
+  term: GlossaryTerm,
+  locale: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: term.names[0],
+    url: `${BASE_URL}/${locale}/resources/glossary/${term.id}`,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [
+        "[data-speakable='definition']",
+        "[data-speakable='summary']",
+      ],
+    },
+    mainEntity: {
+      "@type": "DefinedTerm",
+      name: term.names[0],
+      description: term.definition,
+      inDefinedTermSet: {
+        "@type": "DefinedTermSet",
+        name: "EnterMedSchool Medical Glossary",
+        url: `${BASE_URL}/${locale}/resources/glossary`,
+      },
+    },
+  };
+}
+
+/**
+ * Blog Article JSON-LD schema.
+ */
+export function getBlogArticleJsonLd(article: {
+  title: string;
+  description: string;
+  slug: string;
+  author: string;
+  datePublished: string;
+  dateModified: string;
+  tags: string[];
+  imageUrl?: string;
+}, locale: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: article.title,
+    description: article.description,
+    url: `${BASE_URL}/${locale}/blog/${article.slug}`,
+    datePublished: article.datePublished,
+    dateModified: article.dateModified,
+    author: {
+      "@type": "Person",
+      name: article.author,
+    },
+    publisher: {
+      "@type": "Organization",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+      logo: {
+        "@type": "ImageObject",
+        url: `${BASE_URL}/logo.png`,
+      },
+    },
+    mainEntityOfPage: {
+      "@type": "WebPage",
+      "@id": `${BASE_URL}/${locale}/blog/${article.slug}`,
+    },
+    inLanguage: locale,
+    ...(article.imageUrl && {
+      image: {
+        "@type": "ImageObject",
+        url: article.imageUrl,
+      },
+    }),
+    keywords: article.tags.join(", "),
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+  };
 }

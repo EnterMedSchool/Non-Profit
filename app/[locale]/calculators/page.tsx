@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
 import { getCalculatorTools } from "@/data/tools";
 import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 
 interface CalculatorsPageProps {
   params: Promise<{ locale: string }>;
@@ -25,6 +26,15 @@ export async function generateMetadata({ params }: CalculatorsPageProps) {
       type: "website",
     },
     keywords: ["medical calculators", "BMI calculator", "clinical calculators", "free medical tools", "health calculators"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/calculators`,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/calculators`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/calculators`,
+      },
+    },
   };
 }
 

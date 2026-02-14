@@ -12,6 +12,7 @@ import {
 } from "@/data/media-assets";
 import { glossaryTerms, glossaryCategories } from "@/data/glossary-terms";
 import { clinicalCases } from "@/data/clinical-cases";
+import { blogPosts } from "@/data/blog-posts";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -50,9 +51,10 @@ function buildAlternates(path: string) {
  *   1 – Media assets, categories, tags, collections
  *   2 – Glossary terms & categories
  *   3 – PDF books & chapters, visual lessons, clinical cases
+ *   4 – Blog posts
  */
 export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }];
+  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
 }
 
 /* ── Sitemap chunks ──────────────────────────────────────────────── */
@@ -71,6 +73,8 @@ export default function sitemap({
       return buildGlossarySitemap();
     case 3:
       return buildContentSitemap();
+    case 4:
+      return buildBlogSitemap();
     default:
       return [];
   }
@@ -109,6 +113,7 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
     ["/for-professors/templates", 0.7, "monthly"],
     ["/resources/media/collections", 0.7, "monthly"],
     ["/events", 0.7, "monthly"],
+    ["/blog", 0.8, "weekly"],
     // Utility pages – 0.5
     ["/resources/media/how-to-cite", 0.5, "monthly"],
     ["/license", 0.5, "monthly"],
@@ -387,6 +392,38 @@ function buildContentSitemap(): MetadataRoute.Sitemap {
   }
 
   // Note: /embed/* routes are intentionally excluded (noindex pages)
+
+  return entries;
+}
+
+/* ================================================================== */
+/*  Chunk 4 — Blog posts                                               */
+/* ================================================================== */
+
+function buildBlogSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+
+  /* ── Blog listing page ───────────────────────────────────────────── */
+  entries.push({
+    url: `${BASE_URL}/${defaultLocale}/blog`,
+    lastModified: blogPosts[0]?.dateModified || CONTENT_UPDATED,
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: buildAlternates("/blog"),
+  });
+
+  /* ── Individual blog posts ───────────────────────────────────────── */
+  for (const post of blogPosts) {
+    const path = `/blog/${post.slug}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: post.dateModified,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
 
   return entries;
 }

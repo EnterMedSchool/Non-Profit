@@ -291,6 +291,7 @@ export default function Hero() {
             width={130}
             height={130}
             priority
+            fetchPriority="high"
             className="relative drop-shadow-xl"
           />
         </div>

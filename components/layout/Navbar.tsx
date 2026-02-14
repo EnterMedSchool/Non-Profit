@@ -161,6 +161,7 @@ const navItems: NavItem[] = [
     ],
   },
   { labelKey: "about", href: "/about" },
+  { labelKey: "blog", href: "/blog" },
 ];
 
 /* ---------- scroll progress bar ---------- */

@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
 import { getCreatorTools } from "@/data/tools";
 import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 
 interface ToolsPageProps {
   params: Promise<{ locale: string }>;
@@ -25,6 +26,15 @@ export async function generateMetadata({ params }: ToolsPageProps) {
       type: "website",
     },
     keywords: ["medical tools", "illustration maker", "flashcard maker", "MCQ maker", "LaTeX editor", "free medical apps", "open source health tools"],
+    alternates: {
+      canonical: `${BASE_URL}/${locale}/tools`,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/tools`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/tools`,
+      },
+    },
   };
 }
 

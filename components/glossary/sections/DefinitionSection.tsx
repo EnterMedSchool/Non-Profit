@@ -24,7 +24,7 @@ export default function DefinitionSection({
       accent="#6C5CE7"
       seoHeading={`What is ${termName}?`}
     >
-      <p className="text-base leading-relaxed text-ink-dark" itemProp="description">
+      <p className="text-base leading-relaxed text-ink-dark" itemProp="description" data-speakable="definition">
         {renderTermContent(definition, { termNameMap, currentTermId, locale })}
       </p>
     </GlossarySectionCard>

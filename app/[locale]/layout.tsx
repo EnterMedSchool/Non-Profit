@@ -85,10 +85,10 @@ export async function generateMetadata({
       creator: "@arihoresh",
     },
     alternates: {
-      canonical: `/${locale}`,
+      canonical: `${BASE_URL}/${locale}`,
       languages: {
-        ...Object.fromEntries(routing.locales.map((l) => [l, `/${l}`])),
-        "x-default": `/${routing.defaultLocale}`,
+        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}`])),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}`,
       },
     },
   };

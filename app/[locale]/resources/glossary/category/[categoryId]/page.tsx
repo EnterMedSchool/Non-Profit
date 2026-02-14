@@ -10,6 +10,7 @@ import {
   glossaryCategories,
 } from "@/data/glossary-terms";
 import { getGlossaryCategoryJsonLd } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 import GlossaryTermCard from "@/components/glossary/GlossaryTermCard";
 
 interface Props {
@@ -35,6 +36,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     description: `Explore ${category.count} ${category.name.toLowerCase()} terms including ${topTerms.join(", ")} & more. Free definitions, mnemonics & clinical cases for medical students.`,
     alternates: {
       canonical: `${BASE_URL}/${locale}/resources/glossary/category/${categoryId}`,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/resources/glossary/category/${categoryId}`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/resources/glossary/category/${categoryId}`,
+      },
     },
     openGraph: {
       title: `${category.name} Medical Terms — ${category.count} Definitions`,

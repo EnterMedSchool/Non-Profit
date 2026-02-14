@@ -17,15 +17,18 @@ import StickerBadge from "@/components/shared/StickerBadge";
 import SectionHeading from "@/components/shared/SectionHeading";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import Link from "next/link";
+import { useLocale } from "next-intl";
 
 /* ── Card configuration with bento grid sizing ── */
-const offerings = [
+function useOfferings() {
+  const locale = useLocale();
+  return [
   {
     key: "questions",
     icon: HelpCircle,
     badge: "Free",
     badgeColor: "green" as const,
-    href: "/en/resources/questions",
+    href: `/${locale}/resources/questions`,
     gradient: "from-showcase-purple via-showcase-blue to-showcase-teal",
     iconBg: "bg-white/20",
     size: "hero" as const,
@@ -36,7 +39,7 @@ const offerings = [
     icon: Video,
     badge: "Free",
     badgeColor: "green" as const,
-    href: "/en/resources/videos",
+    href: `/${locale}/resources/videos`,
     gradient: "from-showcase-teal via-showcase-green to-showcase-blue",
     iconBg: "bg-white/20",
     size: "hero" as const,
@@ -47,7 +50,7 @@ const offerings = [
     icon: FileText,
     badge: "Download",
     badgeColor: "teal" as const,
-    href: "/en/resources/pdfs",
+    href: `/${locale}/resources/pdfs`,
     gradient: "from-showcase-orange via-showcase-yellow to-showcase-orange",
     iconBg: "bg-white/20",
     size: "medium" as const,
@@ -58,7 +61,7 @@ const offerings = [
     icon: Eye,
     badge: "Open Source",
     badgeColor: "purple" as const,
-    href: "/en/resources/visuals",
+    href: `/${locale}/resources/visuals`,
     gradient: "from-showcase-coral via-showcase-pink to-showcase-purple",
     iconBg: "bg-white/20",
     size: "medium" as const,
@@ -69,7 +72,7 @@ const offerings = [
     icon: Wrench,
     badge: "Free",
     badgeColor: "green" as const,
-    href: "/en/tools",
+    href: `/${locale}/tools`,
     gradient: "from-showcase-green via-showcase-teal to-showcase-blue",
     iconBg: "bg-white/20",
     size: "medium" as const,
@@ -80,7 +83,7 @@ const offerings = [
     icon: Presentation,
     badge: "Download",
     badgeColor: "teal" as const,
-    href: "/en/for-professors/templates",
+    href: `/${locale}/for-professors/templates`,
     gradient: "from-showcase-blue via-showcase-purple to-showcase-pink",
     iconBg: "bg-white/20",
     size: "small" as const,
@@ -111,6 +114,9 @@ const offerings = [
     pattern: "none",
   },
 ] as const;
+}
+
+type OfferingItem = ReturnType<typeof useOfferings>[number];
 
 /* ── Bento card with 3D tilt on hover ── */
 function BentoCard({
@@ -118,7 +124,7 @@ function BentoCard({
   index,
   t,
 }: {
-  item: (typeof offerings)[number];
+  item: OfferingItem;
   index: number;
   t: ReturnType<typeof useTranslations>;
 }) {
@@ -229,6 +235,7 @@ function BentoCard({
 
 export default function WhatWeOffer() {
   const t = useTranslations("whatWeOffer");
+  const offerings = useOfferings();
 
   return (
     <section className="relative z-10 py-12 sm:py-16">

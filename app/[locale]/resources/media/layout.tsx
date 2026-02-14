@@ -25,6 +25,15 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords: [
+      "free medical illustrations",
+      "anatomy diagrams download",
+      "medical SVG images",
+      "CC BY medical images",
+      "open source medical art",
+      "cell biology illustrations",
+      "medical education images",
+    ],
     alternates: {
       canonical: url,
       languages,

@@ -28,6 +28,9 @@ export default function MissionStatement() {
                 &rdquo;
               </span>
 
+              {/* Section heading for document outline */}
+              <h2 className="sr-only">{t("sectionTitle")}</h2>
+
               {/* Quote */}
               <blockquote className="relative z-10">
                 <p className="font-display text-2xl font-extrabold leading-snug text-ink-dark sm:text-3xl md:text-4xl">

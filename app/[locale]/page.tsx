@@ -1,9 +1,80 @@
+import type { Metadata } from "next";
 import dynamic from "next/dynamic";
 import Image from "next/image";
+import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
 import BlobBackground from "@/components/shared/BlobBackground";
-import { getOrganizationJsonLd, getWebSiteJsonLd } from "@/lib/metadata";
+import { getOrganizationJsonLd, getWebSiteJsonLd, getSiteNavigationJsonLd } from "@/lib/metadata";
+import ExploreTopics from "@/components/home/ExploreTopics";
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+
+/* ── SEO: Homepage-specific metadata ──────────────────────────────── */
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = await getTranslations({ locale, namespace: "metadata" });
+
+  const title = t("siteName");
+  const description =
+    "Free, open-source medical education platform. Access 450+ medical glossary terms, interactive visual lessons, flashcard & MCQ makers, anatomy illustrations, and study tools — all free for students and educators.";
+
+  return {
+    title,
+    description,
+    keywords: [
+      "free medical education",
+      "open source medical resources",
+      "medical school study materials",
+      "medical glossary",
+      "anatomy flashcards",
+      "MCQ generator medical",
+      "medical illustrations free",
+      "USMLE study tools",
+      "medical terminology",
+      "clinical cases",
+      "med school resources",
+      "free medical tools",
+    ],
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/${locale}`,
+      type: "website",
+      siteName: t("siteName"),
+      locale,
+      images: [
+        {
+          url: `${BASE_URL}/opengraph-image`,
+          width: 1200,
+          height: 630,
+          alt: "EnterMedSchool.org — Free Open-Source Medical Education Platform",
+        },
+      ],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title,
+      description,
+      site: "@entermedschool",
+      creator: "@arihoresh",
+    },
+    alternates: {
+      canonical: `${BASE_URL}/${locale}`,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}`,
+      },
+    },
+  };
+}
 
 // Lazy load below-fold sections for performance
 const WhatWeOffer = dynamic(() => import("@/components/home/WhatWeOffer"), {
@@ -32,6 +103,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       {/* JSON-LD structured data */}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getOrganizationJsonLd()) }} />
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getWebSiteJsonLd(locale)) }} />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(getSiteNavigationJsonLd(locale)) }} />
 
       {/* Animated blob background -- continuous across all sections */}
       <BlobBackground />
@@ -41,6 +113,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
       <Marquee />
       <WhatWeOffer />
       <ForWhom />
+      <ExploreTopics locale={locale} />
       <ProjectTimeline />
       <MissionStatement />
       <ImpactStats />

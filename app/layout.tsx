@@ -14,6 +14,11 @@ export const metadata: Metadata = {
     ],
     apple: [{ url: "/apple-touch-icon.png", sizes: "180x180" }],
   },
+  /* Google Search Console verification — replace PLACEHOLDER with your actual
+     verification code from https://search.google.com/search-console */
+  verification: {
+    google: process.env.NEXT_PUBLIC_GSC_VERIFICATION || "",
+  },
 };
 
 export default function RootLayout({

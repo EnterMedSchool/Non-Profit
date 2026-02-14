@@ -22,7 +22,9 @@ import {
   getGlossaryTermJsonLd,
   buildGlossaryTermTitle,
   buildGlossaryTermDescription,
+  getGlossarySpeakableJsonLd,
 } from "@/lib/metadata";
+import { routing } from "@/i18n/routing";
 import GlossaryTagBadge from "@/components/glossary/GlossaryTagBadge";
 import GlossarySharePanel from "@/components/glossary/GlossarySharePanel";
 import GlossaryStudyMode from "@/components/glossary/GlossaryStudyMode";
@@ -58,7 +60,15 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   return {
     title: buildGlossaryTermTitle(term),
     description: buildGlossaryTermDescription(term),
-    alternates: { canonical: url },
+    alternates: {
+      canonical: url,
+      languages: {
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/resources/glossary/${term.id}`]),
+        ),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/resources/glossary/${term.id}`,
+      },
+    },
     keywords: [
       term.names[0],
       ...(term.aliases || []),
@@ -73,6 +83,10 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url,
       siteName: "EnterMedSchool.org",
       type: "article",
+      publishedTime: "2025-06-01T00:00:00Z",
+      modifiedTime: "2025-06-01T00:00:00Z",
+      authors: ["EnterMedSchool.org"],
+      section: term.primary_tag,
       ...(term.tags?.length && { tags: term.tags }),
     },
     twitter: {
@@ -105,8 +119,11 @@ export default async function GlossaryTermPage({ params }: Props) {
   const termNameMap = buildTermNameMap();
   const alias = term.abbr?.[0] || term.aliases?.[0];
 
-  // JSON-LD
-  const schemas = getGlossaryTermJsonLd(term, locale, categoryName);
+    // JSON-LD
+    const schemas = [
+      ...getGlossaryTermJsonLd(term, locale, categoryName),
+      getGlossarySpeakableJsonLd(term, locale),
+    ];
 
   // Section rendering options
   const renderOpts = {

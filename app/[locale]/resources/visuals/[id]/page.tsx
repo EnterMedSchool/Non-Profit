@@ -71,8 +71,13 @@ export async function generateMetadata({ params }: VisualDetailPageProps) {
       title,
       description,
       url,
-      type: "website",
+      type: "article",
       siteName: "EnterMedSchool.org",
+      publishedTime: "2025-06-01T00:00:00Z",
+      modifiedTime: "2025-06-01T00:00:00Z",
+      authors: [lesson.creator?.name || "EnterMedSchool.org"],
+      section: lesson.category,
+      tags: lesson.tags,
       images: [
         {
           url: `${BASE_URL}${lesson.thumbnailPath}`,

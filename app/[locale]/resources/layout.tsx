@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { getTranslations } from "next-intl/server";
+import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -18,9 +19,22 @@ export async function generateMetadata({
   return {
     title,
     description,
+    keywords: [
+      "free medical education resources",
+      "medical teaching materials",
+      "open source medical tools",
+      "medical question banks",
+      "anatomy visuals",
+      "medical glossary",
+      "clinical cases",
+      "medical textbooks free",
+    ],
     alternates: {
       canonical: url,
-      languages: { en: `${BASE_URL}/en/resources`, "x-default": `${BASE_URL}/en/resources` },
+      languages: {
+        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}/resources`])),
+        "x-default": `${BASE_URL}/${routing.defaultLocale}/resources`,
+      },
     },
     openGraph: {
       title,
