@@ -1,6 +1,6 @@
 "use client";
 
-import { useTranslations } from "next-intl";
+import { useTranslations, useLocale } from "next-intl";
 import { m } from "framer-motion";
 import { BookOpen, Wrench, FileText, ArrowRight, Check } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -9,6 +9,7 @@ import ChunkyButton from "@/components/shared/ChunkyButton";
 
 export default function ForWhom() {
   const t = useTranslations("forWhom");
+  const locale = useLocale();
 
   const pillars = [
     {
@@ -19,7 +20,7 @@ export default function ForWhom() {
       gradient: "from-showcase-purple via-showcase-blue to-showcase-coral",
       borderColor: "border-showcase-purple",
       shadowColor: "shadow-chunky-purple",
-      href: "/en/resources",
+      href: `/${locale}/resources`,
       accentClass: "text-showcase-purple",
       dotClass: "bg-showcase-purple",
       glowColor: "rgba(108, 92, 231, 0.3)",
@@ -34,7 +35,7 @@ export default function ForWhom() {
       gradient: "from-showcase-teal via-showcase-green to-showcase-blue",
       borderColor: "border-showcase-teal",
       shadowColor: "shadow-chunky-teal",
-      href: "/en/tools",
+      href: `/${locale}/tools`,
       accentClass: "text-showcase-teal",
       dotClass: "bg-showcase-teal",
       glowColor: "rgba(0, 217, 192, 0.3)",
@@ -49,7 +50,7 @@ export default function ForWhom() {
       gradient: "from-showcase-orange via-showcase-yellow to-showcase-pink",
       borderColor: "border-showcase-orange",
       shadowColor: "shadow-chunky",
-      href: "/en/for-professors",
+      href: `/${locale}/for-professors`,
       accentClass: "text-showcase-orange",
       dotClass: "bg-showcase-orange",
       glowColor: "rgba(255, 159, 67, 0.3)",

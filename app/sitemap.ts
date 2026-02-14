@@ -74,7 +74,7 @@ export default function sitemap({
     case 3:
       return buildContentSitemap();
     case 4:
-      return buildBlogSitemap();
+      return buildArticlesSitemap();
     default:
       return [];
   }
@@ -113,7 +113,7 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
     ["/for-professors/templates", 0.7, "monthly"],
     ["/resources/media/collections", 0.7, "monthly"],
     ["/events", 0.7, "monthly"],
-    ["/blog", 0.8, "weekly"],
+    ["/articles", 0.8, "weekly"],
     // Utility pages – 0.5
     ["/resources/media/how-to-cite", 0.5, "monthly"],
     ["/license", 0.5, "monthly"],
@@ -397,24 +397,24 @@ function buildContentSitemap(): MetadataRoute.Sitemap {
 }
 
 /* ================================================================== */
-/*  Chunk 4 — Blog posts                                               */
+/*  Chunk 4 — Articles                                                  */
 /* ================================================================== */
 
-function buildBlogSitemap(): MetadataRoute.Sitemap {
+function buildArticlesSitemap(): MetadataRoute.Sitemap {
   const entries: MetadataRoute.Sitemap = [];
 
-  /* ── Blog listing page ───────────────────────────────────────────── */
+  /* ── Articles listing page ──────────────────────────────────────── */
   entries.push({
-    url: `${BASE_URL}/${defaultLocale}/blog`,
+    url: `${BASE_URL}/${defaultLocale}/articles`,
     lastModified: blogPosts[0]?.dateModified || CONTENT_UPDATED,
     changeFrequency: "weekly",
     priority: 0.8,
-    alternates: buildAlternates("/blog"),
+    alternates: buildAlternates("/articles"),
   });
 
-  /* ── Individual blog posts ───────────────────────────────────────── */
+  /* ── Individual articles ────────────────────────────────────────── */
   for (const post of blogPosts) {
-    const path = `/blog/${post.slug}`;
+    const path = `/articles/${post.slug}`;
 
     entries.push({
       url: `${BASE_URL}/${defaultLocale}${path}`,

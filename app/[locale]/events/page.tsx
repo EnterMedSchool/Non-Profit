@@ -1,9 +1,9 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { Users, Shirt, FolderOpen, PartyPopper, Heart, Mail, Sparkles } from "lucide-react";
+import Image from "next/image";
+import { Users, Shirt, FolderOpen, PartyPopper, Heart, Mail, Sparkles, UtensilsCrossed, CalendarClock } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
-import ChunkyCard from "@/components/shared/ChunkyCard";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import { getCollectionPageJsonLd, getEventJsonLd } from "@/lib/metadata";
 
@@ -28,6 +28,31 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
   };
 }
 
+/* ── Offering card color configs ───────────────────────────────────── */
+
+const OFFERING_STYLES: Record<string, { bg: string; iconBg: string; iconText: string }> = {
+  purple: {
+    bg: "from-showcase-purple/5 to-transparent",
+    iconBg: "bg-gradient-to-br from-showcase-purple to-showcase-blue",
+    iconText: "text-white",
+  },
+  teal: {
+    bg: "from-showcase-teal/5 to-transparent",
+    iconBg: "bg-gradient-to-br from-showcase-teal to-showcase-green",
+    iconText: "text-white",
+  },
+  yellow: {
+    bg: "from-showcase-yellow/5 to-transparent",
+    iconBg: "bg-gradient-to-br from-showcase-yellow to-showcase-orange",
+    iconText: "text-ink-dark",
+  },
+  green: {
+    bg: "from-showcase-green/5 to-transparent",
+    iconBg: "bg-gradient-to-br from-showcase-green to-showcase-teal",
+    iconText: "text-white",
+  },
+};
+
 export default function EventsPage() {
   const t = useTranslations("events");
   const locale = useLocale();
@@ -37,6 +62,19 @@ export default function EventsPage() {
     { key: "merch", icon: Shirt, color: "teal" },
     { key: "resources", icon: FolderOpen, color: "yellow" },
     { key: "networking", icon: PartyPopper, color: "green" },
+  ];
+
+  const pastEvents = [
+    {
+      key: "pavia",
+      icon: UtensilsCrossed,
+      iconGradient: "bg-gradient-to-br from-showcase-orange to-showcase-coral",
+    },
+    {
+      key: "merch",
+      icon: Shirt,
+      iconGradient: "bg-gradient-to-br from-showcase-purple to-showcase-blue",
+    },
   ];
 
   const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -66,30 +104,53 @@ export default function EventsPage() {
           </>}
         />
 
-        {/* Past events */}
+        {/* ── Upcoming events placeholder ── */}
+        <AnimatedSection animation="fadeUp" className="mt-10">
+          <div className="relative overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky">
+            <div className="h-1.5 bg-gradient-to-r from-showcase-teal via-showcase-green to-showcase-purple" />
+            <div className="pattern-dots absolute inset-0 pointer-events-none" aria-hidden="true" />
+            <div className="relative z-10 flex flex-col items-center px-6 py-10 text-center sm:py-12">
+              <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-gradient-to-br from-showcase-teal to-showcase-green shadow-md">
+                <CalendarClock className="h-7 w-7 text-white" />
+              </div>
+              <h2 className="mt-4 font-display text-xl font-bold text-ink-dark sm:text-2xl">
+                Upcoming Events
+              </h2>
+              <p className="mt-2 max-w-md text-sm text-ink-muted">
+                Stay tuned! We&apos;re planning new meetups and community events. Follow us to be the first to know.
+              </p>
+            </div>
+          </div>
+        </AnimatedSection>
+
+        {/* ── Past events ── */}
         <section className="mt-10">
           <AnimatedSection animation="slideLeft">
             <h2 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("pastEvents.title")}</h2>
           </AnimatedSection>
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
-            <AnimatedSection delay={0.1} animation="popIn" spring>
-              <ChunkyCard className="p-6">
-                <span className="text-3xl mb-3 block">🍖</span>
-                <h3 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.pavia.title")}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t("pastEvents.pavia.description")}</p>
-              </ChunkyCard>
-            </AnimatedSection>
-            <AnimatedSection delay={0.15} animation="popIn" spring>
-              <ChunkyCard className="p-6">
-                <span className="text-3xl mb-3 block">👕</span>
-                <h3 className="font-display text-lg font-bold text-ink-dark">{t("pastEvents.merch.title")}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t("pastEvents.merch.description")}</p>
-              </ChunkyCard>
-            </AnimatedSection>
+            {pastEvents.map((event, i) => {
+              const Icon = event.icon;
+              return (
+                <AnimatedSection key={event.key} delay={0.1 + i * 0.05} animation="popIn" spring>
+                  <div className="group overflow-hidden rounded-2xl border-3 border-showcase-navy bg-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky">
+                    {/* Gradient accent strip */}
+                    <div className={`h-1 ${event.iconGradient}`} />
+                    <div className="p-6">
+                      <div className={`mb-4 flex h-12 w-12 items-center justify-center rounded-xl ${event.iconGradient} shadow-md transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}>
+                        <Icon className="h-6 w-6 text-white" />
+                      </div>
+                      <h3 className="font-display text-lg font-bold text-ink-dark">{t(`pastEvents.${event.key}.title`)}</h3>
+                      <p className="mt-2 text-sm leading-relaxed text-ink-muted">{t(`pastEvents.${event.key}.description`)}</p>
+                    </div>
+                  </div>
+                </AnimatedSection>
+              );
+            })}
           </div>
         </section>
 
-        {/* What we offer */}
+        {/* ── What we offer ── */}
         <section className="mt-10">
           <AnimatedSection animation="slideLeft">
             <h2 className="font-display text-2xl font-bold text-ink-dark mb-6">{t("whatWeOffer.title")}</h2>
@@ -97,11 +158,12 @@ export default function EventsPage() {
           <div className="grid grid-cols-1 gap-5 sm:grid-cols-2">
             {offerings.map((item, i) => {
               const Icon = item.icon;
+              const style = OFFERING_STYLES[item.color] || OFFERING_STYLES.purple;
               return (
                 <AnimatedSection key={item.key} delay={i * 0.08} animation="rotateIn">
-                  <div className="flex gap-4 rounded-2xl border-3 border-showcase-navy bg-white p-5 shadow-chunky transition-all hover:-translate-y-0.5 hover:shadow-chunky-lg">
-                    <div className="flex h-10 w-10 flex-shrink-0 items-center justify-center rounded-xl border-2 border-showcase-navy/20 bg-pastel-lavender">
-                      <Icon className="h-5 w-5 text-showcase-purple" />
+                  <div className={`flex gap-4 rounded-2xl border-3 border-showcase-navy bg-gradient-to-br ${style.bg} bg-white p-5 shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky`}>
+                    <div className={`flex h-11 w-11 flex-shrink-0 items-center justify-center rounded-xl ${style.iconBg} shadow-md transition-transform duration-300 hover:scale-110`}>
+                      <Icon className={`h-5 w-5 ${style.iconText}`} />
                     </div>
                     <div>
                       <h3 className="font-display text-sm font-bold text-ink-dark">{t(`whatWeOffer.${item.key}`)}</h3>
@@ -114,7 +176,7 @@ export default function EventsPage() {
           </div>
         </section>
 
-        {/* Philosophy -- glassmorphism */}
+        {/* ── Philosophy -- glassmorphism ── */}
         <AnimatedSection delay={0.3} animation="blurIn" className="mt-10">
           <div className="group relative overflow-hidden rounded-2xl border-2 border-showcase-pink/30 bg-white/60 backdrop-blur-md p-8 shadow-lg transition-all hover:shadow-xl text-center">
             {/* Shimmer overlay */}
@@ -133,7 +195,7 @@ export default function EventsPage() {
           </div>
         </AnimatedSection>
 
-        {/* Contact CTA */}
+        {/* ── Contact CTA ── */}
         <AnimatedSection delay={0.4} animation="fadeUp" className="mt-12 text-center">
           <p className="text-ink-muted mb-4">{t("contactCta")}</p>
           <ChunkyButton href="mailto:ari@entermedschool.com" variant="primary" external>

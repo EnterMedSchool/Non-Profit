@@ -393,6 +393,54 @@
   @apply text-purple-300;
 }
 
+/* ===== Article Callout Blocks ===== */
+/* Triggered by <div class="article-tip">, <div class="article-warning">, etc. in article HTML */
+
+.article-tip,
+.article-warning,
+.article-important {
+  @apply my-6 rounded-2xl border-3 p-5 text-sm leading-relaxed;
+}
+
+.article-tip {
+  @apply border-showcase-teal/30 bg-showcase-teal/5 text-ink-muted;
+}
+
+.article-tip::before {
+  content: "💡 ";
+  @apply font-bold;
+}
+
+.article-warning {
+  @apply border-showcase-orange/30 bg-showcase-orange/5 text-ink-muted;
+}
+
+.article-warning::before {
+  content: "⚠️ ";
+  @apply font-bold;
+}
+
+.article-important {
+  @apply border-showcase-purple/30 bg-showcase-purple/5 text-ink-muted;
+}
+
+.article-important::before {
+  content: "⭐ ";
+  @apply font-bold;
+}
+
+.article-tip p,
+.article-warning p,
+.article-important p {
+  @apply my-1;
+}
+
+.article-tip strong,
+.article-warning strong,
+.article-important strong {
+  @apply text-ink-dark;
+}
+
 /* ===== Desktop-only fixed background (causes full-page repaints on mobile) ===== */
 @media (min-width: 1024px) {
   .bg-fixed-desktop {

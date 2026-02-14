@@ -1185,7 +1185,7 @@ export function getBlogArticleJsonLd(article: {
     "@type": "Article",
     headline: article.title,
     description: article.description,
-    url: `${BASE_URL}/${locale}/blog/${article.slug}`,
+    url: `${BASE_URL}/${locale}/articles/${article.slug}`,
     datePublished: article.datePublished,
     dateModified: article.dateModified,
     author: {
