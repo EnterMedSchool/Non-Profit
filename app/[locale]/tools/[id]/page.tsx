@@ -11,6 +11,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import EmbedCodeGenerator from "@/components/tools/EmbedCodeGenerator";
 import ShareLinkButton from "@/components/shared/ShareLinkButton";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -61,6 +62,7 @@ export async function generateMetadata({ params }: ToolPageProps) {
       url: toolUrl,
       type: "website",
       siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("tools", id), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

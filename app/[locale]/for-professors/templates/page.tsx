@@ -4,6 +4,7 @@ import { Presentation, FileText, Sparkles, Layers } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import TemplateGallery from "@/components/professors/TemplateGallery";
 import { getCollectionPageJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -17,6 +18,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/for-professors/templates`,
       type: "website",
+      images: [{ url: ogImagePath("for-professors", "templates"), width: 1200, height: 630 }],
     },
     keywords: ["medical lecture templates", "slide templates", "PowerPoint medical", "Google Slides medical", "presentation templates", "medical education downloads"],
     alternates: {

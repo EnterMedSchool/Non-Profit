@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "@/styles/globals.css";
 
@@ -41,15 +43,19 @@ export const metadata: Metadata = {
  * Minimal layout for the full-screen illustration maker.
  * No navbar, breadcrumbs, footer, or any chrome — just the tool.
  */
-export default function CreateLayout({
+export default async function CreateLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const messages = await getMessages();
+
   return (
     <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
       <body className="h-screen w-screen overflow-hidden font-body text-ink-dark bg-white">
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );

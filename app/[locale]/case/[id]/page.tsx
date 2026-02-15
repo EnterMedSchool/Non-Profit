@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { ogImagePath } from "@/lib/og-path";
 import { Suspense } from "react";
 import {
   clinicalCases,
@@ -52,16 +53,7 @@ export async function generateMetadata({ params }: CasePageProps) {
       url,
       type: "website",
       siteName: "EnterMedSchool.org",
-      images: caseData.thumbnailPath
-        ? [
-            {
-              url: `${BASE_URL}${caseData.thumbnailPath}`,
-              width: 800,
-              height: 600,
-              alt: `${caseData.title} clinical case`,
-            },
-          ]
-        : [],
+      images: [{ url: ogImagePath("resources", "clinical-cases", caseData.id || caseData.slug), width: 1200, height: 630 }],
     },
     twitter: { card: "summary_large_image" as const, title, description },
     keywords: caseData.tags,

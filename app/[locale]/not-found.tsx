@@ -50,7 +50,7 @@ export default function NotFound() {
               className="mx-auto mb-6 w-fit"
             >
               <Image
-                src="/logo.png"
+                src={blobAsset("/logo.png")}
                 alt="Leo mascot looking confused"
                 width={80}
                 height={80}

@@ -1,3 +1,5 @@
+import { blobAsset } from "@/lib/blob-url";
+
 // ─── Types ──────────────────────────────────────────────────────────────────
 
 export interface PDFBook {
@@ -77,7 +79,7 @@ export const pdfBooks: PDFBook[] = [
       "A free, open-source biochemistry reference covering amino acids, enzyme kinetics, and carbohydrate metabolism — designed for medical students who need to understand clinical relevance, not just memorize pathways.",
     longDescription:
       "This open-source textbook distills the most clinically relevant biochemistry topics into a concise, readable format. Rather than overwhelming you with every detail, we focus on the concepts most likely to appear on exams and in clinical practice. Each chapter includes clinical correlations, key enzyme deficiencies, and real-world applications to help you think like a clinician from day one.",
-    coverImage: "/assets/pdf-covers/biochem-essentials.svg",
+    coverImage: blobAsset("/assets/pdf-covers/biochem-essentials.svg"),
     subject: "Biochemistry",
     tags: [
       "biochemistry",

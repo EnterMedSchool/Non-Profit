@@ -12,6 +12,7 @@ import DeferredConsent from "@/components/consent/DeferredConsent";
 import ServiceWorkerRegistration from "@/components/shared/ServiceWorkerRegistration";
 import ToastProvider from "@/components/shared/ToastProvider";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 import "@/styles/globals.css";
 
 /* Font weights reduced from 12 → 6 files for faster loading */
@@ -72,7 +73,7 @@ export async function generateMetadata({
       url: `${BASE_URL}/${locale}`,
       images: [
         {
-          url: `${BASE_URL}/opengraph-image`,
+          url: ogImagePath("home"),
           width: 1200,
           height: 630,
           alt: "EnterMedSchool.org — Open-Source Medical Education",

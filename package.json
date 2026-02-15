@@ -7,7 +7,9 @@
     "dev": "next dev --turbopack",
     "build": "node scripts/bundle-glossary.mjs && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "generate:og": "node scripts/generate-og-images.mjs",
+    "pull:db": "node scripts/pull-db-content.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.0",
@@ -20,6 +22,7 @@
     "@codemirror/view": "^6.39.13",
     "@lezer/highlight": "^1.2.3",
     "@lezer/lr": "^1.4.8",
+    "@vercel/blob": "^2.2.0",
     "codemirror": "^6.0.2",
     "fabric": "^7.1.0",
     "file-saver": "^2.0.5",
@@ -40,20 +43,41 @@
     "server-only": "^0.0.1"
   },
   "devDependencies": {
+    "@resvg/resvg-js": "^2.6.2",
     "@tailwindcss/typography": "^0.5.19",
     "@types/file-saver": "^2.0.7",
     "@types/node": "^25.2.1",
     "@types/papaparse": "^5.5.2",
+    "@types/pg": "^8.16.0",
     "@types/qrcode": "^1.5.6",
     "@types/react": "^19.2.13",
     "@types/react-dom": "^19.2.3",
     "autoprefixer": "^10.4.24",
+    "dotenv": "^17.3.1",
     "eslint": "^9.39.2",
     "eslint-config-next": "^16.1.6",
+    "pg": "^8.18.0",
     "png-to-ico": "^3.0.1",
     "postcss": "^8.5.6",
+    "satori": "^0.19.2",
     "sharp": "^0.34.5",
     "tailwindcss": "^3.4.19",
     "typescript": "^5.9.3"
-  }
+  },
+  "description": "**Free, open-source medical education resources for educators worldwide.**",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/EnterMedSchool/Non-Profit.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/EnterMedSchool/Non-Profit/issues"
+  },
+  "homepage": "https://github.com/EnterMedSchool/Non-Profit#readme"
 }

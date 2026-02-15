@@ -7,6 +7,7 @@ import {
   getAdjacentChapters,
 } from "@/data/pdf-books";
 import { getChapterJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 import BookReader from "@/components/pdf-viewer/BookReader";
 
 export async function generateStaticParams() {
@@ -43,6 +44,7 @@ export async function generateMetadata({
       description: chapter.description,
       url: chapterUrl,
       type: "article",
+      images: [{ url: ogImagePath("resources", "pdfs", slug, chapterSlug), width: 1200, height: 630 }],
     },
     keywords: chapter.keyTopics,
     alternates: {

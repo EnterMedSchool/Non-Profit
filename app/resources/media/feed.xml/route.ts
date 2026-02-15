@@ -15,7 +15,7 @@ export async function GET() {
 
   const entries = sorted.map((asset) => {
     const url = `${BASE_URL}/en/resources/media/${asset.slug}`;
-    const imageUrl = `${BASE_URL}${asset.thumbnailPath}`;
+    const imageUrl = asset.thumbnailPath;
 
     return `  <entry>
     <title>${escapeXml(asset.name)}</title>

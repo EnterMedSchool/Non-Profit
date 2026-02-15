@@ -21,6 +21,7 @@ import {
   Stethoscope,
   Wrench,
   Calculator,
+  Layers,
 } from "lucide-react";
 import MobileMenu from "./MobileMenu";
 import { LocaleSwitcherDesktop } from "@/components/shared/LocaleSwitcher";
@@ -103,6 +104,13 @@ const navItems: NavItem[] = [
         descKey: "questionsDesc",
         icon: HelpCircle,
         color: "bg-showcase-orange/15 text-showcase-orange",
+      },
+      {
+        href: "/resources/flashcards",
+        labelKey: "flashcards",
+        descKey: "flashcardsDesc",
+        icon: Layers,
+        color: "bg-showcase-teal/15 text-showcase-teal",
       },
       {
         href: "/resources/videos",
@@ -331,7 +339,7 @@ export default function Navbar() {
             className="flex items-center gap-2.5 font-display text-lg font-bold text-ink-dark group"
           >
             <Image
-              src="/logo.png"
+              src={blobAsset("/logo.png")}
               alt="Leo mascot"
               width={36}
               height={36}

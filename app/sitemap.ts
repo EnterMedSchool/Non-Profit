@@ -13,6 +13,10 @@ import {
 import { glossaryTerms, glossaryCategories } from "@/data/glossary-terms";
 import { clinicalCases } from "@/data/clinical-cases";
 import { blogPosts } from "@/data/blog-posts";
+import { practiceCategories, practiceDecks } from "@/data/practice-categories";
+import { practiceQuestions } from "@/data/practice-questions";
+import { flashcardCategories, flashcardDecks } from "@/data/flashcard-categories";
+import { flashcards } from "@/data/flashcard-data";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -54,7 +58,7 @@ function buildAlternates(path: string) {
  *   4 – Blog posts
  */
 export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }];
+  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }];
 }
 
 /* ── Sitemap chunks ──────────────────────────────────────────────── */
@@ -75,6 +79,10 @@ export default function sitemap({
       return buildContentSitemap();
     case 4:
       return buildArticlesSitemap();
+    case 5:
+      return buildQuestionsSitemap();
+    case 6:
+      return buildFlashcardsSitemap();
     default:
       return [];
   }
@@ -102,6 +110,7 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
     // Section landing pages – 0.8
     ["/about", 0.8, "monthly"],
     ["/resources/questions", 0.8, "monthly"],
+    ["/resources/flashcards", 0.8, "monthly"],
     ["/resources/videos", 0.8, "monthly"],
     ["/resources/pdfs", 0.8, "monthly"],
     ["/resources/visuals", 0.8, "monthly"],
@@ -421,6 +430,108 @@ function buildArticlesSitemap(): MetadataRoute.Sitemap {
       lastModified: post.dateModified,
       changeFrequency: "monthly",
       priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  return entries;
+}
+
+function buildQuestionsSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  const catById = new Map(practiceCategories.map(c => [c.id, c]));
+
+  // Category pages
+  for (const cat of practiceCategories) {
+    const path = `/resources/questions/${cat.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  // Deck pages
+  for (const deck of practiceDecks) {
+    const catId = deck.primaryCategoryId ?? deck.categoryIds[0];
+    const cat = catId != null ? catById.get(catId) : undefined;
+    if (!cat) continue;
+    const path = `/resources/questions/${cat.slug}/${deck.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  // Individual question pages
+  const deckById = new Map(practiceDecks.map(d => [d.id, d]));
+  for (const q of practiceQuestions) {
+    const deck = deckById.get(q.deckId);
+    if (!deck) continue;
+    const catId = deck.primaryCategoryId ?? deck.categoryIds[0];
+    const cat = catId != null ? catById.get(catId) : undefined;
+    if (!cat) continue;
+    const path = `/resources/questions/${cat.slug}/${deck.slug}/${q.stableId}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.6,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  return entries;
+}
+
+function buildFlashcardsSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  const catById = new Map(flashcardCategories.map(c => [c.id, c]));
+
+  // Category pages
+  for (const cat of flashcardCategories) {
+    const path = `/resources/flashcards/${cat.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  // Deck pages
+  for (const deck of flashcardDecks) {
+    const cat = deck.categoryId != null ? catById.get(deck.categoryId) : undefined;
+    if (!cat) continue;
+    const path = `/resources/flashcards/${cat.slug}/${deck.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  // Individual card pages
+  const deckById = new Map(flashcardDecks.map(d => [d.id, d]));
+  for (const card of flashcards) {
+    const deck = deckById.get(card.deckId);
+    if (!deck) continue;
+    const cat = deck.categoryId != null ? catById.get(deck.categoryId) : undefined;
+    if (!cat) continue;
+    const path = `/resources/flashcards/${cat.slug}/${deck.slug}/${card.stableId}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.6,
       alternates: buildAlternates(path),
     });
   }

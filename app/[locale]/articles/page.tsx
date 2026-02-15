@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { blobAsset } from "@/lib/blob-url";
 import Link from "next/link";
 import Image from "next/image";
 import { ArrowRight, Calendar, Clock, Tag, BookOpen, Wrench } from "lucide-react";
@@ -8,6 +9,7 @@ import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ChunkyButton from "@/components/shared/ChunkyButton";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -49,6 +51,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `${BASE_URL}/${locale}/articles`,
       type: "website",
       siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("articles"), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
@@ -90,7 +93,7 @@ function EmptyState({ locale }: { locale: string }) {
         <div className="relative z-10 flex flex-col items-center px-6 py-12 text-center sm:py-16">
           {/* Leo mascot */}
           <Image
-            src="/logo.png"
+            src={blobAsset("/logo.png")}
             alt="Leo mascot"
             width={80}
             height={80}

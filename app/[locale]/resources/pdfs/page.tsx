@@ -5,6 +5,7 @@ import PageHero from "@/components/shared/PageHero";
 import BookCatalog from "@/components/pdf-viewer/BookCatalog";
 import { pdfBooks } from "@/data/pdf-books";
 import { getCollectionPageJsonLd, getBookJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({
   params,
@@ -24,6 +25,7 @@ export async function generateMetadata({
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/resources/pdfs`,
       type: "website",
+      images: [{ url: ogImagePath("resources", "pdfs"), width: 1200, height: 630 }],
     },
     keywords: [
       "free medical textbooks",

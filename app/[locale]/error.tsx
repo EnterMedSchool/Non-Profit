@@ -40,7 +40,7 @@ export default function Error({
               className="mx-auto mb-6 w-fit"
             >
               <Image
-                src="/logo.png"
+                src={blobAsset("/logo.png")}
                 alt="Leo mascot"
                 width={80}
                 height={80}

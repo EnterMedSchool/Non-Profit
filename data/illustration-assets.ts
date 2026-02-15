@@ -49,7 +49,9 @@ export const assetCategories: AssetCategory[] = [
 
 /* ── Assets ─────────────────────────────────────────────────────── */
 
-const BASE = "/assets/illustrations";
+import { blobAsset } from "@/lib/blob-url";
+
+const BASE = blobAsset("/assets/illustrations");
 
 export const illustrationAssets: IllustrationAsset[] = [
   // ── Cells ────────────────────────────────────────────────────

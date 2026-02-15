@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <rect width="200" height="200" rx="20" fill="#FFF0F3"/>
-  <path d="M70,55 Q55,55 50,75 Q45,105 65,120 Q85,130 100,115 Q100,95 90,85 Q85,80 90,70 Q95,55 70,55 Z" fill="#FF85A2" opacity="0.4"/>
-  <path d="M72,60 Q60,60 55,78 Q50,105 68,118 Q85,125 98,112 Q98,95 90,86 Q86,82 90,72 Q93,60 72,60 Z" fill="#E84393" opacity="0.25"/>
-  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#E84393" opacity="0.8">Kidney</text>
-</svg>

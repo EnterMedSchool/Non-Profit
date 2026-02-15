@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <rect width="200" height="200" rx="20" fill="#FFF0F3"/>
-  <path d="M100,120 C100,120 55,95 55,70 C55,55 68,45 82,50 C90,53 96,60 100,65 C104,60 110,53 118,50 C132,45 145,55 145,70 C145,95 100,120 100,120 Z" fill="#FF85A2" opacity="0.5"/>
-  <path d="M100,115 C100,115 62,92 62,72 C62,60 72,52 83,55 C90,57 96,63 100,68 C104,63 110,57 117,55 C128,52 138,60 138,72 C138,92 100,115 100,115 Z" fill="#E84393" opacity="0.3"/>
-  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#E84393" opacity="0.8">Heart</text>
-</svg>

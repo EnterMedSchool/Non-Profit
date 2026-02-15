@@ -146,7 +146,9 @@ export const mediaAssetCategories: MediaAssetCategory[] = [
 
 /* ── Assets ─────────────────────────────────────────────────────── */
 
-const BASE = "/assets/media";
+import { blobAsset } from "@/lib/blob-url";
+
+const BASE = blobAsset("/assets/media");
 
 export const mediaAssets: MediaAsset[] = [
   {

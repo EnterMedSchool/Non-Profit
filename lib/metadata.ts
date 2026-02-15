@@ -5,6 +5,8 @@ import type { VisualLesson } from "@/data/visuals";
 import type { MediaAsset } from "@/data/media-assets";
 import type { GlossaryTerm, GlossaryCategory } from "@/types/glossary";
 import type { ClinicalCase } from "@/data/clinical-cases";
+import type { PracticeQuestion } from "@/types/practice-questions";
+import type { Flashcard } from "@/types/flashcard-data";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -447,7 +449,7 @@ export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
     },
     lastReviewed: "2025-06-01",
     keywords: lesson.tags.join(", "),
-    thumbnailUrl: `${BASE_URL}${lesson.thumbnailPath}`,
+    thumbnailUrl: lesson.thumbnailPath,
   };
 
   const course = {
@@ -461,7 +463,7 @@ export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
     isAccessibleForFree: true,
     educationalLevel: "University",
     timeRequired: `PT${lesson.duration.replace(/[^0-9]/g, "")}M`,
-    image: `${BASE_URL}${lesson.thumbnailPath}`,
+    image: lesson.thumbnailPath,
     hasCourseInstance: {
       "@type": "CourseInstance",
       courseMode: "online",
@@ -496,7 +498,7 @@ export function getVisualLessonJsonLd(lesson: VisualLesson, locale: string) {
       name: lesson.creator.name,
       ...(lesson.creator.url && { url: lesson.creator.url }),
     },
-    thumbnailUrl: `${BASE_URL}${lesson.thumbnailPath}`,
+    thumbnailUrl: lesson.thumbnailPath,
     keywords: lesson.tags.join(", "),
   };
 
@@ -541,7 +543,7 @@ export function getSoftwareSourceCodeJsonLd(opts: {
  */
 export function getMediaAssetJsonLd(asset: MediaAsset, locale: string) {
   const assetUrl = `${BASE_URL}/${locale}/resources/media/${asset.slug}`;
-  const contentUrl = `${BASE_URL}${asset.imagePath}`;
+  const contentUrl = asset.imagePath;
   const licenseUrl =
     asset.license === "CC BY 4.0"
       ? "https://creativecommons.org/licenses/by/4.0/"
@@ -553,7 +555,7 @@ export function getMediaAssetJsonLd(asset: MediaAsset, locale: string) {
     name: asset.name,
     description: asset.seoDescription,
     contentUrl,
-    thumbnailUrl: `${BASE_URL}${asset.thumbnailPath}`,
+    thumbnailUrl: asset.thumbnailPath,
     url: assetUrl,
     width: { "@type": "QuantitativeValue", value: asset.width, unitCode: "E37" },
     height: { "@type": "QuantitativeValue", value: asset.height, unitCode: "E37" },
@@ -1217,6 +1219,178 @@ export function getBlogArticleJsonLd(article: {
       "@type": "WebSite",
       name: "EnterMedSchool.org",
       url: BASE_URL,
+    },
+  };
+}
+
+/* ── Practice Question schemas ───────────────────────────────── */
+
+/**
+ * JSON-LD Quiz schema for an individual MCQ question page.
+ * Uses eduQuestionType "Multiple choice" for Google Education Q&A.
+ */
+export function getQuizQuestionJsonLd(
+  question: PracticeQuestion,
+  deckTitle: string,
+  categoryName: string,
+  locale: string,
+) {
+  const correctOption = question.options.find((o) => o.isCorrect);
+  const wrongOptions = question.options.filter((o) => !o.isCorrect);
+  const promptExcerpt = question.prompt.length > 80
+    ? question.prompt.slice(0, 77) + "…"
+    : question.prompt;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: promptExcerpt,
+    about: { "@type": "Thing", name: categoryName },
+    educationalLevel: question.difficulty || "intermediate",
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    learningResourceType: "Quiz",
+    author: { "@type": "Organization", name: "EnterMedSchool.org", url: BASE_URL },
+    publisher: { "@type": "Organization", name: "EnterMedSchool.org", url: BASE_URL },
+    datePublished: question.createdAt,
+    isPartOf: { "@type": "Quiz", name: deckTitle },
+    hasPart: [
+      {
+        "@type": "Question",
+        eduQuestionType: "Multiple choice",
+        text: question.prompt,
+        acceptedAnswer: correctOption
+          ? {
+              "@type": "Answer",
+              text: `${correctOption.label}. ${correctOption.body}${question.explanation ? ". " + question.explanation : ""}`,
+            }
+          : undefined,
+        suggestedAnswer: wrongOptions.map((o) => ({
+          "@type": "Answer",
+          text: `${o.label}. ${o.body}`,
+        })),
+      },
+    ],
+  };
+}
+
+/**
+ * JSON-LD Quiz schema for a deck listing page (aggregate).
+ */
+export function getQuizDeckJsonLd(
+  deckTitle: string,
+  deckDescription: string | undefined,
+  questionCount: number,
+  categoryName: string,
+  url: string,
+  locale: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: deckTitle,
+    description: deckDescription || `${questionCount} practice questions on ${categoryName}`,
+    about: { "@type": "Thing", name: categoryName },
+    educationalLevel: "intermediate",
+    numberOfItems: questionCount,
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    learningResourceType: "Quiz",
+    url,
+    author: ORGANIZATION_REF,
+    publisher: ORGANIZATION_REF,
+  };
+}
+
+/* ── Flashcard schemas ───────────────────────────────────────── */
+
+/**
+ * JSON-LD Quiz schema for an individual flashcard page.
+ * Uses eduQuestionType "Flashcard" for Google Education Q&A carousel.
+ */
+export function getFlashcardJsonLd(
+  card: Flashcard,
+  deckTitle: string,
+  categoryName: string,
+  locale: string,
+) {
+  const frontExcerpt = card.front.length > 80
+    ? card.front.slice(0, 77) + "…"
+    : card.front;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: `${deckTitle} — ${frontExcerpt}`,
+    about: { "@type": "Thing", name: categoryName },
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    learningResourceType: "Quiz",
+    author: { "@type": "Organization", name: "EnterMedSchool.org", url: BASE_URL },
+    publisher: { "@type": "Organization", name: "EnterMedSchool.org", url: BASE_URL },
+    datePublished: card.createdAt,
+    isPartOf: { "@type": "Quiz", name: deckTitle },
+    hasPart: [
+      {
+        "@type": "Question",
+        eduQuestionType: "Flashcard",
+        text: card.front,
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: `${card.back} | Source: entermedschool.org`,
+        },
+      },
+    ],
+  };
+}
+
+/**
+ * JSON-LD Quiz schema for a flashcard deck page (aggregate).
+ */
+export function getFlashcardDeckJsonLd(
+  deckTitle: string,
+  deckDescription: string | undefined,
+  cardCount: number,
+  categoryName: string,
+  url: string,
+  locale: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Quiz",
+    name: deckTitle,
+    description: deckDescription || `${cardCount} flashcards on ${categoryName}`,
+    about: { "@type": "Thing", name: categoryName },
+    numberOfItems: cardCount,
+    inLanguage: locale,
+    isAccessibleForFree: true,
+    learningResourceType: "Quiz",
+    url,
+    author: ORGANIZATION_REF,
+    publisher: ORGANIZATION_REF,
+  };
+}
+
+/**
+ * SpeakableSpecification for question/flashcard pages.
+ * Helps voice assistants surface definitions in voice search results.
+ */
+export function getEducationSpeakableJsonLd(
+  name: string,
+  url: string,
+) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name,
+    url,
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: [
+        "[data-speakable='question']",
+        "[data-speakable='answer']",
+        "[data-speakable='explanation']",
+      ],
     },
   };
 }

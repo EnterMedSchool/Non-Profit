@@ -4,6 +4,7 @@ import { mediaAssets } from "@/data/media-assets";
 import { routing } from "@/i18n/routing";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import HowToCiteCopyBlock from "@/components/resources/HowToCiteCopyBlock";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -31,7 +32,14 @@ export async function generateMetadata({ params }: Props) {
     title,
     description,
     alternates: { canonical: url, languages },
-    openGraph: { title, description, url, type: "website", siteName: "EnterMedSchool.org" },
+    openGraph: {
+      title,
+      description,
+      url,
+      type: "website",
+      siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("resources", "media", "how-to-cite"), width: 1200, height: 630 }],
+    },
     twitter: { card: "summary_large_image" as const, title, description },
     keywords: [
       "cite medical illustrations",

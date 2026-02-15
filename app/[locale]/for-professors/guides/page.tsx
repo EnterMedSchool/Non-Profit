@@ -6,6 +6,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import ChunkyCard from "@/components/shared/ChunkyCard";
 import StickerBadge from "@/components/shared/StickerBadge";
 import { getCollectionPageJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/for-professors/guides`,
       type: "website",
+      images: [{ url: ogImagePath("for-professors", "guides"), width: 1200, height: 630 }],
     },
     keywords: ["teaching guides", "medical lecture best practices", "AI slides", "clinical case teaching", "educator resources"],
     alternates: {

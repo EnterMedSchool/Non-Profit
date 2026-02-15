@@ -9,6 +9,7 @@ import {
 } from "@/data/glossary-terms";
 import { getGlossaryHubJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 import GlossaryHubClient from "./GlossaryHubClient";
 
 interface Props {
@@ -41,6 +42,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       url: `${BASE_URL}/${locale}/resources/glossary`,
       siteName: "EnterMedSchool.org",
       type: "website",
+      images: [{ url: ogImagePath("resources", "glossary"), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

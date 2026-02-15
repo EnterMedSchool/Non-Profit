@@ -15,6 +15,7 @@ import {
   ArrowRight,
   Sparkles,
   Shield,
+  Layers,
 } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
@@ -110,6 +111,17 @@ const sectionPaths = [
     accent: "text-showcase-orange",
     border: "border-showcase-orange/30",
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(255,159,67,0.15)]",
+  },
+  {
+    path: "/resources/flashcards",
+    titleKey: "hub.flashcards",
+    descKey: "hub.flashcardsDesc",
+    icon: Layers,
+    color: "from-showcase-teal to-showcase-blue",
+    iconBg: "bg-showcase-teal",
+    accent: "text-showcase-teal",
+    border: "border-showcase-teal/30",
+    hoverShadow: "hover:shadow-[0_6px_24px_rgba(0,217,192,0.15)]",
   },
   {
     path: "/resources/videos",

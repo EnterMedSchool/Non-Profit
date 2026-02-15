@@ -11,6 +11,7 @@ import ArticleBody from "@/components/articles/ArticleBody";
 import AuthorCard from "@/components/articles/AuthorCard";
 import ArticlesCTA from "@/components/articles/ArticlesCTA";
 import { ReadingProgressBar, TableOfContents, ShareBar } from "./ArticleClientComponents";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -56,9 +57,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: [post.author],
       section: post.category,
       tags: post.tags,
-      ...(post.coverImage && {
-        images: [{ url: `${BASE_URL}${post.coverImage}`, width: 1200, height: 630 }],
-      }),
+      images: [{ url: ogImagePath("articles", slug), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

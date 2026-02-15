@@ -28,6 +28,7 @@ import BadgeGenerator from "@/components/license/BadgeGenerator";
 import FAQAccordion from "@/components/license/FAQAccordion";
 import { getWebPageJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({
   params,
@@ -53,6 +54,7 @@ export async function generateMetadata({
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/license`,
       type: "website",
+      images: [{ url: ogImagePath("license"), width: 1200, height: 630 }],
     },
     keywords: [
       "license",

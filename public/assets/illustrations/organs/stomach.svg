@@ -1,6 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <rect width="200" height="200" rx="20" fill="#FFF0F3"/>
-  <path d="M80,50 Q60,55 55,80 Q50,110 75,125 Q100,130 115,110 Q125,90 120,70 Q118,55 105,50 Z" fill="#FF85A2" opacity="0.4"/>
-  <path d="M82,55 Q65,60 60,82 Q55,108 78,122 Q98,126 112,108 Q120,90 116,72 Q114,58 104,55 Z" fill="#E84393" opacity="0.2"/>
-  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#E84393" opacity="0.8">Stomach</text>
-</svg>

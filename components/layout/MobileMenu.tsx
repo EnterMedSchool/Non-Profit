@@ -138,7 +138,7 @@ export default function MobileMenu({
               className="font-display text-lg font-bold text-ink-dark inline-flex items-center gap-2"
             >
               <Image
-                src="/logo.png"
+                src={blobAsset("/logo.png")}
                 alt="Leo mascot"
                 width={32}
                 height={32}

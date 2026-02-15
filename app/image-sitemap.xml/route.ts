@@ -19,7 +19,7 @@ export async function GET() {
   /* ── Media assets ────────────────────────────────────────────────── */
   for (const asset of mediaAssets) {
     const pageUrl = `${BASE_URL}/${defaultLocale}/resources/media/${asset.slug}`;
-    const imageUrl = `${BASE_URL}${asset.imagePath}`;
+    const imageUrl = asset.imagePath;
     const licenseUrl =
       asset.license === "CC BY 4.0"
         ? LICENSE_URL
@@ -39,7 +39,7 @@ export async function GET() {
   /* ── Visual lesson thumbnails ────────────────────────────────────── */
   for (const lesson of visualLessons) {
     const pageUrl = `${BASE_URL}/${defaultLocale}/resources/visuals/${lesson.id}`;
-    const imageUrl = `${BASE_URL}${lesson.thumbnailPath}`;
+    const imageUrl = lesson.thumbnailPath;
 
     entries.push(`  <url>
     <loc>${escapeXml(pageUrl)}</loc>
@@ -55,7 +55,7 @@ export async function GET() {
   /* ── PDF book covers ─────────────────────────────────────────────── */
   for (const book of pdfBooks) {
     const pageUrl = `${BASE_URL}/${defaultLocale}/resources/pdfs/${book.slug}`;
-    const imageUrl = `${BASE_URL}${book.coverImage}`;
+    const imageUrl = book.coverImage;
 
     entries.push(`  <url>
     <loc>${escapeXml(pageUrl)}</loc>

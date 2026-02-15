@@ -9,7 +9,7 @@ import { Code, Link2, ArrowRight } from "lucide-react";
 /* ------------------------------------------------------------------ */
 /*  Constants                                                          */
 /* ------------------------------------------------------------------ */
-const LOGO_SRC = "/logo.png";
+const LOGO_SRC = blobAsset("/logo.png");
 const INTRO_SEEN_KEY = "cs-intro-seen";
 
 /* ------------------------------------------------------------------ */

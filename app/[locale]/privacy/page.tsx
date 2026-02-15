@@ -4,6 +4,7 @@ import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { getWebPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/privacy`,
       type: "website",
+      images: [{ url: ogImagePath("privacy"), width: 1200, height: 630 }],
     },
   };
 }

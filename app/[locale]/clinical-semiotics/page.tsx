@@ -1,6 +1,7 @@
 import "@/styles/clinical-semiotics.css";
 import { Suspense } from "react";
 import ClinicalSemioticsClient from "./ClinicalSemioticsClient";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -25,6 +26,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
         "Master clinical examination skills with interactive video walkthroughs, real-time quizzes, and medical terminology. Free physical exam training for med students.",
       url: `${BASE_URL}/${locale}/clinical-semiotics`,
       type: "website",
+      images: [{ url: ogImagePath("clinical-semiotics"), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

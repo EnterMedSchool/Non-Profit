@@ -6,6 +6,7 @@ import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ChunkyButton from "@/components/shared/ChunkyButton";
 import { getCollectionPageJsonLd, getEventJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -19,6 +20,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/events`,
       type: "website",
+      images: [{ url: ogImagePath("events"), width: 1200, height: 630 }],
     },
     keywords: ["medical education events", "entermedschool events", "student meetups", "medical community"],
     alternates: {

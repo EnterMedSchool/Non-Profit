@@ -1,12 +1,13 @@
 /**
  * Asset registry for flashcard backgrounds and decorations.
  *
- * Add your own PNGs to:
- *   public/assets/flashcards/backgrounds/
- *   public/assets/flashcards/decorations/
+ * Assets are stored in Vercel Blob under /assets/flashcards/.
+ * Use blobAsset() for the src path.
  *
- * Then register them here so they appear in the customization panel.
+ * Register assets here so they appear in the customization panel.
  */
+
+import { blobAsset } from "@/lib/blob-url";
 
 export interface FlashcardAsset {
   id: string;

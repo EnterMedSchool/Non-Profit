@@ -7,6 +7,7 @@ import StickerBadge from "@/components/shared/StickerBadge";
 import { getCalculatorTools } from "@/data/tools";
 import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 interface CalculatorsPageProps {
   params: Promise<{ locale: string }>;
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: CalculatorsPageProps) {
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/calculators`,
       type: "website",
+      images: [{ url: ogImagePath("calculators"), width: 1200, height: 630 }],
     },
     keywords: ["medical calculators", "BMI calculator", "clinical calculators", "free medical tools", "health calculators"],
     alternates: {

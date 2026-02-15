@@ -6,6 +6,7 @@ import ProjectTimeline from "@/components/home/ProjectTimeline";
 import { Heart, BookOpen, Globe, Users, Sparkles } from "lucide-react";
 import { getAboutPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -26,6 +27,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/about`,
       type: "website",
+      images: [{ url: ogImagePath("about"), width: 1200, height: 630 }],
     },
     keywords: ["about entermedschool", "medical education", "open source", "non-profit", "free resources"],
   };

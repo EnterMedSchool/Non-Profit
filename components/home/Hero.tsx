@@ -286,7 +286,7 @@ export default function Hero() {
             aria-hidden="true"
           />
           <Image
-            src="/logo.png"
+            src={blobAsset("/logo.png")}
             alt={t("mascotAlt")}
             width={130}
             height={130}

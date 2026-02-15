@@ -25,6 +25,7 @@ import {
   getGlossarySpeakableJsonLd,
 } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 import GlossaryTagBadge from "@/components/glossary/GlossaryTagBadge";
 import GlossarySharePanel from "@/components/glossary/GlossarySharePanel";
 import GlossaryStudyMode from "@/components/glossary/GlossaryStudyMode";
@@ -88,6 +89,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       authors: ["EnterMedSchool.org"],
       section: term.primary_tag,
       ...(term.tags?.length && { tags: term.tags }),
+      images: [{ url: ogImagePath("resources", "glossary", termId), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",

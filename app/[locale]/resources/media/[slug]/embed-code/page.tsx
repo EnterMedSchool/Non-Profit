@@ -58,7 +58,7 @@ export async function generateMetadata({ params }: Props) {
       siteName: "EnterMedSchool.org",
       images: [
         {
-          url: `${BASE_URL}${asset.imagePath}`,
+          url: asset.imagePath,
           width: asset.width,
           height: asset.height,
           alt: `${asset.name} embed code`,
@@ -83,7 +83,7 @@ export default async function MediaEmbedCodePage({ params }: Props) {
 
   const pageUrl = `${BASE_URL}/${locale}/resources/media/${slug}/embed-code`;
   const assetPageUrl = `${BASE_URL}/${locale}/resources/media/${slug}`;
-  const imageUrl = `${BASE_URL}${asset.imagePath}`;
+  const imageUrl = asset.imagePath;
 
   // JSON-LD
   const sourceCodeJsonLd = getSoftwareSourceCodeJsonLd({

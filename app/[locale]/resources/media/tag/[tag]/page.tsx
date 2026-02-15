@@ -12,6 +12,7 @@ import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import MediaAssetCard from "@/components/resources/MediaAssetCard";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -53,6 +54,7 @@ export async function generateMetadata({ params }: Props) {
       url,
       type: "website",
       siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("resources", "media", "tag", tagSlug), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image" as const,

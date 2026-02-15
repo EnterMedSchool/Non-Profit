@@ -11,6 +11,7 @@ import {
 } from "@/data/glossary-terms";
 import { getGlossaryCategoryJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 import GlossaryTermCard from "@/components/glossary/GlossaryTermCard";
 
 interface Props {
@@ -48,6 +49,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       description: `${category.count} ${category.name.toLowerCase()} terms with definitions, clinical cases & study guides.`,
       url: `${BASE_URL}/${locale}/resources/glossary/category/${categoryId}`,
       siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("resources", "glossary", "category", categoryId), width: 1200, height: 630 }],
     },
   };
 }

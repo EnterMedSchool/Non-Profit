@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { blobAsset } from "@/lib/blob-url";
 import dynamic from "next/dynamic";
 import Image from "next/image";
 import { getTranslations } from "next-intl/server";
@@ -7,6 +8,7 @@ import Hero from "@/components/home/Hero";
 import Marquee from "@/components/home/Marquee";
 import BlobBackground from "@/components/shared/BlobBackground";
 import { getOrganizationJsonLd, getWebSiteJsonLd, getSiteNavigationJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 import ExploreTopics from "@/components/home/ExploreTopics";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -48,14 +50,7 @@ export async function generateMetadata({
       type: "website",
       siteName: t("siteName"),
       locale,
-      images: [
-        {
-          url: `${BASE_URL}/opengraph-image`,
-          width: 1200,
-          height: 630,
-          alt: "EnterMedSchool.org — Free Open-Source Medical Education Platform",
-        },
-      ],
+      images: [{ url: ogImagePath("home"), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image",
@@ -133,7 +128,7 @@ function SectionSkeleton() {
     >
       <div className="animate-pulse flex flex-col items-center gap-3 opacity-30">
         <Image
-          src="/logo.png"
+          src={blobAsset("/logo.png")}
           alt=""
           width={48}
           height={48}

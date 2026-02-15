@@ -7,6 +7,7 @@ import StickerBadge from "@/components/shared/StickerBadge";
 import { getCreatorTools } from "@/data/tools";
 import { getCollectionPageJsonLd, getItemListJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
+import { ogImagePath } from "@/lib/og-path";
 
 interface ToolsPageProps {
   params: Promise<{ locale: string }>;
@@ -24,6 +25,7 @@ export async function generateMetadata({ params }: ToolsPageProps) {
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/tools`,
       type: "website",
+      images: [{ url: ogImagePath("tools"), width: 1200, height: 630 }],
     },
     keywords: ["medical tools", "illustration maker", "flashcard maker", "MCQ maker", "LaTeX editor", "free medical apps", "open source health tools"],
     alternates: {

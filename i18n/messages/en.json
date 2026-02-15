@@ -69,6 +69,8 @@
     "teachingGuides": "Teaching Guides",
     "teachingAssets": "Teaching Assets",
     "questionsDesc": "Question banks for your exams — download, adapt, or share with your students.",
+    "flashcards": "Flashcards",
+    "flashcardsDesc": "Medical flashcards by topic — embed on your site or share with your students.",
     "videosDesc": "Video assets for your lectures — download or embed on your website.",
     "pdfsDesc": "Textbooks and reference sheets — assign to your students or print as handouts.",
     "visualsDesc": "Anatomy diagrams and clinical visuals — grab them for your slides.",
@@ -288,6 +290,8 @@
       "clinicalSemioticsDesc": "Interactive clinical exam videos. Embed on your website or share with your students.",
       "questions": "Question Banks",
       "questionsDesc": "Question banks for your exams. Download, adapt, and share with your students.",
+      "flashcards": "Flashcards",
+      "flashcardsDesc": "Medical flashcards to study by topic. Embed on your website or share with your students.",
       "videos": "Video Assets",
       "videosDesc": "Video explanations of medical topics. Embed on your website or use in your lectures.",
       "explore": "Explore"
@@ -367,21 +371,143 @@
     },
     "questions": {
       "title": "Question Banks",
-      "metaDescription": "Free question banks for medical educators. Download for your exams, adapt for your curriculum, and share with your students.",
+      "metaDescription": "Free medical practice questions and MCQs. Test your knowledge with {count}+ questions across {deckCount} decks covering biology, chemistry, physics, and more.",
       "hero": {
         "titlePre": "Practice",
         "titleHighlight": "Questions",
-        "titlePost": "& Exams",
+        "titlePost": "& MCQs",
         "annotation": "test your knowledge!",
-        "subtitle": "Exam-style questions and practice materials to help you prepare for medical school assessments."
+        "subtitle": "Over {count} exam-style multiple-choice questions across {categoryCount} subjects. Answer online, download as PDF, or embed on your website."
       },
       "jsonLd": {
-        "title": "Practice Questions & Exams",
-        "description": "Exam-style questions and practice materials for medical school assessments."
+        "title": "Practice Questions & MCQs",
+        "description": "Free medical practice questions and MCQs for exam preparation."
       },
       "emptyState": {
         "title": "No questions available yet.",
         "hint": "Practice questions will appear here when available."
+      },
+      "category": {
+        "metaDescription": "{name} practice questions — {count} MCQs across {deckCount} decks. Free to use for exam preparation.",
+        "decksTitle": "Question Decks",
+        "subCategoriesTitle": "Subcategories",
+        "questionsCount": "{count} questions",
+        "decksCount": "{count} decks",
+        "emptyDecks": "No question decks in this category yet.",
+        "backToAll": "All Questions"
+      },
+      "deck": {
+        "metaDescription": "{title} — {count} free practice MCQs with detailed explanations. Test your knowledge online or download as PDF.",
+        "startQuiz": "Start Quiz",
+        "shuffleMode": "Shuffle Questions",
+        "questionsCount": "{count} Questions",
+        "difficulty": "Difficulty",
+        "download": "Download",
+        "embed": "Embed",
+        "downloadPdf": "Download PDF",
+        "downloadPng": "Download PNG",
+        "downloadZip": "Download ZIP",
+        "relatedResources": "Related Resources",
+        "relatedQuestions": "Related Questions",
+        "easy": "Easy",
+        "medium": "Medium",
+        "hard": "Hard"
+      },
+      "question": {
+        "metaDescription": "{prompt} — Free medical MCQ with detailed explanation. Source: EnterMedSchool.org",
+        "explanation": "Explanation",
+        "correctAnswer": "Correct Answer",
+        "difficulty": "Difficulty",
+        "tags": "Tags",
+        "reportIssue": "Report an Issue",
+        "reportSubject": "Question Report: {stableId}",
+        "nextQuestion": "Next Question",
+        "prevQuestion": "Previous Question",
+        "backToDeck": "Back to Deck",
+        "source": "Source: entermedschool.org"
+      },
+      "player": {
+        "selectAnswer": "Select your answer",
+        "checkAnswer": "Check Answer",
+        "correct": "Correct!",
+        "incorrect": "Incorrect",
+        "score": "Score: {correct}/{total}",
+        "progress": "Question {current} of {total}",
+        "complete": "Quiz Complete!",
+        "scoreMessage": "You scored {correct} out of {total} ({percent}%)",
+        "tryAgain": "Try Again",
+        "reviewAnswers": "Review Answers",
+        "nextQuestion": "Next",
+        "showExplanation": "Show Explanation"
+      }
+    },
+    "flashcards": {
+      "title": "Flashcard Decks",
+      "metaDescription": "Free medical flashcards for exam preparation. {count}+ cards across {deckCount} decks. Download as Anki-compatible TSV or study online.",
+      "hero": {
+        "titlePre": "Medical",
+        "titleHighlight": "Flashcards",
+        "titlePost": "for Exam Prep",
+        "annotation": "study smarter!",
+        "subtitle": "Over {count} flashcards across {categoryCount} categories. Study online, download for Anki, or export as PDF."
+      },
+      "jsonLd": {
+        "title": "Medical Flashcard Decks",
+        "description": "Free medical flashcards for exam preparation and study."
+      },
+      "emptyState": {
+        "title": "No flashcards available yet.",
+        "hint": "Flashcard decks will appear here when available."
+      },
+      "category": {
+        "metaDescription": "{name} flashcards — {count} cards across {deckCount} decks. Free for exam preparation and study.",
+        "decksTitle": "Flashcard Decks",
+        "cardsCount": "{count} cards",
+        "decksCount": "{count} decks",
+        "backToAll": "All Flashcards",
+        "subCategoriesTitle": "Subcategories"
+      },
+      "deck": {
+        "metaDescription": "{title} — {count} free medical flashcards with detailed answers. Study online or download for Anki.",
+        "startStudy": "Start Studying",
+        "cardsCount": "{count} Cards",
+        "difficulty": "Difficulty",
+        "easy": "Easy",
+        "intermediate": "Intermediate",
+        "medium": "Medium",
+        "hard": "Hard",
+        "download": "Download",
+        "embed": "Embed",
+        "downloadTsv": "Download TSV (Anki)",
+        "downloadCsv": "Download CSV",
+        "downloadPdf": "Download PDF",
+        "downloadZip": "Download ZIP",
+        "relatedResources": "Related Resources",
+        "estimatedTime": "{minutes} min"
+      },
+      "card": {
+        "metaDescription": "{front} — Free medical flashcard with detailed answer. Source: EnterMedSchool.org",
+        "front": "Front",
+        "back": "Back",
+        "hint": "Hint",
+        "tapToFlip": "Tap to flip",
+        "reportIssue": "Report an Issue",
+        "reportSubject": "Flashcard Report: {stableId}",
+        "nextCard": "Next Card",
+        "prevCard": "Previous Card",
+        "backToDeck": "Back to Deck",
+        "source": "Source: entermedschool.org"
+      },
+      "study": {
+        "flipCard": "Flip Card",
+        "iKnewIt": "I Knew It",
+        "studyAgain": "Study Again",
+        "progress": "Card {current} of {total}",
+        "complete": "Deck Complete!",
+        "knewCount": "You knew {count} out of {total} cards ({percent}%)",
+        "restartAll": "Restart All",
+        "restartMissed": "Study Missed Cards",
+        "showAnswer": "Show Answer"
       }
     },
     "videos": {
@@ -1959,6 +2085,7 @@
     "home": "Home",
     "resources": "Resources",
     "questions": "Questions",
+    "flashcards": "Flashcards",
     "videos": "Videos",
     "pdfs": "PDFs",
     "visuals": "Visuals",
@@ -1997,6 +2124,7 @@
     },
     "links": {
       "questions": "Question Banks",
+      "flashcards": "Flashcards",
       "videos": "Video Assets",
       "pdfs": "Textbooks & Handouts",
       "visuals": "Visual Assets",

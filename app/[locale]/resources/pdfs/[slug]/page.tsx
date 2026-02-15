@@ -14,6 +14,7 @@ import EducatorCTA from "@/components/pdf-viewer/EducatorCTA";
 import AttributionGuide from "@/components/pdf-viewer/AttributionGuide";
 import { pdfBooks, getBookBySlug } from "@/data/pdf-books";
 import { getBookJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateStaticParams() {
   return pdfBooks.map((book) => ({ slug: book.slug }));
@@ -39,14 +40,7 @@ export async function generateMetadata({
       description: book.description,
       url: `${BASE_URL}/${locale}/resources/pdfs/${slug}`,
       type: "website",
-      images: [
-        {
-          url: `${BASE_URL}${book.coverImage}`,
-          width: 400,
-          height: 520,
-          alt: book.title,
-        },
-      ],
+      images: [{ url: ogImagePath("resources", "pdfs", slug), width: 1200, height: 630 }],
     },
     keywords: book.tags,
     alternates: {

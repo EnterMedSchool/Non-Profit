@@ -1,9 +1,0 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="200" height="200" viewBox="0 0 200 200">
-  <rect width="200" height="200" rx="20" fill="#EBE6FF"/>
-  <circle cx="100" cy="85" r="42" fill="#6C5CE7" opacity="0.25"/>
-  <circle cx="100" cy="85" r="38" fill="#6C5CE7" opacity="0.15"/>
-  <circle cx="100" cy="85" r="38" fill="none" stroke="#6C5CE7" stroke-width="3" opacity="0.6"/>
-  <circle cx="100" cy="85" r="42" fill="none" stroke="#4834D4" stroke-width="2" opacity="0.4"/>
-  <circle cx="100" cy="85" r="14" fill="#4834D4" opacity="0.5"/>
-  <text x="100" y="170" text-anchor="middle" font-family="system-ui, -apple-system, sans-serif" font-size="12" font-weight="600" fill="#4834D4" opacity="0.8">Nucleus</text>
-</svg>

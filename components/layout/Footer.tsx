@@ -30,7 +30,7 @@ export default function Footer() {
               className="font-display text-2xl font-bold text-ink-dark group inline-flex items-center gap-3"
             >
               <Image
-                src="/logo.png"
+                src={blobAsset("/logo.png")}
                 alt="Leo mascot"
                 width={36}
                 height={36}
@@ -172,6 +172,11 @@ export default function Footer() {
                   </FooterLink>
                 </li>
                 <li>
+                  <FooterLink href={`/${locale}/resources/flashcards`}>
+                    {t("links.flashcards")}
+                  </FooterLink>
+                </li>
+                <li>
                   <FooterLink href={`/${locale}/resources/videos`}>
                     {t("links.videos")}
                   </FooterLink>
@@ -237,7 +242,7 @@ export default function Footer() {
         <div className="mt-12 flex flex-col items-center justify-between gap-4 border-t border-showcase-purple/10 pt-6 sm:flex-row">
           <p className="inline-flex items-center gap-2 text-sm text-ink-light">
             <Image
-              src="/logo.png"
+              src={blobAsset("/logo.png")}
               alt=""
               width={18}
               height={18}

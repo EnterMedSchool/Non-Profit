@@ -140,7 +140,7 @@ export default function BadgeGenerator() {
           img.crossOrigin = "anonymous";
           img.onload = () => resolve(img);
           img.onerror = () => resolve(img);
-          img.src = "/logo.png";
+          img.src = blobAsset("/logo.png");
         }),
         generateQRCodeImage({
           url: "https://entermedschool.org",

@@ -25,6 +25,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
 import MediaAssetDownload from "@/components/resources/MediaAssetDownload";
 import MediaAssetCard from "@/components/resources/MediaAssetCard";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -66,14 +67,7 @@ export async function generateMetadata({ params }: MediaAssetDetailPageProps) {
       url,
       type: "website",
       siteName: "EnterMedSchool.org",
-      images: [
-        {
-          url: `${BASE_URL}${asset.imagePath}`,
-          width: asset.width,
-          height: asset.height,
-          alt: `${asset.name} — Free medical illustration by EnterMedSchool.org`,
-        },
-      ],
+      images: [{ url: ogImagePath("resources", "media", slug), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image" as const,

@@ -1,5 +1,6 @@
 import type { ExamChain, VideoSegment, SceneOverlay } from "./VideoChainPlayer";
 import type { ExamType } from "./VideoChainPlayer";
+import { blobAsset } from "@/lib/blob-url";
 
 export type { ExamType };
 
@@ -225,7 +226,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
     examType: "cardiac",
     segments: [
       {
-        id: "cardiac-prep-positioning", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-prep-positioning", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 0, sourceEndTime: 8.28, duration: 8.28, xpReward: 10, scenes: [],
         pausePoints: [
           { timestamp: 8.18, type: "tip", tip: { title: "Prep & Positioning", content: "- Hand hygiene, introductions, ID check, and consent.\n- Raise the bed to roughly a 30-45 degree semi-recumbent angle.\n- Expose only the chest; keep the rest covered so the patient stays warm and respected.\n- Quiet room, warm stethoscope, minimal clothing noise.\n- Let the patient know you'll examine the legs and feet later to look for edema.", position: "center", pauseVideo: true } },
@@ -235,7 +236,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-four-areas-pass1", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-four-areas-pass1", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 8.28, sourceEndTime: 27.25, duration: 18.97, xpReward: 15,
         scenes: [
           { timestamp: 5.88, type: "subtitle", subtitle: { text: "Aortic area \u00b7 2nd ICS right sternal border", position: "bottom", style: "highlight" }, duration: 3 },
@@ -252,7 +253,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-auscultation-with-pulse", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-auscultation-with-pulse", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 27.25, sourceEndTime: 40.16, duration: 12.91, xpReward: 15,
         scenes: [{ timestamp: 0, type: "subtitle", subtitle: { text: "Radial pulse palpated while auscultating - sync sounds with beats", position: "bottom", style: "default" }, duration: 4 }],
         pausePoints: [
@@ -263,7 +264,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-four-areas-pass2", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-four-areas-pass2", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 40.16, sourceEndTime: 57.22, duration: 17.06, xpReward: 15,
         scenes: [
           { timestamp: 4.85, type: "subtitle", subtitle: { text: "Aortic area \u00b7 2nd ICS right sternal border", position: "bottom", style: "highlight" }, duration: 3 },
@@ -279,7 +280,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-edema-history", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-edema-history", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 57.22, sourceEndTime: 60.25, duration: 3.03, xpReward: 10, scenes: [],
         pausePoints: [
           { timestamp: 2.93, type: "tip", tip: { title: "Ask About Swelling", content: "- Clarify ankle/leg swelling, timing, and symmetry.\n- Screen for orthopnea, paroxysmal nocturnal dyspnea, and rapid weight gain.\n- Remember meds (e.g., certain calcium channel blockers) and salt intake can drive edema.\n- Bilateral swelling suggests systemic causes; unilateral swelling points to local issues like DVT or cellulitis.", position: "center", pauseVideo: true } },
@@ -289,7 +290,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-remove-shoes", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-remove-shoes", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 60.25, sourceEndTime: 69.05, duration: 8.8, xpReward: 10, scenes: [],
         pausePoints: [
           { timestamp: 8.7, type: "tip", tip: { title: "Inspect Feet & Ankles", content: "- Remove shoes and socks to look directly for edema, skin changes, and ulcers.\n- Compare both sides; inspect from multiple angles.\n- Palpate dorsalis pedis (top of foot) and posterior tibial (behind medial malleolus) pulses.\n- Press over the shin/ankle for 5-10 seconds to test for pitting.\n- Note color, temperature, hair distribution, venous patterns, and any clubbing or cyanosis.", position: "center", pauseVideo: true } },
@@ -299,7 +300,7 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
         ],
       },
       {
-        id: "cardiac-edema-exam", videoUrl: "/videos/hls/CardiacModuleVideo/master.m3u8",
+        id: "cardiac-edema-exam", videoUrl: blobAsset("/videos/hls/CardiacModuleVideo/master.m3u8"),
         sourceStartTime: 69.05, sourceEndTime: 72.7, duration: 3.65, xpReward: 10, scenes: [],
         pausePoints: [
           { timestamp: 3.55, type: "tip", tip: { title: "Checking for Pitting Edema", content: "- Press over the shin and ankle for 5-10 seconds; look for a lasting indentation.\n- Grade edema (1+ to 4+) by depth and rebound time, and document symmetry.\n- In bedbound patients also inspect the sacrum for hidden fluid pooling.\n- Correlate with symptoms and daily weight trends before wrapping up the exam.", position: "center", pauseVideo: true } },
@@ -313,82 +314,82 @@ const RAW_CHAINS: Record<string, RawExamChain> = {
   "manual-bp": {
     examType: "manual-bp",
     segments: [
-      { id: "bp-pre-examination-checklist", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 0, sourceEndTime: 2.13, duration: 2.13, xpReward: 5, scenes: [
+      { id: "bp-pre-examination-checklist", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 0, sourceEndTime: 2.13, duration: 2.13, xpReward: 5, scenes: [
         { timestamp: 0, type: "tip", duration: 0, tip: { title: "Pre-Examination Checklist", content: "Before measuring BP, ensure: (1) Patient has rested for 5 minutes, (2) No caffeine or exercise in last 30 minutes, (3) Patient has empty bladder, (4) Patient is seated comfortably with back supported, (5) Feet flat on floor, (6) No talking during measurement. These conditions ensure accurate readings.", position: "center", pauseVideo: true }, xpReward: 5 },
         { timestamp: 0, type: "question", duration: 0, question: { question: "How long should a patient rest before measuring blood pressure?", options: ["1 minute", "3 minutes", "5 minutes", "10 minutes"], correctAnswer: 2, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-intro-consent", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 2.13, sourceEndTime: 5.13, duration: 3, xpReward: 5, scenes: [
+      { id: "bp-intro-consent", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 2.13, sourceEndTime: 5.13, duration: 3, xpReward: 5, scenes: [
         { timestamp: 0, type: "subtitle", duration: 2, subtitle: { textItalian: "Ora testeremo la pressione sanguigna", text: "Now we will test the blood pressure", position: "bottom", style: "default" } },
         { timestamp: 2, type: "question", duration: 0, question: { question: "How do you say 'blood pressure' in Italian?", options: ["Pressione sanguigna", "Pressione arteriosa", "Pressione del sangue", "Pressione corporea"], correctAnswer: 0, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-intro-consent-angles", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 5.13, sourceEndTime: 8.13, duration: 3, xpReward: 5, scenes: [
+      { id: "bp-intro-consent-angles", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 5.13, sourceEndTime: 8.13, duration: 3, xpReward: 5, scenes: [
         { timestamp: 0, type: "subtitle", duration: 3, subtitle: { textItalian: "Ripetiamo la frase con un'altra angolazione", text: "Let's repeat the Italian consent from another angle", position: "bottom" } },
         { timestamp: 1.5, type: "tip", duration: 1.5, tip: { title: "Repetition Builds Fluency", content: "Use this quick replay to shadow the Italian sentence and observe posture, hand placement, and patient cues.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-raising-sleeve", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 8.13, sourceEndTime: 11.24, duration: 3.11, xpReward: 5, scenes: [
+      { id: "bp-raising-sleeve", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 8.13, sourceEndTime: 11.24, duration: 3.11, xpReward: 5, scenes: [
         { timestamp: 0, type: "subtitle", duration: 3, subtitle: { textItalian: "Va bene se ti alzo la manica?", text: "Is it okay if I raise your sleeve?", position: "bottom", style: "default" } },
         { timestamp: 1.5, type: "tip", duration: 1.5, tip: { title: "\u26a0\ufe0f Common Mistake Warning", content: "Never measure BP over clothing! Always place the cuff directly on the skin. Clothing can cause inaccurate readings and prevent proper cuff placement over the brachial artery.", position: "top" }, xpReward: 5 },
         { timestamp: 3, type: "question", duration: 0, question: { question: "What is a normal blood pressure value for a male adult?", options: ["90/60 mmHg", "120/80 mmHg", "140/90 mmHg", "160/100 mmHg"], correctAnswer: 1, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-raising-sleeve-2", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 11.24, sourceEndTime: 15.03, duration: 3.79, xpReward: 5, scenes: [
+      { id: "bp-raising-sleeve-2", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 11.24, sourceEndTime: 15.03, duration: 3.79, xpReward: 5, scenes: [
         { timestamp: 0, type: "subtitle", duration: 3, subtitle: { textItalian: "Va bene se ti alzo la manica?", text: "Is it okay if I raise your sleeve?", position: "bottom", style: "default" } },
       ]},
-      { id: "bp-putting-on-patient", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 15.03, sourceEndTime: 26.16, duration: 11.13, xpReward: 10, scenes: [
+      { id: "bp-putting-on-patient", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 15.03, sourceEndTime: 26.16, duration: 11.13, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 3, tip: { title: "Patient Positioning", content: "Ensure patient positioning: back supported, feet flat on floor, arm relaxed and supported at heart level. Poor positioning can cause inaccurate readings. Arm should be at the same level as the heart (mid-sternum level).", position: "top" }, xpReward: 5 },
         { timestamp: 3, type: "tip", duration: 5, tip: { title: "Cuff at Heart Level", content: "The pressure cuff must be positioned at the same level as the heart to ensure accurate readings. This eliminates the effect of hydrostatic pressure. We use a manual (non-electric) sphygmomanometer for this test, which requires proper technique for accurate results.", position: "top" }, xpReward: 5 },
         { timestamp: 9, type: "tip", duration: 2, tip: { title: "The Dial (Manometer)", content: "The dial shows the pressure in millimeters of mercury (mmHg). We use mmHg because mercury was historically used in pressure measurement devices. The dial should be positioned so you can easily read it while operating the pump.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-putting-on-patient-2", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 26.16, sourceEndTime: 35.06, duration: 8.9, xpReward: 10, scenes: [
+      { id: "bp-putting-on-patient-2", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 26.16, sourceEndTime: 35.06, duration: 8.9, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 4, tip: { title: "Proper Cuff Positioning", content: "Position the cuff correctly based on the triangle area of the arm. The cuff should be placed over the brachial artery, approximately 2-3 cm above the antecubital fossa. The cuff should be snug but not too tight - you should be able to fit two fingers between the cuff and the arm. The bladder inside the cuff should encircle at least 80% of the arm circumference.", position: "top" }, xpReward: 5 },
         { timestamp: 4, type: "tip", duration: 4, tip: { title: "\u26a0\ufe0f Common Mistake: Wrong Cuff Size", content: "Using wrong cuff size causes errors: Too small cuff = falsely HIGH reading. Too large cuff = falsely LOW reading. Always check cuff size matches arm circumference. For large arms, use a large adult cuff. Standard adult cuff fits arms 22-32 cm circumference.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-correct-position", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 35.06, sourceEndTime: 37.09, duration: 2.03, xpReward: 5, scenes: [
+      { id: "bp-correct-position", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 35.06, sourceEndTime: 37.09, duration: 2.03, xpReward: 5, scenes: [
         { timestamp: 0, type: "tip", duration: 2, tip: { title: "Final Cuff Position Check", content: "Verify the cuff is positioned correctly: centered over the brachial artery, at heart level, and snug but not constricting. The lower edge should be 2-3 cm above the antecubital fossa.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-closing-valve", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 37.09, sourceEndTime: 40, duration: 2.91, xpReward: 5, scenes: [
+      { id: "bp-closing-valve", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 37.09, sourceEndTime: 40, duration: 2.91, xpReward: 5, scenes: [
         { timestamp: 0, type: "tip", duration: 2, tip: { title: "The Valve and Pump", content: "Before inflating, ensure the valve is fully closed. The valve controls the rate of deflation - closing it completely allows you to pump air into the cuff. The pump is used to inflate the cuff, and you'll use the valve to control deflation rate when listening for Korotkoff sounds.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-closing-valve-and-pumping", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 40, sourceEndTime: 46.27, duration: 6.27, xpReward: 5, scenes: [
+      { id: "bp-closing-valve-and-pumping", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 40, sourceEndTime: 46.27, duration: 6.27, xpReward: 5, scenes: [
         { timestamp: 0, type: "tip", duration: 6, tip: { title: "Closing Valve and Pumping", content: "Close the valve completely and begin pumping. Pump smoothly and steadily until you reach approximately 180 mmHg (or 30 mmHg above the expected systolic pressure). Watch the dial carefully as you pump.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-positioning-steth", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 46.27, sourceEndTime: 52, duration: 5.73, xpReward: 10, scenes: [
+      { id: "bp-positioning-steth", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 46.27, sourceEndTime: 52, duration: 5.73, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 5, tip: { title: "Stethoscope Placement", content: "Place the stethoscope under the cuff, directly over the brachial artery. This position allows you to hear the Korotkoff sounds clearly. Different types of blood flow occur at different pressures - laminar flow becomes turbulent as the cuff pressure decreases, creating the sounds we listen for. You'll hear heartbeats at different points in time as the pressure changes.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-positioning-steth-2", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 52, sourceEndTime: 57.23, duration: 5.23, xpReward: 5, scenes: [
+      { id: "bp-positioning-steth-2", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 52, sourceEndTime: 57.23, duration: 5.23, xpReward: 5, scenes: [
         { timestamp: 0, type: "tip", duration: 5, tip: { title: "Stethoscope Technique", content: "Use the bell or diaphragm of the stethoscope with light pressure. Ensure good contact with the skin but don't press too hard. The bell is better for low-frequency sounds like Korotkoff sounds. Make sure the earpieces are angled forward in your ears for optimal sound transmission.", position: "top" }, xpReward: 5 },
       ]},
-      { id: "bp-pumping-to-180", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 9.01, xpReward: 10, scenes: [
+      { id: "bp-pumping-to-180", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 9.01, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 4, tip: { title: "Why Pump to 180 mmHg?", content: "We pump to 180 mmHg (or 30 mmHg above the expected systolic pressure) to ensure we start well above the systolic pressure. This ensures we don't miss the first Korotkoff sound. As we deflate, the cuff pressure decreases. When cuff pressure equals systolic pressure, blood first flows through the artery (Phase I - first sound). When cuff pressure drops below diastolic pressure, flow becomes continuous and sounds disappear (Phase V - diastolic reading).", position: "top" }, xpReward: 5 },
         { timestamp: 4, type: "tip", duration: 5, tip: { title: "\u26a0\ufe0f CRITICAL: Deflation Rate", content: "Deflate at 2-3 mmHg per second (about 1-2 mmHg per heartbeat). Too fast = inaccurate readings (miss sounds). Too slow = patient discomfort and venous congestion. Watch the dial carefully and control the valve smoothly. This is one of the most common sources of measurement errors!", position: "top" }, xpReward: 5 },
-        { timestamp: 0, type: "sideVideo", duration: 9, sideVideo: { videoUrl: "/videos/hls/BPClosingValveandBumpingTo180/master.m3u8", position: "right", width: "40%", muted: false, autoPlay: true } },
+        { timestamp: 0, type: "sideVideo", duration: 9, sideVideo: { videoUrl: blobAsset("/videos/hls/BPClosingValveandBumpingTo180/master.m3u8"), position: "right", width: "40%", muted: false, autoPlay: true } },
       ]},
-      { id: "bp-review-and-knowledge-check", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 20, scenes: [
+      { id: "bp-review-and-knowledge-check", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 20, scenes: [
         { timestamp: 0, type: "question", duration: 0, question: { question: "What happens when the cuff pressure equals the systolic blood pressure?", options: ["Blood flow stops completely", "Blood first flows through the artery (first Korotkoff sound)", "The dial stops moving", "The valve opens automatically"], correctAnswer: 1, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-knowledge-check-2", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 20, scenes: [
+      { id: "bp-knowledge-check-2", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 20, scenes: [
         { timestamp: 0, type: "question", duration: 0, question: { question: "Why do we position the cuff at heart level?", options: ["For patient comfort", "To eliminate hydrostatic pressure effects", "To make it easier to read", "Because it's the standard position"], correctAnswer: 1, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-clinical-knowledge", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 25, scenes: [
+      { id: "bp-clinical-knowledge", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 25, scenes: [
         { timestamp: 0, type: "question", duration: 0, question: { question: "What is the Italian term for 'sphygmomanometer'?", options: ["Stetoscopio", "Sfigmomanometro", "Misuratore di pressione", "Monitor cardiaco"], correctAnswer: 1, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-clinical-reasoning", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 15, scenes: [
+      { id: "bp-clinical-reasoning", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 57.23, sourceEndTime: 66.24, duration: 1, xpReward: 15, scenes: [
         { timestamp: 0, type: "question", duration: 0, question: { question: "What does a difference of >10 mmHg between arms suggest?", options: ["Normal variation", "Possible arterial obstruction or anatomical variation", "Measurement error", "Patient anxiety"], correctAnswer: 1, timeLimit: 30, xpReward: 15, pauseVideo: true } },
       ]},
-      { id: "bp-final-measurement", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 24.5, xpReward: 25, scenes: [
+      { id: "bp-final-measurement", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 24.5, xpReward: 25, scenes: [
         { timestamp: 0, type: "subtitle", duration: 3, subtitle: { text: "Listen carefully to when the heartbeat becomes audible, and when it stops being audible. Watch the dial carefully.", position: "bottom", style: "highlight" } },
         { timestamp: 15, type: "tip", duration: 3, tip: { title: "\u26a0\ufe0f Troubleshooting: Can't Hear Sounds?", content: "If you can't hear Korotkoff sounds: (1) Check stethoscope placement over brachial artery, (2) Ensure good skin contact, (3) Increase pressure higher (up to 200-220 mmHg), (4) Check stethoscope earpieces are properly fitted, (5) Ensure quiet environment. Sometimes auscultatory gap occurs - sounds disappear then reappear.", position: "top" }, xpReward: 5 },
         { timestamp: 20, type: "tip", duration: 3, tip: { title: "Remember", content: "Systolic pressure is when you first hear Korotkoff sounds. Diastolic pressure is when the sounds disappear. Watch and listen carefully!", position: "top" }, xpReward: 5 },
         { timestamp: 23, type: "question", duration: 0, question: { question: "Based on what you heard and saw in the video, what was this patient's blood pressure reading?", options: ["110/70 mmHg", "120/80 mmHg", "130/90 mmHg", "140/100 mmHg"], correctAnswer: 1, timeLimit: 45, xpReward: 20, pauseVideo: true } },
       ]},
-      { id: "bp-clinical-interpretation", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 15, scenes: [
+      { id: "bp-clinical-interpretation", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 15, scenes: [
         { timestamp: 0, type: "tip", duration: 0, tip: { title: "Blood Pressure Classification (2024 Guidelines)", content: "Normal: <120/<80 mmHg | Elevated: 120-129/<80 mmHg | Stage 1 Hypertension: 130-139/80-89 mmHg | Stage 2 Hypertension: >=140/>=90 mmHg | Hypertensive Crisis: >180/>120 mmHg. The reading 120/80 mmHg is NORMAL. For elevated or higher readings, repeat measurement, check both arms, and consider lifestyle modifications or medication.", position: "center" }, xpReward: 5 },
         { timestamp: 0, type: "question", duration: 0, question: { question: "What category does a reading of 120/80 mmHg fall into?", options: ["Normal", "Elevated", "Stage 1 Hypertension", "Stage 2 Hypertension"], correctAnswer: 0, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-documentation", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 10, scenes: [
+      { id: "bp-documentation", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 0, tip: { title: "Proper Documentation", content: "Always document: BP value, arm used (right/left), patient position (seated/standing/lying), and cuff size if non-standard. Example: 'BP: 120/80 mmHg, right arm, seated' or 'BP: 135/85 mmHg, left arm, seated, large cuff'. If auscultatory gap present, document it. Multiple readings? Document all and average if needed.", position: "center" }, xpReward: 5 },
         { timestamp: 0, type: "question", duration: 0, question: { question: "How should you document a BP reading of 120/80 taken on the right arm with patient seated?", options: ["BP: 120/80", "BP: 120/80 mmHg, right arm", "BP: 120/80 mmHg, right arm, seated", "120 over 80"], correctAnswer: 2, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},
-      { id: "bp-multiple-readings-protocol", videoUrl: "/videos/hls/BPFullVideoFull/master.m3u8", sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 10, scenes: [
+      { id: "bp-multiple-readings-protocol", videoUrl: blobAsset("/videos/hls/BPFullVideoFull/master.m3u8"), sourceStartTime: 66.24, sourceEndTime: 90.74, duration: 1, xpReward: 10, scenes: [
         { timestamp: 0, type: "tip", duration: 0, tip: { title: "When to Repeat BP Measurements", content: "Repeat measurements if: (1) First reading is abnormal, (2) Large difference between arms (>10 mmHg), (3) Irregular rhythm detected, (4) Patient seems anxious. Wait 1-2 minutes between readings. If readings differ by >5 mmHg, take a third reading and average. Always measure both arms on first visit to establish baseline.", position: "center" }, xpReward: 5 },
         { timestamp: 0, type: "question", duration: 0, question: { question: "How long should you wait between BP measurements?", options: ["30 seconds", "1-2 minutes", "5 minutes", "10 minutes"], correctAnswer: 1, timeLimit: 30, xpReward: 10, pauseVideo: true } },
       ]},

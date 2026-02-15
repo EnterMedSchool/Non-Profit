@@ -154,7 +154,7 @@ async function loadLogo(): Promise<HTMLImageElement> {
     img.crossOrigin = "anonymous";
     img.onload = () => resolve(img);
     img.onerror = () => resolve(img);
-    img.src = "/logo.png";
+    img.src = blobAsset("/logo.png");
   });
 }
 

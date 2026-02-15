@@ -36,6 +36,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import StickerBadge from "@/components/shared/StickerBadge";
 import ShareLinkButton from "@/components/shared/ShareLinkButton";
 import CaseDetailClient from "./CaseDetailClient";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -77,6 +78,7 @@ export async function generateMetadata({ params }: CaseDetailPageProps) {
       url,
       type: "website",
       siteName: "EnterMedSchool.org",
+      images: [{ url: ogImagePath("resources", "clinical-cases", id), width: 1200, height: 630 }],
     },
     keywords: caseData.tags,
   };

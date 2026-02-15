@@ -16,11 +16,14 @@ import {
   getTagSlug,
   getTagFromSlug,
 } from "@/data/media-assets";
+import { practiceCategories, practiceDecks } from "@/data/practice-categories";
+import { flashcardCategories, flashcardDecks } from "@/data/flashcard-categories";
 
 // Map URL segments to translation keys
 const segmentKeyMap: Record<string, string> = {
   resources: "resources",
   questions: "questions",
+  flashcards: "flashcards",
   videos: "videos",
   pdfs: "pdfs",
   visuals: "visuals",
@@ -89,6 +92,23 @@ export default function Breadcrumbs() {
       const slug = getTagSlug(tag);
       const label = tag.replace(/\b\w/g, (c) => c.toUpperCase());
       map.set(slug, label);
+    }
+
+    // Practice question categories: slug → name
+    for (const cat of practiceCategories) {
+      map.set(cat.slug, cat.name);
+    }
+    // Practice question decks: slug → title
+    for (const deck of practiceDecks) {
+      map.set(deck.slug, deck.title);
+    }
+    // Flashcard categories: slug → name
+    for (const cat of flashcardCategories) {
+      map.set(cat.slug, cat.name);
+    }
+    // Flashcard decks: slug → title
+    for (const deck of flashcardDecks) {
+      map.set(deck.slug, deck.title);
     }
 
     return map;

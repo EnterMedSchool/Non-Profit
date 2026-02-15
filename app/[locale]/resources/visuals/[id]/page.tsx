@@ -30,6 +30,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import ShareLinkButton from "@/components/shared/ShareLinkButton";
 import StickerBadge from "@/components/shared/StickerBadge";
 import ChunkyButton from "@/components/shared/ChunkyButton";
+import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -78,14 +79,7 @@ export async function generateMetadata({ params }: VisualDetailPageProps) {
       authors: [lesson.creator?.name || "EnterMedSchool.org"],
       section: lesson.category,
       tags: lesson.tags,
-      images: [
-        {
-          url: `${BASE_URL}${lesson.thumbnailPath}`,
-          width: 800,
-          height: 600,
-          alt: `${lesson.title} visual lesson thumbnail`,
-        },
-      ],
+      images: [{ url: ogImagePath("resources", "visuals", id), width: 1200, height: 630 }],
     },
     twitter: {
       card: "summary_large_image" as const,

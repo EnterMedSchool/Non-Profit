@@ -7,6 +7,7 @@ import AnimatedSection from "@/components/shared/AnimatedSection";
 import ResourceCard from "@/components/resources/ResourceCard";
 import { resources } from "@/data/resources";
 import { getCollectionPageJsonLd, getVideoObjectJsonLd } from "@/lib/metadata";
+import { ogImagePath } from "@/lib/og-path";
 
 export async function generateMetadata({ params }: { params: Promise<{ locale: string }> }) {
   const { locale } = await params;
@@ -20,6 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       description: t("metaDescription"),
       url: `${BASE_URL}/${locale}/resources/videos`,
       type: "website",
+      images: [{ url: ogImagePath("resources", "videos"), width: 1200, height: 630 }],
     },
     keywords: ["medical videos", "ECG tutorial", "neuroanatomy", "pharmacology lectures", "free medical education videos"],
     alternates: {

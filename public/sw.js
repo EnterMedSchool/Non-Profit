@@ -9,7 +9,6 @@ const MAX_CACHE_ENTRIES = 80;
 const MAX_CACHE_AGE_MS = 30 * 24 * 60 * 60 * 1000; // 30 days
 
 const STATIC_ASSETS = [
-  "/logo.png",
   "/favicon.ico",
   "/favicon-16x16.png",
   "/favicon-32x32.png",

@@ -1,4 +1,6 @@
 import type { Metadata } from "next";
+import { NextIntlClientProvider } from "next-intl";
+import { getMessages } from "next-intl/server";
 import { Bricolage_Grotesque, DM_Sans } from "next/font/google";
 import "@/styles/globals.css";
 
@@ -35,11 +37,15 @@ export const metadata: Metadata = {
  * Minimal layout for the full-screen MCQ maker.
  * No navbar, breadcrumbs, footer, or any chrome — just the tool.
  */
-export default function MCQLayout({ children }: { children: React.ReactNode }) {
+export default async function MCQLayout({ children }: { children: React.ReactNode }) {
+  const messages = await getMessages();
+
   return (
     <html lang="en" className={`${bricolage.variable} ${dmSans.variable}`}>
       <body className="min-h-screen font-body text-ink-dark bg-white">
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+        </NextIntlClientProvider>
       </body>
     </html>
   );
