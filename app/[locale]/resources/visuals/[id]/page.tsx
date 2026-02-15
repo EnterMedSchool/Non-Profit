@@ -385,7 +385,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
               simple iframe.
             </p>
             <div className="rounded-xl border-3 border-showcase-navy/10 bg-gray-50 p-4 font-mono text-xs text-ink-muted overflow-x-auto">
-              {`<iframe src="${BASE_URL}/embed/visuals/${lesson.embedId}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`}
+              {`<iframe src="${BASE_URL}/${locale}/embed/visuals/${lesson.embedId}" width="100%" height="600" frameborder="0" allowfullscreen></iframe>`}
             </div>
             <div className="mt-4">
               <Link

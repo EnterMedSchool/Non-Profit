@@ -79,9 +79,23 @@ export function getDeckById(id: number): PracticeQuestionDeck | undefined {
   return _deckById.get(id);
 }
 
-/** Get all decks belonging to a category (by categoryId) */
+/** Get all decks belonging to a category or any of its descendants */
 export function getDecksByCategory(categoryId: number): PracticeQuestionDeck[] {
-  return practiceDecks.filter((d) => d.categoryIds.includes(categoryId));
+  // Collect this category + all descendant category IDs
+  const ids = new Set<number>([categoryId]);
+  const collect = (parentId: number) => {
+    for (const c of practiceCategories) {
+      if (c.parentId === parentId && !ids.has(c.id)) {
+        ids.add(c.id);
+        collect(c.id);
+      }
+    }
+  };
+  collect(categoryId);
+
+  return practiceDecks.filter((d) =>
+    d.categoryIds.some((cid) => ids.has(cid))
+  );
 }
 
 /** Get decks whose primary category matches */

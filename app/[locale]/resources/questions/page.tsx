@@ -114,23 +114,15 @@ export default function QuestionsPage() {
   const totalDecks = getTotalDeckCount();
   const rootCategories = getRootCategories();
 
-  // Build category data with counts
+  // Build category data with counts (getDecksByCategory walks the full subtree)
   const categoryData = rootCategories.map((cat) => {
-    const directDecks = getDecksByCategory(cat.id);
+    const allDecks = getDecksByCategory(cat.id);
     const children = getChildCategories(cat.id);
-    let totalDeckCount = directDecks.length;
-    let totalQuestionCount = directDecks.reduce((sum, d) => sum + d.questionCount, 0);
-
-    for (const child of children) {
-      const childDecks = getDecksByCategory(child.id);
-      totalDeckCount += childDecks.length;
-      totalQuestionCount += childDecks.reduce((sum, d) => sum + d.questionCount, 0);
-    }
 
     return {
       ...cat,
-      totalDeckCount,
-      totalQuestionCount,
+      totalDeckCount: allDecks.length,
+      totalQuestionCount: allDecks.reduce((sum, d) => sum + d.questionCount, 0),
       childCount: children.length,
     };
   }).filter((c) => c.totalQuestionCount > 0)

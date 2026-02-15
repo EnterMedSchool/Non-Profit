@@ -102,27 +102,16 @@ export default function FlashcardsPage() {
   const totalDecks = getTotalDeckCount();
   const rootCategories = getRootCategories();
 
-  // Build category data with counts (include child categories)
+  // Build category data with counts (getDecksByCategory walks the full subtree)
   const categoryData = rootCategories
     .map((cat) => {
-      const directDecks = getDecksByCategory(cat.id);
+      const allDecks = getDecksByCategory(cat.id);
       const children = getChildCategories(cat.id);
-      let totalDeckCount = directDecks.length;
-      let totalCardCount = directDecks.reduce((sum, d) => sum + d.cardCount, 0);
-
-      for (const child of children) {
-        const childDecks = getDecksByCategory(child.id);
-        totalDeckCount += childDecks.length;
-        totalCardCount += childDecks.reduce(
-          (sum, d) => sum + d.cardCount,
-          0
-        );
-      }
 
       return {
         ...cat,
-        totalDeckCount,
-        totalCardCount,
+        totalDeckCount: allDecks.length,
+        totalCardCount: allDecks.reduce((sum, d) => sum + d.cardCount, 0),
         childCount: children.length,
       };
     })
