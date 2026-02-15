@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { blobAsset } from "@/lib/blob-url";
 import Image from "next/image";
 import { useTranslations, useLocale } from "next-intl";
 

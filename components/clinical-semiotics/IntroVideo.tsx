@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import { blobAsset } from "@/lib/blob-url";
 import { m } from "framer-motion";
 import Image from "next/image";
 import { cn } from "@/lib/cn";

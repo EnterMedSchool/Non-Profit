@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { blobAsset } from "@/lib/blob-url";
 import Link from "next/link";
 import { Home, Search, BookOpen, Wrench, GraduationCap, FileText } from "lucide-react";
 import { useLocale } from "next-intl";

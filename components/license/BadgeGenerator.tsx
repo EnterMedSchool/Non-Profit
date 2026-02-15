@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { blobAsset } from "@/lib/blob-url";
 import { useTranslations } from "next-intl";
 import {
   Download,

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { blobAsset } from "@/lib/blob-url";
 import { useTranslations } from "next-intl";
 import Image from "next/image";
 import { m, AnimatePresence, useReducedMotion } from "framer-motion";

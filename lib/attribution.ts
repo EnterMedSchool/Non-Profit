@@ -1,3 +1,4 @@
+import { blobAsset } from "@/lib/blob-url";
 const STORAGE_KEY = "ems-attribution";
 
 export type BadgeShape = "horizontal" | "square" | "compact" | "vertical";

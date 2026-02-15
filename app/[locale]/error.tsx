@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { blobAsset } from "@/lib/blob-url";
 import { RefreshCw, ExternalLink } from "lucide-react";
 import { m } from "framer-motion";
 import ChunkyButton from "@/components/shared/ChunkyButton";
