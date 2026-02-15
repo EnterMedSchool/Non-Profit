@@ -32,10 +32,14 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Embed routes: allow any site to iframe them (CSP frame-ancestors overrides X-Frame-Options)
+      // Embed routes: allow any site to iframe them
+      // X-Frame-Options must be explicitly overridden here because the
+      // global "/(.*)" rule above sets DENY on every path. Without this
+      // override, browsers/Vercel enforce DENY before evaluating CSP.
       {
         source: "/:locale/embed/:path*",
         headers: [
+          { key: "X-Frame-Options", value: "ALLOWALL" },
           { key: "Content-Security-Policy", value: "frame-ancestors *" },
           { key: "X-Content-Type-Options", value: "nosniff" },
         ],
@@ -44,6 +48,7 @@ const nextConfig: NextConfig = {
       {
         source: "/embed/:path*",
         headers: [
+          { key: "X-Frame-Options", value: "ALLOWALL" },
           { key: "Content-Security-Policy", value: "frame-ancestors *" },
           { key: "X-Content-Type-Options", value: "nosniff" },
         ],
