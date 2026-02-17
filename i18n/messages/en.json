@@ -88,7 +88,7 @@
   "hero": {
     "title": "Open-Source Medical Education Resources",
     "subtitle": "500+ free resources for your lectures, slides, and website. Download, embed, and share with your students — no paywalls, no restrictions. Attribution required.",
-    "identityPill": "EnterMedSchool.org is the non-profit sister project of",
+    "identityPill": "EnterMedSchool.org is the open-source educational project of",
     "identityLink": "entermedschool.com",
     "cta1": "Browse Resources",
     "cta2": "Explore Tools",
@@ -229,7 +229,7 @@
   },
   "about": {
     "title": "About EnterMedSchool",
-    "metaDescription": "Discover EnterMedSchool — a free, open-source platform providing medical education tools, visual lessons, and teaching resources for educators worldwide. Non-profit since 2019.",
+    "metaDescription": "Discover EnterMedSchool — a free, open-source platform providing medical education tools, visual lessons, and teaching resources for educators worldwide. Empowering medical education since 2019.",
     "hero": {
       "titlePre": "Our",
       "titleHighlight": "Story",
@@ -1795,10 +1795,88 @@
       "title": "License & Attribution",
       "description": "License terms and attribution requirements for EnterMedSchool educational resources."
     },
+    "lastUpdated": "Last updated: 2024",
     "licenseType": {
       "badge": "Free for Education",
       "title": "Non-Commercial Educational Use",
       "description": "All EnterMedSchool.org resources are licensed for free educational use with proper attribution. No fees, no subscriptions -- just give credit where it's due."
+    },
+    "tldr": {
+      "badge": "TL;DR",
+      "title": "At a Glance",
+      "items": [
+        "Free for non-commercial educational use",
+        "Attribution required (badge or text credit)",
+        "Contact us for approval before use",
+        "No selling, no removing credit"
+      ],
+      "cta": "Generate Your Attribution Badge"
+    },
+    "sectionNav": {
+      "allowed": "What's Allowed",
+      "comparison": "Compare",
+      "quickStart": "Quick Start",
+      "generator": "Badge Generator",
+      "fullLicense": "Full License",
+      "faq": "FAQ"
+    },
+    "comparison": {
+      "title": "How Our License Compares",
+      "subtitle": "See where EnterMedSchool's license falls on the spectrum of common open licenses.",
+      "ours": "This is our license",
+      "licenses": [
+        {
+          "name": "MIT License",
+          "traits": [
+            "Commercial use allowed",
+            "Minimal restrictions",
+            "No attribution badge needed"
+          ],
+          "active": false
+        },
+        {
+          "name": "CC BY-NC 4.0",
+          "traits": [
+            "Non-commercial only",
+            "Attribution required",
+            "Modifications allowed"
+          ],
+          "active": false
+        },
+        {
+          "name": "EnterMedSchool",
+          "traits": [
+            "Non-commercial educational use",
+            "Attribution badge required",
+            "Approval required before use"
+          ],
+          "active": true
+        },
+        {
+          "name": "All Rights Reserved",
+          "traits": [
+            "No use without permission",
+            "Fully restricted",
+            "No modifications allowed"
+          ],
+          "active": false
+        }
+      ]
+    },
+    "stats": {
+      "title": "Trusted by Educators",
+      "highlight": "Worldwide",
+      "resources": "Free Resources",
+      "countries": "Countries",
+      "educators": "Educators",
+      "free": "Free Forever"
+    },
+    "fullLicense": {
+      "title": "Full License Text",
+      "description": "Read the complete legal terms of our Non-Commercial Educational Use License.",
+      "expandBtn": "Read Full License Text",
+      "collapseBtn": "Collapse License Text",
+      "viewOnGithub": "View on GitHub"
     },
     "info": {
       "title": "Our License",
@@ -1898,7 +1976,15 @@
       },
       "showQR": "Show QR Code",
       "showFinePrint": "Show License Text",
-      "showPosition": "Show Position"
+      "showPosition": "Show Position",
+      "formatLabel": "Copy Format",
+      "formats": {
+        "html": "HTML",
+        "markdown": "Markdown",
+        "plaintext": "Plain Text"
+      },
+      "livePreviewTitle": "Website Preview",
+      "livePreviewDescription": "This is how your badge will look on a website"
     },
     "whereToBadge": {
       "title": "Where to Add Your Badge",
@@ -1952,6 +2038,14 @@
         {
           "question": "What if I want to use resources commercially?",
           "answer": "Contact us at ari@entermedschool.com to discuss commercial licensing. We evaluate commercial requests on a case-by-case basis."
+        },
+        {
+          "question": "Can I use these resources in a MOOC or online course?",
+          "answer": "If the MOOC is free and non-commercial, yes -- just include proper attribution. If learners pay to access the course, that counts as commercial use and you'll need written permission first."
+        },
+        {
+          "question": "What about AI-generated derivatives of your content?",
+          "answer": "Using our resources as input for AI tools (e.g. generating new questions or summaries) still falls under our license. The output must be attributed, cannot be sold, and you still need approval before use."
         }
       ]
     },
@@ -1959,6 +2053,7 @@
       "title": "Need Approval or Have Questions?",
       "description": "Before using our resources, please contact us for approval. We typically respond within 24-48 hours and are happy to help educators.",
       "buttonText": "Contact Us for Approval",
+      "githubBtn": "View License on GitHub",
       "email": "ari@entermedschool.com"
     }
   },
@@ -2111,7 +2206,7 @@
     "copyright": "© {year} EnterMedSchool.org. All rights reserved.",
     "cookieSettings": "Cookie Settings",
     "partOf": "A project by",
-    "description": "The non-profit, open-source arm of EnterMedSchool — free medical education resources for educators to download, embed, and share with their students.",
+    "description": "The open-source educational platform by EnterMedSchool — free medical education resources for educators to download, embed, and share with their students.",
     "badges": {
       "freeForever": "Free Forever",
       "openSource": "Open Source",

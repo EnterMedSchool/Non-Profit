@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { BookOpen, Sparkles, FileText } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import BookCatalog from "@/components/pdf-viewer/BookCatalog";
 import { pdfBooks } from "@/data/pdf-books";
@@ -81,29 +80,10 @@ export default function PdfsPage() {
           titleHighlight={t("hero.titleHighlight")}
           titlePost={t("hero.titlePost")}
           gradient="from-showcase-purple via-showcase-teal to-showcase-green"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-teal/25", "bg-showcase-green/20"]}
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
           subtitle={t("subtitle")}
-          floatingIcons={
-            <>
-              <BookOpen
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <FileText
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <Sparkles
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-green/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <BookOpen
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-purple/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
         />
 
         {/* Book catalog */}

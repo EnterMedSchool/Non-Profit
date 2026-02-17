@@ -15,6 +15,7 @@ import {
   getCategoryBySlug,
   getCategoryBreadcrumb,
   getDeckDominantDifficulty,
+  isCategoryAncestor,
 } from "@/lib/practice-questions";
 import { ogImagePath } from "@/lib/og-path";
 import { questionPdfUrls } from "@/lib/blob-url";
@@ -54,7 +55,8 @@ export async function generateMetadata({
   const category = getCategoryBySlug(categorySlug);
   if (!deck || !category) return { title: "Not Found" };
 
-  if (!deck.categoryIds.includes(category.id)) return { title: "Not Found" };
+  const belongsToCategory = deck.categoryIds.some((cid) => isCategoryAncestor(category.id, cid));
+  if (!belongsToCategory) return { title: "Not Found" };
 
   const t = await getTranslations({ locale, namespace: "resources.questions" });
   const title = `${deck.title} — ${deck.questionCount} ${deck.questionCount === 1 ? "question" : "questions"}`;
@@ -102,7 +104,8 @@ export default async function DeckPage({
 
   if (!category || !deck) notFound();
 
-  if (!deck.categoryIds.includes(category.id)) notFound();
+  const belongsToCategory = deck.categoryIds.some((cid) => isCategoryAncestor(category.id, cid));
+  if (!belongsToCategory) notFound();
 
   const questions = getQuestionsByDeck(deck.id).sort(
     (a, b) => a.ordinal - b.ordinal
@@ -143,12 +146,14 @@ export default async function DeckPage({
       {
         "@type": "MediaObject",
         name: `${deck.title} — Exam PDF`,
+        description: `Printable exam with ${questions.length} multiple-choice questions on ${category.name}. Free PDF from EnterMedSchool.org.`,
         contentUrl: pdfUrls.exam,
         encodingFormat: "application/pdf",
       },
       {
         "@type": "MediaObject",
         name: `${deck.title} — Study Guide PDF`,
+        description: `Study guide with ${questions.length} questions, highlighted answers, and detailed explanations on ${category.name}. Free PDF from EnterMedSchool.org.`,
         contentUrl: pdfUrls.studyGuide,
         encodingFormat: "application/pdf",
       },

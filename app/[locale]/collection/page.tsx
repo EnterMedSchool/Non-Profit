@@ -317,21 +317,10 @@ export default function CollectionPage() {
           titleHighlight="Collection"
           titlePost=""
           gradient="from-showcase-yellow via-showcase-coral to-showcase-purple"
+          meshColors={["bg-showcase-yellow/30", "bg-showcase-coral/25", "bg-showcase-purple/20"]}
           annotation={`${stats.totalCaught}/${stats.totalAvailable} caught`}
           annotationColor="text-showcase-yellow"
           subtitle="Solve clinical cases to unlock disease characters. Each character is a mnemonic device — every accessory teaches a medical fact."
-          floatingIcons={
-            <>
-              <Sparkles
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-yellow/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Star
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-purple/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-            </>
-          }
         />
 
         {/* Completion stats */}

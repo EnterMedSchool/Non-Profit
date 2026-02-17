@@ -207,6 +207,10 @@ export interface GlossaryTerm {
       title?: string;
     };
   };
+
+  /* ── Build-time metadata ────────────────────────────────────────── */
+  /** ISO date string populated by bundle-glossary.mjs from file mtime */
+  lastModified?: string;
 }
 
 /* ── Tag / Category types ──────────────────────────────────────────── */

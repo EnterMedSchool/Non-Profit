@@ -17,6 +17,7 @@ import {
   getDeckBySlug,
   getDeckCategory,
   getCategoryBySlug,
+  isCategoryAncestor,
 } from "@/lib/practice-questions";
 import { ogImagePath } from "@/lib/og-path";
 
@@ -64,7 +65,8 @@ export async function generateMetadata({
 
   if (!question || !deck || !category) return { title: "Not Found" };
 
-  if (!deck.categoryIds.includes(category.id)) return { title: "Not Found" };
+  const belongsToCategory = deck.categoryIds.some((cid) => isCategoryAncestor(category.id, cid));
+  if (!belongsToCategory) return { title: "Not Found" };
 
   const title = truncate(question.prompt, 60);
   const description =
@@ -104,7 +106,8 @@ export default async function QuestionPage({
 
   if (!question || !deck || !category) notFound();
 
-  if (!deck.categoryIds.includes(category.id)) notFound();
+  const belongsToCategory = deck.categoryIds.some((cid) => isCategoryAncestor(category.id, cid));
+  if (!belongsToCategory) notFound();
 
   const allDeckQuestions = getQuestionsByDeck(deck.id).sort(
     (a, b) => a.ordinal - b.ordinal

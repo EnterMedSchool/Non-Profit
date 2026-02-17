@@ -642,6 +642,38 @@ export function generateAttributionEmbedHtml(
 }
 
 /**
+ * Generate a Markdown attribution string.
+ */
+export function generateAttributionMarkdown(
+  details: AttributionDetails
+): string {
+  const displayName = details.name.trim() || "Your Name";
+  const pos = details.position.trim();
+  const parts = [
+    `Resource by **${displayName}**`,
+    pos ? ` · ${pos}` : "",
+    ` · [EnterMedSchool](https://entermedschool.com) · [entermedschool.org](https://entermedschool.org)`,
+  ];
+  return parts.join("");
+}
+
+/**
+ * Generate a plain-text attribution string.
+ */
+export function generateAttributionPlainText(
+  details: AttributionDetails
+): string {
+  const displayName = details.name.trim() || "Your Name";
+  const pos = details.position.trim();
+  const parts = [
+    `Materials provided by EnterMedSchool.org | Used by ${displayName}`,
+    pos ? ` | ${pos}` : "",
+    ` | https://entermedschool.org`,
+  ];
+  return parts.join("");
+}
+
+/**
  * Generate the HOW-TO-ATTRIBUTE.txt content for inclusion in ZIP downloads.
  */
 export function generateHowToAttributeText(

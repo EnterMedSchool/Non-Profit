@@ -4,10 +4,8 @@ import {
   BookOpen,
   Layers,
   Brain,
-  Sparkles,
   Shield,
   ChevronRight,
-  GraduationCap,
 } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
@@ -164,46 +162,28 @@ export default function FlashcardsPage() {
             count: totalCards,
             categoryCount: categoryData.length,
           })}
-          floatingIcons={
-            <>
-              <BookOpen
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-teal/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Brain
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-green/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <Sparkles
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-purple/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <GraduationCap
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
-        />
-
-        {/* Stats bar */}
-        <AnimatedSection delay={0.1} animation="scaleIn">
-          <div className="mt-8 flex flex-wrap items-center justify-center gap-4 sm:gap-8">
-            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-4 py-2">
+          meshColors={[
+            "bg-showcase-teal/30",
+            "bg-showcase-green/25",
+            "bg-showcase-purple/20",
+          ]}
+        >
+          <div className="flex flex-wrap items-center justify-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-teal/20 bg-white/70 px-4 py-2 backdrop-blur-sm">
               <BookOpen className="h-5 w-5 text-showcase-teal" />
               <span className="font-display font-bold text-ink-dark">
                 {totalCards.toLocaleString()}
               </span>
               <span className="text-sm text-ink-muted">Cards</span>
             </div>
-            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-green/20 bg-showcase-green/5 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-green/20 bg-white/70 px-4 py-2 backdrop-blur-sm">
               <Layers className="h-5 w-5 text-showcase-green" />
               <span className="font-display font-bold text-ink-dark">
                 {totalDecks}
               </span>
               <span className="text-sm text-ink-muted">Decks</span>
             </div>
-            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-purple/20 bg-showcase-purple/5 px-4 py-2">
+            <div className="flex items-center gap-2 rounded-xl border-2 border-showcase-purple/20 bg-white/70 px-4 py-2 backdrop-blur-sm">
               <Brain className="h-5 w-5 text-showcase-purple" />
               <span className="font-display font-bold text-ink-dark">
                 {categoryData.length}
@@ -211,7 +191,7 @@ export default function FlashcardsPage() {
               <span className="text-sm text-ink-muted">Categories</span>
             </div>
           </div>
-        </AnimatedSection>
+        </PageHero>
 
         {/* Attribution Reminder */}
         <div className="mt-8 flex items-center gap-2 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted">

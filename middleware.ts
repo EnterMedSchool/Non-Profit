@@ -10,5 +10,5 @@ export default createMiddleware(routing);
 export const config = {
   // Match all pathnames except API routes, static files, internal Next.js paths,
   // standalone full-screen tool routes, and embed routes (these are non-localized).
-  matcher: ["/((?!api|_next|_vercel|create|flashcards|mcq|editor|embed|.*\\..*).*)"],
+  matcher: ["/((?!api|_next|_vercel|create|flashcards|mcq|editor|embed|sitemap|.*\\..*).*)"],
 };

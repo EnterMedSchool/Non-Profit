@@ -1,7 +1,70 @@
 import type { NextConfig } from "next";
+import { readFileSync } from "fs";
+import { join } from "path";
 import createNextIntlPlugin from "next-intl/plugin";
 
 const withNextIntl = createNextIntlPlugin("./i18n/request.ts");
+
+/* ── Glossary alias & abbreviation → canonical term redirects ────── */
+
+function slugify(text: string): string {
+  return text
+    .toLowerCase()
+    .normalize("NFD")
+    .replace(/[\u0300-\u036f]/g, "")
+    .replace(/[^a-z0-9]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+}
+
+interface MinimalTerm {
+  id: string;
+  aliases?: string[];
+  abbr?: string[];
+}
+
+function buildGlossaryRedirects() {
+  try {
+    const raw = readFileSync(
+      join(process.cwd(), "data", "glossary", "all-terms.json"),
+      "utf-8",
+    );
+    const terms: MinimalTerm[] = JSON.parse(raw);
+
+    const existingSlugs = new Set(terms.map((t) => t.id));
+    const seen = new Set<string>();
+    const redirects: Array<{
+      source: string;
+      destination: string;
+      permanent: boolean;
+    }> = [];
+
+    for (const term of terms) {
+      const allAliases = [
+        ...(term.aliases || []),
+        ...(term.abbr || []),
+      ];
+
+      for (const alias of allAliases) {
+        const slug = slugify(alias);
+        if (!slug || slug === term.id || existingSlugs.has(slug) || seen.has(slug)) {
+          continue;
+        }
+        seen.add(slug);
+        redirects.push({
+          source: `/:locale/resources/glossary/${slug}`,
+          destination: `/:locale/resources/glossary/${term.id}`,
+          permanent: true,
+        });
+      }
+    }
+
+    return redirects;
+  } catch {
+    return [];
+  }
+}
+
+const glossaryRedirects = buildGlossaryRedirects();
 
 const nextConfig: NextConfig = {
   reactStrictMode: true,
@@ -16,6 +79,9 @@ const nextConfig: NextConfig = {
   },
   experimental: {
     optimizePackageImports: ["lucide-react", "framer-motion", "@codemirror/view", "@codemirror/state", "@codemirror/language"],
+  },
+  async redirects() {
+    return glossaryRedirects;
   },
   async headers() {
     return [

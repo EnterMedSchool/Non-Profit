@@ -1,0 +1,43 @@
+/* ================================================================== */
+/*  Category Descriptions for Glossary Category Pages                  */
+/*  Used to add rich intro content and SEO-friendly text.              */
+/* ================================================================== */
+
+export const categoryDescriptions: Record<string, string> = {
+  anatomy: "Anatomy is the foundation of medical education, covering the structure and organization of the human body. Understanding anatomical landmarks, relationships, and variations is essential for clinical examination, surgical procedures, and diagnostic imaging.",
+  histology: "Histology examines the microscopic structure of tissues and cells. Mastering histological patterns is crucial for pathology, helping students identify normal tissue architecture and recognize disease-related changes.",
+  physiology: "Physiology explores how organ systems function individually and together to maintain homeostasis. A strong grasp of physiological principles is key to understanding disease mechanisms, pharmacology, and clinical reasoning.",
+  biochemistry: "Biochemistry covers the chemical processes within living organisms, including metabolism, enzyme kinetics, and molecular pathways. These concepts are heavily tested on medical licensing exams and form the basis of understanding genetic diseases and drug mechanisms.",
+  biology: "Biology provides the foundational knowledge of life sciences that underpins all medical disciplines, from cell biology and molecular genetics to ecology and evolution as they relate to human health.",
+  genetics: "Genetics explores heredity, gene expression, and chromosomal disorders. Understanding inheritance patterns, genetic testing, and molecular diagnostics is increasingly important in personalized medicine.",
+  cell_bio: "Cell biology examines the structure and function of cellular components, from organelles to signaling pathways. This knowledge is essential for understanding cancer biology, pharmacology, and regenerative medicine.",
+  pharmacology: "Pharmacology studies how drugs interact with the body — their mechanisms, therapeutic uses, side effects, and interactions. It is one of the most heavily tested subjects on medical licensing exams.",
+  toxicology: "Toxicology focuses on the adverse effects of chemical substances on biological systems, including drug overdoses, poisoning, and environmental toxins. Recognizing toxidromes is crucial for emergency medicine.",
+  micro_bacteria: "Bacterial microbiology covers the major pathogenic bacteria, their virulence factors, clinical presentations, and appropriate antibiotic therapies. A core subject for infectious disease and clinical medicine.",
+  micro_virus: "Virology examines viral structure, replication, pathogenesis, and treatment. Understanding viral diseases is essential for public health, infectious disease management, and vaccine science.",
+  micro_fungi: "Medical mycology covers fungal infections (mycoses) ranging from superficial skin infections to life-threatening systemic diseases, with special relevance to immunocompromised patients.",
+  micro_parasite: "Parasitology covers protozoan, helminthic, and ectoparasitic infections that affect millions worldwide. Knowledge of parasite life cycles is key to understanding transmission, diagnosis, and treatment.",
+  immunology: "Immunology explores the immune system's defense mechanisms, including innate and adaptive immunity, hypersensitivity reactions, autoimmunity, and immunodeficiency disorders.",
+  pathology: "Pathology is the study of disease — its causes, mechanisms, and effects on the body. As the bridge between basic science and clinical medicine, pathology is central to diagnosis and treatment.",
+  heme_onc: "Hematology and oncology cover blood disorders and cancers, from anemias and coagulopathies to leukemias and solid tumors. These conditions are among the most commonly tested on medical exams.",
+  neuro: "Neurology covers disorders of the central and peripheral nervous systems, including stroke, epilepsy, neurodegenerative diseases, and headache syndromes. Neuroanatomy and clinical localization are key skills.",
+  cardio: "Cardiology encompasses diseases of the heart and vascular system, including coronary artery disease, heart failure, arrhythmias, and valvular disorders. ECG interpretation and hemodynamics are essential skills.",
+  pulm: "Pulmonology covers respiratory system diseases including asthma, COPD, pneumonia, and pulmonary embolism. Understanding lung mechanics, gas exchange, and ventilation is fundamental to clinical medicine.",
+  renal: "Nephrology covers kidney physiology, electrolyte balance, acid-base disorders, and renal diseases. These concepts are among the most challenging and most tested topics in medical education.",
+  gi: "Gastroenterology covers disorders of the digestive tract, liver, and pancreas, from common conditions like GERD and IBS to complex diseases like inflammatory bowel disease and hepatic cirrhosis.",
+  endo: "Endocrinology covers the hormone-producing glands and their disorders, including diabetes, thyroid disease, adrenal disorders, and pituitary pathology. Hormonal feedback loops are a frequent exam topic.",
+  endocrine: "Endocrinology covers the hormone-producing glands and their disorders, including diabetes, thyroid disease, adrenal disorders, and pituitary pathology. Hormonal feedback loops are a frequent exam topic.",
+  repro: "Reproductive medicine covers the male and female reproductive systems, including fertility, pregnancy, and associated disorders. Understanding reproductive physiology is essential for OB/GYN rotations.",
+  msk_derm: "Musculoskeletal and dermatologic medicine covers conditions affecting bones, joints, muscles, and skin — from rheumatologic diseases to common skin lesions that appear frequently on clinical exams.",
+  peds: "Pediatrics covers the medical care of infants, children, and adolescents, including developmental milestones, congenital diseases, childhood infections, and age-specific pharmacology.",
+  obgyn: "Obstetrics and gynecology covers pregnancy, childbirth, and disorders of the female reproductive system, including prenatal care, labor complications, and gynecologic cancers.",
+  surgery: "Surgery covers the principles of operative intervention, including surgical anatomy, wound healing, perioperative care, and common surgical emergencies.",
+  emerg: "Emergency medicine covers the acute management of life-threatening conditions, including trauma, cardiac arrest, shock, and toxicologic emergencies. Rapid clinical decision-making is essential.",
+  radiology: "Radiology covers diagnostic imaging modalities including X-ray, CT, MRI, and ultrasound, as well as image interpretation and interventional radiology procedures.",
+  psych: "Psychiatry covers mental health disorders, psychopharmacology, and psychotherapy. Understanding diagnostic criteria, neurotransmitter systems, and behavioral patterns is essential for clinical practice.",
+  behavior: "Behavioral science covers the psychological, social, and ethical aspects of medicine, including doctor-patient communication, health behavior change, and cultural competency.",
+  epi_stats: "Epidemiology and biostatistics provide the quantitative tools for evidence-based medicine, including study design, statistical analysis, screening test evaluation, and population health metrics.",
+  ethics: "Medical ethics covers the principles governing clinical decision-making, including autonomy, beneficence, non-maleficence, justice, informed consent, and end-of-life care.",
+  infectious_dz: "Infectious disease medicine covers the diagnosis and treatment of bacterial, viral, fungal, and parasitic infections, with emphasis on antimicrobial stewardship and infection control.",
+  rheum: "Rheumatology covers autoimmune and inflammatory disorders of the musculoskeletal system, including rheumatoid arthritis, lupus, gout, and vasculitis.",
+};

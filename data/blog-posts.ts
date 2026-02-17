@@ -3,6 +3,9 @@
  * appear in the listing, sitemap, and RSS feed.
  */
 
+import { getAuthorById, type Author } from "@/data/authors";
+import { usmleStep1TipsBody } from "@/data/articles/usmle-step-1-tips-body";
+
 export interface BlogPost {
   slug: string;
   title: string;
@@ -10,6 +13,8 @@ export interface BlogPost {
   /** Full article body in HTML (supports inline tags, article-tip/warning/important callouts) */
   body: string;
   author: string;
+  /** Author registry ID — resolves to full Author object for JSON-LD */
+  authorId?: string;
   datePublished: string; // ISO date
   dateModified: string; // ISO date
   tags: string[];
@@ -39,27 +44,45 @@ export interface BlogPost {
 }
 
 export const blogPosts: BlogPost[] = [
-  // Add real blog posts here. Each post automatically appears in the
-  // listing page, sitemap, RSS feed, and gets full Article JSON-LD.
-  //
-  // Example:
-  // {
-  //   slug: "your-article-slug",
-  //   title: "Your Article Title",
-  //   description: "Meta description for search results.",
-  //   body: "<p>Full HTML article body...</p>",
-  //   author: "Ari Horesh",
-  //   datePublished: "2026-02-14",
-  //   dateModified: "2026-02-14",
-  //   tags: ["tag1", "tag2"],
-  //   category: "Study Guides",
-  //   readingTime: 5,
-  //   relatedTerms: ["glossary-term-id"],
-  //   relatedTools: ["flashcard-maker"],
-  // },
+  {
+    slug: "usmle-step-1-tips-international-students",
+    title: "USMLE Step 1 Tips for Non-US Medical Students",
+    description:
+      "Comprehensive guide for international medical students preparing for USMLE Step 1. Covers study timelines, free resources, scheduling, costs, test-day tips, burnout prevention, and residency advice.",
+    body: usmleStep1TipsBody,
+    author: "Ari Horesh",
+    authorId: "ari-horesh",
+    datePublished: "2026-02-17",
+    dateModified: "2026-02-17",
+    tags: [
+      "USMLE Step 1",
+      "IMG study guide",
+      "international medical students",
+      "Step 1 study plan",
+      "USMLE resources free",
+      "ECFMG registration",
+      "Prometric scheduling",
+      "Step 1 exam day tips",
+      "IMG burnout prevention",
+      "Step 1 cost budget",
+      "residency timeline",
+      "study templates USMLE",
+    ],
+    category: "Study Guides",
+    readingTime: 30,
+    featured: true,
+    coverGradient: "from-showcase-teal via-showcase-blue to-showcase-purple",
+    coverIcon: "BookOpen",
+    authorBio: "Medical educator and founder of EnterMedSchool.org",
+  },
 ];
 
 /* ── Helper Functions ───────────────────────────────────────────────── */
+
+/** Resolve the full Author object for a blog post (falls back to undefined) */
+export function getPostAuthor(post: BlogPost): Author | undefined {
+  return post.authorId ? getAuthorById(post.authorId) : undefined;
+}
 
 export function getBlogPostBySlug(slug: string): BlogPost | undefined {
   return blogPosts.find((p) => p.slug === slug);

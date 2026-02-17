@@ -22,7 +22,30 @@ const UNICODE_SUP = { "⁰":"0","¹":"1","²":"2","³":"3","⁴":"4","⁵":"5","
 
 function tex(str) {
   if (!str) return "";
-  return str
+  let s = str;
+
+  // ── Phase 1: Scientific notation → placeholders ─────────────────
+  // Run BEFORE general escaping so _ ^ + - are consumed first.
+  // Placeholders use @@ markers that the general escaper won't touch.
+
+  // Ion charges — polyatomic first (NH4+, OH-, HCO3-)
+  s = s.replace(/\b((?:[A-Z][a-z]?\d*){2,4})([-+])(?=[^A-Za-z0-9]|$)/g,
+    (_, formula, sign) => `${formula}@@SUP@@${sign}@@/SUP@@`);
+
+  // Ion charges — simple elements (Na+, Ca2+, Fe3+, Cl-, H+)
+  s = s.replace(/\b([A-Z][a-z]?)(\d*)([-+])(?=[^A-Za-z0-9]|$)/g,
+    (_, elem, num, sign) => `${elem}@@SUP@@${num}${sign}@@/SUP@@`);
+
+  // Subscripts via _ (P_O2, n_i, P_total, rate_H2, f_s,max)
+  s = s.replace(/([A-Za-z]+)_([A-Z][a-z]?\d*|[a-z]+(?:,[a-z]+)*\d*|\d+)/g,
+    (_, base, sub) => `${base}@@SUB@@${sub}@@/SUB@@`);
+
+  // Exponents via ^ (10^23, 2^n, r^4)
+  s = s.replace(/\^(\d+|[a-z])/g,
+    (_, exp) => `@@SUP@@${exp}@@/SUP@@`);
+
+  // ── Phase 2: Standard LaTeX escaping ────────────────────────────
+  s = s
     .replace(/\\/g, "\\textbackslash{}")
     .replace(/([&%$#_{}])/g, "\\$1")
     .replace(/~/g, "\\textasciitilde{}")
@@ -32,6 +55,15 @@ function tex(str) {
     .replace(/\|/g, "\\textbar{}")
     .replace(/[₀₁₂₃₄₅₆₇₈₉₊₋]+/g, m => `\\textsubscript{${[...m].map(c => UNICODE_SUB[c] || c).join("")}}`)
     .replace(/[⁰¹²³⁴⁵⁶⁷⁸⁹⁺⁻]+/g, m => `\\textsuperscript{${[...m].map(c => UNICODE_SUP[c] || c).join("")}}`);
+
+  // ── Phase 3: Replace placeholders with LaTeX commands ───────────
+  s = s
+    .replace(/@@SUB@@/g, "\\textsubscript{")
+    .replace(/@@\/SUB@@/g, "}")
+    .replace(/@@SUP@@/g, "\\textsuperscript{")
+    .replace(/@@\/SUP@@/g, "}");
+
+  return s;
 }
 
 // ── Shared preamble ──────────────────────────────────────────────────
@@ -127,7 +159,7 @@ function preamble({ title, subject, keywords, url, logoDir }) {
       {Source: entermedschool.org --- Free Medical Education Resources};
     \\node[anchor=south east, inner sep=0pt]
       at ([xshift=-18mm,yshift=5mm]current page.south east)
-      {\\href{${url}}{\\qrcode[height=7mm]{${url}}}};
+      {\\href{${url}}{\\qrcode[height=9mm,level=L]{${url}}}};
   \\end{tikzpicture}%
 }
 
@@ -145,13 +177,10 @@ function titlePage({ title, subtitle, deckDescription, questionCount, url, pdfTy
     (current page.north west) rectangle (current page.south east);
 
   % ── Decorative geometric shapes ────────────────────────────────
-  % Large translucent circle (top-right glow)
   \\fill[white, opacity=0.04]
     ([xshift=-25mm,yshift=15mm]current page.north east) circle (55mm);
-  % Medium teal circle (left side)
   \\fill[brand-teal, opacity=0.06]
     ([xshift=35mm,yshift=-90mm]current page.north west) circle (35mm);
-  % Small circle (bottom-left)
   \\fill[white, opacity=0.03]
     ([xshift=50mm,yshift=50mm]current page.south west) circle (40mm);
 
@@ -230,12 +259,12 @@ ${deckDescription ? `
     at ([xshift=20mm,yshift=12mm]current page.south west)
     {Generated \\today};
 
-  % ── QR code (bottom-right) ───────────────────────────────────
-  \\node[anchor=south east, inner sep=0pt]
-    at ([xshift=-20mm,yshift=8mm]current page.south east)
-    {\\href{${url}}{\\qrcode[height=18mm,level=M]{${url}}}};
-  \\node[anchor=north east, white!60, font=\\tiny]
-    at ([xshift=-20mm,yshift=8mm]current page.south east)
+  % ── QR code (bottom-right, below info strip) ──────────────────
+  \\node[anchor=south east, fill=white, rounded corners=2pt, inner sep=1.5mm]
+    at ([xshift=-20mm,yshift=2mm]current page.south east)
+    {\\href{${url}}{\\qrcode[height=14mm,level=M]{${url}}}};
+  \\node[anchor=south east, white, font=\\tiny\\bfseries]
+    at ([xshift=-39mm,yshift=6mm]current page.south east)
     {Scan to visit online};
 
 \\end{tikzpicture}
@@ -247,6 +276,11 @@ ${deckDescription ? `
 // ── Question number badge helper ─────────────────────────────────────
 function questionBadge(num) {
   return `\\tikz[baseline=(num.base)]{\\node[circle, fill=brand-purple, minimum size=5.5mm, inner sep=0pt, font=\\bfseries\\small\\color{white}](num){${num}};}`;
+}
+
+// ── Option letter badge helper ───────────────────────────────────────
+function optionBadge(letter, color = "brand-purple") {
+  return `\\tikz[baseline=-0.5ex]{\\node[rounded corners=2pt, fill=${color}!10, minimum size=5.5mm, inner sep=0pt, font=\\bfseries\\scriptsize\\color{${color}}]{${letter}};}`;
 }
 
 // ── Section divider helper ───────────────────────────────────────────
@@ -294,24 +328,27 @@ export function examTemplate({ title, categoryName, description, questions, url,
 
     body += `
 \\begin{tcolorbox}[
-  colback=brand-cream,
-  colframe=brand-navy!20,
-  boxrule=0.5pt,
-  arc=3pt,
-  left=4mm, right=4mm, top=3mm, bottom=3mm,
+  enhanced,
+  colback=white,
+  colframe=brand-purple!8,
+  boxrule=0.4pt,
+  arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-purple},
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
   breakable
 ]
-\\begin{minipage}[t]{\\dimexpr\\linewidth-14mm\\relax}
+\\begin{minipage}[t]{\\dimexpr\\linewidth-18mm\\relax}
   {\\bfseries\\color{brand-navy} ${questionBadge(i + 1)}\\ \\ ${tex(q.prompt)}}
 \\end{minipage}%
 \\hfill
-\\begin{minipage}[t]{12mm}
+\\begin{minipage}[t]{16mm}
   \\raggedleft
-${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
+${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=12mm,level=L]{${qUrl}}}` : ""}
 \\end{minipage}
 
-\\vspace{2mm}
-\\begin{enumerate}[label=\\textsf{\\bfseries\\Alph*.}, leftmargin=8mm, itemsep=1.5mm]
+\\vspace{3mm}
+\\begin{enumerate}[label={${optionBadge("\\\\Alph*")}}, leftmargin=12mm, itemsep=2.5mm]
 `;
     for (let j = 0; j < opts.length && j < 5; j++) {
       body += `  \\item ${tex(opts[j].body)}\n`;
@@ -319,7 +356,6 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
     body += `\\end{enumerate}
 \\end{tcolorbox}
 `;
-    // Section divider between questions (not after the last one)
     if (i < questions.length - 1) {
       body += sectionDivider();
     } else {
@@ -340,14 +376,14 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
     at ([yshift=-7mm]current page.north) {Answer Key};
   \\node[anchor=east, inner sep=0pt]
     at ([xshift=-18mm,yshift=-7mm]current page.north east)
-    {\\href{${url}}{\\qrcode[height=10mm]{${url}}}};
+    {\\href{${url}}{\\qrcode[height=10mm,level=L]{${url}}}};
 \\end{tikzpicture}
 
 \\vspace{12mm}
 
 {\\small
 \\rowcolors{2}{brand-cream}{white}
-\\begin{tabularx}{\\textwidth}{>{}p{10mm} >{\\centering\\arraybackslash}p{12mm} X}
+\\begin{tabularx}{\\textwidth}{>{}p{10mm} >{\\centering\\arraybackslash}p{12mm} >{\\raggedright\\arraybackslash}X}
 \\rowcolor{brand-purple!15}
 \\textbf{\\color{brand-navy}\\#} & \\textbf{\\color{brand-navy}Ans} & \\textbf{\\color{brand-navy}Answer Text} \\\\[1mm]
 \\hline
@@ -356,9 +392,9 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
     const opts = questions[i].options || [];
     const correct = opts.find((o) => o.isCorrect);
     const ans = correct ? labels[opts.indexOf(correct)] || "?" : "?";
-    const ansText = correct ? tex(correct.body).substring(0, 80) : "---";
-    const truncated = correct && correct.body.length > 80 ? "\\ldots" : "";
-    body += `\\textbf{${i + 1}} & {\\color{brand-purple}\\bfseries ${ans}} & ${ansText}${truncated} \\\\\n`;
+    const rawText = correct ? correct.body.substring(0, 72) : "---";
+    const truncated = correct && correct.body.length > 72 ? "\\ldots" : "";
+    body += `\\textbf{${i + 1}} & {\\color{brand-purple}\\bfseries ${ans}} & ${tex(rawText)}${truncated} \\\\\n`;
   }
   body += `\\end{tabularx}
 }
@@ -401,34 +437,41 @@ export function studyGuideTemplate({ title, categoryName, description, questions
 
     body += `
 \\begin{tcolorbox}[
-  colback=brand-cream,
-  colframe=brand-navy!20,
-  boxrule=0.5pt,
-  arc=3pt,
-  left=4mm, right=4mm, top=3mm, bottom=3mm,
+  enhanced,
+  colback=white,
+  colframe=brand-purple!8,
+  boxrule=0.4pt,
+  arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-purple},
+  left=5mm, right=5mm, top=4mm, bottom=4mm,
   breakable
 ]
-\\begin{minipage}[t]{\\dimexpr\\linewidth-14mm\\relax}
+\\begin{minipage}[t]{\\dimexpr\\linewidth-18mm\\relax}
   {\\bfseries\\color{brand-navy} ${questionBadge(i + 1)}\\ \\ ${tex(q.prompt)}}
 \\end{minipage}%
 \\hfill
-\\begin{minipage}[t]{12mm}
+\\begin{minipage}[t]{16mm}
   \\raggedleft
-${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
+${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=12mm,level=L]{${qUrl}}}` : ""}
 \\end{minipage}
 
-\\vspace{2mm}
-\\begin{enumerate}[label=\\textsf{\\bfseries\\Alph*.}, leftmargin=8mm, itemsep=1.5mm]
+\\vspace{3mm}
 `;
+    // Render options manually for full control over correct-answer styling
     for (let j = 0; j < opts.length && j < 5; j++) {
       const opt = opts[j];
+      const letter = labels[j] || String.fromCharCode(65 + j);
       if (opt.isCorrect) {
-        body += `  \\item \\tcbox[on line, colback=brand-teal!12, colframe=brand-teal!30, boxrule=0.3pt, arc=2pt, boxsep=0pt, left=2pt, right=2pt, top=1pt, bottom=1pt]{\\color{brand-navy}\\bfseries ${tex(opt.body)}} {\\color{brand-teal}\\textsf{\\checkmark}}\n`;
+        body += `\\begin{tcolorbox}[blanker, colback=brand-teal!8, arc=3pt,
+  left=2mm, right=2mm, top=1.5mm, bottom=1.5mm, before skip=1mm, after skip=1mm]
+\\hspace{6mm}${optionBadge(letter, "brand-teal")}\\hspace{2mm}{\\bfseries\\color{brand-navy} ${tex(opt.body)}} {\\color{brand-teal}\\textsf{\\checkmark}}
+\\end{tcolorbox}
+`;
       } else {
-        body += `  \\item ${tex(opt.body)}\n`;
+        body += `\\par\\noindent\\hspace{8mm}${optionBadge(letter)}\\hspace{2mm}${tex(opt.body)}\\vspace{2mm}\n`;
       }
     }
-    body += `\\end{enumerate}\n`;
 
     if (q.explanation) {
       body += `
@@ -437,7 +480,7 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
   colback=brand-teal!5,
   colframe=white,
   boxrule=0pt,
-  arc=0pt,
+  arc=3pt,
   borderline west={3pt}{0pt}{brand-teal},
   left=5mm, right=3mm, top=2mm, bottom=2mm
 ]
@@ -448,7 +491,6 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=8mm]{${qUrl}}}` : ""}
 
     body += `\\end{tcolorbox}
 `;
-    // Section divider between questions (not after the last one)
     if (i < questions.length - 1) {
       body += sectionDivider();
     } else {
@@ -478,7 +520,7 @@ function round2(n) {
 
 function flashcardGrid(cards, isFront, { categorySlug, deckSlug } = {}) {
   const pageW = 210; // A4
-  const usableH = 297 - HEADER_H - BOTTOM_MARGIN; // vertical space for cards
+  const usableH = 297 - HEADER_H - BOTTOM_MARGIN;
   const gapX = (pageW - COLS * CARD_W) / (COLS + 1);
   const gapY = (usableH - ROWS * CARD_H) / (ROWS + 1);
 
@@ -491,41 +533,35 @@ function flashcardGrid(cards, isFront, { categorySlug, deckSlug } = {}) {
 
       const card = cards[idx];
       const text = isFront ? (card.front || "") : (card.back || "");
-      const displayCol = isFront ? c : (COLS - 1 - c); // mirror columns for backs
+      const displayCol = isFront ? c : (COLS - 1 - c);
 
-      // Position measured from page top-left (current page.north west)
       const x = gapX + displayCol * (CARD_W + gapX);
       const yTop = HEADER_H + gapY + r * (CARD_H + gapY);
 
-      // Rounded values for clean LaTeX output
       const xL = round2(x);
       const xR = round2(x + CARD_W);
       const yT = round2(yTop);
       const yB = round2(yTop + CARD_H);
 
-      // Card rectangle (dashed cut-line)
       tikzBody += `  \\draw[dashed, gray!50] ([xshift=${xL}mm,yshift=-${yT}mm]current page.north west) rectangle ([xshift=${xR}mm,yshift=-${yB}mm]current page.north west);\n`;
 
-      // Card number (small, top-left corner)
       const cardNum = card._globalIdx != null ? card._globalIdx + 1 : idx + 1;
       tikzBody += `  \\node[anchor=north west, font=\\tiny\\color{gray}] at ([xshift=${round2(x + 1.5)}mm,yshift=-${round2(yTop + 1)}mm]current page.north west) {${cardNum}};\n`;
 
-      // Card content (centred in card)
       const textX = round2(x + CARD_W / 2);
       const textY = round2(yTop + CARD_H / 2);
       const maxTextW = CARD_W - 8;
-      tikzBody += `  \\node[anchor=center, text width=${maxTextW}mm, align=center, font=\\small, text=brand-navy] at ([xshift=${textX}mm,yshift=-${textY}mm]current page.north west) {${tex(text)}};\n`;
+      tikzBody += `  \\node[anchor=center, text width=${maxTextW}mm, align=center, font={\\small\\hyphenpenalty=10000}, text=brand-navy] at ([xshift=${textX}mm,yshift=-${textY}mm]current page.north west) {${tex(text)}};\n`;
 
-      // Branding + QR on back only
       if (!isFront) {
         tikzBody += `  \\node[anchor=south, font=\\tiny\\color{brand-purple!50}] at ([xshift=${textX}mm,yshift=-${round2(yTop + CARD_H - 1.5)}mm]current page.north west) {entermedschool.org};\n`;
 
-        // QR code on back (bottom-right of card, 6mm)
-        if (card.stableId && categorySlug && deckSlug) {
-          const cardUrl = `https://entermedschool.org/en/resources/flashcards/${categorySlug}/${deckSlug}/${card.stableId}`;
-          const qrX = round2(x + CARD_W - 5);
-          const qrY = round2(yTop + CARD_H - 5);
-          tikzBody += `  \\node[anchor=center, inner sep=0pt] at ([xshift=${qrX}mm,yshift=-${qrY}mm]current page.north west) {\\href{${cardUrl}}{\\qrcode[height=6mm]{${cardUrl}}}};\n`;
+        // 3 blank writing lines for student notes
+        const lineStartX = round2(x + 4);
+        const lineEndX = round2(x + CARD_W - 4);
+        for (let ln = 0; ln < 3; ln++) {
+          const lineY = round2(yTop + CARD_H - 10 - ln * 4);
+          tikzBody += `  \\draw[gray!30, line width=0.3pt] ([xshift=${lineStartX}mm,yshift=-${lineY}mm]current page.north west) -- ([xshift=${lineEndX}mm,yshift=-${lineY}mm]current page.north west);\n`;
         }
       }
     }
@@ -566,7 +602,7 @@ export function flashcardTemplate({ title, categoryName, description, cards, url
 \\begin{document}
 `;
 
-  // ── Magazine-quality title page (matching shared design) ─────────
+  // ── Magazine-quality title page ───────────────────────────────────
   body += `
 \\begin{tikzpicture}[remember picture,overlay]
   % Full-page gradient background (purple to navy)
@@ -581,14 +617,12 @@ export function flashcardTemplate({ title, categoryName, description, cards, url
   \\fill[white, opacity=0.03]
     ([xshift=50mm,yshift=50mm]current page.south west) circle (40mm);
 
-  % Diagonal band
   \\fill[white, opacity=0.025]
     ([yshift=-110mm]current page.north west) --
     ([xshift=100mm,yshift=-110mm]current page.north west) --
     ([yshift=-200mm]current page.north east) --
     ([xshift=-100mm,yshift=-200mm]current page.north east) -- cycle;
 
-  % Dot grid pattern
   \\foreach \\i in {0,...,8} {
     \\foreach \\j in {0,...,5} {
       \\fill[white, opacity=0.04]
@@ -627,13 +661,11 @@ export function flashcardTemplate({ title, categoryName, description, cards, url
     {Printable Flashcards --- ${tex(categoryName)}};
 
 ${description ? `
-  % Description
   \\node[anchor=center, white!80, font=\\small, text width=140mm, align=center]
     at ([yshift=-180mm]current page.north)
     {${tex(description)}};
 ` : ""}
 
-  % Instructions
   \\node[anchor=center, white!70, font=\\small, text width=140mm, align=center]
     at ([yshift=-195mm]current page.north)
     {${cards.length} cards --- Print double-sided, flip on long edge, then cut along dashed lines.};
@@ -661,12 +693,12 @@ ${description ? `
     at ([xshift=20mm,yshift=12mm]current page.south west)
     {Generated \\today};
 
-  % QR code (bottom-right)
-  \\node[anchor=south east, inner sep=0pt]
-    at ([xshift=-20mm,yshift=8mm]current page.south east)
-    {\\href{${url}}{\\qrcode[height=18mm,level=M]{${url}}}};
-  \\node[anchor=north east, white!60, font=\\tiny]
-    at ([xshift=-20mm,yshift=8mm]current page.south east)
+  % QR code (bottom-right, below info strip)
+  \\node[anchor=south east, fill=white, rounded corners=2pt, inner sep=1.5mm]
+    at ([xshift=-20mm,yshift=2mm]current page.south east)
+    {\\href{${url}}{\\qrcode[height=14mm,level=M]{${url}}}};
+  \\node[anchor=south east, white, font=\\tiny\\bfseries]
+    at ([xshift=-39mm,yshift=6mm]current page.south east)
     {Scan to visit online};
 
 \\end{tikzpicture}
@@ -674,23 +706,18 @@ ${description ? `
 \\newpage
 `;
 
-  // Chunk cards into pages of CARDS_PER_PAGE
   const totalPages = Math.ceil(cards.length / CARDS_PER_PAGE);
 
   for (let p = 0; p < totalPages; p++) {
     const chunk = cards.slice(p * CARDS_PER_PAGE, (p + 1) * CARDS_PER_PAGE);
-    // Tag each card with its global index for numbering
     chunk.forEach((card, i) => { card._globalIdx = p * CARDS_PER_PAGE + i; });
 
-    // FRONT page — single tikzpicture with header + card grid
     body += `
 % ── Sheet ${p + 1}/${totalPages} FRONT ──
 \\begin{tikzpicture}[remember picture,overlay]
-  % Gradient header bar
   \\shade[left color=brand-purple, right color=brand-teal!70!brand-purple]
     (current page.north west) rectangle
     ([yshift=-${HEADER_H}mm]current page.north east);
-  % Logo
   \\node[anchor=west, inner sep=0pt]
     at ([xshift=5mm,yshift=-7mm]current page.north west)
     {\\includegraphics[height=7mm]{logo}};
@@ -703,21 +730,17 @@ ${description ? `
   \\node[anchor=east, white, font=\\scriptsize]
     at ([xshift=-8mm,yshift=-11mm]current page.north east)
     {Print double-sided, flip on long edge};
-  % Card grid
 ${flashcardGrid(chunk, true)}\\end{tikzpicture}
 \\newpage
 
 % ── Sheet ${p + 1}/${totalPages} BACK ──
 \\begin{tikzpicture}[remember picture,overlay]
-  % Subtle cream-to-white gradient header
   \\shade[left color=brand-cream, right color=white]
     (current page.north west) rectangle
     ([yshift=-${HEADER_H}mm]current page.north east);
-  % Gradient accent line
   \\shade[left color=brand-teal, right color=brand-purple]
     ([yshift=-${HEADER_H}mm]current page.north west) rectangle
     ([yshift=-${HEADER_H}.6mm]current page.north west -| current page.north east);
-  % Logo
   \\node[anchor=west, inner sep=0pt]
     at ([xshift=5mm,yshift=-7mm]current page.north west)
     {\\includegraphics[height=7mm]{logo}};
@@ -727,7 +750,6 @@ ${flashcardGrid(chunk, true)}\\end{tikzpicture}
   \\node[anchor=east, brand-navy, font=\\scriptsize]
     at ([xshift=-8mm,yshift=-7mm]current page.north east)
     {Sheet ${p + 1}/${totalPages} --- BACK};
-  % Card grid (mirrored columns + QR codes)
 ${flashcardGrid(chunk, false, { categorySlug, deckSlug })}\\end{tikzpicture}
 \\newpage
 `;

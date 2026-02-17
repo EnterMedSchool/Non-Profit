@@ -1,5 +1,5 @@
 import { getTranslations } from "next-intl/server";
-import { Calculator, Wrench, Blocks, ArrowRight, Sparkles, Activity, Shield } from "lucide-react";
+import { Wrench, Blocks, ArrowRight, Shield } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -68,14 +68,10 @@ export default async function CalculatorsPage({ params }: CalculatorsPageProps) 
           titleHighlight={t("hero.titleHighlight")}
           titlePost={t("hero.titlePost")}
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-purple"
           subtitle={t("subtitle")}
-          floatingIcons={<>
-            <Calculator className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Activity className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-blue/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-          </>}
         />
 
         {/* ── Attribution Reminder ── */}

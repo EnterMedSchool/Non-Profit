@@ -212,6 +212,105 @@ export function getTermSummaries(): GlossaryTermSummary[] {
   }));
 }
 
+/* ── Comparison pairs for "X vs Y" pages ──────────────────────────── */
+
+export interface ComparisonPair {
+  /** Alphabetically sorted canonical slug: "termA-vs-termB" */
+  slug: string;
+  termA: GlossaryTerm;
+  termB: GlossaryTerm;
+}
+
+function buildComparisonPairs(): ComparisonPair[] {
+  const seen = new Set<string>();
+  const pairs: ComparisonPair[] = [];
+
+  for (const term of glossaryTerms) {
+    if (!term.differentials?.length) continue;
+    for (const diff of term.differentials) {
+      if (!diff.id) continue;
+      const other = termByIdMap.get(diff.id);
+      if (!other) continue;
+
+      const [a, b] = [term.id, other.id].sort();
+      const key = `${a}|${b}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+
+      pairs.push({
+        slug: `${a}-vs-${b}`,
+        termA: termByIdMap.get(a)!,
+        termB: termByIdMap.get(b)!,
+      });
+    }
+  }
+
+  return pairs;
+}
+
+export const glossaryComparisonPairs: ComparisonPair[] = buildComparisonPairs();
+
+const comparisonBySlug = new Map<string, ComparisonPair>(
+  glossaryComparisonPairs.map((p) => [p.slug, p]),
+);
+
+/** Lookup a comparison pair by its canonical slug */
+export function getComparisonPair(slug: string): ComparisonPair | undefined {
+  return comparisonBySlug.get(slug);
+}
+
+/** All comparison slugs for generateStaticParams */
+export function getAllComparisonSlugs(): string[] {
+  return glossaryComparisonPairs.map((p) => p.slug);
+}
+
+/* ── Symptom landing pages ─────────────────────────────────────────── */
+
+import { curatedSymptoms } from "@/data/glossary/symptoms";
+import type { SymptomEntry } from "@/data/glossary/symptoms";
+export type { SymptomEntry };
+export { curatedSymptoms };
+
+export interface SymptomPageData {
+  symptom: SymptomEntry;
+  matchingTerms: GlossaryTerm[];
+}
+
+function buildSymptomIndex(): Map<string, SymptomPageData> {
+  const index = new Map<string, SymptomPageData>();
+
+  for (const symptom of curatedSymptoms) {
+    const matching = glossaryTerms.filter((term) => {
+      if (!term.how_youll_see_it?.length) return false;
+      const joined = term.how_youll_see_it.join(" ").toLowerCase();
+      return symptom.keywords.some((kw) => joined.includes(kw));
+    });
+
+    if (matching.length > 0) {
+      index.set(symptom.slug, { symptom, matchingTerms: matching });
+    }
+  }
+
+  return index;
+}
+
+const symptomIndex = buildSymptomIndex();
+
+/** Get all symptom slugs that have matching terms */
+export function getAllSymptomSlugs(): string[] {
+  return Array.from(symptomIndex.keys());
+}
+
+/** Lookup symptom page data by slug */
+export function getSymptomPageData(slug: string): SymptomPageData | undefined {
+  return symptomIndex.get(slug);
+}
+
+/** All symptom entries that have matching terms (for sitemap) */
+export function getAllSymptomPages(): SymptomPageData[] {
+  return Array.from(symptomIndex.values());
+}
+
 /* ── Stats ─────────────────────────────────────────────────────────── */
 
 export const glossaryStats = {

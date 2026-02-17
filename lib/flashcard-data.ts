@@ -137,6 +137,18 @@ export function getDeckCategory(deck: FlashcardDeck): FlashcardCategory | undefi
   return undefined;
 }
 
+// ── Ancestry helpers ─────────────────────────────────────────────────
+
+/** Check if `ancestorId` is equal to or an ancestor of `categoryId`. */
+export function isCategoryAncestor(ancestorId: number, categoryId: number): boolean {
+  let current = _catById.get(categoryId);
+  while (current) {
+    if (current.id === ancestorId) return true;
+    current = current.parentId ? _catById.get(current.parentId) : undefined;
+  }
+  return false;
+}
+
 // ── Card helpers ────────────────────────────────────────────────────
 
 export function getCardByStableId(stableId: string): Flashcard | undefined {

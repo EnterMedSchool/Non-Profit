@@ -4,10 +4,6 @@ import { useState, useMemo } from "react";
 import { useTranslations } from "next-intl";
 import Link from "next/link";
 import {
-  BookOpen,
-  Sparkles,
-  GraduationCap,
-  Stethoscope,
   Shuffle,
   ChevronDown,
   Shield,
@@ -70,10 +66,11 @@ export default function GlossaryHubClient({
     );
   }, [summaries, activeLetter]);
 
-  // Show max 60 terms initially, then all
-  const visibleTerms = showAllTerms
-    ? filteredTerms
-    : filteredTerms.slice(0, 60);
+  // All terms are always rendered in HTML for SEO (crawlers see all links).
+  // The "Show all" toggle only controls visual visibility via CSS.
+  const visibleTerms = filteredTerms;
+  const initialLimit = 60;
+  const hasMore = filteredTerms.length > initialLimit;
 
   // Random term
   function goToRandomTerm() {
@@ -89,29 +86,10 @@ export default function GlossaryHubClient({
           titlePre={t("hero.titlePre")}
           titleHighlight={t("hero.titleHighlight")}
           gradient="from-showcase-purple via-showcase-pink to-showcase-orange"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-pink/25", "bg-showcase-orange/20"]}
           annotation={t("hero.annotation", { count: stats.totalTerms })}
           annotationColor="text-showcase-purple"
           subtitle={t("hero.subtitle")}
-          floatingIcons={
-            <>
-              <BookOpen
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Stethoscope
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-pink/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <GraduationCap
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-orange/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <Sparkles
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
         />
 
         {/* Stats Bar */}
@@ -197,8 +175,14 @@ export default function GlossaryHubClient({
             onLetterClick={setActiveLetter}
           />
 
-          {/* Term Grid */}
-          <div className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
+          {/*
+            Term Grid -- all terms rendered in HTML for SEO crawlability.
+            Uses max-h + overflow-hidden to visually limit the initial view
+            while keeping all <a> tags in the DOM for crawlers.
+          */}
+          <div
+            className={`mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3 transition-[max-height] duration-300${!showAllTerms && hasMore ? " max-h-[1600px] overflow-hidden" : ""}`}
+          >
             {visibleTerms.map((term) => {
               const tag = tags[term.primary_tag];
               const accent = tag?.accent || "#6C5CE7";
@@ -239,9 +223,9 @@ export default function GlossaryHubClient({
             })}
           </div>
 
-          {/* Show More */}
-          {!showAllTerms && filteredTerms.length > 60 && (
-            <div className="mt-6 text-center">
+          {/* Show More -- fade gradient + button */}
+          {!showAllTerms && hasMore && (
+            <div className="relative -mt-20 pt-20 bg-gradient-to-t from-white via-white/90 to-transparent text-center pb-2">
               <button
                 onClick={() => setShowAllTerms(true)}
                 className="inline-flex items-center gap-2 rounded-xl border-3 border-ink-dark/10 bg-white px-6 py-3 font-display font-bold text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"

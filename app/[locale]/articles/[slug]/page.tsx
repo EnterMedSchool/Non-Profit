@@ -2,7 +2,8 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import Link from "next/link";
 import { ArrowLeft, ArrowRight } from "lucide-react";
-import { blogPosts, getBlogPostBySlug, getAllBlogSlugs } from "@/data/blog-posts";
+import { blogPosts, getBlogPostBySlug, getAllBlogSlugs, getPostAuthor } from "@/data/blog-posts";
+import { getAuthorJsonLd } from "@/data/authors";
 import { routing } from "@/i18n/routing";
 import { getBlogArticleJsonLd } from "@/lib/metadata";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -75,6 +76,11 @@ export default async function ArticlePage({ params }: Props) {
   const post = getBlogPostBySlug(slug);
   if (!post) notFound();
 
+  const author = getPostAuthor(post);
+  const authorLd = author ? getAuthorJsonLd(author) : undefined;
+
+  const wordCount = post.body.replace(/<[^>]+>/g, "").split(/\s+/).length;
+
   const articleJsonLd = getBlogArticleJsonLd(
     {
       title: post.title,
@@ -84,12 +90,206 @@ export default async function ArticlePage({ params }: Props) {
       datePublished: post.datePublished,
       dateModified: post.dateModified,
       tags: post.tags,
+      category: post.category,
+      wordCount,
       imageUrl: post.coverImage ? `${BASE_URL}${post.coverImage}` : undefined,
+      authorJsonLd: authorLd,
     },
     locale,
   );
 
   const articleUrl = `${BASE_URL}/${locale}/articles/${post.slug}`;
+
+  /* ── BreadcrumbList JSON-LD ──────────────────────────────────────── */
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: `${BASE_URL}/${locale}` },
+      { "@type": "ListItem", position: 2, name: "Articles", item: `${BASE_URL}/${locale}/articles` },
+      { "@type": "ListItem", position: 3, name: post.title, item: articleUrl },
+    ],
+  };
+
+  /* ── FAQPage JSON-LD ─────────────────────────────────────────────── */
+  const faqJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "How long should I study for USMLE Step 1 as an IMG?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Most international medical students study for 6 months of focused preparation. A 3-month plan is doable if you study full-time with no other obligations (40–80 UWorld questions/day). A 9–12 month plan works if you need to balance med school or work. Tailor the timeline to your endurance and include regular review to avoid forgetting.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How much does USMLE Step 1 cost for international students?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "For 2026, the total exam cost is about $1,225 USD ($1,020 exam fee + $205 international surcharge). Add the one-time ECFMG application fee (~$160), study materials ($300–$600), question banks ($400–$600), and travel/accommodation ($300–$1,000+). The total Step 1 phase typically costs $2,500–$5,500 depending on your choices.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What documents do I need on USMLE Step 1 exam day?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You must bring your scheduling permit (printed or on phone) and a valid, unexpired passport with a name that exactly matches the permit. It is also wise to bring a backup ID such as a driver's license. Additionally, pack snacks and water in a clear bag, any medications you may need, and dress in comfortable layers.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What are the best free resources for USMLE Step 1?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Top free resources include: Anking/Zanki Anki decks (comprehensive flashcards), Dirty Medicine on YouTube (micro/biochem mnemonics), Randy Neil / Medicosis Perfectionalis on YouTube (pharmacology), MedBullets (summaries and practice questions), the free NBME 120 at Prometric, and community resources on Reddit (r/step1, r/IMGreddit). For paid resources, First Aid + UWorld + Pathoma is the gold-standard combination.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Can I pass USMLE Step 1 in 3 months?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Yes, but only if you are studying full-time with no other responsibilities. A 3-month plan requires 8–10 hours/day, 40–80 UWorld questions daily, and rapid coverage of all subjects. If you have school or work obligations, 3 months may not be enough — most students in that situation extend to 6 months or more.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How do I register for USMLE Step 1 as an international student?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "All non-US graduates must first register with ECFMG (one-time fee ~$160). Your school must verify your coursework or diploma. Then apply for Step 1 via ECFMG/FSMB, pay the exam fee ($1,020 + $205 international surcharge), and schedule your test at a Prometric center. Start early — ECFMG verification can take months.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How does Step 1 affect residency matching for IMGs?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Even though Step 1 is now Pass/Fail, programs still screen IMGs by Step 1 performance. A high pass-level score (240+) can bolster your application for competitive specialties. ECFMG certification (required for the Match) is granted after passing Step 1, Step 2 CK, and having your diploma verified. Complete Step 1 by summer before ERAS opens.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How can I prevent burnout while studying for Step 1?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Schedule weekly rest days, exercise 30–60 minutes daily, maintain 7–8 hours of sleep, and eat balanced meals. Join online study groups for support. Take 5–10 minute breaks every hour. Plan a reward after the exam. If anxiety becomes overwhelming, consider professional help — many schools offer counseling. Mental endurance is as crucial as academic knowledge.",
+        },
+      },
+    ],
+  };
+
+  /* ── HowTo JSON-LD ───────────────────────────────────────────────── */
+  const howToJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: "How to Prepare for USMLE Step 1 as an International Medical Student",
+    description:
+      "A step-by-step guide for IMGs to plan, study for, and pass USMLE Step 1, covering registration, resources, study timelines, and test-day strategy.",
+    totalTime: "P6M",
+    step: [
+      {
+        "@type": "HowToStep",
+        position: 1,
+        name: "Register with ECFMG and apply for the exam",
+        text: "All non-US graduates must get ECFMG certified. Register early (one-time fee ~$160), have your school verify coursework, then apply for Step 1 through ECFMG/FSMB and pay exam fees ($1,020 + $205 international surcharge).",
+      },
+      {
+        "@type": "HowToStep",
+        position: 2,
+        name: "Choose a study timeline (3, 6, or 9–12 months)",
+        text: "Select a timeline based on your obligations. 3 months works for full-time study; 6 months is most common for those juggling school or work; 9–12 months offers flexibility but risks fatigue.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 3,
+        name: "Gather core resources (First Aid, UWorld, Pathoma)",
+        text: "Build your resource stack: First Aid as your core reference, UWorld as the gold-standard question bank, Pathoma for pathology, and optionally Sketchy for micro/pharm and Anki for spaced repetition.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 4,
+        name: "Follow a structured study plan with active recall and spaced repetition",
+        text: "Create a daily/weekly schedule assigning topics. Use active recall (self-quizzing, teaching) and spaced repetition (Anki). Cover 2–3 hours of videos/notes + question bank blocks + flashcard review daily.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 5,
+        name: "Take practice exams (NBMEs) to track progress",
+        text: "Use NBME self-assessments and the free Prometric 120 to benchmark progress. Take them under timed exam conditions. Aim for an upward score trend and use results to identify weak areas.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 6,
+        name: "Prepare logistics (scheduling, documents, travel)",
+        text: "Schedule your Prometric test center, arrange travel/accommodation if needed, and prepare required documents: scheduling permit, passport (name must match exactly), backup ID, snacks, and medications.",
+      },
+      {
+        "@type": "HowToStep",
+        position: 7,
+        name: "Execute test-day strategy",
+        text: "Arrive 30+ minutes early. Use the 15-second rule for tough questions (flag and move on). Take all allotted breaks. Stay calm with deep breathing. Eat a healthy lunch to maintain focus across all blocks.",
+      },
+    ],
+  };
+
+  /* ── VideoObject JSON-LD ─────────────────────────────────────────── */
+  const videoJsonLd = [
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "How to Study for USMLE Step 1 as an IMG – Only 4 Resources",
+      description:
+        "Dr. Chris strips USMLE Step 1 resources to essentials: First Aid, UWorld, Pathoma, and one comprehensive video series. Emphasis on quality over quantity.",
+      contentUrl: "https://www.youtube.com/watch?v=HR29kGQBW4M",
+      thumbnailUrl: "https://i.ytimg.com/vi/HR29kGQBW4M/hqdefault.jpg",
+      uploadDate: "2024-01-01",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "USMLE Step 1 Tips for IMGs: Complete Plan",
+      description:
+        "Sarthi Education lays out a structured plan: pre-assessment with NBME baseline, 6-month study blocks, and frequent self-testing for international medical students.",
+      contentUrl: "https://www.youtube.com/watch?v=Vb06TTkVKhU",
+      thumbnailUrl: "https://i.ytimg.com/vi/Vb06TTkVKhU/hqdefault.jpg",
+      uploadDate: "2024-01-01",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "The 6 Things Successful IMGs Do Differently",
+      description:
+        "Dr. Alec Palmerton shares tips for IMGs: plan early, use high-yield sources, do many questions, stay healthy, and simulate test conditions.",
+      contentUrl: "https://www.youtube.com/watch?v=lmDDHRtP9iU",
+      thumbnailUrl: "https://i.ytimg.com/vi/lmDDHRtP9iU/hqdefault.jpg",
+      uploadDate: "2024-01-01",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "How to Prepare for Step 1 with a Full-Time Job",
+      description:
+        "Zerak describes balancing a full-time job with USMLE Step 1 study: strict study hours, UWorld 20–30 Q/day, and daily consistency over quotas.",
+      contentUrl: "https://www.youtube.com/watch?v=O7RhNHEWUCo",
+      thumbnailUrl: "https://i.ytimg.com/vi/O7RhNHEWUCo/hqdefault.jpg",
+      uploadDate: "2024-01-01",
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoObject",
+      name: "What to Study for Step 1 in 2026",
+      description:
+        "Dr. Malke Asaad outlines up-to-date resources for USMLE Step 1 in 2026: focus on FA+UWorld, practice exam strategy for P/F format, and incorporate NBME/AMBOSS Qs.",
+      contentUrl: "https://www.youtube.com/watch?v=DFHxJE7fFPQ",
+      thumbnailUrl: "https://i.ytimg.com/vi/DFHxJE7fFPQ/hqdefault.jpg",
+      uploadDate: "2025-01-01",
+    },
+  ];
 
   // Related posts: same category or overlapping tags
   const relatedPosts = blogPosts
@@ -102,11 +302,34 @@ export default async function ArticlePage({ params }: Props) {
 
   return (
     <>
-      {/* JSON-LD */}
+      {/* JSON-LD: Article */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(articleJsonLd) }}
       />
+      {/* JSON-LD: BreadcrumbList */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd) }}
+      />
+      {/* JSON-LD: FAQPage */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+      />
+      {/* JSON-LD: HowTo */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(howToJsonLd) }}
+      />
+      {/* JSON-LD: VideoObjects */}
+      {videoJsonLd.map((v, i) => (
+        <script
+          key={i}
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(v) }}
+        />
+      ))}
 
       {/* Reading progress bar */}
       <ReadingProgressBar />

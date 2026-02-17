@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Presentation, BookOpen, Image, Users } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import ForProfessorsHub from "@/components/professors/ForProfessorsHub";
 import { getWebPageJsonLd } from "@/lib/metadata";
@@ -48,15 +47,10 @@ export default async function ForProfessorsPage({ params }: { params: Promise<{ 
           titleHighlight={t("hero.titleHighlight")}
           titlePost={t("hero.titlePost")}
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-purple"
           subtitle={t("subtitle")}
-          floatingIcons={<>
-            <Presentation className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <BookOpen className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Image className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-yellow/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Users className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
         />
       </div>
 

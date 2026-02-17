@@ -1,6 +1,6 @@
 import { notFound } from "next/navigation";
 import { getTranslations } from "next-intl/server";
-import { ArrowLeft, Code, ExternalLink, Calculator, Sparkles, BookOpen, FlaskConical, AlertCircle, HelpCircle, Shield, FileCode } from "lucide-react";
+import { ArrowLeft, Code, ExternalLink, BookOpen, FlaskConical, AlertCircle, HelpCircle, Shield, FileCode } from "lucide-react";
 import Link from "next/link";
 import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
@@ -140,11 +140,8 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
         <PageHero
           titleHighlight={title}
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
           subtitle={description}
-          floatingIcons={<>
-            <Calculator className="absolute left-[10%] top-[10%] h-7 w-7 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Sparkles className="absolute right-[10%] top-[5%] h-6 w-6 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-          </>}
         />
 
         {/* Calculator */}

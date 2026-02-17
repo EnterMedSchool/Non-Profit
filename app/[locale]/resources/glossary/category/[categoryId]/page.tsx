@@ -13,6 +13,7 @@ import { getGlossaryCategoryJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
 import { ogImagePath } from "@/lib/og-path";
 import GlossaryTermCard from "@/components/glossary/GlossaryTermCard";
+import { categoryDescriptions } from "@/data/glossary/category-descriptions";
 
 interface Props {
   params: Promise<{ locale: string; categoryId: string }>;
@@ -66,6 +67,41 @@ export default async function GlossaryCategoryPage({ params }: Props) {
     locale,
   );
 
+  const introText = categoryDescriptions[categoryId] || "";
+
+  // Auto-generated FAQ for this category
+  const topTermNames = terms.slice(0, 5).map((t) => t.names[0]);
+  const faqItems = [
+    {
+      question: `What is ${category.name}?`,
+      answer: introText || `${category.name} is a branch of medical science. Explore ${category.count} key terms in this category with definitions, clinical cases, and study guides.`,
+    },
+    {
+      question: `How many ${category.name.toLowerCase()} terms are in the glossary?`,
+      answer: `The EnterMedSchool glossary contains ${category.count} terms in ${category.name.toLowerCase()}, each with definitions, clinical relevance, exam tips, and mnemonics designed for medical students.`,
+    },
+    {
+      question: `What are the most important ${category.name.toLowerCase()} conditions for medical exams?`,
+      answer: `Key ${category.name.toLowerCase()} terms that frequently appear on medical licensing exams include ${topTermNames.join(", ")}${terms.length > 5 ? `, and ${terms.length - 5} more` : ""}. Each term page includes exam-focused content and clinical cases.`,
+    },
+  ];
+
+  // FAQPage schema
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: faqItems.map((faq) => ({
+      "@type": "Question",
+      name: faq.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: faq.answer,
+      },
+    })),
+  };
+
+  const allSchemas = [...schemas, faqSchema];
+
   // Related categories (those that share terms via tags)
   const relatedCategoryIds = new Set<string>();
   for (const term of terms) {
@@ -79,7 +115,7 @@ export default async function GlossaryCategoryPage({ params }: Props) {
 
   return (
     <>
-      {schemas.map((schema, i) => (
+      {allSchemas.map((schema, i) => (
         <script
           key={i}
           type="application/ld+json"
@@ -128,6 +164,13 @@ export default async function GlossaryCategoryPage({ params }: Props) {
                 </p>
               </div>
             </div>
+
+            {/* Intro paragraph */}
+            {introText && (
+              <p className="mt-4 max-w-3xl text-sm text-ink-muted leading-relaxed">
+                {introText}
+              </p>
+            )}
           </header>
 
           {/* Term Grid */}
@@ -164,6 +207,28 @@ export default async function GlossaryCategoryPage({ params }: Props) {
               </div>
             </div>
           )}
+
+          {/* FAQ Section */}
+          <div className="mt-14">
+            <h2 className="font-display text-xl font-bold text-ink-dark">
+              Frequently Asked Questions
+            </h2>
+            <div className="mt-4 space-y-3">
+              {faqItems.map((faq, i) => (
+                <div
+                  key={i}
+                  className="rounded-xl border-2 border-ink-dark/8 bg-white p-5"
+                >
+                  <h3 className="font-display font-bold text-sm text-ink-dark">
+                    {faq.question}
+                  </h3>
+                  <p className="mt-2 text-sm text-ink-muted leading-relaxed">
+                    {faq.answer}
+                  </p>
+                </div>
+              ))}
+            </div>
+          </div>
         </div>
       </main>
     </>

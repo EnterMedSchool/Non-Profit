@@ -16,6 +16,7 @@ import {
   getCategoryBySlug,
   getAllCards,
   getAllDecks,
+  isCategoryAncestor,
 } from "@/lib/flashcard-data";
 import { ogImagePath } from "@/lib/og-path";
 
@@ -68,7 +69,8 @@ export async function generateMetadata({
 
   if (!card || !deck || !category) return { title: "Not Found" };
 
-  if (deck.categoryId !== category.id) return { title: "Not Found" };
+  if (deck.categoryId != null && !isCategoryAncestor(category.id, deck.categoryId))
+    return { title: "Not Found" };
 
   const title = truncate(card.front, 60);
   const description = truncate(card.back, 155);
@@ -107,7 +109,7 @@ export default async function CardFlashcardPage({
 
   if (!card || !deck || !category) notFound();
 
-  if (deck.categoryId !== category.id) notFound();
+  if (deck.categoryId != null && !isCategoryAncestor(category.id, deck.categoryId)) notFound();
 
   const allDeckCards = getCardsByDeck(deck.id).sort(
     (a, b) => a.ordinal - b.ordinal

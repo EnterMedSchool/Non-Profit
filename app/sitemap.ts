@@ -10,7 +10,7 @@ import {
   getAllTags,
   getTagSlug,
 } from "@/data/media-assets";
-import { glossaryTerms, glossaryCategories } from "@/data/glossary-terms";
+import { glossaryTerms, glossaryCategories, glossaryComparisonPairs, getAllSymptomPages } from "@/data/glossary-terms";
 import { clinicalCases } from "@/data/clinical-cases";
 import { blogPosts } from "@/data/blog-posts";
 import { practiceCategories, practiceDecks } from "@/data/practice-categories";
@@ -299,7 +299,7 @@ function buildGlossarySitemap(): MetadataRoute.Sitemap {
 
     entries.push({
       url: `${BASE_URL}/${defaultLocale}${path}`,
-      lastModified: CONTENT_UPDATED,
+      lastModified: term.lastModified || CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.8,
       alternates: buildAlternates(path),
@@ -310,6 +310,34 @@ function buildGlossarySitemap(): MetadataRoute.Sitemap {
 
   for (const category of glossaryCategories) {
     const path = `/resources/glossary/category/${category.id}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Glossary comparison pages ──────────────────────────────────── */
+
+  for (const pair of glossaryComparisonPairs) {
+    const path = `/resources/glossary/compare/${pair.slug}`;
+
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "monthly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  /* ── Glossary symptom landing pages ─────────────────────────────── */
+
+  for (const sp of getAllSymptomPages()) {
+    const path = `/resources/glossary/symptom/${sp.symptom.slug}`;
 
     entries.push({
       url: `${BASE_URL}/${defaultLocale}${path}`,

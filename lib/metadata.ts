@@ -17,6 +17,27 @@ const ORGANIZATION_REF = {
   url: BASE_URL,
 };
 
+/* ── Glossary: primary_tag → schema.org MedicalSpecialty ──────────── */
+const TAG_TO_SPECIALTY: Record<string, string> = {
+  cardio: "Cardiovascular",
+  neuro: "Neurologic",
+  gi: "Gastroenterologic",
+  renal: "Renal",
+  peds: "Pediatric",
+  endocrine: "Endocrine",
+  emerg: "Emergency",
+  rheum: "Musculoskeletal",
+  obgyn: "Obstetric",
+  heme_onc: "Hematologic",
+  msk_derm: "Dermatologic",
+  infectious_dz: "InfectiousDisease",
+  surgery: "Surgical",
+  pulm: "Pulmonary",
+  biochemistry: "Pathology",
+  anatomy: "Anesthesia",
+  biology: "PublicHealth",
+};
+
 /**
  * JSON-LD Organization schema for the homepage
  */
@@ -30,7 +51,6 @@ export function getOrganizationJsonLd() {
     description:
       "Free, open-source medical education resources, tools, and guides for educators worldwide.",
     foundingDate: "2019",
-    nonprofitStatus: "Nonprofit501c3",
     founder: {
       "@type": "Person",
       name: "Ari Horesh",
@@ -179,7 +199,6 @@ export function getAboutPageJsonLd(locale: string) {
       url: BASE_URL,
       logo: `${BASE_URL}/logo.png`,
       foundingDate: "2019",
-      nonprofitStatus: "Nonprofit501c3",
       founder: {
         "@type": "Person",
         name: "Ari Horesh",
@@ -691,6 +710,75 @@ export function getClinicalCaseJsonLd(
 /*  Glossary SEO schemas                                              */
 /* ================================================================== */
 
+/**
+ * Count total words across all text content in a glossary term.
+ * Used to compute reading time for LearningResource.timeRequired.
+ */
+function countTermWords(term: GlossaryTerm): number {
+  const texts: string[] = [term.definition];
+  if (term.why_it_matters) texts.push(term.why_it_matters);
+  for (const arr of [
+    term.how_youll_see_it, term.problem_solving, term.treatment,
+    term.tricks, term.exam_appearance, term.red_flags, term.algorithm,
+    term.tips, term.clinical_usage, term.pearls, term.clinical_significance,
+    term.key_concepts,
+  ]) {
+    if (arr?.length) texts.push(...arr);
+  }
+  if (term.differentials?.length) {
+    texts.push(...term.differentials.map((d) => `${d.name || ""} ${d.hint}`));
+  }
+  if (term.cases?.length) {
+    texts.push(...term.cases.map((c) => `${c.stem} ${c.clues.join(" ")} ${c.answer} ${c.teaching}`));
+  }
+  return texts.join(" ").split(/\s+/).length;
+}
+
+/**
+ * Compute ISO 8601 duration string from word count (200 wpm average).
+ * Returns at least PT2M (minimum reading time).
+ */
+function computeReadingTimeISO(wordCount: number): string {
+  const minutes = Math.max(2, Math.round(wordCount / 200));
+  return `PT${minutes}M`;
+}
+
+/**
+ * Build a human-readable "teaches" string for the LearningResource schema.
+ */
+function buildTeachesString(term: GlossaryTerm): string {
+  const name = term.names[0];
+  switch (term.level) {
+    case "formula":
+      return `how to calculate and interpret ${name}`;
+    case "lab-value":
+      return `normal ranges and clinical interpretation of ${name}`;
+    case "premed":
+      return `key concepts and exam preparation for ${name}`;
+    case "physiological":
+      return `normal values, calculation, and clinical relevance of ${name}`;
+    default: {
+      const parts = ["diagnosis"];
+      if (term.treatment?.length) parts.push("treatment");
+      if (term.differentials?.length) parts.push("differential diagnosis");
+      return `${name} ${parts.join(", ")}`;
+    }
+  }
+}
+
+/**
+ * Build the learningResourceType string based on term level.
+ */
+function getLearningResourceType(term: GlossaryTerm): string {
+  switch (term.level) {
+    case "formula": return "interactive calculator";
+    case "lab-value": return "reference table";
+    case "premed": return "study guide";
+    case "physiological": return "reference guide";
+    default: return "glossary entry";
+  }
+}
+
 /** Strip markdown bold/underline for plain text meta descriptions */
 function stripMarkdown(text: string): string {
   return text
@@ -739,49 +827,71 @@ export function buildGlossaryTermTitle(term: GlossaryTerm): string {
 
 /**
  * Build an SEO-optimized meta description for a glossary term.
- * 150-160 chars, compelling, opens with search-intent question.
+ * 150-160 chars, compelling, leads with hooks & exam relevance.
  */
 export function buildGlossaryTermDescription(term: GlossaryTerm): string {
-  const cleanDef = stripMarkdown(term.definition);
+  const name = term.names[0];
+  const alias = term.abbr?.[0] || term.aliases?.[0];
+  const paren = alias ? ` (${alias})` : "";
 
   switch (term.level) {
     case "formula": {
       const expr = term.formula?.expression || "";
+      const pearl = term.pearls?.[0] ? ` ${stripMarkdown(term.pearls[0]).split(".")[0]}.` : "";
       return truncate(
-        `Calculate ${term.names[0]} online. ${expr}. Interactive calculator with interpretation, clinical usage & reference values. Free medical tool.`,
+        `${name} calculator: ${expr}.${pearl} Interactive tool with interpretation bands & clinical pearls. Free for med students.`,
         160,
       );
     }
     case "lab-value": {
       const range = term.reference_range;
       const rangeStr = range ? `${range.low}–${range.high} ${range.unit}` : "";
+      const interp = term.interpretation as import("@/types/glossary").LabInterpretation | undefined;
+      const highTerm = interp?.high?.term;
+      const lowTerm = interp?.low?.term;
+      const versus = highTerm && lowTerm ? ` ${lowTerm} vs ${highTerm} causes, severity levels & when to panic.` : "";
       return truncate(
-        `${term.names[0]} normal range: ${rangeStr}. Learn what high & low values mean, common causes & clinical significance. Free lab value reference.`,
+        `${name}${paren} normal: ${rangeStr}.${versus} Free lab reference for med students.`,
         160,
       );
     }
-    case "premed":
+    case "premed": {
+      const firstTip = term.tips?.[0] ? stripMarkdown(term.tips[0]).split(".")[0] + "." : "";
       return truncate(
-        `${term.names[0]}: ${cleanDef} Study tips, exam prep & key concepts explained. Free resource for pre-med & medical students.`,
+        `${name}${paren}: ${firstTip || stripMarkdown(term.definition).split(".")[0] + "."} Exam buzzwords & key concepts explained. Free pre-med study guide.`,
         160,
       );
-    default:
+    }
+    default: {
+      const mnemonic = term.tricks?.[0] ? stripMarkdown(term.tricks[0]).split(".")[0] + "." : "";
+      const hasExam = term.exam_appearance?.length;
+      const examTag = hasExam ? " High-yield exam scenarios included." : "";
+      if (mnemonic) {
+        return truncate(
+          `${name}${paren}: ${mnemonic}${examTag} Diagnosis, treatment & mnemonics. Free study guide for medical students.`,
+          160,
+        );
+      }
       return truncate(
-        `What is ${term.names[0]}? ${cleanDef} Learn diagnosis, treatment & mnemonics. Free medical glossary for students & educators.`,
+        `${name}${paren}: ${stripMarkdown(term.definition).split(".")[0]}.${examTag} Diagnosis, treatment & mnemonics. Free study guide for medical students.`,
         160,
       );
+    }
   }
 }
 
 /**
  * JSON-LD structured data for a glossary term page.
  *
- * Emits up to 5 schemas for maximum rich-result eligibility:
+ * Emits up to 8 schemas for maximum rich-result eligibility:
  * 1. DefinedTerm — glossary term definition
  * 2. MedicalCondition — medical knowledge panel (condition terms only)
  * 3. MedicalWebPage — authority & audience signals
  * 4. BreadcrumbList — breadcrumb rich snippets
- * 5. FAQPage — auto-generated from term sections
+ * 5. FAQPage — auto-generated from term sections (expanded with type-specific Qs)
+ * 6. LearningResource — educational content targeting
+ * 7. ImageObject — for terms with medical images
+ * 8. HowTo — for terms with clinical algorithm steps
  */
 export function getGlossaryTermJsonLd(
   term: GlossaryTerm,
@@ -819,6 +929,7 @@ export function getGlossaryTermJsonLd(
 
   // 2. MedicalCondition (for medical-level terms with clinical content)
   if (!term.level || term.level === "physiological") {
+    const specialty = TAG_TO_SPECIALTY[term.primary_tag];
     const medicalCondition: Record<string, unknown> = {
       "@context": "https://schema.org",
       "@type": "MedicalCondition",
@@ -826,6 +937,7 @@ export function getGlossaryTermJsonLd(
       ...(term.aliases?.length ? { alternateName: term.aliases } : {}),
       description: stripMarkdown(term.definition),
       url: termUrl,
+      ...(specialty ? { medicalSpecialty: { "@type": "MedicalSpecialty", name: specialty } } : {}),
     };
 
     if (term.how_youll_see_it?.length) {
@@ -866,7 +978,7 @@ export function getGlossaryTermJsonLd(
       name: "EnterMedSchool.org",
       url: BASE_URL,
     },
-    lastReviewed: "2025-06-01",
+    lastReviewed: term.lastModified || "2025-06-01",
     reviewedBy: ORGANIZATION_REF,
     medicalAudience: [
       { "@type": "MedicalAudience", audienceType: "Clinician" },
@@ -918,37 +1030,94 @@ export function getGlossaryTermJsonLd(
     ],
   });
 
-  // 5. FAQPage — auto-generated from term sections
+  // 5. FAQPage — auto-generated from term sections (expanded with type-specific questions)
   const faqItems: Array<{ question: string; answer: string }> = [];
+  const name = term.names[0];
+
   faqItems.push({
-    question: `What is ${term.names[0]}?`,
+    question: `What is ${name}?`,
     answer: stripMarkdown(term.definition),
   });
+
+  // Medical condition FAQs
   if (term.treatment?.length) {
     faqItems.push({
-      question: `How is ${term.names[0]} treated?`,
+      question: `How is ${name} treated?`,
       answer: stripMarkdown(term.treatment.join(" ")),
     });
   }
   if (term.red_flags?.length) {
     faqItems.push({
-      question: `What are the red flags for ${term.names[0]}?`,
+      question: `What are the red flags for ${name}?`,
       answer: stripMarkdown(term.red_flags.join(" ")),
     });
   }
   if (term.algorithm?.length) {
     faqItems.push({
-      question: `How is ${term.names[0]} diagnosed?`,
+      question: `How is ${name} diagnosed?`,
       answer: stripMarkdown(term.algorithm.join(" ")),
     });
   }
   if (term.differentials?.length) {
     faqItems.push({
-      question: `What are the differential diagnoses for ${term.names[0]}?`,
+      question: `What are the differential diagnoses for ${name}?`,
       answer: term.differentials
         .map((d) => `${d.name || d.id}: ${d.hint}`)
         .join(". "),
     });
+  }
+  // Exam-oriented FAQs (medical terms)
+  if (term.exam_appearance?.length) {
+    faqItems.push({
+      question: `How does ${name} appear on medical exams?`,
+      answer: stripMarkdown(term.exam_appearance.join(" ")),
+    });
+  }
+  if (term.tricks?.length) {
+    faqItems.push({
+      question: `What is the best mnemonic for ${name}?`,
+      answer: stripMarkdown(term.tricks.join(" ")),
+    });
+  }
+
+  // Formula-specific FAQs
+  if (term.level === "formula") {
+    if (term.formula?.expression) {
+      faqItems.push({
+        question: `How do you calculate ${name}?`,
+        answer: `${name} is calculated as: ${term.formula.expression}. The result is measured in ${term.formula.unit}.`,
+      });
+    }
+    if (term.clinical_usage?.length) {
+      faqItems.push({
+        question: `When is ${name} clinically useful?`,
+        answer: stripMarkdown(term.clinical_usage.join(" ")),
+      });
+    }
+  }
+
+  // Lab-value-specific FAQs
+  if (term.level === "lab-value") {
+    if (term.reference_range) {
+      const r = term.reference_range;
+      faqItems.push({
+        question: `What is the normal range for ${name}?`,
+        answer: `The normal range for ${name} is ${r.low}–${r.high} ${r.unit}.${r.critical_low ? ` Critical low: <${r.critical_low} ${r.unit}.` : ""}${r.critical_high ? ` Critical high: >${r.critical_high} ${r.unit}.` : ""}`,
+      });
+    }
+    const labInterp = term.interpretation as import("@/types/glossary").LabInterpretation | undefined;
+    if (labInterp?.high?.common_causes?.length) {
+      faqItems.push({
+        question: `What causes high ${name}?`,
+        answer: `Common causes of elevated ${name}: ${labInterp.high.common_causes.join(", ")}.`,
+      });
+    }
+    if (labInterp?.low?.common_causes?.length) {
+      faqItems.push({
+        question: `What causes low ${name}?`,
+        answer: `Common causes of low ${name}: ${labInterp.low.common_causes.join(", ")}.`,
+      });
+    }
   }
 
   if (faqItems.length > 1) {
@@ -961,6 +1130,70 @@ export function getGlossaryTermJsonLd(
         name: item.question,
         acceptedAnswer: { "@type": "Answer", text: item.answer },
       })),
+    });
+  }
+
+  // 6. LearningResource — educational content targeting
+  const wordCount = countTermWords(term);
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: `${name} — Study Guide for Medical Students`,
+    description: buildGlossaryTermDescription(term),
+    url: termUrl,
+    inLanguage: locale,
+    learningResourceType: getLearningResourceType(term),
+    educationalLevel: term.level === "premed" ? "Undergraduate" : "University",
+    audience: {
+      "@type": "EducationalAudience",
+      educationalRole: "student",
+      audienceType: "Medical Student",
+    },
+    teaches: buildTeachesString(term),
+    timeRequired: computeReadingTimeISO(wordCount),
+    isAccessibleForFree: true,
+    provider: ORGANIZATION_REF,
+    ...(term.sources?.length
+      ? {
+          citation: term.sources.map((s) => ({
+            "@type": "CreativeWork",
+            name: s.title,
+            url: s.url,
+          })),
+        }
+      : {}),
+  });
+
+  // 7. ImageObject — for terms with images
+  if (term.images?.length) {
+    for (const img of term.images) {
+      schemas.push({
+        "@context": "https://schema.org",
+        "@type": "ImageObject",
+        contentUrl: img.src,
+        description: img.alt,
+        ...(img.credit
+          ? { creditText: img.credit.text, acquireLicensePage: img.credit.href }
+          : {}),
+        isPartOf: { "@type": "WebPage", url: termUrl },
+      });
+    }
+  }
+
+  // 8. HowTo — for terms with clinical algorithm steps
+  if (term.algorithm?.length) {
+    schemas.push({
+      "@context": "https://schema.org",
+      "@type": "HowTo",
+      name: `How to diagnose ${name}`,
+      description: `Step-by-step clinical algorithm for diagnosing ${name}`,
+      url: termUrl,
+      step: term.algorithm.map((step, i) => ({
+        "@type": "HowToStep",
+        position: i + 1,
+        text: stripMarkdown(step),
+      })),
+      provider: ORGANIZATION_REF,
     });
   }
 
@@ -1171,17 +1404,25 @@ export function getGlossarySpeakableJsonLd(
 
 /**
  * Blog Article JSON-LD schema.
+ * Enhanced with wordCount, articleSection, speakable, and rich Author.
  */
-export function getBlogArticleJsonLd(article: {
-  title: string;
-  description: string;
-  slug: string;
-  author: string;
-  datePublished: string;
-  dateModified: string;
-  tags: string[];
-  imageUrl?: string;
-}, locale: string) {
+export function getBlogArticleJsonLd(
+  article: {
+    title: string;
+    description: string;
+    slug: string;
+    author: string;
+    datePublished: string;
+    dateModified: string;
+    tags: string[];
+    category?: string;
+    wordCount?: number;
+    imageUrl?: string;
+    /** Rich author object from data/authors.ts (optional — falls back to plain name) */
+    authorJsonLd?: { "@type": "Person"; name: string; url?: string; jobTitle?: string; sameAs?: string[] };
+  },
+  locale: string,
+) {
   return {
     "@context": "https://schema.org",
     "@type": "Article",
@@ -1190,7 +1431,7 @@ export function getBlogArticleJsonLd(article: {
     url: `${BASE_URL}/${locale}/articles/${article.slug}`,
     datePublished: article.datePublished,
     dateModified: article.dateModified,
-    author: {
+    author: article.authorJsonLd ?? {
       "@type": "Person",
       name: article.author,
     },
@@ -1205,7 +1446,7 @@ export function getBlogArticleJsonLd(article: {
     },
     mainEntityOfPage: {
       "@type": "WebPage",
-      "@id": `${BASE_URL}/${locale}/blog/${article.slug}`,
+      "@id": `${BASE_URL}/${locale}/articles/${article.slug}`,
     },
     inLanguage: locale,
     ...(article.imageUrl && {
@@ -1215,6 +1456,12 @@ export function getBlogArticleJsonLd(article: {
       },
     }),
     keywords: article.tags.join(", "),
+    ...(article.category && { articleSection: article.category }),
+    ...(article.wordCount && { wordCount: article.wordCount }),
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2", "[id='article-body'] > p:first-of-type"],
+    },
     isPartOf: {
       "@type": "WebSite",
       name: "EnterMedSchool.org",

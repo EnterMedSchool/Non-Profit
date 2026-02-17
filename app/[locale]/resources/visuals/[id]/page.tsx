@@ -12,7 +12,6 @@ import {
   FileCode,
   Shield,
   Sparkles,
-  BookOpen,
   Image as ImageIcon,
   Volume2,
 } from "lucide-react";
@@ -167,21 +166,14 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
         <PageHero
           titleHighlight={lesson.title}
           gradient={`${grad.from} via-showcase-teal ${grad.to}`}
+          meshColors={[
+            grad.from.replace("from-", "bg-") + "/30",
+            "bg-showcase-teal/25",
+            grad.to.replace("to-", "bg-") + "/20",
+          ]}
           annotation={`${lesson.layers.length} layers · ${lesson.duration}`}
           annotationColor={colors.text}
           subtitle={lesson.description}
-          floatingIcons={
-            <>
-              <BookOpen
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Sparkles
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-            </>
-          }
         />
 
         {/* Category + meta badges */}

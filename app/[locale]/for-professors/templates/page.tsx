@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { Presentation, FileText, Sparkles, Layers } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import TemplateGallery from "@/components/professors/TemplateGallery";
 import { getCollectionPageJsonLd } from "@/lib/metadata";
@@ -56,29 +55,10 @@ export default function TemplatesPage() {
           titlePre="Template"
           titleHighlight="Gallery"
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
           annotation="download & customize!"
           annotationColor="text-showcase-purple"
           subtitle={t("description")}
-          floatingIcons={
-            <>
-              <Presentation
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <FileText
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-blue/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <Sparkles
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-teal/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <Layers
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-purple/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
         />
 
         {/* ── Gallery (client component) ── */}

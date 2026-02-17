@@ -137,9 +137,9 @@ function autoLinkPlainText(
   let remaining = text;
   let keyIdx = startKey;
 
-  // Only link up to 5 terms per plain-text segment to avoid over-linking
+  // Scale link cap based on text length: 5 for short segments, up to 10 for long ones
   let linksAdded = 0;
-  const maxLinks = 5;
+  const maxLinks = Math.min(10, Math.max(5, Math.floor(text.length / 200)));
 
   for (const candidate of candidates) {
     if (linksAdded >= maxLinks) break;

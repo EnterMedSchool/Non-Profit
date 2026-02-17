@@ -24,6 +24,8 @@ function walkDir(dir) {
       try {
         const raw = fs.readFileSync(fullPath, "utf-8");
         const term = JSON.parse(raw);
+        const stat = fs.statSync(fullPath);
+        term.lastModified = stat.mtime.toISOString().split("T")[0];
         terms.push(term);
       } catch (e) {
         console.warn(`Skipping invalid JSON: ${fullPath}`);

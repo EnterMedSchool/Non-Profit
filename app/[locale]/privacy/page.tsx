@@ -1,5 +1,4 @@
 import { getTranslations } from "next-intl/server";
-import { Shield, Lock, Eye, Sparkles } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { getWebPageJsonLd } from "@/lib/metadata";
@@ -48,15 +47,10 @@ export default async function PrivacyPage({ params }: { params: Promise<{ locale
           titleHighlight={t("hero.titleHighlight")}
           titlePost={t("hero.titlePost")}
           gradient="from-showcase-teal via-showcase-green to-showcase-purple"
+          meshColors={["bg-showcase-teal/30", "bg-showcase-green/25", "bg-showcase-purple/20"]}
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
           subtitle={t("hero.subtitle")}
-          floatingIcons={<>
-            <Shield className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Lock className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Eye className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
         />
 
         {/* Content -- glassmorphism card */}

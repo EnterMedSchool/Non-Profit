@@ -17,6 +17,7 @@ import {
   getCategoryBreadcrumb,
   getAllCategories,
   getDeckDominantDifficulty,
+  getDeckCategory,
 } from "@/lib/practice-questions";
 import type { PracticeQuestionDeck } from "@/types/practice-questions";
 import { ogImagePath } from "@/lib/og-path";
@@ -127,12 +128,15 @@ export default async function CategoryQuestionsPage({
             mainEntity: {
               "@type": "ItemList",
               numberOfItems: decks.length,
-              itemListElement: decks.map((deck, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                name: deck.title,
-                url: `${BASE_URL}/${locale}/resources/questions/${categorySlug}/${deck.slug}`,
-              })),
+              itemListElement: decks.map((deck, i) => {
+                const deckCatSlug = getDeckCategory(deck)?.slug ?? categorySlug;
+                return {
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: deck.title,
+                  url: `${BASE_URL}/${locale}/resources/questions/${deckCatSlug}/${deck.slug}`,
+                };
+              }),
             },
           }),
         }}
@@ -278,11 +282,12 @@ function DeckCard({
   const difficulty = getDeckDominantDifficulty(deck.id);
   const difficultyKey = difficulty ? getDifficultyKey(difficulty) : null;
   const displayTags = deck.tags.filter((tag) => !tag.startsWith("difficulty:"));
+  const deckCategorySlug = getDeckCategory(deck)?.slug ?? categorySlug;
 
   return (
     <AnimatedSection delay={colorIndex * 0.04} animation="rotateIn">
       <Link
-        href={`/${locale}/resources/questions/${categorySlug}/${deck.slug}`}
+        href={`/${locale}/resources/questions/${deckCategorySlug}/${deck.slug}`}
         className={`group flex flex-col rounded-2xl border-3 border-ink-dark bg-white p-5 shadow-chunky transition-all hover:-translate-y-1 hover:shadow-chunky`}
       >
         <div className="flex items-start justify-between gap-3">

@@ -17,11 +17,18 @@ export function generateStaticParams() {
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const { termId } = await params;
+  const { locale, termId } = await params;
   const term = getTermById(termId);
+  const BASE_URL =
+    process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
   return {
     title: term ? `${term.names[0]} — EnterMedSchool Glossary` : "Glossary",
     robots: { index: false, follow: false },
+    alternates: {
+      canonical: term
+        ? `${BASE_URL}/${locale}/resources/glossary/${term.id}`
+        : undefined,
+    },
   };
 }
 

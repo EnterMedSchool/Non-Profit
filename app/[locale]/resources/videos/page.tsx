@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { Video, Play, Sparkles, Monitor, Shield } from "lucide-react";
+import { Video, Shield } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -53,15 +53,10 @@ export default function VideosPage() {
           titleHighlight={t("hero.titleHighlight")}
           titlePost={t("hero.titlePost")}
           gradient="from-showcase-teal via-showcase-blue to-showcase-purple"
+          meshColors={["bg-showcase-teal/30", "bg-showcase-blue/25", "bg-showcase-purple/20"]}
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-teal"
           subtitle={t("hero.subtitle")}
-          floatingIcons={<>
-            <Video className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Play className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-blue/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Monitor className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
         />
 
         {/* ── Attribution Reminder ── */}

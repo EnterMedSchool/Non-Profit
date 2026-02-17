@@ -1,6 +1,5 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { Image, Palette, Sparkles, Download } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ChunkyCard from "@/components/shared/ChunkyCard";
@@ -54,15 +53,10 @@ export default function AssetsPage() {
           titleHighlight="Assets"
           titlePost="& Media"
           gradient="from-showcase-yellow via-showcase-orange to-showcase-coral"
+          meshColors={["bg-showcase-yellow/30", "bg-showcase-orange/25", "bg-showcase-coral/20"]}
           annotation="ready for your slides!"
           annotationColor="text-showcase-orange"
           subtitle={t("description")}
-          floatingIcons={<>
-            <Image className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-yellow/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Palette className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-orange/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-coral/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Download className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-yellow/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
         />
 
         <div className="mt-10 grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">

@@ -4,16 +4,12 @@ import { useTranslations, useLocale } from "next-intl";
 import { useState, useRef, useMemo, useEffect } from "react";
 import {
   Search,
-  Download,
   Shield,
   ExternalLink,
   Image as ImageIcon,
   Volume2,
   Package,
   Code,
-  Pill,
-  Heart,
-  Sparkles,
   SearchX,
 } from "lucide-react";
 import { m } from "framer-motion";
@@ -118,15 +114,10 @@ export default function VisualsPage() {
             titleHighlight={t("visuals.hero.titleHighlight")}
             titlePost={t("visuals.hero.titlePost")}
             gradient="from-showcase-purple via-showcase-teal to-showcase-green"
+            meshColors={["bg-showcase-purple/30", "bg-showcase-teal/25", "bg-showcase-green/20"]}
             annotation={t("visuals.hero.annotation")}
             annotationColor="text-showcase-teal"
             subtitle={t("visuals.hero.subtitle")}
-            floatingIcons={<>
-              <Pill className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-              <Heart className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-coral/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-              <Sparkles className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-              <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-            </>}
           />
 
           {/* ── Attribution Banner -- Glassmorphism ── */}

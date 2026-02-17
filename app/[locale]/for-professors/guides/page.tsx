@@ -1,6 +1,6 @@
 import { getTranslations } from "next-intl/server";
 import { useTranslations, useLocale } from "next-intl";
-import { Sparkles, Stethoscope, BookOpen, Lightbulb } from "lucide-react";
+import { Sparkles, Stethoscope, BookOpen } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ChunkyCard from "@/components/shared/ChunkyCard";
@@ -55,15 +55,10 @@ export default function GuidesPage() {
           titleHighlight="Guides"
           titlePost="& Best Practices"
           gradient="from-showcase-teal via-showcase-green to-showcase-purple"
+          meshColors={["bg-showcase-teal/30", "bg-showcase-green/25", "bg-showcase-purple/20"]}
           annotation="level up your lectures!"
           annotationColor="text-showcase-teal"
           subtitle={t("description")}
-          floatingIcons={<>
-            <Sparkles className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <Stethoscope className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <BookOpen className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-orange/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Lightbulb className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
         />
 
         <div className="mt-10 grid grid-cols-1 gap-5 md:grid-cols-3">

@@ -258,29 +258,10 @@ export default function ClinicalCasesPage() {
           titleHighlight="Clinical Cases"
           titlePost=""
           gradient="from-showcase-coral via-showcase-yellow to-showcase-purple"
+          meshColors={["bg-showcase-coral/30", "bg-showcase-yellow/25", "bg-showcase-purple/20"]}
           annotation="Solve cases, collect characters"
           annotationColor="text-showcase-yellow"
           subtitle="Immersive clinical scenarios with branching narratives, game mechanics, and collectible disease characters. Download ready-made slides and flashcards for your classroom."
-          floatingIcons={
-            <>
-              <Stethoscope
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-coral/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Gamepad2
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-purple/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <Sparkles
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-yellow/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <BookOpen
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-teal/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
         />
 
         {/* Search + Filters */}

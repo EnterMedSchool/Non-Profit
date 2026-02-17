@@ -6,7 +6,6 @@ import {
   BookOpen,
   Target,
   Sparkles,
-  Stethoscope,
   Brain,
   Download,
   QrCode,
@@ -136,21 +135,10 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
         <PageHero
           titleHighlight={caseData.title}
           gradient="from-showcase-coral via-showcase-yellow to-showcase-purple"
+          meshColors={["bg-showcase-coral/30", "bg-showcase-yellow/25", "bg-showcase-purple/20"]}
           annotation={`${diff.label} · ${caseData.category} · ~${caseData.estimatedMinutes} min`}
           annotationColor={diff.color}
           subtitle={caseData.patient.briefHistory}
-          floatingIcons={
-            <>
-              <Stethoscope
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-coral/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Sparkles
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-yellow/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-            </>
-          }
         />
 
         {/* Meta badges */}

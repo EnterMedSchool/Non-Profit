@@ -21,11 +21,20 @@ import {
   HelpCircle,
   MapPin,
   ArrowRight,
+  ArrowDown,
+  ExternalLink,
+  Zap,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
+import StickerBadge from "@/components/shared/StickerBadge";
+import ChunkyCard from "@/components/shared/ChunkyCard";
 import BadgeGenerator from "@/components/license/BadgeGenerator";
 import FAQAccordion from "@/components/license/FAQAccordion";
+import SectionNav from "@/components/license/SectionNav";
+import LicenseComparison from "@/components/license/LicenseComparison";
+import LicenseStats from "@/components/license/LicenseStats";
+import FullLicenseViewer from "@/components/license/FullLicenseViewer";
 import { getWebPageJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
 import { ogImagePath } from "@/lib/og-path";
@@ -45,7 +54,9 @@ export async function generateMetadata({
     alternates: {
       canonical: `${BASE_URL}/${locale}/license`,
       languages: {
-        ...Object.fromEntries(routing.locales.map((l) => [l, `${BASE_URL}/${l}/license`])),
+        ...Object.fromEntries(
+          routing.locales.map((l) => [l, `${BASE_URL}/${l}/license`])
+        ),
         "x-default": `${BASE_URL}/${routing.defaultLocale}/license`,
       },
     },
@@ -66,11 +77,8 @@ export async function generateMetadata({
   };
 }
 
-/* Icons for Can-Do items */
 const canDoIcons = [GraduationCap, Users, Pencil, Presentation, Printer];
-/* Icons for Cannot-Do items */
 const cannotDoIcons = [DollarSign, Building2, EyeOff, UserX];
-/* Icons for Where to Badge items */
 const whereToBadgeIcons: Record<string, typeof FileText> = {
   Presentation,
   FileText,
@@ -78,12 +86,19 @@ const whereToBadgeIcons: Record<string, typeof FileText> = {
   Printer,
 };
 
-export default async function LicensePage({ params }: { params: Promise<{ locale: string }> }) {
+const tldrIcons = [Shield, Award, Mail, X];
+
+export default async function LicensePage({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}) {
   const { locale } = await params;
   const t = await getTranslations({ locale, namespace: "license" });
 
   const canDo = t.raw("info.canDo.items") as string[];
   const cannotDo = t.raw("info.cannotDo.items") as string[];
+  const tldrItems = t.raw("tldr.items") as string[];
   const quickStartSteps = t.raw("quickStart.steps") as {
     number: string;
     title: string;
@@ -105,19 +120,16 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
   const stepColors = [
     {
       bg: "bg-showcase-purple/10",
-      border: "border-showcase-purple/20",
       icon: "text-showcase-purple",
       num: "bg-showcase-purple",
     },
     {
       bg: "bg-showcase-teal/10",
-      border: "border-showcase-teal/20",
       icon: "text-showcase-teal",
       num: "bg-showcase-teal",
     },
     {
       bg: "bg-showcase-green/10",
-      border: "border-showcase-green/20",
       icon: "text-showcase-green",
       num: "bg-showcase-green",
     },
@@ -149,7 +161,9 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
       />
 
       <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
-        {/* ── Hero Section ── */}
+        {/* ────────────────────────────────────────────────────────────────
+            1. Hero
+            ──────────────────────────────────────────────────────────── */}
         <PageHero
           titlePre={t("hero.titlePre")}
           titleHighlight={t("hero.titleHighlight")}
@@ -179,37 +193,92 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
           }
         />
 
-        {/* ── License Type Card ── */}
-        <section className="mt-12">
-          <AnimatedSection animation="blurIn">
-            <div className="relative overflow-hidden rounded-2xl border-3 border-showcase-navy bg-gradient-to-br from-showcase-purple/5 via-white to-showcase-teal/5 p-6 shadow-chunky sm:p-8">
-              {/* Decorative circles */}
-              <div className="pointer-events-none absolute -right-8 -top-8 h-32 w-32 rounded-full bg-showcase-purple/5" />
-              <div className="pointer-events-none absolute -bottom-6 -left-6 h-24 w-24 rounded-full bg-showcase-teal/5" />
+        {/* Last updated */}
+        <AnimatedSection animation="fadeIn">
+          <p className="mt-4 text-center text-xs text-ink-light">
+            {t("lastUpdated")}
+          </p>
+        </AnimatedSection>
 
-              <div className="relative flex flex-col items-start gap-4 sm:flex-row sm:items-center">
-                <div className="flex h-16 w-16 flex-shrink-0 items-center justify-center rounded-2xl border-3 border-showcase-purple/20 bg-showcase-purple/10">
-                  <Shield className="h-8 w-8 text-showcase-purple" />
-                </div>
-                <div className="flex-1">
-                  <div className="inline-flex items-center gap-1.5 rounded-full border-2 border-showcase-green/30 bg-showcase-green/10 px-3 py-1 text-xs font-bold text-showcase-green">
-                    <Check className="h-3.5 w-3.5" />
-                    {t("licenseType.badge")}
+        {/* ────────────────────────────────────────────────────────────────
+            2. TL;DR "At a Glance" Card
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-10">
+          <AnimatedSection animation="blurIn">
+            <div className="group relative overflow-hidden rounded-2xl border-2 border-showcase-teal/20 bg-white/60 p-6 shadow-lg backdrop-blur-md transition-all hover:shadow-xl sm:p-8">
+              {/* Shimmer overlay */}
+              <div className="pointer-events-none absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/40 to-transparent transition-transform duration-[1200ms] ease-in-out group-hover:translate-x-full" />
+
+              <div className="relative">
+                <div className="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 flex-shrink-0 items-center justify-center rounded-2xl border-3 border-showcase-purple/20 bg-showcase-purple/10">
+                      <Shield className="h-6 w-6 text-showcase-purple" />
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <StickerBadge color="teal" size="sm">
+                          {t("tldr.badge")}
+                        </StickerBadge>
+                      </div>
+                      <h2 className="mt-1 font-display text-xl font-extrabold text-ink-dark sm:text-2xl">
+                        {t("tldr.title")}
+                      </h2>
+                    </div>
                   </div>
-                  <h2 className="mt-2 font-display text-2xl font-extrabold text-ink-dark sm:text-3xl">
-                    {t("licenseType.title")}
-                  </h2>
-                  <p className="mt-2 max-w-2xl text-sm leading-relaxed text-ink-muted sm:text-base">
-                    {t("licenseType.description")}
-                  </p>
+
+                  <a
+                    href="#generator"
+                    className="inline-flex items-center gap-2 rounded-xl border-3 border-showcase-navy bg-showcase-purple px-5 py-2.5 font-display text-sm font-bold text-white shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
+                  >
+                    <Zap className="h-4 w-4" />
+                    {t("tldr.cta")}
+                    <ArrowDown className="h-3.5 w-3.5" />
+                  </a>
                 </div>
+
+                <ul className="mt-6 grid grid-cols-1 gap-3 sm:grid-cols-2">
+                  {tldrItems.map((item, i) => {
+                    const Icon = tldrIcons[i] || Check;
+                    const colors = [
+                      "bg-showcase-green/10 text-showcase-green",
+                      "bg-showcase-purple/10 text-showcase-purple",
+                      "bg-showcase-teal/10 text-showcase-teal",
+                      "bg-red-100 text-red-400",
+                    ];
+                    return (
+                      <li
+                        key={i}
+                        className="flex items-start gap-3 rounded-xl border-2 border-showcase-navy/5 bg-white/80 px-4 py-3 text-sm text-ink-muted"
+                      >
+                        <span
+                          className={`mt-0.5 flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-lg ${colors[i]}`}
+                        >
+                          <Icon className="h-3.5 w-3.5" />
+                        </span>
+                        {item}
+                      </li>
+                    );
+                  })}
+                </ul>
               </div>
             </div>
           </AnimatedSection>
         </section>
 
-        {/* ── Can / Cannot Do ── */}
-        <section className="mt-10">
+        {/* ────────────────────────────────────────────────────────────────
+            3. Section Nav Pills
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-8">
+          <AnimatedSection delay={0.1} animation="fadeUp">
+            <SectionNav />
+          </AnimatedSection>
+        </section>
+
+        {/* ────────────────────────────────────────────────────────────────
+            4. Can / Cannot Do
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-12" id="section-allowed">
           <AnimatedSection animation="blurIn">
             <div className="rounded-2xl border-3 border-showcase-navy bg-white p-6 shadow-chunky sm:p-8">
               <h2 className="font-display text-xl font-bold text-ink-dark">
@@ -288,8 +357,30 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
           </AnimatedSection>
         </section>
 
-        {/* ── Quick Start Guide ── */}
-        <section className="mt-10">
+        {/* ────────────────────────────────────────────────────────────────
+            5. License Comparison
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-14" id="section-comparison">
+          <AnimatedSection animation="fadeUp">
+            <div className="text-center">
+              <h2 className="font-display text-2xl font-extrabold text-ink-dark">
+                {t("comparison.title")}
+              </h2>
+              <p className="mt-2 text-ink-muted">
+                {t("comparison.subtitle")}
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="mt-8">
+            <LicenseComparison />
+          </div>
+        </section>
+
+        {/* ────────────────────────────────────────────────────────────────
+            6. Quick Start Guide (upgraded with ChunkyCard)
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-14" id="section-quickstart">
           <AnimatedSection animation="fadeUp">
             <div className="text-center">
               <h2 className="font-display text-2xl font-extrabold text-ink-dark">
@@ -311,36 +402,45 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
                   delay={0.1 + i * 0.08}
                   animation="fadeUp"
                 >
-                  <div
-                    className={`relative rounded-2xl border-3 border-showcase-navy/10 ${colors.bg} p-5 transition-all hover:border-showcase-navy/20 hover:shadow-chunky-sm`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <div
-                        className={`flex h-10 w-10 items-center justify-center rounded-xl ${colors.num} text-sm font-extrabold text-white shadow-sm`}
-                      >
-                        {step.number}
+                  <ChunkyCard color="white" hoverEffect>
+                    <div className={`relative p-5`}>
+                      <div className="flex items-center gap-3">
+                        <div
+                          className={`flex h-10 w-10 items-center justify-center rounded-xl ${colors.num} text-sm font-extrabold text-white shadow-sm`}
+                        >
+                          {step.number}
+                        </div>
+                        <StepIcon className={`h-5 w-5 ${colors.icon}`} />
                       </div>
-                      <StepIcon
-                        className={`h-5 w-5 ${colors.icon}`}
-                      />
+                      <h3 className="mt-3 font-display text-base font-bold text-ink-dark">
+                        {step.title}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                        {step.description}
+                      </p>
+                      {i < quickStartSteps.length - 1 && (
+                        <ArrowRight className="absolute -end-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block" />
+                      )}
                     </div>
-                    <h3 className="mt-3 font-display text-base font-bold text-ink-dark">
-                      {step.title}
-                    </h3>
-                    <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
-                      {step.description}
-                    </p>
-                    {i < quickStartSteps.length - 1 && (
-                      <ArrowRight className="absolute -end-3 top-1/2 hidden h-5 w-5 -translate-y-1/2 text-ink-light/30 sm:block" />
-                    )}
-                  </div>
+                  </ChunkyCard>
                 </AnimatedSection>
               );
             })}
           </div>
         </section>
+      </div>
 
-        {/* ── Badge Generator ── */}
+      {/* ────────────────────────────────────────────────────────────────
+          7. Trust Stats (full-bleed dark section)
+          ──────────────────────────────────────────────────────────── */}
+      <div className="mt-14">
+        <LicenseStats />
+      </div>
+
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+        {/* ────────────────────────────────────────────────────────────────
+            8. Badge Generator
+            ──────────────────────────────────────────────────────────── */}
         <section className="mt-14" id="generator">
           <AnimatedSection animation="slideLeft">
             <div className="flex items-center gap-3">
@@ -348,9 +448,14 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
                 <CircleDot className="h-5 w-5 text-showcase-purple" />
               </div>
               <div>
-                <h2 className="font-display text-2xl font-extrabold text-ink-dark">
-                  {t("generator.title")}
-                </h2>
+                <div className="flex items-center gap-2">
+                  <h2 className="font-display text-2xl font-extrabold text-ink-dark">
+                    {t("generator.title")}
+                  </h2>
+                  <StickerBadge color="purple" size="sm">
+                    Interactive
+                  </StickerBadge>
+                </div>
                 <p className="text-sm text-ink-muted">
                   {t("generator.description")}
                 </p>
@@ -365,7 +470,9 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
           </AnimatedSection>
         </section>
 
-        {/* ── Where to Add Your Badge ── */}
+        {/* ────────────────────────────────────────────────────────────────
+            9. Where to Add Your Badge
+            ──────────────────────────────────────────────────────────── */}
         <section className="mt-14">
           <AnimatedSection animation="fadeUp">
             <div className="text-center">
@@ -424,8 +531,19 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
           </div>
         </section>
 
-        {/* ── FAQ Section ── */}
-        <section className="mt-14">
+        {/* ────────────────────────────────────────────────────────────────
+            10. Full License Text Viewer
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-14" id="section-full-license">
+          <AnimatedSection animation="fadeUp">
+            <FullLicenseViewer />
+          </AnimatedSection>
+        </section>
+
+        {/* ────────────────────────────────────────────────────────────────
+            11. FAQ Section
+            ──────────────────────────────────────────────────────────── */}
+        <section className="mt-14" id="section-faq">
           <AnimatedSection animation="fadeUp">
             <div className="flex items-center gap-3">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-showcase-teal/10">
@@ -442,7 +560,9 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
           </AnimatedSection>
         </section>
 
-        {/* ── Contact CTA ── */}
+        {/* ────────────────────────────────────────────────────────────────
+            12. Contact CTA (with GitHub button)
+            ──────────────────────────────────────────────────────────── */}
         <section className="mt-14 mb-8">
           <AnimatedSection animation="fadeUp">
             <div className="relative overflow-hidden rounded-2xl border-3 border-showcase-navy bg-gradient-to-br from-showcase-purple via-showcase-purple to-showcase-teal p-8 text-center shadow-chunky sm:p-10">
@@ -460,13 +580,24 @@ export default async function LicensePage({ params }: { params: Promise<{ locale
                 <p className="mx-auto mt-2 max-w-md text-sm leading-relaxed text-white/80">
                   {t("contactCta.description")}
                 </p>
-                <a
-                  href={`mailto:${t("contactCta.email")}`}
-                  className="mt-6 inline-flex items-center gap-2 rounded-xl border-3 border-white bg-white px-6 py-3 font-display text-sm font-bold text-showcase-purple shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
-                >
-                  <Mail className="h-4 w-4" />
-                  {t("contactCta.buttonText")}
-                </a>
+                <div className="mt-6 flex flex-col items-center justify-center gap-3 sm:flex-row">
+                  <a
+                    href={`mailto:${t("contactCta.email")}`}
+                    className="inline-flex items-center gap-2 rounded-xl border-3 border-white bg-white px-6 py-3 font-display text-sm font-bold text-showcase-purple shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky"
+                  >
+                    <Mail className="h-4 w-4" />
+                    {t("contactCta.buttonText")}
+                  </a>
+                  <a
+                    href="https://github.com/enterMedSchool/Non-Profit/blob/main/LICENSE"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 rounded-xl border-3 border-white/30 bg-white/10 px-6 py-3 font-display text-sm font-bold text-white backdrop-blur-sm transition-all hover:-translate-y-0.5 hover:bg-white/20"
+                  >
+                    <ExternalLink className="h-4 w-4" />
+                    {t("contactCta.githubBtn")}
+                  </a>
+                </div>
               </div>
             </div>
           </AnimatedSection>

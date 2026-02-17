@@ -2,7 +2,6 @@
 
 import { useTranslations, useLocale } from "next-intl";
 import {
-  BookOpen,
   BookMarked,
   FileText,
   Video,
@@ -13,7 +12,6 @@ import {
   Calculator,
   Stethoscope,
   ArrowRight,
-  Sparkles,
   Shield,
   Layers,
 } from "lucide-react";
@@ -159,12 +157,11 @@ export default function ResourcesPage() {
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-green"
           subtitle={t("hero.subtitle")}
-          floatingIcons={<>
-            <BookOpen className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-            <FileText className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-yellow/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-            <Wrench className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-teal/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-            <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-          </>}
+          meshColors={[
+            "bg-showcase-green/30",
+            "bg-showcase-teal/25",
+            "bg-showcase-purple/20",
+          ]}
         />
 
         {/* ── Attribution Reminder ── */}

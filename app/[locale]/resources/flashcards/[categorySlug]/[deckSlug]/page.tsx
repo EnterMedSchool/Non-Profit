@@ -14,6 +14,7 @@ import {
   getCardsByDeck,
   getCategoryBySlug,
   getCategoryBreadcrumb,
+  isCategoryAncestor,
 } from "@/lib/flashcard-data";
 import { ogImagePath } from "@/lib/og-path";
 import { flashcardPdfUrl } from "@/lib/blob-url";
@@ -57,7 +58,8 @@ export async function generateMetadata({
   const category = getCategoryBySlug(categorySlug);
   if (!deck || !category) return { title: "Not Found" };
 
-  if (deck.categoryId !== category.id) return { title: "Not Found" };
+  if (deck.categoryId != null && !isCategoryAncestor(category.id, deck.categoryId))
+    return { title: "Not Found" };
 
   const t = await getTranslations({
     locale,
@@ -110,7 +112,7 @@ export default async function DeckFlashcardsPage({
 
   if (!category || !deck) notFound();
 
-  if (deck.categoryId !== category.id) notFound();
+  if (deck.categoryId != null && !isCategoryAncestor(category.id, deck.categoryId)) notFound();
 
   const cards = getCardsByDeck(deck.id).sort((a, b) => a.ordinal - b.ordinal);
   const breadcrumb = getCategoryBreadcrumb(category.id);
@@ -145,12 +147,15 @@ export default async function DeckFlashcardsPage({
     educationalLevel: deck.difficultyLevel ?? undefined,
     about: { "@type": "Thing", name: category.name },
     numberOfItems: cards.length,
-    associatedMedia: {
-      "@type": "MediaObject",
-      name: `${deck.title} — Printable Flashcards PDF`,
-      contentUrl: fcPdfUrl,
-      encodingFormat: "application/pdf",
-    },
+    associatedMedia: [
+      {
+        "@type": "MediaObject",
+        name: `${deck.title} — Printable Flashcards PDF`,
+        description: `Print-and-cut flashcards with ${cards.length} cards on ${category.name}. Double-sided layout for easy studying. Free PDF from EnterMedSchool.org.`,
+        contentUrl: fcPdfUrl,
+        encodingFormat: "application/pdf",
+      },
+    ],
     hasPart: cards.map((c) => ({
       "@type": "Question",
       eduQuestionType: "Flashcard",

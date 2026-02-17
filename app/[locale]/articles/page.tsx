@@ -175,6 +175,7 @@ export default async function ArticlesListingPage({ params }: Props) {
           titleHighlight="Articles"
           titlePost=""
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
+          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
           annotation="Study smarter"
           annotationColor="text-showcase-purple"
           subtitle="Free articles, study guides, and practical tips for medical students and educators."

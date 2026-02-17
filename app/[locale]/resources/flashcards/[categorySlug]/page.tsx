@@ -17,6 +17,7 @@ import {
   getChildCategories,
   getCategoryBreadcrumb,
   getAllCategories,
+  getDeckCategory,
 } from "@/lib/flashcard-data";
 import type { FlashcardCategory, FlashcardDeck } from "@/types/flashcard-data";
 import { ogImagePath } from "@/lib/og-path";
@@ -164,12 +165,15 @@ export default async function CategoryFlashcardsPage({
             mainEntity: {
               "@type": "ItemList",
               numberOfItems: decks.length,
-              itemListElement: decks.map((deck, i) => ({
-                "@type": "ListItem",
-                position: i + 1,
-                name: deck.title,
-                url: `${BASE_URL}/${locale}/resources/flashcards/${categorySlug}/${deck.slug}`,
-              })),
+              itemListElement: decks.map((deck, i) => {
+                const deckCatSlug = getDeckCategory(deck)?.slug ?? categorySlug;
+                return {
+                  "@type": "ListItem",
+                  position: i + 1,
+                  name: deck.title,
+                  url: `${BASE_URL}/${locale}/resources/flashcards/${deckCatSlug}/${deck.slug}`,
+                };
+              }),
             },
           }),
         }}
@@ -316,11 +320,12 @@ function DeckCard({
     ? getDifficultyKey(deck.difficultyLevel)
     : null;
   const displayTags = deck.tags.filter((tag) => !tag.startsWith("difficulty:"));
+  const deckCategorySlug = getDeckCategory(deck)?.slug ?? categorySlug;
 
   return (
     <AnimatedSection delay={colorIndex * 0.04} animation="rotateIn">
       <Link
-        href={`/${locale}/resources/flashcards/${categorySlug}/${deck.slug}`}
+        href={`/${locale}/resources/flashcards/${deckCategorySlug}/${deck.slug}`}
         className="group flex flex-col rounded-2xl border-3 border-ink-dark bg-white p-5 shadow-chunky transition-all hover:-translate-y-1 hover:shadow-chunky"
       >
         <div className="flex items-start justify-between gap-3">

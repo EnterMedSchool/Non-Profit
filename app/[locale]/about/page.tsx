@@ -3,7 +3,7 @@ import { getTranslations } from "next-intl/server";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import ProjectTimeline from "@/components/home/ProjectTimeline";
-import { Heart, BookOpen, Globe, Users, Sparkles } from "lucide-react";
+import { Heart, BookOpen, Globe, Users } from "lucide-react";
 import { getAboutPageJsonLd } from "@/lib/metadata";
 import { routing } from "@/i18n/routing";
 import { ogImagePath } from "@/lib/og-path";
@@ -29,7 +29,7 @@ export async function generateMetadata({ params }: { params: Promise<{ locale: s
       type: "website",
       images: [{ url: ogImagePath("about"), width: 1200, height: 630 }],
     },
-    keywords: ["about entermedschool", "medical education", "open source", "non-profit", "free resources"],
+    keywords: ["about entermedschool", "medical education", "open source", "online education", "free resources"],
   };
 }
 
@@ -56,15 +56,10 @@ export default function AboutPage() {
             titlePre={t("hero.titlePre")}
             titleHighlight={t("hero.titleHighlight")}
             gradient="from-showcase-purple via-showcase-teal to-showcase-green"
+            meshColors={["bg-showcase-purple/30", "bg-showcase-teal/25", "bg-showcase-green/20"]}
             annotation={t("hero.annotation")}
             annotationColor="text-showcase-purple"
             subtitle={t("story.content")}
-            floatingIcons={<>
-              <Heart className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-coral/15 animate-float-gentle" style={{ animationDelay: "0s" }} />
-              <Globe className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-teal/15 animate-float-playful" style={{ animationDelay: "1s" }} />
-              <Users className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-purple/15 animate-float-gentle" style={{ animationDelay: "2s" }} />
-              <Sparkles className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-green/15 animate-float-playful" style={{ animationDelay: "0.5s" }} />
-            </>}
           />
         </div>
       </section>

@@ -117,6 +117,11 @@ function getCategoryForQuestionDeck(deck) {
   return allPracticeCategories.find(c => c.id === catId);
 }
 
+// Slug aliases — must stay in sync with lib/flashcard-data.ts SLUG_ALIASES
+const FLASHCARD_SLUG_ALIASES = {
+  "premed-cellbio": "premed-biology",
+};
+
 function getCategoryForFlashcardDeck(deck) {
   if (deck.categoryId) {
     const exact = allFlashcardCategories.find(c => c.id === deck.categoryId);
@@ -125,7 +130,13 @@ function getCategoryForFlashcardDeck(deck) {
   // Match by slug prefix (e.g. "premed-biology-hemoglobin-bohr" → "premed-biology")
   const sorted = [...allFlashcardCategories].sort((a, b) => b.slug.length - a.slug.length);
   for (const cat of sorted) {
-    if (deck.slug.startsWith(cat.slug)) return cat;
+    if (deck.slug.startsWith(cat.slug + "-")) return cat;
+  }
+  // Try slug aliases (e.g. "premed-cellbio-*" → "premed-biology")
+  for (const [alias, target] of Object.entries(FLASHCARD_SLUG_ALIASES)) {
+    if (deck.slug.startsWith(alias + "-")) {
+      return allFlashcardCategories.find(c => c.slug === target) || null;
+    }
   }
   return null;
 }

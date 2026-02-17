@@ -5,12 +5,8 @@ import { useState, useRef, useMemo, useEffect } from "react";
 import Link from "next/link";
 import {
   Search,
-  ImageDown,
   Shield,
   ExternalLink,
-  Sparkles,
-  Palette,
-  Download,
   SearchX,
   Tag,
   Layers,
@@ -157,26 +153,11 @@ export default function MediaAssetsPage() {
           annotation={t("hero.annotation")}
           annotationColor="text-showcase-orange"
           subtitle={t("hero.subtitle")}
-          floatingIcons={
-            <>
-              <ImageDown
-                className="absolute left-[8%] top-[10%] h-8 w-8 text-showcase-yellow/15 animate-float-gentle"
-                style={{ animationDelay: "0s" }}
-              />
-              <Palette
-                className="absolute right-[12%] top-[5%] h-7 w-7 text-showcase-orange/15 animate-float-playful"
-                style={{ animationDelay: "1s" }}
-              />
-              <Sparkles
-                className="absolute left-[18%] bottom-[5%] h-6 w-6 text-showcase-coral/15 animate-float-gentle"
-                style={{ animationDelay: "2s" }}
-              />
-              <Download
-                className="absolute right-[20%] bottom-[10%] h-5 w-5 text-showcase-yellow/15 animate-float-playful"
-                style={{ animationDelay: "0.5s" }}
-              />
-            </>
-          }
+          meshColors={[
+            "bg-showcase-yellow/30",
+            "bg-showcase-orange/25",
+            "bg-showcase-coral/20",
+          ]}
         />
 
         {/* ── Attribution Banner ── */}

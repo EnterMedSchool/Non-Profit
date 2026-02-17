@@ -25,6 +25,8 @@ import {
   renderBadgeToCanvas,
   generateBadgePngBlob,
   generateAttributionEmbedHtml,
+  generateAttributionMarkdown,
+  generateAttributionPlainText,
   resolveAccentColor,
   THEME_COLORS,
   DEFAULT_BADGE_PREFS,
@@ -35,6 +37,8 @@ import {
   type BadgePreferences,
 } from "@/lib/attribution";
 import { downloadHtmlFile } from "@/lib/download-html";
+
+type EmbedFormat = "html" | "markdown" | "plaintext";
 
 /* ── Collapsible section ── */
 function Section({
@@ -110,6 +114,7 @@ export default function BadgeGenerator() {
   const [assetsReady, setAssetsReady] = useState(false);
   const [copied, setCopied] = useState(false);
   const [downloaded, setDownloaded] = useState(false);
+  const [embedFormat, setEmbedFormat] = useState<EmbedFormat>("html");
 
   // Load saved attribution from localStorage
   useEffect(() => {
@@ -193,17 +198,24 @@ export default function BadgeGenerator() {
     URL.revokeObjectURL(link.href);
   };
 
-  // ── Embed code ──
-  const embedCode = generateAttributionEmbedHtml({ name, position });
+  // ── Embed code (multi-format) ──
+  const embedHtml = generateAttributionEmbedHtml({ name, position });
+  const embedMarkdown = generateAttributionMarkdown({ name, position });
+  const embedPlainText = generateAttributionPlainText({ name, position });
+
+  const currentEmbedCode =
+    embedFormat === "html" ? embedHtml
+    : embedFormat === "markdown" ? embedMarkdown
+    : embedPlainText;
 
   const copyEmbedCode = async () => {
     try {
-      await navigator.clipboard.writeText(embedCode);
+      await navigator.clipboard.writeText(currentEmbedCode);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch {
       const ta = document.createElement("textarea");
-      ta.value = embedCode;
+      ta.value = currentEmbedCode;
       document.body.appendChild(ta);
       ta.select();
       document.execCommand("copy");
@@ -214,7 +226,7 @@ export default function BadgeGenerator() {
   };
 
   const downloadEmbedCode = () => {
-    downloadHtmlFile(embedCode, "entermedschool-badge.html");
+    downloadHtmlFile(embedHtml, "entermedschool-badge.html");
     setDownloaded(true);
     setTimeout(() => setDownloaded(false), 2000);
   };
@@ -470,20 +482,64 @@ export default function BadgeGenerator() {
           </ChunkyButton>
         </div>
 
-        {/* Embed code preview */}
+        {/* Embed code with format selector */}
         <div>
-          <h3 className="font-display text-sm font-bold text-ink-dark mb-2">
-            {t("embedCodeLabel")}
-          </h3>
+          <div className="flex items-center justify-between mb-2">
+            <h3 className="font-display text-sm font-bold text-ink-dark">
+              {t("embedCodeLabel")}
+            </h3>
+            <div className="flex gap-1 rounded-lg border-2 border-showcase-navy/10 bg-gray-50 p-0.5">
+              {(["html", "markdown", "plaintext"] as EmbedFormat[]).map((fmt) => (
+                <button
+                  key={fmt}
+                  onClick={() => setEmbedFormat(fmt)}
+                  className={`rounded-md px-2.5 py-1 text-[10px] font-bold transition-all ${
+                    embedFormat === fmt
+                      ? "bg-showcase-purple text-white shadow-sm"
+                      : "text-ink-muted hover:text-ink-dark"
+                  }`}
+                >
+                  {t(`formats.${fmt}`)}
+                </button>
+              ))}
+            </div>
+          </div>
           <p className="text-xs text-ink-muted mb-2">
             {t("embedCodeDescription")}
           </p>
           <div className="relative">
             <pre className="overflow-x-auto rounded-xl border-2 border-showcase-navy/10 bg-gray-50 p-3 text-xs text-ink-muted leading-relaxed whitespace-pre-wrap break-all">
-              {embedCode}
+              {currentEmbedCode}
             </pre>
           </div>
         </div>
+
+        {/* Live HTML preview */}
+        {embedFormat === "html" && (
+          <div>
+            <h3 className="font-display text-sm font-bold text-ink-dark mb-2">
+              {t("livePreviewTitle")}
+            </h3>
+            <p className="text-xs text-ink-muted mb-2">
+              {t("livePreviewDescription")}
+            </p>
+            <div className="overflow-hidden rounded-xl border-2 border-showcase-navy/10">
+              {/* Mini browser chrome */}
+              <div className="flex items-center gap-1.5 bg-gray-100 px-3 py-2">
+                <span className="h-2.5 w-2.5 rounded-full bg-red-300" />
+                <span className="h-2.5 w-2.5 rounded-full bg-yellow-300" />
+                <span className="h-2.5 w-2.5 rounded-full bg-green-300" />
+                <span className="ml-2 flex-1 rounded-md bg-white px-2 py-0.5 text-[10px] text-ink-light">
+                  your-website.com
+                </span>
+              </div>
+              <div
+                className="bg-white p-6"
+                dangerouslySetInnerHTML={{ __html: embedHtml }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
