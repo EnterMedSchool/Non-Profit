@@ -2,7 +2,7 @@
 
 import { useState, useMemo, useEffect } from "react";
 import { m } from "framer-motion";
-import { Search, Star, Code, FileCode, Download } from "lucide-react";
+import { Search, Star, Code, FileCode, Download, Stethoscope, Link2 } from "lucide-react";
 import { useTranslations, useLocale } from "next-intl";
 import Link from "next/link";
 import { cn } from "@/lib/cn";
@@ -19,6 +19,7 @@ export type Exam = {
   category: ExamCategory;
   featured: boolean;
   difficulty: "beginner" | "intermediate" | "advanced";
+  language: string;
 };
 
 export type ExamCategory =
@@ -31,6 +32,11 @@ export type ExamCategory =
 /* ------------------------------------------------------------------ */
 /*  Exam data                                                          */
 /* ------------------------------------------------------------------ */
+const LANGUAGE_LABELS: Record<string, { flag: string; name: string }> = {
+  it: { flag: "\u{1F1EE}\u{1F1F9}", name: "Italian" },
+  en: { flag: "\u{1F1EC}\u{1F1E7}", name: "English" },
+};
+
 const EXAMS: Exam[] = [
   {
     type: "cardiac",
@@ -40,6 +46,7 @@ const EXAMS: Exam[] = [
     category: "cardiac",
     featured: true,
     difficulty: "intermediate",
+    language: "it",
   },
   {
     type: "thoracic",
@@ -49,6 +56,7 @@ const EXAMS: Exam[] = [
     category: "thoracic",
     featured: false,
     difficulty: "intermediate",
+    language: "it",
   },
   {
     type: "manual-bp",
@@ -58,6 +66,7 @@ const EXAMS: Exam[] = [
     category: "vital-signs",
     featured: true,
     difficulty: "beginner",
+    language: "it",
   },
 ];
 
@@ -164,6 +173,19 @@ function ExamCard({
         >
           {exam.difficulty}
         </span>
+        {LANGUAGE_LABELS[exam.language] && (
+          <span
+            className="cs-badge-sticker text-[10px]"
+            style={{
+              backgroundColor: "var(--cs-bg-sky)",
+              color: "var(--cs-blue)",
+              borderColor: "var(--cs-blue)",
+            }}
+          >
+            {LANGUAGE_LABELS[exam.language].flag}{" "}
+            {LANGUAGE_LABELS[exam.language].name}
+          </span>
+        )}
       </div>
 
       {/* Label */}
@@ -297,23 +319,52 @@ export default function ExamSelection({
   return (
     <div className={cn("cs-intro-bg min-h-screen", className)}>
       <div className="mx-auto max-w-4xl px-4 py-10 md:py-16">
-        {/* ---- Title ---- */}
+        {/* ---- Hero section ---- */}
         {showTitle && (
           <m.div
             initial={{ opacity: 0, y: 12 }}
             animate={{ opacity: 1, y: 0 }}
-            className="mb-8 text-center"
+            className="mb-10 text-center"
           >
-            <h2 className="cs-font-display text-3xl md:text-4xl font-extrabold mb-2">
+            <m.div
+              initial={{ opacity: 0, y: 8 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.05 }}
+              className="mb-4"
+            >
+              <span className="cs-badge-sticker cs-badge-purple">
+                <Stethoscope className="w-3 h-3" />
+                Clinical Semiotics
+              </span>
+            </m.div>
+
+            <h1 className="cs-font-display text-3xl md:text-4xl font-extrabold mb-3">
               {t("libraryTitle")}{" "}
               <span className="cs-underline-hand">{t("libraryHighlight")}</span>
-            </h2>
+            </h1>
+
             <p
-              className="text-base md:text-lg"
+              className="text-base md:text-lg leading-relaxed max-w-lg mx-auto mb-5"
               style={{ color: "var(--cs-text-muted)" }}
             >
               {t("subtitle")}
             </p>
+
+            {/* Feature pills */}
+            <div className="flex flex-wrap items-center justify-center gap-3">
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600">
+                <Code className="w-3.5 h-3.5 text-purple-500" />
+                One-click embed code
+              </div>
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600">
+                <Link2 className="w-3.5 h-3.5 text-teal-500" />
+                Direct link for slides
+              </div>
+              <div className="flex items-center gap-1.5 rounded-full bg-white/80 border border-gray-200 px-3 py-1.5 text-xs font-medium text-gray-600">
+                <Stethoscope className="w-3.5 h-3.5 text-blue-500" />
+                Interactive video exams
+              </div>
+            </div>
           </m.div>
         )}
 

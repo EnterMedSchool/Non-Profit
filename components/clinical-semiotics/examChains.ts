@@ -8,25 +8,28 @@ export const EXAM_TYPES: ExamType[] = ["manual-bp", "cardiac", "thoracic"];
 
 export const EXAM_COPY: Record<
   string,
-  { title: string; description: string; category: string }
+  { title: string; description: string; category: string; language: string }
 > = {
   "manual-bp": {
     title: "Manual Blood Pressure Examination",
     description:
       "Practice accurate manual blood pressure measurement with Italian medical language.",
     category: "vital-signs",
+    language: "it",
   },
   cardiac: {
     title: "Cardiac Examination",
     description:
       "Master cardiac auscultation and examination skills with interactive video walkthrough.",
     category: "cardiac",
+    language: "it",
   },
   thoracic: {
     title: "Thoracic Examination Essentials",
     description:
       "Follow the inspection, palpation, and auscultation flow end to end.",
     category: "thoracic",
+    language: "it",
   },
 };
 

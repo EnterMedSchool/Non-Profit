@@ -16,6 +16,7 @@ import {
   getCategoryBreadcrumb,
 } from "@/lib/flashcard-data";
 import { ogImagePath } from "@/lib/og-path";
+import { flashcardPdfUrl } from "@/lib/blob-url";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -72,6 +73,8 @@ export async function generateMetadata({
       count: deck.cardCount,
     });
 
+  const pdfUrl = flashcardPdfUrl(categorySlug, deckSlug);
+
   return {
     title,
     description,
@@ -84,6 +87,9 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}/resources/flashcards/${categorySlug}/${deckSlug}`,
+      types: {
+        "application/pdf": pdfUrl,
+      },
     },
   };
 }
@@ -116,6 +122,8 @@ export default async function DeckFlashcardsPage({
     ? getDifficultyKey(deck.difficultyLevel)
     : null;
 
+  const fcPdfUrl = flashcardPdfUrl(categorySlug, deck.slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Quiz",
@@ -137,6 +145,12 @@ export default async function DeckFlashcardsPage({
     educationalLevel: deck.difficultyLevel ?? undefined,
     about: { "@type": "Thing", name: category.name },
     numberOfItems: cards.length,
+    associatedMedia: {
+      "@type": "MediaObject",
+      name: `${deck.title} — Printable Flashcards PDF`,
+      contentUrl: fcPdfUrl,
+      encodingFormat: "application/pdf",
+    },
     hasPart: cards.map((c) => ({
       "@type": "Question",
       eduQuestionType: "Flashcard",
@@ -249,6 +263,7 @@ export default async function DeckFlashcardsPage({
                 stableId: c.stableId,
                 ordinal: c.ordinal,
               }))}
+              pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
             />
           </AnimatedSection>
           <AnimatedSection delay={0.2} animation="fadeUp">

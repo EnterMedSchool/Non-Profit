@@ -17,6 +17,7 @@ import {
   getDeckDominantDifficulty,
 } from "@/lib/practice-questions";
 import { ogImagePath } from "@/lib/og-path";
+import { questionPdfUrls } from "@/lib/blob-url";
 
 const BASE_URL =
   process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -64,6 +65,8 @@ export async function generateMetadata({
       count: deck.questionCount,
     });
 
+  const pdfUrls = questionPdfUrls(categorySlug, deckSlug);
+
   return {
     title,
     description,
@@ -76,6 +79,9 @@ export async function generateMetadata({
     },
     alternates: {
       canonical: `${BASE_URL}/${locale}/resources/questions/${categorySlug}/${deckSlug}`,
+      types: {
+        "application/pdf": [pdfUrls.exam, pdfUrls.studyGuide],
+      },
     },
   };
 }
@@ -110,6 +116,8 @@ export default async function DeckPage({
   const t = await getTranslations("resources.questions");
   const tc = await getTranslations("common");
 
+  const pdfUrls = questionPdfUrls(categorySlug, deck.slug);
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@type": "Quiz",
@@ -131,6 +139,20 @@ export default async function DeckPage({
     educationalLevel: dominantDifficulty ?? undefined,
     about: { "@type": "Thing", name: category.name },
     numberOfItems: questions.length,
+    associatedMedia: [
+      {
+        "@type": "MediaObject",
+        name: `${deck.title} — Exam PDF`,
+        contentUrl: pdfUrls.exam,
+        encodingFormat: "application/pdf",
+      },
+      {
+        "@type": "MediaObject",
+        name: `${deck.title} — Study Guide PDF`,
+        contentUrl: pdfUrls.studyGuide,
+        encodingFormat: "application/pdf",
+      },
+    ],
     hasPart: questions.map((q) => ({
       "@type": "Question",
       eduQuestionType: "Multiple choice",
@@ -233,6 +255,8 @@ export default async function DeckPage({
                 stableId: q.stableId,
                 ordinal: q.ordinal,
               }))}
+              pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
+              pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
             />
           </AnimatedSection>
           <AnimatedSection delay={0.2} animation="fadeUp">

@@ -581,312 +581,317 @@ const VideoChainPlayer = forwardRef<VideoChainPlayerHandle, VideoChainPlayerProp
     <div
       ref={containerRef}
       className={cn(
-        "relative overflow-hidden bg-black",
+        "flex flex-col overflow-hidden",
         !isEmbed && "rounded-2xl border border-gray-200",
         variant === "teaser" && "max-w-md",
         className,
       )}
-      onMouseMove={showControls}
-      onMouseEnter={showControls}
     >
-      {/* ---- Video element ---- */}
-      <video
-        ref={videoRef}
-        className="w-full aspect-video bg-black"
-        poster={currentSegment.poster}
-        playsInline
-        preload="none"
-        onLoadedMetadata={handleLoadedMetadata}
-        onTimeUpdate={handleTimeUpdate}
-        onEnded={handleEnded}
-        onCanPlay={handleCanPlay}
-        onWaiting={handleWaiting}
-        onError={handleError}
-        onClick={togglePlay}
-      />
+      {/* ---- Video area wrapper (black bg only here) ---- */}
+      <div
+        className="relative bg-black"
+        onMouseMove={showControls}
+        onMouseEnter={showControls}
+      >
+        {/* ---- Video element ---- */}
+        <video
+          ref={videoRef}
+          className="w-full aspect-video"
+          poster={currentSegment.poster}
+          playsInline
+          preload="none"
+          onLoadedMetadata={handleLoadedMetadata}
+          onTimeUpdate={handleTimeUpdate}
+          onEnded={handleEnded}
+          onCanPlay={handleCanPlay}
+          onWaiting={handleWaiting}
+          onError={handleError}
+          onClick={togglePlay}
+        />
 
-      {/* ---- Loading overlay ---- */}
-      <AnimatePresence>
-        {isLoading && !hasError && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ backgroundColor: overlayBgLoading }}
-          >
-            <div className="flex flex-col items-center gap-3">
-              <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-indigo-500" />
-              <p className="text-sm font-medium text-gray-600">{t("loading")}</p>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
+        {/* ---- Loading overlay ---- */}
+        <AnimatePresence>
+          {isLoading && !hasError && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 flex items-center justify-center"
+              style={{ backgroundColor: overlayBgLoading }}
+            >
+              <div className="flex flex-col items-center gap-3">
+                <div className="h-8 w-8 animate-spin rounded-full border-2 border-gray-300 border-t-indigo-500" />
+                <p className="text-sm font-medium text-gray-600">{t("loading")}</p>
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
 
-      {/* ---- Error overlay ---- */}
-      <AnimatePresence>
-        {hasError && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="absolute inset-0 flex items-center justify-center"
-            style={{ backgroundColor: overlayBgStrong }}
-          >
-            <div className="flex flex-col items-center gap-3 text-center px-6">
-              <AlertTriangle className="w-8 h-8 text-red-500" />
-              <p className="text-sm font-semibold text-gray-800">
-                {t("errorTitle")}
-              </p>
-              <p className="text-xs text-gray-500">
-                {t("errorDescription")}
-              </p>
-              <button
-                onClick={() => {
-                  if (currentSegment) loadSource(currentSegment.src);
-                }}
-                className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600 transition-colors hover:bg-indigo-100"
-              >
-                <RotateCcw className="w-3.5 h-3.5" />
-                {t("retry")}
-              </button>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
-
-      {/* ---- Scene overlay (tips / questions / info / warnings) ---- */}
-      <AnimatePresence>
-        {activeOverlay && (
-          <m.div
-            key={activeOverlay.id}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="absolute inset-0 z-20 flex items-center justify-center p-4"
-            style={{
-              backgroundColor: isTeaser
-                ? "rgba(255, 255, 255, 0.90)"
-                : overlayBg,
-            }}
-          >
-            <div
-              className="w-full max-w-lg rounded-xl border border-gray-200 bg-white p-5 shadow-lg"
+        {/* ---- Error overlay ---- */}
+        <AnimatePresence>
+          {hasError && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="absolute inset-0 flex items-center justify-center"
               style={{ backgroundColor: overlayBgStrong }}
             >
-              {/* Overlay header */}
-              <div className="mb-3 flex items-start justify-between">
-                <div className="flex items-center gap-2">
-                  {overlayIcon}
-                  <h3 className="text-sm font-bold text-gray-900">
-                    {activeOverlay.title ??
-                      t(`overlay.${activeOverlay.kind}`)}
-                  </h3>
+              <div className="flex flex-col items-center gap-3 text-center px-6">
+                <AlertTriangle className="w-8 h-8 text-red-500" />
+                <p className="text-sm font-semibold text-gray-800">
+                  {t("errorTitle")}
+                </p>
+                <p className="text-xs text-gray-500">
+                  {t("errorDescription")}
+                </p>
+                <button
+                  onClick={() => {
+                    if (currentSegment) loadSource(currentSegment.src);
+                  }}
+                  className="mt-2 inline-flex items-center gap-1.5 rounded-lg bg-indigo-50 px-3 py-1.5 text-xs font-semibold text-indigo-600 transition-colors hover:bg-indigo-100"
+                >
+                  <RotateCcw className="w-3.5 h-3.5" />
+                  {t("retry")}
+                </button>
+              </div>
+            </m.div>
+          )}
+        </AnimatePresence>
+
+        {/* ---- Scene overlay (tips / questions / info / warnings) ---- */}
+        <AnimatePresence>
+          {activeOverlay && (
+            <m.div
+              key={activeOverlay.id}
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              exit={{ opacity: 0, y: -10 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="absolute inset-0 z-20 flex items-center justify-center p-4"
+              style={{
+                backgroundColor: isTeaser
+                  ? "rgba(255, 255, 255, 0.90)"
+                  : overlayBg,
+              }}
+            >
+              <div
+                className="w-full max-w-lg rounded-xl border border-gray-200 bg-white p-5 shadow-lg"
+                style={{ backgroundColor: overlayBgStrong }}
+              >
+                {/* Overlay header */}
+                <div className="mb-3 flex items-start justify-between">
+                  <div className="flex items-center gap-2">
+                    {overlayIcon}
+                    <h3 className="text-sm font-bold text-gray-900">
+                      {activeOverlay.title ??
+                        t(`overlay.${activeOverlay.kind}`)}
+                    </h3>
+                  </div>
+                  {activeOverlay.kind !== "question" && (
+                    <button
+                      onClick={handleDismissOverlay}
+                      className="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
+                      aria-label={t("dismiss")}
+                    >
+                      <X className="w-4 h-4" />
+                    </button>
+                  )}
                 </div>
-                {activeOverlay.kind !== "question" && (
-                  <button
-                    onClick={handleDismissOverlay}
-                    className="rounded-md p-1 text-gray-400 transition-colors hover:bg-gray-100 hover:text-gray-600"
-                    aria-label={t("dismiss")}
-                  >
-                    <X className="w-4 h-4" />
-                  </button>
+
+                {/* Overlay body */}
+                <TipContent body={activeOverlay.body} />
+
+                {/* Question answers */}
+                {activeOverlay.kind === "question" && activeOverlay.answers && (
+                  <div className="mt-4 space-y-2">
+                    {activeOverlay.answers.map((answer) => {
+                      const isSelected = selectedAnswer === answer.id;
+                      const isCorrect = answer.correct === true;
+                      const showResult = showExplanation && isSelected;
+
+                      return (
+                        <div key={answer.id}>
+                          <button
+                            onClick={() => handleSelectAnswer(answer.id)}
+                            disabled={showExplanation}
+                            className={cn(
+                              "w-full rounded-lg border px-4 py-2.5 text-start text-sm transition-all",
+                              !showExplanation &&
+                                "border-gray-200 bg-gray-50 hover:border-indigo-300 hover:bg-indigo-50",
+                              showResult && isCorrect &&
+                                "border-green-300 bg-green-50 text-green-800",
+                              showResult && !isCorrect &&
+                                "border-red-300 bg-red-50 text-red-800",
+                              showExplanation && !isSelected &&
+                                "border-gray-100 bg-gray-50/50 opacity-60",
+                            )}
+                          >
+                            <div className="flex items-center gap-2">
+                              {showResult && isCorrect && (
+                                <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
+                              )}
+                              {showResult && !isCorrect && (
+                                <X className="w-4 h-4 text-red-500 flex-shrink-0" />
+                              )}
+                              <span>{answer.label}</span>
+                            </div>
+                          </button>
+                          {showResult && answer.explanation && (
+                            <m.p
+                              initial={{ opacity: 0, height: 0 }}
+                              animate={{ opacity: 1, height: "auto" }}
+                              className="mt-1.5 ps-6 text-xs leading-relaxed text-gray-600"
+                            >
+                              {answer.explanation}
+                            </m.p>
+                          )}
+                        </div>
+                      );
+                    })}
+
+                    {showExplanation && (
+                      <m.div
+                        initial={{ opacity: 0 }}
+                        animate={{ opacity: 1 }}
+                        className="mt-3 flex justify-end"
+                      >
+                        <button
+                          onClick={handleDismissOverlay}
+                          className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-indigo-600"
+                        >
+                          {t("continue")}
+                          <Play className="w-3.5 h-3.5" />
+                        </button>
+                      </m.div>
+                    )}
+                  </div>
                 )}
               </div>
+            </m.div>
+          )}
+        </AnimatePresence>
 
-              {/* Overlay body */}
-              <TipContent body={activeOverlay.body} />
-
-              {/* Question answers */}
-              {activeOverlay.kind === "question" && activeOverlay.answers && (
-                <div className="mt-4 space-y-2">
-                  {activeOverlay.answers.map((answer) => {
-                    const isSelected = selectedAnswer === answer.id;
-                    const isCorrect = answer.correct === true;
-                    const showResult = showExplanation && isSelected;
-
-                    return (
-                      <div key={answer.id}>
-                        <button
-                          onClick={() => handleSelectAnswer(answer.id)}
-                          disabled={showExplanation}
-                          className={cn(
-                            "w-full rounded-lg border px-4 py-2.5 text-start text-sm transition-all",
-                            !showExplanation &&
-                              "border-gray-200 bg-gray-50 hover:border-indigo-300 hover:bg-indigo-50",
-                            showResult && isCorrect &&
-                              "border-green-300 bg-green-50 text-green-800",
-                            showResult && !isCorrect &&
-                              "border-red-300 bg-red-50 text-red-800",
-                            showExplanation && !isSelected &&
-                              "border-gray-100 bg-gray-50/50 opacity-60",
-                          )}
-                        >
-                          <div className="flex items-center gap-2">
-                            {showResult && isCorrect && (
-                              <Check className="w-4 h-4 text-green-600 flex-shrink-0" />
-                            )}
-                            {showResult && !isCorrect && (
-                              <X className="w-4 h-4 text-red-500 flex-shrink-0" />
-                            )}
-                            <span>{answer.label}</span>
-                          </div>
-                        </button>
-                        {showResult && answer.explanation && (
-                          <m.p
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: "auto" }}
-                            className="mt-1.5 ps-6 text-xs leading-relaxed text-gray-600"
-                          >
-                            {answer.explanation}
-                          </m.p>
-                        )}
-                      </div>
-                    );
-                  })}
-
-                  {showExplanation && (
-                    <m.div
-                      initial={{ opacity: 0 }}
-                      animate={{ opacity: 1 }}
-                      className="mt-3 flex justify-end"
-                    >
-                      <button
-                        onClick={handleDismissOverlay}
-                        className="inline-flex items-center gap-1.5 rounded-lg bg-indigo-500 px-4 py-2 text-xs font-semibold text-white transition-colors hover:bg-indigo-600"
-                      >
-                        {t("continue")}
-                        <Play className="w-3.5 h-3.5" />
-                      </button>
-                    </m.div>
-                  )}
-                </div>
-              )}
-            </div>
-          </m.div>
+        {/* ---- Teaser badge ---- */}
+        {isTeaser && (
+          <div className="absolute top-3 start-3 z-10 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-300">
+            {t("preview")}
+          </div>
         )}
-      </AnimatePresence>
 
-      {/* ---- Teaser badge ---- */}
-      {isTeaser && (
-        <div className="absolute top-3 start-3 z-10 rounded-full bg-amber-100 px-2.5 py-1 text-[10px] font-bold uppercase tracking-wider text-amber-700 ring-1 ring-amber-300">
-          {t("preview")}
-        </div>
-      )}
+        {/* ---- Controls overlay ---- */}
+        <AnimatePresence>
+          {(controlsVisible || !isPlaying) && !activeOverlay && !hasError && (
+            <m.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.2 }}
+              className="absolute inset-x-0 bottom-0 z-10"
+            >
+              {/* Gradient background */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
 
-      {/* ---- Controls overlay ---- */}
-      <AnimatePresence>
-        {(controlsVisible || !isPlaying) && !activeOverlay && !hasError && (
-          <m.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.2 }}
-            className="absolute inset-x-0 bottom-0 z-10"
-          >
-            {/* Gradient background */}
-            <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent pointer-events-none" />
+              <div className="relative px-4 pb-3 pt-8">
+                {/* Progress bar */}
+                <div className="mb-2 flex items-center gap-2">
+                  <span className="text-[11px] font-mono text-white/70 tabular-nums">
+                    {formatTime(currentTime)}
+                  </span>
+                  <div
+                    className="group relative flex-1 cursor-pointer"
+                    onClick={(e) => {
+                      const rect = e.currentTarget.getBoundingClientRect();
+                      const fraction = (e.clientX - rect.left) / rect.width;
+                      seekTo(Math.max(0, Math.min(1, fraction)));
+                    }}
+                  >
+                    <div className="h-1 rounded-full bg-white/25 transition-all group-hover:h-1.5">
+                      <div
+                        className="h-full rounded-full bg-indigo-400 transition-all"
+                        style={{
+                          width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`,
+                        }}
+                      />
+                    </div>
+                  </div>
+                  <span className="text-[11px] font-mono text-white/70 tabular-nums">
+                    {formatTime(duration)}
+                  </span>
+                </div>
 
-            <div className="relative px-4 pb-3 pt-8">
-              {/* Progress bar */}
-              <div className="mb-2 flex items-center gap-2">
-                <span className="text-[11px] font-mono text-white/70 tabular-nums">
-                  {formatTime(currentTime)}
-                </span>
-                <div
-                  className="group relative flex-1 cursor-pointer"
-                  onClick={(e) => {
-                    const rect = e.currentTarget.getBoundingClientRect();
-                    const fraction = (e.clientX - rect.left) / rect.width;
-                    seekTo(Math.max(0, Math.min(1, fraction)));
-                  }}
-                >
-                  <div className="h-1 rounded-full bg-white/25 transition-all group-hover:h-1.5">
-                    <div
-                      className="h-full rounded-full bg-indigo-400 transition-all"
-                      style={{
-                        width: `${duration > 0 ? (currentTime / duration) * 100 : 0}%`,
-                      }}
-                    />
+                {/* Control buttons */}
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center gap-2">
+                    {/* Play / Pause */}
+                    <button
+                      onClick={togglePlay}
+                      className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25"
+                      aria-label={isPlaying ? t("aria.pause") : t("aria.play")}
+                    >
+                      {isPlaying ? (
+                        <Pause className="w-4 h-4" />
+                      ) : (
+                        <Play className="w-4 h-4" />
+                      )}
+                    </button>
+
+                    {/* Restart */}
+                    <button
+                      onClick={restartSegment}
+                      className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
+                      aria-label={t("aria.restartSegment")}
+                    >
+                      <RotateCcw className="w-4 h-4" />
+                    </button>
+
+                    {/* Mute / Unmute */}
+                    <button
+                      onClick={toggleMute}
+                      className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
+                      aria-label={isMuted ? t("aria.unmute") : t("aria.mute")}
+                    >
+                      {isMuted ? (
+                        <VolumeX className="w-4 h-4" />
+                      ) : (
+                        <Volume2 className="w-4 h-4" />
+                      )}
+                    </button>
+                  </div>
+
+                  <div className="flex items-center gap-2">
+                    {/* Segment indicator */}
+                    {variant === "default" && segments.length > 1 && (
+                      <span className="text-[11px] font-medium text-white/60">
+                        {currentIndex + 1} / {segments.length}
+                      </span>
+                    )}
                   </div>
                 </div>
-                <span className="text-[11px] font-mono text-white/70 tabular-nums">
-                  {formatTime(duration)}
-                </span>
               </div>
+            </m.div>
+          )}
+        </AnimatePresence>
 
-              {/* Control buttons */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  {/* Play / Pause */}
-                  <button
-                    onClick={togglePlay}
-                    className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15 text-white transition-colors hover:bg-white/25"
-                    aria-label={isPlaying ? t("aria.pause") : t("aria.play")}
-                  >
-                    {isPlaying ? (
-                      <Pause className="w-4 h-4" />
-                    ) : (
-                      <Play className="w-4 h-4" />
-                    )}
-                  </button>
-
-                  {/* Restart */}
-                  <button
-                    onClick={restartSegment}
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
-                    aria-label={t("aria.restartSegment")}
-                  >
-                    <RotateCcw className="w-4 h-4" />
-                  </button>
-
-                  {/* Mute / Unmute */}
-                  <button
-                    onClick={toggleMute}
-                    className="flex h-8 w-8 items-center justify-center rounded-full text-white/70 transition-colors hover:bg-white/15 hover:text-white"
-                    aria-label={isMuted ? t("aria.unmute") : t("aria.mute")}
-                  >
-                    {isMuted ? (
-                      <VolumeX className="w-4 h-4" />
-                    ) : (
-                      <Volume2 className="w-4 h-4" />
-                    )}
-                  </button>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  {/* Segment indicator */}
-                  {variant === "default" && segments.length > 1 && (
-                    <span className="text-[11px] font-medium text-white/60">
-                      {currentIndex + 1} / {segments.length}
-                    </span>
-                  )}
-                </div>
+        {/* ---- Big play button (shown when paused, not loading/error) ---- */}
+        <AnimatePresence>
+          {!isPlaying && !isLoading && !hasError && !activeOverlay && (
+            <m.button
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              exit={{ opacity: 0, scale: 0.8 }}
+              transition={{ type: "spring", damping: 20, stiffness: 300 }}
+              onClick={togglePlay}
+              className="absolute inset-0 z-5 flex items-center justify-center"
+              aria-label={t("aria.play")}
+            >
+              <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform hover:scale-110 active:scale-95">
+                <Play className="w-7 h-7 text-gray-800 ms-1" />
               </div>
-            </div>
-          </m.div>
-        )}
-      </AnimatePresence>
-
-      {/* ---- Big play button (shown when paused, not loading/error) ---- */}
-      <AnimatePresence>
-        {!isPlaying && !isLoading && !hasError && !activeOverlay && (
-          <m.button
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 0.8 }}
-            transition={{ type: "spring", damping: 20, stiffness: 300 }}
-            onClick={togglePlay}
-            className="absolute inset-0 z-5 flex items-center justify-center"
-            aria-label={t("aria.play")}
-          >
-            <div className="flex h-16 w-16 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform hover:scale-110 active:scale-95">
-              <Play className="w-7 h-7 text-gray-800 ms-1" />
-            </div>
-          </m.button>
-        )}
-      </AnimatePresence>
+            </m.button>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* ---- Segment list (below video for default variant, hidden in embed) ---- */}
       {variant === "default" && segments.length > 1 && (

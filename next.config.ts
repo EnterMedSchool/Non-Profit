@@ -19,9 +19,12 @@ const nextConfig: NextConfig = {
   },
   async headers() {
     return [
-      // Everything: default security headers (block iframe embedding)
+      // Default security headers for all NON-embed routes.
+      // Uses negative lookahead to exclude /embed/ paths (both /embed/...
+      // and /:locale/embed/...) so they never receive X-Frame-Options: DENY,
+      // which blocks iframe loading and cannot be reliably overridden.
       {
-        source: "/(.*)",
+        source: "/((?!embed/|[a-z]{2}/embed/|[a-z]{2}-[A-Z]{2}/embed/).*)",
         headers: [
           { key: "X-Frame-Options", value: "DENY" },
           { key: "X-Content-Type-Options", value: "nosniff" },
@@ -32,25 +35,28 @@ const nextConfig: NextConfig = {
           },
         ],
       },
-      // Embed routes: allow any site to iframe them
-      // X-Frame-Options must be explicitly overridden here because the
-      // global "/(.*)" rule above sets DENY on every path. Without this
-      // override, browsers/Vercel enforce DENY before evaluating CSP.
+      // Locale-prefixed embed routes (e.g. /en/embed/visuals/...)
       {
         source: "/:locale/embed/:path*",
         headers: [
-          { key: "X-Frame-Options", value: "ALLOWALL" },
-          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors *",
+          },
           { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
       },
       // Non-locale embed routes (questions, flashcards, MCQ, tools, glossary)
       {
         source: "/embed/:path*",
         headers: [
-          { key: "X-Frame-Options", value: "ALLOWALL" },
-          { key: "Content-Security-Policy", value: "frame-ancestors *" },
+          {
+            key: "Content-Security-Policy",
+            value: "frame-ancestors *",
+          },
           { key: "X-Content-Type-Options", value: "nosniff" },
+          { key: "Referrer-Policy", value: "strict-origin-when-cross-origin" },
         ],
       },
       {

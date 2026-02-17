@@ -154,14 +154,11 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* .semiotics-root — no longer used as a fixed overlay.
+   Kept as a utility class for components that need a flex column shell. */
 .semiotics-root {
-  position: fixed;
-  inset: 0;
-  background-color: #ffffff;
-  z-index: 60;
   display: flex;
   flex-direction: column;
-  overflow: hidden;
   color: var(--cs-text-dark);
   font-family: 'DM Sans', system-ui, sans-serif;
 }

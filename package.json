@@ -9,6 +9,9 @@
     "start": "next start",
     "lint": "next lint",
     "generate:og": "node scripts/generate-og-images.mjs",
+    "generate:pdfs": "node scripts/generate-pdfs.mjs",
+    "generate:pdfs:sample": "node scripts/generate-pdfs.mjs --sample",
+    "upload:pdfs": "node scripts/upload-pdfs-to-blob.mjs",
     "pull:db": "node scripts/pull-db-content.mjs"
   },
   "dependencies": {

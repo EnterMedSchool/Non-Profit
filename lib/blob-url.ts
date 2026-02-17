@@ -24,3 +24,25 @@ export function blobAsset(path: string): string {
   const normalized = path.startsWith("/") ? path : `/${path}`;
   return `${BLOB_BASE}${normalized}`;
 }
+
+/**
+ * Build blob URLs for pre-generated question-deck PDFs.
+ *
+ * @example
+ *   questionPdfUrls("cell-organelles", "premed-biology-nucleus")
+ *   // → { exam: "https://…/pdfs/questions/cell-organelles/premed-biology-nucleus-exam.pdf",
+ *   //      studyGuide: "https://…/pdfs/questions/cell-organelles/premed-biology-nucleus-study-guide.pdf" }
+ */
+export function questionPdfUrls(categorySlug: string, deckSlug: string) {
+  return {
+    exam: blobAsset(`/pdfs/questions/${categorySlug}/${deckSlug}-exam.pdf`),
+    studyGuide: blobAsset(`/pdfs/questions/${categorySlug}/${deckSlug}-study-guide.pdf`),
+  };
+}
+
+/**
+ * Build blob URL for a pre-generated flashcard-deck PDF.
+ */
+export function flashcardPdfUrl(categorySlug: string, deckSlug: string) {
+  return blobAsset(`/pdfs/flashcards/${categorySlug}/${deckSlug}.pdf`);
+}
