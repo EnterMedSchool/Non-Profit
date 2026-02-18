@@ -14,11 +14,11 @@ export const usmleStep1TipsBody = `
 
 <p>International students choose varied timelines. A <strong>3-month plan</strong> can work if you study full-time with <em>no other obligations</em>. This means waking early, doing <strong>40–80 UWorld questions/day</strong>, and covering all subjects quickly. Many peers warn it's "doable if you have all 3 months completely off", but otherwise aim for 6 months. A <strong>6-month plan</strong> is common, especially if juggling school or jobs. It allows systematic coverage (we suggest 5–6 days/week, 6–8 hours/day) and periodic review. Some even use <strong>9–12 months</strong> to avoid burnout, taking breaks between phases (e.g. 2–3 months per major block, then practice tests). Others caution that &gt;6–8 months might lead to diminishing returns.</p>
 
-<ul>
-<li><em>Advice from a recent IMG:</em> "Generally 6 months of actual study…is fine for most people."</li>
-<li><em>Contrasting view:</em> Some IMGs purposely use a year (with rest weeks) for depth: "If you need 12 months, utilise it, there is no rush… break it down by topics."</li>
-<li><em>Speedrun plan:</em> "If you can manage more time, take more time… if target 3 months, manage 80 Q/day."</li>
-</ul>
+<blockquote><p><strong>Advice from a recent IMG:</strong> "Generally 6 months of actual study…is fine for most people."</p></blockquote>
+
+<blockquote><p><strong>Contrasting view:</strong> Some IMGs purposely use a year (with rest weeks) for depth: "If you need 12 months, utilise it, there is no rush… break it down by topics."</p></blockquote>
+
+<blockquote><p><strong>Speedrun plan:</strong> "If you can manage more time, take more time… if target 3 months, manage 80 Q/day."</p></blockquote>
 
 <h3>Table 1: Study Plan Comparison</h3>
 
@@ -47,7 +47,9 @@ export const usmleStep1TipsBody = `
 </tbody>
 </table>
 
-<p><em>Tips:</em> Create a <strong>daily/weekly schedule</strong> assigning topics (e.g. 2–3 hours videos/notes + Qbank + Anki blocks). Use active recall and spaced repetition (see next). Always track progress with practice exams (see below). Adjust plan if rotating or working part-time — e.g., wake early, study during breaks, reserve weekends for heavy review (one IMG studied 6–7 hours daily plus Anki during clinic breaks).</p>
+<div class="article-tip">
+<p><strong>Tip:</strong> Create a <strong>daily/weekly schedule</strong> assigning topics (e.g. 2–3 hours videos/notes + Qbank + Anki blocks). Use active recall and spaced repetition (see next). Always track progress with practice exams (see below). Adjust plan if rotating or working part-time — e.g., wake early, study during breaks, reserve weekends for heavy review (one IMG studied 6–7 hours daily plus Anki during clinic breaks).</p>
+</div>
 
 <div id="study-strategies"></div>
 
@@ -66,6 +68,8 @@ export const usmleStep1TipsBody = `
 <p><strong>Making your own notes:</strong> Many IMGs recommend taking notes actively. Examples: write down tough facts, draw diagrams, or use a "UWorld notebook" for facts seen in questions. Summarize each subject in your own words. Study groups or peer teaching (even virtual) can help reinforce learning – explaining concepts to others is powerful active recall.</p>
 
 <p><strong>Study Groups &amp; Community:</strong> Join IMG-friendly groups (WhatsApp, Facebook, Discord) for study partners or moral support. Many find Reddit (r/step1, r/IMGreddit, r/medicalschool, etc.) useful for advice and resources (though filter for quality). One student wrote on Reddit, "the internet is vast… use free resources for your prep." Community Qbanks (like Free 120) and free question collections can stretch your practice.</p>
+
+<p>Below is a snapshot of key resources (free and paid). Use this to pick tools that fit your budget and style.</p>
 
 <h3>Table 2: Key Study Resources (free vs paid)</h3>
 
@@ -89,7 +93,9 @@ export const usmleStep1TipsBody = `
 </tbody>
 </table>
 
-<p><em>(Paid resources marked. For free study, focus on FA + UWorld + NBME + community videos (DirtyMedicine, Randy Neil) + Anki decks.)</em></p>
+<div class="article-tip">
+<p><strong>Budget pick:</strong> For free study, focus on FA + UWorld + NBME + community videos (DirtyMedicine, Randy Neil) + Anki decks. Paid resources are marked in the table above.</p>
+</div>
 
 <div id="practice-exams"></div>
 
@@ -127,6 +133,7 @@ export const usmleStep1TipsBody = `
 
 <p><strong>Study Resources Budget:</strong> High-yield materials can add up. Subscriptions: UWorld (~$400+), AMBOSS (if you use it), Pathoma or Sketchy books/videos ($100–300 total), review courses ($300–$1,500 optional). Good news: many top students manage with minimal paid resources by leveraging free options (Anki decks, Reddit Qbanks, free YouTube lectures). As one IMG quipped, "Step 1 is expensive…and cost of prep can really add up. The internet is vast with a lot of free resources."</p>
 
+<div class="article-tip">
 <p><strong>Cost-Saving Tips:</strong></p>
 <ul>
 <li>Only buy <em>high-yield</em> resources. You don't need to buy <em>everything</em> – focus on core (First Aid, one Qbank).</li>
@@ -136,6 +143,7 @@ export const usmleStep1TipsBody = `
 <li>Apply for any IMG scholarships from your school or ECFMG (few exist).</li>
 <li>Keep a ~10% buffer for currency fluctuations if paying abroad.</li>
 </ul>
+</div>
 
 <h3>Table 3: Estimated USMLE Step 1 Costs for IMGs (2026)</h3>
 
@@ -245,6 +253,8 @@ export const usmleStep1TipsBody = `
 <h2>Mental Health &amp; Burnout Prevention</h2>
 
 <p>Preparing for Step 1 is a marathon. Treat it like a <strong>job</strong>, but one that requires self-care.</p>
+
+<blockquote><p>"You can't think clearly if you're constantly in fight-or-flight mode… protect your mental health like it's part of your study plan."</p></blockquote>
 
 <ul>
 <li><strong>Schedule breaks:</strong> Incorporate weekly rest days or light days. The reddit consensus: "aim for 6–8 months to avoid burnout… cram in as little time as possible." Take 5–10 minutes every hour to stretch or breathe.</li>
@@ -393,5 +403,7 @@ export const usmleStep1TipsBody = `
 
 <p>Preparing for USMLE Step 1 as a non-US student is challenging but achievable with a structured plan, focused resources, and self-care. Start early: <strong>register with ECFMG</strong>, plan your study timeline, and gather your materials. Use this guide's strategies to build your schedule, select resources, and navigate logistics. Lean on the IMG community (forums, videos) when in doubt. Above all, stay consistent and give yourself grace along the way – <strong>mental endurance is as crucial as academic knowledge</strong>.</p>
 
-<p>If any aspect remains unclear (e.g. "How to prioritize topics" or "Visa advice for Match"), revisit official sources or seek school advisors. Bookmark this guide as a reference. Good luck on your journey – with the right preparation, you can join the thousands of IMGs who have successfully passed Step 1 and matched into U.S. residencies!</p>
+<div class="article-tip">
+<p><strong>Key takeaway:</strong> If any aspect remains unclear (e.g. "How to prioritize topics" or "Visa advice for Match"), revisit official sources or seek school advisors. Bookmark this guide as a reference. Good luck on your journey – with the right preparation, you can join the thousands of IMGs who have successfully passed Step 1 and matched into U.S. residencies!</p>
+</div>
 `.trim();

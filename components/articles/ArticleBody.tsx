@@ -56,6 +56,13 @@ const PROSE_CLASSES = [
   "prose-blockquote:py-1 prose-blockquote:px-6",
   "prose-blockquote:not-italic prose-blockquote:text-ink-muted",
 
+  // Tables
+  "prose-table:w-full prose-table:text-sm prose-table:border-collapse",
+  "prose-thead:bg-showcase-purple/5 prose-thead:border-b-2 prose-thead:border-showcase-purple/20",
+  "prose-th:text-left prose-th:font-bold prose-th:text-ink-dark prose-th:px-4 prose-th:py-3 prose-th:text-sm",
+  "prose-td:px-4 prose-td:py-3 prose-td:text-ink-muted prose-td:border-b prose-td:border-showcase-navy/8",
+  "prose-tr:transition-colors hover:prose-tr:bg-showcase-purple/[0.02]",
+
   // Inline code
   "prose-code:bg-showcase-purple/10 prose-code:text-showcase-purple",
   "prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded-md prose-code:text-sm",
@@ -65,20 +72,49 @@ const PROSE_CLASSES = [
   "prose-img:shadow-chunky-sm",
 ].join(" ");
 
+/** Inline styles for elements that Tailwind prose modifiers can't reach */
+const EXTRA_STYLES = `
+  <style>
+    #article-body table { border-radius: 12px; overflow: hidden; border: 2px solid rgb(var(--color-showcase-navy) / 0.08); }
+    #article-body details { border: 2px solid rgb(var(--color-showcase-purple) / 0.15); border-radius: 12px; padding: 0; margin: 1.5rem 0; overflow: hidden; }
+    #article-body details summary { cursor: pointer; padding: 0.875rem 1.25rem; font-weight: 700; background: rgb(var(--color-showcase-purple) / 0.04); transition: background 0.15s; }
+    #article-body details summary:hover { background: rgb(var(--color-showcase-purple) / 0.08); }
+    #article-body details[open] summary { border-bottom: 2px solid rgb(var(--color-showcase-purple) / 0.1); }
+    #article-body details > ul, #article-body details > ol { padding: 1rem 1.25rem 1rem 2.5rem; margin: 0; }
+    #article-body details li { margin-top: 0.5rem; margin-bottom: 0.5rem; }
+    #article-body .article-tip { border-left: 4px solid rgb(var(--color-showcase-teal)); background: rgb(var(--color-showcase-teal) / 0.05); border-radius: 0 12px 12px 0; padding: 1rem 1.25rem; margin: 1.5rem 0; }
+    #article-body .article-tip strong:first-child { color: rgb(var(--color-showcase-teal)); }
+    #article-body .table-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; margin: 1.5rem 0; }
+    #article-body .table-scroll table { margin: 0; }
+    @media (max-width: 640px) {
+      #article-body th, #article-body td { padding: 0.5rem 0.625rem; font-size: 0.8125rem; }
+    }
+  </style>
+`;
+
 /* ── Component ──────────────────────────────────────────────────────── */
 
 interface ArticleBodyProps {
   html: string;
 }
 
+/** Wrap bare <table> elements in a responsive scroll container */
+function wrapTablesForScroll(html: string): string {
+  return html.replace(
+    /(<table[\s\S]*?<\/table>)/gi,
+    '<div class="table-scroll">$1</div>',
+  );
+}
+
 export default function ArticleBody({ html }: ArticleBodyProps) {
-  const processedHtml = injectHeadingIds(html);
+  let processedHtml = injectHeadingIds(html);
+  processedHtml = wrapTablesForScroll(processedHtml);
 
   return (
     <div
       id="article-body"
       className={PROSE_CLASSES}
-      dangerouslySetInnerHTML={{ __html: processedHtml }}
+      dangerouslySetInnerHTML={{ __html: EXTRA_STYLES + processedHtml }}
     />
   );
 }
