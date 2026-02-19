@@ -113,7 +113,7 @@ const gradientMap: Record<string, { from: string; to: string }> = {
 
 export default async function VisualLessonDetailPage({ params }: VisualDetailPageProps) {
   const { locale, id } = await params;
-  const t = await getTranslations("resources.visuals.detail");
+  const t = await getTranslations({ locale, namespace: "resources.visuals.detail" });
   const lesson = getVisualLessonById(id);
   if (!lesson) notFound();
 

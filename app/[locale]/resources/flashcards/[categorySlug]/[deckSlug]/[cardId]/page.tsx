@@ -160,7 +160,7 @@ export default async function CardFlashcardPage({
     ],
   };
 
-  const t = await getTranslations("resources.flashcards");
+  const t = await getTranslations({ locale, namespace: "resources.flashcards" });
   const basePath = `/${locale}/resources/flashcards/${categorySlug}/${deckSlug}`;
 
   return (

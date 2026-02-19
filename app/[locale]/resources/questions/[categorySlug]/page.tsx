@@ -103,8 +103,8 @@ export default async function CategoryQuestionsPage({
   const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
-  const t = await getTranslations("resources.questions");
-  const tc = await getTranslations("common");
+  const t = await getTranslations({ locale, namespace: "resources.questions" });
+  const tc = await getTranslations({ locale, namespace: "common" });
 
   return (
     <main className="relative z-10 py-12 sm:py-20">

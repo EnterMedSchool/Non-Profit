@@ -56,8 +56,8 @@ export default async function BookOverviewPage({
   params: Promise<{ locale: string; slug: string }>;
 }) {
   const { locale, slug } = await params;
-  const t = await getTranslations("pdfViewer.overview");
-  const tReader = await getTranslations("pdfViewer.reader");
+  const t = await getTranslations({ locale, namespace: "pdfViewer.overview" });
+  const tReader = await getTranslations({ locale, namespace: "pdfViewer.reader" });
   const book = getBookBySlug(slug);
   if (!book) notFound();
 

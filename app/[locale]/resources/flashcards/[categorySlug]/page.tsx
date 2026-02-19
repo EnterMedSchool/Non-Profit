@@ -138,8 +138,8 @@ export default async function CategoryFlashcardsPage({
   const BASE_URL =
     process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
-  const t = await getTranslations("resources.flashcards");
-  const tc = await getTranslations("common");
+  const t = await getTranslations({ locale, namespace: "resources.flashcards" });
+  const tc = await getTranslations({ locale, namespace: "common" });
 
   return (
     <main className="relative z-10 py-12 sm:py-20">

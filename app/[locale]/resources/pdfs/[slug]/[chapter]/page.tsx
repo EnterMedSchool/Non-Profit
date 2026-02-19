@@ -62,7 +62,7 @@ export default async function ChapterReaderPage({
   params: Promise<{ locale: string; slug: string; chapter: string }>;
 }) {
   const { locale, slug, chapter: chapterSlug } = await params;
-  const t = await getTranslations("pdfViewer.reader");
+  const t = await getTranslations({ locale, namespace: "pdfViewer.reader" });
   const book = getBookBySlug(slug);
   if (!book) notFound();
   const chapter = getChapterBySlug(book, chapterSlug);

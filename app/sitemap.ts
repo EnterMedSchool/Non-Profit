@@ -17,6 +17,7 @@ import { practiceCategories, practiceDecks } from "@/data/practice-categories";
 import { practiceQuestions } from "@/data/practice-questions";
 import { flashcardCategories, flashcardDecks } from "@/data/flashcard-categories";
 import { flashcards } from "@/data/flashcard-data";
+import { getDeckCategory as getFlashcardDeckCategory } from "@/lib/flashcard-data";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -29,7 +30,7 @@ const defaultLocale = routing.defaultLocale;
  * Avoids `new Date()` which changes on every build and causes Google
  * to ignore the lastModified signal entirely.
  */
-const CONTENT_UPDATED = "2025-06-01";
+const CONTENT_UPDATED = "2026-02-18";
 
 /* ── Helpers ──────────────────────────────────────────────────────── */
 
@@ -63,11 +64,10 @@ export async function generateSitemaps() {
 
 /* ── Sitemap chunks ──────────────────────────────────────────────── */
 
-export default function sitemap({
-  id,
-}: {
-  id: number;
-}): MetadataRoute.Sitemap {
+export default async function sitemap(props: {
+  id: Promise<string>;
+}): Promise<MetadataRoute.Sitemap> {
+  const id = Number(await props.id);
   switch (id) {
     case 0:
       return buildStaticAndToolsSitemap();
@@ -535,7 +535,7 @@ function buildFlashcardsSitemap(): MetadataRoute.Sitemap {
 
   // Deck pages
   for (const deck of flashcardDecks) {
-    const cat = deck.categoryId != null ? catById.get(deck.categoryId) : undefined;
+    const cat = getFlashcardDeckCategory(deck);
     if (!cat) continue;
     const path = `/resources/flashcards/${cat.slug}/${deck.slug}`;
     entries.push({
@@ -552,7 +552,7 @@ function buildFlashcardsSitemap(): MetadataRoute.Sitemap {
   for (const card of flashcards) {
     const deck = deckById.get(card.deckId);
     if (!deck) continue;
-    const cat = deck.categoryId != null ? catById.get(deck.categoryId) : undefined;
+    const cat = getFlashcardDeckCategory(deck);
     if (!cat) continue;
     const path = `/resources/flashcards/${cat.slug}/${deck.slug}/${card.stableId}`;
     entries.push({

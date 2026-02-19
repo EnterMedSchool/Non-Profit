@@ -117,8 +117,8 @@ export default async function DeckFlashcardsPage({
   const cards = getCardsByDeck(deck.id).sort((a, b) => a.ordinal - b.ordinal);
   const breadcrumb = getCategoryBreadcrumb(category.id);
 
-  const t = await getTranslations("resources.flashcards");
-  const tc = await getTranslations("common");
+  const t = await getTranslations({ locale, namespace: "resources.flashcards" });
+  const tc = await getTranslations({ locale, namespace: "common" });
 
   const difficultyKey = deck.difficultyLevel
     ? getDifficultyKey(deck.difficultyLevel)

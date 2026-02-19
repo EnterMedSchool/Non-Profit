@@ -116,8 +116,8 @@ export default async function DeckPage({
     ? getDifficultyKey(dominantDifficulty)
     : null;
 
-  const t = await getTranslations("resources.questions");
-  const tc = await getTranslations("common");
+  const t = await getTranslations({ locale, namespace: "resources.questions" });
+  const tc = await getTranslations({ locale, namespace: "common" });
 
   const pdfUrls = questionPdfUrls(categorySlug, deck.slug);
 

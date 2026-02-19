@@ -169,7 +169,7 @@ export default async function QuestionPage({
     ],
   };
 
-  const t = await getTranslations("resources.questions");
+  const t = await getTranslations({ locale, namespace: "resources.questions" });
   const basePath = `/${locale}/resources/questions/${categorySlug}/${deckSlug}`;
 
   return (
