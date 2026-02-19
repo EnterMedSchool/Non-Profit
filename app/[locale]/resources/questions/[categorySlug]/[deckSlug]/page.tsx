@@ -82,7 +82,7 @@ export async function generateMetadata({
     alternates: {
       canonical: `${BASE_URL}/${locale}/resources/questions/${categorySlug}/${deckSlug}`,
       types: {
-        "application/pdf": [pdfUrls.exam, pdfUrls.studyGuide],
+        "application/pdf": pdfUrls.exam,
       },
     },
   };
