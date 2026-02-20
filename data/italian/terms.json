@@ -1,0 +1,2851 @@
+[
+  {
+    "id": 1,
+    "lemma": "mal di pancia",
+    "english": "stomach ache",
+    "partOfSpeech": "expression",
+    "register": "informal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "unit1"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Espressione comune per indicare dolore addominale.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-a-dolore-addominale"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "malissimo alla pancia"
+        ]
+      }
+    }
+  },
+  {
+    "id": 2,
+    "lemma": "pasta in bianco",
+    "english": "plain pasta with oil or butter",
+    "partOfSpeech": "expression",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "alimentazione"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Piatto leggero spesso usato dai pazienti con nausea o gastrite.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-a-dolore-addominale"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": []
+      }
+    }
+  },
+  {
+    "id": 3,
+    "lemma": "scaricarsi",
+    "english": "to have a bowel movement",
+    "partOfSpeech": "verb",
+    "register": "informal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "gastroenterologia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Modo colloquiale per dire 'andare di corpo'.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-a-dolore-addominale"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "si è scaricata",
+          "scaricarmi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 4,
+    "lemma": "prelievo del sangue",
+    "english": "blood test",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "diagnostica"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Procedura di laboratorio per analizzare il sangue.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-a-dolore-addominale"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "prelievo del sangue"
+        ]
+      }
+    }
+  },
+  {
+    "id": 5,
+    "lemma": "manca il fiato",
+    "english": "I am short of breath",
+    "partOfSpeech": "expression",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "respiratorio"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Sintomo fondamentale per valutare problemi respiratori.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-b-polmonite"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "mi manca il fiato"
+        ]
+      }
+    }
+  },
+  {
+    "id": 6,
+    "lemma": "brividi",
+    "english": "chills",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Sensazione di freddo con tremori dovuta a febbre o infezioni.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-b-polmonite"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "i brividi"
+        ]
+      }
+    }
+  },
+  {
+    "id": 7,
+    "lemma": "TAC del torace",
+    "english": "Chest CT",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 8,
+    "lemma": "polmonite",
+    "english": "pneumonia",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "respiratorio"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Infezione polmonare che provoca febbre, tosse e dispnea.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-b-polmonite"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": []
+      }
+    }
+  },
+  {
+    "id": 9,
+    "lemma": "prescrivo gli antibiotici",
+    "english": "I am prescribing antibiotics",
+    "partOfSpeech": "expression",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "terapia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Formula standard per comunicare una terapia antibiotica.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-b-polmonite"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "le prescrivo gli antibiotici"
+        ]
+      }
+    }
+  },
+  {
+    "id": 10,
+    "lemma": "mi gira la testa",
+    "english": "my head is spinning / I feel dizzy",
+    "partOfSpeech": "expression",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "neurologia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Espressione comune per descrivere vertigini.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-c-ipotensione"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "mi gira sempre la testa"
+        ]
+      }
+    }
+  },
+  {
+    "id": 11,
+    "lemma": "sentirsi svenire",
+    "english": "to feel like fainting",
+    "partOfSpeech": "verb",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "neurologia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Descrive la sensazione immediata prima della sincope.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-c-ipotensione"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "mi sento svenire"
+        ]
+      }
+    }
+  },
+  {
+    "id": 12,
+    "lemma": "pressione bassa",
+    "english": "low blood pressure",
+    "partOfSpeech": "expression",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "cardiologia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Modo colloquiale per indicare ipotensione.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-c-ipotensione"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "è bassa"
+        ]
+      }
+    }
+  },
+  {
+    "id": 13,
+    "lemma": "si sente debole",
+    "english": "do you feel weak",
+    "partOfSpeech": "expression",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Domanda di screening sulla forza generale.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-c-ipotensione"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "si sente debole"
+        ]
+      }
+    }
+  },
+  {
+    "id": 14,
+    "lemma": "valori della pressione",
+    "english": "blood pressure readings",
+    "partOfSpeech": "noun",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "clinical",
+      "demo",
+      "cardiologia"
+    ],
+    "metadata": {
+      "glossary": {
+        "helper": "Valori numerici rilevati dal misuratore di pressione.",
+        "deckSlugs": [
+          "unit1-demo-clinical-cases"
+        ],
+        "stepSlugs": [
+          "unit1-demo-case-c-ipotensione"
+        ],
+        "lessonSlug": "unit-1-first-meetings-communication-practice-greetings-and-quick-small-talk",
+        "highlightOverrides": [
+          "che valori"
+        ]
+      }
+    }
+  },
+  {
+    "id": 133,
+    "lemma": "Si è scaricato regolarmente?",
+    "english": "Did you go to the bathroom?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 134,
+    "lemma": "Ha mangiato?",
+    "english": "Did you eat?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 135,
+    "lemma": "Ha dormito bene?",
+    "english": "Did you sleep well?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 136,
+    "lemma": "Posso prenderle la pressione?",
+    "english": "Can I take your blood pressure?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 137,
+    "lemma": "Prelievo",
+    "english": "Blood draw",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 138,
+    "lemma": "EGA",
+    "english": "Arterial blood draw",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 139,
+    "lemma": "FA (fibrillazione atriale)",
+    "english": "AF (atrial fibrillation)",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 140,
+    "lemma": "AA (aria ambiente)",
+    "english": "Room air (no supplemental O₂)",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 141,
+    "lemma": "CN",
+    "english": "Cannula",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 142,
+    "lemma": "Può tossire?",
+    "english": "Can you cough?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 143,
+    "lemma": "Dica una parola",
+    "english": "Say something",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 144,
+    "lemma": "Toni cardiaci: ritmici/aritmici, con pause libere/con soffi",
+    "english": "Heart sounds: rhythmic or arrhythmic, with or without murmurs",
+    "partOfSpeech": "phrase",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 145,
+    "lemma": "Addome dolente/dolorabile",
+    "english": "Painful or tender abdomen",
+    "partOfSpeech": "phrase",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 146,
+    "lemma": "Sala operatoria",
+    "english": "Operating room",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 147,
+    "lemma": "Non toccare",
+    "english": "Do not touch",
+    "partOfSpeech": "expression",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 148,
+    "lemma": "Aghi",
+    "english": "Needles",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 149,
+    "lemma": "Strumenti",
+    "english": "Instruments",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 150,
+    "lemma": "Ambulatorio",
+    "english": "Outpatient clinic",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 151,
+    "lemma": "Posso visitarla",
+    "english": "Can I examine you",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 152,
+    "lemma": "PCR (proteina reattiva C)",
+    "english": "CRP",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 153,
+    "lemma": "Fegato",
+    "english": "Liver",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 154,
+    "lemma": "Milza",
+    "english": "Spleen",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 155,
+    "lemma": "Cellule rosse",
+    "english": "Red blood cells",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 156,
+    "lemma": "Piastrine",
+    "english": "Platelets",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 157,
+    "lemma": "GB (globulo bianco)",
+    "english": "White blood cell",
+    "partOfSpeech": "abbreviation",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 158,
+    "lemma": "Linfociti",
+    "english": "Lymphocytes",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 159,
+    "lemma": "Trapianto di midollo osseo",
+    "english": "Bone marrow transplant",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 160,
+    "lemma": "TAC",
+    "english": "CT scan",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 161,
+    "lemma": "RM (risonanza magnetica)",
+    "english": "MRI",
+    "partOfSpeech": "abbreviation",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 162,
+    "lemma": "Malattie del sangue",
+    "english": "Blood diseases",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 163,
+    "lemma": "Peristalsi",
+    "english": "Peristalsis",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 164,
+    "lemma": "Segni di Cullen/Grey-Turner",
+    "english": "Cullen/Grey-Turner signs",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 165,
+    "lemma": "Ispezione",
+    "english": "Inspection",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 166,
+    "lemma": "Auscultazione",
+    "english": "Auscultation",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 167,
+    "lemma": "Percussione",
+    "english": "Percussion",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 168,
+    "lemma": "Palpazione",
+    "english": "Palpation",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-1",
+      "day-1"
+    ],
+    "metadata": {
+      "program": "italian-patient-2",
+      "deckSlug": "harvey-italian-patient2-lesson1",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 169,
+    "lemma": "buongiorno",
+    "english": "good morning",
+    "partOfSpeech": "interjection",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": "Common greeting on wards during morning rounds.",
+    "tags": [
+      "greeting",
+      "hospital",
+      "foundation"
+    ],
+    "metadata": {
+      "sampleSentence": "Buongiorno, come si sente oggi?"
+    }
+  },
+  {
+    "id": 170,
+    "lemma": "pressione",
+    "english": "blood pressure",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": "Measured routinely during vitals collection.",
+    "tags": [
+      "vitals",
+      "noun",
+      "rotation"
+    ],
+    "metadata": {
+      "gender": "feminine"
+    }
+  },
+  {
+    "id": 171,
+    "lemma": "cartella clinica",
+    "english": "medical chart",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": "Use when referring to patient documentation.",
+    "tags": [
+      "documentation",
+      "noun",
+      "rotation"
+    ],
+    "metadata": {
+      "gender": "feminine"
+    }
+  },
+  {
+    "id": 183,
+    "lemma": "Toni cardiaci (con o senza soffi)",
+    "english": "Heart sounds (with or without murmurs)",
+    "partOfSpeech": "phrase",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "med-gen"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 184,
+    "lemma": "Addome dolente o dolorabile",
+    "english": "Tender abdomen",
+    "partOfSpeech": "phrase",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "med-gen"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 185,
+    "lemma": "Pancia",
+    "english": "Belly",
+    "partOfSpeech": "noun",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "med-gen"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 186,
+    "lemma": "Scaricarsi",
+    "english": "To have a bowel movement",
+    "partOfSpeech": "verb",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "med-gen"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 187,
+    "lemma": "Pasta in bianco",
+    "english": "Plain pasta",
+    "partOfSpeech": "noun",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "med-gen"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "med-gen",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 193,
+    "lemma": "Nausea",
+    "english": "Nausea",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "surgery"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 194,
+    "lemma": "In basso a destra",
+    "english": "Lower right",
+    "partOfSpeech": "phrase",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "surgery"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 195,
+    "lemma": "Rilascio",
+    "english": "Release (rebound)",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "surgery"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 197,
+    "lemma": "Appendice",
+    "english": "Appendix",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "surgery"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 198,
+    "lemma": "Leucociti",
+    "english": "White blood cells",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "surgery"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "surgery",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 199,
+    "lemma": "Salasso",
+    "english": "Therapeutic phlebotomy",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 203,
+    "lemma": "Cellule rosse (RBC)",
+    "english": "Red blood cells",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 204,
+    "lemma": "Piastrine (PLT)",
+    "english": "Platelets",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 205,
+    "lemma": "GB (globuli bianchi)",
+    "english": "White blood cells",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 208,
+    "lemma": "RM",
+    "english": "MRI",
+    "partOfSpeech": "abbreviation",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 210,
+    "lemma": "Visione offuscata",
+    "english": "Blurred vision",
+    "partOfSpeech": "phrase",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 211,
+    "lemma": "Formicolio",
+    "english": "Tingling",
+    "partOfSpeech": "noun",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 212,
+    "lemma": "Posso visitarla?",
+    "english": "May I examine you?",
+    "partOfSpeech": "phrase",
+    "register": "clinical",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "day-1",
+      "hematology"
+    ],
+    "metadata": {
+      "day": 1,
+      "program": "italian-patient-2",
+      "category": "hematology",
+      "lessonSlug": "lesson-1"
+    }
+  },
+  {
+    "id": 249,
+    "lemma": "BPCO",
+    "english": "COPD",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 250,
+    "lemma": "BCP (Broncopolmonite)",
+    "english": "Bronchopneumonia",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 251,
+    "lemma": "Posso ascoltarle i polmoni?",
+    "english": "May I listen to your lungs?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 252,
+    "lemma": "Posso prenderle la saturazione?",
+    "english": "May I take your oxygen saturation?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 253,
+    "lemma": "Mi dà un dito?",
+    "english": "Could I have a finger?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 254,
+    "lemma": "Appoggi pure",
+    "english": "You can rest it down.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 255,
+    "lemma": "Faccia un bel respiro / un respiro profondo",
+    "english": "Take a deep breath.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 256,
+    "lemma": "Riesce a fare un colpo di tosse?",
+    "english": "Can you cough?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 257,
+    "lemma": "Apra la bocca",
+    "english": "Open your mouth.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 258,
+    "lemma": "Fuma?",
+    "english": "Do you smoke?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 259,
+    "lemma": "Murmure vescicolare",
+    "english": "Normal respiratory sound",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 260,
+    "lemma": "Rumori aggiuntivi: ronchi, sibili, crepiti, stridore, sfregamento",
+    "english": "Added sounds: rhonchi, wheeze, crackles, stridor, rub",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 261,
+    "lemma": "Ronchi",
+    "english": "Rhonchi",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 262,
+    "lemma": "Sibili",
+    "english": "Wheezes",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 263,
+    "lemma": "Crepiti",
+    "english": "Crackles",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 264,
+    "lemma": "Stridore",
+    "english": "Stridor",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 265,
+    "lemma": "Sfregamento",
+    "english": "Friction rub",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 266,
+    "lemma": "Polmonite",
+    "english": "Pneumonia",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 267,
+    "lemma": "Antibiotici",
+    "english": "Antibiotics",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 269,
+    "lemma": "Febbre",
+    "english": "Fever",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 270,
+    "lemma": "Brividi",
+    "english": "Chills",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 271,
+    "lemma": "Tosse",
+    "english": "Cough",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 272,
+    "lemma": "Continuo a tossire",
+    "english": "I keep coughing.",
+    "partOfSpeech": "phrase",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 273,
+    "lemma": "Mi manca il fiato",
+    "english": "I'm short of breath.",
+    "partOfSpeech": "phrase",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 274,
+    "lemma": "Dispnea",
+    "english": "Dyspnea",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 275,
+    "lemma": "Dolore toracico",
+    "english": "Chest pain",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 276,
+    "lemma": "Braccio sinistro",
+    "english": "Left arm",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 277,
+    "lemma": "Cuscini",
+    "english": "Pillows",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 278,
+    "lemma": "Pressione arteriosa",
+    "english": "Blood pressure",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 279,
+    "lemma": "Attività leggera",
+    "english": "Light activity",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 280,
+    "lemma": "Stetoscopio",
+    "english": "Stethoscope",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 281,
+    "lemma": "Soffio cardiaco",
+    "english": "Heart murmur",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 282,
+    "lemma": "Valvola mitrale",
+    "english": "Mitral valve",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 283,
+    "lemma": "Elettrocardiogramma",
+    "english": "Electrocardiogram",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 284,
+    "lemma": "Profilo lipidico",
+    "english": "Lipid profile",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 285,
+    "lemma": "Carotide",
+    "english": "Carotid artery",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 286,
+    "lemma": "Scompenso cardiaco",
+    "english": "Heart failure",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 287,
+    "lemma": "Valvola tricuspide",
+    "english": "Tricuspid valve",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 288,
+    "lemma": "Arresto cardiaco",
+    "english": "Cardiac arrest",
+    "partOfSpeech": "noun",
+    "register": null,
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "cardiologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 289,
+    "lemma": "È grave?",
+    "english": "Is it serious?",
+    "partOfSpeech": "phrase",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 290,
+    "lemma": "Mi stanco presto",
+    "english": "I get tired quickly.",
+    "partOfSpeech": "phrase",
+    "register": "neutral",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "pneumologia",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 291,
+    "lemma": "Per favore sa dirmi dove posso trovare il capo sala?",
+    "english": "Please, may you tell me where I can find the head nurse?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 292,
+    "lemma": "Per favore sa dove posso trovare il signor Luigi?",
+    "english": "Please, do you know where I can find Mr Luigi?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 293,
+    "lemma": "Sono una studentessa di medicina. / Sono uno studente di medicina.",
+    "english": "I am a medical student.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 294,
+    "lemma": "Sono una studentessa / uno studente del prof. Esposito.",
+    "english": "I am a student of Prof. Esposito.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 295,
+    "lemma": "Sono venuto/a qui per fare un po' di pratica a fare prelievi.",
+    "english": "I came here to practice blood draws.",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 296,
+    "lemma": "Mi scusi, posso chiederle un'informazione?",
+    "english": "Excuse me, may I ask you something?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 297,
+    "lemma": "Potrei parlare con l'infermiera di turno?",
+    "english": "Could I speak with the nurse on duty?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 298,
+    "lemma": "Posso unirmi al giro visita?",
+    "english": "May I join the ward round?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 299,
+    "lemma": "Posso fare un prelievo sotto supervisione?",
+    "english": "May I do a blood draw under supervision?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  },
+  {
+    "id": 300,
+    "lemma": "In quale stanza si trova il signor Luigi?",
+    "english": "Which room is Mr Luigi in?",
+    "partOfSpeech": "phrase",
+    "register": "formal",
+    "gender": null,
+    "plurality": null,
+    "audioUrl": null,
+    "notes": null,
+    "tags": [
+      "italian-patient-2",
+      "lesson-2",
+      "day-2"
+    ],
+    "metadata": {
+      "day": 2,
+      "program": "italian-patient-2",
+      "category": "reparto",
+      "deckSlug": "harvey-italian-patient2-lesson2",
+      "lessonSlug": "lesson-2"
+    }
+  }
+]

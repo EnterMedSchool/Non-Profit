@@ -1,0 +1,36 @@
+{
+  "extractedAt": "2026-02-20T06:41:03.198Z",
+  "moduleId": 118,
+  "moduleSlug": "patient-2-orientation",
+  "moduleName": "Approach to The Italian Patient",
+  "programSlug": "italian",
+  "lessons": [
+    {
+      "slug": "lesson-1",
+      "title": "Signora Cia",
+      "summary": "Salve dottore. Ho malissimo alla pancia.",
+      "stepCount": 32,
+      "position": 0,
+      "stepTypes": [
+        "glossary",
+        "dialogue",
+        "multi_choice",
+        "read_respond"
+      ]
+    },
+    {
+      "slug": "lesson-2",
+      "title": "Signor Arto",
+      "summary": "Ho male al braccio sinistro e al petto.",
+      "stepCount": 22,
+      "position": 1,
+      "stepTypes": [
+        "glossary",
+        "dialogue",
+        "multi_choice"
+      ]
+    }
+  ],
+  "audioBaseUrl": "https://entermedschool.com/audio/italian",
+  "artworkBlobBase": "https://iklepxpgapgkjvxv.public.blob.vercel-storage.com/LearningIllustrations"
+}

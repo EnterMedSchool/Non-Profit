@@ -1,0 +1,744 @@
+[
+  {
+    "id": 7869,
+    "stableId": "it-lesson-1-001",
+    "deckId": 70,
+    "ordinal": 1,
+    "front": "Si è scaricato regolarmente?",
+    "back": "Did you go to the bathroom?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7870,
+    "stableId": "it-lesson-1-002",
+    "deckId": 70,
+    "ordinal": 2,
+    "front": "Ha mangiato?",
+    "back": "Did you eat?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7871,
+    "stableId": "it-lesson-1-003",
+    "deckId": 70,
+    "ordinal": 3,
+    "front": "Ha dormito bene?",
+    "back": "Did you sleep well?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7872,
+    "stableId": "it-lesson-1-004",
+    "deckId": 70,
+    "ordinal": 4,
+    "front": "Posso prenderle la pressione?",
+    "back": "Can I take your blood pressure?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7873,
+    "stableId": "it-lesson-1-005",
+    "deckId": 70,
+    "ordinal": 5,
+    "front": "Prelievo",
+    "back": "Blood draw",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7874,
+    "stableId": "it-lesson-1-006",
+    "deckId": 70,
+    "ordinal": 6,
+    "front": "EGA",
+    "back": "Arterial blood draw",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7875,
+    "stableId": "it-lesson-1-007",
+    "deckId": 70,
+    "ordinal": 7,
+    "front": "FA (fibrillazione atriale)",
+    "back": "AF (atrial fibrillation)",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7876,
+    "stableId": "it-lesson-1-008",
+    "deckId": 70,
+    "ordinal": 8,
+    "front": "AA (aria ambiente)",
+    "back": "Room air (no supplemental O₂)",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7877,
+    "stableId": "it-lesson-1-009",
+    "deckId": 70,
+    "ordinal": 9,
+    "front": "CN",
+    "back": "Cannula",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7878,
+    "stableId": "it-lesson-1-010",
+    "deckId": 70,
+    "ordinal": 10,
+    "front": "Può tossire?",
+    "back": "Can you cough?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7879,
+    "stableId": "it-lesson-1-011",
+    "deckId": 70,
+    "ordinal": 11,
+    "front": "Dica una parola",
+    "back": "Say something",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7880,
+    "stableId": "it-lesson-1-012",
+    "deckId": 70,
+    "ordinal": 12,
+    "front": "Toni cardiaci: ritmici/aritmici, con pause libere/con soffi",
+    "back": "Heart sounds: rhythmic or arrhythmic, with or without murmurs",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7881,
+    "stableId": "it-lesson-1-013",
+    "deckId": 70,
+    "ordinal": 13,
+    "front": "Addome dolente/dolorabile",
+    "back": "Painful or tender abdomen",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7882,
+    "stableId": "it-lesson-1-014",
+    "deckId": 70,
+    "ordinal": 14,
+    "front": "Sala operatoria",
+    "back": "Operating room",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7883,
+    "stableId": "it-lesson-1-015",
+    "deckId": 70,
+    "ordinal": 15,
+    "front": "Non toccare",
+    "back": "Do not touch",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7884,
+    "stableId": "it-lesson-1-016",
+    "deckId": 70,
+    "ordinal": 16,
+    "front": "Aghi",
+    "back": "Needles",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7885,
+    "stableId": "it-lesson-1-017",
+    "deckId": 70,
+    "ordinal": 17,
+    "front": "Strumenti",
+    "back": "Instruments",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7886,
+    "stableId": "it-lesson-1-018",
+    "deckId": 70,
+    "ordinal": 18,
+    "front": "Ambulatorio",
+    "back": "Outpatient clinic",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7887,
+    "stableId": "it-lesson-1-019",
+    "deckId": 70,
+    "ordinal": 19,
+    "front": "Salasso",
+    "back": "Phlebotomy",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7888,
+    "stableId": "it-lesson-1-020",
+    "deckId": 70,
+    "ordinal": 20,
+    "front": "Posso visitarla",
+    "back": "Can I examine you",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7889,
+    "stableId": "it-lesson-1-021",
+    "deckId": 70,
+    "ordinal": 21,
+    "front": "PCR (proteina reattiva C)",
+    "back": "CRP",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7890,
+    "stableId": "it-lesson-1-022",
+    "deckId": 70,
+    "ordinal": 22,
+    "front": "Fegato",
+    "back": "Liver",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7891,
+    "stableId": "it-lesson-1-023",
+    "deckId": 70,
+    "ordinal": 23,
+    "front": "Milza",
+    "back": "Spleen",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7892,
+    "stableId": "it-lesson-1-024",
+    "deckId": 70,
+    "ordinal": 24,
+    "front": "Cellule rosse",
+    "back": "Red blood cells",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7893,
+    "stableId": "it-lesson-1-025",
+    "deckId": 70,
+    "ordinal": 25,
+    "front": "Piastrine",
+    "back": "Platelets",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7894,
+    "stableId": "it-lesson-1-026",
+    "deckId": 70,
+    "ordinal": 26,
+    "front": "GB (globulo bianco)",
+    "back": "White blood cell",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7895,
+    "stableId": "it-lesson-1-027",
+    "deckId": 70,
+    "ordinal": 27,
+    "front": "Linfociti",
+    "back": "Lymphocytes",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7896,
+    "stableId": "it-lesson-1-028",
+    "deckId": 70,
+    "ordinal": 28,
+    "front": "Trapianto di midollo osseo",
+    "back": "Bone marrow transplant",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7897,
+    "stableId": "it-lesson-1-029",
+    "deckId": 70,
+    "ordinal": 29,
+    "front": "TAC",
+    "back": "CT scan",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7898,
+    "stableId": "it-lesson-1-030",
+    "deckId": 70,
+    "ordinal": 30,
+    "front": "RM (risonanza magnetica)",
+    "back": "MRI",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7899,
+    "stableId": "it-lesson-1-031",
+    "deckId": 70,
+    "ordinal": 31,
+    "front": "Malattie del sangue",
+    "back": "Blood diseases",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7900,
+    "stableId": "it-lesson-2-001",
+    "deckId": 71,
+    "ordinal": 1,
+    "front": "BPCO",
+    "back": "COPD",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7901,
+    "stableId": "it-lesson-2-002",
+    "deckId": 71,
+    "ordinal": 2,
+    "front": "BCP (Broncopolmonite)",
+    "back": "Bronchopneumonia",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7902,
+    "stableId": "it-lesson-2-003",
+    "deckId": 71,
+    "ordinal": 3,
+    "front": "Posso ascoltarle i polmoni?",
+    "back": "May I listen to your lungs?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7903,
+    "stableId": "it-lesson-2-004",
+    "deckId": 71,
+    "ordinal": 4,
+    "front": "Posso prenderle la saturazione?",
+    "back": "May I take your oxygen saturation?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7904,
+    "stableId": "it-lesson-2-005",
+    "deckId": 71,
+    "ordinal": 5,
+    "front": "Mi dà un dito?",
+    "back": "Could I have a finger?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7905,
+    "stableId": "it-lesson-2-006",
+    "deckId": 71,
+    "ordinal": 6,
+    "front": "Appoggi pure",
+    "back": "You can rest it down.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7906,
+    "stableId": "it-lesson-2-007",
+    "deckId": 71,
+    "ordinal": 7,
+    "front": "Faccia un bel respiro / un respiro profondo",
+    "back": "Take a deep breath.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7907,
+    "stableId": "it-lesson-2-008",
+    "deckId": 71,
+    "ordinal": 8,
+    "front": "Riesce a fare un colpo di tosse?",
+    "back": "Can you cough?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7908,
+    "stableId": "it-lesson-2-009",
+    "deckId": 71,
+    "ordinal": 9,
+    "front": "Apra la bocca",
+    "back": "Open your mouth.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7909,
+    "stableId": "it-lesson-2-010",
+    "deckId": 71,
+    "ordinal": 10,
+    "front": "Fuma?",
+    "back": "Do you smoke?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7910,
+    "stableId": "it-lesson-2-011",
+    "deckId": 71,
+    "ordinal": 11,
+    "front": "Murmure vescicolare",
+    "back": "Normal respiratory sound",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7911,
+    "stableId": "it-lesson-2-012",
+    "deckId": 71,
+    "ordinal": 12,
+    "front": "Rumori aggiuntivi: ronchi, sibili, crepiti, stridore, sfregamento",
+    "back": "Added sounds: rhonchi, wheeze, crackles, stridor, rub",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7912,
+    "stableId": "it-lesson-2-013",
+    "deckId": 71,
+    "ordinal": 13,
+    "front": "Per favore sa dirmi dove posso trovare il capo sala?",
+    "back": "Please, may you tell me where I can find the head nurse?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7913,
+    "stableId": "it-lesson-2-014",
+    "deckId": 71,
+    "ordinal": 14,
+    "front": "Per favore sa dove posso trovare il signor Luigi?",
+    "back": "Please, do you know where I can find Mr Luigi?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7914,
+    "stableId": "it-lesson-2-015",
+    "deckId": 71,
+    "ordinal": 15,
+    "front": "Sono una studentessa di medicina. / Sono uno studente di medicina.",
+    "back": "I am a medical student.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7915,
+    "stableId": "it-lesson-2-016",
+    "deckId": 71,
+    "ordinal": 16,
+    "front": "Sono una studentessa / uno studente del prof. Esposito.",
+    "back": "I am a student of Prof. Esposito.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7916,
+    "stableId": "it-lesson-2-017",
+    "deckId": 71,
+    "ordinal": 17,
+    "front": "Sono venuto/a qui per fare un po' di pratica a fare prelievi.",
+    "back": "I came here to practice blood draws.",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7917,
+    "stableId": "it-lesson-2-018",
+    "deckId": 71,
+    "ordinal": 18,
+    "front": "Mi scusi, posso chiederle un'informazione?",
+    "back": "Excuse me, may I ask you something?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7918,
+    "stableId": "it-lesson-2-019",
+    "deckId": 71,
+    "ordinal": 19,
+    "front": "Potrei parlare con l'infermiera di turno?",
+    "back": "Could I speak with the nurse on duty?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7919,
+    "stableId": "it-lesson-2-020",
+    "deckId": 71,
+    "ordinal": 20,
+    "front": "Posso unirmi al giro visita?",
+    "back": "May I join the ward round?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7920,
+    "stableId": "it-lesson-2-021",
+    "deckId": 71,
+    "ordinal": 21,
+    "front": "Posso fare un prelievo sotto supervisione?",
+    "back": "May I do a blood draw under supervision?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 7921,
+    "stableId": "it-lesson-2-022",
+    "deckId": 71,
+    "ordinal": 22,
+    "front": "In quale stanza si trova il signor Luigi?",
+    "back": "Which room is Mr Luigi in?",
+    "cardType": "basic",
+    "cardTags": [
+      "medical-italian",
+      "clinical-italian"
+    ],
+    "createdAt": "2026-02-20T06:41:58.735Z"
+  }
+]

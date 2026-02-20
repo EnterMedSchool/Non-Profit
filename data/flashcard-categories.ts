@@ -832,5 +832,39 @@ export const flashcardDecks: FlashcardDeck[] = [
     "isVerified": false,
     "createdAt": "2026-01-07T14:25:59.754Z",
     "updatedAt": "2026-01-07T14:25:59.754Z"
+  },
+  {
+    "id": 70,
+    "slug": "italian-lesson-1-signora-cia",
+    "title": "Medical Italian: Signora Cia",
+    "description": "Italian medical vocabulary and clinical phrases from Lesson 1: Signora Cia. 31 terms covering ward rounds, clinical exams, and patient communication.",
+    "categoryId": 17,
+    "tags": [
+      "medical-italian",
+      "clinical-italian",
+      "difficulty:intermediate"
+    ],
+    "difficultyLevel": "intermediate",
+    "cardCount": 31,
+    "isVerified": true,
+    "createdAt": "2026-02-20T06:41:58.735Z",
+    "updatedAt": "2026-02-20T06:41:58.735Z"
+  },
+  {
+    "id": 71,
+    "slug": "italian-lesson-2-signor-arto",
+    "title": "Medical Italian: Signor Arto",
+    "description": "Italian medical vocabulary and clinical phrases from Lesson 2: Signor Arto. 22 terms covering ward rounds, clinical exams, and patient communication.",
+    "categoryId": 17,
+    "tags": [
+      "medical-italian",
+      "clinical-italian",
+      "difficulty:intermediate"
+    ],
+    "difficultyLevel": "intermediate",
+    "cardCount": 22,
+    "isVerified": true,
+    "createdAt": "2026-02-20T06:41:58.735Z",
+    "updatedAt": "2026-02-20T06:41:58.735Z"
   }
 ];

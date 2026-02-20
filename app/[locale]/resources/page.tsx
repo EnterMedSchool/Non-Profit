@@ -14,6 +14,7 @@ import {
   ArrowRight,
   Shield,
   Layers,
+  Languages,
 } from "lucide-react";
 import Link from "next/link";
 import PageHero from "@/components/shared/PageHero";
@@ -131,6 +132,17 @@ const sectionPaths = [
     accent: "text-showcase-pink",
     border: "border-showcase-pink/30",
     hoverShadow: "hover:shadow-[0_6px_24px_rgba(236,72,153,0.15)]",
+  },
+  {
+    path: "/resources/italian",
+    titleKey: "hub.italian",
+    descKey: "hub.italianDesc",
+    icon: Languages,
+    color: "from-showcase-green to-showcase-teal",
+    iconBg: "bg-showcase-green",
+    accent: "text-showcase-green",
+    border: "border-showcase-green/30",
+    hoverShadow: "hover:shadow-[0_6px_24px_rgba(16,185,129,0.15)]",
   },
 ];
 

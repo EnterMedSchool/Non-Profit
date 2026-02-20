@@ -348,13 +348,12 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=12mm,level=L]{${qUrl}}}` : ""}
 \\end{minipage}
 
 \\vspace{3mm}
-\\begin{enumerate}[label={${optionBadge("\\\\Alph*")}}, leftmargin=12mm, itemsep=2.5mm]
 `;
     for (let j = 0; j < opts.length && j < 5; j++) {
-      body += `  \\item ${tex(opts[j].body)}\n`;
+      const letter = labels[j] || String.fromCharCode(65 + j);
+      body += `\\par\\noindent\\hspace{8mm}${optionBadge(letter)}\\hspace{2mm}${tex(opts[j].body)}\\vspace{2.5mm}\n`;
     }
-    body += `\\end{enumerate}
-\\end{tcolorbox}
+    body += `\\end{tcolorbox}
 `;
     if (i < questions.length - 1) {
       body += sectionDivider();
@@ -465,7 +464,7 @@ ${qUrl ? `  \\href{${qUrl}}{\\qrcode[height=12mm,level=L]{${qUrl}}}` : ""}
       if (opt.isCorrect) {
         body += `\\begin{tcolorbox}[blanker, colback=brand-teal!8, arc=3pt,
   left=2mm, right=2mm, top=1.5mm, bottom=1.5mm, before skip=1mm, after skip=1mm]
-\\hspace{6mm}${optionBadge(letter, "brand-teal")}\\hspace{2mm}{\\bfseries\\color{brand-navy} ${tex(opt.body)}} {\\color{brand-teal}\\textsf{\\checkmark}}
+\\hspace{6mm}${optionBadge(letter, "brand-teal")}\\hspace{2mm}{\\bfseries\\color{brand-navy} ${tex(opt.body)}} {\\color{brand-teal}$\\checkmark$}
 \\end{tcolorbox}
 `;
       } else {
@@ -754,6 +753,356 @@ ${flashcardGrid(chunk, false, { categorySlug, deckSlug })}\\end{tikzpicture}
 \\newpage
 `;
   }
+
+  body += "\\end{document}\n";
+  return body;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+//  4.  ITALIAN LESSON PDF (full lesson — all step types combined)
+// ═════════════════════════════════════════════════════════════════════
+
+function speakerBadge(speaker, role) {
+  const roleColors = {
+    doctor: "brand-blue",
+    patient: "brand-teal",
+    student: "brand-green",
+    other: "brand-purple",
+  };
+  const color = roleColors[role] || "brand-purple";
+  return `\\tikz[baseline=-0.5ex]{\\node[rounded corners=2pt, fill=${color}!15, minimum size=5mm, inner xsep=3mm, inner sep=1.5mm, font=\\bfseries\\scriptsize\\color{${color}}]{${tex(speaker)}};}`;
+}
+
+function resolveRole(speaker) {
+  const norm = (speaker || "").toLowerCase();
+  if (norm.includes("paziente") || norm.includes("patient")) return "patient";
+  if (norm.includes("dott") || norm.includes("medico") || norm.includes("primario") || norm.includes("infermier") || norm.includes("strumentista") || norm.includes("capo sala")) return "doctor";
+  if (norm === "tu" || norm.includes("studente") || norm.includes("studentessa") || norm.includes("student")) return "student";
+  return "other";
+}
+
+const ROLE_BORDER = { doctor: "brand-blue", patient: "brand-teal", student: "brand-green", other: "brand-purple" };
+
+export function italianLessonTemplate({ title, lessonNumber, description, steps, url, logoDir }) {
+  const kwStr = ["EnterMedSchool", "Medical Italian", title].join(", ");
+
+  let body = preamble({
+    title: `${title} — Medical Italian Lesson ${lessonNumber}`,
+    subject: `Medical Italian Lesson ${lessonNumber}`,
+    keywords: kwStr,
+    url,
+    logoDir,
+  });
+
+  // brand-blue / brand-green not yet defined in shared preamble
+  body += `\\definecolor{brand-blue}{HTML}{54A0FF}
+\\definecolor{brand-green}{HTML}{10B981}
+`;
+
+  body += "\\begin{document}\n";
+
+  body += titlePage({
+    title: `Medical Italian: ${title}`,
+    subtitle: `Lesson ${lessonNumber} — Complete`,
+    deckDescription: description || "Interactive lesson with dialogues, vocabulary, quizzes, and clinical cases.",
+    questionCount: steps.length,
+    url,
+    pdfType: "Complete Lesson",
+  });
+
+  for (let si = 0; si < steps.length; si++) {
+    const step = steps[si];
+
+    if (step.stepType === "glossary" && step.config?.terms) {
+      body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-teal!15,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-teal},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable,
+  title={\\color{white}\\bfseries ${tex(step.title || "Vocabulary")}},
+  coltitle=white, colbacktitle=brand-teal, fonttitle=\\bfseries\\small
+]
+{\\small
+\\rowcolors{2}{brand-cream}{white}
+\\begin{tabularx}{\\textwidth}{>{\\bfseries\\raggedright}p{0.48\\textwidth} >{\\raggedright\\arraybackslash}X}
+\\rowcolor{brand-teal!10}
+\\textbf{\\color{brand-navy}Italiano} & \\textbf{\\color{brand-navy}English} \\\\[1mm]
+\\hline
+`;
+      for (const term of step.config.terms) {
+        body += `${tex(term.lemma)} & ${tex(term.english)} \\\\\n`;
+      }
+      body += `\\end{tabularx}
+}
+\\end{tcolorbox}
+`;
+    } else if (step.stepType === "dialogue" && step.config?.lines) {
+      body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-blue!15,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-blue},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable,
+  title={\\color{white}\\bfseries ${tex(step.title || "Dialogue")}},
+  coltitle=white, colbacktitle=brand-blue, fonttitle=\\bfseries\\small
+]
+`;
+      for (const line of step.config.lines) {
+        const role = resolveRole(line.speaker);
+        const borderColor = ROLE_BORDER[role] || "brand-purple";
+        body += `\\begin{tcolorbox}[blanker, borderline west={2pt}{0pt}{${borderColor}},
+  left=4mm, right=2mm, top=1.5mm, bottom=1.5mm, before skip=2mm, after skip=1mm]
+${speakerBadge(line.speaker || "Speaker", role)}\\\\[1mm]
+{\\bfseries ${tex(line.italian)}}\\\\
+{\\small\\color{gray} ${tex(line.english)}}
+\\end{tcolorbox}
+`;
+      }
+      body += `\\end{tcolorbox}
+`;
+    } else if (step.stepType === "multi_choice" && step.config?.questions) {
+      body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-purple!15,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-purple},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable,
+  title={\\color{white}\\bfseries ${tex(step.title || "Comprehension Quiz")}},
+  coltitle=white, colbacktitle=brand-purple, fonttitle=\\bfseries\\small
+]
+`;
+      const labels = ["A", "B", "C", "D", "E"];
+      for (let qi = 0; qi < step.config.questions.length; qi++) {
+        const q = step.config.questions[qi];
+        body += `\\vspace{2mm}
+{\\bfseries\\color{brand-navy} ${questionBadge(qi + 1)}\\ \\ ${tex(q.prompt)}}\\\\[2mm]
+`;
+        for (let oi = 0; oi < q.options.length && oi < 5; oi++) {
+          const letter = labels[oi];
+          const isCorrect = oi === q.answer;
+          if (isCorrect) {
+            body += `\\hspace{4mm}${optionBadge(letter, "brand-teal")}\\hspace{2mm}{\\bfseries\\color{brand-navy} ${tex(q.options[oi])}} {\\color{brand-teal}$\\checkmark$}\\\\[1.5mm]\n`;
+          } else {
+            body += `\\hspace{4mm}${optionBadge(letter)}\\hspace{2mm}${tex(q.options[oi])}\\\\[1.5mm]\n`;
+          }
+        }
+      }
+      body += `\\end{tcolorbox}
+`;
+    } else if ((step.stepType === "read_respond") && step.config?.passage) {
+      body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-coral!15,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-coral},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable,
+  title={\\color{white}\\bfseries ${tex(step.title || "Clinical Case")}},
+  coltitle=white, colbacktitle=brand-coral, fonttitle=\\bfseries\\small
+]
+{\\small\\itshape ${tex(step.config.passage)}}
+
+\\vspace{3mm}
+{\\bfseries\\color{brand-navy} ${tex(step.config.question)}}\\\\[2mm]
+`;
+      const labels2 = ["A", "B", "C", "D", "E"];
+      for (let oi = 0; oi < step.config.options.length && oi < 5; oi++) {
+        const isCorrect = oi === step.config.answer;
+        if (isCorrect) {
+          body += `\\hspace{4mm}${optionBadge(labels2[oi], "brand-teal")}\\hspace{2mm}{\\bfseries\\color{brand-navy} ${tex(step.config.options[oi])}} {\\color{brand-teal}$\\checkmark$}\\\\[1.5mm]\n`;
+        } else {
+          body += `\\hspace{4mm}${optionBadge(labels2[oi])}\\hspace{2mm}${tex(step.config.options[oi])}\\\\[1.5mm]\n`;
+        }
+      }
+      body += `\\end{tcolorbox}
+`;
+    }
+
+    if (si < steps.length - 1) body += sectionDivider();
+  }
+
+  body += "\\end{document}\n";
+  return body;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+//  5.  ITALIAN DIALOGUE BOOKLET
+// ═════════════════════════════════════════════════════════════════════
+
+export function italianDialogueTemplate({ title, lessonNumber, dialogues, url, logoDir }) {
+  const kwStr = ["EnterMedSchool", "Medical Italian", "Dialogue", title].join(", ");
+
+  let body = preamble({
+    title: `${title} — Dialogues`,
+    subject: `Medical Italian Dialogues — Lesson ${lessonNumber}`,
+    keywords: kwStr,
+    url,
+    logoDir,
+  });
+
+  body += `\\definecolor{brand-blue}{HTML}{54A0FF}
+\\definecolor{brand-green}{HTML}{10B981}
+`;
+
+  body += "\\begin{document}\n";
+
+  body += titlePage({
+    title: `Medical Italian: ${title}`,
+    subtitle: `Lesson ${lessonNumber} — Dialogue Booklet`,
+    deckDescription: `${dialogues.length} clinical dialogues with bilingual text (Italian / English).`,
+    questionCount: dialogues.length,
+    url,
+    pdfType: "Dialogue Booklet",
+  });
+
+  for (let di = 0; di < dialogues.length; di++) {
+    const d = dialogues[di];
+    body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-blue!15,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-blue},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable,
+  title={\\color{white}\\bfseries Scene ${di + 1}: ${tex(d.title || "Dialogue")}},
+  coltitle=white, colbacktitle=brand-blue, fonttitle=\\bfseries\\small
+]
+`;
+    for (const line of d.lines) {
+      const role = resolveRole(line.speaker);
+      const borderColor = ROLE_BORDER[role] || "brand-purple";
+      body += `\\begin{tcolorbox}[blanker, borderline west={2pt}{0pt}{${borderColor}},
+  left=4mm, right=2mm, top=1.5mm, bottom=1.5mm, before skip=2mm, after skip=1mm]
+${speakerBadge(line.speaker || "Speaker", role)}\\\\[1mm]
+{\\bfseries ${tex(line.italian)}}\\hfill{\\small\\color{gray}\\itshape ${tex(line.english)}}
+\\end{tcolorbox}
+`;
+    }
+    body += `\\end{tcolorbox}
+`;
+    if (di < dialogues.length - 1) body += sectionDivider();
+  }
+
+  body += "\\end{document}\n";
+  return body;
+}
+
+// ═════════════════════════════════════════════════════════════════════
+//  6.  ITALIAN QUIZ BOOKLET
+// ═════════════════════════════════════════════════════════════════════
+
+export function italianQuizTemplate({ title, lessonNumber, quizSteps, url, logoDir }) {
+  const kwStr = ["EnterMedSchool", "Medical Italian", "Quiz", title].join(", ");
+
+  const totalQuestions = quizSteps.reduce((sum, s) => {
+    if (s.stepType === "multi_choice") return sum + (s.config?.questions?.length || 0);
+    if (s.stepType === "read_respond") return sum + 1;
+    return sum;
+  }, 0);
+
+  let body = preamble({
+    title: `${title} — Quiz`,
+    subject: `Medical Italian Quiz — Lesson ${lessonNumber}`,
+    keywords: kwStr,
+    url,
+    logoDir,
+  });
+
+  body += `\\definecolor{brand-blue}{HTML}{54A0FF}
+\\definecolor{brand-green}{HTML}{10B981}
+`;
+
+  body += "\\begin{document}\n";
+
+  body += titlePage({
+    title: `Medical Italian: ${title}`,
+    subtitle: `Lesson ${lessonNumber} — Quiz Booklet`,
+    deckDescription: `${totalQuestions} comprehension questions from clinical dialogues and cases.`,
+    questionCount: totalQuestions,
+    url,
+    pdfType: "Quiz Booklet",
+  });
+
+  const labels = ["A", "B", "C", "D", "E"];
+  let globalQ = 0;
+  const answerList = [];
+
+  for (const step of quizSteps) {
+    if (step.stepType === "multi_choice" && step.config?.questions) {
+      for (const q of step.config.questions) {
+        globalQ++;
+        body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-purple!8,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-purple},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable
+]
+{\\bfseries\\color{brand-navy} ${questionBadge(globalQ)}\\ \\ ${tex(q.prompt)}}
+\\vspace{3mm}
+`;
+        for (let oi = 0; oi < q.options.length && oi < 5; oi++) {
+          body += `\\par\\noindent\\hspace{8mm}${optionBadge(labels[oi])}\\hspace{2mm}${tex(q.options[oi])}\\vspace{2.5mm}\n`;
+        }
+        body += `\\end{tcolorbox}\n`;
+        answerList.push({ num: globalQ, ans: labels[q.answer] || "?", text: q.options[q.answer]?.substring(0, 60) || "---" });
+        body += sectionDivider();
+      }
+    } else if (step.stepType === "read_respond" && step.config?.passage) {
+      globalQ++;
+      body += `
+\\begin{tcolorbox}[
+  enhanced, colback=white, colframe=brand-coral!8,
+  boxrule=0.4pt, arc=6pt,
+  shadow={1.5mm}{-1mm}{0mm}{black!8},
+  borderline west={3pt}{0pt}{brand-coral},
+  left=5mm, right=5mm, top=4mm, bottom=4mm, breakable
+]
+{\\small\\itshape ${tex(step.config.passage)}}
+
+\\vspace{3mm}
+{\\bfseries\\color{brand-navy} ${questionBadge(globalQ)}\\ \\ ${tex(step.config.question)}}
+\\vspace{3mm}
+`;
+      for (let oi = 0; oi < step.config.options.length && oi < 5; oi++) {
+        body += `\\par\\noindent\\hspace{8mm}${optionBadge(labels[oi])}\\hspace{2mm}${tex(step.config.options[oi])}\\vspace{2.5mm}\n`;
+      }
+      body += `\\end{tcolorbox}\n`;
+      answerList.push({ num: globalQ, ans: labels[step.config.answer] || "?", text: step.config.options[step.config.answer]?.substring(0, 60) || "---" });
+      body += sectionDivider();
+    }
+  }
+
+  // Answer key
+  body += `
+\\newpage
+\\begin{tikzpicture}[remember picture,overlay]
+  \\shade[left color=brand-purple, right color=brand-teal!70!brand-purple]
+    ([yshift=-14mm]current page.north west) rectangle (current page.north east);
+  \\node[anchor=center, white, font=\\fontsize{18}{22}\\bfseries\\selectfont]
+    at ([yshift=-7mm]current page.north) {Answer Key};
+\\end{tikzpicture}
+
+\\vspace{12mm}
+
+{\\small
+\\rowcolors{2}{brand-cream}{white}
+\\begin{tabularx}{\\textwidth}{>{}p{10mm} >{\\centering\\arraybackslash}p{12mm} >{\\raggedright\\arraybackslash}X}
+\\rowcolor{brand-purple!15}
+\\textbf{\\color{brand-navy}\\#} & \\textbf{\\color{brand-navy}Ans} & \\textbf{\\color{brand-navy}Answer Text} \\\\[1mm]
+\\hline
+`;
+  for (const a of answerList) {
+    body += `\\textbf{${a.num}} & {\\color{brand-purple}\\bfseries ${a.ans}} & ${tex(a.text)} \\\\\n`;
+  }
+  body += `\\end{tabularx}
+}
+`;
 
   body += "\\end{document}\n";
   return body;

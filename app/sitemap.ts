@@ -18,6 +18,7 @@ import { practiceQuestions } from "@/data/practice-questions";
 import { flashcardCategories, flashcardDecks } from "@/data/flashcard-categories";
 import { flashcards } from "@/data/flashcard-data";
 import { getDeckCategory as getFlashcardDeckCategory } from "@/lib/flashcard-data";
+import { getAllItalianLessonMeta } from "@/lib/italian-data";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -59,7 +60,7 @@ function buildAlternates(path: string) {
  *   4 – Blog posts
  */
 export async function generateSitemaps() {
-  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }];
+  return [{ id: 0 }, { id: 1 }, { id: 2 }, { id: 3 }, { id: 4 }, { id: 5 }, { id: 6 }, { id: 7 }];
 }
 
 /* ── Sitemap chunks ──────────────────────────────────────────────── */
@@ -83,6 +84,8 @@ export default async function sitemap(props: {
       return buildQuestionsSitemap();
     case 6:
       return buildFlashcardsSitemap();
+    case 7:
+      return buildItalianSitemap();
     default:
       return [];
   }
@@ -117,6 +120,7 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
     ["/resources/media", 0.8, "monthly"],
     ["/resources/glossary", 0.8, "monthly"],
     ["/resources/clinical-cases", 0.8, "monthly"],
+    ["/resources/italian", 0.8, "weekly"],
     ["/for-professors/guides", 0.7, "monthly"],
     ["/for-professors/assets", 0.7, "monthly"],
     ["/for-professors/templates", 0.7, "monthly"],
@@ -560,6 +564,39 @@ function buildFlashcardsSitemap(): MetadataRoute.Sitemap {
       lastModified: CONTENT_UPDATED,
       changeFrequency: "monthly",
       priority: 0.6,
+      alternates: buildAlternates(path),
+    });
+  }
+
+  return entries;
+}
+
+/* ================================================================== */
+/*  Chunk 7 — Italian lessons                                          */
+/* ================================================================== */
+
+function buildItalianSitemap(): MetadataRoute.Sitemap {
+  const entries: MetadataRoute.Sitemap = [];
+  const italianLessons = getAllItalianLessonMeta();
+
+  // Landing page
+  const landingPath = "/resources/italian";
+  entries.push({
+    url: `${BASE_URL}/${defaultLocale}${landingPath}`,
+    lastModified: CONTENT_UPDATED,
+    changeFrequency: "weekly",
+    priority: 0.8,
+    alternates: buildAlternates(landingPath),
+  });
+
+  // Individual lesson pages
+  for (const lesson of italianLessons) {
+    const path = `/resources/italian/${lesson.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.8,
       alternates: buildAlternates(path),
     });
   }

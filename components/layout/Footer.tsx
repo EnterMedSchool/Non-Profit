@@ -194,11 +194,12 @@ export default function Footer() {
                 <li>
                   <FooterLink href={`/${locale}/tools`}>{nav("tools")}</FooterLink>
                 </li>
-                <li>
+                {/* TODO: temporarily hidden — re-enable when guides content is ready */}
+                {/* <li>
                   <FooterLink href={`/${locale}/for-professors`}>
                     {nav("guides")}
                   </FooterLink>
-                </li>
+                </li> */}
                 <li>
                   <FooterLink href={`/${locale}/events`}>{nav("events")}</FooterLink>
                 </li>

@@ -1,0 +1,1546 @@
+{
+  "slug": "lesson-1",
+  "title": "Signora Cia",
+  "summary": "Salve dottore. Ho malissimo alla pancia.",
+  "objectives": "[\"Understand Patient II goals\",\"Review bedside etiquette\",\"Prime SBAR phrasing\"]",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 18,
+  "position": 0,
+  "steps": [
+    {
+      "slug": "day1-medgen-glossary",
+      "stepType": "glossary",
+      "title": "Medicina Generale — frasi e abbreviazioni",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 0,
+      "config": {
+        "mode": "glossary",
+        "terms": [
+          {
+            "lemma": "Si è scaricato regolarmente?",
+            "english": "Did you go to the bathroom?"
+          },
+          {
+            "lemma": "Ha mangiato?",
+            "english": "Did you eat?"
+          },
+          {
+            "lemma": "Ha dormito bene?",
+            "english": "Did you sleep well?"
+          },
+          {
+            "lemma": "Posso prenderle la pressione?",
+            "english": "Can I take your blood pressure?"
+          },
+          {
+            "lemma": "Prelievo",
+            "english": "Blood draw"
+          },
+          {
+            "lemma": "EGA",
+            "english": "Arterial blood draw"
+          },
+          {
+            "lemma": "FA (fibrillazione atriale)",
+            "english": "AF (atrial fibrillation)"
+          },
+          {
+            "lemma": "AA (aria ambiente)",
+            "english": "Room air (no supplemental O₂)"
+          },
+          {
+            "lemma": "CN",
+            "english": "Cannula"
+          },
+          {
+            "lemma": "Può tossire?",
+            "english": "Can you cough?"
+          },
+          {
+            "lemma": "Dica una parola",
+            "english": "Say something"
+          },
+          {
+            "lemma": "Toni cardiaci: ritmici/aritmici, con pause libere/con soffi",
+            "english": "Heart sounds: rhythmic or arrhythmic, with or without murmurs"
+          },
+          {
+            "lemma": "Addome dolente/dolorabile",
+            "english": "Painful or tender abdomen"
+          }
+        ]
+      },
+      "termIds": [
+        133,
+        134,
+        135,
+        136,
+        137,
+        138,
+        139,
+        140,
+        141,
+        142,
+        143,
+        144,
+        145
+      ]
+    },
+    {
+      "slug": "day1-ps-abdominal-pain-dialogue",
+      "stepType": "dialogue",
+      "title": "Dolore addominale al PS",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 1,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning Ms. Cia, how are you?",
+            "italian": "Buongiorno Signora Cia, come sta?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Hello doctor. My belly really hurts.",
+            "italian": "Salve dottore. Ho malissimo alla pancia.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Were you able to eat last night?",
+            "italian": "È riuscita a mangiare ieri sera?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Not much, just plain pasta.",
+            "italian": "Non tanto, solo pasta in bianco.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Have you been able to have a bowel movement?",
+            "italian": "Si è scaricata regolarmente?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "No, it’s been three days since I managed to go.",
+            "italian": "No, sono tre giorni che non riesco a scaricarmi.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "I’ll examine you and we’ll do a blood draw to understand what’s going on.",
+            "italian": "La visito e facciamo un prelievo del sangue per capire cosa succede.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right, thank you.",
+            "italian": "Va bene, grazie.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        137,
+        133
+      ]
+    },
+    {
+      "slug": "day1-ps-abdominal-pain-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Dolore addominale",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 2,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 2,
+            "prompt": "Da quanti giorni la paziente non si scarica?",
+            "options": [
+              "1",
+              "2",
+              "3",
+              "4"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Che esame propone il dottore?",
+            "options": [
+              "RX torace",
+              "Prelievo del sangue",
+              "ECG",
+              "Gastroscopia"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Che cosa ha mangiato la paziente la sera precedente?",
+            "options": [
+              "Riso in bianco",
+              "Solo pasta in bianco",
+              "Minestrone",
+              "Pane e formaggio"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        137,
+        133
+      ]
+    },
+    {
+      "slug": "day1-surgery-glossary",
+      "stepType": "glossary",
+      "title": "Chirurgia — parole chiave",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 3,
+      "config": {
+        "mode": "glossary",
+        "terms": [
+          {
+            "lemma": "Sala operatoria",
+            "english": "Operating room"
+          },
+          {
+            "lemma": "Non toccare",
+            "english": "Do not touch"
+          },
+          {
+            "lemma": "Aghi",
+            "english": "Needles"
+          },
+          {
+            "lemma": "Strumenti",
+            "english": "Instruments"
+          },
+          {
+            "lemma": "Ambulatorio",
+            "english": "Outpatient clinic"
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        147,
+        148,
+        149,
+        150
+      ]
+    },
+    {
+      "slug": "day1-appendicitis-dialogue",
+      "stepType": "dialogue",
+      "title": "Sospetta appendicite",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 4,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Hello Ms. Ite, how are you?",
+            "italian": "Salve Signora Ite, come sta?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Hello doctor. I feel nauseous and my belly really hurts.",
+            "italian": "Salve dottoressa. Ho la nausea e mi fa malissimo la pancia.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Where exactly does your belly hurt?",
+            "italian": "Dove le fa male la pancia esattamente?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Here, in the lower right.",
+            "italian": "Qui in basso a destra.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "May I examine you?",
+            "italian": "Posso visitarla?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes.",
+            "italian": "Sì.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Does it hurt more when I press or when I let go?",
+            "italian": "Fa più male quando schiaccio o quando rilascio?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "When you release.",
+            "italian": "Quando rilascia.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Do you have your blood tests with you?",
+            "italian": "Ha con sé gli esami del sangue?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes.",
+            "italian": "Sì.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Your white cells are very high. It looks like appendicitis; we need a CT to confirm.",
+            "italian": "Ha i leucociti molto alti. Sembra appendicite; dobbiamo fare una TAC per confermare.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "And if it is appendicitis?",
+            "italian": "E se è appendicite?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "We’ll take you to the operating room and remove the appendix.",
+            "italian": "La porteremo in sala operatoria e toglieremo l’appendice.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        160
+      ]
+    },
+    {
+      "slug": "day1-appendicitis-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Appendicite",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 5,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 3,
+            "prompt": "Dove è localizzato il dolore?",
+            "options": [
+              "Epigastrio",
+              "In alto a sinistra",
+              "In basso a sinistra",
+              "In basso a destra"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Quale manovra provoca più dolore?",
+            "options": [
+              "La pressione",
+              "Il rilascio",
+              "La percussione",
+              "Palpazione profonda del fianco sinistro"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Quale esame serve per confermare la diagnosi?",
+            "options": [
+              "RM",
+              "RX addome",
+              "TAC",
+              "Ecografia cardiaca"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        160
+      ]
+    },
+    {
+      "slug": "day1-abdomen-quickcheck-mcq",
+      "stepType": "multi_choice",
+      "title": "Check rapido — Esame dell’addome",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 6,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Quale fase valuta la peristalsi?",
+            "options": [
+              "Ispezione",
+              "Auscultazione",
+              "Percussione",
+              "Palpazione"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale segno rientra nell’ispezione?",
+            "options": [
+              "Segni di Cullen/Grey-Turner",
+              "Peristalsi",
+              "Toni cardiaci",
+              "Piastrine"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        163,
+        164,
+        165,
+        166,
+        167,
+        168
+      ]
+    },
+    {
+      "slug": "day1-hematology-glossary",
+      "stepType": "glossary",
+      "title": "Ematologia — parole chiave",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 7,
+      "config": {
+        "mode": "glossary",
+        "terms": [
+          {
+            "lemma": "Salasso",
+            "english": "Phlebotomy"
+          },
+          {
+            "lemma": "Posso visitarla",
+            "english": "Can I examine you"
+          },
+          {
+            "lemma": "PCR (proteina reattiva C)",
+            "english": "CRP"
+          },
+          {
+            "lemma": "Fegato",
+            "english": "Liver"
+          },
+          {
+            "lemma": "Milza",
+            "english": "Spleen"
+          },
+          {
+            "lemma": "Cellule rosse",
+            "english": "Red blood cells"
+          },
+          {
+            "lemma": "Piastrine",
+            "english": "Platelets"
+          },
+          {
+            "lemma": "GB (globulo bianco)",
+            "english": "White blood cell"
+          },
+          {
+            "lemma": "Linfociti",
+            "english": "Lymphocytes"
+          },
+          {
+            "lemma": "Trapianto di midollo osseo",
+            "english": "Bone marrow transplant"
+          },
+          {
+            "lemma": "TAC",
+            "english": "CT scan"
+          },
+          {
+            "lemma": "RM (risonanza magnetica)",
+            "english": "MRI"
+          },
+          {
+            "lemma": "Malattie del sangue",
+            "english": "Blood diseases"
+          }
+        ]
+      },
+      "termIds": [
+        199,
+        151,
+        152,
+        153,
+        154,
+        155,
+        156,
+        157,
+        158,
+        159,
+        160,
+        161,
+        162
+      ]
+    },
+    {
+      "slug": "day1-hematology-case-readrespond",
+      "stepType": "read_respond",
+      "title": "Caso clinico — Ematologia",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 8,
+      "config": {
+        "mode": "read_respond",
+        "answer": 2,
+        "options": [
+          "SpO₂ 99% in aria ambiente",
+          "Temperatura 37,8 °C",
+          "PLT 1,6×10⁶/µL",
+          "MCV 90 fL"
+        ],
+        "passage": "Uomo di 45 anni con visione offuscata all’occhio destro e formicolio intermittente al piede destro da tre giorni; due settimane fa terapia di amoxicillina-acido clavulonico per sinusite; febbricola serale. T 37,8 °C, PA 126/78, FC 92, SpO₂ 99% in aria ambiente. Esame obiettivo: nessuna splenomegalia, linfoadenopatia o petecchie; fundoscopia nella norma; neurologico: ridotta sensibilità al pin-prick sul dorso del piede destro. Hb 15,3 g/dL, Hct 45,9%, MCV 90 fL, PLT 1,6×10⁶/µL, WBC 14×10³/µL, CRP 78 mg/L, ferritina 580 ng/mL; striscio: piastrine grandi normomorfe.",
+        "question": "Quale valore è più evidentemente anomalo?"
+      },
+      "termIds": [
+        156,
+        140,
+        152
+      ]
+    },
+    {
+      "slug": "day1-ps-fever-dialogue",
+      "stepType": "dialogue",
+      "title": "PS — febbre e tosse",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 9,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, how do you feel today?",
+            "italian": "Buongiorno, come si sente oggi?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Not great, I’m coughing and have a bit of fever.",
+            "italian": "Non benissimo, tossisco e ho un po’ di febbre.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Can you cough?",
+            "italian": "Può tossire?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "May I take your blood pressure and then we’ll do a blood draw?",
+            "italian": "Posso prenderle la pressione e poi facciamo un prelievo?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes, that’s fine.",
+            "italian": "Sì, va bene.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "For now stay on room air. Heart sounds are rhythmic, without murmurs.",
+            "italian": "Per ora resta in AA. I toni cardiaci sono ritmici, senza soffi.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "If needed we’ll also do an arterial blood gas.",
+            "italian": "Se necessario facciamo anche un EGA.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        142,
+        136,
+        137,
+        140,
+        138,
+        144
+      ]
+    },
+    {
+      "slug": "day1-abdomen-constipation-dialogue",
+      "stepType": "dialogue",
+      "title": "Dolore addominale e stipsi",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 10,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good evening, did you eat anything today? Did you sleep well last night?",
+            "italian": "Buonasera, ha mangiato qualcosa oggi? Ha dormito bene stanotte?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "I ate little and slept poorly.",
+            "italian": "Ho mangiato poco e ho dormito male.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Have you been able to move your bowels regularly?",
+            "italian": "Si è scaricato regolarmente?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "No, nothing for two days.",
+            "italian": "No, da due giorni niente.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "On exam the abdomen is tender. Let’s do a blood draw to understand better.",
+            "italian": "All’esame l’addome è dolorabile. Facciamo un prelievo per capire meglio.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        133,
+        137,
+        145
+      ]
+    },
+    {
+      "slug": "day1-ps-fever-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — PS febbre/tosse",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 11,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Quale frase usa il medico per misurare la pressione?",
+            "options": [
+              "Può tossire?",
+              "Posso prenderle la pressione",
+              "Dica una parola",
+              "Ha dormito bene"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Cosa significa “AA”?",
+            "options": [
+              "Antibiotici attivi",
+              "Aorta ascendente",
+              "Aria ambiente",
+              "Anamnesi accurata"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Quale esame propone oltre al prelievo, se necessario?",
+            "options": [
+              "RM",
+              "EGA",
+              "ECG",
+              "Gastroscopia"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        140,
+        138,
+        136
+      ]
+    },
+    {
+      "slug": "day1-abdomen-quickcheck-readrespond",
+      "stepType": "read_respond",
+      "title": "Check rapido — Addome",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 12,
+      "config": {
+        "mode": "read_respond",
+        "answer": 2,
+        "options": [
+          "RM",
+          "TAC",
+          "Prelievo del sangue",
+          "EGA immediato"
+        ],
+        "passage": "Donna di 68 anni con dolore addominale e stipsi. All’esame l’addome è dolorabile; i toni cardiaci sono ritmici, senza soffi. Il medico decide di iniziare con un prelievo.",
+        "question": "Qual è il primo esame eseguito?"
+      },
+      "termIds": [
+        145,
+        137
+      ]
+    },
+    {
+      "slug": "day1-or-briefing-dialogue",
+      "stepType": "dialogue",
+      "title": "Briefing in Sala Operatoria",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 13,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Welcome to the operating room. Please do not touch the instruments.",
+            "italian": "Benvenuto in sala operatoria. Per favore, non toccare gli strumenti.",
+            "speaker": "Strumentista"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Studente"
+          },
+          {
+            "english": "Be especially careful with needles: if you need something, ask me.",
+            "italian": "Attenzione soprattutto agli aghi: se hai bisogno chiedi a me.",
+            "speaker": "Strumentista"
+          },
+          {
+            "english": "Watch the sterile field and follow the instructions.",
+            "italian": "Osserva il campo sterile e segui le indicazioni.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        147,
+        148,
+        149
+      ]
+    },
+    {
+      "slug": "day1-preop-appendicitis-dialogue",
+      "stepType": "dialogue",
+      "title": "Appendicite — colloquio pre-op",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 14,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "The CT confirms appendicitis.",
+            "italian": "La TAC conferma l’appendicite.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "And now?",
+            "italian": "E adesso?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "We’ll take you to the operating room to remove the appendix.",
+            "italian": "La portiamo in sala operatoria per togliere l’appendice.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "After the operation I’ll see you in the clinic for follow-up.",
+            "italian": "Dopo l’intervento la rivedrò in ambulatorio per il controllo.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        150,
+        160
+      ]
+    },
+    {
+      "slug": "day1-or-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Sala Operatoria",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 15,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Dove si svolge l’intervento di appendicite?",
+            "options": [
+              "Ambulatorio",
+              "Sala operatoria",
+              "Medicina generale",
+              "Radiologia"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Cosa è meglio non toccare?",
+            "options": [
+              "Cartelle cliniche",
+              "Aghi e strumenti",
+              "Monitor",
+              "Pavimento"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Quale esame ha confermato la diagnosi?",
+            "options": [
+              "RM",
+              "RX torace",
+              "TAC",
+              "EGA"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        148,
+        149,
+        160
+      ]
+    },
+    {
+      "slug": "day1-appendicitis-readrespond",
+      "stepType": "read_respond",
+      "title": "Check rapido — Sospetta appendicite",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 16,
+      "config": {
+        "mode": "read_respond",
+        "answer": 1,
+        "options": [
+          "EGA",
+          "TAC",
+          "RM",
+          "Ecografia cardiaca"
+        ],
+        "passage": "Dolore in basso a destra; GB alti. Il medico richiede una TAC: il risultato conferma l’appendicite e programma l’intervento in sala operatoria.",
+        "question": "Quale indagine ha confermato la diagnosi?"
+      },
+      "termIds": [
+        160
+      ]
+    },
+    {
+      "slug": "day1-hematology-ambulatorio-dialogue",
+      "stepType": "dialogue",
+      "title": "Ambulatorio di Ematologia — piastrine alte",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 17,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, may I examine you?",
+            "italian": "Buongiorno, posso visitarla?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Of course.",
+            "italian": "Certo.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Liver and spleen aren’t palpable. Red cells are normal, but lymphocytes and platelets are very high; CRP elevated, WBC slightly increased.",
+            "italian": "Fegato e milza non sono palpabili. Le cellule rosse sono nella norma, ma linfociti e piastrine sono molto alti; PCR elevata, GB lievemente aumentati.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "What should I do?",
+            "italian": "Cosa devo fare?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "I’d suggest a phlebotomy and a follow-up in two weeks.",
+            "italian": "Le proporrei un salasso e un controllo tra due settimane.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        151,
+        153,
+        154,
+        155,
+        158,
+        156,
+        152,
+        157,
+        199
+      ]
+    },
+    {
+      "slug": "day1-hematology-dayhospital-dialogue",
+      "stepType": "dialogue",
+      "title": "Day-hospital per salasso",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 18,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, first we’ll do a blood draw and then proceed with the phlebotomy.",
+            "italian": "Buongiorno, prima facciamo un prelievo e poi procediamo con il salasso.",
+            "speaker": "Infermiere"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Let me know if you feel tired during the procedure.",
+            "italian": "Durante la procedura mi avvisi se si sente stanco.",
+            "speaker": "Infermiere"
+          }
+        ]
+      },
+      "termIds": [
+        137,
+        199
+      ]
+    },
+    {
+      "slug": "day1-hematology-ambulatorio-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Ematologia (ambulatorio)",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 19,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Quale procedura viene proposta per piastrine molto alte?",
+            "options": [
+              "Trapianto di midollo osseo",
+              "Salasso",
+              "RM",
+              "TAC"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Che cosa indica l’abbreviazione GB?",
+            "options": [
+              "Globuli bianchi",
+              "Gambe",
+              "Gastric bypass",
+              "Gravidanza bianca"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Qual è la Milza?",
+            "options": [
+              "Liver",
+              "Spleen",
+              "Kidney",
+              "Pancreas"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        199,
+        157,
+        154
+      ]
+    },
+    {
+      "slug": "day1-hematology-case-quickcheck",
+      "stepType": "read_respond",
+      "title": "Check rapido — Caso ematologico",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 20,
+      "config": {
+        "mode": "read_respond",
+        "answer": 0,
+        "options": [
+          "Salasso",
+          "RM",
+          "EGA",
+          "Trapianto di midollo osseo"
+        ],
+        "passage": "Uomo di 55 anni con astenia. Esami: Piastrine 1,2×10⁶/µL, PCR 60 mg/L, GB lievemente alti. Il medico spiega che inizieranno con un trattamento ambulatoriale semplice.",
+        "question": "Qual è il trattamento proposto?"
+      },
+      "termIds": [
+        199,
+        156,
+        152,
+        157
+      ]
+    },
+    {
+      "slug": "day1-rounds-dialogue",
+      "stepType": "dialogue",
+      "title": "Giro visita — controllo base",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 21,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, did you sleep well?",
+            "italian": "Buongiorno, ha dormito bene?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "So so.",
+            "italian": "Così così.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Did you eat?",
+            "italian": "Ha mangiato?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "A little.",
+            "italian": "Poco.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Have you been able to go to the bathroom?",
+            "italian": "Si è scaricato regolarmente?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Not much.",
+            "italian": "Non molto.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "May I take your blood pressure? Say a word… good. Can you cough?",
+            "italian": "Posso prenderle la pressione? Dica una parola… bene. Può tossire?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "On inspection I note a distended abdomen without Cullen or Grey-Turner signs.",
+            "italian": "All'ispezione noto un addome disteso, senza segni di Cullen/Grey-Turner.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "On auscultation the peristalsis is slowed.",
+            "italian": "All'auscultazione la peristalsi è rallentata.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "On percussion there is widespread tympany.",
+            "italian": "Alla percussione prevale un timpanismo diffuso.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "On palpation the abdomen remains tender.",
+            "italian": "Alla palpazione l'addome resta dolorabile.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Heart sounds are rhythmic, without murmurs.",
+            "italian": "I toni cardiaci sono ritmici, senza soffi.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "To be safe we’ll do a blood draw.",
+            "italian": "Per sicurezza facciamo un prelievo.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        135,
+        134,
+        133,
+        136,
+        143,
+        142,
+        165,
+        164,
+        166,
+        163,
+        167,
+        168,
+        144,
+        145,
+        137
+      ]
+    },
+    {
+      "slug": "day1-ps-ega-dialogue",
+      "stepType": "dialogue",
+      "title": "PS — aria ambiente ed EGA",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 22,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "How do you feel now?",
+            "italian": "Come si sente adesso?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Better, but I’m a bit worried.",
+            "italian": "Meglio, ma sono un po’ preoccupato.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Saturation is good: stay on room air for now.",
+            "italian": "La saturazione è buona: per ora resta in AA.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "We’ll place a cannula for fluids and monitor.",
+            "italian": "Inseriamo una CN per i fluidi e monitoriamo.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "We’ll do an arterial blood gas and a blood draw to check.",
+            "italian": "Facciamo un EGA e un prelievo per controllare.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        140,
+        141,
+        138,
+        137
+      ]
+    },
+    {
+      "slug": "day1-fa-dialogue",
+      "stepType": "dialogue",
+      "title": "Ritmo irregolare — sospetta FA",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 23,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Do you feel palpitations?",
+            "italian": "Sente palpitazioni?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Sometimes, yes.",
+            "italian": "Ogni tanto sì.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "On auscultation the heart sounds are irregular; it could be AF.",
+            "italian": "All’auscultazione i toni cardiaci sono aritmici; potrebbe essere FA.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "I’ll draw blood and we’ll monitor.",
+            "italian": "Le faccio un prelievo e monitoriamo.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Thank you.",
+            "italian": "Grazie.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        144,
+        139,
+        137
+      ]
+    },
+    {
+      "slug": "day1-or-safety-dialogue",
+      "stepType": "dialogue",
+      "title": "Sala operatoria — sicurezza 2.0",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 24,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Welcome to the operating room.",
+            "italian": "Benvenuto in sala operatoria.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Please don’t touch the instruments.",
+            "italian": "Per favore, non toccare gli strumenti.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Watch out for the needles too. If you need anything, ask.",
+            "italian": "Attenzione anche agli aghi. Se hai bisogno, chiedi.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Understood.",
+            "italian": "Ricevuto.",
+            "speaker": "Studente"
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        147,
+        148,
+        149
+      ]
+    },
+    {
+      "slug": "day1-postop-ambulatorio-dialogue",
+      "stepType": "dialogue",
+      "title": "Post-intervento — controllo in ambulatorio",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 25,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "The surgery went well.",
+            "italian": "L’intervento è andato bene.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "I’ll see you in the clinic in a week.",
+            "italian": "Fra una settimana la rivedo in ambulatorio.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right, thank you.",
+            "italian": "Va bene, grazie.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        150
+      ]
+    },
+    {
+      "slug": "day1-hematology-counseling-dialogue",
+      "stepType": "dialogue",
+      "title": "Counseling breve — piastrine e salasso",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 26,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Your platelets are high and CRP is elevated; white cells are a bit high.",
+            "italian": "Le piastrine sono alte e la PCR è elevata; i GB sono un po’ alti.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "What do we do?",
+            "italian": "Che cosa facciamo?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "We’ll start with a phlebotomy. Liver and spleen look fine on exam.",
+            "italian": "Iniziamo con un salasso. Fegato e milza oggi sono ok alla visita.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Understood.",
+            "italian": "Capito.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        156,
+        152,
+        157,
+        199,
+        153,
+        154
+      ]
+    },
+    {
+      "slug": "day1-hematology-imaging-dialogue",
+      "stepType": "dialogue",
+      "title": "Esami di completamento — TAC o RM?",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 27,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "For blood diseases we sometimes need a CT or MRI.",
+            "italian": "Per le malattie del sangue a volte servono TAC o RM.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Today it isn’t necessary; no bone marrow transplant, just monitoring.",
+            "italian": "Oggi non è necessario; niente trapianto di midollo osseo, solo controlli.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        160,
+        161,
+        159,
+        162
+      ]
+    },
+    {
+      "slug": "day1-abbreviations-mcq",
+      "stepType": "multi_choice",
+      "title": "Abbreviazioni & frasi — Day 1",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 28,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 0,
+            "prompt": "Che cosa significa “AA”?",
+            "options": [
+              "Aria ambiente",
+              "Ambulatorio",
+              "Aghi",
+              "Addome dolorabile"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Che cosa indica “FA”?",
+            "options": [
+              "Fibrillazione atriale",
+              "Aria ambiente",
+              "Ambulatorio",
+              "Trapianto di midollo osseo"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "“CN” sta per…",
+            "options": [
+              "Cannula",
+              "Cartella",
+              "Carotide",
+              "Catetere"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        140,
+        139,
+        141
+      ]
+    },
+    {
+      "slug": "day1-abdomen-phases-mcq",
+      "stepType": "multi_choice",
+      "title": "Esame dell’addome — fasi e segni",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 29,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Durante quale fase valuti la peristalsi?",
+            "options": [
+              "Ispezione",
+              "Auscultazione",
+              "Percussione",
+              "Palpazione"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale tra i seguenti rientra nell’ispezione?",
+            "options": [
+              "Segni di Cullen/Grey-Turner",
+              "Peristalsi",
+              "Toni cardiaci",
+              "Piastrine"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "“Addome dolorabile” è un reperto tipico della…",
+            "options": [
+              "Percussione",
+              "Palpazione",
+              "Auscultazione",
+              "Ispezione"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        163,
+        164,
+        145,
+        166,
+        168
+      ]
+    },
+    {
+      "slug": "day1-surgery-logistics-mcq",
+      "stepType": "multi_choice",
+      "title": "Chirurgia & logistica",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 30,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Dove si svolge l’intervento?",
+            "options": [
+              "Ambulatorio",
+              "Sala operatoria",
+              "EGA",
+              "RM"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale istruzione di sicurezza è corretta?",
+            "options": [
+              "Non toccare gli strumenti",
+              "Apri gli aghi",
+              "Spegni la TAC",
+              "Resta in AA"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Dove avviene il controllo dopo l’intervento?",
+            "options": [
+              "Sala operatoria",
+              "Ambulatorio",
+              "Ispezione",
+              "Percussione"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        146,
+        150,
+        148,
+        149,
+        140
+      ]
+    },
+    {
+      "slug": "day1-hematology-essentials-mcq",
+      "stepType": "multi_choice",
+      "title": "Ematologia — essenziali",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 31,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 0,
+            "prompt": "Quale voce indica le piastrine?",
+            "options": [
+              "PLT",
+              "WBC (GB)",
+              "RM",
+              "AA"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale procedura può essere proposta per valori elevati?",
+            "options": [
+              "Salasso",
+              "TAC",
+              "RM",
+              "Sala operatoria"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quali organi valuti spesso alla visita in ematologia?",
+            "options": [
+              "Fegato e milza",
+              "Cuore e carotide",
+              "Polmoni e rene",
+              "Valvola mitrale e tricuspidale"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        156,
+        199,
+        153,
+        154
+      ]
+    }
+  ]
+}

@@ -1,0 +1,1093 @@
+{
+  "slug": "lesson-2",
+  "title": "Signor Arto",
+  "summary": "Ho male al braccio sinistro e al petto.",
+  "objectives": "[\"Deliver concise updates\",\"Layer empathy statements\",\"Cue escalation phrases\"]",
+  "difficulty": "intermediate",
+  "estimatedMinutes": 31,
+  "position": 1,
+  "steps": [
+    {
+      "slug": "day2-pneumologia-glossary",
+      "stepType": "glossary",
+      "title": "Pneumologia — frasi e termini",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 0,
+      "config": {
+        "mode": "glossary",
+        "terms": [
+          {
+            "lemma": "BPCO",
+            "english": "COPD"
+          },
+          {
+            "lemma": "BCP (Broncopolmonite)",
+            "english": "Bronchopneumonia"
+          },
+          {
+            "lemma": "Posso ascoltarle i polmoni?",
+            "english": "May I listen to your lungs?"
+          },
+          {
+            "lemma": "Posso prenderle la saturazione?",
+            "english": "May I take your oxygen saturation?"
+          },
+          {
+            "lemma": "Mi dà un dito?",
+            "english": "Could I have a finger?"
+          },
+          {
+            "lemma": "Appoggi pure",
+            "english": "You can rest it down."
+          },
+          {
+            "lemma": "Faccia un bel respiro / un respiro profondo",
+            "english": "Take a deep breath."
+          },
+          {
+            "lemma": "Riesce a fare un colpo di tosse?",
+            "english": "Can you cough?"
+          },
+          {
+            "lemma": "Apra la bocca",
+            "english": "Open your mouth."
+          },
+          {
+            "lemma": "Fuma?",
+            "english": "Do you smoke?"
+          },
+          {
+            "lemma": "Murmure vescicolare",
+            "english": "Normal respiratory sound"
+          },
+          {
+            "lemma": "Rumori aggiuntivi: ronchi, sibili, crepiti, stridore, sfregamento",
+            "english": "Added sounds: rhonchi, wheeze, crackles, stridor, rub"
+          }
+        ]
+      },
+      "termIds": [
+        249,
+        250,
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        260
+      ]
+    },
+    {
+      "slug": "day2-pneumologia-polmonite-dialogue",
+      "stepType": "dialogue",
+      "title": "Pneumologia — Polmonite",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 1,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Hello Ms. Onia, how are you?",
+            "italian": "Salve Signora Onia, come sta?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Doctor, not very well. I keep coughing and I'm short of breath.",
+            "italian": "Dottore, non molto bene. Continuo a tossire e mi manca il fiato.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Have you also had a fever?",
+            "italian": "Ha avuto anche la febbre?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes, for a few days I've had 38.5°C and chills.",
+            "italian": "Sì, da qualche giorno ho 38.5 e i brividi.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Have you had a chest CT?",
+            "italian": "Ha fatto una TAC del torace?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes.",
+            "italian": "Sì.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "The clinical picture and imaging suggest you have pneumonia. I'll prescribe antibiotics and see you again in two weeks.",
+            "italian": "L'aspetto clinico e strumentale indica che lei ha la polmonite. Le prescrivo gli antibiotici. La rivedo tra due settimane.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        7,
+        266,
+        267,
+        269,
+        270,
+        272,
+        273
+      ]
+    },
+    {
+      "slug": "day2-pneumologia-polmonite-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Polmonite",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 2,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Che sintomi riferisce la paziente?",
+            "options": [
+              "Dolore toracico e sincope",
+              "Tosse e dispnea",
+              "Nausea e vomito",
+              "Otalgia"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Qual è la temperatura riferita?",
+            "options": [
+              "36.5",
+              "37.0",
+              "38.5",
+              "39.5"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Qual è la diagnosi proposta dal medico?",
+            "options": [
+              "Asma",
+              "BPCO",
+              "Polmonite",
+              "Pleurite"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        249,
+        266,
+        269,
+        270,
+        271,
+        272,
+        273,
+        274,
+        275
+      ]
+    },
+    {
+      "slug": "day2-cardiologia-dolore-toracico-dialogue",
+      "stepType": "dialogue",
+      "title": "Cardiologia — Dolore toracico e dispnea",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 3,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Hello Mr. Arto, how are you?",
+            "italian": "Salve Signor Arto, come sta?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Doctor, I'm not feeling well. My left arm and chest hurt.",
+            "italian": "Dottore non mi sento bene. Ho male al braccio sinistro e al petto.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Are you able to breathe normally?",
+            "italian": "Riesce a respirare normalmente?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "No, I'm short of breath even when I just climb one flight of stairs.",
+            "italian": "No, mi manca il fiato anche se faccio solo un piano di scale.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "How many pillows do you sleep with?",
+            "italian": "Con quanti cuscini dorme?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Two.",
+            "italian": "Due.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "May I examine you? I'll check your blood pressure now, all right?",
+            "italian": "Posso visitarla? Ora le provo la pressione, va bene?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes.",
+            "italian": "Sì.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        273,
+        275,
+        276,
+        277,
+        278
+      ]
+    },
+    {
+      "slug": "day2-cardiologia-dolore-toracico-comprehension",
+      "stepType": "multi_choice",
+      "title": "Comprensione — Cardiologia",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 4,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Dove riferisce dolore il paziente?",
+            "options": [
+              "Braccio destro e collo",
+              "Braccio sinistro e petto",
+              "Gamba sinistra",
+              "Addome"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Quanti cuscini usa per dormire?",
+            "options": [
+              "Uno",
+              "Due",
+              "Tre",
+              "Nessuno"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Che procedura esegue il medico alla fine del dialogo?",
+            "options": [
+              "ECG",
+              "TAC torace",
+              "Prende la pressione",
+              "Prelievo venoso"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        275,
+        276,
+        277,
+        278,
+        283
+      ]
+    },
+    {
+      "slug": "day2-respiratory-sounds-mcq",
+      "stepType": "multi_choice",
+      "title": "Check rapido — Suoni respiratori",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 5,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Il \"murmure vescicolare\" è...",
+            "options": [
+              "Un suono patologico",
+              "Un suono normale",
+              "Uno stridore",
+              "Uno sfregamento"
+            ]
+          },
+          {
+            "answer": 3,
+            "prompt": "Quale NON è elencato come rumore aggiuntivo?",
+            "options": [
+              "Ronchi",
+              "Sibili",
+              "Crepiti",
+              "Murmure vescicolare"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        259,
+        260,
+        261,
+        262,
+        263,
+        264,
+        265
+      ]
+    },
+    {
+      "slug": "day2-triage-saturazione-dialogue",
+      "stepType": "dialogue",
+      "title": "Triage — saturazione e prova della tosse",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 6,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning. Do you smoke?",
+            "italian": "Buongiorno. Fuma?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes, sometimes.",
+            "italian": "Sì, a volte.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "May I take your oxygen saturation? Could I have a finger? Rest it here.",
+            "italian": "Posso prenderle la saturazione? Mi dà un dito? Appoggi pure.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Take a deep breath... thank you. Can you give a cough?",
+            "italian": "Faccia un bel respiro... grazie. Riesce a fare un colpo di tosse?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Now, may I listen to your lungs?",
+            "italian": "Ora, posso ascoltarle i polmoni?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        258
+      ]
+    },
+    {
+      "slug": "day2-bedside-respiratory-sounds-dialogue",
+      "stepType": "dialogue",
+      "title": "Letto del paziente — rumori respiratori",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 7,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "May I listen to your lungs?",
+            "italian": "Posso ascoltarle i polmoni?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Yes.",
+            "italian": "Sì.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "On the left I hear vesicular breath sounds. On the right I hear some rhonchi and a few wheezes.",
+            "italian": "A sinistra sento murmure vescicolare. A destra sento dei ronchi e qualche sibilo.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Is it serious?",
+            "italian": "È grave?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Don't worry, we'll check and I'll explain everything.",
+            "italian": "Tranquillo, controlliamo e le spiego tutto.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        251,
+        259,
+        261,
+        262,
+        289
+      ]
+    },
+    {
+      "slug": "day2-bpco-followup-dialogue",
+      "stepType": "dialogue",
+      "title": "Follow-up BPCO — educazione e controllo",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 8,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, how is your COPD going?",
+            "italian": "Buongiorno, come va con la BPCO?",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Better, but I get tired quickly.",
+            "italian": "Meglio, ma mi stanco presto.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "Open your mouth... good. Take a deep breath.",
+            "italian": "Apra la bocca... bene. Faccia un respiro profondo.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Keep up the light activity and we'll see each other in a month.",
+            "italian": "Continui con l'attività leggera e ci vediamo tra un mese.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        249,
+        255,
+        257,
+        279,
+        290
+      ]
+    },
+    {
+      "slug": "day2-ambulatorio-soffio-dialogue",
+      "stepType": "dialogue",
+      "title": "Ambulatorio — sento un soffio",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 9,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "I'll place the stethoscope on your chest.",
+            "italian": "Le appoggio lo stetoscopio sul torace.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "I hear a murmur; let's assess it more closely.",
+            "italian": "Sento un soffio; lo valutiamo meglio.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "What does that mean?",
+            "italian": "Cosa significa?",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "It could be related to the mitral valve; let's do an electrocardiogram.",
+            "italian": "Potrebbe essere legato alla valvola mitrale; facciamo un elettrocardiogramma.",
+            "speaker": "Dottore"
+          }
+        ]
+      },
+      "termIds": [
+        280,
+        281,
+        282,
+        283
+      ]
+    },
+    {
+      "slug": "day2-rischio-carotide-dialogue",
+      "stepType": "dialogue",
+      "title": "Valutazione del rischio — carotide e profilo lipidico",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 10,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "I'm checking the carotid artery, please don't move.",
+            "italian": "Controllo la carotide, non si muova.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "All right.",
+            "italian": "Va bene.",
+            "speaker": "Paziente"
+          },
+          {
+            "english": "For prevention I'll also order a lipid profile.",
+            "italian": "Per la prevenzione chiedo anche un profilo lipidico.",
+            "speaker": "Dottore"
+          },
+          {
+            "english": "Agreed.",
+            "italian": "D'accordo.",
+            "speaker": "Paziente"
+          }
+        ]
+      },
+      "termIds": [
+        284,
+        285
+      ]
+    },
+    {
+      "slug": "day2-pneumologia-frasi-operative-mcq",
+      "stepType": "multi_choice",
+      "title": "Pneumologia — frasi operative",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 11,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Quale frase usi per misurare la SpO2?",
+            "options": [
+              "Mi dà un dito?",
+              "Posso prenderle la saturazione?",
+              "Apra la bocca",
+              "Fuma?"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale invito serve per posizionare il sensore?",
+            "options": [
+              "Appoggi pure",
+              "Faccia un bel respiro",
+              "Riesce a fare un colpo di tosse?",
+              "Posso ascoltarle i polmoni?"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale tra questi è un suono respiratorio normale?",
+            "options": [
+              "Murmure vescicolare",
+              "Ronchi",
+              "Sibili",
+              "Crepiti"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        251,
+        252,
+        253,
+        254,
+        255,
+        256,
+        257,
+        258,
+        259,
+        261,
+        262,
+        263
+      ]
+    },
+    {
+      "slug": "day2-pneumologia-rumori-aggiuntivi-mcq",
+      "stepType": "multi_choice",
+      "title": "Pneumologia — rumori aggiuntivi",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 12,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 0,
+            "prompt": "Quale rumore associ a secrezioni nelle vie bronchiali?",
+            "options": [
+              "Ronchi",
+              "Sibili",
+              "Crepiti",
+              "Murmure vescicolare"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale rumore indica ostruzione di vie aeree alte?",
+            "options": [
+              "Stridore",
+              "Crepiti",
+              "Ronchi",
+              "Sfregamento"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale rumore può suggerire interessamento pleurico?",
+            "options": [
+              "Sfregamento",
+              "Sibili",
+              "Murmure vescicolare",
+              "Nessuno dei precedenti"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        259,
+        261,
+        262,
+        263,
+        264,
+        265
+      ]
+    },
+    {
+      "slug": "day2-cardiologia-strumenti-esami-mcq",
+      "stepType": "multi_choice",
+      "title": "Cardiologia — strumenti ed esami",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 13,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 0,
+            "prompt": "Con quale strumento ascolti il cuore?",
+            "options": [
+              "Stetoscopio",
+              "Elettrocardiogramma",
+              "Profilo lipidico",
+              "Carotide"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale esame può mostrare un blocco di branca?",
+            "options": [
+              "Elettrocardiogramma",
+              "Profilo lipidico",
+              "Stetoscopio",
+              "Carotide"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale termine indica \"heart failure\"?",
+            "options": [
+              "Scompenso cardiaco",
+              "Soffio",
+              "Arresto cardiaco",
+              "Valvola Tricuspide"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale di questi è un vaso palpabile al collo?",
+            "options": [
+              "Carotide",
+              "Valvola Mitrale",
+              "Stetoscopio",
+              "Profilo lipidico"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        280,
+        281,
+        282,
+        283,
+        284,
+        285,
+        286,
+        287,
+        288
+      ]
+    },
+    {
+      "slug": "day2-reparto-glossary",
+      "stepType": "glossary",
+      "title": "Frasi di cortesia in reparto",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 14,
+      "config": {
+        "mode": "glossary",
+        "terms": [
+          {
+            "lemma": "Per favore sa dirmi dove posso trovare il capo sala?",
+            "english": "Please, may you tell me where I can find the head nurse?"
+          },
+          {
+            "lemma": "Per favore sa dove posso trovare il signor Luigi?",
+            "english": "Please, do you know where I can find Mr Luigi?"
+          },
+          {
+            "lemma": "Sono una studentessa di medicina. / Sono uno studente di medicina.",
+            "english": "I am a medical student."
+          },
+          {
+            "lemma": "Sono una studentessa / uno studente del prof. Esposito.",
+            "english": "I am a student of Prof. Esposito."
+          },
+          {
+            "lemma": "Sono venuto/a qui per fare un po' di pratica a fare prelievi.",
+            "english": "I came here to practice blood draws."
+          },
+          {
+            "lemma": "Mi scusi, posso chiederle un'informazione?",
+            "english": "Excuse me, may I ask you something?"
+          },
+          {
+            "lemma": "Potrei parlare con l'infermiera di turno?",
+            "english": "Could I speak with the nurse on duty?"
+          },
+          {
+            "lemma": "Posso unirmi al giro visita?",
+            "english": "May I join the ward round?"
+          },
+          {
+            "lemma": "Posso fare un prelievo sotto supervisione?",
+            "english": "May I do a blood draw under supervision?"
+          },
+          {
+            "lemma": "In quale stanza si trova il signor Luigi?",
+            "english": "Which room is Mr Luigi in?"
+          }
+        ]
+      },
+      "termIds": [
+        291,
+        292,
+        293,
+        294,
+        295,
+        296,
+        297,
+        298,
+        299,
+        300
+      ]
+    },
+    {
+      "slug": "day2-reparto-chiedere-caposala-dialogue",
+      "stepType": "dialogue",
+      "title": "Arrivo in reparto — chiedere del capo sala",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 15,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, excuse me: could you tell me where I can find the head nurse?",
+            "italian": "Buongiorno, mi scusi: per favore sa dirmi dove posso trovare il capo sala?",
+            "speaker": "Studentessa"
+          },
+          {
+            "english": "Sure: they're in the nurses' office, at the end of the hallway on the right.",
+            "italian": "Certo: è nell'ufficio infermieri, in fondo al corridoio a destra.",
+            "speaker": "Infermiere"
+          },
+          {
+            "english": "Thanks a lot. May I also join the ward round later?",
+            "italian": "Grazie mille. Posso anche unirmi al giro visita più tardi?",
+            "speaker": "Studentessa"
+          },
+          {
+            "english": "Yes, speak with the head nurse and coordinate with her.",
+            "italian": "Sì, parli con la caposala e si accordi con lei.",
+            "speaker": "Infermiere"
+          }
+        ]
+      },
+      "termIds": [
+        291,
+        298
+      ]
+    },
+    {
+      "slug": "day2-reparto-cercare-paziente-dialogue",
+      "stepType": "dialogue",
+      "title": "Orientamento — cercare un paziente",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 16,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, do you know where I can find Mr. Luigi?",
+            "italian": "Buongiorno, per favore sa dove posso trovare il signor Luigi?",
+            "speaker": "Studente"
+          },
+          {
+            "english": "Yes, he's in room 12, at the end of the hallway on the left.",
+            "italian": "Sì, è in stanza 12, alla fine del corridoio a sinistra.",
+            "speaker": "Infermiera"
+          },
+          {
+            "english": "Thank you. May I introduce myself to the family first?",
+            "italian": "Grazie. Posso presentarmi prima ai familiari?",
+            "speaker": "Studente"
+          },
+          {
+            "english": "Of course, that's the best thing to do.",
+            "italian": "Certo, è la cosa migliore.",
+            "speaker": "Infermiera"
+          }
+        ]
+      },
+      "termIds": [
+        292,
+        300
+      ]
+    },
+    {
+      "slug": "day2-reparto-presentazione-studentessa-dialogue",
+      "stepType": "dialogue",
+      "title": "Presentazione allo staff — studentessa",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 17,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, I'm a medical student. I'm a student of Prof. Esposito.",
+            "italian": "Buongiorno, sono una studentessa di medicina. Sono una studentessa del prof. Esposito.",
+            "speaker": "Studentessa"
+          },
+          {
+            "english": "Nice to meet you. Today follow Nurse Rossi.",
+            "italian": "Piacere. Oggi segua l'infermiera Rossi.",
+            "speaker": "Capo sala"
+          },
+          {
+            "english": "Thank you, gladly.",
+            "italian": "Grazie, volentieri.",
+            "speaker": "Studentessa"
+          }
+        ]
+      },
+      "termIds": [
+        293,
+        294
+      ]
+    },
+    {
+      "slug": "day2-reparto-presentazione-studente-dialogue",
+      "stepType": "dialogue",
+      "title": "Presentazione allo staff — studente",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 18,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "Good morning, I'm a medical student. I'm a student of Prof. Esposito.",
+            "italian": "Buongiorno, sono uno studente di medicina. Sono uno studente del prof. Esposito.",
+            "speaker": "Studente"
+          },
+          {
+            "english": "Nice to meet you. Please follow Nurse Bianchi.",
+            "italian": "Piacere. Per favore, segua l'infermiera Bianchi.",
+            "speaker": "Capo sala"
+          },
+          {
+            "english": "Thanks!",
+            "italian": "Grazie!",
+            "speaker": "Studente"
+          }
+        ]
+      },
+      "termIds": [
+        293,
+        294
+      ]
+    },
+    {
+      "slug": "day2-reparto-pratica-prelievi-dialogue",
+      "stepType": "dialogue",
+      "title": "Pratica prelievi — sotto supervisione",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 19,
+      "config": {
+        "mode": "dialogue",
+        "lines": [
+          {
+            "english": "I'm here to get some practice doing blood draws. Can I do one under supervision?",
+            "italian": "Sono venuto/a qui per fare un po' di pratica a fare prelievi. Posso farne uno sotto supervisione?",
+            "speaker": "Studente/ssa"
+          },
+          {
+            "english": "Have you already seen the procedure? Let's start together with a stable patient.",
+            "italian": "Hai già visto la procedura? Iniziamo insieme con un paziente stabile.",
+            "speaker": "Infermiera"
+          },
+          {
+            "english": "Yes, thank you.",
+            "italian": "Sì, grazie.",
+            "speaker": "Studente/ssa"
+          },
+          {
+            "english": "Then let's prepare the supplies and head to room 12.",
+            "italian": "Allora prepariamo il materiale e poi andiamo in stanza 12.",
+            "speaker": "Infermiera"
+          }
+        ]
+      },
+      "termIds": [
+        295,
+        299
+      ]
+    },
+    {
+      "slug": "day2-reparto-cortesia-mcq",
+      "stepType": "multi_choice",
+      "title": "Comprensione — frasi di cortesia",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 20,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Qual è la forma più cortese per chiedere del capo sala?",
+            "options": [
+              "Capo sala dov'è?",
+              "Per favore sa dirmi dove posso trovare il capo sala?",
+              "Dov'è il capo sala?",
+              "Ehi, capo sala!"
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale frase comunica chiaramente il tuo ruolo?",
+            "options": [
+              "Sono una studentessa/uno studente di medicina.",
+              "Io medicina studentessa.",
+              "Sono il medico responsabile.",
+              "Studio medicina... tipo."
+            ]
+          },
+          {
+            "answer": 0,
+            "prompt": "Quale frase esprime lo scopo con tono adeguato?",
+            "options": [
+              "Sono venuto/a qui per fare un po' di pratica a fare prelievi.",
+              "Sono venuto/a qui per fare cose.",
+              "Voglio fare prelievi adesso.",
+              "Faccio io senza supervisione."
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        291,
+        293,
+        295
+      ]
+    },
+    {
+      "slug": "day2-reparto-orientamento-mcq",
+      "stepType": "multi_choice",
+      "title": "Comprensione — orientamento in reparto",
+      "helper": null,
+      "prompt": null,
+      "mascotPose": null,
+      "position": 21,
+      "config": {
+        "mode": "multi_choice",
+        "questions": [
+          {
+            "answer": 1,
+            "prompt": "Dove si trova il signor Luigi secondo le indicazioni?",
+            "options": [
+              "Stanza 5, subito a destra",
+              "Stanza 12, fine corridoio a sinistra",
+              "Stanza 20, ascensore B",
+              "Sala medicazioni"
+            ]
+          },
+          {
+            "answer": 2,
+            "prompt": "Con chi ti accordi per unirti al giro visita?",
+            "options": [
+              "Il barista",
+              "Il tecnico di radiologia",
+              "Il capo sala / la caposala",
+              "Il portinaio"
+            ]
+          },
+          {
+            "answer": 1,
+            "prompt": "Qual è il comportamento corretto prima di un prelievo da studente?",
+            "options": [
+              "Procedere senza dire nulla",
+              "Chiedere supervisione e presentarsi",
+              "Chiedere ai familiari e basta",
+              "Aspettare e poi andare a casa"
+            ]
+          }
+        ]
+      },
+      "termIds": [
+        292,
+        298,
+        299,
+        300
+      ]
+    }
+  ]
+}

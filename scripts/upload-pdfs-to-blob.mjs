@@ -73,6 +73,7 @@ async function main() {
         const result = await put(blobPath, buffer, {
           access: "public",
           addRandomSuffix: false,
+          allowOverwrite: true,
           contentType: "application/pdf",
           token: TOKEN,
         });

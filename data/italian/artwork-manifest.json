@@ -1,0 +1,744 @@
+{
+  "generatedAt": "2025-10-11T09:15:23.446Z",
+  "sourceRoot": "public/LearningIllustrations/Italian",
+  "variants": [
+    {
+      "name": "256w",
+      "width": 256
+    },
+    {
+      "name": "512w",
+      "width": 512
+    }
+  ],
+  "assets": {
+    "Italian/Core/LeoAngry.png": {
+      "original": {
+        "path": "Italian/Core/LeoAngry.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 490619,
+        "format": "png",
+        "hash": "344ebbc51990e5c4458d7eed80d0e263c6d5724e"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoAngry-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11838,
+          "format": "image/webp",
+          "hash": "dd03f8f8d470cf0387e092234a47eb0057019327"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoAngry-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 24938,
+          "format": "image/webp",
+          "hash": "006f72679863956b6347ca1bbb8ec85afb84b1e4"
+        }
+      }
+    },
+    "Italian/Core/LeoLearningItalian.png": {
+      "original": {
+        "path": "Italian/Core/LeoLearningItalian.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 669560,
+        "format": "png",
+        "hash": "72161d40beaabafa5cf8bf30a2491c3ec53d9b1b"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoLearningItalian-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 13104,
+          "format": "image/webp",
+          "hash": "e882c7eb5dd5b5c879682ea6939a433f3049478b"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoLearningItalian-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 29764,
+          "format": "image/webp",
+          "hash": "03ac9ab7012041709f4806499d815b8a836d0d51"
+        }
+      }
+    },
+    "Italian/Core/LeoLightBulbMomentLearningSomethingNew.png": {
+      "original": {
+        "path": "Italian/Core/LeoLightBulbMomentLearningSomethingNew.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 430886,
+        "format": "png",
+        "hash": "69b2afe12db9070bde1a519bbb99f32c44e34fcc"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoLightBulbMomentLearningSomethingNew-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 12492,
+          "format": "image/webp",
+          "hash": "ae333a8250567888575ba793dbb8fe10d2ada0ea"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoLightBulbMomentLearningSomethingNew-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 29052,
+          "format": "image/webp",
+          "hash": "52e19de229ac65f56e475bc72df2d221d43c3baa"
+        }
+      }
+    },
+    "Italian/Core/LeoReading.png": {
+      "original": {
+        "path": "Italian/Core/LeoReading.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 567809,
+        "format": "png",
+        "hash": "0fb2ba499c9da4c0c66d39392a2d7d9d870aae99"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoReading-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11572,
+          "format": "image/webp",
+          "hash": "8172e3ea330fa003a08e764b6fd3d4f73618942a"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoReading-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 24660,
+          "format": "image/webp",
+          "hash": "3db9ae650d0d56208352986aff439fa290059b25"
+        }
+      }
+    },
+    "Italian/Core/LeoVeryAngry.png": {
+      "original": {
+        "path": "Italian/Core/LeoVeryAngry.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 528254,
+        "format": "png",
+        "hash": "317633bf035d64c665045716252d2e26b80e715a"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoVeryAngry-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 15164,
+          "format": "image/webp",
+          "hash": "24eedc2fe17651d52e18461e2f08af81b07265d2"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoVeryAngry-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 33196,
+          "format": "image/webp",
+          "hash": "7cc0eb505b7ba8774dfbba1bb7c4646cbd8c16c7"
+        }
+      }
+    },
+    "Italian/Core/LeoWavingHi.png": {
+      "original": {
+        "path": "Italian/Core/LeoWavingHi.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 411594,
+        "format": "png",
+        "hash": "6d6aaebc2f195c5d4be02a80cad5688685742d82"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Core/LeoWavingHi-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 9946,
+          "format": "image/webp",
+          "hash": "4aac039ec06b9d414c61cfc591974a15683d2495"
+        },
+        "512w": {
+          "path": "Italian/optimized/Core/LeoWavingHi-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 21264,
+          "format": "image/webp",
+          "hash": "88f9e27be17a9977229a069eff967067b6706688"
+        }
+      }
+    },
+    "Italian/Dialog/DoctorTalkingLeft.png": {
+      "original": {
+        "path": "Italian/Dialog/DoctorTalkingLeft.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 462593,
+        "format": "png",
+        "hash": "c8197c27c09a73b0894f02420c55b66377f69b1d"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Dialog/DoctorTalkingLeft-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 10812,
+          "format": "image/webp",
+          "hash": "3d35b6826d99d618271f60625c807b7a46810df2"
+        },
+        "512w": {
+          "path": "Italian/optimized/Dialog/DoctorTalkingLeft-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 24038,
+          "format": "image/webp",
+          "hash": "3b14d0357867ff7d6714e9e40e0d411106d86b73"
+        }
+      }
+    },
+    "Italian/Dialog/DoctorTalkingRight.png": {
+      "original": {
+        "path": "Italian/Dialog/DoctorTalkingRight.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 590271,
+        "format": "png",
+        "hash": "839a687b49b6d6ebf1a667bcf767e6615c3142a1"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Dialog/DoctorTalkingRight-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 12582,
+          "format": "image/webp",
+          "hash": "1ac121682aa14257bd19e62c3b3588a816798f6a"
+        },
+        "512w": {
+          "path": "Italian/optimized/Dialog/DoctorTalkingRight-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 27490,
+          "format": "image/webp",
+          "hash": "752367c918d16ac2ab80870b15455b88064a6d54"
+        }
+      }
+    },
+    "Italian/Dialog/SickPatientHighFeverLookingLeft.png": {
+      "original": {
+        "path": "Italian/Dialog/SickPatientHighFeverLookingLeft.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 417663,
+        "format": "png",
+        "hash": "4d9dc5867b482b4b5998ccf9ecebad3379566e85"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Dialog/SickPatientHighFeverLookingLeft-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 12372,
+          "format": "image/webp",
+          "hash": "e840a5f3a70287e4b80618e75ef9e633b8e5eab0"
+        },
+        "512w": {
+          "path": "Italian/optimized/Dialog/SickPatientHighFeverLookingLeft-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 27758,
+          "format": "image/webp",
+          "hash": "9eb00141430c312224030d8698c677becda777c8"
+        }
+      }
+    },
+    "Italian/Dialog/SickPatientLookingLeft.png": {
+      "original": {
+        "path": "Italian/Dialog/SickPatientLookingLeft.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 383682,
+        "format": "png",
+        "hash": "b8cf29a67a62daecae33d2aded576d51e8d5d0dc"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Dialog/SickPatientLookingLeft-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 9950,
+          "format": "image/webp",
+          "hash": "f15c87702bb4d439b58485c013090b14c91793f4"
+        },
+        "512w": {
+          "path": "Italian/optimized/Dialog/SickPatientLookingLeft-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 21936,
+          "format": "image/webp",
+          "hash": "ec11ce7bdf00b14ad640d03dc0c72aa2471b7714"
+        }
+      }
+    },
+    "Italian/Progress/Unit10.png": {
+      "original": {
+        "path": "Italian/Progress/Unit10.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1478463,
+        "format": "png",
+        "hash": "b6bcbe2df587485af0792dc2c163da8f2c3992b6"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit10-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 19062,
+          "format": "image/webp",
+          "hash": "51cc899e42f7e76da0d507256809973adfbbea09"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit10-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 43984,
+          "format": "image/webp",
+          "hash": "87e531b7de80544d6a20e913fe51c53bfbb74739"
+        }
+      }
+    },
+    "Italian/Progress/Unit11.png": {
+      "original": {
+        "path": "Italian/Progress/Unit11.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1356182,
+        "format": "png",
+        "hash": "7e1a3bd47d89ed10b1c8f9c6c15b755fe907ea78"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit11-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16350,
+          "format": "image/webp",
+          "hash": "ba1b06911a8e5dea51b30cc73cd8fcb4ece7e453"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit11-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 35946,
+          "format": "image/webp",
+          "hash": "2a3e421428e579165de8423880733c00e1003c96"
+        }
+      }
+    },
+    "Italian/Progress/Unit12.png": {
+      "original": {
+        "path": "Italian/Progress/Unit12.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1183915,
+        "format": "png",
+        "hash": "ad8b0ee0f55f847b333c8acb544eb7966ed8015e"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit12-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16480,
+          "format": "image/webp",
+          "hash": "1131c95b76e92b63c69311dcca69a2722689aca3"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit12-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 37166,
+          "format": "image/webp",
+          "hash": "b19423b3d34b2e7c01aac85a633c9170c50321a5"
+        }
+      }
+    },
+    "Italian/Progress/Unit13.png": {
+      "original": {
+        "path": "Italian/Progress/Unit13.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1259184,
+        "format": "png",
+        "hash": "68533284086885b060a3d7fba0e78f91b0732c58"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit13-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 14804,
+          "format": "image/webp",
+          "hash": "e09dd81ee4892c9fc549d52c399746653757f514"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit13-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 32130,
+          "format": "image/webp",
+          "hash": "37e1e5ac5f285ae28243eca4b3e73a9802867519"
+        }
+      }
+    },
+    "Italian/Progress/Unit14.png": {
+      "original": {
+        "path": "Italian/Progress/Unit14.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1402014,
+        "format": "png",
+        "hash": "d0a1243a4a1d844d68747e22309735251eb509f1"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit14-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 17402,
+          "format": "image/webp",
+          "hash": "bb9c4b472e2470125955f8e9878bc578f68c7817"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit14-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 39276,
+          "format": "image/webp",
+          "hash": "2f5d7ea7165bcef11a8838ab80330ca3bc3f625e"
+        }
+      }
+    },
+    "Italian/Progress/Unit1Progress.png": {
+      "original": {
+        "path": "Italian/Progress/Unit1Progress.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1349650,
+        "format": "png",
+        "hash": "7aeeeba36b94392bdf43c4110559358a53219221"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit1Progress-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 17832,
+          "format": "image/webp",
+          "hash": "ef1bb77b697d2d1a258ca8d02ffacf2ada2e59af"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit1Progress-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 38012,
+          "format": "image/webp",
+          "hash": "106ccc43b69814b47e08719d7d0cfa8dc8dff13e"
+        }
+      }
+    },
+    "Italian/Progress/Unit2.png": {
+      "original": {
+        "path": "Italian/Progress/Unit2.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1591521,
+        "format": "png",
+        "hash": "c9cb1dfaec6531a6d267fadd281ede8bbacf0707"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit2-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 19392,
+          "format": "image/webp",
+          "hash": "7cefa5c3e62b3fe5db0f8bef67d97d84e7f8a8b9"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit2-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 45462,
+          "format": "image/webp",
+          "hash": "d93bc5ad8b5d2ddfc81b3f614bd4245adc88b63e"
+        }
+      }
+    },
+    "Italian/Progress/Unit3.png": {
+      "original": {
+        "path": "Italian/Progress/Unit3.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1455404,
+        "format": "png",
+        "hash": "e13d96488d7c714154d846746764ffe8235656da"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit3-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16972,
+          "format": "image/webp",
+          "hash": "7d808a2549eb8a627207b8d9acbcf54280548a62"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit3-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 37192,
+          "format": "image/webp",
+          "hash": "0b2350345aa44d0cc5e0895630a5a677befdc9b5"
+        }
+      }
+    },
+    "Italian/Progress/Unit4.png": {
+      "original": {
+        "path": "Italian/Progress/Unit4.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1314358,
+        "format": "png",
+        "hash": "a96f5b5cd04ec41e834c7b65875931b4afe9e91f"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit4-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16064,
+          "format": "image/webp",
+          "hash": "4a3a8089bbb96854d2e3f4a97c46ff5a5d7d2ddc"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit4-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 36220,
+          "format": "image/webp",
+          "hash": "7d05e97dac122d43b0579777c60c952cb99f2705"
+        }
+      }
+    },
+    "Italian/Progress/Unit5.png": {
+      "original": {
+        "path": "Italian/Progress/Unit5.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1413994,
+        "format": "png",
+        "hash": "9cc5b96f7504224e68004b559de994a13887d9d5"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit5-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16346,
+          "format": "image/webp",
+          "hash": "113c2fde573d37d6988a221205c9601f9c6e2d39"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit5-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 37590,
+          "format": "image/webp",
+          "hash": "d173a4ff9e09c7f2781e2bdcf1e77a392a25735e"
+        }
+      }
+    },
+    "Italian/Progress/Unit6.png": {
+      "original": {
+        "path": "Italian/Progress/Unit6.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1439250,
+        "format": "png",
+        "hash": "c8970de11f15ad8acea232e8f6dcc065989db904"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit6-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 18206,
+          "format": "image/webp",
+          "hash": "ab1669bf8fc7749d2dcf2ea30f9ed2b59e075bc0"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit6-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 47708,
+          "format": "image/webp",
+          "hash": "93ac1dc0649a399146ccdfc15c8a0133ea391a9e"
+        }
+      }
+    },
+    "Italian/Progress/Unit7.png": {
+      "original": {
+        "path": "Italian/Progress/Unit7.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1538723,
+        "format": "png",
+        "hash": "e8ef9179ec4dbf8c1d2a09a7c040ed12f400b710"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit7-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 17412,
+          "format": "image/webp",
+          "hash": "74482246b45f7aa03da66c36a1fe3c4e9b5d1749"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit7-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 40612,
+          "format": "image/webp",
+          "hash": "bfe293b1fcd0853f51f5da576c76bc553fc28a91"
+        }
+      }
+    },
+    "Italian/Progress/Unit8.png": {
+      "original": {
+        "path": "Italian/Progress/Unit8.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1705845,
+        "format": "png",
+        "hash": "fc8a4d837b4e440cad1e12f415c795c48e3cdea3"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit8-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 22916,
+          "format": "image/webp",
+          "hash": "4e51808570009e29d77f25ea3607bd697f42d852"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit8-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 56338,
+          "format": "image/webp",
+          "hash": "0f2e44f30e2a95c09a2abb81824af8fc276dd690"
+        }
+      }
+    },
+    "Italian/Progress/Unit9.png": {
+      "original": {
+        "path": "Italian/Progress/Unit9.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 1309226,
+        "format": "png",
+        "hash": "f4cdfefce72bb846277810d9e11b09398ab22b8f"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Progress/Unit9-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 16178,
+          "format": "image/webp",
+          "hash": "b7aba37afe3b18312ecc1c76c1e965496c3655f9"
+        },
+        "512w": {
+          "path": "Italian/optimized/Progress/Unit9-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 35840,
+          "format": "image/webp",
+          "hash": "4149d2d90faf8b305d6807d7b9ded8332a4e31d7"
+        }
+      }
+    },
+    "Italian/SpecificSemioticExams/SickPatientNeuroReflexExam.png": {
+      "original": {
+        "path": "Italian/SpecificSemioticExams/SickPatientNeuroReflexExam.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 339305,
+        "format": "png",
+        "hash": "1ce1341816b78ba9c705331a53627693963a0756"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/SpecificSemioticExams/SickPatientNeuroReflexExam-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 10336,
+          "format": "image/webp",
+          "hash": "43587e9f4ce809f66754b5b2f17c7c5fe2def828"
+        },
+        "512w": {
+          "path": "Italian/optimized/SpecificSemioticExams/SickPatientNeuroReflexExam-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 23320,
+          "format": "image/webp",
+          "hash": "d93e500034e68377ac62d26cdfd34ada7b132261"
+        }
+      }
+    },
+    "Italian/Unit1/LeoBasicUnit1Icon.png": {
+      "original": {
+        "path": "Italian/Unit1/LeoBasicUnit1Icon.png",
+        "width": 1000,
+        "height": 1000,
+        "bytes": 493499,
+        "format": "png",
+        "hash": "2debae18bcccf4664ca31d6d0d7524a2fe05533f"
+      },
+      "variants": {
+        "256w": {
+          "path": "Italian/optimized/Unit1/LeoBasicUnit1Icon-256w.webp",
+          "width": 256,
+          "height": 256,
+          "bytes": 11964,
+          "format": "image/webp",
+          "hash": "babd49876105fc724632cb026485be62ef62241a"
+        },
+        "512w": {
+          "path": "Italian/optimized/Unit1/LeoBasicUnit1Icon-512w.webp",
+          "width": 512,
+          "height": 512,
+          "bytes": 26490,
+          "format": "image/webp",
+          "hash": "d778a6efb4f98bd586d2dce85acb8c512d59c705"
+        }
+      }
+    }
+  }
+}

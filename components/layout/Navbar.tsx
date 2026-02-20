@@ -142,33 +142,34 @@ const navItems: NavItem[] = [
       },
     ],
   },
-  {
-    labelKey: "guides",
-    href: "/for-professors",
-    children: [
-      {
-        href: "/for-professors/guides",
-        labelKey: "teachingGuides",
-        descKey: "guidesDesc",
-        icon: BookOpen,
-        color: "bg-showcase-purple/15 text-showcase-purple",
-      },
-      {
-        href: "/for-professors/templates",
-        labelKey: "templates",
-        descKey: "assetsDesc",
-        icon: Palette,
-        color: "bg-showcase-pink/15 text-showcase-pink",
-      },
-      {
-        href: "/for-professors/assets",
-        labelKey: "teachingAssets",
-        descKey: "assetsDesc",
-        icon: Palette,
-        color: "bg-showcase-orange/15 text-showcase-orange",
-      },
-    ],
-  },
+  // TODO: temporarily hidden — re-enable when guides content is ready
+  // {
+  //   labelKey: "guides",
+  //   href: "/for-professors",
+  //   children: [
+  //     {
+  //       href: "/for-professors/guides",
+  //       labelKey: "teachingGuides",
+  //       descKey: "guidesDesc",
+  //       icon: BookOpen,
+  //       color: "bg-showcase-purple/15 text-showcase-purple",
+  //     },
+  //     {
+  //       href: "/for-professors/templates",
+  //       labelKey: "templates",
+  //       descKey: "assetsDesc",
+  //       icon: Palette,
+  //       color: "bg-showcase-pink/15 text-showcase-pink",
+  //     },
+  //     {
+  //       href: "/for-professors/assets",
+  //       labelKey: "teachingAssets",
+  //       descKey: "assetsDesc",
+  //       icon: Palette,
+  //       color: "bg-showcase-orange/15 text-showcase-orange",
+  //     },
+  //   ],
+  // },
   { labelKey: "about", href: "/about" },
   { labelKey: "articles", href: "/articles" },
 ];

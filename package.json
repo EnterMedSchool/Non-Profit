@@ -12,7 +12,11 @@
     "generate:pdfs": "node scripts/generate-pdfs.mjs",
     "generate:pdfs:sample": "node scripts/generate-pdfs.mjs --sample",
     "upload:pdfs": "node scripts/upload-pdfs-to-blob.mjs",
-    "pull:db": "node scripts/pull-db-content.mjs"
+    "pull:db": "node scripts/pull-db-content.mjs",
+    "pull:italian": "node scripts/pull-italian-lessons.mjs",
+    "generate:italian-flashcards": "node scripts/generate-italian-flashcard-data.mjs",
+    "generate:italian-pdfs": "node scripts/generate-italian-pdfs.mjs",
+    "generate:italian-pdfs:sample": "node scripts/generate-italian-pdfs.mjs --sample"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.0",
