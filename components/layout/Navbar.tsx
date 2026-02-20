@@ -170,6 +170,8 @@ const navItems: NavItem[] = [
   //   ],
   // },
   { labelKey: "about", href: "/about" },
+  { labelKey: "universities", href: "/universities" },
+  { labelKey: "volunteer", href: "/volunteer" },
   { labelKey: "articles", href: "/articles" },
 ];
 

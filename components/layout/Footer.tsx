@@ -207,6 +207,12 @@ export default function Footer() {
                   <FooterLink href={`/${locale}/articles`}>{nav("articles")}</FooterLink>
                 </li>
                 <li>
+                  <FooterLink href={`/${locale}/universities`}>{nav("universities")}</FooterLink>
+                </li>
+                <li>
+                  <FooterLink href={`/${locale}/volunteer`}>{nav("volunteer")}</FooterLink>
+                </li>
+                <li>
                   <FooterLink href={`/${locale}/license`}>{nav("license")}</FooterLink>
                 </li>
               </ul>

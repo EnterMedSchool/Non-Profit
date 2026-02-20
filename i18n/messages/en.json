@@ -50,6 +50,8 @@
     "guides": "Guides",
     "events": "Events",
     "about": "About",
+    "universities": "My University",
+    "volunteer": "Volunteer",
     "articles": "Articles",
     "license": "License",
     "privacy": "Privacy",
@@ -3171,5 +3173,203 @@
       "viewFull": "View full term"
     },
     "randomTerm": "Random Term"
+  },
+  "volunteer": {
+    "title": "Volunteer with EnterMedSchool",
+    "metaDescription": "Join EnterMedSchool.org as a volunteer — help build free, open-source medical education resources. Represent your university, review materials, translate content, and more.",
+    "hero": {
+      "titlePre": "Join Our",
+      "titleHighlight": "Mission",
+      "annotation": "be part of something bigger!"
+    },
+    "subtitle": "EnterMedSchool.org is an open-source, non-profit project connecting medical students and professors to free AI-powered study tools. We need passionate people like you to help us grow.",
+    "mission": {
+      "title": "What is EnterMedSchool.org?",
+      "content": "EnterMedSchool.org is the non-profit sister project of entermedschool.com, founded and personally funded by Ari Horesh. Our mission is simple: provide medical students and professors with free, open-source AI-powered tools and study resources. We believe that better lessons and better tools lead to more engaged students — and ultimately, better doctors. Everything we build is free, open-source, and available to everyone."
+    },
+    "roles": {
+      "title": "How You Can Help",
+      "universityReps": "University Representatives",
+      "universityRepsDesc": "Spread the word at your university, provide us with slides and lecture notes so we can create flashcards and study materials for students. Help connect us with professors who want to improve their teaching.",
+      "contentCreators": "Content Creators",
+      "contentCreatorsDesc": "Help us create and spread content online. We produce plenty of educational content but need help reaching more students and educators across social media and university channels.",
+      "materialReviewers": "Material Reviewers",
+      "materialReviewersDesc": "Double-check and review our AI-generated study materials for accuracy. Quality assurance is critical — we need medical students and doctors to verify that our content is reliable and up to date.",
+      "translationReviewers": "Translation Reviewers",
+      "translationReviewersDesc": "We want to translate our materials into as many languages as possible. We need native speakers to review and approve translations to ensure accuracy and clarity.",
+      "professorLiaisons": "Professor Liaisons",
+      "professorLiaisonsDesc": "Help professors learn how to improve their slides, integrate AI into their teaching, and provide students with supplementary study materials using our free tools."
+    },
+    "paths": {
+      "title": "Two Ways to Get Involved",
+      "pathOneTitle": "We Do It For You",
+      "pathOneDesc": "Send us your slides, lecture notes, and study materials. We will create flashcards, practice questions, and notes from them — completely free — using our AI tools. Your students get high-quality study resources without any effort on your part.",
+      "pathTwoTitle": "Learn to Do It Yourself",
+      "pathTwoDesc": "We teach you and your fellow representatives how to use our open-source tools to create your own study platforms. Fork our code, host it on your own domain, share it with your classmates — or, if you prefer, we are happy to host your materials on our website, completely free."
+    },
+    "conduct": {
+      "title": "Code of Conduct",
+      "intro": "All volunteers and event participants are expected to uphold these principles:",
+      "respect": "Respect",
+      "respectDesc": "Treat every volunteer, student, and professor with dignity and kindness, regardless of background, language, or experience level.",
+      "professionalism": "Professionalism",
+      "professionalismDesc": "Represent EnterMedSchool with integrity. Be reliable, communicate clearly, and follow through on your commitments.",
+      "collaboration": "Collaboration",
+      "collaborationDesc": "Work as a team. Share knowledge openly, support each other, and celebrate the contributions of every member.",
+      "inclusivity": "Inclusivity",
+      "inclusivityDesc": "We welcome volunteers from every country, language, and background. Our community thrives on diversity and mutual respect.",
+      "integrity": "Academic Integrity",
+      "integrityDesc": "All materials must be accurate and honest. Never misrepresent content or cut corners on quality — our students depend on it."
+    },
+    "expectations": {
+      "title": "What to Expect",
+      "globalCommunity": "A Global Community",
+      "globalCommunityDesc": "Join medical students and doctors from all over the world. Network, share experiences, and build lasting connections.",
+      "meaningfulImpact": "Meaningful Impact",
+      "meaningfulImpactDesc": "Your contributions directly help students study better and become better doctors. Everything you build is free and accessible to all.",
+      "openSource": "Open-Source Experience",
+      "openSourceDesc": "Gain hands-on experience contributing to a real open-source project. Learn new tools, collaborate with a global team, and add it to your CV.",
+      "funProject": "A Fun Project",
+      "funProjectDesc": "This is not a chore — it is a chance to build something exciting with passionate people who care about education and technology."
+    },
+    "whoWeWant": {
+      "title": "Who We're Looking For",
+      "content": "We are mainly looking for medical students and doctors — not pre-meds — from all languages and all over the world. Whether you speak English, Italian, Arabic, Hebrew, or any other language, there is a place for you here. This is a fun opportunity to take part in a big project, network with doctors and future doctors, and build something meaningful together."
+    },
+    "contact": {
+      "cta": "Ready to join us? Reach out and let's get started.",
+      "email": "Send an Email",
+      "whatsapp": "Message on WhatsApp"
+    },
+    "founder": {
+      "title": "A Note from the Founder",
+      "content": "I, Ari Horesh, am very proud of this project and personally fund everything — from hosting to AI services and employees — to make open-source medical education a reality for everyone. Your help means the world to us."
+    }
+  },
+  "universities": {
+    "title": "Universities",
+    "metaDescription": "Free study materials made for your university lectures — flashcards, summaries, question banks, and Anki decks. Completely free, forever.",
+    "hero": {
+      "titlePre": "Study Materials Made for",
+      "titleHighlight": "Your Lectures",
+      "subtitle": "We create free flashcards, summaries, and question banks based on your actual lecture slides — completely free, forever. Send us your slides and we'll do the rest.",
+      "annotation": "100% free, always"
+    },
+    "howItWorks": {
+      "title": "How It Works",
+      "subtitle": "Getting free study materials for your lectures is simple.",
+      "stepLabel": "Step {number}",
+      "steps": {
+        "0": {
+          "title": "Send Us Your Slides",
+          "description": "Share your lecture slides or notes with us via email or WhatsApp — any format works."
+        },
+        "1": {
+          "title": "We Create Study Materials",
+          "description": "Our team converts your slides into flashcards, summaries, and question banks — completely free."
+        },
+        "2": {
+          "title": "Download & Study",
+          "description": "Access all materials right here, organized by university, course, and lecture. Download as PDF or import into Anki."
+        },
+        "3": {
+          "title": "Help Us Grow",
+          "description": "Tell your classmates! The more students participate, the more materials we can create for everyone."
+        }
+      },
+      "freeCallout": {
+        "title": "It's Completely Free",
+        "description": "We're medical students and doctors who believe education should be accessible to everyone. We do all of this because we love it — no catch, no fees, no premium tier.",
+        "email": "Send Us Your Slides",
+        "whatsapp": "WhatsApp Us"
+      }
+    },
+    "map": {
+      "course": "course",
+      "courses": "courses",
+      "readyForYou": "ready for you!",
+      "notHereYet": "Your university isn't here yet? We'd love to add it — just send us your slides!",
+      "itsFree": "It's free!",
+      "legendActive": "Materials available",
+      "legendComingSoon": "Coming soon",
+      "legendRequest": "Request your university"
+    },
+    "filters": {
+      "all": "All Countries",
+      "searchPlaceholder": "Search universities, courses, professors...",
+      "resultsCount": "{count} universities",
+      "noResults": "No universities match your search"
+    },
+    "card": {
+      "course": "course",
+      "courses": "courses",
+      "materials": "materials",
+      "comingSoon": "Coming Soon",
+      "comingSoonDesc": "Send us slides from this university and we'll create study materials — completely free!",
+      "contributedBy": "Contributed by {count} students"
+    },
+    "impact": {
+      "universities": "universities",
+      "courses": "courses",
+      "materials": "study materials",
+      "free": "100% Free"
+    },
+    "contributors": {
+      "title": "Made possible by students like you",
+      "thanks": "Thanks to {names}",
+      "andMore": "and {count} more",
+      "wantToContribute": "Want to contribute? Send us your slides"
+    },
+    "joinCta": {
+      "dontSeeTitle": "Don't See Your University?",
+      "missingCourseTitle": "Missing a Course at {university}?",
+      "fullTitle": "We Want to Help Your University Too",
+      "fullDesc": "Send us your lecture slides and we'll create study materials for you and your classmates — completely free. No catch, no fees. We just love helping medical students succeed.",
+      "inlineDesc": "Send us the slides and we'll create flashcards and study materials for your class — completely free.",
+      "compactDesc": "Send us your slides and we'll do the rest — for free!",
+      "emailBtn": "Email Us",
+      "whatsappBtn": "WhatsApp",
+      "orVisit": "Or visit our",
+      "volunteerPage": "volunteer page",
+      "benefits": {
+        "flashcards": "Custom flashcards based on your professor's slides",
+        "summaries": "Concise summaries of each lecture",
+        "questionBanks": "Practice questions tailored to your course",
+        "anki": "Anki-ready decks you can import instantly"
+      }
+    },
+    "detail": {
+      "breadcrumb": "Universities",
+      "courses": "Courses",
+      "lectures": "Lectures",
+      "materials": "Materials",
+      "freeForAll": "Free for all students",
+      "filterBySubject": "Filter by subject",
+      "filterByProfessor": "Filter by professor",
+      "allSubjects": "All Subjects",
+      "allProfessors": "All Professors",
+      "searchPlaceholder": "Search courses and lectures...",
+      "downloadAll": "Download All",
+      "downloadAllDesc": "Get all materials for this course as a ZIP",
+      "downloading": "Downloading...",
+      "lectureNumber": "Lecture {number}",
+      "relatedContent": "Related on Our Website",
+      "share": "Share",
+      "shareCourse": "Share This Course",
+      "copyLink": "Copy Link",
+      "linkCopied": "Link Copied!",
+      "shareWhatsapp": "Share via WhatsApp",
+      "spreadTitle": "Help Your Classmates Discover These Resources",
+      "spreadDesc": "The more students participate, the more materials we can create for everyone at {university}.",
+      "spreadProfessor": "Know a professor who'd want to collaborate? Connect us!",
+      "ankiImport": "Anki Import",
+      "noCoursesYet": "No courses available yet",
+      "noCoursesDesc": "We're working on adding materials for this university. Want to help? Send us your lecture slides!"
+    },
+    "materialType": {
+      "flashcards": "Flashcards",
+      "summary": "Summary",
+      "question-bank": "Questions"
+    }
   }
 }

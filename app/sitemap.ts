@@ -19,6 +19,7 @@ import { flashcardCategories, flashcardDecks } from "@/data/flashcard-categories
 import { flashcards } from "@/data/flashcard-data";
 import { getDeckCategory as getFlashcardDeckCategory } from "@/lib/flashcard-data";
 import { getAllItalianLessonMeta } from "@/lib/italian-data";
+import { getAllUniversities } from "@/data/universities";
 import { routing } from "@/i18n/routing";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
@@ -112,6 +113,8 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
     ["/clinical-semiotics", 0.9, "monthly"],
     // Section landing pages – 0.8
     ["/about", 0.8, "monthly"],
+    ["/volunteer", 0.8, "monthly"],
+    ["/universities", 0.8, "weekly"],
     ["/resources/questions", 0.8, "monthly"],
     ["/resources/flashcards", 0.8, "monthly"],
     ["/resources/videos", 0.8, "monthly"],
@@ -140,6 +143,20 @@ function buildStaticAndToolsSitemap(): MetadataRoute.Sitemap {
       changeFrequency,
       priority,
       alternates: buildAlternates(page),
+    });
+  }
+
+  /* ── University detail pages ──────────────────────────────────── */
+
+  for (const uni of getAllUniversities()) {
+    if (uni.status !== "active") continue;
+    const path = `/universities/${uni.slug}`;
+    entries.push({
+      url: `${BASE_URL}/${defaultLocale}${path}`,
+      lastModified: CONTENT_UPDATED,
+      changeFrequency: "weekly",
+      priority: 0.7,
+      alternates: buildAlternates(path),
     });
   }
 
