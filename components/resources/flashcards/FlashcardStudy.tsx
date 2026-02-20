@@ -185,12 +185,9 @@ export default function FlashcardStudy({
   }
 
   return (
-    <div className="mx-auto max-w-2xl space-y-6">
+    <div className="space-y-6">
       {/* Header */}
-      <div className="flex flex-wrap items-center justify-between gap-3">
-        <h1 className="font-display text-xl font-bold text-ink-dark">
-          {deckTitle}
-        </h1>
+      <div className="flex flex-wrap items-center justify-end gap-3">
         <div className="flex items-center gap-2">
           <button
             onClick={toggleShuffle}
@@ -242,7 +239,7 @@ export default function FlashcardStudy({
           onClick={handleFlip}
         >
           <div
-            className={`min-h-[300px] rounded-2xl border-3 border-ink-dark bg-white p-6 transition-shadow ${
+            className={`min-h-[200px] rounded-2xl border-3 border-ink-dark bg-white p-6 transition-shadow ${
               isFlipped ? "shadow-chunky-teal" : "shadow-chunky-purple"
             }`}
           >
@@ -256,7 +253,7 @@ export default function FlashcardStudy({
                 </p>
               </div>
             ) : (
-              <div data-speakable="question" className="flex min-h-[250px] items-center">
+              <div data-speakable="question" className="flex min-h-[160px] items-center">
                 <p className="whitespace-pre-wrap font-body text-xl font-medium leading-relaxed text-ink-dark">
                   {currentCard?.front}
                 </p>

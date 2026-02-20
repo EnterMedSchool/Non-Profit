@@ -215,7 +215,7 @@ export default function QuestionPlayer({
         initial={{ opacity: 0, scale: 0.96 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
-        className="mx-auto max-w-2xl rounded-2xl border-3 border-ink-dark bg-white p-6 shadow-chunky sm:p-8"
+        className="rounded-2xl border-3 border-ink-dark bg-white p-6 shadow-chunky sm:p-8"
       >
         <div className="text-center">
           <div className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-showcase-green/20">
@@ -268,13 +268,10 @@ export default function QuestionPlayer({
     : selectedOptionIndex;
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div>
       {/* Header */}
       <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
         <div className="flex items-center gap-3">
-          <h1 className="font-display text-xl font-bold text-ink-dark">
-            {deckTitle}
-          </h1>
           <span className="rounded-lg border-2 border-showcase-purple/20 bg-showcase-purple/10 px-2.5 py-1 font-display text-sm font-semibold text-showcase-purple">
             {correctCount} / {totalCount}
           </span>

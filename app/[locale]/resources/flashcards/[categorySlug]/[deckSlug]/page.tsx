@@ -170,7 +170,7 @@ export default async function DeckFlashcardsPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <AnimatedSection delay={0} animation="fadeIn">
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -202,7 +202,22 @@ export default async function DeckFlashcardsPage({
           </nav>
         </AnimatedSection>
 
-        {/* Hero */}
+        {/* Attribution reminder — top of page */}
+        <div className="mb-6 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5">
+          <Shield className="h-5 w-5 flex-shrink-0 text-showcase-teal" />
+          <span className="text-sm text-ink-muted">
+            {tc("licenseNote")}{" "}
+            <Link
+              href={`/${locale}/license`}
+              className="font-semibold text-showcase-purple hover:underline"
+            >
+              {tc("attributionRequiredLink")}
+            </Link>
+            .
+          </span>
+        </div>
+
+        {/* Hero with stats */}
         <PageHero
           titleHighlight={deck.title}
           gradient="from-showcase-purple via-showcase-teal to-showcase-green"
@@ -211,11 +226,8 @@ export default async function DeckFlashcardsPage({
             deck.cardCount === 1 ? "card" : "cards"
           }`}
           annotationColor="text-showcase-teal"
-        />
-
-        {/* Stats */}
-        <AnimatedSection delay={0.05} animation="scaleIn">
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+        >
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-xl border-3 border-ink-dark bg-showcase-purple/10 px-4 py-2 shadow-chunky-sm">
               <Layers className="h-5 w-5 text-showcase-purple" />
               <span className="font-display font-bold text-ink-dark">
@@ -241,64 +253,48 @@ export default async function DeckFlashcardsPage({
               </div>
             )}
           </div>
-        </AnimatedSection>
+        </PageHero>
 
-        {/* Flashcard study */}
-        <AnimatedSection delay={0.1} animation="fadeUp">
-          <div className="mt-8">
+        {/* Two-column layout: study area + sidebar */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
+          <AnimatedSection delay={0.1} animation="fadeUp">
             <FlashcardStudy
               cards={cards}
               deckTitle={deck.title}
               locale={locale}
             />
-          </div>
-        </AnimatedSection>
-
-        {/* Download & Embed panels */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <AnimatedSection delay={0.15} animation="fadeUp">
-            <DeckDownloadPanel
-              type="flashcards"
-              deckTitle={deck.title}
-              deckSlug={deck.slug}
-              items={cards.map((c) => ({
-                front: c.front,
-                back: c.back,
-                explanation: c.explanation,
-                stableId: c.stableId,
-                ordinal: c.ordinal,
-              }))}
-              pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
-            />
           </AnimatedSection>
-          <AnimatedSection delay={0.2} animation="fadeUp">
-            <EmbedCodePanel
-              type="flashcards"
-              title={deck.title}
-              embedData={{
-                title: deck.title,
-                cards: cards.slice(0, 30).map((c) => ({
+
+          <div className="space-y-6">
+            <AnimatedSection delay={0.15} animation="fadeUp">
+              <DeckDownloadPanel
+                type="flashcards"
+                deckTitle={deck.title}
+                deckSlug={deck.slug}
+                items={cards.map((c) => ({
                   front: c.front,
                   back: c.back,
-                })),
-              }}
-            />
-          </AnimatedSection>
-        </div>
-
-        {/* Attribution reminder */}
-        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5">
-          <Shield className="h-5 w-5 flex-shrink-0 text-showcase-teal" />
-          <span className="text-sm text-ink-muted">
-            {tc("licenseNote")}{" "}
-            <Link
-              href={`/${locale}/license`}
-              className="font-semibold text-showcase-purple hover:underline"
-            >
-              {tc("attributionRequiredLink")}
-            </Link>
-            .
-          </span>
+                  explanation: c.explanation,
+                  stableId: c.stableId,
+                  ordinal: c.ordinal,
+                }))}
+                pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
+              />
+            </AnimatedSection>
+            <AnimatedSection delay={0.2} animation="fadeUp">
+              <EmbedCodePanel
+                type="flashcards"
+                title={deck.title}
+                embedData={{
+                  title: deck.title,
+                  cards: cards.slice(0, 30).map((c) => ({
+                    front: c.front,
+                    back: c.back,
+                  })),
+                }}
+              />
+            </AnimatedSection>
+          </div>
         </div>
       </div>
     </main>

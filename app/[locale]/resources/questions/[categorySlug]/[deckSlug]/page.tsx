@@ -172,7 +172,7 @@ export default async function DeckPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <AnimatedSection delay={0} animation="fadeIn">
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -204,18 +204,30 @@ export default async function DeckPage({
           </nav>
         </AnimatedSection>
 
-        {/* Hero */}
+        {/* Attribution reminder — top of page */}
+        <div className="mb-6 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5">
+          <Shield className="h-5 w-5 flex-shrink-0 text-showcase-teal" />
+          <span className="text-sm text-ink-muted">
+            {tc("licenseNote")}{" "}
+            <Link
+              href={`/${locale}/license`}
+              className="font-semibold text-showcase-purple hover:underline"
+            >
+              {tc("attributionRequiredLink")}
+            </Link>
+            .
+          </span>
+        </div>
+
+        {/* Hero with stats */}
         <PageHero
           titleHighlight={deck.title}
           gradient="from-showcase-purple via-showcase-teal to-showcase-green"
           subtitle={deck.description ?? undefined}
           annotation={`${deck.questionCount} questions`}
           annotationColor="text-showcase-teal"
-        />
-
-        {/* Stats */}
-        <AnimatedSection delay={0.05} animation="scaleIn">
-          <div className="mt-6 flex flex-wrap items-center gap-3">
+        >
+          <div className="flex flex-wrap items-center justify-center gap-3">
             <div className="inline-flex items-center gap-2 rounded-xl border-3 border-ink-dark bg-showcase-purple/10 px-4 py-2 shadow-chunky-sm">
               <HelpCircle className="h-5 w-5 text-showcase-purple" />
               <span className="font-display font-bold text-ink-dark">
@@ -233,66 +245,50 @@ export default async function DeckPage({
               </span>
             )}
           </div>
-        </AnimatedSection>
+        </PageHero>
 
-        {/* Quiz player */}
-        <AnimatedSection delay={0.1} animation="fadeUp">
-          <div className="mt-8">
+        {/* Two-column layout: quiz player + sidebar */}
+        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
+          <AnimatedSection delay={0.1} animation="fadeUp">
             <QuestionPlayer
               questions={questions}
               deckTitle={deck.title}
               locale={locale}
             />
-          </div>
-        </AnimatedSection>
-
-        {/* Download & Embed panels */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <AnimatedSection delay={0.15} animation="fadeUp">
-            <DeckDownloadPanel
-              type="questions"
-              deckTitle={deck.title}
-              deckSlug={deck.slug}
-              items={questions.map((q) => ({
-                prompt: q.prompt,
-                explanation: q.explanation,
-                options: q.options,
-                stableId: q.stableId,
-                ordinal: q.ordinal,
-              }))}
-              pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
-              pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
-            />
           </AnimatedSection>
-          <AnimatedSection delay={0.2} animation="fadeUp">
-            <EmbedCodePanel
-              type="questions"
-              title={deck.title}
-              embedData={{
-                title: deck.title,
-                questions: questions.slice(0, 20).map((q) => ({
+
+          <div className="space-y-6">
+            <AnimatedSection delay={0.15} animation="fadeUp">
+              <DeckDownloadPanel
+                type="questions"
+                deckTitle={deck.title}
+                deckSlug={deck.slug}
+                items={questions.map((q) => ({
                   prompt: q.prompt,
-                  options: q.options,
                   explanation: q.explanation,
-                })),
-              }}
-            />
-          </AnimatedSection>
-        </div>
-
-        {/* Attribution reminder */}
-        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5">
-          <Shield className="h-5 w-5 flex-shrink-0 text-showcase-teal" />
-          <span className="text-sm text-ink-muted">
-            {tc("licenseNote")}{" "}
-            <Link
-              href={`/${locale}/license`}
-              className="font-semibold text-showcase-purple hover:underline"
-            >
-              {tc("attributionRequiredLink")}
-            </Link>
-            .
-          </span>
+                  options: q.options,
+                  stableId: q.stableId,
+                  ordinal: q.ordinal,
+                }))}
+                pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
+                pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
+              />
+            </AnimatedSection>
+            <AnimatedSection delay={0.2} animation="fadeUp">
+              <EmbedCodePanel
+                type="questions"
+                title={deck.title}
+                embedData={{
+                  title: deck.title,
+                  questions: questions.slice(0, 20).map((q) => ({
+                    prompt: q.prompt,
+                    options: q.options,
+                    explanation: q.explanation,
+                  })),
+                }}
+              />
+            </AnimatedSection>
+          </div>
         </div>
       </div>
     </main>

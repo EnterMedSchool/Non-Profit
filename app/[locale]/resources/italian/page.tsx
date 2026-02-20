@@ -7,10 +7,12 @@ import {
   FileText,
   ChevronRight,
   Languages,
+  Download,
 } from "lucide-react";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import { getAllItalianLessonMeta } from "@/lib/italian-data";
+import { blobAsset } from "@/lib/blob-url";
 import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL =
@@ -96,59 +98,106 @@ export default async function ItalianResourcesPage({
               animation="popIn"
               spring
             >
-              <Link
-                href={`/${locale}/resources/italian/${lesson.slug}`}
-                className="group relative flex h-full flex-col rounded-2xl border-3 border-showcase-green/20 bg-white p-6 shadow-chunky transition-all hover:-translate-y-1 hover:border-showcase-green/40 hover:shadow-[0_6px_24px_rgba(16,185,129,0.15)]"
-              >
-                <div className="flex items-center gap-3">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-showcase-green transition-transform duration-300 group-hover:scale-110">
-                    <Languages className="h-6 w-6 text-white" />
-                  </div>
-                  <div>
-                    <span className="text-xs font-bold uppercase tracking-wider text-showcase-green">
-                      Lesson {lesson.position + 1}
-                    </span>
-                    <h3 className="font-display text-lg font-bold text-ink-dark">
-                      {lesson.title}
-                    </h3>
-                  </div>
-                </div>
-
-                {lesson.summary && (
-                  <p className="mt-3 text-sm italic leading-relaxed text-ink-muted">
-                    &ldquo;{lesson.summary}&rdquo;
-                  </p>
-                )}
-
-                {/* Step type badges */}
-                <div className="mt-4 flex flex-wrap gap-2">
-                  {lesson.stepTypes.map((type) => {
-                    const info = STEP_TYPE_ICONS[type];
-                    if (!info) return null;
-                    const Icon = info.icon;
-                    return (
-                      <span
-                        key={type}
-                        className={`inline-flex items-center gap-1 rounded-md border border-ink-dark/5 bg-ink-dark/[0.02] px-2 py-0.5 text-[10px] font-semibold ${info.color}`}
-                      >
-                        <Icon className="h-3 w-3" />
-                        {type === "multi_choice"
-                          ? "Quizzes"
-                          : type === "read_respond"
-                            ? "Cases"
-                            : type.charAt(0).toUpperCase() + type.slice(1)}
+              <div className="group relative flex h-full flex-col rounded-2xl border-3 border-showcase-green/20 bg-white shadow-chunky transition-all hover:-translate-y-1 hover:border-showcase-green/40 hover:shadow-[0_6px_24px_rgba(16,185,129,0.15)]">
+                <Link
+                  href={`/${locale}/resources/italian/${lesson.slug}`}
+                  className="flex flex-1 flex-col p-6"
+                >
+                  <div className="flex items-center gap-3">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-showcase-green transition-transform duration-300 group-hover:scale-110">
+                      <Languages className="h-6 w-6 text-white" />
+                    </div>
+                    <div>
+                      <span className="text-xs font-bold uppercase tracking-wider text-showcase-green">
+                        Lesson {lesson.position + 1}
                       </span>
-                    );
-                  })}
-                </div>
+                      <h3 className="font-display text-lg font-bold text-ink-dark">
+                        {lesson.title}
+                      </h3>
+                    </div>
+                  </div>
 
-                <div className="mt-auto pt-4">
-                  <span className="inline-flex items-center gap-1.5 text-sm font-bold text-showcase-green transition-all group-hover:gap-2.5">
-                    Start lesson ({lesson.stepCount} steps)
-                    <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </span>
+                  {lesson.summary && (
+                    <p className="mt-3 text-sm italic leading-relaxed text-ink-muted">
+                      &ldquo;{lesson.summary}&rdquo;
+                    </p>
+                  )}
+
+                  {/* Step type badges */}
+                  <div className="mt-4 flex flex-wrap gap-2">
+                    {lesson.stepTypes.map((type) => {
+                      const info = STEP_TYPE_ICONS[type];
+                      if (!info) return null;
+                      const Icon = info.icon;
+                      return (
+                        <span
+                          key={type}
+                          className={`inline-flex items-center gap-1 rounded-md border border-ink-dark/5 bg-ink-dark/[0.02] px-2 py-0.5 text-[10px] font-semibold ${info.color}`}
+                        >
+                          <Icon className="h-3 w-3" />
+                          {type === "multi_choice"
+                            ? "Quizzes"
+                            : type === "read_respond"
+                              ? "Cases"
+                              : type.charAt(0).toUpperCase() + type.slice(1)}
+                        </span>
+                      );
+                    })}
+                  </div>
+
+                  <div className="mt-auto pt-4">
+                    <span className="inline-flex items-center gap-1.5 text-sm font-bold text-showcase-green transition-all group-hover:gap-2.5">
+                      Start lesson ({lesson.stepCount} steps)
+                      <ChevronRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </span>
+                  </div>
+                </Link>
+
+                {/* PDF downloads */}
+                <div className="border-t-2 border-dashed border-showcase-green/15 px-6 py-3">
+                  <div className="flex items-center gap-2">
+                    <Download className="h-3.5 w-3.5 shrink-0 text-ink-muted" />
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-ink-muted">
+                      PDFs
+                    </span>
+                    <div className="flex flex-wrap gap-1.5">
+                      {[
+                        {
+                          label: "Full Lesson",
+                          href: blobAsset(`/pdfs/italian/${lesson.slug}-full.pdf`),
+                          icon: FileText,
+                          accent: "bg-showcase-green/10 text-showcase-green hover:bg-showcase-green/20",
+                        },
+                        {
+                          label: "Dialogues",
+                          href: blobAsset(`/pdfs/italian/${lesson.slug}-dialogues.pdf`),
+                          icon: MessageSquare,
+                          accent: "bg-showcase-blue/10 text-showcase-blue hover:bg-showcase-blue/20",
+                        },
+                        {
+                          label: "Quiz",
+                          href: blobAsset(`/pdfs/italian/${lesson.slug}-quiz.pdf`),
+                          icon: HelpCircle,
+                          accent: "bg-showcase-purple/10 text-showcase-purple hover:bg-showcase-purple/20",
+                        },
+                      ].map((pdf) => {
+                        const PdfIcon = pdf.icon;
+                        return (
+                          <a
+                            key={pdf.label}
+                            href={pdf.href}
+                            download
+                            className={`inline-flex items-center gap-1 rounded-lg px-2.5 py-1 text-[11px] font-bold transition-colors ${pdf.accent}`}
+                          >
+                            <PdfIcon className="h-3 w-3" />
+                            {pdf.label}
+                          </a>
+                        );
+                      })}
+                    </div>
+                  </div>
                 </div>
-              </Link>
+              </div>
             </AnimatedSection>
           ))}
         </div>
