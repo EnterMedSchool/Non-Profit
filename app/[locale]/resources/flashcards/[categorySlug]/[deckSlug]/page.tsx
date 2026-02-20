@@ -255,20 +255,9 @@ export default async function DeckFlashcardsPage({
           </div>
         </PageHero>
 
-        {/* Flashcard study */}
+        {/* Download panel */}
         <AnimatedSection delay={0.1} animation="fadeUp">
           <div className="mt-8">
-            <FlashcardStudy
-              cards={cards}
-              deckTitle={deck.title}
-              locale={locale}
-            />
-          </div>
-        </AnimatedSection>
-
-        {/* Download & Embed panels */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <AnimatedSection delay={0.15} animation="fadeUp">
             <DeckDownloadPanel
               type="flashcards"
               deckTitle={deck.title}
@@ -282,8 +271,23 @@ export default async function DeckFlashcardsPage({
               }))}
               pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
             />
-          </AnimatedSection>
-          <AnimatedSection delay={0.2} animation="fadeUp">
+          </div>
+        </AnimatedSection>
+
+        {/* Flashcard study */}
+        <AnimatedSection delay={0.15} animation="fadeUp">
+          <div className="mt-8">
+            <FlashcardStudy
+              cards={cards}
+              deckTitle={deck.title}
+              locale={locale}
+            />
+          </div>
+        </AnimatedSection>
+
+        {/* Embed panel */}
+        <AnimatedSection delay={0.2} animation="fadeUp">
+          <div className="mt-8">
             <EmbedCodePanel
               type="flashcards"
               title={deck.title}
@@ -295,8 +299,8 @@ export default async function DeckFlashcardsPage({
                 })),
               }}
             />
-          </AnimatedSection>
-        </div>
+          </div>
+        </AnimatedSection>
       </div>
     </main>
   );

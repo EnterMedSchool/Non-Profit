@@ -247,20 +247,9 @@ export default async function DeckPage({
           </div>
         </PageHero>
 
-        {/* Quiz player */}
+        {/* Download panel */}
         <AnimatedSection delay={0.1} animation="fadeUp">
           <div className="mt-8">
-            <QuestionPlayer
-              questions={questions}
-              deckTitle={deck.title}
-              locale={locale}
-            />
-          </div>
-        </AnimatedSection>
-
-        {/* Download & Embed panels */}
-        <div className="mt-8 grid gap-6 lg:grid-cols-2">
-          <AnimatedSection delay={0.15} animation="fadeUp">
             <DeckDownloadPanel
               type="questions"
               deckTitle={deck.title}
@@ -275,8 +264,23 @@ export default async function DeckPage({
               pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
               pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
             />
-          </AnimatedSection>
-          <AnimatedSection delay={0.2} animation="fadeUp">
+          </div>
+        </AnimatedSection>
+
+        {/* Quiz player */}
+        <AnimatedSection delay={0.15} animation="fadeUp">
+          <div className="mt-8">
+            <QuestionPlayer
+              questions={questions}
+              deckTitle={deck.title}
+              locale={locale}
+            />
+          </div>
+        </AnimatedSection>
+
+        {/* Embed panel */}
+        <AnimatedSection delay={0.2} animation="fadeUp">
+          <div className="mt-8">
             <EmbedCodePanel
               type="questions"
               title={deck.title}
@@ -289,8 +293,8 @@ export default async function DeckPage({
                 })),
               }}
             />
-          </AnimatedSection>
-        </div>
+          </div>
+        </AnimatedSection>
       </div>
     </main>
   );
