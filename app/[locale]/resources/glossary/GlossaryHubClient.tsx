@@ -137,7 +137,7 @@ export default function GlossaryHubClient({
         </AnimatedSection>
 
         {/* Attribution */}
-        <div className="mt-6 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+        <div className="mt-6 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
           <span>
             {tc("licenseNote")}{" "}

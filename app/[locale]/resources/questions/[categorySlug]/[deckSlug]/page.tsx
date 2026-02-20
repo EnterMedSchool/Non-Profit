@@ -281,7 +281,7 @@ export default async function DeckPage({
         </div>
 
         {/* Attribution reminder */}
-        <div className="mt-8 flex items-center gap-2 rounded-2xl border-3 border-ink-dark bg-showcase-teal/10 px-5 py-4 shadow-chunky-sm">
+        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5">
           <Shield className="h-5 w-5 flex-shrink-0 text-showcase-teal" />
           <span className="text-sm text-ink-muted">
             {tc("licenseNote")}{" "}

@@ -374,7 +374,7 @@ export default async function ArticlePage({ params }: Props) {
           {/* ── Related tool links ──────────────────────────────────── */}
           {post.relatedTools && post.relatedTools.length > 0 && (
             <AnimatedSection animation="fadeUp" className="mt-10">
-              <div className="rounded-2xl border-2 border-showcase-teal/20 bg-showcase-teal/5 p-6">
+              <div className="rounded-2xl border border-showcase-teal/20 bg-white p-6">
                 <h2 className="font-display text-lg font-bold text-ink-dark">
                   Related Tools
                 </h2>

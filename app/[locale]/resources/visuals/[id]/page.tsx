@@ -222,7 +222,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
         <AnimatedSection delay={0.2} animation="fadeUp">
           <section className="mt-12">
             <div className="flex items-center gap-3 mb-6">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-showcase-purple/[0.06]">
                 <Sparkles className="h-5 w-5 text-showcase-purple" />
               </div>
               <h2 className="font-display text-2xl font-bold text-ink-dark">
@@ -346,7 +346,7 @@ export default async function VisualLessonDetailPage({ params }: VisualDetailPag
               label={t("shareThisLesson")}
             />
           </div>
-          <div className="mt-4 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+          <div className="mt-4 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
             <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
             <span>
               {t("assetsFreeNotice")}{" "}

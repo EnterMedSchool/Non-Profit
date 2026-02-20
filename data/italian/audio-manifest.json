@@ -1,0 +1,882 @@
+{
+  "version": "1.0",
+  "generatedAt": "2026-01-15T19:04:52.938Z",
+  "files": {
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc3.mp3",
+      "text": "Buongiorno Signora Cia, come sta?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc4.mp3",
+      "text": "Salve dottore. Ho malissimo alla pancia.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc5.mp3",
+      "text": "È riuscita a mangiare ieri sera?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc6.mp3",
+      "text": "Non tanto, solo pasta in bianco.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc7.mp3",
+      "text": "Si è scaricata regolarmente?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc8.mp3",
+      "text": "No, sono tre giorni che non riesco a scaricarmi.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dc9.mp3",
+      "text": "La visito e facciamo un prelievo del sangue per capire cosa succede.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-abdominal-pain-dialogue/day1-ps-abdominal-pain-dialogue-line-7": {
+      "path": "/audio/italian/7c9a44dc/2f6311df/4e610dca.mp3",
+      "text": "Va bene, grazie.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7260.mp3",
+      "text": "Salve Signora Ite, come sta?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7261.mp3",
+      "text": "Salve dottoressa. Ho la nausea e mi fa malissimo la pancia.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7262.mp3",
+      "text": "Dove le fa male la pancia esattamente?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7263.mp3",
+      "text": "Qui in basso a destra.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7264.mp3",
+      "text": "Posso visitarla?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7265.mp3",
+      "text": "Sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7266.mp3",
+      "text": "Fa più male quando schiaccio o quando rilascio?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-7": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7267.mp3",
+      "text": "Quando rilascia.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-8": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7268.mp3",
+      "text": "Ha con sé gli esami del sangue?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-9": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/55ba7269.mp3",
+      "text": "Sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-10": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/6193d9ef.mp3",
+      "text": "Ha i leucociti molto alti. Sembra appendicite; dobbiamo fare una TAC per confermare.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-11": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/6193d9f0.mp3",
+      "text": "E se è appendicite?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-appendicitis-dialogue/day1-appendicitis-dialogue-line-12": {
+      "path": "/audio/italian/7c9a44dc/7b5b2fdc/6193d9f1.mp3",
+      "text": "La porteremo in sala operatoria e toglieremo l’appendice.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510af.mp3",
+      "text": "Buongiorno, come si sente oggi?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510ae.mp3",
+      "text": "Non benissimo, tossisco e ho un po’ di febbre.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510ad.mp3",
+      "text": "Può tossire?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510ac.mp3",
+      "text": "Posso prenderle la pressione e poi facciamo un prelievo?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510ab.mp3",
+      "text": "Sì, va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510aa.mp3",
+      "text": "Per ora resta in AA. I toni cardiaci sono ritmici, senza soffi.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-fever-dialogue/day1-ps-fever-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dc/50539053/61b510a9.mp3",
+      "text": "Se necessario facciamo anche un EGA.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-abdomen-constipation-dialogue/day1-abdomen-constipation-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/06fe889f/114db67b.mp3",
+      "text": "Buonasera, ha mangiato qualcosa oggi? Ha dormito bene stanotte?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-abdomen-constipation-dialogue/day1-abdomen-constipation-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/06fe889f/114db67a.mp3",
+      "text": "Ho mangiato poco e ho dormito male.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-abdomen-constipation-dialogue/day1-abdomen-constipation-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/06fe889f/114db679.mp3",
+      "text": "Si è scaricato regolarmente?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-abdomen-constipation-dialogue/day1-abdomen-constipation-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/06fe889f/114db678.mp3",
+      "text": "No, da due giorni niente.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-abdomen-constipation-dialogue/day1-abdomen-constipation-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/06fe889f/114db677.mp3",
+      "text": "All’esame l’addome è dolorabile. Facciamo un prelievo per capire meglio.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-briefing-dialogue/day1-or-briefing-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/7b87c62b/74def679.mp3",
+      "text": "Benvenuto in sala operatoria. Per favore, non toccare gli strumenti.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-briefing-dialogue/day1-or-briefing-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/7b87c62b/74def67a.mp3",
+      "text": "Va bene.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-briefing-dialogue/day1-or-briefing-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/7b87c62b/74def67b.mp3",
+      "text": "Attenzione soprattutto agli aghi: se hai bisogno chiedi a me.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-briefing-dialogue/day1-or-briefing-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/7b87c62b/74def67c.mp3",
+      "text": "Osserva il campo sterile e segui le indicazioni.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-preop-appendicitis-dialogue/day1-preop-appendicitis-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/2567ff25/72c855c9.mp3",
+      "text": "La TAC conferma l’appendicite.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-preop-appendicitis-dialogue/day1-preop-appendicitis-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/2567ff25/72c855ca.mp3",
+      "text": "E adesso?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-preop-appendicitis-dialogue/day1-preop-appendicitis-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/2567ff25/72c855cb.mp3",
+      "text": "La portiamo in sala operatoria per togliere l’appendice.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-preop-appendicitis-dialogue/day1-preop-appendicitis-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/2567ff25/72c855cc.mp3",
+      "text": "Dopo l’intervento la rivedrò in ambulatorio per il controllo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-ambulatorio-dialogue/day1-hematology-ambulatorio-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/32c41c70/06e6f894.mp3",
+      "text": "Buongiorno, posso visitarla?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-ambulatorio-dialogue/day1-hematology-ambulatorio-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/32c41c70/06e6f895.mp3",
+      "text": "Certo.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-ambulatorio-dialogue/day1-hematology-ambulatorio-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/32c41c70/06e6f896.mp3",
+      "text": "Fegato e milza non sono palpabili. Le cellule rosse sono nella norma, ma linfociti e piastrine sono molto alti; PCR elevata, GB lievemente aumentati.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-ambulatorio-dialogue/day1-hematology-ambulatorio-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/32c41c70/06e6f897.mp3",
+      "text": "Cosa devo fare?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-ambulatorio-dialogue/day1-hematology-ambulatorio-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/32c41c70/06e6f898.mp3",
+      "text": "Le proporrei un salasso e un controllo tra due settimane.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-dayhospital-dialogue/day1-hematology-dayhospital-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/39233b43/167de99f.mp3",
+      "text": "Buongiorno, prima facciamo un prelievo e poi procediamo con il salasso.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-dayhospital-dialogue/day1-hematology-dayhospital-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/39233b43/167de99e.mp3",
+      "text": "Va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-dayhospital-dialogue/day1-hematology-dayhospital-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/39233b43/167de99d.mp3",
+      "text": "Durante la procedura mi avvisi se si sente stanco.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25bc.mp3",
+      "text": "Buongiorno, ha dormito bene?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25bd.mp3",
+      "text": "Così così.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25be.mp3",
+      "text": "Ha mangiato?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25bf.mp3",
+      "text": "Poco.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c0.mp3",
+      "text": "Si è scaricato regolarmente?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c1.mp3",
+      "text": "Non molto.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c2.mp3",
+      "text": "Posso prenderle la pressione? Dica una parola… bene. Può tossire?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-7": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c3.mp3",
+      "text": "All'ispezione noto un addome disteso, senza segni di Cullen/Grey-Turner.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-8": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c4.mp3",
+      "text": "All'auscultazione la peristalsi è rallentata.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-9": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/1dae25c5.mp3",
+      "text": "Alla percussione prevale un timpanismo diffuso.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-10": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/67e96ded.mp3",
+      "text": "Alla palpazione l'addome resta dolorabile.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-11": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/67e96dec.mp3",
+      "text": "I toni cardiaci sono ritmici, senza soffi.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-rounds-dialogue/day1-rounds-dialogue-line-12": {
+      "path": "/audio/italian/7c9a44dc/6b9c13b8/67e96deb.mp3",
+      "text": "Per sicurezza facciamo un prelievo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729b4.mp3",
+      "text": "Come si sente adesso?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729b3.mp3",
+      "text": "Meglio, ma sono un po’ preoccupato.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729b2.mp3",
+      "text": "La saturazione è buona: per ora resta in AA.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729b1.mp3",
+      "text": "Inseriamo una CN per i fluidi e monitoriamo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729b0.mp3",
+      "text": "Facciamo un EGA e un prelievo per controllare.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-ps-ega-dialogue/day1-ps-ega-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dc/60704248/7bb729af.mp3",
+      "text": "Va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-fa-dialogue/day1-fa-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/2eb5030e/12c31e2e.mp3",
+      "text": "Sente palpitazioni?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-fa-dialogue/day1-fa-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/2eb5030e/12c31e2d.mp3",
+      "text": "Ogni tanto sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-fa-dialogue/day1-fa-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/2eb5030e/12c31e2c.mp3",
+      "text": "All’auscultazione i toni cardiaci sono aritmici; potrebbe essere FA.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-fa-dialogue/day1-fa-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/2eb5030e/12c31e2b.mp3",
+      "text": "Le faccio un prelievo e monitoriamo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-fa-dialogue/day1-fa-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dc/2eb5030e/12c31e2a.mp3",
+      "text": "Grazie.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-or-safety-dialogue/day1-or-safety-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/27228741/1832f0a3.mp3",
+      "text": "Benvenuto in sala operatoria.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-safety-dialogue/day1-or-safety-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/27228741/1832f0a4.mp3",
+      "text": "Per favore, non toccare gli strumenti.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-safety-dialogue/day1-or-safety-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/27228741/1832f0a5.mp3",
+      "text": "Attenzione anche agli aghi. Se hai bisogno, chiedi.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-or-safety-dialogue/day1-or-safety-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/27228741/1832f0a6.mp3",
+      "text": "Ricevuto.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-postop-ambulatorio-dialogue/day1-postop-ambulatorio-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/36e03730/32bb45d4.mp3",
+      "text": "L’intervento è andato bene.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-postop-ambulatorio-dialogue/day1-postop-ambulatorio-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/36e03730/32bb45d5.mp3",
+      "text": "Fra una settimana la rivedo in ambulatorio.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-postop-ambulatorio-dialogue/day1-postop-ambulatorio-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/36e03730/32bb45d6.mp3",
+      "text": "Va bene, grazie.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-counseling-dialogue/day1-hematology-counseling-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/19165fbc/706ec1c0.mp3",
+      "text": "Le piastrine sono alte e la PCR è elevata; i GB sono un po’ alti.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-counseling-dialogue/day1-hematology-counseling-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/19165fbc/706ec1bf.mp3",
+      "text": "Che cosa facciamo?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-counseling-dialogue/day1-hematology-counseling-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/19165fbc/706ec1be.mp3",
+      "text": "Iniziamo con un salasso. Fegato e milza oggi sono ok alla visita.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-counseling-dialogue/day1-hematology-counseling-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dc/19165fbc/706ec1bd.mp3",
+      "text": "Capito.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-1/day1-hematology-imaging-dialogue/day1-hematology-imaging-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dc/402b9dff/2f797de3.mp3",
+      "text": "Per le malattie del sangue a volte servono TAC o RM.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-imaging-dialogue/day1-hematology-imaging-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dc/402b9dff/2f797de4.mp3",
+      "text": "Oggi non è necessario; niente trapianto di midollo osseo, solo controlli.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-1/day1-hematology-imaging-dialogue/day1-hematology-imaging-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dc/402b9dff/2f797de5.mp3",
+      "text": "Va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163fe.mp3",
+      "text": "Salve Signora Onia, come sta?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163fd.mp3",
+      "text": "Dottore, non molto bene. Continuo a tossire e mi manca il fiato.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163fc.mp3",
+      "text": "Ha avuto anche la febbre?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163fb.mp3",
+      "text": "Sì, da qualche giorno ho 38.5 e i brividi.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163fa.mp3",
+      "text": "Ha fatto una TAC del torace?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163f9.mp3",
+      "text": "Sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-pneumologia-polmonite-dialogue/day2-pneumologia-polmonite-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dd/08aea73e/79a163f8.mp3",
+      "text": "L'aspetto clinico e strumentale indica che lei ha la polmonite. Le prescrivo gli antibiotici. La rivedo tra due settimane.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4cc9.mp3",
+      "text": "Salve Signor Arto, come sta?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4cca.mp3",
+      "text": "Dottore non mi sento bene. Ho male al braccio sinistro e al petto.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4ccb.mp3",
+      "text": "Riesce a respirare normalmente?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4ccc.mp3",
+      "text": "No, mi manca il fiato anche se faccio solo un piano di scale.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4ccd.mp3",
+      "text": "Con quanti cuscini dorme?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4cce.mp3",
+      "text": "Due.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-6": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4ccf.mp3",
+      "text": "Posso visitarla? Ora le provo la pressione, va bene?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-cardiologia-dolore-toracico-dialogue/day2-cardiologia-dolore-toracico-dialogue-line-7": {
+      "path": "/audio/italian/7c9a44dd/4ef31625/23ab4cd0.mp3",
+      "text": "Sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e8298a.mp3",
+      "text": "Buongiorno. Fuma?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e82989.mp3",
+      "text": "Sì, a volte.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e82988.mp3",
+      "text": "Posso prenderle la saturazione? Mi dà un dito? Appoggi pure.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e82987.mp3",
+      "text": "Faccia un bel respiro... grazie. Riesce a fare un colpo di tosse?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e82986.mp3",
+      "text": "Ora, posso ascoltarle i polmoni?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-triage-saturazione-dialogue/day2-triage-saturazione-dialogue-line-5": {
+      "path": "/audio/italian/7c9a44dd/0f6a38ce/76e82985.mp3",
+      "text": "Va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-bedside-respiratory-sounds-dialogue/day2-bedside-respiratory-sounds-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/47d1c42e/7edf26f2.mp3",
+      "text": "Posso ascoltarle i polmoni?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-bedside-respiratory-sounds-dialogue/day2-bedside-respiratory-sounds-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/47d1c42e/7edf26f3.mp3",
+      "text": "Sì.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-bedside-respiratory-sounds-dialogue/day2-bedside-respiratory-sounds-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/47d1c42e/7edf26f4.mp3",
+      "text": "A sinistra sento murmure vescicolare. A destra sento dei ronchi e qualche sibilo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-bedside-respiratory-sounds-dialogue/day2-bedside-respiratory-sounds-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/47d1c42e/7edf26f5.mp3",
+      "text": "È grave?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-bedside-respiratory-sounds-dialogue/day2-bedside-respiratory-sounds-dialogue-line-4": {
+      "path": "/audio/italian/7c9a44dd/47d1c42e/7edf26f6.mp3",
+      "text": "Tranquillo, controlliamo e le spiego tutto.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-bpco-followup-dialogue/day2-bpco-followup-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/3646f23d/09348dd9.mp3",
+      "text": "Buongiorno, come va con la BPCO?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-bpco-followup-dialogue/day2-bpco-followup-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/3646f23d/09348dd8.mp3",
+      "text": "Meglio, ma mi stanco presto.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-bpco-followup-dialogue/day2-bpco-followup-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/3646f23d/09348dd7.mp3",
+      "text": "Apra la bocca... bene. Faccia un respiro profondo.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-bpco-followup-dialogue/day2-bpco-followup-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/3646f23d/09348dd6.mp3",
+      "text": "Continui con l'attività leggera e ci vediamo tra un mese.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-ambulatorio-soffio-dialogue/day2-ambulatorio-soffio-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/3b0127f8/77197e04.mp3",
+      "text": "Le appoggio lo stetoscopio sul torace.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-ambulatorio-soffio-dialogue/day2-ambulatorio-soffio-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/3b0127f8/77197e03.mp3",
+      "text": "Sento un soffio; lo valutiamo meglio.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-ambulatorio-soffio-dialogue/day2-ambulatorio-soffio-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/3b0127f8/77197e02.mp3",
+      "text": "Cosa significa?",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-ambulatorio-soffio-dialogue/day2-ambulatorio-soffio-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/3b0127f8/77197e01.mp3",
+      "text": "Potrebbe essere legato alla valvola mitrale; facciamo un elettrocardiogramma.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-rischio-carotide-dialogue/day2-rischio-carotide-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/1534f0f7/38a1b1d3.mp3",
+      "text": "Controllo la carotide, non si muova.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-rischio-carotide-dialogue/day2-rischio-carotide-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/1534f0f7/38a1b1d2.mp3",
+      "text": "Va bene.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-rischio-carotide-dialogue/day2-rischio-carotide-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/1534f0f7/38a1b1d1.mp3",
+      "text": "Per la prevenzione chiedo anche un profilo lipidico.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-rischio-carotide-dialogue/day2-rischio-carotide-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/1534f0f7/38a1b1d0.mp3",
+      "text": "D'accordo.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "lesson-2/day2-reparto-chiedere-caposala-dialogue/day2-reparto-chiedere-caposala-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/1e151fa8/4b3e665c.mp3",
+      "text": "Buongiorno, mi scusi: per favore sa dirmi dove posso trovare il capo sala?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-chiedere-caposala-dialogue/day2-reparto-chiedere-caposala-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/1e151fa8/4b3e665d.mp3",
+      "text": "Certo: è nell'ufficio infermieri, in fondo al corridoio a destra.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-chiedere-caposala-dialogue/day2-reparto-chiedere-caposala-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/1e151fa8/4b3e665e.mp3",
+      "text": "Grazie mille. Posso anche unirmi al giro visita più tardi?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-chiedere-caposala-dialogue/day2-reparto-chiedere-caposala-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/1e151fa8/4b3e665f.mp3",
+      "text": "Sì, parli con la caposala e si accordi con lei.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-cercare-paziente-dialogue/day2-reparto-cercare-paziente-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/2f7f131c/3bd78260.mp3",
+      "text": "Buongiorno, per favore sa dove posso trovare il signor Luigi?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-cercare-paziente-dialogue/day2-reparto-cercare-paziente-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/2f7f131c/3bd7825f.mp3",
+      "text": "Sì, è in stanza 12, alla fine del corridoio a sinistra.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-cercare-paziente-dialogue/day2-reparto-cercare-paziente-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/2f7f131c/3bd7825e.mp3",
+      "text": "Grazie. Posso presentarmi prima ai familiari?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-cercare-paziente-dialogue/day2-reparto-cercare-paziente-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/2f7f131c/3bd7825d.mp3",
+      "text": "Certo, è la cosa migliore.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studentessa-dialogue/day2-reparto-presentazione-studentessa-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/3fa0a345/5662081f.mp3",
+      "text": "Buongiorno, sono una studentessa di medicina. Sono una studentessa del prof. Esposito.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studentessa-dialogue/day2-reparto-presentazione-studentessa-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/3fa0a345/56620820.mp3",
+      "text": "Piacere. Oggi segua l'infermiera Rossi.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studentessa-dialogue/day2-reparto-presentazione-studentessa-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/3fa0a345/56620821.mp3",
+      "text": "Grazie, volentieri.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studente-dialogue/day2-reparto-presentazione-studente-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/38e3ba7c/72a9cf00.mp3",
+      "text": "Buongiorno, sono uno studente di medicina. Sono uno studente del prof. Esposito.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studente-dialogue/day2-reparto-presentazione-studente-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/38e3ba7c/72a9ceff.mp3",
+      "text": "Piacere. Per favore, segua l'infermiera Bianchi.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-presentazione-studente-dialogue/day2-reparto-presentazione-studente-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/38e3ba7c/72a9cefe.mp3",
+      "text": "Grazie!",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-pratica-prelievi-dialogue/day2-reparto-pratica-prelievi-dialogue-line-0": {
+      "path": "/audio/italian/7c9a44dd/5eb84709/31e579d3.mp3",
+      "text": "Sono venuto/a qui per fare un po' di pratica a fare prelievi. Posso farne uno sotto supervisione?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-pratica-prelievi-dialogue/day2-reparto-pratica-prelievi-dialogue-line-1": {
+      "path": "/audio/italian/7c9a44dd/5eb84709/31e579d2.mp3",
+      "text": "Hai già visto la procedura? Iniziamo insieme con un paziente stabile.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-pratica-prelievi-dialogue/day2-reparto-pratica-prelievi-dialogue-line-2": {
+      "path": "/audio/italian/7c9a44dd/5eb84709/31e579d1.mp3",
+      "text": "Sì, grazie.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "lesson-2/day2-reparto-pratica-prelievi-dialogue/day2-reparto-pratica-prelievi-dialogue-line-3": {
+      "path": "/audio/italian/7c9a44dd/5eb84709/31e579d0.mp3",
+      "text": "Allora prepariamo il materiale e poi andiamo in stanza 12.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "orientation/orientation-scene/orientation-scene-line-0": {
+      "path": "/audio/italian/55cd0a30/61c4864f/2f8b7a2b.mp3",
+      "text": "Buongiorno, sono Leo di reparto. Come va stamattina?",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    },
+    "orientation/orientation-scene/orientation-scene-line-1": {
+      "path": "/audio/italian/55cd0a30/61c4864f/2f8b7a2a.mp3",
+      "text": "Buongiorno! Mi sento meglio, grazie.",
+      "role": "patient",
+      "voiceId": "fQmr8dTaOQq116mo2X7F"
+    },
+    "orientation/orientation-scene/orientation-scene-line-2": {
+      "path": "/audio/italian/55cd0a30/61c4864f/2f8b7a29.mp3",
+      "text": "Controlliamo la pressione e poi aggiorniamo la cartella clinica.",
+      "role": "doctor",
+      "voiceId": "AtSTZwVLqSz91n8CE8J7"
+    }
+  }
+}

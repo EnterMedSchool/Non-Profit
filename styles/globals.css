@@ -16,8 +16,8 @@
   --showcase-green: #2ECC71;
 
   /* Background Pastels — clean, medical-appropriate tones */
-  --showcase-bg-cream: #EDF2FF;
-  --showcase-bg-lavender: #F0EEFF;
+  --showcase-bg-cream: #F5F7FF;
+  --showcase-bg-lavender: #F3F1FF;
   --showcase-bg-mint: #EEFBF9;
   --showcase-bg-peach: #FFF0F0;
   --showcase-bg-lemon: #FAFDF5;
@@ -29,9 +29,9 @@
   --showcase-text-light: #8888aa;
 
   /* Chunky Styling */
-  --shadow-chunky: 4px 4px 0 var(--showcase-navy);
-  --shadow-chunky-sm: 3px 3px 0 var(--showcase-navy);
-  --shadow-chunky-lg: 6px 6px 0 var(--showcase-navy);
+  --shadow-chunky: 4px 4px 1px var(--showcase-navy);
+  --shadow-chunky-sm: 3px 3px 1px var(--showcase-navy);
+  --shadow-chunky-lg: 6px 6px 2px var(--showcase-navy);
   --border-chunky: 3px solid var(--showcase-navy);
 }
 
@@ -276,12 +276,12 @@
   width: 10px;
 }
 ::-webkit-scrollbar-track {
-  background: #F0F4FF;
+  background: #F8FAFF;
 }
 ::-webkit-scrollbar-thumb {
   background: #c4b5fd;
   border-radius: 5px;
-  border: 2px solid #F0F4FF;
+  border: 2px solid #F8FAFF;
 }
 ::-webkit-scrollbar-thumb:hover {
   background: #6C5CE7;
@@ -497,9 +497,9 @@
 
 /* Flip chunky box shadows for RTL */
 [dir="rtl"] {
-  --shadow-chunky: -4px 4px 0 var(--showcase-navy);
-  --shadow-chunky-sm: -3px 3px 0 var(--showcase-navy);
-  --shadow-chunky-lg: -6px 6px 0 var(--showcase-navy);
+  --shadow-chunky: -4px 4px 1px var(--showcase-navy);
+  --shadow-chunky-sm: -3px 3px 1px var(--showcase-navy);
+  --shadow-chunky-lg: -6px 6px 2px var(--showcase-navy);
 }
 
 /* ===== Glossary Print Styles ===== */

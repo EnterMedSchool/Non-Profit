@@ -297,7 +297,7 @@ export default function MediaAssetsPage() {
           <AnimatedSection animation="scaleIn">
             <div className="mt-20 flex flex-col items-center text-center">
               <div className="relative">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pastel-lavender">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-showcase-purple/[0.06]">
                   <SearchX className="h-12 w-12 text-showcase-purple/40 animate-float-gentle" />
                 </div>
                 <div className="absolute -bottom-1 -right-1 h-6 w-6 rounded-full bg-showcase-coral/20 animate-pulse" />

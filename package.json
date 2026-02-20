@@ -16,7 +16,8 @@
     "pull:italian": "node scripts/pull-italian-lessons.mjs",
     "generate:italian-flashcards": "node scripts/generate-italian-flashcard-data.mjs",
     "generate:italian-pdfs": "node scripts/generate-italian-pdfs.mjs",
-    "generate:italian-pdfs:sample": "node scripts/generate-italian-pdfs.mjs --sample"
+    "generate:italian-pdfs:sample": "node scripts/generate-italian-pdfs.mjs --sample",
+    "upload:italian-assets": "node scripts/upload-italian-assets-to-blob.mjs"
   },
   "dependencies": {
     "@codemirror/autocomplete": "^6.20.0",

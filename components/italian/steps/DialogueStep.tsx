@@ -5,7 +5,11 @@ import {
   resolveSpeakerVisual,
   type SpeakerRole,
 } from "@/components/italian/ItalianArtwork";
+import { AudioPlayer } from "@/components/italian/AudioPlayer";
+import { blobAsset } from "@/lib/blob-url";
 import { StepWrapper } from "./StepWrapper";
+
+import audioManifest from "@/data/italian/audio-manifest.json";
 
 const ROLE_STYLES: Record<
   SpeakerRole,
@@ -33,12 +37,32 @@ const ROLE_STYLES: Record<
   },
 };
 
+type ManifestEntry = { path: string; text: string; role?: string };
+const audioFiles = (audioManifest as { files: Record<string, ManifestEntry> })
+  .files;
+
+function findAudioPath(
+  lessonSlug: string,
+  stepSlug: string,
+  lineIndex: number,
+): string | null {
+  const key = `${lessonSlug}/${stepSlug}/${stepSlug}-line-${lineIndex}`;
+  const entry = audioFiles[key];
+  if (!entry?.path) return null;
+  return blobAsset(entry.path);
+}
+
 interface DialogueStepViewProps {
   step: ItalianLessonStep;
   config: DialogueStepConfig;
+  lessonSlug: string;
 }
 
-export function DialogueStepView({ step, config }: DialogueStepViewProps) {
+export function DialogueStepView({
+  step,
+  config,
+  lessonSlug,
+}: DialogueStepViewProps) {
   return (
     <StepWrapper
       stepType={step.stepType}
@@ -50,6 +74,7 @@ export function DialogueStepView({ step, config }: DialogueStepViewProps) {
           const visual = resolveSpeakerVisual(line.speaker, index);
           const isRight = visual.orientation === "right";
           const styles = ROLE_STYLES[visual.role];
+          const audioPath = findAudioPath(lessonSlug, step.slug, index);
 
           const speakerLabel =
             line.speaker?.trim() ||
@@ -69,7 +94,7 @@ export function DialogueStepView({ step, config }: DialogueStepViewProps) {
               {/* Avatar */}
               <div className="shrink-0">
                 <div
-                  className={`overflow-hidden rounded-xl border-3 border-ink-dark/10 bg-white shadow-chunky`}
+                  className="overflow-hidden rounded-xl border-3 border-ink-dark/10 bg-white shadow-chunky"
                   style={{ width: 56, height: 56 }}
                 >
                   <img
@@ -89,10 +114,19 @@ export function DialogueStepView({ step, config }: DialogueStepViewProps) {
               <div
                 className={`relative min-w-0 max-w-[calc(100%-5rem)] rounded-xl border-3 ${styles.border} ${styles.bg} px-4 py-3 shadow-chunky`}
               >
-                <div
-                  className={`mb-2 inline-block rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white ${styles.labelBg}`}
-                >
-                  {speakerLabel}
+                <div className="mb-2 flex items-center gap-2">
+                  <span
+                    className={`inline-block rounded-md px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-white ${styles.labelBg}`}
+                  >
+                    {speakerLabel}
+                  </span>
+                  {audioPath && (
+                    <AudioPlayer
+                      src={audioPath}
+                      label={`Play ${speakerLabel}'s line`}
+                      size="sm"
+                    />
+                  )}
                 </div>
 
                 <div className="text-sm font-medium leading-relaxed text-ink-dark">

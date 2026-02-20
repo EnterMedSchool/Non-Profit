@@ -26,7 +26,7 @@ const ROOT = join(__dirname, "..");
 const DATA = join(ROOT, "data", "italian");
 const TEX_DIR = join(ROOT, "generated-pdfs", "tex", "italian");
 const OUT_DIR = join(ROOT, "generated-pdfs", "out", "italian");
-const LOGO_DIR = join(ROOT, "scripts", "logo");
+const LOGO_DIR = join(ROOT, "scripts", "assets").replace(/\\/g, "/");
 const BASE_URL = "https://entermedschool.org/en/resources/italian";
 
 const sampleOnly = process.argv.includes("--sample");

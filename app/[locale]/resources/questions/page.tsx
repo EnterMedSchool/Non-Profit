@@ -204,7 +204,7 @@ export default function QuestionsPage() {
         </PageHero>
 
         {/* Attribution Reminder */}
-        <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
           <span>
             {tc("licenseNote")}{" "}
@@ -278,7 +278,7 @@ export default function QuestionsPage() {
         {categoryData.length === 0 && (
           <AnimatedSection animation="scaleIn">
             <div className="mt-20 flex flex-col items-center text-center">
-              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pastel-lavender">
+              <div className="flex h-24 w-24 items-center justify-center rounded-full bg-showcase-purple/[0.06]">
                 <HelpCircle className="h-12 w-12 text-showcase-purple/40 animate-float-gentle" />
               </div>
               <p className="mt-6 font-handwritten text-2xl text-ink-muted">

@@ -18,7 +18,6 @@ import {
   ImageIcon,
   ImageDown,
   BookOpen,
-  Palette,
   Stethoscope,
   Wrench,
   Calculator,

@@ -217,7 +217,7 @@ export default function FlashcardStudy({
 
       {/* Progress */}
       <div className="space-y-1">
-        <div className="h-2 w-full overflow-hidden rounded-full bg-showcase-teal/30">
+        <div className="h-1.5 w-full overflow-hidden rounded-full bg-showcase-teal/30">
           <motion.div
             className="h-full rounded-full bg-showcase-teal"
             initial={false}

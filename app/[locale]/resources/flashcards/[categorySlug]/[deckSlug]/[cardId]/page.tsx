@@ -177,7 +177,7 @@ export default async function CardFlashcardPage({
             <AnimatedSection animation="fadeUp">
               <div className="rounded-2xl border-3 border-ink-dark bg-white shadow-chunky overflow-hidden">
                 {/* Card front */}
-                <div className="border-b-2 border-ink-dark/10 bg-gradient-to-r from-showcase-purple/10 to-showcase-teal/10 px-5 py-4">
+                <div className="border-b-2 border-ink-dark/10 bg-showcase-purple/[0.04] px-5 py-4">
                   <p
                     className="font-display text-lg font-bold text-ink-dark leading-relaxed"
                     data-speakable="question"

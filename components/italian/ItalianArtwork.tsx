@@ -1,82 +1,38 @@
 "use client";
 
-import artworkManifest from "@/data/italian/artwork-manifest.json";
-
-type ManifestAsset =
-  (typeof artworkManifest)["assets"][keyof (typeof artworkManifest)["assets"]];
+import { blobAsset } from "@/lib/blob-url";
 
 export interface ArtworkSource {
   src: string;
-  srcSet: string | null;
-  width: number | null;
-  height: number | null;
-  key: string;
+  srcSet: string;
+  width: number;
+  height: number;
 }
 
-const BLOB_BASE =
-  "https://iklepxpgapgkjvxv.public.blob.vercel-storage.com/LearningIllustrations";
-
-const assets = artworkManifest.assets as Record<string, ManifestAsset>;
-
-function normalizeKey(key: string): string {
-  const trimmed = key.trim().replace(/^[./]+/, "");
-  return trimmed.startsWith("Italian/") ? trimmed : `Italian/${trimmed}`;
-}
-
-export function resolveArtwork(
-  key: string,
-  prefer: "256w" | "512w" = "512w",
-): ArtworkSource {
-  const nk = normalizeKey(key);
-  const entry = assets[nk];
-
-  if (!entry) {
-    return {
-      src: `${BLOB_BASE}/${nk}`,
-      srcSet: null,
-      width: null,
-      height: null,
-      key: nk,
-    };
-  }
-
-  const variant = entry.variants?.[prefer];
-  const src = variant
-    ? `${BLOB_BASE}/${variant.path}`
-    : `${BLOB_BASE}/${entry.original.path}`;
-
-  const parts: string[] = [];
-  for (const vn of ["256w", "512w"] as const) {
-    const v = entry.variants?.[vn];
-    if (v) {
-      parts.push(`${BLOB_BASE}/${v.path} ${v.width ?? parseInt(vn)}w`);
-    }
-  }
-
+function art(subpath: string): ArtworkSource {
   return {
-    src,
-    srcSet: parts.length > 0 ? parts.join(", ") : null,
-    width: variant?.width ?? entry.original.width ?? null,
-    height: variant?.height ?? entry.original.height ?? null,
-    key: nk,
+    src: blobAsset(`/italian-artwork/${subpath}-512w.webp`),
+    srcSet: `${blobAsset(`/italian-artwork/${subpath}-256w.webp`)} 256w, ${blobAsset(`/italian-artwork/${subpath}-512w.webp`)} 512w`,
+    width: 512,
+    height: 512,
   };
 }
 
 const DIALOGUE_ASSETS = {
   doctor: {
-    right: resolveArtwork("Dialog/DoctorTalkingRight.png"),
-    left: resolveArtwork("Dialog/DoctorTalkingLeft.png"),
+    right: art("Dialog/DoctorTalkingRight"),
+    left: art("Dialog/DoctorTalkingLeft"),
   },
   patient: {
-    left: resolveArtwork("Dialog/SickPatientLookingLeft.png"),
+    left: art("Dialog/SickPatientLookingLeft"),
   },
   student: {
-    left: resolveArtwork("Core/LeoLearningItalian.png"),
-    right: resolveArtwork("Core/LeoLearningItalian.png"),
+    left: art("Core/LeoLearningItalian"),
+    right: art("Core/LeoLearningItalian"),
   },
   other: {
-    left: resolveArtwork("Core/LeoWavingHi.png"),
-    right: resolveArtwork("Core/LeoWavingHi.png"),
+    left: art("Core/LeoWavingHi"),
+    right: art("Core/LeoWavingHi"),
   },
 };
 

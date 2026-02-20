@@ -368,7 +368,7 @@ export default function ClinicalCasesPage() {
           <AnimatedSection animation="scaleIn">
             <div className="mt-20 flex flex-col items-center text-center">
               <div className="relative">
-                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-pastel-lavender">
+                <div className="flex h-24 w-24 items-center justify-center rounded-full bg-showcase-purple/[0.06]">
                   <SearchX className="h-12 w-12 text-showcase-purple/40 animate-float-gentle" />
                 </div>
               </div>

@@ -67,7 +67,8 @@ function tex(str) {
 }
 
 // ── Shared preamble ──────────────────────────────────────────────────
-function preamble({ title, subject, keywords, url, logoDir }) {
+function preamble({ title, subject, keywords, url, logoDir: rawLogoDir }) {
+  const logoDir = rawLogoDir.replace(/\\/g, "/");
   return `\\documentclass[11pt,a4paper]{article}
 
 % ── Encoding & fonts ─────────────────────────────────────────────
@@ -569,7 +570,8 @@ function flashcardGrid(cards, isFront, { categorySlug, deckSlug } = {}) {
   return tikzBody;
 }
 
-export function flashcardTemplate({ title, categoryName, description, cards, url, tags, logoDir, categorySlug, deckSlug }) {
+export function flashcardTemplate({ title, categoryName, description, cards, url, tags, logoDir: rawLogoDir, categorySlug, deckSlug }) {
+  const logoDir = rawLogoDir.replace(/\\/g, "/");
   const kwStr = ["EnterMedSchool", "flashcards", categoryName, ...(tags || [])].join(", ");
 
   let body = `\\documentclass[11pt,a4paper]{article}

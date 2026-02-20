@@ -15,34 +15,13 @@ interface PageHeroProps {
   annotationColor?: string;
   /** Subtitle paragraph below the annotation */
   subtitle?: string;
-  /** @deprecated Ignored in the new panel design — use meshColors for visual interest */
+  /** @deprecated No longer rendered */
   floatingIcons?: React.ReactNode;
-  /** 2-3 Tailwind bg-color classes for gradient mesh orbs inside the panel */
+  /** @deprecated No longer rendered — kept for backward compat */
   meshColors?: string[];
   /** Content rendered inside the hero panel below the subtitle (e.g. stat badges) */
   children?: React.ReactNode;
 }
-
-const defaultMeshColors = [
-  "bg-showcase-purple/30",
-  "bg-showcase-teal/25",
-  "bg-showcase-green/20",
-];
-
-const orbStyles: { className: string; style?: React.CSSProperties }[] = [
-  {
-    className:
-      "absolute -top-16 -left-16 h-72 w-72 sm:h-96 sm:w-96 rounded-full blur-3xl",
-  },
-  {
-    className:
-      "absolute -top-10 -right-16 h-60 w-60 sm:h-80 sm:w-80 rounded-full blur-3xl",
-  },
-  {
-    className:
-      "absolute -bottom-14 left-1/3 h-52 w-52 sm:h-72 sm:w-72 rounded-full blur-3xl",
-  },
-];
 
 export default function PageHero({
   titlePre,
@@ -52,35 +31,11 @@ export default function PageHero({
   annotation,
   annotationColor = "text-showcase-teal",
   subtitle,
-  meshColors = defaultMeshColors,
   children,
 }: PageHeroProps) {
   return (
     <AnimatedSection animation="blurIn">
-      <div className="noise-overlay relative overflow-hidden rounded-3xl border border-white/60 bg-white/50 px-6 py-12 shadow-sm backdrop-blur-sm sm:px-10 sm:py-16 lg:px-16 lg:py-20">
-        {/* Gradient mesh orbs */}
-        <div
-          className="pointer-events-none absolute inset-0"
-          aria-hidden="true"
-        >
-          {meshColors.map((color, i) => {
-            const orb = orbStyles[i] ?? orbStyles[0];
-            return (
-              <div
-                key={i}
-                className={`${orb.className} ${color}`}
-                style={orb.style}
-              />
-            );
-          })}
-        </div>
-
-        {/* Dot pattern overlay */}
-        <div
-          className="pointer-events-none absolute inset-0 pattern-dots"
-          aria-hidden="true"
-        />
-
+      <div className="relative overflow-hidden rounded-3xl border border-white/80 bg-white/60 px-6 py-10 shadow-soft backdrop-blur-sm sm:px-10 sm:py-12 lg:px-16 lg:py-14">
         {/* Content */}
         <div className="relative z-10 text-center">
           <h1 className="font-display text-4xl font-extrabold tracking-tight sm:text-5xl lg:text-6xl">

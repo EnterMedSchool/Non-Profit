@@ -307,7 +307,7 @@ export default function QuestionPlayer({
       </div>
 
       {/* Progress bar */}
-      <div className="mb-6 h-2 w-full overflow-hidden rounded-full bg-showcase-purple/20">
+      <div className="mb-6 h-1.5 w-full overflow-hidden rounded-full bg-showcase-purple/20">
         <m.div
           className="h-full rounded-full bg-showcase-purple"
           initial={false}

@@ -403,7 +403,7 @@ export default async function CaseDetailPage({ params }: CaseDetailPageProps) {
         <AnimatedSection delay={0.24} animation="fadeUp">
           <section id="teaching-guide" className="mt-10 scroll-mt-24">
             <div className="flex items-center gap-3 mb-4">
-              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender">
+              <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-showcase-purple/[0.06]">
                 <Brain className="h-5 w-5 text-showcase-purple" />
               </div>
               <h2 className="font-display text-2xl font-bold text-ink-dark">

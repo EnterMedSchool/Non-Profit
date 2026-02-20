@@ -193,7 +193,7 @@ export default function DeckDownloadPanel({
   };
 
   return (
-    <div className="rounded-2xl border-2 border-ink-dark/10 bg-pastel-cream p-5">
+    <div className="rounded-2xl border border-ink-dark/[0.08] bg-white p-5">
       <h3 className="mb-4 flex items-center gap-2 font-display text-lg font-bold text-ink-dark">
         <Download size={20} />
         Download

@@ -177,7 +177,7 @@ export default function ResourcesPage() {
         />
 
         {/* ── Attribution Reminder ── */}
-        <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
           <span>{tc("licenseNote")} <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">{tc("attributionRequiredLink")}</Link>.</span>
         </div>

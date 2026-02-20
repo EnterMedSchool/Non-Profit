@@ -213,7 +213,7 @@ export default async function CategoryQuestionsPage({
         )}
 
         {/* Attribution */}
-        <div className="mt-8 rounded-xl border-2 border-showcase-teal/20 bg-showcase-teal/5 px-5 py-3 text-sm text-ink-muted flex items-center gap-2">
+        <div className="mt-8 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
           <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
           <span>
             {tc("licenseNote")}{" "}
@@ -249,7 +249,7 @@ export default async function CategoryQuestionsPage({
           ) : (
             <AnimatedSection animation="scaleIn">
               <div className="flex flex-col items-center rounded-2xl border-3 border-ink-dark border-dashed bg-white/50 py-16 text-center">
-                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-pastel-lavender">
+                <div className="flex h-20 w-20 items-center justify-center rounded-full bg-showcase-purple/[0.06]">
                   <BookOpen className="h-10 w-10 text-showcase-purple/40" />
                 </div>
                 <p className="mt-6 font-handwritten text-2xl text-ink-muted">

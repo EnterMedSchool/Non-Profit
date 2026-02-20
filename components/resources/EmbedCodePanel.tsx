@@ -79,14 +79,14 @@ export default function EmbedCodePanel({
 
   if (!payload) {
     return (
-      <div className="rounded-2xl border-2 border-ink-dark/10 bg-pastel-lavender p-5">
+      <div className="rounded-2xl border border-ink-dark/[0.08] bg-white p-5">
         <p className="text-sm text-ink-muted">No embed data available.</p>
       </div>
     );
   }
 
   return (
-    <div className="rounded-2xl border-2 border-ink-dark/10 bg-pastel-lavender p-5">
+    <div className="rounded-2xl border border-ink-dark/[0.08] bg-white p-5">
       <div className="mb-4 flex items-center gap-3">
         <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-white">
           <Code className="h-5 w-5 text-showcase-purple" />

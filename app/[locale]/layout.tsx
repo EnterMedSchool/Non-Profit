@@ -115,13 +115,9 @@ export default async function LocaleLayout({
       <body
         className="min-h-screen text-ink-dark font-body bg-fixed-desktop"
         style={{
-          backgroundColor: "#EDF2FF",
-          backgroundImage: [
-            "radial-gradient(ellipse 80% 60% at 15% 20%, rgba(108, 92, 231, 0.08) 0%, transparent 70%)",
-            "radial-gradient(ellipse 70% 50% at 85% 30%, rgba(0, 217, 192, 0.07) 0%, transparent 65%)",
-            "radial-gradient(ellipse 80% 60% at 50% 80%, rgba(84, 160, 255, 0.07) 0%, transparent 70%)",
-            "linear-gradient(170deg, #EDF2FF 0%, #E5ECFF 25%, #E8FAF7 50%, #EBE6FF 75%, #EDF2FF 100%)",
-          ].join(", "),
+          backgroundColor: "#F8FAFF",
+          backgroundImage:
+            "linear-gradient(135deg, #F8FAFF 0%, #F0F4FF 40%, #EEF7F6 70%, #F8FAFF 100%)",
         }}
       >
         <NextIntlClientProvider messages={messages}>
