@@ -212,29 +212,29 @@ function UniversityMapInner({
 
   const getGeoFill = useCallback(
     (code: string | undefined) => {
-      if (!code) return "#eaebf0";
+      if (!code) return "#f0eff5";
       if (selectedCountry?.code === code) return "#4a3fc7";
       if (activeCountryCodes.has(code)) return "#6C5CE7";
-      if (allCountryCodes.has(code)) return "#c4c0e3";
-      return "#eaebf0";
+      if (allCountryCodes.has(code)) return "#d8d4f2";
+      return "#f0eff5";
     },
     [activeCountryCodes, allCountryCodes, selectedCountry],
   );
 
   const getGeoHoverFill = useCallback(
     (code: string | undefined) => {
-      if (!code) return "#dddfe6";
+      if (!code) return "#e6e4ef";
       if (selectedCountry?.code === code) return "#3e35b3";
       if (activeCountryCodes.has(code)) return "#5a4bd6";
-      if (allCountryCodes.has(code)) return "#b0acd4";
-      return "#dddfe6";
+      if (allCountryCodes.has(code)) return "#c8c3e4";
+      return "#e6e4ef";
     },
     [activeCountryCodes, allCountryCodes, selectedCountry],
   );
 
   const getGeoStroke = useCallback(
     (code: string | undefined) => {
-      if (selectedCountry?.code === code) return "#FFD93D";
+      if (selectedCountry?.code === code) return "#00D9C0";
       if (code && activeCountryCodes.has(code)) return "#fff";
       return "#fff";
     },
@@ -252,7 +252,7 @@ function UniversityMapInner({
 
   return (
     <div className="relative w-full">
-      <div className="relative overflow-hidden rounded-2xl border-3 border-ink-dark/10 bg-[#dce8f0] shadow-chunky-sm">
+      <div className="relative overflow-hidden rounded-2xl border-3 border-ink-dark/10 bg-pastel-lavender shadow-chunky-sm">
         {/* Map */}
         <div className="h-[280px] sm:h-[360px] lg:h-[480px]">
           <ComposableMap
@@ -319,7 +319,7 @@ function UniversityMapInner({
                   <circle
                     r={8}
                     fill="none"
-                    stroke="#FFD93D"
+                    stroke="#00D9C0"
                     strokeWidth={2}
                     opacity={0.4}
                     className="animate-[map-pulse_2s_ease-in-out_infinite]"
@@ -327,9 +327,9 @@ function UniversityMapInner({
                   {/* Visible marker */}
                   <circle
                     r={6}
-                    fill="#FFD93D"
-                    stroke="#1a1a2e"
-                    strokeWidth={2}
+                    fill="#fff"
+                    stroke="#6C5CE7"
+                    strokeWidth={2.5}
                     className="drop-shadow-md"
                   />
                 </Marker>
@@ -339,32 +339,32 @@ function UniversityMapInner({
         </div>
 
         {/* Zoom Controls */}
-        <div className="absolute bottom-3 right-3 flex flex-col gap-1.5">
+        <div className="absolute bottom-3 right-3 flex flex-col gap-2">
           <button
             type="button"
             onClick={handleZoomIn}
             disabled={zoom >= MAX_ZOOM}
             aria-label={t("map.zoomIn")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink-dark/10 bg-white/90 text-ink-dark shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md disabled:opacity-40 sm:h-10 sm:w-10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border-3 border-ink-dark/20 bg-white text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-chunky-sm sm:h-11 sm:w-11"
           >
-            <Plus className="h-4 w-4" />
+            <Plus className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </button>
           <button
             type="button"
             onClick={handleZoomOut}
             disabled={zoom <= MIN_ZOOM}
             aria-label={t("map.zoomOut")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink-dark/10 bg-white/90 text-ink-dark shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md disabled:opacity-40 sm:h-10 sm:w-10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border-3 border-ink-dark/20 bg-white text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none disabled:opacity-40 disabled:hover:translate-y-0 disabled:hover:shadow-chunky-sm sm:h-11 sm:w-11"
           >
-            <Minus className="h-4 w-4" />
+            <Minus className="h-4 w-4 sm:h-[18px] sm:w-[18px]" />
           </button>
           <button
             type="button"
             onClick={handleReset}
             aria-label={t("map.resetView")}
-            className="flex h-9 w-9 items-center justify-center rounded-xl border-2 border-ink-dark/10 bg-white/90 text-ink-dark shadow-sm backdrop-blur-sm transition-all hover:bg-white hover:shadow-md sm:h-10 sm:w-10"
+            className="flex h-10 w-10 items-center justify-center rounded-xl border-3 border-ink-dark/20 bg-white text-ink-dark shadow-chunky-sm transition-all hover:-translate-y-0.5 hover:shadow-chunky active:translate-y-0.5 active:shadow-none sm:h-11 sm:w-11"
           >
-            <RotateCcw className="h-3.5 w-3.5" />
+            <RotateCcw className="h-3.5 w-3.5 sm:h-4 sm:w-4" />
           </button>
         </div>
 
@@ -493,17 +493,17 @@ function UniversityMapInner({
       </AnimatePresence>
 
       {/* Legend */}
-      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] text-ink-muted sm:gap-x-5 sm:text-xs">
+      <div className="mt-3 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-[11px] font-bold text-ink-muted sm:gap-x-5 sm:text-xs">
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-showcase-purple sm:h-3 sm:w-3" />
+          <span className="inline-block h-3 w-3 rounded-full bg-showcase-purple" />
           {t("map.legendActive")}
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#c4c0e3] sm:h-3 sm:w-3" />
+          <span className="inline-block h-3 w-3 rounded-full bg-[#d8d4f2]" />
           {t("map.legendComingSoon")}
         </span>
         <span className="flex items-center gap-1.5">
-          <span className="inline-block h-2.5 w-2.5 rounded-full bg-[#eaebf0] sm:h-3 sm:w-3" />
+          <span className="inline-block h-3 w-3 rounded-full bg-[#f0eff5]" />
           {t("map.legendRequest")}
         </span>
       </div>
