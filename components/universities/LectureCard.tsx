@@ -150,26 +150,28 @@ export default function LectureCard({
                       ? handleNativeShare
                       : handleCopyLink
                   }
-                  className={`inline-flex items-center gap-1 rounded-lg border px-2 py-1 text-[11px] font-bold transition-all ${
+                  className={`inline-flex min-h-[44px] items-center gap-1 rounded-lg border px-2 py-1.5 text-[11px] font-bold transition-all sm:min-h-0 sm:py-1 ${
                     copied
                       ? "border-green-300 bg-green-50 text-green-700"
                       : "border-ink-dark/10 text-ink-muted hover:bg-pastel-lavender hover:text-showcase-purple"
                   }`}
                 >
                   {copied ? (
-                    <Check className="h-3 w-3" />
+                    <Check className="h-3.5 w-3.5 sm:h-3 sm:w-3" />
                   ) : (
-                    <Share2 className="h-3 w-3" />
+                    <Share2 className="h-3.5 w-3.5 sm:h-3 sm:w-3" />
                   )}
-                  {copied ? t("linkCopied") : t("share")}
+                  <span className="hidden sm:inline">
+                    {copied ? t("linkCopied") : t("share")}
+                  </span>
                 </button>
                 <a
                   href={whatsappShareUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center rounded-lg border border-ink-dark/10 p-1 text-ink-muted transition-all hover:bg-green-50 hover:text-green-600"
+                  className="inline-flex min-h-[44px] items-center rounded-lg border border-ink-dark/10 p-2 text-ink-muted transition-all hover:bg-green-50 hover:text-green-600 sm:min-h-0 sm:p-1"
                 >
-                  <MessageCircle className="h-3.5 w-3.5" />
+                  <MessageCircle className="h-4 w-4 sm:h-3.5 sm:w-3.5" />
                 </a>
               </div>
             </div>
@@ -181,7 +183,7 @@ export default function LectureCard({
             )}
 
             {/* Materials */}
-            <div className="flex flex-wrap gap-2">
+            <div className="flex flex-wrap gap-1.5 sm:gap-2">
               {lecture.materials.map((mat) => {
                 const config = materialTypeConfig[mat.type];
                 return (
@@ -189,12 +191,14 @@ export default function LectureCard({
                     <a
                       href={mat.downloadUrl}
                       download
-                      className={`inline-flex items-center gap-1.5 rounded-lg border-2 px-2.5 py-1 text-xs font-bold transition-all hover:shadow-chunky-sm ${config.bgColor} border-transparent hover:border-ink-dark/10`}
+                      className={`inline-flex min-h-[44px] items-center gap-1.5 rounded-lg border-2 px-2 py-1.5 text-xs font-bold transition-all hover:shadow-chunky-sm sm:min-h-0 sm:px-2.5 sm:py-1 ${config.bgColor} border-transparent hover:border-ink-dark/10`}
                     >
-                      <Download className="h-3 w-3" />
-                      <span className={config.color}>{mt(mat.type)}</span>
+                      <Download className="h-3.5 w-3.5 sm:h-3 sm:w-3" />
+                      <span className={`truncate ${config.color}`}>
+                        {mt(mat.type)}
+                      </span>
                       {mat.fileSize && (
-                        <span className="text-[10px] text-ink-muted">
+                        <span className="hidden text-[10px] text-ink-muted sm:inline">
                           {mat.fileSize}
                         </span>
                       )}
@@ -203,10 +207,11 @@ export default function LectureCard({
                       <button
                         type="button"
                         onClick={() => handleAnkiExport(mat)}
-                        className="inline-flex items-center gap-1 rounded-lg border-2 border-transparent bg-showcase-blue/10 px-2.5 py-1 text-xs font-bold text-showcase-blue transition-all hover:border-ink-dark/10 hover:shadow-chunky-sm"
+                        className="inline-flex min-h-[44px] items-center gap-1 rounded-lg border-2 border-transparent bg-showcase-blue/10 px-2 py-1.5 text-xs font-bold text-showcase-blue transition-all hover:border-ink-dark/10 hover:shadow-chunky-sm sm:min-h-0 sm:px-2.5 sm:py-1"
                       >
-                        <FileSpreadsheet className="h-3 w-3" />
-                        {t("ankiImport")}
+                        <FileSpreadsheet className="h-3.5 w-3.5 sm:h-3 sm:w-3" />
+                        <span className="hidden sm:inline">{t("ankiImport")}</span>
+                        <span className="sm:hidden">Anki</span>
                       </button>
                     ) : null}
                   </div>

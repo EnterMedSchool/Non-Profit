@@ -41,45 +41,51 @@ export default function CountryPicker({
   );
 
   return (
-    <div className="flex flex-wrap gap-2">
-      <button
-        type="button"
-        onClick={() => onSelect("")}
-        className={`rounded-xl border-2 px-3 py-1.5 text-xs font-bold transition-all ${
-          !activeCountry
-            ? "border-showcase-navy bg-showcase-navy text-white shadow-chunky-sm"
-            : "border-ink-dark/10 bg-white text-ink-dark hover:bg-pastel-lavender"
-        }`}
-      >
-        {t("filters.all")}
-      </button>
-      {countries.map((country) => (
+    <div className="relative">
+      {/* Fade indicators for mobile scroll */}
+      <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-4 bg-gradient-to-r from-white to-transparent sm:hidden" />
+      <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-4 bg-gradient-to-l from-white to-transparent sm:hidden" />
+
+      <div className="-mx-1 flex gap-2 overflow-x-auto px-1 pb-1 scrollbar-none sm:mx-0 sm:flex-wrap sm:overflow-visible sm:px-0 sm:pb-0">
         <button
-          key={country.code}
           type="button"
-          onClick={() => onSelect(country.code)}
-          className={`flex items-center gap-1.5 rounded-xl border-2 px-3 py-1.5 text-xs font-bold transition-all ${
-            activeCountry === country.code
-              ? "border-showcase-purple bg-showcase-purple text-white shadow-chunky-sm"
-              : country.hasActive
-                ? "border-ink-dark/10 bg-white text-ink-dark hover:bg-pastel-lavender"
-                : "border-ink-dark/5 bg-pastel-cream/60 text-ink-muted"
+          onClick={() => onSelect("")}
+          className={`shrink-0 rounded-xl border-2 px-3 py-1.5 text-xs font-bold transition-all ${
+            !activeCountry
+              ? "border-showcase-navy bg-showcase-navy text-white shadow-chunky-sm"
+              : "border-ink-dark/10 bg-white text-ink-dark hover:bg-pastel-lavender"
           }`}
         >
-          <MapPin className="h-3 w-3" />
-          {country.name}
-          <span className="rounded-full bg-white/20 px-1.5 text-[10px]">
-            {country.count}
-          </span>
+          {t("filters.all")}
         </button>
-      ))}
-      <a
-        href="mailto:ari@entermedschool.com?subject=Add%20my%20university"
-        className="flex items-center gap-1.5 rounded-xl border-2 border-dashed border-showcase-green/40 bg-showcase-green/5 px-3 py-1.5 text-xs font-bold text-showcase-green transition-all hover:border-showcase-green hover:bg-showcase-green/10"
-      >
-        <Mail className="h-3 w-3" />
-        {t("map.legendRequest")}
-      </a>
+        {countries.map((country) => (
+          <button
+            key={country.code}
+            type="button"
+            onClick={() => onSelect(country.code)}
+            className={`flex shrink-0 items-center gap-1.5 rounded-xl border-2 px-3 py-1.5 text-xs font-bold transition-all ${
+              activeCountry === country.code
+                ? "border-showcase-purple bg-showcase-purple text-white shadow-chunky-sm"
+                : country.hasActive
+                  ? "border-ink-dark/10 bg-white text-ink-dark hover:bg-pastel-lavender"
+                  : "border-ink-dark/5 bg-pastel-cream/60 text-ink-muted"
+            }`}
+          >
+            <MapPin className="h-3 w-3" />
+            {country.name}
+            <span className="rounded-full bg-white/20 px-1.5 text-[10px]">
+              {country.count}
+            </span>
+          </button>
+        ))}
+        <a
+          href="mailto:ari@entermedschool.com?subject=Add%20my%20university"
+          className="flex shrink-0 items-center gap-1.5 rounded-xl border-2 border-dashed border-showcase-green/40 bg-showcase-green/5 px-3 py-1.5 text-xs font-bold text-showcase-green transition-all hover:border-showcase-green hover:bg-showcase-green/10"
+        >
+          <Mail className="h-3 w-3" />
+          {t("map.legendRequest")}
+        </a>
+      </div>
     </div>
   );
 }

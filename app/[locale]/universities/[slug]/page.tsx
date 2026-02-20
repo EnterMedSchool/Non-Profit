@@ -140,36 +140,36 @@ export default function UniversityDetailPage() {
             </div>
 
             {/* Stats */}
-            <div className="flex flex-wrap gap-3">
-              <div className="flex items-center gap-2 rounded-xl bg-showcase-purple/10 px-3 py-2">
+            <div className="grid grid-cols-3 gap-2 sm:flex sm:flex-wrap sm:gap-3">
+              <div className="flex flex-col items-center gap-1 rounded-xl bg-showcase-purple/10 px-2 py-2 text-center sm:flex-row sm:gap-2 sm:px-3 sm:text-left">
                 <BookOpen className="h-4 w-4 text-showcase-purple" />
                 <div>
-                  <p className="text-lg font-bold text-showcase-purple">
+                  <p className="text-base font-bold text-showcase-purple sm:text-lg">
                     {stats.courses}
                   </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  <p className="text-[9px] font-semibold uppercase tracking-wider text-ink-muted sm:text-[10px]">
                     {t("courses")}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 rounded-xl bg-showcase-teal/10 px-3 py-2">
+              <div className="flex flex-col items-center gap-1 rounded-xl bg-showcase-teal/10 px-2 py-2 text-center sm:flex-row sm:gap-2 sm:px-3 sm:text-left">
                 <Layers className="h-4 w-4 text-showcase-teal" />
                 <div>
-                  <p className="text-lg font-bold text-showcase-teal">
+                  <p className="text-base font-bold text-showcase-teal sm:text-lg">
                     {stats.lectures}
                   </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  <p className="text-[9px] font-semibold uppercase tracking-wider text-ink-muted sm:text-[10px]">
                     {t("lectures")}
                   </p>
                 </div>
               </div>
-              <div className="flex items-center gap-2 rounded-xl bg-showcase-coral/10 px-3 py-2">
+              <div className="flex flex-col items-center gap-1 rounded-xl bg-showcase-coral/10 px-2 py-2 text-center sm:flex-row sm:gap-2 sm:px-3 sm:text-left">
                 <FileText className="h-4 w-4 text-showcase-coral" />
                 <div>
-                  <p className="text-lg font-bold text-showcase-coral">
+                  <p className="text-base font-bold text-showcase-coral sm:text-lg">
                     {stats.materials}
                   </p>
-                  <p className="text-[10px] font-semibold uppercase tracking-wider text-ink-muted">
+                  <p className="text-[9px] font-semibold uppercase tracking-wider text-ink-muted sm:text-[10px]">
                     {t("materials")}
                   </p>
                 </div>

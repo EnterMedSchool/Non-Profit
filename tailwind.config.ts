@@ -135,6 +135,11 @@ const config: Config = {
           "0%": { transform: "scale(1)", opacity: "0.6" },
           "100%": { transform: "scale(1.8)", opacity: "0" },
         },
+        "map-pulse": {
+          "0%": { transform: "scale(1)", opacity: "0.4" },
+          "50%": { transform: "scale(2)", opacity: "0" },
+          "100%": { transform: "scale(1)", opacity: "0.4" },
+        },
         marquee: {
           "0%": { transform: "translateX(0)" },
           "100%": { transform: "translateX(-50%)" },

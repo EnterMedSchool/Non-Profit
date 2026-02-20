@@ -3292,7 +3292,14 @@
       "itsFree": "It's free!",
       "legendActive": "Materials available",
       "legendComingSoon": "Coming soon",
-      "legendRequest": "Request your university"
+      "legendRequest": "Request your university",
+      "viewMaterials": "Click to view materials",
+      "requestCTA": "Send us your slides",
+      "zoomIn": "Zoom in",
+      "zoomOut": "Zoom out",
+      "resetView": "Reset view",
+      "close": "Close",
+      "tapToExplore": "Tap a country to explore"
     },
     "filters": {
       "all": "All Countries",

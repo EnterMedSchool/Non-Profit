@@ -221,13 +221,13 @@ export default function CourseSection({
               className="overflow-hidden"
             >
               <div className="border-t border-ink-dark/5 px-4 py-3 sm:px-5">
-                <div className="mb-4 flex flex-wrap items-center gap-2">
+                <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:items-center">
                   {/* Download All ZIP */}
                   <button
                     type="button"
                     onClick={handleDownloadAll}
                     disabled={downloading}
-                    className="inline-flex items-center gap-1.5 rounded-xl border-2 border-ink-dark/10 bg-white px-3 py-1.5 text-xs font-bold text-ink-dark transition-all hover:bg-pastel-lavender hover:shadow-chunky-sm disabled:opacity-60"
+                    className="inline-flex min-h-[44px] items-center justify-center gap-1.5 rounded-xl border-2 border-ink-dark/10 bg-white px-3 py-2 text-xs font-bold text-ink-dark transition-all hover:bg-pastel-lavender hover:shadow-chunky-sm disabled:opacity-60 sm:min-h-0 sm:py-1.5"
                   >
                     {downloading ? (
                       <Loader2 className="h-3.5 w-3.5 animate-spin" />
@@ -239,32 +239,36 @@ export default function CourseSection({
                       : t("downloadAll")}
                   </button>
 
-                  {/* Share */}
-                  <button
-                    type="button"
-                    onClick={handleCopyLink}
-                    className={`inline-flex items-center gap-1 rounded-xl border-2 px-3 py-1.5 text-xs font-bold transition-all ${
-                      copied
-                        ? "border-green-300 bg-green-50 text-green-700"
-                        : "border-ink-dark/10 text-ink-muted hover:bg-pastel-lavender hover:text-showcase-purple"
-                    }`}
-                  >
-                    {copied ? (
-                      <Check className="h-3 w-3" />
-                    ) : (
-                      <Share2 className="h-3 w-3" />
-                    )}
-                    {copied ? t("linkCopied") : t("shareCourse")}
-                  </button>
-                  <a
-                    href={whatsappShareUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 rounded-xl border-2 border-ink-dark/10 px-3 py-1.5 text-xs font-bold text-ink-muted transition-all hover:bg-green-50 hover:text-green-600"
-                  >
-                    <MessageCircle className="h-3 w-3" />
-                    WhatsApp
-                  </a>
+                  <div className="flex items-center gap-2">
+                    {/* Share */}
+                    <button
+                      type="button"
+                      onClick={handleCopyLink}
+                      className={`inline-flex min-h-[44px] flex-1 items-center justify-center gap-1 rounded-xl border-2 px-3 py-2 text-xs font-bold transition-all sm:min-h-0 sm:flex-initial sm:py-1.5 ${
+                        copied
+                          ? "border-green-300 bg-green-50 text-green-700"
+                          : "border-ink-dark/10 text-ink-muted hover:bg-pastel-lavender hover:text-showcase-purple"
+                      }`}
+                    >
+                      {copied ? (
+                        <Check className="h-3 w-3" />
+                      ) : (
+                        <Share2 className="h-3 w-3" />
+                      )}
+                      <span className="sm:inline">
+                        {copied ? t("linkCopied") : t("shareCourse")}
+                      </span>
+                    </button>
+                    <a
+                      href={whatsappShareUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="inline-flex min-h-[44px] flex-1 items-center justify-center gap-1 rounded-xl border-2 border-ink-dark/10 px-3 py-2 text-xs font-bold text-ink-muted transition-all hover:bg-green-50 hover:text-green-600 sm:min-h-0 sm:flex-initial sm:py-1.5"
+                    >
+                      <MessageCircle className="h-3 w-3" />
+                      <span className="sm:inline">WhatsApp</span>
+                    </a>
+                  </div>
                 </div>
 
                 {/* Download progress bar */}

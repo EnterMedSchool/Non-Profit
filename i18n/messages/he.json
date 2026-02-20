@@ -2669,7 +2669,14 @@
       "itsFree": "זה חינם!",
       "legendActive": "חומרים זמינים",
       "legendComingSoon": "בקרוב",
-      "legendRequest": "בקשו את האוניברסיטה שלכם"
+      "legendRequest": "בקשו את האוניברסיטה שלכם",
+      "viewMaterials": "לחצו לצפייה בחומרים",
+      "requestCTA": "שלחו לנו שקפים",
+      "zoomIn": "הגדלה",
+      "zoomOut": "הקטנה",
+      "resetView": "איפוס תצוגה",
+      "close": "סגירה",
+      "tapToExplore": "הקישו על מדינה לחקירה"
     },
     "filters": {
       "all": "כל המדינות",
