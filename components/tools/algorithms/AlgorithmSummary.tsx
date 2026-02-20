@@ -46,7 +46,7 @@ export default function AlgorithmSummary({
 
   if (!outcomeNode) return null;
 
-  const edu = outcomeNode.educationalContent;
+  const edu = outcomeNode.educationalContent ?? { why: "", detail: "" };
 
   return (
     <div className="space-y-4">

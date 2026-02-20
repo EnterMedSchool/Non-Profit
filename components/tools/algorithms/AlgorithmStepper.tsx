@@ -68,7 +68,7 @@ export default function AlgorithmStepper({
 
   if (!currentNode) return null;
 
-  const edu = currentNode.educationalContent;
+  const edu = currentNode.educationalContent ?? { why: "", detail: "" };
 
   return (
     <div className="flex flex-col h-full">

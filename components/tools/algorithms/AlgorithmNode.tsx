@@ -1,7 +1,7 @@
 "use client";
 
 import { memo } from "react";
-import { Handle, Position, type NodeProps } from "@xyflow/react";
+import { Handle, Position, type Node, type NodeProps } from "@xyflow/react";
 import {
   PlayCircle,
   HelpCircle,
@@ -28,6 +28,8 @@ interface AlgoNodeData {
   hasEducation: boolean;
   [key: string]: unknown;
 }
+
+type AlgoNode = Node<AlgoNodeData, "algorithmNode">;
 
 const ICON_MAP: Record<AlgoNodeType, typeof PlayCircle> = {
   start: PlayCircle,
@@ -80,9 +82,8 @@ const TYPE_STYLES: Record<
   },
 };
 
-function AlgorithmNodeComponent({ data }: NodeProps) {
-  const { label, nodeType, active, visited, hasEducation } =
-    data as unknown as AlgoNodeData;
+function AlgorithmNodeComponent({ data }: NodeProps<AlgoNode>) {
+  const { label, nodeType, active, visited, hasEducation } = data;
   const Icon = ICON_MAP[nodeType] ?? Info;
   const style = TYPE_STYLES[nodeType] ?? TYPE_STYLES.info;
 

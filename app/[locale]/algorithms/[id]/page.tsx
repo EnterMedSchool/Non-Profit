@@ -13,7 +13,7 @@ import {
 import Link from "next/link";
 import { getToolById, getAlgorithmTools } from "@/data/tools";
 import { algorithmRegistry } from "@/components/tools/algorithms";
-import AlgorithmEmbedLoader from "@/components/tools/algorithms/AlgorithmEmbedLoader";
+import AlgorithmFullLoader from "@/components/tools/algorithms/AlgorithmFullLoader";
 import {
   getAlgorithmJsonLd,
   getAlgorithmHowToJsonLd,
@@ -250,7 +250,7 @@ export default async function AlgorithmPage({ params }: AlgorithmPageProps) {
         {/* Algorithm viewer */}
         <AnimatedSection delay={0.18} animation="blurIn">
           <div className="mt-8">
-            <AlgorithmEmbedLoader id={id} />
+            <AlgorithmFullLoader id={id} />
           </div>
         </AnimatedSection>
 

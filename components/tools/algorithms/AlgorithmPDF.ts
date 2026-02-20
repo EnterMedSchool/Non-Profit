@@ -142,10 +142,8 @@ export function generateAlgorithmPDF(
 
   const outcomeNode = definition.nodes.find((n) => n.id === outcomeNodeId);
   if (outcomeNode) {
-    doc.setDrawColor(...GREEN);
-    doc.setLineWidth(0.8);
-    doc.setFillColor(240, 253, 244);
-    doc.roundedRect(MARGIN, y, CONTENT_W, 35, 3, 3, "FD");
+    const boxStartY = y;
+    const boxStartPage = doc.getNumberOfPages();
 
     y += 7;
     doc.setFont("helvetica", "bold");
@@ -158,9 +156,32 @@ export function generateAlgorithmPDF(
     doc.setFontSize(12);
     doc.setTextColor(...DARK);
     y = addWrappedText(doc, outcomeNode.label, MARGIN + 5, y, CONTENT_W - 10, 5.5);
+    y += 4;
+
+    const boxEndPage = doc.getNumberOfPages();
+    if (boxEndPage === boxStartPage) {
+      const boxHeight = y - boxStartY;
+      doc.setPage(boxStartPage);
+      doc.setDrawColor(...GREEN);
+      doc.setLineWidth(0.8);
+      doc.setFillColor(240, 253, 244);
+      doc.roundedRect(MARGIN, boxStartY, CONTENT_W, boxHeight, 3, 3, "FD");
+
+      // Re-render text on top of the filled box
+      let ry = boxStartY + 7;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(9);
+      doc.setTextColor(...GREEN);
+      doc.text("RECOMMENDATION", MARGIN + 5, ry);
+      ry += 6;
+      doc.setFont("helvetica", "bold");
+      doc.setFontSize(12);
+      doc.setTextColor(...DARK);
+      addWrappedText(doc, outcomeNode.label, MARGIN + 5, ry, CONTENT_W - 10, 5.5);
+    }
 
     if (outcomeNode.educationalContent?.keyPoints?.length) {
-      y += 10;
+      y += 6;
       doc.setFont("helvetica", "bold");
       doc.setFontSize(10);
       doc.setTextColor(...DARK);
