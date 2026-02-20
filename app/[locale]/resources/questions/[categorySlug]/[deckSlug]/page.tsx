@@ -172,7 +172,7 @@ export default async function DeckPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <AnimatedSection delay={0} animation="fadeIn">
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -247,48 +247,49 @@ export default async function DeckPage({
           </div>
         </PageHero>
 
-        {/* Two-column layout: quiz player + sidebar */}
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
-          <AnimatedSection delay={0.1} animation="fadeUp">
+        {/* Quiz player */}
+        <AnimatedSection delay={0.1} animation="fadeUp">
+          <div className="mt-8">
             <QuestionPlayer
               questions={questions}
               deckTitle={deck.title}
               locale={locale}
             />
-          </AnimatedSection>
-
-          <div className="space-y-6">
-            <AnimatedSection delay={0.15} animation="fadeUp">
-              <DeckDownloadPanel
-                type="questions"
-                deckTitle={deck.title}
-                deckSlug={deck.slug}
-                items={questions.map((q) => ({
-                  prompt: q.prompt,
-                  explanation: q.explanation,
-                  options: q.options,
-                  stableId: q.stableId,
-                  ordinal: q.ordinal,
-                }))}
-                pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
-                pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
-              />
-            </AnimatedSection>
-            <AnimatedSection delay={0.2} animation="fadeUp">
-              <EmbedCodePanel
-                type="questions"
-                title={deck.title}
-                embedData={{
-                  title: deck.title,
-                  questions: questions.slice(0, 20).map((q) => ({
-                    prompt: q.prompt,
-                    options: q.options,
-                    explanation: q.explanation,
-                  })),
-                }}
-              />
-            </AnimatedSection>
           </div>
+        </AnimatedSection>
+
+        {/* Download & Embed panels */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <AnimatedSection delay={0.15} animation="fadeUp">
+            <DeckDownloadPanel
+              type="questions"
+              deckTitle={deck.title}
+              deckSlug={deck.slug}
+              items={questions.map((q) => ({
+                prompt: q.prompt,
+                explanation: q.explanation,
+                options: q.options,
+                stableId: q.stableId,
+                ordinal: q.ordinal,
+              }))}
+              pdfExamUrl={questionPdfUrls(categorySlug, deck.slug).exam}
+              pdfStudyGuideUrl={questionPdfUrls(categorySlug, deck.slug).studyGuide}
+            />
+          </AnimatedSection>
+          <AnimatedSection delay={0.2} animation="fadeUp">
+            <EmbedCodePanel
+              type="questions"
+              title={deck.title}
+              embedData={{
+                title: deck.title,
+                questions: questions.slice(0, 20).map((q) => ({
+                  prompt: q.prompt,
+                  options: q.options,
+                  explanation: q.explanation,
+                })),
+              }}
+            />
+          </AnimatedSection>
         </div>
       </div>
     </main>

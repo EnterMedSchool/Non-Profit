@@ -198,7 +198,7 @@ export default function DeckDownloadPanel({
         <Download size={20} />
         Download
       </h3>
-      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+      <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {type === "questions" && (
           <>
             <DownloadButton

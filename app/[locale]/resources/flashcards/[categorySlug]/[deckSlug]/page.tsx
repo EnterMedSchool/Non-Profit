@@ -170,7 +170,7 @@ export default async function DeckFlashcardsPage({
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <div className="mx-auto max-w-5xl px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto max-w-4xl px-4 sm:px-6 lg:px-8">
         {/* Breadcrumb */}
         <AnimatedSection delay={0} animation="fadeIn">
           <nav aria-label="Breadcrumb" className="mb-6">
@@ -255,46 +255,47 @@ export default async function DeckFlashcardsPage({
           </div>
         </PageHero>
 
-        {/* Two-column layout: study area + sidebar */}
-        <div className="mt-8 grid gap-8 lg:grid-cols-[1fr_340px]">
-          <AnimatedSection delay={0.1} animation="fadeUp">
+        {/* Flashcard study */}
+        <AnimatedSection delay={0.1} animation="fadeUp">
+          <div className="mt-8">
             <FlashcardStudy
               cards={cards}
               deckTitle={deck.title}
               locale={locale}
             />
-          </AnimatedSection>
+          </div>
+        </AnimatedSection>
 
-          <div className="space-y-6">
-            <AnimatedSection delay={0.15} animation="fadeUp">
-              <DeckDownloadPanel
-                type="flashcards"
-                deckTitle={deck.title}
-                deckSlug={deck.slug}
-                items={cards.map((c) => ({
+        {/* Download & Embed panels */}
+        <div className="mt-8 grid gap-6 lg:grid-cols-2">
+          <AnimatedSection delay={0.15} animation="fadeUp">
+            <DeckDownloadPanel
+              type="flashcards"
+              deckTitle={deck.title}
+              deckSlug={deck.slug}
+              items={cards.map((c) => ({
+                front: c.front,
+                back: c.back,
+                explanation: c.explanation,
+                stableId: c.stableId,
+                ordinal: c.ordinal,
+              }))}
+              pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
+            />
+          </AnimatedSection>
+          <AnimatedSection delay={0.2} animation="fadeUp">
+            <EmbedCodePanel
+              type="flashcards"
+              title={deck.title}
+              embedData={{
+                title: deck.title,
+                cards: cards.slice(0, 30).map((c) => ({
                   front: c.front,
                   back: c.back,
-                  explanation: c.explanation,
-                  stableId: c.stableId,
-                  ordinal: c.ordinal,
-                }))}
-                pdfFlashcardsUrl={flashcardPdfUrl(categorySlug, deck.slug)}
-              />
-            </AnimatedSection>
-            <AnimatedSection delay={0.2} animation="fadeUp">
-              <EmbedCodePanel
-                type="flashcards"
-                title={deck.title}
-                embedData={{
-                  title: deck.title,
-                  cards: cards.slice(0, 30).map((c) => ({
-                    front: c.front,
-                    back: c.back,
-                  })),
-                }}
-              />
-            </AnimatedSection>
-          </div>
+                })),
+              }}
+            />
+          </AnimatedSection>
         </div>
       </div>
     </main>
