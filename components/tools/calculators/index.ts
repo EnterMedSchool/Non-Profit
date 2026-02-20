@@ -28,5 +28,6 @@ export const calculatorRegistry: Record<
   () => Promise<{ default: ComponentType<CalculatorEmbedProps> }>
 > = {
   "bmi-calc": () => import("./BMICalculator"),
+  "duke-criteria": () => import("./DukeCriteriaCalculator"),
   "latex-editor": () => import("@/components/tools/latex-editor"),
 };

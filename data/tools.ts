@@ -2,7 +2,7 @@ export interface Tool {
   id: string;
   /** i18n key under the "tools" namespace, e.g. "bmi" → tools.bmi.title */
   i18nKey: string;
-  category: "calculator" | "creator";
+  category: "calculator" | "creator" | "algorithm";
   sourceUrl?: string;
   icon: string;
   /** Suggested iframe height in px (default 520) */
@@ -57,6 +57,26 @@ export const tools: Tool[] = [
     ],
   },
   {
+    id: "duke-criteria",
+    i18nKey: "duke",
+    category: "calculator",
+    sourceUrl: "https://github.com/enterMedSchool/Non-Profit/tree/main/components/tools/calculators",
+    icon: "HeartPulse",
+    embedHeight: 800,
+    seoKeywords: [
+      "Duke criteria calculator",
+      "infective endocarditis diagnosis",
+      "Duke criteria for endocarditis",
+      "modified Duke criteria",
+      "2023 Duke-ISCVID criteria",
+      "endocarditis diagnostic criteria",
+      "IE diagnosis tool",
+      "Duke criteria checklist",
+      "infective endocarditis calculator",
+      "endocarditis criteria free",
+    ],
+  },
+  {
     id: "flashcard-maker",
     i18nKey: "flashcardMaker",
     category: "creator",
@@ -92,6 +112,27 @@ export const tools: Tool[] = [
       "open source latex editor",
       "research paper formatter",
       "medical thesis writer",
+    ],
+  },
+  {
+    id: "hypertension-mgmt",
+    i18nKey: "hypertension",
+    category: "algorithm",
+    sourceUrl:
+      "https://github.com/enterMedSchool/Non-Profit/tree/main/data/algorithms",
+    icon: "Activity",
+    embedHeight: 800,
+    seoKeywords: [
+      "hypertension management algorithm",
+      "antihypertensive drug selection",
+      "ACC AHA hypertension guidelines",
+      "blood pressure treatment algorithm",
+      "hypertension treatment flowchart",
+      "first-line antihypertensive",
+      "hypertension decision tree",
+      "BP management guidelines 2017",
+      "interactive hypertension algorithm",
+      "medical algorithm tool",
     ],
   },
   {
@@ -133,4 +174,9 @@ export function getCalculatorTools(): Tool[] {
 /** All creator tools */
 export function getCreatorTools(): Tool[] {
   return tools.filter((t) => t.category === "creator");
+}
+
+/** All algorithm tools */
+export function getAlgorithmTools(): Tool[] {
+  return tools.filter((t) => t.category === "algorithm");
 }

@@ -7,6 +7,7 @@ import type { GlossaryTerm, GlossaryCategory } from "@/types/glossary";
 import type { ClinicalCase } from "@/data/clinical-cases";
 import type { PracticeQuestion } from "@/types/practice-questions";
 import type { Flashcard } from "@/types/flashcard-data";
+import type { AlgorithmDefinition } from "@/lib/algorithmTypes";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
@@ -1318,6 +1319,7 @@ export function getSiteNavigationJsonLd(locale: string) {
     { name: "Media Library", url: `${BASE_URL}/${locale}/resources/media` },
     { name: "Tools", url: `${BASE_URL}/${locale}/tools` },
     { name: "Calculators", url: `${BASE_URL}/${locale}/calculators` },
+    { name: "Algorithms", url: `${BASE_URL}/${locale}/algorithms` },
     { name: "For Professors", url: `${BASE_URL}/${locale}/for-professors` },
     { name: "Clinical Cases", url: `${BASE_URL}/${locale}/resources/clinical-cases` },
     { name: "About", url: `${BASE_URL}/${locale}/about` },
@@ -1640,5 +1642,142 @@ export function getEducationSpeakableJsonLd(
         "[data-speakable='explanation']",
       ],
     },
+  };
+}
+
+/* ================================================================== */
+/*  Algorithm SEO schemas                                              */
+/* ================================================================== */
+
+/**
+ * JSON-LD structured data for an algorithm detail page.
+ *
+ * Emits schemas:
+ * 1. MedicalWebPage
+ * 2. LearningResource (interactive algorithm)
+ * 3. SoftwareApplication
+ */
+export function getAlgorithmJsonLd(
+  tool: Tool,
+  algorithm: AlgorithmDefinition,
+  title: string,
+  description: string,
+  locale: string,
+  urlOverride?: string,
+) {
+  const algoUrl = urlOverride || `${BASE_URL}/${locale}/algorithms/${tool.id}`;
+
+  const medicalWebPage = {
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: title,
+    description,
+    url: algoUrl,
+    inLanguage: locale,
+    isPartOf: {
+      "@type": "WebSite",
+      name: "EnterMedSchool.org",
+      url: BASE_URL,
+    },
+    medicalAudience: [
+      { "@type": "MedicalAudience", audienceType: "Clinician" },
+      { "@type": "MedicalAudience", audienceType: "MedicalStudent" },
+    ],
+    about: {
+      "@type": "MedicalGuideline",
+      name: algorithm.guideline,
+      guidelineSubject: title,
+    },
+    lastReviewed: "2025-06-01",
+    ...(tool.seoKeywords && { keywords: tool.seoKeywords.join(", ") }),
+  };
+
+  const learningResource = {
+    "@context": "https://schema.org",
+    "@type": "LearningResource",
+    name: `${title} — Interactive Clinical Algorithm`,
+    description,
+    url: algoUrl,
+    learningResourceType: "interactive algorithm",
+    educationalLevel: "University",
+    isAccessibleForFree: true,
+    inLanguage: locale,
+    interactivityType: "active",
+    timeRequired: "PT10M",
+    teaches: `Clinical decision-making for ${title.toLowerCase()} using ${algorithm.guideline} guidelines`,
+    provider: ORGANIZATION_REF,
+  };
+
+  const softwareApp = {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    name: title,
+    description,
+    url: algoUrl,
+    applicationCategory: "HealthApplication",
+    operatingSystem: "Web",
+    offers: { "@type": "Offer", price: "0", priceCurrency: "USD" },
+    provider: ORGANIZATION_REF,
+  };
+
+  return [medicalWebPage, learningResource, softwareApp];
+}
+
+/**
+ * HowTo schema for algorithm pages — converts the algorithm's
+ * linear main path into HowTo steps for featured snippets.
+ */
+export function getAlgorithmHowToJsonLd(
+  algorithm: AlgorithmDefinition,
+  title: string,
+  url: string,
+  locale: string,
+) {
+  const questionNodes = algorithm.nodes.filter(
+    (n) => n.type === "question" || n.type === "decision" || n.type === "start",
+  );
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    name: `How to use the ${title} algorithm`,
+    description: `Step-by-step guide to applying the ${algorithm.guideline} ${title.toLowerCase()} algorithm for clinical decision-making.`,
+    url,
+    totalTime: "PT10M",
+    tool: { "@type": "HowToTool", name: "Web browser" },
+    supply: [],
+    step: questionNodes.map((node, i) => ({
+      "@type": "HowToStep",
+      position: i + 1,
+      name: node.label,
+      text: node.educationalContent.why || node.educationalContent.detail,
+      url: `${url}#step-${i + 1}`,
+    })),
+    provider: ORGANIZATION_REF,
+  };
+}
+
+/**
+ * FAQPage schema auto-generated from algorithm FAQ data.
+ */
+export function getAlgorithmFAQJsonLd(
+  algorithm: AlgorithmDefinition,
+  locale: string,
+) {
+  const faqItems = algorithm.faq ?? [];
+  if (faqItems.length === 0) return null;
+
+  return {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    inLanguage: locale,
+    mainEntity: faqItems.map((item) => ({
+      "@type": "Question",
+      name: item.question,
+      acceptedAnswer: {
+        "@type": "Answer",
+        text: item.answer,
+      },
+    })),
   };
 }

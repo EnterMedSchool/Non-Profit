@@ -16,6 +16,48 @@ import { ogImagePath } from "@/lib/og-path";
 
 const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
 
+const BMI_FORMULA_CODE = `// BMI = weight (kg) / height (m)\u00B2
+function calcBMI(weightKg, heightCm) {
+  const heightM = heightCm / 100;
+  return weightKg / (heightM * heightM);
+}
+
+// BMI Prime = BMI / 25 (ratio to upper normal limit)
+function calcBMIPrime(bmi) {
+  return bmi / 25;
+}
+
+// Ponderal Index = weight (kg) / height (m)\u00B3
+function calcPonderalIndex(weightKg, heightCm) {
+  const heightM = heightCm / 100;
+  return weightKg / (heightM * heightM * heightM);
+}
+
+// Healthy weight range for BMI 18.5\u201325
+function calcHealthyWeightRange(heightCm) {
+  const heightM = heightCm / 100;
+  return {
+    min: 18.5 * heightM * heightM,
+    max: 25 * heightM * heightM,
+  };
+}`;
+
+const DUKE_FORMULA_CODE = `// 2023 Duke-ISCVID Criteria Classification
+// Fowler et al., Clin Infect Dis 2023
+function classifyIE(majorCount, minorCount) {
+  // Definite IE (clinical)
+  if (majorCount >= 2) return "definite";
+  if (majorCount >= 1 && minorCount >= 3) return "definite";
+  if (minorCount >= 5) return "definite";
+
+  // Possible IE
+  if (majorCount >= 1 && minorCount >= 1) return "possible";
+  if (minorCount >= 3) return "possible";
+
+  // Does not meet criteria
+  return "rejected";
+}`;
+
 interface CalculatorPageProps {
   params: Promise<{ locale: string; id: string }>;
 }
@@ -91,8 +133,10 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
   const jsonLdItems = getToolJsonLd(tool, title, description, locale, toolUrl);
 
   // Build FAQ structured data for tools that have FAQ content
-  const hasFaq = id === "bmi-calc";
-  const faqItems = hasFaq
+  const isBmi = id === "bmi-calc";
+  const isDuke = id === "duke-criteria";
+  const hasFaq = isBmi || isDuke;
+  const faqItems = isBmi
     ? [
         { question: t("bmi.faq.q1"), answer: t("bmi.faq.a1") },
         { question: t("bmi.faq.q2"), answer: t("bmi.faq.a2") },
@@ -100,13 +144,20 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
         { question: t("bmi.faq.q4"), answer: t("bmi.faq.a4") },
         { question: t("bmi.faq.q5"), answer: t("bmi.faq.a5") },
       ]
-    : [];
+    : isDuke
+      ? [
+          { question: t("duke.faq.q1"), answer: t("duke.faq.a1") },
+          { question: t("duke.faq.q2"), answer: t("duke.faq.a2") },
+          { question: t("duke.faq.q3"), answer: t("duke.faq.a3") },
+          { question: t("duke.faq.q4"), answer: t("duke.faq.a4") },
+          { question: t("duke.faq.q5"), answer: t("duke.faq.a5") },
+        ]
+      : [];
   const faqJsonLd = hasFaq ? getFAQPageJsonLd(faqItems, locale) : null;
 
-  const hasEducationalContent = id === "bmi-calc";
-  const isBmi = id === "bmi-calc";
+  const hasEducationalContent = isBmi || isDuke;
 
-  // BMI-specific: HowTo schema for "how to calculate BMI" featured snippets
+  // HowTo schema for featured snippets
   const howToJsonLd = isBmi
     ? {
         "@context": "https://schema.org",
@@ -154,16 +205,64 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           url: BASE_URL,
         },
       }
-    : null;
+    : isDuke
+      ? {
+          "@context": "https://schema.org",
+          "@type": "HowTo",
+          name: "How to Use the Duke Criteria for Infective Endocarditis",
+          description:
+            "Apply the 2023 Duke-ISCVID criteria to classify suspected infective endocarditis as Definite, Possible, or Rejected.",
+          url: toolUrl,
+          totalTime: "PT5M",
+          tool: { "@type": "HowToTool", name: "Web browser" },
+          supply: [],
+          step: [
+            {
+              "@type": "HowToStep",
+              position: 1,
+              name: "Review major criteria",
+              text: "Evaluate the patient's findings against the three major criterion domains: microbiologic (blood cultures, serology, molecular), imaging (echo, cardiac CT, PET/CT), and surgical (intraoperative inspection).",
+              url: `${toolUrl}#step-1`,
+            },
+            {
+              "@type": "HowToStep",
+              position: 2,
+              name: "Review minor criteria",
+              text: "Check for minor criteria: predisposing conditions, fever, vascular phenomena, immunologic phenomena, supportive microbiologic evidence, minor imaging findings, and new regurgitation on auscultation.",
+              url: `${toolUrl}#step-2`,
+            },
+            {
+              "@type": "HowToStep",
+              position: 3,
+              name: "Count criteria met",
+              text: "Count the number of major criterion domains and minor criteria that are present. Each major domain counts once regardless of how many sub-criteria are positive.",
+              url: `${toolUrl}#step-3`,
+            },
+            {
+              "@type": "HowToStep",
+              position: 4,
+              name: "Read the classification",
+              text: "The calculator classifies the case as Definite IE (\u22652 major, or 1 major + \u22653 minor, or \u22655 minor), Possible IE (1 major + 1 minor, or \u22653 minor), or Rejected (does not meet criteria).",
+              url: `${toolUrl}#step-4`,
+            },
+          ],
+          provider: {
+            "@type": "Organization",
+            name: "EnterMedSchool.org",
+            url: BASE_URL,
+          },
+        }
+      : null;
 
-  // BMI-specific: SoftwareSourceCode schema for the open source formula section
-  const sourceCodeJsonLd = isBmi
+  // SoftwareSourceCode schema for the open source formula section
+  const sourceCodeJsonLd = (isBmi || isDuke)
     ? {
         "@context": "https://schema.org",
         "@type": "SoftwareSourceCode",
-        name: `${title} \u2014 Open Source Formula`,
-        description:
-          "The complete BMI calculation formulas used in this calculator, available as open source JavaScript code.",
+        name: `${title} \u2014 Open Source ${isDuke ? "Algorithm" : "Formula"}`,
+        description: isDuke
+          ? "The 2023 Duke-ISCVID criteria classification algorithm used in this calculator, available as open source JavaScript code."
+          : "The complete BMI calculation formulas used in this calculator, available as open source JavaScript code.",
         url: toolUrl,
         codeRepository:
           tool.sourceUrl ||
@@ -326,11 +425,22 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           </div>
         </AnimatedSection>
 
-        {/* Open Source Formula (BMI-specific) */}
+        {/* Open Source Formula / Algorithm */}
         {isBmi && (
           <AnimatedSection delay={0.16} animation="fadeUp">
             <div className="mt-8">
-              <FormulaCodeBlock sourceUrl={tool.sourceUrl} />
+              <FormulaCodeBlock code={BMI_FORMULA_CODE} sourceUrl={tool.sourceUrl} />
+            </div>
+          </AnimatedSection>
+        )}
+        {isDuke && (
+          <AnimatedSection delay={0.16} animation="fadeUp">
+            <div className="mt-8">
+              <FormulaCodeBlock
+                code={DUKE_FORMULA_CODE}
+                i18nNamespace="tools.duke.openSource"
+                sourceUrl={tool.sourceUrl}
+              />
             </div>
           </AnimatedSection>
         )}
@@ -342,85 +452,86 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           </div>
         </AnimatedSection>
 
-        {/* Educational content section (BMI-specific) */}
+        {/* Educational content section */}
         {hasEducationalContent && (
           <AnimatedSection delay={0.2} animation="fadeUp">
             <div className="mt-10 space-y-6">
+              {/* About section */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-purple/20 bg-pastel-lavender">
                     <BookOpen className="h-5 w-5 text-showcase-purple" />
                   </div>
                   <h2 className="font-display text-lg font-bold text-ink-dark">
-                    {t("bmi.education.aboutTitle")}
+                    {isBmi ? t("bmi.education.aboutTitle") : t("duke.education.aboutTitle")}
                   </h2>
                 </div>
                 <p className="text-sm leading-relaxed text-ink-muted">
-                  {t("bmi.education.aboutBody")}
+                  {isBmi ? t("bmi.education.aboutBody") : t("duke.education.aboutBody")}
                 </p>
               </div>
 
+              {/* Formula / Criteria explanation */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-teal/20 bg-pastel-mint">
                     <FlaskConical className="h-5 w-5 text-showcase-teal" />
                   </div>
                   <h2 className="font-display text-lg font-bold text-ink-dark">
-                    {t("bmi.education.formulaTitle")}
+                    {isBmi ? t("bmi.education.formulaTitle") : t("duke.education.criteriaTitle")}
                   </h2>
                 </div>
                 <p className="text-sm leading-relaxed text-ink-muted">
-                  {t("bmi.education.formulaBody")}
+                  {isBmi ? t("bmi.education.formulaBody") : t("duke.education.criteriaBody")}
                 </p>
-                <div className="mt-4 rounded-xl bg-gray-50 border-2 border-showcase-navy/10 p-4">
-                  <p className="font-mono text-sm text-ink-dark text-center">
-                    BMI = weight (kg) / height (m)²
-                  </p>
-                </div>
-                <p className="mt-3 text-sm leading-relaxed text-ink-muted">
-                  {t("bmi.education.formulaExample")}
-                </p>
+                {isBmi && (
+                  <>
+                    <div className="mt-4 rounded-xl bg-gray-50 border-2 border-showcase-navy/10 p-4">
+                      <p className="font-mono text-sm text-ink-dark text-center">
+                        BMI = weight (kg) / height (m)²
+                      </p>
+                    </div>
+                    <p className="mt-3 text-sm leading-relaxed text-ink-muted">
+                      {t("bmi.education.formulaExample")}
+                    </p>
+                  </>
+                )}
               </div>
 
+              {/* Limitations */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-yellow/30 bg-showcase-yellow/10">
                     <AlertCircle className="h-5 w-5 text-showcase-yellow" />
                   </div>
                   <h2 className="font-display text-lg font-bold text-ink-dark">
-                    {t("bmi.education.limitationsTitle")}
+                    {isBmi ? t("bmi.education.limitationsTitle") : t("duke.education.limitationsTitle")}
                   </h2>
                 </div>
                 <p className="text-sm leading-relaxed text-ink-muted">
-                  {t("bmi.education.limitationsBody")}
+                  {isBmi ? t("bmi.education.limitationsBody") : t("duke.education.limitationsBody")}
                 </p>
                 <ul className="mt-3 space-y-2 text-sm text-ink-muted">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-purple/50 shrink-0" />
-                    {t("bmi.education.limitation1")}
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-purple/50 shrink-0" />
-                    {t("bmi.education.limitation2")}
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-purple/50 shrink-0" />
-                    {t("bmi.education.limitation3")}
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-purple/50 shrink-0" />
-                    {t("bmi.education.limitation4")}
-                  </li>
+                  {(isBmi
+                    ? ["limitation1", "limitation2", "limitation3", "limitation4"]
+                    : ["limitation1", "limitation2", "limitation3", "limitation4"]
+                  ).map((key) => (
+                    <li key={key} className="flex items-start gap-2">
+                      <span className="mt-1.5 h-1.5 w-1.5 rounded-full bg-showcase-purple/50 shrink-0" />
+                      {isBmi ? t(`bmi.education.${key}`) : t(`duke.education.${key}`)}
+                    </li>
+                  ))}
                 </ul>
               </div>
 
+              {/* FAQ */}
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-6">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl border-2 border-showcase-green/20 bg-showcase-green/10">
                     <HelpCircle className="h-5 w-5 text-showcase-green" />
                   </div>
                   <h2 className="font-display text-lg font-bold text-ink-dark">
-                    {t("bmi.education.faqTitle")}
+                    {isBmi ? t("bmi.education.faqTitle") : t("duke.education.faqTitle")}
                   </h2>
                 </div>
                 <div className="space-y-5">

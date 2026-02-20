@@ -278,6 +278,8 @@
       "toolsDesc": "Create MCQs, flashcards, illustrations, and more. Embed the results on your website or share with your students.",
       "calculators": "Medical Calculators",
       "calculatorsDesc": "Medical calculators and algorithms — embed on your website or use in your lectures.",
+      "algorithms": "Medical Algorithms",
+      "algorithmsDesc": "Interactive clinical decision algorithms with step-by-step walkthroughs and educational explanations. Embed or download as PDF.",
       "pdfs": "Textbooks & Handouts",
       "pdfsDesc": "Downloadable textbooks and reference sheets. Assign to your students or print as handouts.",
       "visuals": "Visual Assets",
@@ -1500,6 +1502,118 @@
         "viewFullSource": "View full source on GitHub"
       }
     },
+    "duke": {
+      "title": "Duke Criteria for Infective Endocarditis",
+      "metaTitle": "Duke Criteria Calculator — Free IE Diagnostic Tool (2023 Duke-ISCVID) | EnterMedSchool",
+      "metaDescription": "Free Duke Criteria calculator for diagnosing infective endocarditis. Based on the 2023 Duke-ISCVID update. Embed on your website or use in your lectures.",
+      "description": "Classify infective endocarditis as Definite, Possible, or Rejected using the 2023 Duke-ISCVID diagnostic criteria checklist.",
+      "labels": {
+        "majorCriteria": "Major Criteria",
+        "minorCriteria": "Minor Criteria",
+        "result": "Classification",
+        "majorCount": "{count} Major",
+        "minorCount": "{count} Minor",
+        "reset": "Reset All",
+        "emptyStateTitle": "Select the criteria present",
+        "emptyStateDesc": "Check each criterion that applies. The diagnostic classification will appear here automatically.",
+        "disclaimer": "This tool implements the 2023 Duke-ISCVID clinical criteria for research and educational purposes only. It does not replace pathologic criteria, clinical judgment, or the consideration of alternative diagnoses. Always consult the treating clinical team.",
+        "criteriaPresent": "criteria present",
+        "noneSelected": "No criteria selected"
+      },
+      "major": {
+        "microbiologic": "Microbiologic",
+        "microTypical": "Typical IE organisms from ≥2 separate blood culture sets",
+        "microTypicalDetail": "S. aureus, S. lugdunensis, E. faecalis, streptococci (except S. pneumoniae & S. pyogenes), Granulicatella, Abiotrophia, Gemella spp., HACEK group. With prosthetic material also: CoNS, C. striatum, C. jeikeium, S. marcescens, P. aeruginosa, C. acnes, NTM, Candida spp.",
+        "microNontypical": "Nontypical IE organisms from ≥3 separate blood culture sets",
+        "microPCR": "Positive PCR/sequencing for C. burnetii, Bartonella spp., or T. whipplei from blood",
+        "microCoxiella": "C. burnetii anti-phase I IgG >1:800 or single positive blood culture",
+        "microBartonella": "Bartonella IFA IgG titer ≥1:800",
+        "imaging": "Imaging",
+        "echoVegetation": "Echo/cardiac CT: vegetation, perforation, aneurysm, abscess, pseudoaneurysm, or fistula",
+        "echoRegurgitation": "Significant new valvular regurgitation (compared to prior imaging)",
+        "echoDehiscence": "New partial dehiscence of prosthetic valve",
+        "petCT": "PET/CT: abnormal metabolic activity on valve, graft, or device leads",
+        "surgical": "Surgical",
+        "surgicalInspection": "IE documented by direct inspection during heart surgery"
+      },
+      "minor": {
+        "predisposition": "Predisposition",
+        "predispositionDetail": "Prior IE, prosthetic valve, prior valve repair, congenital heart disease, >mild regurgitation/stenosis, endovascular CIED, HOCM, injection drug use",
+        "fever": "Fever >38.0 °C (100.4 °F)",
+        "vascular": "Vascular phenomena",
+        "vascularDetail": "Arterial emboli, septic pulmonary infarcts, cerebral/splenic abscess, mycotic aneurysm, intracranial hemorrhage, conjunctival hemorrhages, Janeway lesions, purulent purpura",
+        "immunologic": "Immunologic phenomena",
+        "immunologicDetail": "Positive rheumatoid factor, Osler nodes, Roth spots, immune complex-mediated glomerulonephritis",
+        "microMinor": "Microbiologic evidence not meeting major criterion",
+        "microMinorDetail": "Positive blood culture falling short of major criterion, or positive culture/PCR/sequencing from a sterile body site other than cardiac tissue or arterial embolus",
+        "imagingMinor": "Abnormal PET/CT within 3 months of prosthetic valve implantation",
+        "physicalExam": "New valvular regurgitation on auscultation (if echo unavailable)"
+      },
+      "categories": {
+        "definite": "Definite Infective Endocarditis",
+        "definiteDesc": "Clinical criteria met: {rule}.",
+        "possible": "Possible Infective Endocarditis",
+        "possibleDesc": "Clinical criteria met: {rule}.",
+        "rejected": "Rejected — Does Not Meet Criteria",
+        "rejectedDesc": "The selected findings do not meet the threshold for Possible or Definite IE by the 2023 Duke-ISCVID clinical criteria.",
+        "rule2Major": "2 major criteria",
+        "rule1Major3Minor": "1 major + 3 minor criteria",
+        "rule5Minor": "5 minor criteria",
+        "rule1Major1Minor": "1 major + 1 minor criterion",
+        "rule3Minor": "3 minor criteria"
+      },
+      "faq": {
+        "q1": "What are the Duke Criteria?",
+        "a1": "The Duke Criteria are a standardized set of clinical, microbiologic, and imaging findings used to classify suspected cases of infective endocarditis (IE) as Definite, Possible, or Rejected. Originally published in 1994, they were modified in 2000 and most recently updated in 2023 by the International Society for Cardiovascular Infectious Diseases (ISCVID).",
+        "q2": "What changed in the 2023 Duke-ISCVID update?",
+        "a2": "The 2023 update added cardiac CT and PET/CT as imaging criteria, introduced intraoperative inspection as a new major criterion, expanded the list of 'typical' IE-causing organisms, incorporated molecular diagnostics (PCR, metagenomic sequencing), removed requirements for blood culture timing and separate venipunctures, and clarified predisposing conditions such as transcatheter valves and CIEDs.",
+        "q3": "How are criteria counted for classification?",
+        "a3": "Definite IE requires 2 major criteria, or 1 major plus 3 minor criteria, or 5 minor criteria. Possible IE requires 1 major plus 1 minor criterion, or 3 minor criteria. If none of these combinations are met, the case is classified as Rejected. Note that Rejected also applies when a firm alternative diagnosis is established or when symptoms resolve rapidly with less than 4 days of antibiotics.",
+        "q4": "Can this calculator replace clinical judgment?",
+        "a4": "No. The Duke Criteria are a standardized framework to aid diagnosis, but they do not replace clinical judgment. The criteria cannot account for pathologic findings at surgery or autopsy, the consideration of alternative diagnoses, or the full clinical context. This calculator implements only the clinical criteria-counting algorithm.",
+        "q5": "What is the sensitivity and specificity of the 2023 criteria?",
+        "a5": "Validation studies have shown that the 2023 Duke-ISCVID criteria have improved sensitivity (approximately 84%) compared to the 2000 modified Duke criteria (approximately 75%) without significant loss of specificity. The improvement is largely attributed to the addition of PET/CT imaging and expanded microbiologic criteria."
+      },
+      "education": {
+        "aboutTitle": "What Is Infective Endocarditis?",
+        "aboutBody": "Infective endocarditis (IE) is an infection of the endocardial surface of the heart, most commonly involving one or more heart valves. It is caused by bacteria (or less commonly fungi) entering the bloodstream and adhering to damaged or abnormal cardiac structures. IE can affect native valves, prosthetic valves, and implanted cardiac devices. Without treatment, IE is almost universally fatal. Even with appropriate therapy, in-hospital mortality remains 15–20%. The 2023 Duke-ISCVID criteria provide a standardized diagnostic framework used worldwide in both clinical practice and research.",
+        "criteriaTitle": "Understanding the 2023 Duke-ISCVID Criteria",
+        "criteriaBody": "The diagnostic criteria divide clinical findings into Major and Minor categories. Major criteria carry strong diagnostic weight — they include specific microbiologic findings (blood cultures with typical IE organisms, serology, or molecular diagnostics) and imaging evidence (echocardiography, cardiac CT, PET/CT showing vegetations, abscesses, or abnormal metabolic activity). The 2023 update also added intraoperative inspection as a major criterion. Minor criteria include predisposing conditions, fever, vascular phenomena (such as Janeway lesions or arterial emboli), immunologic phenomena (such as Osler nodes or Roth spots), and supportive microbiologic or imaging findings that fall short of major criteria.",
+        "limitationsTitle": "Limitations of the Duke Criteria",
+        "limitationsBody": "While the Duke Criteria are the most widely used diagnostic framework for IE, they have recognized limitations:",
+        "limitation1": "The criteria were designed primarily for research standardization. They may underdiagnose IE in patients with prosthetic valves, cardiac devices, or right-sided endocarditis where echocardiographic findings can be subtle.",
+        "limitation2": "Blood culture-negative endocarditis (approximately 10% of cases) may be underrepresented, although the 2023 update addresses this with expanded molecular diagnostics.",
+        "limitation3": "The criteria do not account for clinical response to empiric antibiotic therapy or the treating physician's overall clinical impression, which remain important in practice.",
+        "limitation4": "PET/CT imaging criteria have reduced reliability within 3 months of cardiac surgery due to post-operative inflammation, which is why early post-implantation PET/CT findings are classified as a minor rather than major criterion.",
+        "faqTitle": "Frequently Asked Questions"
+      },
+      "openSource": {
+        "title": "Open Source Algorithm",
+        "description": "Here's exactly how this calculator classifies infective endocarditis. No black box — copy, audit, or adapt this algorithm freely.",
+        "copyCode": "Copy Code",
+        "copiedCode": "Copied!",
+        "viewFullSource": "View full source on GitHub"
+      }
+    },
+    "hypertension": {
+      "title": "Hypertension Management Algorithm",
+      "metaTitle": "Hypertension Management Algorithm — ACC/AHA Guidelines Interactive Tool | EnterMedSchool",
+      "metaDescription": "Free interactive hypertension management algorithm based on ACC/AHA 2017 guidelines. Step-by-step decision tree with clinical rationale. Embed or download as PDF.",
+      "description": "Interactive clinical decision algorithm for hypertension management based on ACC/AHA 2017 guidelines. Understand why each treatment decision is made.",
+      "education": {
+        "aboutTitle": "About Hypertension Management",
+        "aboutBody": "Hypertension affects nearly half of all adults and is the leading modifiable risk factor for cardiovascular disease, stroke, and chronic kidney disease. The 2017 ACC/AHA guidelines lowered the diagnostic threshold to 130/80 mmHg, classifying more patients for earlier intervention. This algorithm guides you through evidence-based decision-making from initial BP assessment through drug selection and follow-up, with educational explanations at every step.",
+        "guidelineTitle": "ACC/AHA 2017 Guidelines",
+        "guidelineBody": "The 2017 ACC/AHA/AAPA/ABC/ACPM/AGS/APhA/ASH/ASPC/NMA/PCNA Guideline for the Prevention, Detection, Evaluation, and Management of High Blood Pressure in Adults is the most comprehensive evidence-based guideline for hypertension management in the United States. It introduced new BP categories, emphasized 10-year ASCVD risk for treatment decisions, and recommended a target BP of <130/80 mmHg for most adults. The guidelines were based on systematic reviews of randomized controlled trials including SPRINT, ALLHAT, and ONTARGET.",
+        "limitationsTitle": "Limitations",
+        "limitationsBody": "While these guidelines are evidence-based, they have recognized limitations:",
+        "limitation1": "The algorithm simplifies complex clinical scenarios. Real patients may have multiple comorbidities requiring individualized therapy beyond what any algorithm can capture.",
+        "limitation2": "The ASCVD risk calculator has known limitations in certain populations, including younger adults, women, and some ethnic groups where risk may be over- or underestimated.",
+        "limitation3": "Drug selection recommendations are generalized. Individual factors such as drug interactions, patient preferences, cost, and access must be considered in practice.",
+        "limitation4": "The 130/80 mmHg target remains debated. Some guidelines (e.g., ESC/ESH 2018) use different thresholds for different age groups and comorbidities.",
+        "faqTitle": "Frequently Asked Questions"
+      }
+    },
     "embed": {
       "poweredBy": "Powered by",
       "freeOpenSource": "Free & Open Source",
@@ -1565,6 +1679,20 @@
         "px": "px"
       }
     }
+  },
+  "algorithms": {
+    "metaTitle": "Medical Algorithms — Interactive Clinical Decision Tools",
+    "metaDescription": "Free, interactive medical algorithms with step-by-step walkthroughs and educational explanations. Based on evidence-based guidelines. Embed or download as PDF.",
+    "hero": {
+      "titlePre": "Interactive",
+      "titleHighlight": "Medical Algorithms",
+      "titlePost": "for Students",
+      "annotation": "learn why, not just what!"
+    },
+    "subtitle": "Step-by-step clinical decision algorithms with educational explanations at every node. Understand why each treatment choice is made. Embed on your site, share with students, or download as PDF.",
+    "backToAlgorithms": "Back to Algorithms",
+    "startAlgorithm": "Start Algorithm",
+    "attributionReminder": "Attribution required when using or embedding these algorithms."
   },
   "calculators": {
     "title": "Medical Calculators & Algorithms",
