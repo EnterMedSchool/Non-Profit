@@ -1491,6 +1491,13 @@
         "limitation3": "The standard BMI thresholds were developed primarily from data on European populations. Research suggests that health risks associated with a given BMI may vary across different ethnic groups — for example, some Asian populations experience elevated risk at lower BMI values.",
         "limitation4": "BMI is designed for adults aged 20 and older. For children and adolescents, BMI is interpreted using age- and sex-specific percentile charts published by the WHO or CDC, as body composition changes significantly during growth and development.",
         "faqTitle": "Frequently Asked Questions"
+      },
+      "openSource": {
+        "title": "Open Source Formula",
+        "description": "Here's exactly how this calculator works. No black box — copy, audit, or adapt these formulas freely.",
+        "copyCode": "Copy Code",
+        "copiedCode": "Copied!",
+        "viewFullSource": "View full source on GitHub"
       }
     },
     "embed": {

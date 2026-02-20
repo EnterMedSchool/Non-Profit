@@ -110,8 +110,9 @@ export function getToolJsonLd(
   title: string,
   description: string,
   locale: string,
+  urlOverride?: string,
 ) {
-  const toolUrl = `${BASE_URL}/${locale}/tools/${tool.id}`;
+  const toolUrl = urlOverride || `${BASE_URL}/${locale}/tools/${tool.id}`;
 
   const medicalWebPage = {
     "@context": "https://schema.org",

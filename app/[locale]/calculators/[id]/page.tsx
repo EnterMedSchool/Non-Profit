@@ -5,6 +5,7 @@ import Link from "next/link";
 import { getToolById, getCalculatorTools } from "@/data/tools";
 import { calculatorRegistry } from "@/components/tools/calculators";
 import CalculatorLoader from "@/components/tools/calculators/CalculatorLoader";
+import FormulaCodeBlock from "@/components/tools/calculators/FormulaCodeBlock";
 import { getToolJsonLd, getFAQPageJsonLd } from "@/lib/metadata";
 import PageHero from "@/components/shared/PageHero";
 import AnimatedSection from "@/components/shared/AnimatedSection";
@@ -84,9 +85,10 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
 
   const title = t(`${tool.i18nKey}.title`);
   const description = t(`${tool.i18nKey}.description`);
+  const toolUrl = `${BASE_URL}/${locale}/calculators/${id}`;
 
-  // JSON-LD structured data
-  const jsonLdItems = getToolJsonLd(tool, title, description, locale);
+  // JSON-LD structured data (pass correct calculator URL)
+  const jsonLdItems = getToolJsonLd(tool, title, description, locale, toolUrl);
 
   // Build FAQ structured data for tools that have FAQ content
   const hasFaq = id === "bmi-calc";
@@ -102,6 +104,100 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
   const faqJsonLd = hasFaq ? getFAQPageJsonLd(faqItems, locale) : null;
 
   const hasEducationalContent = id === "bmi-calc";
+  const isBmi = id === "bmi-calc";
+
+  // BMI-specific: HowTo schema for "how to calculate BMI" featured snippets
+  const howToJsonLd = isBmi
+    ? {
+        "@context": "https://schema.org",
+        "@type": "HowTo",
+        name: "How to Calculate BMI",
+        description:
+          "Calculate your Body Mass Index using this free online BMI calculator with WHO classification and clinical interpretation.",
+        url: toolUrl,
+        totalTime: "PT2M",
+        tool: { "@type": "HowToTool", name: "Web browser" },
+        supply: [],
+        step: [
+          {
+            "@type": "HowToStep",
+            position: 1,
+            name: "Enter your height",
+            text: "Enter your height in centimeters (metric) or feet and inches (imperial).",
+            url: `${toolUrl}#step-1`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 2,
+            name: "Enter your weight",
+            text: "Enter your weight in kilograms (metric) or pounds (imperial).",
+            url: `${toolUrl}#step-2`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 3,
+            name: "Read your BMI value and WHO category",
+            text: "Your BMI value and WHO classification appear automatically. The color-coded scale shows where you fall among the standard categories.",
+            url: `${toolUrl}#step-3`,
+          },
+          {
+            "@type": "HowToStep",
+            position: 4,
+            name: "Check your healthy weight range",
+            text: "Review your healthy weight range (BMI 18.5\u201325) for your height and how far your current weight is from the range.",
+            url: `${toolUrl}#step-4`,
+          },
+        ],
+        provider: {
+          "@type": "Organization",
+          name: "EnterMedSchool.org",
+          url: BASE_URL,
+        },
+      }
+    : null;
+
+  // BMI-specific: SoftwareSourceCode schema for the open source formula section
+  const sourceCodeJsonLd = isBmi
+    ? {
+        "@context": "https://schema.org",
+        "@type": "SoftwareSourceCode",
+        name: `${title} \u2014 Open Source Formula`,
+        description:
+          "The complete BMI calculation formulas used in this calculator, available as open source JavaScript code.",
+        url: toolUrl,
+        codeRepository:
+          tool.sourceUrl ||
+          "https://github.com/enterMedSchool/Non-Profit",
+        programmingLanguage: "JavaScript",
+        runtimePlatform: "Web Browser",
+        license: `${BASE_URL}/${locale}/license`,
+        isAccessibleForFree: true,
+        provider: {
+          "@type": "Organization",
+          name: "EnterMedSchool.org",
+          url: BASE_URL,
+        },
+        ...(tool.seoKeywords && {
+          keywords: tool.seoKeywords.join(", "),
+        }),
+      }
+    : null;
+
+  // BreadcrumbList schema (all calculators)
+  const breadcrumbJsonLd = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    itemListElement: [
+      { "@type": "ListItem", position: 1, name: "Home", item: BASE_URL },
+      {
+        "@type": "ListItem",
+        position: 2,
+        name: "Calculators",
+        item: `${BASE_URL}/${locale}/calculators`,
+      },
+      { "@type": "ListItem", position: 3, name: title },
+    ],
+  };
 
   return (
     <main className="relative z-10 py-12 sm:py-20">
@@ -124,6 +220,34 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
             }}
           />
         )}
+        {howToJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(howToJsonLd).replace(/</g, "\\u003c"),
+            }}
+          />
+        )}
+        {sourceCodeJsonLd && (
+          <script
+            type="application/ld+json"
+            dangerouslySetInnerHTML={{
+              __html: JSON.stringify(sourceCodeJsonLd).replace(
+                /</g,
+                "\\u003c",
+              ),
+            }}
+          />
+        )}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(breadcrumbJsonLd).replace(
+              /</g,
+              "\\u003c",
+            ),
+          }}
+        />
 
         {/* Back link */}
         <AnimatedSection animation="slideLeft">
@@ -140,19 +264,45 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
         <PageHero
           titleHighlight={title}
           gradient="from-showcase-purple via-showcase-blue to-showcase-teal"
-          meshColors={["bg-showcase-purple/30", "bg-showcase-blue/25", "bg-showcase-teal/20"]}
+          meshColors={[
+            "bg-showcase-purple/30",
+            "bg-showcase-blue/25",
+            "bg-showcase-teal/20",
+          ]}
           subtitle={description}
         />
 
-        {/* Calculator */}
-        <AnimatedSection delay={0.1} animation="blurIn">
-          <div className="mt-8">
-            <CalculatorLoader id={id} />
+        {/* Embed section — top priority */}
+        <AnimatedSection delay={0.1} animation="rotateIn">
+          <div id="embed" className="mt-8">
+            <EmbedCodeGenerator
+              toolId={id}
+              toolTitle={title}
+              locale={locale}
+              embedHeight={tool.embedHeight}
+            />
+          </div>
+        </AnimatedSection>
+
+        {/* Attribution reminder */}
+        <AnimatedSection delay={0.12} animation="fadeUp">
+          <div className="mt-4 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
+            <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
+            <span>
+              {ct("attributionReminder")}{" "}
+              <Link
+                href={`/${locale}/license`}
+                className="font-semibold text-showcase-purple hover:underline"
+              >
+                Learn more
+              </Link>
+              .
+            </span>
           </div>
         </AnimatedSection>
 
         {/* Source code + Get the Code links */}
-        <AnimatedSection delay={0.15} animation="fadeUp">
+        <AnimatedSection delay={0.14} animation="fadeUp">
           <div className="mt-6 flex flex-wrap items-center justify-center gap-4">
             <Link
               href={`/${locale}/calculators/${id}/embed-code`}
@@ -176,9 +326,25 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           </div>
         </AnimatedSection>
 
+        {/* Open Source Formula (BMI-specific) */}
+        {isBmi && (
+          <AnimatedSection delay={0.16} animation="fadeUp">
+            <div className="mt-8">
+              <FormulaCodeBlock sourceUrl={tool.sourceUrl} />
+            </div>
+          </AnimatedSection>
+        )}
+
+        {/* Calculator */}
+        <AnimatedSection delay={0.18} animation="blurIn">
+          <div className="mt-8">
+            <CalculatorLoader id={id} />
+          </div>
+        </AnimatedSection>
+
         {/* Educational content section (BMI-specific) */}
         {hasEducationalContent && (
-          <AnimatedSection delay={0.15} animation="fadeUp">
+          <AnimatedSection delay={0.2} animation="fadeUp">
             <div className="mt-10 space-y-6">
               <div className="rounded-2xl border-3 border-showcase-navy/15 bg-white p-6 sm:p-8 shadow-chunky-sm">
                 <div className="flex items-center gap-3 mb-4">
@@ -260,8 +426,12 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
                 <div className="space-y-5">
                   {faqItems.map((faq, i) => (
                     <div key={i}>
-                      <h3 className="text-sm font-bold text-ink-dark">{faq.question}</h3>
-                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">{faq.answer}</p>
+                      <h3 className="text-sm font-bold text-ink-dark">
+                        {faq.question}
+                      </h3>
+                      <p className="mt-1.5 text-sm leading-relaxed text-ink-muted">
+                        {faq.answer}
+                      </p>
                     </div>
                   ))}
                 </div>
@@ -270,28 +440,12 @@ export default async function CalculatorPage({ params }: CalculatorPageProps) {
           </AnimatedSection>
         )}
 
-        {/* Share with Students + Attribution */}
-        <AnimatedSection delay={0.18} animation="fadeUp">
+        {/* Share with Students */}
+        <AnimatedSection delay={0.22} animation="fadeUp">
           <div className="mt-10 flex flex-col sm:flex-row items-start sm:items-center gap-4">
             <ShareLinkButton
               url={`${BASE_URL}/${locale}/calculators/${id}`}
               label={t("shareWithStudents")}
-            />
-          </div>
-          <div className="mt-4 flex items-center gap-2 rounded-2xl border border-showcase-teal/20 bg-white px-5 py-3.5 text-sm text-ink-muted">
-            <Shield className="h-4 w-4 text-showcase-teal flex-shrink-0" />
-            <span>{ct("attributionReminder")} <Link href={`/${locale}/license`} className="font-semibold text-showcase-purple hover:underline">Learn more</Link>.</span>
-          </div>
-        </AnimatedSection>
-
-        {/* Embed section */}
-        <AnimatedSection delay={0.2} animation="rotateIn">
-          <div id="embed" className="mt-10">
-            <EmbedCodeGenerator
-              toolId={id}
-              toolTitle={title}
-              locale={locale}
-              embedHeight={tool.embedHeight}
             />
           </div>
         </AnimatedSection>

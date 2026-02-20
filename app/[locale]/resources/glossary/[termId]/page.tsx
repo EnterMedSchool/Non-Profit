@@ -379,8 +379,10 @@ export default async function GlossaryTermPage({ params }: Props) {
             glossaryHref={`/${locale}/resources/glossary`}
           />
 
-          {/* Mobile ToC */}
-          <GlossaryTableOfContents sections={tocSections} />
+          {/* Mobile ToC (hidden on desktop where sidebar ToC is used) */}
+          <div className="lg:hidden">
+            <GlossaryTableOfContents sections={tocSections} />
+          </div>
 
           {/* ── Two-column layout: content + sidebar ToC ──────────── */}
           <div className="lg:grid lg:grid-cols-[1fr_220px] lg:gap-8">
