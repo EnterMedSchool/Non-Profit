@@ -1,100 +1,11 @@
 "use client";
 
-import { useState } from "react";
 import { useTranslations, useLocale } from "next-intl";
 import { m } from "framer-motion";
 import { BookOpen, Wrench, FileText, ArrowRight, Check } from "lucide-react";
 import AnimatedSection from "@/components/shared/AnimatedSection";
 import SectionHeading from "@/components/shared/SectionHeading";
 import ChunkyButton from "@/components/shared/ChunkyButton";
-
-function FlipCard({ pillar, index, t }: { pillar: any; index: number; t: any }) {
-  const [isFlipped, setIsFlipped] = useState(false);
-  const Icon = pillar.icon;
-  const WatermarkIcon = pillar.watermarkIcon;
-  const benefits = t.raw(`${pillar.key}.benefits`) as string[];
-
-  return (
-    <AnimatedSection
-      key={pillar.key}
-      delay={index * 0.15}
-      animation={index === 0 ? "slideLeft" : index === 1 ? "popIn" : "slideRight"}
-      spring
-      className="h-full [perspective:1000px]"
-    >
-      <m.div
-        className="relative w-full h-[450px] cursor-pointer group"
-        onHoverStart={() => setIsFlipped(true)}
-        onHoverEnd={() => setIsFlipped(false)}
-        onClick={() => setIsFlipped(!isFlipped)}
-      >
-        <m.div
-          className="w-full h-full relative [transform-style:preserve-3d]"
-          initial={false}
-          animate={{ rotateY: isFlipped ? 180 : 0 }}
-          transition={{ type: "spring", stiffness: 300, damping: 20 }}
-        >
-          {/* FRONT */}
-          <div className="absolute inset-0 [backface-visibility:hidden] rounded-2xl border-3 border-showcase-navy shadow-neo-brutal bg-white p-8 flex flex-col justify-center items-center text-center transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-neo-brutal-lg">
-            <WatermarkIcon
-              className={`absolute -right-8 -bottom-8 h-48 w-48 ${pillar.accentClass} opacity-[0.05] pointer-events-none`}
-              strokeWidth={1}
-            />
-            <div
-              className={`flex h-20 w-20 items-center justify-center rounded-2xl border-3 border-showcase-navy ${pillar.solidBg} mb-6 shadow-neo-brutal`}
-            >
-              <Icon className="h-10 w-10 text-white" />
-            </div>
-            <h3 className="font-display text-3xl font-extrabold text-ink-dark mb-4 text-shadow-3d-sm">
-              {t(`${pillar.key}.title`)}
-            </h3>
-            <p className="text-ink-muted text-base leading-relaxed mb-auto font-medium">
-              {t(`${pillar.key}.description`)}
-            </p>
-            <p className="mt-6 text-sm font-bold text-ink-light tracking-widest uppercase flex items-center gap-2 transition-transform duration-300 group-hover:scale-110 group-hover:text-ink-dark">
-              Flip to see more <ArrowRight className="h-4 w-4" />
-            </p>
-          </div>
-
-          {/* BACK */}
-          <div
-            className={`absolute inset-0 [backface-visibility:hidden] rounded-2xl border-3 border-showcase-navy shadow-neo-brutal p-8 flex flex-col ${pillar.solidBg} transition-all duration-300 group-hover:-translate-y-2 group-hover:shadow-neo-brutal-lg`}
-            style={{ transform: "rotateY(180deg)" }}
-          >
-            <div className="flex-1 flex flex-col justify-center relative z-10">
-              <h4 className="font-display text-2xl font-extrabold text-white mb-6 drop-shadow-md">
-                What you get
-              </h4>
-              <ul className="space-y-4 mb-8">
-                {benefits.map((benefit: string, j: number) => (
-                  <li
-                    key={j}
-                    className="flex items-start gap-3 text-white font-bold drop-shadow-sm"
-                  >
-                    <span className="mt-1 flex h-5 w-5 items-center justify-center rounded-full bg-white/30 border-2 border-white flex-shrink-0">
-                      <Check className="h-3 w-3 text-white" strokeWidth={4} />
-                    </span>
-                    <span className="leading-relaxed">{benefit}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            
-            <ChunkyButton
-              href={pillar.href}
-              variant="ghost"
-              size="md"
-              className="w-full bg-white text-ink-dark hover:bg-pastel-cream relative z-10 border-3 border-showcase-navy shadow-neo-brutal"
-            >
-              {t(`${pillar.key}.cta`)}
-              <ArrowRight className="h-4 w-4" />
-            </ChunkyButton>
-          </div>
-        </m.div>
-      </m.div>
-    </AnimatedSection>
-  );
-}
 
 export default function ForWhom() {
   const t = useTranslations("forWhom");
@@ -106,27 +17,45 @@ export default function ForWhom() {
       icon: BookOpen,
       watermarkIcon: BookOpen,
       color: "purple",
-      solidBg: "bg-showcase-purple",
+      gradient: "from-showcase-purple via-showcase-blue to-showcase-coral",
+      borderColor: "border-showcase-purple",
+      shadowColor: "shadow-chunky-purple",
       href: `/${locale}/resources`,
       accentClass: "text-showcase-purple",
+      dotClass: "bg-showcase-purple",
+      glowColor: "rgba(108, 92, 231, 0.3)",
+      hoverGradient:
+        "linear-gradient(135deg, rgba(108, 92, 231, 0.08) 0%, rgba(84, 160, 255, 0.05) 100%)",
     },
     {
       key: "tools" as const,
       icon: Wrench,
       watermarkIcon: Wrench,
       color: "teal",
-      solidBg: "bg-showcase-teal",
+      gradient: "from-showcase-teal via-showcase-green to-showcase-blue",
+      borderColor: "border-showcase-teal",
+      shadowColor: "shadow-chunky-teal",
       href: `/${locale}/tools`,
       accentClass: "text-showcase-teal",
+      dotClass: "bg-showcase-teal",
+      glowColor: "rgba(0, 217, 192, 0.3)",
+      hoverGradient:
+        "linear-gradient(135deg, rgba(0, 217, 192, 0.08) 0%, rgba(46, 204, 113, 0.05) 100%)",
     },
     {
       key: "guides" as const,
       icon: FileText,
       watermarkIcon: FileText,
       color: "orange",
-      solidBg: "bg-showcase-orange",
+      gradient: "from-showcase-orange via-showcase-yellow to-showcase-pink",
+      borderColor: "border-showcase-orange",
+      shadowColor: "shadow-chunky",
       href: `/${locale}/for-professors`,
       accentClass: "text-showcase-orange",
+      dotClass: "bg-showcase-orange",
+      glowColor: "rgba(255, 159, 67, 0.3)",
+      hoverGradient:
+        "linear-gradient(135deg, rgba(255, 159, 67, 0.08) 0%, rgba(255, 217, 61, 0.05) 100%)",
     },
   ];
 
@@ -142,9 +71,117 @@ export default function ForWhom() {
         </AnimatedSection>
 
         <div className="mt-10 grid grid-cols-1 gap-8 md:grid-cols-3">
-          {pillars.map((pillar, i) => (
-            <FlipCard key={pillar.key} pillar={pillar} index={i} t={t} />
-          ))}
+          {pillars.map((pillar, i) => {
+            const Icon = pillar.icon;
+            const WatermarkIcon = pillar.watermarkIcon;
+            const benefits = t.raw(`${pillar.key}.benefits`) as string[];
+            return (
+              <AnimatedSection
+                key={pillar.key}
+                delay={i * 0.15}
+                animation={i === 0 ? "slideLeft" : i === 1 ? "popIn" : "slideRight"}
+                spring
+                className="h-full"
+              >
+                <m.div
+                  className="tilt-3d h-full"
+                  whileHover={{
+                    rotateX: -1,
+                    rotateY: i === 0 ? 2 : i === 2 ? -2 : 0,
+                    scale: 1.01,
+                    transition: { duration: 0.3 },
+                  }}
+                >
+                  <div
+                    className={`
+                      group relative overflow-hidden rounded-2xl border-3 ${pillar.borderColor}
+                      ${pillar.shadowColor} bg-white p-8 h-full flex flex-col
+                      transition-all duration-500 hover:-translate-y-2 hover:shadow-chunky-xl
+                    `}
+                  >
+                    {/* Hover glow effect */}
+                    <div
+                      className="absolute -inset-4 rounded-3xl blur-2xl opacity-0 transition-opacity duration-500 group-hover:opacity-100 -z-20"
+                      style={{ backgroundColor: pillar.glowColor }}
+                      aria-hidden="true"
+                    />
+
+                    {/* Gradient tint on hover */}
+                    <div
+                      className="absolute inset-0 opacity-0 transition-opacity duration-500 group-hover:opacity-100 -z-10"
+                      style={{ background: pillar.hoverGradient }}
+                    />
+
+                    {/* Large watermark icon */}
+                    <WatermarkIcon
+                      className={`absolute -right-8 -bottom-8 h-48 w-48 ${pillar.accentClass} opacity-[0.08] transition-all duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:opacity-[0.15]`}
+                      strokeWidth={0.8}
+                    />
+
+                    {/* Color accent bar */}
+                    <div
+                      className={`absolute top-0 left-0 right-0 h-2 bg-gradient-to-r ${pillar.gradient} transition-all duration-300 group-hover:h-3`}
+                    />
+
+                    <div className="relative z-10 flex flex-col flex-1">
+                      <div className="flex items-center gap-4 mb-5">
+                        <div
+                          className={`flex h-14 w-14 items-center justify-center rounded-xl border-2 border-showcase-navy/20 bg-gradient-to-br ${pillar.gradient} transition-transform duration-300 group-hover:scale-110 group-hover:rotate-3`}
+                        >
+                          <Icon className="h-7 w-7 text-white" />
+                        </div>
+                        <h3 className="font-display text-2xl font-extrabold text-ink-dark">
+                          {t(`${pillar.key}.title`)}
+                        </h3>
+                      </div>
+
+                      <p className="text-ink-muted mb-6 text-base leading-relaxed">
+                        {t(`${pillar.key}.description`)}
+                      </p>
+
+                      <ul className="space-y-3 mb-8 flex-1">
+                        {benefits.map((benefit: string, j: number) => (
+                          <m.li
+                            key={j}
+                            initial={{ opacity: 0, x: -10 }}
+                            whileInView={{ opacity: 1, x: 0 }}
+                            transition={{ delay: 0.3 + j * 0.1, duration: 0.4 }}
+                            viewport={{ once: true }}
+                            className="flex items-start gap-3 text-sm text-ink-dark"
+                          >
+                            <span
+                              className={`mt-0.5 flex h-5 w-5 items-center justify-center rounded-full ${pillar.dotClass} flex-shrink-0 shadow-sm`}
+                            >
+                              <Check
+                                className="h-3 w-3 text-white"
+                                strokeWidth={3}
+                              />
+                            </span>
+                            <span className="leading-relaxed">{benefit}</span>
+                          </m.li>
+                        ))}
+                      </ul>
+
+                      <ChunkyButton
+                        href={pillar.href}
+                        variant={
+                          pillar.color === "teal"
+                            ? "teal"
+                            : pillar.color === "orange"
+                              ? "coral"
+                              : "primary"
+                        }
+                        size="md"
+                      >
+                        {t(`${pillar.key}.cta`)}
+                        <ArrowRight className="h-4 w-4" />
+                      </ChunkyButton>
+                    </div>
+                  </div>
+                </m.div>
+              </AnimatedSection>
+            );
+          })}
         </div>
       </div>
     </section>

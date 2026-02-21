@@ -107,42 +107,30 @@ export default function Hero() {
         }}
       />
 
-      {/* Floating stickers — draggable neo-brutalist items */}
+      {/* Floating stickers — CSS animation instead of Framer Motion infinite loops */}
       {!prefersReducedMotion &&
         floatingStickers.map((item, i) => {
           const IconComp = item.Icon;
           return (
-            <m.div
+            <div
               key={i}
-              className={`absolute ${item.color} hidden md:block z-20 cursor-grab active:cursor-grabbing`}
+              className={`absolute ${item.color} ${item.opacity} pointer-events-none hidden md:block animate-float-gentle`}
               style={{
                 top: item.top,
                 left: item.left,
                 right: item.right,
-              }}
-              drag
-              dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
-              dragElastic={0.2}
-              whileDrag={{ scale: 1.15, rotate: 0 }}
-              initial={{ rotate: item.rotate }}
-              animate={{
-                y: [0, -15, 0],
-                rotate: [item.rotate, item.rotate + 5, item.rotate],
-              }}
-              transition={{
-                duration: item.duration,
-                repeat: Infinity,
-                ease: "easeInOut",
-                delay: item.delay,
+                animationDelay: `${item.delay}s`,
+                animationDuration: `${item.duration}s`,
+                transform: `rotate(${item.rotate}deg)`,
               }}
             >
-              <div className="rounded-2xl bg-white p-3 shadow-neo-brutal border-3 border-showcase-navy">
+              <div className="rounded-2xl bg-white/60 backdrop-blur-sm p-3 shadow-lg border border-white/40">
                 <IconComp
                   style={{ width: item.size, height: item.size }}
-                  strokeWidth={2}
+                  strokeWidth={1.5}
                 />
               </div>
-            </m.div>
+            </div>
           );
         })}
 
@@ -191,7 +179,7 @@ export default function Hero() {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.6, delay: 0.2 }}
-        className="relative font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink-dark sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl text-shadow-3d"
+        className="relative font-display text-4xl font-extrabold leading-[1.08] tracking-tight text-ink-dark sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl"
       >
         <span className="text-gradient-rainbow">Open-Source</span>{" "}
         <span className="text-gradient-purple">Medical Education</span>
