@@ -29,7 +29,7 @@ function useOfferings() {
     badge: "Free",
     badgeColor: "green" as const,
     href: `/${locale}/resources/questions`,
-    gradient: "from-showcase-purple via-showcase-blue to-showcase-teal",
+    gradient: "bg-showcase-purple",
     iconBg: "bg-white/20",
     size: "hero" as const,
     pattern: "dots",
@@ -40,7 +40,7 @@ function useOfferings() {
     badge: "Free",
     badgeColor: "green" as const,
     href: `/${locale}/resources/videos`,
-    gradient: "from-showcase-teal via-showcase-green to-showcase-blue",
+    gradient: "bg-showcase-teal",
     iconBg: "bg-white/20",
     size: "hero" as const,
     pattern: "none",
@@ -51,7 +51,7 @@ function useOfferings() {
     badge: "Download",
     badgeColor: "teal" as const,
     href: `/${locale}/resources/pdfs`,
-    gradient: "from-showcase-orange via-showcase-yellow to-showcase-orange",
+    gradient: "bg-showcase-orange",
     iconBg: "bg-white/20",
     size: "medium" as const,
     pattern: "lines",
@@ -62,7 +62,7 @@ function useOfferings() {
     badge: "Open Source",
     badgeColor: "purple" as const,
     href: `/${locale}/resources/visuals`,
-    gradient: "from-showcase-coral via-showcase-pink to-showcase-purple",
+    gradient: "bg-showcase-pink",
     iconBg: "bg-white/20",
     size: "medium" as const,
     pattern: "none",
@@ -73,7 +73,7 @@ function useOfferings() {
     badge: "Free",
     badgeColor: "green" as const,
     href: `/${locale}/tools`,
-    gradient: "from-showcase-green via-showcase-teal to-showcase-blue",
+    gradient: "bg-showcase-green",
     iconBg: "bg-white/20",
     size: "medium" as const,
     pattern: "dots",
@@ -84,7 +84,7 @@ function useOfferings() {
     badge: "Download",
     badgeColor: "teal" as const,
     href: `/${locale}/for-professors/templates`,
-    gradient: "from-showcase-blue via-showcase-purple to-showcase-pink",
+    gradient: "bg-showcase-blue",
     iconBg: "bg-white/20",
     size: "small" as const,
     pattern: "none",
@@ -96,7 +96,7 @@ function useOfferings() {
     badgeColor: "green" as const,
     href: "https://entermedschool.com",
     external: true,
-    gradient: "from-showcase-teal via-showcase-green to-showcase-yellow",
+    gradient: "bg-showcase-yellow",
     iconBg: "bg-white/20",
     size: "small" as const,
     pattern: "lines",
@@ -108,7 +108,7 @@ function useOfferings() {
     badgeColor: "green" as const,
     href: "https://entermedschool.com",
     external: true,
-    gradient: "from-showcase-pink via-showcase-coral to-showcase-orange",
+    gradient: "bg-showcase-coral",
     iconBg: "bg-white/20",
     size: "small" as const,
     pattern: "none",
@@ -154,19 +154,19 @@ function BentoCard({
       <m.div
         className="tilt-3d h-full"
         whileHover={{
-          rotateX: -2,
-          rotateY: 3,
-          scale: 1.02,
-          transition: { duration: 0.3, ease: "easeOut" },
+          rotateX: -5,
+          rotateY: 5,
+          scale: 1.05,
+          transition: { type: "spring", stiffness: 400, damping: 10 },
         }}
       >
         <CardWrapper
           {...linkProps}
           className={`
             group relative block h-full overflow-hidden rounded-2xl border-3 border-showcase-navy
-            shadow-chunky-lg transition-all duration-300
-            hover:-translate-y-1 hover:shadow-chunky-xl
-            bg-gradient-to-br ${item.gradient}
+            shadow-neo-brutal transition-all duration-300
+            hover:-translate-y-2 hover:shadow-neo-brutal-lg
+            ${item.gradient}
             ${isHero ? "min-h-[220px] sm:min-h-[260px]" : isSmall ? "min-h-[160px]" : "min-h-[180px]"}
           `}
         >
@@ -186,8 +186,8 @@ function BentoCard({
           <Icon
             className={`absolute -right-4 -bottom-4 ${
               isHero ? "h-32 w-32 sm:h-40 sm:w-40" : "h-24 w-24"
-            } text-white/[0.12] transition-all duration-500 group-hover:scale-110 group-hover:rotate-6 group-hover:text-white/[0.18]`}
-            strokeWidth={1}
+            } text-black/10 transition-all duration-500 ease-[cubic-bezier(0.34,1.56,0.64,1)] group-hover:scale-[1.5] group-hover:-translate-x-4 group-hover:-translate-y-4 group-hover:rotate-12 group-hover:text-black/20`}
+            strokeWidth={3}
           />
 
           {/* Content */}

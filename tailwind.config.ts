@@ -1,4 +1,5 @@
 import type { Config } from "tailwindcss";
+import plugin from "tailwindcss/plugin";
 
 const config: Config = {
   content: [
@@ -61,20 +62,28 @@ const config: Config = {
         3: "3px",
       },
       boxShadow: {
-        chunky: "4px 4px 1px #1a1a2e",
-        "chunky-sm": "3px 3px 1px #1a1a2e",
-        "chunky-lg": "6px 6px 2px #1a1a2e",
-        "chunky-xl": "8px 8px 2px #1a1a2e",
-        "chunky-purple": "4px 4px 1px #6C5CE7",
-        "chunky-teal": "4px 4px 1px #00D9C0",
-        "chunky-yellow": "4px 4px 1px #FFD93D",
-        "chunky-coral": "4px 4px 1px #7E22CE",
-        "chunky-pink": "4px 4px 1px #FF85A2",
-        "chunky-green": "4px 4px 1px #2ECC71",
-        "chunky-orange": "4px 4px 1px #FF9F43",
-        "chunky-blue": "4px 4px 1px #54A0FF",
+        chunky: "4px 4px 0px #1a1a2e",
+        "chunky-sm": "2px 2px 0px #1a1a2e",
+        "chunky-lg": "6px 6px 0px #1a1a2e",
+        "chunky-xl": "8px 8px 0px #1a1a2e",
+        "chunky-purple": "4px 4px 0px #6C5CE7",
+        "chunky-teal": "4px 4px 0px #00D9C0",
+        "chunky-yellow": "4px 4px 0px #FFD93D",
+        "chunky-coral": "4px 4px 0px #7E22CE",
+        "chunky-pink": "4px 4px 0px #FF85A2",
+        "chunky-green": "4px 4px 0px #2ECC71",
+        "chunky-orange": "4px 4px 0px #FF9F43",
+        "chunky-blue": "4px 4px 0px #54A0FF",
+        "neo-brutal": "8px 8px 0px rgba(0,0,0,1)",
+        "neo-brutal-sm": "4px 4px 0px rgba(0,0,0,1)",
+        "neo-brutal-lg": "12px 12px 0px rgba(0,0,0,1)",
         soft: "0 2px 8px rgba(0,0,0,0.06)",
         card: "0 4px 16px rgba(0,0,0,0.06), 0 1px 4px rgba(0,0,0,0.04)",
+      },
+      dropShadow: {
+        "3d": "4px 4px 0px rgba(0,0,0,1)",
+        "3d-sm": "2px 2px 0px rgba(0,0,0,1)",
+        "3d-lg": "6px 6px 0px rgba(0,0,0,1)",
       },
       borderRadius: {
         chunky: "1rem",
@@ -182,7 +191,22 @@ const config: Config = {
       },
     },
   },
-  plugins: [require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/typography"),
+    plugin(function ({ addUtilities }) {
+      addUtilities({
+        '.text-shadow-3d': {
+          textShadow: '4px 4px 0px #000',
+        },
+        '.text-shadow-3d-sm': {
+          textShadow: '2px 2px 0px #000',
+        },
+        '.text-shadow-3d-white': {
+          textShadow: '4px 4px 0px #fff',
+        },
+      })
+    })
+  ],
 };
 
 export default config;

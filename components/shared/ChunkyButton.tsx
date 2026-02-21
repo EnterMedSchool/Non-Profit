@@ -6,12 +6,12 @@ type ButtonVariant = "primary" | "teal" | "yellow" | "coral" | "ghost" | "green"
 type ButtonSize = "sm" | "md" | "lg";
 
 const variantClasses: Record<ButtonVariant, string> = {
-  primary: "bg-showcase-purple text-white shadow-chunky hover:shadow-chunky-lg",
-  teal: "bg-showcase-teal text-ink-dark shadow-chunky hover:shadow-chunky-lg",
-  yellow: "bg-showcase-yellow text-ink-dark shadow-chunky hover:shadow-chunky-lg",
-  coral: "bg-showcase-coral text-white shadow-chunky hover:shadow-chunky-lg",
-  green: "bg-showcase-green text-white shadow-chunky hover:shadow-chunky-lg",
-  ghost: "bg-transparent text-ink-dark shadow-chunky-sm hover:bg-pastel-lavender hover:shadow-chunky",
+  primary: "bg-showcase-purple text-white shadow-neo-brutal hover:shadow-neo-brutal-lg",
+  teal: "bg-showcase-teal text-ink-dark shadow-neo-brutal hover:shadow-neo-brutal-lg",
+  yellow: "bg-showcase-yellow text-ink-dark shadow-neo-brutal hover:shadow-neo-brutal-lg",
+  coral: "bg-showcase-coral text-white shadow-neo-brutal hover:shadow-neo-brutal-lg",
+  green: "bg-showcase-green text-white shadow-neo-brutal hover:shadow-neo-brutal-lg",
+  ghost: "bg-transparent text-ink-dark shadow-neo-brutal-sm hover:bg-pastel-lavender hover:shadow-neo-brutal",
 };
 
 const sizeClasses: Record<ButtonSize, string> = {
@@ -48,7 +48,7 @@ export default function ChunkyButton({
     border-3 border-showcase-navy
     font-display font-bold
     transition-all duration-150
-    hover:-translate-y-0.5 active:translate-y-0.5 active:shadow-chunky-sm
+    hover:-translate-y-1 active:translate-y-2 active:shadow-none
     disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none
     ${variantClasses[variant]}
     ${sizeClasses[size]}

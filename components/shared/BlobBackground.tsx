@@ -1,79 +1,92 @@
-interface Blob {
+import { CSSProperties } from "react";
+import { Plus } from "lucide-react";
+
+interface Shape {
+  type: "circle" | "square" | "cross" | "pill";
   color: string;
   size: number;
   top: string;
   left?: string;
   right?: string;
   delay?: number;
-  blur?: number;
-  layer?: "back" | "mid" | "front";
+  duration?: number;
+  rotate?: number;
 }
 
+const defaultShapes: Shape[] = [
+  { type: "circle", color: "bg-showcase-purple", size: 120, top: "10%", left: "5%", delay: 0, duration: 15, rotate: 0 },
+  { type: "square", color: "bg-showcase-teal", size: 80, top: "60%", right: "10%", delay: 2, duration: 18, rotate: 15 },
+  { type: "pill", color: "bg-showcase-pink", size: 120, top: "20%", right: "15%", delay: 1, duration: 20, rotate: -25 },
+  { type: "cross", color: "text-showcase-yellow", size: 100, top: "70%", left: "15%", delay: 3, duration: 16, rotate: 45 },
+  { type: "circle", color: "bg-showcase-blue", size: 60, top: "40%", left: "40%", delay: 4, duration: 14, rotate: 0 },
+  { type: "square", color: "bg-showcase-orange", size: 70, top: "85%", right: "40%", delay: 0.5, duration: 19, rotate: 10 },
+  { type: "pill", color: "bg-showcase-green", size: 90, top: "30%", left: "25%", delay: 2.5, duration: 17, rotate: 60 },
+];
+
 interface BlobBackgroundProps {
-  blobs?: Blob[];
   className?: string;
 }
 
-/* Reduced from 12 → 6 blobs with lower blur (80→50, 65→40, 45→30) for GPU perf */
-const defaultBlobs: Blob[] = [
-  // Back layer — 2 blobs (was 4)
-  { color: "rgba(108, 92, 231, 0.22)", size: 600, top: "-10%", left: "-15%", delay: 0, blur: 50, layer: "back" },
-  { color: "rgba(0, 217, 192, 0.18)", size: 500, top: "50%", right: "-10%", delay: 3, blur: 50, layer: "back" },
-
-  // Mid layer — 2 blobs (was 4)
-  { color: "rgba(0, 217, 192, 0.16)", size: 350, top: "5%", left: "20%", delay: 1.5, blur: 40, layer: "mid" },
-  { color: "rgba(139, 92, 246, 0.14)", size: 330, top: "55%", right: "15%", delay: 2.5, blur: 40, layer: "mid" },
-
-  // Front layer — 2 blobs (was 3)
-  { color: "rgba(108, 92, 231, 0.12)", size: 200, top: "8%", right: "25%", delay: 3.5, blur: 30, layer: "front" },
-  { color: "rgba(84, 160, 255, 0.10)", size: 160, top: "65%", left: "30%", delay: 1.5, blur: 30, layer: "front" },
-];
-
-const layerSpeed: Record<string, string> = {
-  back: "animate-float-gentle",
-  mid: "animate-float-playful",
-  front: "animate-float-playful",
-};
-
-const organicShapes = [
-  "40% 60% 70% 30% / 60% 30% 70% 40%",
-  "70% 30% 50% 50% / 30% 60% 40% 70%",
-  "30% 60% 40% 70% / 50% 40% 60% 50%",
-  "60% 40% 30% 70% / 40% 70% 30% 60%",
-  "50% 50% 60% 40% / 70% 30% 50% 50%",
-];
-
 export default function BlobBackground({
-  blobs = defaultBlobs,
   className = "",
 }: BlobBackgroundProps) {
   return (
     <div
-      className={`fixed inset-0 z-0 pointer-events-none overflow-hidden ${className}`}
+      className={`fixed inset-0 z-0 pointer-events-none overflow-hidden bg-[#FAFDF5] ${className}`}
       aria-hidden="true"
     >
-      {/* Animated gradient base */}
-      <div className="absolute inset-0 gradient-animated" />
+      {/* Grid pattern for the "playground/notebook" feel */}
+      <div 
+        className="absolute inset-0 opacity-[0.04]"
+        style={{
+          backgroundImage: `
+            linear-gradient(to right, #1a1a2e 2px, transparent 2px),
+            linear-gradient(to bottom, #1a1a2e 2px, transparent 2px)
+          `,
+          backgroundSize: "40px 40px",
+        }}
+      />
 
-      {/* Floating blobs with organic shapes and layered depth */}
-      {blobs.map((blob, i) => (
-        <div
-          key={i}
-          className={`absolute ${layerSpeed[blob.layer || "mid"]}`}
-          style={{
-            background: `radial-gradient(circle, ${blob.color} 0%, transparent 65%)`,
-            width: blob.size,
-            height: blob.size,
-            top: blob.top,
-            left: blob.left,
-            right: blob.right,
-            animationDelay: `${blob.delay || 0}s`,
-            animationDuration: blob.layer === "back" ? "12s" : blob.layer === "front" ? "6s" : "8s",
-            filter: `blur(${blob.blur || 60}px)`,
-            borderRadius: organicShapes[i % organicShapes.length],
-          }}
-        />
-      ))}
+      {/* Floating sharp colorful shapes */}
+      {defaultShapes.map((shape, i) => {
+        return (
+          <div
+            key={i}
+            className="absolute animate-float-playful"
+            style={{
+              top: shape.top,
+              left: shape.left,
+              right: shape.right,
+              animationDelay: `${shape.delay || 0}s`,
+              animationDuration: `${shape.duration || 10}s`,
+            }}
+          >
+            <div 
+              style={{ transform: `rotate(${shape.rotate || 0}deg)` }}
+            >
+              {shape.type === 'cross' ? (
+                <Plus 
+                  className={`drop-shadow-3d ${shape.color}`} 
+                  size={shape.size} 
+                  strokeWidth={4} 
+                />
+              ) : (
+                <div 
+                  className={`shadow-neo-brutal border-3 border-showcase-navy ${
+                    shape.type === 'circle' ? 'rounded-full' : 
+                    shape.type === 'pill' ? 'rounded-full' : 
+                    'rounded-xl'
+                  } ${shape.color}`}
+                  style={{
+                    width: shape.size,
+                    height: shape.type === 'pill' ? shape.size / 2 : shape.size,
+                  }}
+                />
+              )}
+            </div>
+          </div>
+        );
+      })}
     </div>
   );
 }
