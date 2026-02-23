@@ -132,6 +132,8 @@ export default function Breadcrumbs() {
     return { href, label, isLast: index === segments.length - 1 };
   });
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://entermedschool.org";
+
   // JSON-LD structured data for breadcrumbs
   const jsonLd = {
     "@context": "https://schema.org",
@@ -141,7 +143,7 @@ export default function Breadcrumbs() {
         "@type": "ListItem",
         position: 1,
         name: t("home"),
-        item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}/${locale}`,
+        item: `${siteUrl}/${locale}`,
       },
       ...items.map((item, index) => ({
         "@type": "ListItem",
@@ -149,7 +151,7 @@ export default function Breadcrumbs() {
         name: item.label,
         ...(item.isLast
           ? {}
-          : { item: `${process.env.NEXT_PUBLIC_SITE_URL || ""}${item.href}` }),
+          : { item: `${siteUrl}${item.href}` }),
       })),
     ],
   };
